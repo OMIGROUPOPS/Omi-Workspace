@@ -1,0 +1,2176 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "077c690466ec19b66414038303c3e8e50cc268ad2def2a80c6e4e260ee7c025f",
+    "stage_cache_sha256": "9fb02ec9e75a710f4ae57816ac8db2b6d9cccae202a56f43c3975a89fc853bae",
+    "mirror_projection_sha256": "0a00d77730839d67f4c14b6041bce5aa2bc3ec5565605eb02fe44d4db3328982",
+    "mirror_permissions_sha256": "9fcf96c5df95ce81a3e7ca345d61f32798aad571c792924ce4254726f617c36d",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "d5d9ef42dd8e8e09d6b3a6eb8b81b64973f8b5eec9a57333e2383852a58d67b4",
+      "row_number": 478,
+      "row_csv": "26JUL17ALCRON,KXATPCHALLENGERMATCH-26JUL17ALCRON,ATP_CHALL,1784245297,1784245297,1784267627.202,1784298600.0,ALC,RON,1784245297,69.0,70,1784249298.5,71,1784267583.6,3949.75,2797.49,STILL,2.0,,,,,1784245297,30.0,30,1784257962.0,31,1784265253.5,131.0,41.12,STILL,1.0,,,,,1784245297,,,1784287740.0,1784293220.0,1784287740.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784245297,1784267627.202,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784245297,
+      "span_end_epoch": 1784267627.202,
+      "bell_epoch": 1784287740,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784287740,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "ALC": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 69,
+          "floor_cents": 70,
+          "floor_epoch": 1784249298.5,
+          "minutes_to_bell": 640.6916666666667,
+          "line": "ALC 70¢ @ 640.69m to bell",
+          "marker_label": "ALC FLOOR · RECORDED 70¢ @ 640.69m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 70¢ · 640m to bell",
+          "hover_note": "Recorded floor 70¢ printed here · 640m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "RON": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 30,
+          "floor_cents": 30,
+          "floor_epoch": 1784257962,
+          "minutes_to_bell": 496.3,
+          "line": "RON 30¢ @ 496.30m to bell",
+          "marker_label": "RON FLOOR · RECORDED 30¢ @ 496.30m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 30¢ · 496m to bell",
+          "hover_note": "Recorded floor 30¢ printed here · 496m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "ALC",
+      "underdog_leg": "RON",
+      "pair": {
+        "sum_cents": 100,
+        "discount_cents": 0,
+        "reason": null,
+        "line": "best capturable = 70 + 30 = 100¢",
+        "discount_line": "0¢ under par",
+        "compact_line": "best capturable 100¢ · 0¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL17ALCRON",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784245297",
+        "w1_left_epoch": "1784245297",
+        "w1_right_epoch": "1784267627.202",
+        "scheduled_start_epoch": "1784298600.0",
+        "legA": "ALC",
+        "legB": "RON",
+        "legA_formation_end_epoch": "1784245297",
+        "legA_open_postformation_c": "69.0",
+        "legA_floor_c": "70",
+        "legA_floor_epoch": "1784249298.5",
+        "legA_close_c": "71",
+        "legA_close_epoch": "1784267583.6",
+        "legA_contracts": "3949.75",
+        "legA_premium_usd": "2797.49",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "2.0",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784245297",
+        "legB_open_postformation_c": "30.0",
+        "legB_floor_c": "30",
+        "legB_floor_epoch": "1784257962.0",
+        "legB_close_c": "31",
+        "legB_close_epoch": "1784265253.5",
+        "legB_contracts": "131.0",
+        "legB_premium_usd": "41.12",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "1.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784245297",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784287740.0",
+        "kalshi_close_time_epoch": "1784293220.0",
+        "bell_epoch": "1784287740.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784245297",
+        "span_end_epoch": "1784267627.202",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL17ALCRON.jsonl",
+      "sha256": "b6f132351e8ee095c7e42d59b7c3ff3d3c72693099aa4c3301a92d4a0b0d2a37",
+      "raw_rows": 533,
+      "accepted_rows": 50,
+      "start_epoch": 1784245297,
+      "end_epoch": 1784267627.202
+    }
+  },
+  "first_callable_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "ALC": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+    "RON": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+          "epoch": 1784250482.327,
+          "clock": "T−4hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALC is not yet directionally called; RON is strengthening.",
+              "WHY": "ALC trades at 70¢ against its 69¢ opening anchor; RON trades at 32¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALC carries 1276 eligible past sides from first-price comparisons; RON carries 204 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALC calls 69¢ by T−3hr 38min; RON calls 30¢ by T−3hr 5min.",
+              "WHY": "ALC’s middle half spans 68–70¢; RON’s middle half spans 29–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALC has book 69/70 and a standing 69¢ bid; RON has book 30/32 and a standing 30¢ bid.",
+              "WHY": "ALC: The current pool target was the permitted bid level; RON: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "ALC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 69,
+              "corrected_open": 69,
+              "close": 71,
+              "recorded_floor": 70,
+              "P": 70,
+              "Q": 69,
+              "X": 1784254562.569975,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1276,
+              "ess": 474.5656344337172,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 70,
+                "last_trade_cents": 70,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-400"
+              },
+              "bid": 69,
+              "filled": null,
+              "decision": {
+                "order": 26,
+                "leg": "ALC",
+                "epoch": 1784250482.327,
+                "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 69,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 70,
+                  "last_trade_cents": 70,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-400"
+                },
+                "Q": 69,
+                "X": 1784254562.569975,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "support": null,
+                "accountability_assumption": "dbbaa15eb8a436edd0f29bc68d2b968d131e4ee52fd9908e65ab649e43e43ccc",
+                "stage_index": 13
+              },
+              "permission": null,
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784254562.569975,
+                "q25": 68,
+                "q75": 70,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1784251414.823,
+                  "price": 70,
+                  "size": 0.62,
+                  "receipt": "504a8654-85e9-532c-b68f-d1e640c56f3e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784251414.823,
+                  "price": 70,
+                  "size": 0.62,
+                  "receipt": "504a8654-85e9-532c-b68f-d1e640c56f3e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "RON": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 31,
+              "recorded_floor": 30,
+              "P": 32,
+              "Q": 30,
+              "X": 1784256540.202,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 204,
+              "ess": 59.17884247180558,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 30,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-385"
+              },
+              "bid": 30,
+              "filled": null,
+              "decision": {
+                "order": 27,
+                "leg": "RON",
+                "epoch": 1784250482.327,
+                "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 30,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 30,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-385"
+                },
+                "Q": 30,
+                "X": 1784256540.202,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "support": null,
+                "accountability_assumption": "d1729012aa8c005274a6d98e6c4d77264360ac910479e8a0c8700618bbd0763d",
+                "stage_index": 13
+              },
+              "permission": null,
+              "micro": {
+                "Q": 30,
+                "deadline_epoch": 1784256540.202,
+                "q25": 29,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 30,
+                "floor_witness": {
+                  "epoch": 1784257961.968,
+                  "price": 30,
+                  "size": 24,
+                  "receipt": "37218df1-8871-601e-4613-8e054da99ac1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784253871.798,
+                  "price": 31,
+                  "size": 4,
+                  "receipt": "e4ae31b8-2f26-5561-7831-4b15c5efbf68"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-ALC-miss",
+          "label": "Last receipt before ALC missed at the bell",
+          "arm": "D",
+          "focus_leg": "ALC",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+          "epoch": 1784267621.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALC is strengthening; RON is not yet directionally called.",
+              "WHY": "ALC trades at 71¢ against its 69¢ opening anchor; RON trades at 31¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALC carries 697 eligible past sides from first-price comparisons; RON carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALC calls 71¢ by T−0hr 0min; RON calls 31¢ by T−0hr 0min.",
+              "WHY": "ALC’s middle half spans 71–71¢; RON’s middle half spans 31–31¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALC has book 69/71 and a standing 69¢ bid; RON has book 29/31 and a recorded purchase at 30¢.",
+              "WHY": "ALC: The desired bid could not be posted below the ask; RON: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "ALC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69,
+              "close": 71,
+              "recorded_floor": 70,
+              "P": 71,
+              "Q": 71,
+              "X": 1784267621.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 697,
+              "ess": 274.90217593231534,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083"
+              },
+              "bid": 69,
+              "filled": null,
+              "decision": {
+                "order": 87,
+                "leg": "ALC",
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 69,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083"
+                },
+                "Q": 71,
+                "X": 1784267621.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "support": null,
+                "accountability_assumption": "34828f005bddb5522c68f8b251b0b53127a9883504ec90813452c98f2e6d169f",
+                "stage_index": 52
+              },
+              "permission": null,
+              "micro": {
+                "Q": 71,
+                "deadline_epoch": 1784267621.000001,
+                "q25": 71,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 31,
+              "recorded_floor": 30,
+              "P": 31,
+              "Q": 31,
+              "X": 1784267621.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 737.0210239341781,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-1230"
+              },
+              "bid": null,
+              "filled": 30,
+              "decision": {
+                "order": 83,
+                "leg": "RON",
+                "epoch": 1784267327.202,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON|ATLAS_GATE|1784267327.202",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 31,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-1153"
+                },
+                "Q": 31,
+                "X": 1784267327.202,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 47
+              },
+              "permission": null,
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784267621.000001,
+                "q25": 31,
+                "q75": 31,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784267627.202,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RON-fill",
+          "label": "Last receipt before RON filled",
+          "arm": "D",
+          "focus_leg": "RON",
+          "outcome": "fill",
+          "receipt": "a0315195-77aa-7ee5-5af3-6bc6f29685c8",
+          "epoch": 1784257130.588,
+          "clock": "T−2hr 55min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALC is not yet directionally called; RON is not yet directionally called.",
+              "WHY": "ALC trades at 70¢ against its 69¢ opening anchor; RON trades at 31¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALC carries 1576 eligible past sides from first-price comparisons; RON carries 1576 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALC calls 69¢ by T−2hr 27min; RON calls 30¢ by T−2hr 29min.",
+              "WHY": "ALC’s middle half spans 68–70¢; RON’s middle half spans 29–31¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALC has book 69/70 and a standing 69¢ bid; RON has book 30/31 and a standing 30¢ bid.",
+              "WHY": "ALC: The current pool target was the permitted bid level; RON: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "ALC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 69,
+              "corrected_open": 69,
+              "close": 71,
+              "recorded_floor": 70,
+              "P": 70,
+              "Q": 69,
+              "X": 1784258830.202,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1576,
+              "ess": 589.3809375561492,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 70,
+                "last_trade_cents": 70,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-882"
+              },
+              "bid": 69,
+              "filled": null,
+              "decision": {
+                "order": 58,
+                "leg": "ALC",
+                "epoch": 1784257130.588,
+                "receipt": "a0315195-77aa-7ee5-5af3-6bc6f29685c8",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 69,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 70,
+                  "last_trade_cents": 70,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-882"
+                },
+                "Q": 69,
+                "X": 1784258830.202,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "support": null,
+                "accountability_assumption": "23efdc470488aa8085835b1456cb6b10c42b0aaa70baf83a599ec1410a2c49d2",
+                "stage_index": 29
+              },
+              "permission": null,
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784258830.202,
+                "q25": 68,
+                "q75": 70,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1784258913.313,
+                  "price": 70,
+                  "size": 1,
+                  "receipt": "e8eacd9d-2c12-4ecf-640a-cf7e742e52b3"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "RON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 31,
+              "recorded_floor": 30,
+              "P": 31,
+              "Q": 30,
+              "X": 1784258669.202,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1576,
+              "ess": 589.3809375561492,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 30,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-826"
+              },
+              "bid": 30,
+              "filled": null,
+              "decision": {
+                "order": 59,
+                "leg": "RON",
+                "epoch": 1784257130.588,
+                "receipt": "a0315195-77aa-7ee5-5af3-6bc6f29685c8",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 30,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 30,
+                  "ask_cents": 31,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-826"
+                },
+                "Q": 30,
+                "X": 1784258669.202,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "support": null,
+                "accountability_assumption": "96b5ca076dac9b20fbe40a4844e059378b0f1077d6b4d2d247fc26d123f71cfe",
+                "stage_index": 29
+              },
+              "permission": null,
+              "micro": {
+                "Q": 30,
+                "deadline_epoch": 1784258669.202,
+                "q25": 29,
+                "q75": 31,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 30,
+                "floor_witness": {
+                  "epoch": 1784257961.968,
+                  "price": 30,
+                  "size": 24,
+                  "receipt": "37218df1-8871-601e-4613-8e054da99ac1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784257961.968,
+                  "price": 30,
+                  "size": 24,
+                  "receipt": "37218df1-8871-601e-4613-8e054da99ac1"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784257961.968,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "RON",
+              "epoch": 1784257961.968,
+              "cents": 30,
+              "receipt": "37218df1-8871-601e-4613-8e054da99ac1",
+              "order_lineage_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+              "order_lineage_start_epoch": 1784250482.327,
+              "current_price_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+              "current_price_start_epoch": 1784250482.327,
+              "order_lineage_age_minutes": 124.66068333387375,
+              "current_price_age_minutes": 124.66068333387375,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "RON",
+                "epoch": 1784257961.968,
+                "cents": 30,
+                "receipt": "37218df1-8871-601e-4613-8e054da99ac1",
+                "order_lineage_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "order_lineage_start_epoch": 1784250482.327,
+                "current_price_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "current_price_start_epoch": 1784250482.327,
+                "order_lineage_age_minutes": 124.66068333387375,
+                "current_price_age_minutes": 124.66068333387375,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 59,
+              "leg": "RON",
+              "epoch": 1784257130.588,
+              "receipt": "a0315195-77aa-7ee5-5af3-6bc6f29685c8",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 30,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 30,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-826"
+              },
+              "Q": 30,
+              "X": 1784258669.202,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784245297,
+              "support": null,
+              "accountability_assumption": "96b5ca076dac9b20fbe40a4844e059378b0f1077d6b4d2d247fc26d123f71cfe",
+              "stage_index": 29
+            },
+            "license_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+            "licensing_deadline_epoch": 1784256540.202,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ALC was not yet directionally called; its corrected full-window direction was strengthening. RON was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "ALC": false,
+          "RON": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [
+          {
+            "leg": "RON",
+            "epoch": 1784257961.968,
+            "cents": 30,
+            "receipt": "37218df1-8871-601e-4613-8e054da99ac1",
+            "order_lineage_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+            "order_lineage_start_epoch": 1784250482.327,
+            "current_price_receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+            "current_price_start_epoch": 1784250482.327,
+            "order_lineage_age_minutes": 124.66068333387375,
+            "current_price_age_minutes": 124.66068333387375,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "ALC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 71,
+            "close_epoch": 1784267583.6,
+            "floor_cents": 70,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RON",
+            "filled": true,
+            "fill_cents": 30,
+            "fill_epoch": 1784257961.968,
+            "fill_receipt": "37218df1-8871-601e-4613-8e054da99ac1",
+            "close_cents": 31,
+            "close_epoch": 1784265253.5,
+            "floor_cents": 30,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d5d9ef42dd8e8e09d6b3a6eb8b81b64973f8b5eec9a57333e2383852a58d67b4",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+          "epoch": 1784250482.327,
+          "clock": "T−4hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALC is not yet directionally called; RON is strengthening.",
+              "WHY": "ALC trades at 70¢ against its 69¢ opening anchor; RON trades at 32¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALC carries 1276 eligible past sides from first-price comparisons; RON carries 204 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALC calls 69¢ by T−3hr 38min; RON calls 30¢ by T−3hr 5min.",
+              "WHY": "ALC’s middle half spans 68–70¢; RON’s middle half spans 29–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALC has book 69/70 and no standing bid; RON has book 30/32 and no standing bid.",
+              "WHY": "ALC: The policy was waiting for a directional call; RON: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "ALC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 69,
+              "corrected_open": 69,
+              "close": 71,
+              "recorded_floor": 70,
+              "P": 70,
+              "Q": 69,
+              "X": 1784254562.569975,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1276,
+              "ess": 474.5656344337172,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 70,
+                "last_trade_cents": 70,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-400"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 26,
+                "leg": "ALC",
+                "epoch": 1784250482.327,
+                "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 69; reserve RON max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 70,
+                  "last_trade_cents": 70,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-400"
+                },
+                "Q": 69,
+                "X": 1784254562.569975,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "stage_index": 13
+              },
+              "permission": {
+                "ordinal": 13,
+                "epoch": 1784250482.327,
+                "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "id": "ALC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 70,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 2.9701558544628974,
+                      "ROUND_TRIP": 10.078251769940945,
+                      "LATE_BREAK_DOWN": 2.7909306045149016,
+                      "DRIFT_DOWN": 0.7201131460774957,
+                      "LATE_BREAK_UP": 1.5892978100258688,
+                      "QUIET_WOBBLE": 38.65226339876006,
+                      "DRIFT_UP": 1.7372385198597293,
+                      "GRIND_WOBBLE_UP": 0.2569135413570685,
+                      "ONE_STEP_DOWN": 1.7026734620782238,
+                      "EARLY_SET_UP": 2.028042685956264,
+                      "EARLY_SET_DOWN": 0.8401138150493801,
+                      "GRIND_WOBBLE_DOWN": 0.1021317112169504,
+                      "SLEEPER": 1.303123832176135
+                    },
+                    "position": 0.12448712500253162,
+                    "epoch": 1784248076.8226478,
+                    "minutes_to_bell": 325.8396558682124,
+                    "open": true,
+                    "member_count": 685,
+                    "ess": 254.73249085978168,
+                    "weight_sum": 38.65226339876006,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 69; reserve RON max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALC": {
+                    "forecast": 70,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 474.5656344337172,
+                    "role": "NOT_CALLABLE",
+                    "current": 70,
+                    "member_count": 1276
+                  },
+                  "RON": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 59.17884247180558,
+                    "role": "CLIMBER",
+                    "current": 32,
+                    "member_count": 204
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 2.9701558544628974,
+                    "ROUND_TRIP": 10.078251769940945,
+                    "LATE_BREAK_DOWN": 2.7909306045149016,
+                    "DRIFT_DOWN": 0.7201131460774957,
+                    "LATE_BREAK_UP": 1.5892978100258688,
+                    "QUIET_WOBBLE": 38.65226339876006,
+                    "DRIFT_UP": 1.7372385198597293,
+                    "GRIND_WOBBLE_UP": 0.2569135413570685,
+                    "ONE_STEP_DOWN": 1.7026734620782238,
+                    "EARLY_SET_UP": 2.028042685956264,
+                    "EARLY_SET_DOWN": 0.8401138150493801,
+                    "GRIND_WOBBLE_DOWN": 0.1021317112169504,
+                    "SLEEPER": 1.303123832176135
+                  },
+                  "position": 0.12448712500253162,
+                  "epoch": 1784248076.8226478,
+                  "minutes_to_bell": 325.8396558682124,
+                  "open": true,
+                  "member_count": 685,
+                  "ess": 254.73249085978168,
+                  "weight_sum": 38.65226339876006,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784254562.569975,
+                "q25": 68,
+                "q75": 70,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1784251414.823,
+                  "price": 70,
+                  "size": 0.62,
+                  "receipt": "504a8654-85e9-532c-b68f-d1e640c56f3e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784251414.823,
+                  "price": 70,
+                  "size": 0.62,
+                  "receipt": "504a8654-85e9-532c-b68f-d1e640c56f3e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "RON": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 31,
+              "recorded_floor": 30,
+              "P": 32,
+              "Q": 30,
+              "X": 1784256540.202,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 204,
+              "ess": 59.17884247180558,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 30,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-385"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 27,
+                "leg": "RON",
+                "epoch": 1784250482.327,
+                "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 32; reserve ALC max(close 70, ask 70) = 70"
+                },
+                "book": {
+                  "bid_cents": 30,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-385"
+                },
+                "Q": 30,
+                "X": 1784256540.202,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "stage_index": 13
+              },
+              "permission": {
+                "ordinal": 13,
+                "epoch": 1784250482.327,
+                "receipt": "ba1e43bc-c9e0-43c1-022b-0401a39d81d3",
+                "id": "RON",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 31,
+                  "hand_level": 31,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 32,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.14984296329641125,
+                      "ROUND_TRIP": 1.721707155312694,
+                      "LATE_BREAK_UP": 0.4032758424572554,
+                      "ONE_STEP_UP": 0.8649797141616935,
+                      "LATE_BREAK_DOWN": 0.2905735385244945,
+                      "QUIET_WOBBLE": 4.787859559868483,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.685166470332519,
+                      "DRIFT_UP": 0.9660485768374236,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.18223019755250086,
+                      "EARLY_SET_UP": 0.59612556500529,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.06404109589041096,
+                    "epoch": 1784246727.0506074,
+                    "minutes_to_bell": 348.33585654099784,
+                    "open": true,
+                    "member_count": 69,
+                    "ess": 23.587313033585573,
+                    "weight_sum": 4.787859559868483,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 70,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 70,
+                    "ask": 70,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 32; reserve ALC max(close 70, ask 70) = 70",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALC": {
+                    "forecast": 70,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 474.5656344337172,
+                    "role": "NOT_CALLABLE",
+                    "current": 70,
+                    "member_count": 1276
+                  },
+                  "RON": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 59.17884247180558,
+                    "role": "CLIMBER",
+                    "current": 32,
+                    "member_count": 204
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.14984296329641125,
+                    "ROUND_TRIP": 1.721707155312694,
+                    "LATE_BREAK_UP": 0.4032758424572554,
+                    "ONE_STEP_UP": 0.8649797141616935,
+                    "LATE_BREAK_DOWN": 0.2905735385244945,
+                    "QUIET_WOBBLE": 4.787859559868483,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.685166470332519,
+                    "DRIFT_UP": 0.9660485768374236,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.18223019755250086,
+                    "EARLY_SET_UP": 0.59612556500529,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.06404109589041096,
+                  "epoch": 1784246727.0506074,
+                  "minutes_to_bell": 348.33585654099784,
+                  "open": true,
+                  "member_count": 69,
+                  "ess": 23.587313033585573,
+                  "weight_sum": 4.787859559868483,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 30,
+                "deadline_epoch": 1784256540.202,
+                "q25": 29,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 30,
+                "floor_witness": {
+                  "epoch": 1784257961.968,
+                  "price": 30,
+                  "size": 24,
+                  "receipt": "37218df1-8871-601e-4613-8e054da99ac1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784253871.798,
+                  "price": 31,
+                  "size": 4,
+                  "receipt": "e4ae31b8-2f26-5561-7831-4b15c5efbf68"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-ALC-miss",
+          "label": "Last receipt before ALC missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "ALC",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+          "epoch": 1784267621.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALC is strengthening; RON is not yet directionally called.",
+              "WHY": "ALC trades at 71¢ against its 69¢ opening anchor; RON trades at 31¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALC carries 697 eligible past sides from first-price comparisons; RON carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALC calls 71¢ by T−0hr 0min; RON calls 31¢ by T−0hr 0min.",
+              "WHY": "ALC’s middle half spans 71–71¢; RON’s middle half spans 31–31¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALC has book 69/71 and no standing bid; RON has book 29/31 and no standing bid.",
+              "WHY": "ALC: The counterpart reservation did not leave a permitted discount; RON: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "ALC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69,
+              "close": 71,
+              "recorded_floor": 70,
+              "P": 71,
+              "Q": 71,
+              "X": 1784267621.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 697,
+              "ess": 274.90217593231534,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 102,
+                "leg": "ALC",
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 71; reserve RON max(close 31, ask 31) = 31"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083"
+                },
+                "Q": 71,
+                "X": 1784267621.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "stage_index": 52
+              },
+              "permission": {
+                "ordinal": 51,
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "id": "ALC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 70,
+                  "hand_level": 70,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 71,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 4.769438121388839,
+                      "ROUND_TRIP": 5.643353863766963,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 2.3247088119388386,
+                      "QUIET_WOBBLE": 15.14603509823001,
+                      "DRIFT_UP": 2.2625987154953817,
+                      "GRIND_WOBBLE_UP": 0.25954457053756885,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 2.679699630005088,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.777138323834376
+                    },
+                    "position": 0.056380208333333334,
+                    "epoch": 1784246555.9814408,
+                    "minutes_to_bell": 351.18700931866965,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 126.55351399516655,
+                    "weight_sum": 15.14603509823001,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 31,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 31,
+                    "ask": 31,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 71; reserve RON max(close 31, ask 31) = 31",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALC": {
+                    "forecast": 71,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 274.90217593231534,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 697
+                  },
+                  "RON": {
+                    "forecast": 31,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 737.0210239341781,
+                    "role": "NOT_CALLABLE",
+                    "current": 31,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 4.769438121388839,
+                    "ROUND_TRIP": 5.643353863766963,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 2.3247088119388386,
+                    "QUIET_WOBBLE": 15.14603509823001,
+                    "DRIFT_UP": 2.2625987154953817,
+                    "GRIND_WOBBLE_UP": 0.25954457053756885,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 2.679699630005088,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.777138323834376
+                  },
+                  "position": 0.056380208333333334,
+                  "epoch": 1784246555.9814408,
+                  "minutes_to_bell": 351.18700931866965,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 126.55351399516655,
+                  "weight_sum": 15.14603509823001,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 71,
+                "deadline_epoch": 1784267621.000001,
+                "q25": 71,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 31,
+              "recorded_floor": 30,
+              "P": 31,
+              "Q": 31,
+              "X": 1784267621.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 737.0210239341781,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-1230"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 103,
+                "leg": "RON",
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 31; reserve ALC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 31,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-1230"
+                },
+                "Q": 31,
+                "X": 1784267621.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "stage_index": 52
+              },
+              "permission": {
+                "ordinal": 51,
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "id": "RON",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 31,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 4.849512626112496,
+                      "ROUND_TRIP": 9.711822314462228,
+                      "LATE_BREAK_UP": 4.119870939574444,
+                      "ONE_STEP_UP": 1.7477966933271118,
+                      "LATE_BREAK_DOWN": 2.944130861432045,
+                      "QUIET_WOBBLE": 59.08025875985578,
+                      "DRIFT_DOWN": 1.3743224414146773,
+                      "SLEEPER": 12.892846447638096,
+                      "DRIFT_UP": 2.0859297207830547,
+                      "EARLY_SET_DOWN": 1.9160813276995794,
+                      "GRIND_WOBBLE_UP": 0.2536953525128588,
+                      "EARLY_SET_UP": 0.7575629555769148,
+                      "GRIND_WOBBLE_DOWN": 0.04825488294046337
+                    },
+                    "position": 0.24599198396793587,
+                    "epoch": 1784250790.0506923,
+                    "minutes_to_bell": 280.6191884597143,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 397.71379721561823,
+                    "weight_sum": 59.08025875985578,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 31; reserve ALC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALC": {
+                    "forecast": 71,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 274.90217593231534,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 697
+                  },
+                  "RON": {
+                    "forecast": 31,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 737.0210239341781,
+                    "role": "NOT_CALLABLE",
+                    "current": 31,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 4.849512626112496,
+                    "ROUND_TRIP": 9.711822314462228,
+                    "LATE_BREAK_UP": 4.119870939574444,
+                    "ONE_STEP_UP": 1.7477966933271118,
+                    "LATE_BREAK_DOWN": 2.944130861432045,
+                    "QUIET_WOBBLE": 59.08025875985578,
+                    "DRIFT_DOWN": 1.3743224414146773,
+                    "SLEEPER": 12.892846447638096,
+                    "DRIFT_UP": 2.0859297207830547,
+                    "EARLY_SET_DOWN": 1.9160813276995794,
+                    "GRIND_WOBBLE_UP": 0.2536953525128588,
+                    "EARLY_SET_UP": 0.7575629555769148,
+                    "GRIND_WOBBLE_DOWN": 0.04825488294046337
+                  },
+                  "position": 0.24599198396793587,
+                  "epoch": 1784250790.0506923,
+                  "minutes_to_bell": 280.6191884597143,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 397.71379721561823,
+                  "weight_sum": 59.08025875985578,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784267621.000001,
+                "q25": 31,
+                "q75": 31,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784267627.202,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RON-miss",
+          "label": "Last receipt before RON missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "RON",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+          "epoch": 1784267621.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALC is strengthening; RON is not yet directionally called.",
+              "WHY": "ALC trades at 71¢ against its 69¢ opening anchor; RON trades at 31¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALC carries 697 eligible past sides from first-price comparisons; RON carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALC calls 71¢ by T−0hr 0min; RON calls 31¢ by T−0hr 0min.",
+              "WHY": "ALC’s middle half spans 71–71¢; RON’s middle half spans 31–31¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALC has book 69/71 and no standing bid; RON has book 29/31 and no standing bid.",
+              "WHY": "ALC: The counterpart reservation did not leave a permitted discount; RON: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "ALC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69,
+              "close": 71,
+              "recorded_floor": 70,
+              "P": 71,
+              "Q": 71,
+              "X": 1784267621.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 697,
+              "ess": 274.90217593231534,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 102,
+                "leg": "ALC",
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 71; reserve RON max(close 31, ask 31) = 31"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083"
+                },
+                "Q": 71,
+                "X": 1784267621.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "stage_index": 52
+              },
+              "permission": {
+                "ordinal": 51,
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "id": "ALC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 70,
+                  "hand_level": 70,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 71,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 4.769438121388839,
+                      "ROUND_TRIP": 5.643353863766963,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 2.3247088119388386,
+                      "QUIET_WOBBLE": 15.14603509823001,
+                      "DRIFT_UP": 2.2625987154953817,
+                      "GRIND_WOBBLE_UP": 0.25954457053756885,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 2.679699630005088,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.777138323834376
+                    },
+                    "position": 0.056380208333333334,
+                    "epoch": 1784246555.9814408,
+                    "minutes_to_bell": 351.18700931866965,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 126.55351399516655,
+                    "weight_sum": 15.14603509823001,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 31,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 31,
+                    "ask": 31,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 71; reserve RON max(close 31, ask 31) = 31",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALC": {
+                    "forecast": 71,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 274.90217593231534,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 697
+                  },
+                  "RON": {
+                    "forecast": 31,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 737.0210239341781,
+                    "role": "NOT_CALLABLE",
+                    "current": 31,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 4.769438121388839,
+                    "ROUND_TRIP": 5.643353863766963,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 2.3247088119388386,
+                    "QUIET_WOBBLE": 15.14603509823001,
+                    "DRIFT_UP": 2.2625987154953817,
+                    "GRIND_WOBBLE_UP": 0.25954457053756885,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 2.679699630005088,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.777138323834376
+                  },
+                  "position": 0.056380208333333334,
+                  "epoch": 1784246555.9814408,
+                  "minutes_to_bell": 351.18700931866965,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 126.55351399516655,
+                  "weight_sum": 15.14603509823001,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 71,
+                "deadline_epoch": 1784267621.000001,
+                "q25": 71,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 31,
+              "recorded_floor": 30,
+              "P": 31,
+              "Q": 31,
+              "X": 1784267621.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 737.0210239341781,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-1230"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 103,
+                "leg": "RON",
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 31; reserve ALC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 31,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-RON.csv.gz#row-1230"
+                },
+                "Q": 31,
+                "X": 1784267621.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784245297,
+                "stage_index": 52
+              },
+              "permission": {
+                "ordinal": 51,
+                "epoch": 1784267621.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL17ALCRON-ALC.csv.gz#row-2083",
+                "id": "RON",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 31,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 4.849512626112496,
+                      "ROUND_TRIP": 9.711822314462228,
+                      "LATE_BREAK_UP": 4.119870939574444,
+                      "ONE_STEP_UP": 1.7477966933271118,
+                      "LATE_BREAK_DOWN": 2.944130861432045,
+                      "QUIET_WOBBLE": 59.08025875985578,
+                      "DRIFT_DOWN": 1.3743224414146773,
+                      "SLEEPER": 12.892846447638096,
+                      "DRIFT_UP": 2.0859297207830547,
+                      "EARLY_SET_DOWN": 1.9160813276995794,
+                      "GRIND_WOBBLE_UP": 0.2536953525128588,
+                      "EARLY_SET_UP": 0.7575629555769148,
+                      "GRIND_WOBBLE_DOWN": 0.04825488294046337
+                    },
+                    "position": 0.24599198396793587,
+                    "epoch": 1784250790.0506923,
+                    "minutes_to_bell": 280.6191884597143,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 397.71379721561823,
+                    "weight_sum": 59.08025875985578,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 31; reserve ALC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALC": {
+                    "forecast": 71,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 274.90217593231534,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 697
+                  },
+                  "RON": {
+                    "forecast": 31,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 737.0210239341781,
+                    "role": "NOT_CALLABLE",
+                    "current": 31,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 4.849512626112496,
+                    "ROUND_TRIP": 9.711822314462228,
+                    "LATE_BREAK_UP": 4.119870939574444,
+                    "ONE_STEP_UP": 1.7477966933271118,
+                    "LATE_BREAK_DOWN": 2.944130861432045,
+                    "QUIET_WOBBLE": 59.08025875985578,
+                    "DRIFT_DOWN": 1.3743224414146773,
+                    "SLEEPER": 12.892846447638096,
+                    "DRIFT_UP": 2.0859297207830547,
+                    "EARLY_SET_DOWN": 1.9160813276995794,
+                    "GRIND_WOBBLE_UP": 0.2536953525128588,
+                    "EARLY_SET_UP": 0.7575629555769148,
+                    "GRIND_WOBBLE_DOWN": 0.04825488294046337
+                  },
+                  "position": 0.24599198396793587,
+                  "epoch": 1784250790.0506923,
+                  "minutes_to_bell": 280.6191884597143,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 397.71379721561823,
+                  "weight_sum": 59.08025875985578,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784267621.000001,
+                "q25": 31,
+                "q75": 31,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784267627.202,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ALC was not yet directionally called; its corrected full-window direction was strengthening. RON was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "ALC": false,
+          "RON": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "ALC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 71,
+            "close_epoch": 1784267583.6,
+            "floor_cents": 70,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RON",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 31,
+            "close_epoch": 1784265253.5,
+            "floor_cents": 30,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d5d9ef42dd8e8e09d6b3a6eb8b81b64973f8b5eec9a57333e2383852a58d67b4",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

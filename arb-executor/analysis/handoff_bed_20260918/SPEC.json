@@ -1,0 +1,263 @@
+{
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "dir": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "meta": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+        "event_date": "26JUL12",
+        "category": "ATP_CHALL",
+        "discovery_epoch": 1783831340,
+        "bell_epoch": 1783874300,
+        "span_end_epoch": 1783874300,
+        "bell_source": "BOOK_SIGNATURE_OPERATOR_RULED",
+        "bell_source_used": "BOOK_SIGNATURE_OPERATOR_RULED",
+        "bell_alignment": {
+          "original_bell_epoch": 1783874300,
+          "corrected_ruler_bell_epoch": 1783874300,
+          "used_bell_epoch": 1783874300,
+          "delta_seconds": 0,
+          "applied": false,
+          "source": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "corrections_source": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl"
+        },
+        "leg_ids": [
+          "BAR",
+          "GIU"
+        ],
+        "anchors_cents": {
+          "BAR": 31,
+          "GIU": 67
+        },
+        "formation_end_epochs": {
+          "BAR": 1783831858,
+          "GIU": 1783831858
+        },
+        "truth_closes_cents": {
+          "BAR": 32,
+          "GIU": 66
+        },
+        "truth_fill_stamps": {
+          "BAR": "POST_BELL_INVALID (24.6 min after bell)",
+          "GIU": "PRE_BELL_VALID"
+        },
+        "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-001"
+      },
+      "grids": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR",
+          "path": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL12GIUBAR/KXATPCHALLENGERMATCH-26JUL12GIUBAR-BAR.grid.json",
+          "sha256": "d69485c78e29398f9b0baf10a861f314bbeac9d5164db15724e3706b7e1c269b"
+        },
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU",
+          "path": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL12GIUBAR/KXATPCHALLENGERMATCH-26JUL12GIUBAR-GIU.grid.json",
+          "sha256": "f789c5e2cdd10421a24ca01b5f67d1593fa19465ccbeb2d51968d4b70953683b"
+        }
+      ],
+      "D": {
+        "source": "Archived D native-tick face; b745ce7a levels/execution prior to accountability-only patch",
+        "os": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "grade_sha256": "58ed1b16884a60a4c03444edc0ce918da98bfc9569c1d226e1dee7e25867e500",
+        "face_sha256": "eda6fb83ccf8e455ff442ba17d03768d24f40f4327cf71f228d9cdbfb6b41400"
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "dir": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "meta": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+        "event_date": "26JUL14",
+        "category": "ATP_CHALL",
+        "discovery_epoch": 1783998959,
+        "bell_epoch": 1784042247,
+        "span_end_epoch": 1784042247,
+        "bell_source": "TAPE_SIGNATURE_OPERATOR_RULED",
+        "bell_source_used": "TAPE_SIGNATURE_OPERATOR_RULED",
+        "bell_alignment": {
+          "original_bell_epoch": 1784042247,
+          "corrected_ruler_bell_epoch": 1784042247,
+          "used_bell_epoch": 1784042247,
+          "delta_seconds": 0,
+          "applied": false,
+          "source": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "corrections_source": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl"
+        },
+        "leg_ids": [
+          "PAL",
+          "URS"
+        ],
+        "anchors_cents": {
+          "PAL": 38,
+          "URS": 62
+        },
+        "formation_end_epochs": {
+          "PAL": 1784001495,
+          "URS": 1784001495
+        },
+        "truth_closes_cents": {
+          "PAL": 41,
+          "URS": 61
+        },
+        "truth_fill_stamps": {
+          "PAL": "PRE_BELL_VALID (249 s before bell)",
+          "URS": "PRE_BELL_VALID"
+        },
+        "correction_receipt": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl#W1TT-C-002"
+      },
+      "grids": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL",
+          "path": "C:\\tmp\\repost_bench_20260915\\market_grids\\KXATPCHALLENGERMATCH-26JUL14URSPAL-PAL.json",
+          "sha256": "51584fc445c6f66678c57287d64ecbc9baa9a08845ca27d83a7d4952866803d9"
+        },
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14URSPAL-URS",
+          "path": "C:\\tmp\\repost_bench_20260915\\market_grids\\KXATPCHALLENGERMATCH-26JUL14URSPAL-URS.json",
+          "sha256": "1c0e6d54a8c44aec5a267eea56a62fa8dbf037dbb20774dba526d1516033ebd8"
+        }
+      ],
+      "D": {
+        "source": "Archived D native-tick face; b745ce7a levels/execution prior to accountability-only patch",
+        "os": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "grade_sha256": "25406f2233c08748621430ea9c5f91f07e01622ece0370c1a8f80ad97044ca92",
+        "face_sha256": "ed9efce39a650cb49316a88376ff2dd24b6d31c5f22e18fe945c270ae6804e6d"
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "dir": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "meta": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "event_date": "26JUL14",
+        "category": "ATP_CHALL",
+        "discovery_epoch": 1784007323,
+        "bell_epoch": 1784078400,
+        "span_end_epoch": 1784078400,
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_source_used": "MACHINE_RECEIPT",
+        "bell_alignment": {
+          "original_bell_epoch": 1784078400,
+          "corrected_ruler_bell_epoch": 1784078400,
+          "used_bell_epoch": 1784078400,
+          "delta_seconds": 0,
+          "applied": false,
+          "source": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "corrections_source": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl"
+        },
+        "leg_ids": [
+          "LAJ",
+          "SVA"
+        ],
+        "anchors_cents": {
+          "LAJ": 59,
+          "SVA": 41
+        },
+        "formation_end_epochs": {
+          "LAJ": 1784007603,
+          "SVA": 1784007603
+        },
+        "truth_closes_cents": {
+          "LAJ": 53,
+          "SVA": 48
+        },
+        "truth_fill_stamps": {
+          "LAJ": "PRE_BELL_VALID",
+          "SVA": "PRE_BELL_VALID"
+        },
+        "correction_receipt": null
+      },
+      "grids": [
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ",
+          "path": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.grid.json",
+          "sha256": "fd76e663c452b9178f1fc1147b23abf03fde9e7bb9e8789bcfce994c515854cf"
+        },
+        {
+          "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA",
+          "path": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.grid.json",
+          "sha256": "1bef85f62635022fd2335306315f0c3907f00ab92e7afd9a7924dfd264a59769"
+        }
+      ],
+      "D": {
+        "source": "Archived D native-tick face; b745ce7a levels/execution prior to accountability-only patch",
+        "os": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b",
+        "face_sha256": "f0de50ed03d5e8017b13910c118f6997abf38973d0381fd2c32319afb7755b97"
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "dir": "C:/tmp/handoff_bed_20260918/KXATPMATCH-26JUL18DANPRA",
+      "meta": {
+        "event_id": "KXATPMATCH-26JUL18DANPRA",
+        "event_date": "26JUL18",
+        "category": "ATP_MAIN",
+        "discovery_epoch": 1784316994,
+        "bell_epoch": 1784373060,
+        "span_end_epoch": 1784372160,
+        "bell_source": "TAPE_INFERENCE",
+        "bell_source_used": "CORRECTED_RULER:TAPE_INFERENCE",
+        "bell_alignment": {
+          "original_bell_epoch": 1784372160,
+          "corrected_ruler_bell_epoch": 1784373060,
+          "used_bell_epoch": 1784373060,
+          "delta_seconds": 900,
+          "applied": true,
+          "source": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+          "corrections_source": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl"
+        },
+        "leg_ids": [
+          "DAN",
+          "PRA"
+        ],
+        "anchors_cents": {
+          "DAN": 58,
+          "PRA": 41
+        },
+        "formation_end_epochs": {
+          "DAN": 1784332553,
+          "PRA": 1784332553
+        },
+        "truth_closes_cents": {
+          "DAN": 61,
+          "PRA": 41
+        },
+        "truth_fill_stamps": {
+          "DAN": null,
+          "PRA": null
+        },
+        "correction_receipt": null
+      },
+      "grids": [
+        {
+          "ticker": "KXATPMATCH-26JUL18DANPRA-DAN",
+          "path": "C:/tmp/handoff_bed_20260918/KXATPMATCH-26JUL18DANPRA/KXATPMATCH-26JUL18DANPRA-DAN.grid.json",
+          "sha256": "c16fde5e37b3f46267213ee102e0d887ea381e9723f9290f26a19436907e1e3b"
+        },
+        {
+          "ticker": "KXATPMATCH-26JUL18DANPRA-PRA",
+          "path": "C:/tmp/handoff_bed_20260918/KXATPMATCH-26JUL18DANPRA/KXATPMATCH-26JUL18DANPRA-PRA.grid.json",
+          "sha256": "125d88f780a85e3a7b0ad21e3649cd0000c1c50ce22b39fe1f9528a52901481e"
+        }
+      ],
+      "D": {
+        "source": "Archived D native-tick face; b745ce7a levels/execution prior to accountability-only patch",
+        "os": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+        "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+        "grade_sha256": "b342b8ea27b6d8b9fb998b4f764cf9865275106ba8ef39be1a384388dc9f8f36",
+        "face_sha256": "addd130d2a40fe8f9fb23b0b0275fa44fe3c986033af1abc5fbb1b9705f23a9b"
+      }
+    }
+  ],
+  "sources": {
+    "window1_v54_dual_belief_os.js": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+    "window1_v54_functionable_os.js": "584f4aab94708095ce94815172f1b99f3563ff20690f8730be7dd1b1b2810698",
+    "build_window1_v54_dual_belief.js": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5"
+  },
+  "flag": "W1_DIRECTION_HANDOFF=on",
+  "contract": "Unchanged ee2b7f18 OS. Same earlier-only isotonic method as ALT/GAS, by own category; no bed outcomes, no tutoring, no keyed branch. Two passes each; corrected current replay meta; D displayed with its original trace and corrected close ruler. No commit/push/default installation authorized."
+}

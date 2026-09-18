@@ -1,0 +1,2286 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "e826a3bcbb22431a29b8e35fe585ee1e8c0a6f56148bb6f56d6f371270581786",
+    "stage_cache_sha256": "13d97ce7a4f653889b46d3443577043d8861888ab2cd111c7baed2cb0fc32a16",
+    "mirror_projection_sha256": "9341dba8117fde8faa2acf62f35abdd29b26deaa8a8d41d043d9796bdea19ae3",
+    "mirror_permissions_sha256": "b032641fde27674edabfa63dafaec8e8863ddd4fd1c3f4e448c5996e8c036044",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "4f428cab754d74f92ae060a07718b508b7d05b4b8db95fd4a335290eacedb763",
+      "row_number": 652,
+      "row_csv": "26JUL19MENKUM,KXATPCHALLENGERMATCH-26JUL19MENKUM,ATP_CHALL,1784414096,1784414096,1784463180,1784467200.0,KUM,MEN,1784435532,90.0,94,1784459651.3,95,1784462989.7,2519.03,2401.75,MOVER,5.0,1784459652,95,1784460921.0,PRE_BELL_VALID,1784435532,10.0,5,1784437461.4,6,1784462989.7,2301.4,144.55,STILL,-4.0,1784459652,,,,1784435532,,,1784463060.0,1784468419.0,1784463060.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784435532,1784463060.0,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784435532,
+      "span_end_epoch": 1784463060,
+      "bell_epoch": 1784463060,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784463060,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "KUM": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 90,
+          "floor_cents": 94,
+          "floor_epoch": 1784459651.3,
+          "minutes_to_bell": 56.811666667461395,
+          "line": "KUM 94¢ @ 56.81m to bell",
+          "marker_label": "KUM FLOOR · RECORDED 94¢ @ 56.81m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 94¢ · 56m to bell",
+          "hover_note": "Recorded floor 94¢ printed here · 56m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "MEN": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 10,
+          "floor_cents": 5,
+          "floor_epoch": 1784437461.4,
+          "minutes_to_bell": 426.64333333174386,
+          "line": "MEN 5¢ @ 426.64m to bell",
+          "marker_label": "MEN FLOOR · RECORDED 5¢ @ 426.64m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 5¢ · 426m to bell",
+          "hover_note": "Recorded floor 5¢ printed here · 426m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "KUM",
+      "underdog_leg": "MEN",
+      "pair": {
+        "sum_cents": 99,
+        "discount_cents": 1,
+        "reason": null,
+        "line": "best capturable = 94 + 5 = 99¢",
+        "discount_line": "1¢ under par",
+        "compact_line": "best capturable 99¢ · 1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL19MENKUM",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784414096",
+        "w1_left_epoch": "1784414096",
+        "w1_right_epoch": "1784463180",
+        "scheduled_start_epoch": "1784467200.0",
+        "legA": "KUM",
+        "legB": "MEN",
+        "legA_formation_end_epoch": "1784435532",
+        "legA_open_postformation_c": "90.0",
+        "legA_floor_c": "94",
+        "legA_floor_epoch": "1784459651.3",
+        "legA_close_c": "95",
+        "legA_close_epoch": "1784462989.7",
+        "legA_contracts": "2519.03",
+        "legA_premium_usd": "2401.75",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "5.0",
+        "legA_us_first_post_epoch": "1784459652",
+        "legA_us_fill_c": "95",
+        "legA_us_fill_epoch": "1784460921.0",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784435532",
+        "legB_open_postformation_c": "10.0",
+        "legB_floor_c": "5",
+        "legB_floor_epoch": "1784437461.4",
+        "legB_close_c": "6",
+        "legB_close_epoch": "1784462989.7",
+        "legB_contracts": "2301.4",
+        "legB_premium_usd": "144.55",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-4.0",
+        "legB_us_first_post_epoch": "1784459652",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784435532",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784463060.0",
+        "kalshi_close_time_epoch": "1784468419.0",
+        "bell_epoch": "1784463060.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784435532",
+        "span_end_epoch": "1784463060.0",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19MENKUM.jsonl",
+      "sha256": "6545662230801df7d6f2756a3e12fe8f7e75dd66fe706ef533ef8a0a6a94530c",
+      "raw_rows": 614,
+      "accepted_rows": 66,
+      "start_epoch": 1784435532,
+      "end_epoch": 1784463060
+    }
+  },
+  "first_callable_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+  "first_both_directional_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+  "first_callable_by_side": {
+    "KUM": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+    "MEN": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+          "epoch": 1784437464.000005,
+          "clock": "T−7hr 7min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KUM is strengthening; MEN is weakening.",
+              "WHY": "KUM trades at 95¢ against its 90¢ opening anchor; MEN trades at 5¢ against its 10¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KUM carries 212 eligible past sides from first-price comparisons; MEN carries 272 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KUM calls 94¢ by T−4hr 9min; MEN calls 4¢ by T−3hr 3min.",
+              "WHY": "KUM’s middle half spans 90–95¢; MEN’s middle half spans 2–4¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KUM has book 91/96 and a standing 94¢ bid; MEN has book 4/9 and a standing 4¢ bid.",
+              "WHY": "KUM: The current pool target was the permitted bid level; MEN: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KUM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 90,
+              "corrected_open": 90,
+              "close": 95,
+              "recorded_floor": 94,
+              "P": 95,
+              "Q": 94,
+              "X": 1784448122,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 212,
+              "ess": 28.615399944648562,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 91,
+                "ask_cents": 96,
+                "last_trade_cents": 95,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181"
+              },
+              "bid": 94,
+              "filled": null,
+              "decision": {
+                "order": 66,
+                "leg": "KUM",
+                "epoch": 1784437464.000005,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 94,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 91,
+                  "ask_cents": 96,
+                  "last_trade_cents": 95,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181"
+                },
+                "Q": 94,
+                "X": 1784448122,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "support": null,
+                "accountability_assumption": "3b714310c8d3e33538a889ac6009d70069310443439f84d4ecc17cd0545aae2d",
+                "stage_index": 33
+              },
+              "permission": null,
+              "micro": {
+                "Q": 94,
+                "deadline_epoch": 1784448122,
+                "q25": 90,
+                "q75": 95,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 94,
+                "floor_witness": {
+                  "epoch": 1784459651.308,
+                  "price": 94,
+                  "size": 8,
+                  "receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784437467.04,
+                  "price": 95,
+                  "size": 50,
+                  "receipt": "47a47d99-1b75-4631-1aa9-fafd071941bf"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "MEN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 10,
+              "corrected_open": 10,
+              "close": 6,
+              "recorded_floor": 5,
+              "P": 5,
+              "Q": 4,
+              "X": 1784452108,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 272,
+              "ess": 33.63520800589367,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 4,
+                "ask_cents": 9,
+                "last_trade_cents": 5,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1134"
+              },
+              "bid": 4,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "MEN",
+                "epoch": 1784437464.000005,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 4,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 4,
+                  "ask_cents": 9,
+                  "last_trade_cents": 5,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1134"
+                },
+                "Q": 4,
+                "X": 1784452108,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "support": null,
+                "accountability_assumption": "4b3f50136e506029aa648078ee79c809c2b21d57dd6ad590607baf58a119d021",
+                "stage_index": 33
+              },
+              "permission": null,
+              "micro": {
+                "Q": 4,
+                "deadline_epoch": 1784452108,
+                "q25": 2,
+                "q75": 4,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 5,
+                "floor_witness": {
+                  "epoch": 1784437467.131,
+                  "price": 5,
+                  "size": 500,
+                  "receipt": "9b6b28d7-0ae9-59ce-612a-c080e7046f99"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KUM-fill",
+          "label": "Last receipt before KUM filled",
+          "arm": "D",
+          "focus_leg": "KUM",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784459460",
+          "epoch": 1784459460,
+          "clock": "T−1hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KUM is strengthening; MEN is weakening.",
+              "WHY": "KUM trades at 96¢ against its 90¢ opening anchor; MEN trades at 8¢ against its 10¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KUM carries 593 eligible past sides from first-price comparisons; MEN carries 635 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KUM calls 96¢ by T−1hr 0min; MEN calls 7¢ by T−0hr 58min.",
+              "WHY": "KUM’s middle half spans 94–96¢; MEN’s middle half spans 6–8¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KUM has book 94/96 and a standing 94¢ bid; MEN has book 5/7 and a standing 5¢ bid.",
+              "WHY": "KUM: The desired bid could not be posted below the ask; MEN: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KUM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 90,
+              "corrected_open": 90,
+              "close": 95,
+              "recorded_floor": 94,
+              "P": 96,
+              "Q": 96,
+              "X": 1784459460,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 593,
+              "ess": 90.07036636557939,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 94,
+                "ask_cents": 96,
+                "last_trade_cents": 96,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1470"
+              },
+              "bid": 94,
+              "filled": null,
+              "decision": {
+                "order": 122,
+                "leg": "KUM",
+                "epoch": 1784459460,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784459460",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 94,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 94,
+                  "ask_cents": 96,
+                  "last_trade_cents": 96,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1470"
+                },
+                "Q": 96,
+                "X": 1784459460,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "support": null,
+                "accountability_assumption": "2ecf99c4f8b307565aaf8ce24d74f52688ad7d41559351acb5834dbfc32f461a",
+                "stage_index": 61
+              },
+              "permission": null,
+              "micro": {
+                "Q": 96,
+                "deadline_epoch": 1784459460,
+                "q25": 94,
+                "q75": 96,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 94,
+                "floor_witness": {
+                  "epoch": 1784459651.308,
+                  "price": 94,
+                  "size": 8,
+                  "receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MEN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 10,
+              "corrected_open": 10,
+              "close": 6,
+              "recorded_floor": 5,
+              "P": 8,
+              "Q": 7,
+              "X": 1784459601,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 635,
+              "ess": 93.72170446519712,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 5,
+                "ask_cents": 7,
+                "last_trade_cents": 8,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1595"
+              },
+              "bid": 5,
+              "filled": null,
+              "decision": {
+                "order": 123,
+                "leg": "MEN",
+                "epoch": 1784459460,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784459460",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 5,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 5,
+                  "ask_cents": 7,
+                  "last_trade_cents": 8,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1595"
+                },
+                "Q": 7,
+                "X": 1784459601,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "support": null,
+                "accountability_assumption": "56b1e696abe7a49c5e77693a0f18d33958b88e54f4d25c5917afabcd7dedd4c1",
+                "stage_index": 61
+              },
+              "permission": null,
+              "micro": {
+                "Q": 7,
+                "deadline_epoch": 1784459601,
+                "q25": 6,
+                "q75": 8,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 5,
+                "floor_witness": {
+                  "epoch": 1784462673.154,
+                  "price": 5,
+                  "size": 200,
+                  "receipt": "f0c565d7-1484-73f3-d365-bb043d95f320"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784459651.308,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "KUM",
+              "epoch": 1784459651.308,
+              "cents": 94,
+              "receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+              "order_lineage_start_epoch": 1784437464.000005,
+              "current_price_receipt": "a1efe1b6-3109-4581-3f34-732ab2025b15",
+              "current_price_start_epoch": 1784445308.131,
+              "order_lineage_age_minutes": 369.78846658468245,
+              "current_price_age_minutes": 239.05295000076293,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "KUM",
+                "epoch": 1784459651.308,
+                "cents": 94,
+                "receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "order_lineage_start_epoch": 1784437464.000005,
+                "current_price_receipt": "a1efe1b6-3109-4581-3f34-732ab2025b15",
+                "current_price_start_epoch": 1784445308.131,
+                "order_lineage_age_minutes": 369.78846658468245,
+                "current_price_age_minutes": 239.05295000076293,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 122,
+              "leg": "KUM",
+              "epoch": 1784459460,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784459460",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 94,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 94,
+                "ask_cents": 96,
+                "last_trade_cents": 96,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1470"
+              },
+              "Q": 96,
+              "X": 1784459460,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784435532,
+              "support": null,
+              "accountability_assumption": "2ecf99c4f8b307565aaf8ce24d74f52688ad7d41559351acb5834dbfc32f461a",
+              "stage_index": 61
+            },
+            "license_receipt": "a1efe1b6-3109-4581-3f34-732ab2025b15",
+            "licensing_deadline_epoch": 1784452212,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MEN-fill",
+          "label": "Last receipt before MEN filled",
+          "arm": "D",
+          "focus_leg": "MEN",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784462160",
+          "epoch": 1784462160,
+          "clock": "T−0hr 15min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KUM is strengthening; MEN is weakening.",
+              "WHY": "KUM trades at 94¢ against its 90¢ opening anchor; MEN trades at 7¢ against its 10¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KUM carries 647 eligible past sides from first-price comparisons; MEN carries 664 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KUM calls 94¢ by T−0hr 15min; MEN calls 7¢ by T−0hr 15min.",
+              "WHY": "KUM’s middle half spans 94–94¢; MEN’s middle half spans 6–7¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KUM has book 95/96 and a recorded purchase at 94¢; MEN has book 5/9 and a standing 5¢ bid.",
+              "WHY": "KUM: This side was already bought, so no new bid was allowed; MEN: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KUM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 90,
+              "corrected_open": 90,
+              "close": 95,
+              "recorded_floor": 94,
+              "P": 94,
+              "Q": 94,
+              "X": 1784462160,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 647,
+              "ess": 110.22932870424526,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 95,
+                "ask_cents": 96,
+                "last_trade_cents": 94,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1566"
+              },
+              "bid": null,
+              "filled": 94,
+              "decision": {
+                "order": 134,
+                "leg": "KUM",
+                "epoch": 1784462160,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784462160",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 95,
+                  "ask_cents": 96,
+                  "last_trade_cents": 94,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1566"
+                },
+                "Q": 94,
+                "X": 1784462160,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 71
+              },
+              "permission": null,
+              "micro": {
+                "Q": 94,
+                "deadline_epoch": 1784462160,
+                "q25": 94,
+                "q75": 94,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 94,
+                "floor_witness": {
+                  "epoch": 1784462675.985,
+                  "price": 94,
+                  "size": 7,
+                  "receipt": "73a659dd-8ae5-5e88-6241-95b3c46b8c66"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MEN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 10,
+              "corrected_open": 10,
+              "close": 6,
+              "recorded_floor": 5,
+              "P": 7,
+              "Q": 7,
+              "X": 1784462160,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 664,
+              "ess": 92.33535910853773,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 5,
+                "ask_cents": 9,
+                "last_trade_cents": 7,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1719"
+              },
+              "bid": 5,
+              "filled": null,
+              "decision": {
+                "order": 135,
+                "leg": "MEN",
+                "epoch": 1784462160,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784462160",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 5,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 5,
+                  "ask_cents": 9,
+                  "last_trade_cents": 7,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1719"
+                },
+                "Q": 7,
+                "X": 1784462160,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "support": null,
+                "accountability_assumption": "0ca68f05d497ecd79f0802e97c9ea5689a3b33fec8241c70a1266339cb000e77",
+                "stage_index": 71
+              },
+              "permission": null,
+              "micro": {
+                "Q": 7,
+                "deadline_epoch": 1784462160,
+                "q25": 6,
+                "q75": 7,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 5,
+                "floor_witness": {
+                  "epoch": 1784462673.154,
+                  "price": 5,
+                  "size": 200,
+                  "receipt": "f0c565d7-1484-73f3-d365-bb043d95f320"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784462673.154,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "MEN",
+              "epoch": 1784462673.154,
+              "cents": 5,
+              "receipt": "f0c565d7-1484-73f3-d365-bb043d95f320",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+              "order_lineage_start_epoch": 1784437464.000005,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784448660",
+              "current_price_start_epoch": 1784448660,
+              "order_lineage_age_minutes": 420.15256658395134,
+              "current_price_age_minutes": 233.55256666739783,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "MEN",
+                "epoch": 1784462673.154,
+                "cents": 5,
+                "receipt": "f0c565d7-1484-73f3-d365-bb043d95f320",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "order_lineage_start_epoch": 1784437464.000005,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784448660",
+                "current_price_start_epoch": 1784448660,
+                "order_lineage_age_minutes": 420.15256658395134,
+                "current_price_age_minutes": 233.55256666739783,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 135,
+              "leg": "MEN",
+              "epoch": 1784462160,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784462160",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 5,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 5,
+                "ask_cents": 9,
+                "last_trade_cents": 7,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1719"
+              },
+              "Q": 7,
+              "X": 1784462160,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784435532,
+              "support": null,
+              "accountability_assumption": "0ca68f05d497ecd79f0802e97c9ea5689a3b33fec8241c70a1266339cb000e77",
+              "stage_index": 71
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784448660",
+            "licensing_deadline_epoch": 1784452108,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "MEN: later floor 5¢ outside 2–4¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KUM: later floor 94¢ inside 94–96¢; no later band print met the deadline. MEN: later floor 5¢ outside 6–7¢; no later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KUM": true,
+          "MEN": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 1,
+        "fills": [
+          {
+            "leg": "KUM",
+            "epoch": 1784459651.308,
+            "cents": 94,
+            "receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+            "order_lineage_start_epoch": 1784437464.000005,
+            "current_price_receipt": "a1efe1b6-3109-4581-3f34-732ab2025b15",
+            "current_price_start_epoch": 1784445308.131,
+            "order_lineage_age_minutes": 369.78846658468245,
+            "current_price_age_minutes": 239.05295000076293,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "MEN",
+            "epoch": 1784462673.154,
+            "cents": 5,
+            "receipt": "f0c565d7-1484-73f3-d365-bb043d95f320",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+            "order_lineage_start_epoch": 1784437464.000005,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM|ATLAS_GATE|1784448660",
+            "current_price_start_epoch": 1784448660,
+            "order_lineage_age_minutes": 420.15256658395134,
+            "current_price_age_minutes": 233.55256666739783,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "category": "ATP_CHALL",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "KUM",
+            "filled": true,
+            "fill_cents": 94,
+            "fill_epoch": 1784459651.308,
+            "fill_receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86",
+            "close_cents": 95,
+            "close_epoch": 1784462989.7,
+            "floor_cents": 94,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MEN",
+            "filled": true,
+            "fill_cents": 5,
+            "fill_epoch": 1784462673.154,
+            "fill_receipt": "f0c565d7-1484-73f3-d365-bb043d95f320",
+            "close_cents": 6,
+            "close_epoch": 1784462989.7,
+            "floor_cents": 5,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 2,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "4f428cab754d74f92ae060a07718b508b7d05b4b8db95fd4a335290eacedb763",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+          "epoch": 1784437464.000005,
+          "clock": "T−7hr 7min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KUM is strengthening; MEN is weakening.",
+              "WHY": "KUM trades at 95¢ against its 90¢ opening anchor; MEN trades at 5¢ against its 10¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KUM carries 212 eligible past sides from first-price comparisons; MEN carries 272 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KUM calls 94¢ by T−4hr 9min; MEN calls 4¢ by T−3hr 3min.",
+              "WHY": "KUM’s middle half spans 90–95¢; MEN’s middle half spans 2–4¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KUM has book 91/96 and no standing bid; MEN has book 4/9 and no standing bid.",
+              "WHY": "KUM: The available bid was not below the predicted closing price; MEN: The weakening side had not entered its predicted late-floor window. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KUM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 90,
+              "corrected_open": 90,
+              "close": 95,
+              "recorded_floor": 94,
+              "P": 95,
+              "Q": 94,
+              "X": 1784448122,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 212,
+              "ess": 28.615399944648562,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 91,
+                "ask_cents": 96,
+                "last_trade_cents": 95,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 66,
+                "leg": "KUM",
+                "epoch": 1784437464.000005,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 95; reserve MEN max(late floor 4, 100 - climber close 95 = 5) = 5; views differ by -1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 91,
+                  "ask_cents": 96,
+                  "last_trade_cents": 95,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181"
+                },
+                "Q": 94,
+                "X": 1784448122,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1784437464.000005,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "id": "KUM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 95,
+                  "hand_level": 95,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 95,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.4110376636722212,
+                      "ROUND_TRIP": 1.3609367437838324,
+                      "LATE_BREAK_DOWN": 0.03453094400139303,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.07036124882390143,
+                      "QUIET_WOBBLE": 3.3979129575094595,
+                      "DRIFT_UP": 0.4641513324930094,
+                      "GRIND_WOBBLE_UP": 0.025348959793714525,
+                      "ONE_STEP_DOWN": 0.00877956682784398,
+                      "EARLY_SET_UP": 1.2525620553714762,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.14981379985308474
+                    },
+                    "position": 0.014596949891067539,
+                    "epoch": 1784435933.8248365,
+                    "minutes_to_bell": 452.10291939179103,
+                    "open": true,
+                    "member_count": 67,
+                    "ess": 8.862190585086788,
+                    "weight_sum": 3.3979129575094595,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 5,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 4,
+                      "climber_forecast_close": 95,
+                      "mirror_completion_cost": 5,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 95; reserve MEN max(late floor 4, 100 - climber close 95 = 5) = 5; views differ by -1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 4,
+                    "climber_forecast_close": 95,
+                    "mirror_completion_cost": 5,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KUM",
+                    "faller": "MEN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 9,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 5,
+                    "ask": 9,
+                    "sum": 104,
+                    "discount": -4,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KUM": {
+                    "forecast": 95,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.615399944648562,
+                    "role": "CLIMBER",
+                    "current": 95,
+                    "member_count": 212
+                  },
+                  "MEN": {
+                    "forecast": 5,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 33.63520800589367,
+                    "role": "FALLER",
+                    "current": 5,
+                    "member_count": 272
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.4110376636722212,
+                    "ROUND_TRIP": 1.3609367437838324,
+                    "LATE_BREAK_DOWN": 0.03453094400139303,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.07036124882390143,
+                    "QUIET_WOBBLE": 3.3979129575094595,
+                    "DRIFT_UP": 0.4641513324930094,
+                    "GRIND_WOBBLE_UP": 0.025348959793714525,
+                    "ONE_STEP_DOWN": 0.00877956682784398,
+                    "EARLY_SET_UP": 1.2525620553714762,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.14981379985308474
+                  },
+                  "position": 0.014596949891067539,
+                  "epoch": 1784435933.8248365,
+                  "minutes_to_bell": 452.10291939179103,
+                  "open": true,
+                  "member_count": 67,
+                  "ess": 8.862190585086788,
+                  "weight_sum": 3.3979129575094595,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 94,
+                "deadline_epoch": 1784448122,
+                "q25": 90,
+                "q75": 95,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 94,
+                "floor_witness": {
+                  "epoch": 1784459651.308,
+                  "price": 94,
+                  "size": 8,
+                  "receipt": "0f63c023-6361-6f74-5a4b-b0581693ce86"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784437467.04,
+                  "price": 95,
+                  "size": 50,
+                  "receipt": "47a47d99-1b75-4631-1aa9-fafd071941bf"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "MEN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 10,
+              "corrected_open": 10,
+              "close": 6,
+              "recorded_floor": 5,
+              "P": 5,
+              "Q": 4,
+              "X": 1784452108,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 272,
+              "ess": 33.63520800589367,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 4,
+                "ask_cents": 9,
+                "last_trade_cents": 5,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1134"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "MEN",
+                "epoch": 1784437464.000005,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 4; reserve KUM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 4,
+                  "ask_cents": 9,
+                  "last_trade_cents": 5,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1134"
+                },
+                "Q": 4,
+                "X": 1784452108,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1784437464.000005,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1181",
+                "id": "MEN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 5,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.3130000702001987,
+                      "ROUND_TRIP": 0.9346917030411012,
+                      "LATE_BREAK_UP": 1.0047384545968905,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.009319571119610284,
+                      "QUIET_WOBBLE": 2.939443638216264,
+                      "DRIFT_DOWN": 0.2608858337442374,
+                      "SLEEPER": 0.08938531205312805,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 2.0510809701438495,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.008298470695195757
+                    },
+                    "position": 0.24293865905848788,
+                    "epoch": 1784442219.6154065,
+                    "minutes_to_bell": 347.33974322477974,
+                    "open": false,
+                    "member_count": 98,
+                    "ess": 21.867982871726173,
+                    "weight_sum": 2.939443638216264,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 4; reserve KUM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 4,
+                    "climber_forecast_close": 95,
+                    "mirror_completion_cost": 5,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KUM",
+                    "faller": "MEN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KUM": {
+                    "forecast": 95,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.615399944648562,
+                    "role": "CLIMBER",
+                    "current": 95,
+                    "member_count": 212
+                  },
+                  "MEN": {
+                    "forecast": 5,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 33.63520800589367,
+                    "role": "FALLER",
+                    "current": 5,
+                    "member_count": 272
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.3130000702001987,
+                    "ROUND_TRIP": 0.9346917030411012,
+                    "LATE_BREAK_UP": 1.0047384545968905,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.009319571119610284,
+                    "QUIET_WOBBLE": 2.939443638216264,
+                    "DRIFT_DOWN": 0.2608858337442374,
+                    "SLEEPER": 0.08938531205312805,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 2.0510809701438495,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.008298470695195757
+                  },
+                  "position": 0.24293865905848788,
+                  "epoch": 1784442219.6154065,
+                  "minutes_to_bell": 347.33974322477974,
+                  "open": false,
+                  "member_count": 98,
+                  "ess": 21.867982871726173,
+                  "weight_sum": 2.939443638216264,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 4,
+                "deadline_epoch": 1784452108,
+                "q25": 2,
+                "q75": 4,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 5,
+                "floor_witness": {
+                  "epoch": 1784437467.131,
+                  "price": 5,
+                  "size": 500,
+                  "receipt": "9b6b28d7-0ae9-59ce-612a-c080e7046f99"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KUM-miss",
+          "label": "Last receipt before KUM missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KUM",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+          "epoch": 1784463037.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KUM is strengthening; MEN is weakening.",
+              "WHY": "KUM trades at 95¢ against its 90¢ opening anchor; MEN trades at 6¢ against its 10¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KUM carries 698 eligible past sides from first-price comparisons; MEN carries 695 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KUM calls 95¢ by T−0hr 0min; MEN calls 6¢ by T−0hr 0min.",
+              "WHY": "KUM’s middle half spans 95–95¢; MEN’s middle half spans 6–6¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KUM has book 94/96 and no standing bid; MEN has book 5/6 and no standing bid.",
+              "WHY": "KUM: The available bid was not below the predicted closing price; MEN: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KUM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 90,
+              "corrected_open": 90,
+              "close": 95,
+              "recorded_floor": 94,
+              "P": 95,
+              "Q": 95,
+              "X": 1784463037.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 698,
+              "ess": 103.81077794192409,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 94,
+                "ask_cents": 96,
+                "last_trade_cents": 95,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 156,
+                "leg": "KUM",
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 95; reserve MEN max(late floor 6, 100 - climber close 95 = 5) = 6; views differ by 1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 94,
+                  "ask_cents": 96,
+                  "last_trade_cents": 95,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639"
+                },
+                "Q": 95,
+                "X": 1784463037.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "stage_index": 79
+              },
+              "permission": {
+                "ordinal": 78,
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "id": "KUM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 95,
+                  "hand_level": 95,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 95,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.6650479487410486,
+                      "ROUND_TRIP": 3.294833801483799,
+                      "LATE_BREAK_DOWN": 0.037796009179497096,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.6604036718371613,
+                      "QUIET_WOBBLE": 13.495575131682303,
+                      "DRIFT_UP": 0.7841757442043364,
+                      "GRIND_WOBBLE_UP": 0.08548642506227012,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 1.9569791600712694,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.5658575278525273
+                    },
+                    "position": 0.04848422797698548,
+                    "epoch": 1784436866.6738276,
+                    "minutes_to_bell": 436.55543620586394,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 49.481424672666755,
+                    "weight_sum": 13.495575131682303,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 6,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 101,
+                    "discount": -1,
+                    "components": {
+                      "faller_forecast_late_floor": 6,
+                      "climber_forecast_close": 95,
+                      "mirror_completion_cost": 5,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 95; reserve MEN max(late floor 6, 100 - climber close 95 = 5) = 6; views differ by 1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 6,
+                    "climber_forecast_close": 95,
+                    "mirror_completion_cost": 5,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "KUM",
+                    "faller": "MEN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 6,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 6,
+                    "ask": 6,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KUM": {
+                    "forecast": 95,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.81077794192409,
+                    "role": "CLIMBER",
+                    "current": 95,
+                    "member_count": 698
+                  },
+                  "MEN": {
+                    "forecast": 6,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 97.7440185218669,
+                    "role": "FALLER",
+                    "current": 6,
+                    "member_count": 695
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.6650479487410486,
+                    "ROUND_TRIP": 3.294833801483799,
+                    "LATE_BREAK_DOWN": 0.037796009179497096,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.6604036718371613,
+                    "QUIET_WOBBLE": 13.495575131682303,
+                    "DRIFT_UP": 0.7841757442043364,
+                    "GRIND_WOBBLE_UP": 0.08548642506227012,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 1.9569791600712694,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.5658575278525273
+                  },
+                  "position": 0.04848422797698548,
+                  "epoch": 1784436866.6738276,
+                  "minutes_to_bell": 436.55543620586394,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 49.481424672666755,
+                  "weight_sum": 13.495575131682303,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 95,
+                "deadline_epoch": 1784463037.000002,
+                "q25": 95,
+                "q75": 95,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MEN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 10,
+              "corrected_open": 10,
+              "close": 6,
+              "recorded_floor": 5,
+              "P": 6,
+              "Q": 6,
+              "X": 1784463037.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 695,
+              "ess": 97.7440185218669,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 5,
+                "ask_cents": 6,
+                "last_trade_cents": 6,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1832"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 157,
+                "leg": "MEN",
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 6; reserve KUM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 5,
+                  "ask_cents": 6,
+                  "last_trade_cents": 6,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1832"
+                },
+                "Q": 6,
+                "X": 1784463037.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "stage_index": 79
+              },
+              "permission": {
+                "ordinal": 78,
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "id": "MEN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 6,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 6,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.753654283747971,
+                      "ROUND_TRIP": 3.1704386338954778,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.8797835684100398,
+                      "QUIET_WOBBLE": 9.930042245590064,
+                      "DRIFT_DOWN": 0.6572278122751503,
+                      "SLEEPER": 0.7319102348062956,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 3.3004980336163645,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.019783157309100623
+                    },
+                    "position": 0.4945639904600424,
+                    "epoch": 1784449146.3575294,
+                    "minutes_to_bell": 231.89404117663702,
+                    "open": true,
+                    "member_count": 293,
+                    "ess": 49.9926137782019,
+                    "weight_sum": 9.930042245590064,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 6; reserve KUM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 6,
+                    "climber_forecast_close": 95,
+                    "mirror_completion_cost": 5,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "KUM",
+                    "faller": "MEN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KUM": {
+                    "forecast": 95,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.81077794192409,
+                    "role": "CLIMBER",
+                    "current": 95,
+                    "member_count": 698
+                  },
+                  "MEN": {
+                    "forecast": 6,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 97.7440185218669,
+                    "role": "FALLER",
+                    "current": 6,
+                    "member_count": 695
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.753654283747971,
+                    "ROUND_TRIP": 3.1704386338954778,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.8797835684100398,
+                    "QUIET_WOBBLE": 9.930042245590064,
+                    "DRIFT_DOWN": 0.6572278122751503,
+                    "SLEEPER": 0.7319102348062956,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 3.3004980336163645,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.019783157309100623
+                  },
+                  "position": 0.4945639904600424,
+                  "epoch": 1784449146.3575294,
+                  "minutes_to_bell": 231.89404117663702,
+                  "open": true,
+                  "member_count": 293,
+                  "ess": 49.9926137782019,
+                  "weight_sum": 9.930042245590064,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 6,
+                "deadline_epoch": 1784463037.000002,
+                "q25": 6,
+                "q75": 6,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784463060,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MEN-miss",
+          "label": "Last receipt before MEN missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "MEN",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+          "epoch": 1784463037.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KUM is strengthening; MEN is weakening.",
+              "WHY": "KUM trades at 95¢ against its 90¢ opening anchor; MEN trades at 6¢ against its 10¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KUM carries 698 eligible past sides from first-price comparisons; MEN carries 695 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KUM calls 95¢ by T−0hr 0min; MEN calls 6¢ by T−0hr 0min.",
+              "WHY": "KUM’s middle half spans 95–95¢; MEN’s middle half spans 6–6¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KUM has book 94/96 and no standing bid; MEN has book 5/6 and no standing bid.",
+              "WHY": "KUM: The available bid was not below the predicted closing price; MEN: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KUM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 90,
+              "corrected_open": 90,
+              "close": 95,
+              "recorded_floor": 94,
+              "P": 95,
+              "Q": 95,
+              "X": 1784463037.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 698,
+              "ess": 103.81077794192409,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 94,
+                "ask_cents": 96,
+                "last_trade_cents": 95,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 156,
+                "leg": "KUM",
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 95; reserve MEN max(late floor 6, 100 - climber close 95 = 5) = 6; views differ by 1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 94,
+                  "ask_cents": 96,
+                  "last_trade_cents": 95,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639"
+                },
+                "Q": 95,
+                "X": 1784463037.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "stage_index": 79
+              },
+              "permission": {
+                "ordinal": 78,
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "id": "KUM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 95,
+                  "hand_level": 95,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 95,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.6650479487410486,
+                      "ROUND_TRIP": 3.294833801483799,
+                      "LATE_BREAK_DOWN": 0.037796009179497096,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.6604036718371613,
+                      "QUIET_WOBBLE": 13.495575131682303,
+                      "DRIFT_UP": 0.7841757442043364,
+                      "GRIND_WOBBLE_UP": 0.08548642506227012,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 1.9569791600712694,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.5658575278525273
+                    },
+                    "position": 0.04848422797698548,
+                    "epoch": 1784436866.6738276,
+                    "minutes_to_bell": 436.55543620586394,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 49.481424672666755,
+                    "weight_sum": 13.495575131682303,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 6,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 101,
+                    "discount": -1,
+                    "components": {
+                      "faller_forecast_late_floor": 6,
+                      "climber_forecast_close": 95,
+                      "mirror_completion_cost": 5,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 95; reserve MEN max(late floor 6, 100 - climber close 95 = 5) = 6; views differ by 1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 6,
+                    "climber_forecast_close": 95,
+                    "mirror_completion_cost": 5,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "KUM",
+                    "faller": "MEN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 6,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 6,
+                    "ask": 6,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KUM": {
+                    "forecast": 95,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.81077794192409,
+                    "role": "CLIMBER",
+                    "current": 95,
+                    "member_count": 698
+                  },
+                  "MEN": {
+                    "forecast": 6,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 97.7440185218669,
+                    "role": "FALLER",
+                    "current": 6,
+                    "member_count": 695
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.6650479487410486,
+                    "ROUND_TRIP": 3.294833801483799,
+                    "LATE_BREAK_DOWN": 0.037796009179497096,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.6604036718371613,
+                    "QUIET_WOBBLE": 13.495575131682303,
+                    "DRIFT_UP": 0.7841757442043364,
+                    "GRIND_WOBBLE_UP": 0.08548642506227012,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 1.9569791600712694,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.5658575278525273
+                  },
+                  "position": 0.04848422797698548,
+                  "epoch": 1784436866.6738276,
+                  "minutes_to_bell": 436.55543620586394,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 49.481424672666755,
+                  "weight_sum": 13.495575131682303,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 95,
+                "deadline_epoch": 1784463037.000002,
+                "q25": 95,
+                "q75": 95,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MEN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 10,
+              "corrected_open": 10,
+              "close": 6,
+              "recorded_floor": 5,
+              "P": 6,
+              "Q": 6,
+              "X": 1784463037.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 695,
+              "ess": 97.7440185218669,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 5,
+                "ask_cents": 6,
+                "last_trade_cents": 6,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1832"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 157,
+                "leg": "MEN",
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 6; reserve KUM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 5,
+                  "ask_cents": 6,
+                  "last_trade_cents": 6,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-MEN.csv.gz#row-1832"
+                },
+                "Q": 6,
+                "X": 1784463037.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784435532,
+                "stage_index": 79
+              },
+              "permission": {
+                "ordinal": 78,
+                "epoch": 1784463037.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19MENKUM-KUM.csv.gz#row-1639",
+                "id": "MEN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 6,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 6,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.753654283747971,
+                      "ROUND_TRIP": 3.1704386338954778,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.8797835684100398,
+                      "QUIET_WOBBLE": 9.930042245590064,
+                      "DRIFT_DOWN": 0.6572278122751503,
+                      "SLEEPER": 0.7319102348062956,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 3.3004980336163645,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.019783157309100623
+                    },
+                    "position": 0.4945639904600424,
+                    "epoch": 1784449146.3575294,
+                    "minutes_to_bell": 231.89404117663702,
+                    "open": true,
+                    "member_count": 293,
+                    "ess": 49.9926137782019,
+                    "weight_sum": 9.930042245590064,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 6; reserve KUM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 6,
+                    "climber_forecast_close": 95,
+                    "mirror_completion_cost": 5,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "KUM",
+                    "faller": "MEN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KUM": {
+                    "forecast": 95,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.81077794192409,
+                    "role": "CLIMBER",
+                    "current": 95,
+                    "member_count": 698
+                  },
+                  "MEN": {
+                    "forecast": 6,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 97.7440185218669,
+                    "role": "FALLER",
+                    "current": 6,
+                    "member_count": 695
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.753654283747971,
+                    "ROUND_TRIP": 3.1704386338954778,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.8797835684100398,
+                    "QUIET_WOBBLE": 9.930042245590064,
+                    "DRIFT_DOWN": 0.6572278122751503,
+                    "SLEEPER": 0.7319102348062956,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 3.3004980336163645,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.019783157309100623
+                  },
+                  "position": 0.4945639904600424,
+                  "epoch": 1784449146.3575294,
+                  "minutes_to_bell": 231.89404117663702,
+                  "open": true,
+                  "member_count": 293,
+                  "ess": 49.9926137782019,
+                  "weight_sum": 9.930042245590064,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 6,
+                "deadline_epoch": 1784463037.000002,
+                "q25": 6,
+                "q75": 6,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784463060,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "MEN: later floor 5¢ outside 2–4¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KUM: No strictly later accepted positive print. MEN: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KUM": false,
+          "MEN": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "KUM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 95,
+            "close_epoch": 1784462989.7,
+            "floor_cents": 94,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MEN",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 6,
+            "close_epoch": 1784462989.7,
+            "floor_cents": 5,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "4f428cab754d74f92ae060a07718b508b7d05b4b8db95fd4a335290eacedb763",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

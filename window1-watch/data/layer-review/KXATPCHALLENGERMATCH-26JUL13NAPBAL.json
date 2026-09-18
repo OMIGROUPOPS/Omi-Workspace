@@ -1,0 +1,2058 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "c5f31a44c9267f16dcb13fe6132d70d793d084b3d8a806813b9b3777171d3b4d",
+    "stage_cache_sha256": "d9beb8503b8ca7fafa9cca4ddf501ef0a760aeec2a2517c4e00d595d6b952d0f",
+    "mirror_projection_sha256": "1c276d98d825d64c7ad4d23218b606682f75bb798ce48a8a601ad8e970bdcf85",
+    "mirror_permissions_sha256": "730ec43ef0c65ec53de9b06aadd4c13cfbf2a4cf778703666659a7dfbe7010c4",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "123bae7309c6af1b83c09e2114e8a424f6727d4d1db8c715e64c0ca208c6f962",
+      "row_number": 222,
+      "row_csv": "26JUL13NAPBAL,KXATPCHALLENGERMATCH-26JUL13NAPBAL,ATP_CHALL,1783919525,1783919525,1783960200,1783972800.0,BAL,NAP,1783919921,66.0,65,1783936495.4,66,1783960169.6,543.42,357.55,STILL,0.0,,,,,1783919921,34.0,32,1783923624.3,35,1783960179.7,1141.4,395.07,STILL,1.0,,,,,1783919921,,,1783962180.0,1783968898.0,1783962180.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783919921,1783960200,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783919921,
+      "span_end_epoch": 1783960200,
+      "bell_epoch": 1783962180,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783962180,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BAL": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 66,
+          "floor_cents": 65,
+          "floor_epoch": 1783936495.4,
+          "minutes_to_bell": 428.0766666650772,
+          "line": "BAL 65¢ @ 428.08m to bell",
+          "marker_label": "BAL FLOOR · RECORDED 65¢ @ 428.08m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 65¢ · 428m to bell",
+          "hover_note": "Recorded floor 65¢ printed here · 428m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "NAP": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 34,
+          "floor_cents": 32,
+          "floor_epoch": 1783923624.3,
+          "minutes_to_bell": 642.5950000007947,
+          "line": "NAP 32¢ @ 642.60m to bell",
+          "marker_label": "NAP FLOOR · RECORDED 32¢ @ 642.60m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 32¢ · 642m to bell",
+          "hover_note": "Recorded floor 32¢ printed here · 642m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "BAL",
+      "underdog_leg": "NAP",
+      "pair": {
+        "sum_cents": 97,
+        "discount_cents": 3,
+        "reason": null,
+        "line": "best capturable = 65 + 32 = 97¢",
+        "discount_line": "3¢ under par",
+        "compact_line": "best capturable 97¢ · 3¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL13NAPBAL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1783919525",
+        "w1_left_epoch": "1783919525",
+        "w1_right_epoch": "1783960200",
+        "scheduled_start_epoch": "1783972800.0",
+        "legA": "BAL",
+        "legB": "NAP",
+        "legA_formation_end_epoch": "1783919921",
+        "legA_open_postformation_c": "66.0",
+        "legA_floor_c": "65",
+        "legA_floor_epoch": "1783936495.4",
+        "legA_close_c": "66",
+        "legA_close_epoch": "1783960169.6",
+        "legA_contracts": "543.42",
+        "legA_premium_usd": "357.55",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "0.0",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783919921",
+        "legB_open_postformation_c": "34.0",
+        "legB_floor_c": "32",
+        "legB_floor_epoch": "1783923624.3",
+        "legB_close_c": "35",
+        "legB_close_epoch": "1783960179.7",
+        "legB_contracts": "1141.4",
+        "legB_premium_usd": "395.07",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "1.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783919921",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783962180.0",
+        "kalshi_close_time_epoch": "1783968898.0",
+        "bell_epoch": "1783962180.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783919921",
+        "span_end_epoch": "1783960200",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL13NAPBAL.jsonl",
+      "sha256": "7a9f377ce0ffdf2ab55d9cf971309801244d099a7f4def6a0961d46a2800dcb4",
+      "raw_rows": 8486,
+      "accepted_rows": 47,
+      "start_epoch": 1783919921,
+      "end_epoch": 1783960200
+    }
+  },
+  "first_callable_receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "BAL": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+    "NAP": "7eadd905-3b8f-4901-0ea8-68cf59d2d392"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+          "epoch": 1783936495.44,
+          "clock": "T−6hr 35min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAL is not yet directionally called; NAP is not yet directionally called.",
+              "WHY": "BAL trades at 65¢ against its 66¢ opening anchor; NAP trades at 34¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAL carries 971 eligible past sides from first-price comparisons; NAP carries 971 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAL calls 64¢ by T−4hr 47min; NAP calls 33¢ by T−3hr 23min.",
+              "WHY": "BAL’s middle half spans 62–65¢; NAP’s middle half spans 31–34¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAL has book 65/68 and a standing 64¢ bid; NAP has book 33/32 and no standing bid.",
+              "WHY": "BAL: The current pool target was the permitted bid level; NAP: The book was locked; a new bid was not allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 66,
+              "recorded_floor": 65,
+              "P": 65,
+              "Q": 64,
+              "X": 1783942967,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 971,
+              "ess": 304.48894682807224,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 68,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-1075"
+              },
+              "bid": 64,
+              "filled": null,
+              "decision": {
+                "order": 54,
+                "leg": "BAL",
+                "epoch": 1783936495.44,
+                "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 64,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 68,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-1075"
+                },
+                "Q": 64,
+                "X": 1783942967,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "support": null,
+                "accountability_assumption": "5183ed3eab16778a311ac753b3c5b3e915d30ed0666a675fd60f9ada4bd3b549",
+                "stage_index": 27
+              },
+              "permission": null,
+              "micro": {
+                "Q": 64,
+                "deadline_epoch": 1783942967,
+                "q25": 62,
+                "q75": 65,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1783939170.018,
+                  "price": 66,
+                  "size": 7.39,
+                  "receipt": "4d93fc27-f11a-451a-7af8-ab01e40fb857"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "NAP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 35,
+              "recorded_floor": 32,
+              "P": 34,
+              "Q": 33,
+              "X": 1783947997,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 971,
+              "ess": 304.48894682807224,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 32,
+                "last_trade_cents": 34,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-512"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 55,
+                "leg": "NAP",
+                "epoch": 1783936495.44,
+                "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 32,
+                  "last_trade_cents": 34,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-512"
+                },
+                "Q": 33,
+                "X": 1783947997,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 27
+              },
+              "permission": null,
+              "micro": {
+                "Q": 33,
+                "deadline_epoch": 1783947997,
+                "q25": 31,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 34,
+                "floor_witness": {
+                  "epoch": 1783949104.579,
+                  "price": 34,
+                  "size": 6.59,
+                  "receipt": "b7565580-a62c-5d59-64e2-fbed3717df3c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAL-miss",
+          "label": "Last receipt before BAL missed at the bell",
+          "arm": "D",
+          "focus_leg": "BAL",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+          "epoch": 1783960187.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAL is not yet directionally called; NAP is not yet directionally called.",
+              "WHY": "BAL trades at 66¢ against its 66¢ opening anchor; NAP trades at 35¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAL carries 1947 eligible past sides from first-price comparisons; NAP carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAL calls 66¢ by T−0hr 0min; NAP calls 35¢ by T−0hr 0min.",
+              "WHY": "BAL’s middle half spans 66–66¢; NAP’s middle half spans 35–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAL has book 65/66 and a standing 65¢ bid; NAP has book 33/35 and a standing 33¢ bid.",
+              "WHY": "BAL: The desired bid could not be posted below the ask; NAP: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 66,
+              "recorded_floor": 65,
+              "P": 66,
+              "Q": 66,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+              },
+              "bid": 65,
+              "filled": null,
+              "decision": {
+                "order": 86,
+                "leg": "BAL",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 65,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+                },
+                "Q": 66,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "support": null,
+                "accountability_assumption": "d8774940e1637faffe89473bb3f9c2ca59f83ec0e69173eccaa01ecd3e89dc87",
+                "stage_index": 44
+              },
+              "permission": null,
+              "micro": {
+                "Q": 66,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 66,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "NAP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 35,
+              "recorded_floor": 32,
+              "P": 35,
+              "Q": 35,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 35,
+                "last_trade_cents": 35,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+              },
+              "bid": 33,
+              "filled": null,
+              "decision": {
+                "order": 87,
+                "leg": "NAP",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 33,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 35,
+                  "last_trade_cents": 35,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+                },
+                "Q": 35,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "support": null,
+                "accountability_assumption": "a1474edae2a32f1c766bc000da2c588b1debd6461612ed9185fe2b9d8d4fd85d",
+                "stage_index": 44
+              },
+              "permission": null,
+              "micro": {
+                "Q": 35,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 35,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783960200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-NAP-miss",
+          "label": "Last receipt before NAP missed at the bell",
+          "arm": "D",
+          "focus_leg": "NAP",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+          "epoch": 1783960187.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAL is not yet directionally called; NAP is not yet directionally called.",
+              "WHY": "BAL trades at 66¢ against its 66¢ opening anchor; NAP trades at 35¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAL carries 1947 eligible past sides from first-price comparisons; NAP carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAL calls 66¢ by T−0hr 0min; NAP calls 35¢ by T−0hr 0min.",
+              "WHY": "BAL’s middle half spans 66–66¢; NAP’s middle half spans 35–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAL has book 65/66 and a standing 65¢ bid; NAP has book 33/35 and a standing 33¢ bid.",
+              "WHY": "BAL: The desired bid could not be posted below the ask; NAP: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 66,
+              "recorded_floor": 65,
+              "P": 66,
+              "Q": 66,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+              },
+              "bid": 65,
+              "filled": null,
+              "decision": {
+                "order": 86,
+                "leg": "BAL",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 65,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+                },
+                "Q": 66,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "support": null,
+                "accountability_assumption": "d8774940e1637faffe89473bb3f9c2ca59f83ec0e69173eccaa01ecd3e89dc87",
+                "stage_index": 44
+              },
+              "permission": null,
+              "micro": {
+                "Q": 66,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 66,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "NAP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 35,
+              "recorded_floor": 32,
+              "P": 35,
+              "Q": 35,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 35,
+                "last_trade_cents": 35,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+              },
+              "bid": 33,
+              "filled": null,
+              "decision": {
+                "order": 87,
+                "leg": "NAP",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 33,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 35,
+                  "last_trade_cents": 35,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+                },
+                "Q": 35,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "support": null,
+                "accountability_assumption": "a1474edae2a32f1c766bc000da2c588b1debd6461612ed9185fe2b9d8d4fd85d",
+                "stage_index": 44
+              },
+              "permission": null,
+              "micro": {
+                "Q": 35,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 35,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783960200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BAL": false,
+          "NAP": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BAL",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 66,
+            "close_epoch": 1783960169.6,
+            "floor_cents": 65,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "NAP",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 35,
+            "close_epoch": 1783960179.7,
+            "floor_cents": 32,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "123bae7309c6af1b83c09e2114e8a424f6727d4d1db8c715e64c0ca208c6f962",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+          "epoch": 1783936495.44,
+          "clock": "T−6hr 35min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAL is not yet directionally called; NAP is not yet directionally called.",
+              "WHY": "BAL trades at 65¢ against its 66¢ opening anchor; NAP trades at 34¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAL carries 971 eligible past sides from first-price comparisons; NAP carries 971 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAL calls 64¢ by T−4hr 47min; NAP calls 33¢ by T−3hr 23min.",
+              "WHY": "BAL’s middle half spans 62–65¢; NAP’s middle half spans 31–34¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAL has book 65/68 and no standing bid; NAP has book 33/32 and no standing bid.",
+              "WHY": "BAL: The policy was waiting for a directional call; NAP: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 66,
+              "recorded_floor": 65,
+              "P": 65,
+              "Q": 64,
+              "X": 1783942967,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 971,
+              "ess": 304.48894682807224,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 68,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-1075"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 54,
+                "leg": "BAL",
+                "epoch": 1783936495.44,
+                "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 64; reserve NAP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 68,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-1075"
+                },
+                "Q": 64,
+                "X": 1783942967,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "stage_index": 27
+              },
+              "permission": {
+                "ordinal": 27,
+                "epoch": 1783936495.44,
+                "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+                "id": "BAL",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 66,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 3.7343016657032453,
+                      "ROUND_TRIP": 13.31976359207839,
+                      "LATE_BREAK_DOWN": 1.6742244735763723,
+                      "DRIFT_DOWN": 0.7350732304495359,
+                      "LATE_BREAK_UP": 1.610585914216831,
+                      "QUIET_WOBBLE": 33.62210040207768,
+                      "DRIFT_UP": 1.898771287109554,
+                      "GRIND_WOBBLE_UP": 0.24406973038023694,
+                      "ONE_STEP_DOWN": 2.4643740985449556,
+                      "EARLY_SET_UP": 2.3580840337491353,
+                      "EARLY_SET_DOWN": 0.9176139652386703,
+                      "GRIND_WOBBLE_DOWN": 0.07779250165882888,
+                      "SLEEPER": 0.6187191050848597
+                    },
+                    "position": 0.08696119721141862,
+                    "epoch": 1783923423.7100625,
+                    "minutes_to_bell": 612.9381656249365,
+                    "open": true,
+                    "member_count": 490,
+                    "ess": 173.00333013987563,
+                    "weight_sum": 33.62210040207768,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 64; reserve NAP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAL": {
+                    "forecast": 66,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 304.48894682807224,
+                    "role": "NOT_CALLABLE",
+                    "current": 65,
+                    "member_count": 971
+                  },
+                  "NAP": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 304.48894682807224,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 971
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 3.7343016657032453,
+                    "ROUND_TRIP": 13.31976359207839,
+                    "LATE_BREAK_DOWN": 1.6742244735763723,
+                    "DRIFT_DOWN": 0.7350732304495359,
+                    "LATE_BREAK_UP": 1.610585914216831,
+                    "QUIET_WOBBLE": 33.62210040207768,
+                    "DRIFT_UP": 1.898771287109554,
+                    "GRIND_WOBBLE_UP": 0.24406973038023694,
+                    "ONE_STEP_DOWN": 2.4643740985449556,
+                    "EARLY_SET_UP": 2.3580840337491353,
+                    "EARLY_SET_DOWN": 0.9176139652386703,
+                    "GRIND_WOBBLE_DOWN": 0.07779250165882888,
+                    "SLEEPER": 0.6187191050848597
+                  },
+                  "position": 0.08696119721141862,
+                  "epoch": 1783923423.7100625,
+                  "minutes_to_bell": 612.9381656249365,
+                  "open": true,
+                  "member_count": 490,
+                  "ess": 173.00333013987563,
+                  "weight_sum": 33.62210040207768,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 64,
+                "deadline_epoch": 1783942967,
+                "q25": 62,
+                "q75": 65,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1783939170.018,
+                  "price": 66,
+                  "size": 7.39,
+                  "receipt": "4d93fc27-f11a-451a-7af8-ab01e40fb857"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "NAP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 35,
+              "recorded_floor": 32,
+              "P": 34,
+              "Q": 33,
+              "X": 1783947997,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 971,
+              "ess": 304.48894682807224,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 32,
+                "last_trade_cents": 34,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-512"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 55,
+                "leg": "NAP",
+                "epoch": 1783936495.44,
+                "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 33; reserve BAL max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 32,
+                  "last_trade_cents": 34,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-512"
+                },
+                "Q": 33,
+                "X": 1783947997,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "stage_index": 27
+              },
+              "permission": {
+                "ordinal": 27,
+                "epoch": 1783936495.44,
+                "receipt": "7eadd905-3b8f-4901-0ea8-68cf59d2d392",
+                "id": "NAP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 3.127140938806773,
+                      "ROUND_TRIP": 9.39083536613319,
+                      "LATE_BREAK_UP": 1.2824715756274518,
+                      "ONE_STEP_UP": 1.8622133702345116,
+                      "LATE_BREAK_DOWN": 1.7216464616012477,
+                      "QUIET_WOBBLE": 37.864818056674864,
+                      "DRIFT_DOWN": 1.3921262909636123,
+                      "SLEEPER": 1.5833361862657287,
+                      "DRIFT_UP": 1.4229707571183745,
+                      "EARLY_SET_DOWN": 2.6313275221817585,
+                      "GRIND_WOBBLE_UP": 0.19227444726982323,
+                      "EARLY_SET_UP": 0.781404666506494,
+                      "GRIND_WOBBLE_DOWN": 0.022908360484503527
+                    },
+                    "position": 0.1727712498994974,
+                    "epoch": 1783926880.0531747,
+                    "minutes_to_bell": 555.3324470877648,
+                    "open": true,
+                    "member_count": 516,
+                    "ess": 167.066668360081,
+                    "weight_sum": 37.864818056674864,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 33; reserve BAL max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAL": {
+                    "forecast": 66,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 304.48894682807224,
+                    "role": "NOT_CALLABLE",
+                    "current": 65,
+                    "member_count": 971
+                  },
+                  "NAP": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 304.48894682807224,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 971
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 3.127140938806773,
+                    "ROUND_TRIP": 9.39083536613319,
+                    "LATE_BREAK_UP": 1.2824715756274518,
+                    "ONE_STEP_UP": 1.8622133702345116,
+                    "LATE_BREAK_DOWN": 1.7216464616012477,
+                    "QUIET_WOBBLE": 37.864818056674864,
+                    "DRIFT_DOWN": 1.3921262909636123,
+                    "SLEEPER": 1.5833361862657287,
+                    "DRIFT_UP": 1.4229707571183745,
+                    "EARLY_SET_DOWN": 2.6313275221817585,
+                    "GRIND_WOBBLE_UP": 0.19227444726982323,
+                    "EARLY_SET_UP": 0.781404666506494,
+                    "GRIND_WOBBLE_DOWN": 0.022908360484503527
+                  },
+                  "position": 0.1727712498994974,
+                  "epoch": 1783926880.0531747,
+                  "minutes_to_bell": 555.3324470877648,
+                  "open": true,
+                  "member_count": 516,
+                  "ess": 167.066668360081,
+                  "weight_sum": 37.864818056674864,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 33,
+                "deadline_epoch": 1783947997,
+                "q25": 31,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 34,
+                "floor_witness": {
+                  "epoch": 1783949104.579,
+                  "price": 34,
+                  "size": 6.59,
+                  "receipt": "b7565580-a62c-5d59-64e2-fbed3717df3c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAL-miss",
+          "label": "Last receipt before BAL missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BAL",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+          "epoch": 1783960187.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAL is not yet directionally called; NAP is not yet directionally called.",
+              "WHY": "BAL trades at 66¢ against its 66¢ opening anchor; NAP trades at 35¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAL carries 1947 eligible past sides from first-price comparisons; NAP carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAL calls 66¢ by T−0hr 0min; NAP calls 35¢ by T−0hr 0min.",
+              "WHY": "BAL’s middle half spans 66–66¢; NAP’s middle half spans 35–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAL has book 65/66 and no standing bid; NAP has book 33/35 and no standing bid.",
+              "WHY": "BAL: The policy was waiting for a directional call; NAP: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 66,
+              "recorded_floor": 65,
+              "P": 66,
+              "Q": 66,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 86,
+                "leg": "BAL",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 66; reserve NAP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+                },
+                "Q": 66,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 43,
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "id": "BAL",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 66,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 6.809623877626073,
+                      "ROUND_TRIP": 18.10711636105924,
+                      "LATE_BREAK_DOWN": 4.086891618541607,
+                      "DRIFT_DOWN": 1.447762922126167,
+                      "LATE_BREAK_UP": 3.961300730546992,
+                      "QUIET_WOBBLE": 71.00529709460083,
+                      "DRIFT_UP": 2.738370783250387,
+                      "GRIND_WOBBLE_UP": 0.2991463475906749,
+                      "ONE_STEP_DOWN": 3.8617507232024866,
+                      "EARLY_SET_UP": 3.2754582347489465,
+                      "EARLY_SET_DOWN": 1.2669162095600586,
+                      "GRIND_WOBBLE_DOWN": 0.07779250165882888,
+                      "SLEEPER": 5.905979338088514
+                    },
+                    "position": 0.1358554342173687,
+                    "epoch": 1783925393.1210349,
+                    "minutes_to_bell": 580.1146494189899,
+                    "open": true,
+                    "member_count": 1078,
+                    "ess": 375.4678494232647,
+                    "weight_sum": 71.00529709460083,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 66; reserve NAP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAL": {
+                    "forecast": 66,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 66,
+                    "member_count": 1947
+                  },
+                  "NAP": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 35,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 6.809623877626073,
+                    "ROUND_TRIP": 18.10711636105924,
+                    "LATE_BREAK_DOWN": 4.086891618541607,
+                    "DRIFT_DOWN": 1.447762922126167,
+                    "LATE_BREAK_UP": 3.961300730546992,
+                    "QUIET_WOBBLE": 71.00529709460083,
+                    "DRIFT_UP": 2.738370783250387,
+                    "GRIND_WOBBLE_UP": 0.2991463475906749,
+                    "ONE_STEP_DOWN": 3.8617507232024866,
+                    "EARLY_SET_UP": 3.2754582347489465,
+                    "EARLY_SET_DOWN": 1.2669162095600586,
+                    "GRIND_WOBBLE_DOWN": 0.07779250165882888,
+                    "SLEEPER": 5.905979338088514
+                  },
+                  "position": 0.1358554342173687,
+                  "epoch": 1783925393.1210349,
+                  "minutes_to_bell": 580.1146494189899,
+                  "open": true,
+                  "member_count": 1078,
+                  "ess": 375.4678494232647,
+                  "weight_sum": 71.00529709460083,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 66,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 66,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "NAP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 35,
+              "recorded_floor": 32,
+              "P": 35,
+              "Q": 35,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 35,
+                "last_trade_cents": 35,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 87,
+                "leg": "NAP",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 35; reserve BAL max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 35,
+                  "last_trade_cents": 35,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+                },
+                "Q": 35,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 43,
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "id": "NAP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 35,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.782799244885688,
+                      "ROUND_TRIP": 12.802149392142967,
+                      "LATE_BREAK_UP": 4.108905558785309,
+                      "ONE_STEP_UP": 2.7211309061907385,
+                      "LATE_BREAK_DOWN": 4.358487136235234,
+                      "QUIET_WOBBLE": 70.17931375102594,
+                      "DRIFT_DOWN": 2.36366829058793,
+                      "SLEEPER": 13.445269701008947,
+                      "DRIFT_UP": 2.480523864740372,
+                      "EARLY_SET_DOWN": 3.188001828426818,
+                      "GRIND_WOBBLE_UP": 0.2802611209766555,
+                      "EARLY_SET_UP": 1.065778521411625,
+                      "GRIND_WOBBLE_DOWN": 0.06711742618255573
+                    },
+                    "position": 0.1896871945259042,
+                    "epoch": 1783927561.4105084,
+                    "minutes_to_bell": 543.9764915267626,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 339.3568116530003,
+                    "weight_sum": 70.17931375102594,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 35; reserve BAL max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAL": {
+                    "forecast": 66,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 66,
+                    "member_count": 1947
+                  },
+                  "NAP": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 35,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.782799244885688,
+                    "ROUND_TRIP": 12.802149392142967,
+                    "LATE_BREAK_UP": 4.108905558785309,
+                    "ONE_STEP_UP": 2.7211309061907385,
+                    "LATE_BREAK_DOWN": 4.358487136235234,
+                    "QUIET_WOBBLE": 70.17931375102594,
+                    "DRIFT_DOWN": 2.36366829058793,
+                    "SLEEPER": 13.445269701008947,
+                    "DRIFT_UP": 2.480523864740372,
+                    "EARLY_SET_DOWN": 3.188001828426818,
+                    "GRIND_WOBBLE_UP": 0.2802611209766555,
+                    "EARLY_SET_UP": 1.065778521411625,
+                    "GRIND_WOBBLE_DOWN": 0.06711742618255573
+                  },
+                  "position": 0.1896871945259042,
+                  "epoch": 1783927561.4105084,
+                  "minutes_to_bell": 543.9764915267626,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 339.3568116530003,
+                  "weight_sum": 70.17931375102594,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 35,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 35,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783960200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-NAP-miss",
+          "label": "Last receipt before NAP missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "NAP",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+          "epoch": 1783960187.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAL is not yet directionally called; NAP is not yet directionally called.",
+              "WHY": "BAL trades at 66¢ against its 66¢ opening anchor; NAP trades at 35¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAL carries 1947 eligible past sides from first-price comparisons; NAP carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAL calls 66¢ by T−0hr 0min; NAP calls 35¢ by T−0hr 0min.",
+              "WHY": "BAL’s middle half spans 66–66¢; NAP’s middle half spans 35–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAL has book 65/66 and no standing bid; NAP has book 33/35 and no standing bid.",
+              "WHY": "BAL: The policy was waiting for a directional call; NAP: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 66,
+              "recorded_floor": 65,
+              "P": 66,
+              "Q": 66,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 86,
+                "leg": "BAL",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 66; reserve NAP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-BAL.csv.gz#row-4709"
+                },
+                "Q": 66,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 43,
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "id": "BAL",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 66,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 6.809623877626073,
+                      "ROUND_TRIP": 18.10711636105924,
+                      "LATE_BREAK_DOWN": 4.086891618541607,
+                      "DRIFT_DOWN": 1.447762922126167,
+                      "LATE_BREAK_UP": 3.961300730546992,
+                      "QUIET_WOBBLE": 71.00529709460083,
+                      "DRIFT_UP": 2.738370783250387,
+                      "GRIND_WOBBLE_UP": 0.2991463475906749,
+                      "ONE_STEP_DOWN": 3.8617507232024866,
+                      "EARLY_SET_UP": 3.2754582347489465,
+                      "EARLY_SET_DOWN": 1.2669162095600586,
+                      "GRIND_WOBBLE_DOWN": 0.07779250165882888,
+                      "SLEEPER": 5.905979338088514
+                    },
+                    "position": 0.1358554342173687,
+                    "epoch": 1783925393.1210349,
+                    "minutes_to_bell": 580.1146494189899,
+                    "open": true,
+                    "member_count": 1078,
+                    "ess": 375.4678494232647,
+                    "weight_sum": 71.00529709460083,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 66; reserve NAP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAL": {
+                    "forecast": 66,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 66,
+                    "member_count": 1947
+                  },
+                  "NAP": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 35,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 6.809623877626073,
+                    "ROUND_TRIP": 18.10711636105924,
+                    "LATE_BREAK_DOWN": 4.086891618541607,
+                    "DRIFT_DOWN": 1.447762922126167,
+                    "LATE_BREAK_UP": 3.961300730546992,
+                    "QUIET_WOBBLE": 71.00529709460083,
+                    "DRIFT_UP": 2.738370783250387,
+                    "GRIND_WOBBLE_UP": 0.2991463475906749,
+                    "ONE_STEP_DOWN": 3.8617507232024866,
+                    "EARLY_SET_UP": 3.2754582347489465,
+                    "EARLY_SET_DOWN": 1.2669162095600586,
+                    "GRIND_WOBBLE_DOWN": 0.07779250165882888,
+                    "SLEEPER": 5.905979338088514
+                  },
+                  "position": 0.1358554342173687,
+                  "epoch": 1783925393.1210349,
+                  "minutes_to_bell": 580.1146494189899,
+                  "open": true,
+                  "member_count": 1078,
+                  "ess": 375.4678494232647,
+                  "weight_sum": 71.00529709460083,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 66,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 66,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "NAP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 35,
+              "recorded_floor": 32,
+              "P": 35,
+              "Q": 35,
+              "X": 1783960187.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 647.3648185659896,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 35,
+                "last_trade_cents": 35,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 87,
+                "leg": "NAP",
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 35; reserve BAL max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 35,
+                  "last_trade_cents": 35,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539"
+                },
+                "Q": 35,
+                "X": 1783960187.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783919921,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 43,
+                "epoch": 1783960187.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL13NAPBAL-NAP.csv.gz#row-3539",
+                "id": "NAP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 35,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.782799244885688,
+                      "ROUND_TRIP": 12.802149392142967,
+                      "LATE_BREAK_UP": 4.108905558785309,
+                      "ONE_STEP_UP": 2.7211309061907385,
+                      "LATE_BREAK_DOWN": 4.358487136235234,
+                      "QUIET_WOBBLE": 70.17931375102594,
+                      "DRIFT_DOWN": 2.36366829058793,
+                      "SLEEPER": 13.445269701008947,
+                      "DRIFT_UP": 2.480523864740372,
+                      "EARLY_SET_DOWN": 3.188001828426818,
+                      "GRIND_WOBBLE_UP": 0.2802611209766555,
+                      "EARLY_SET_UP": 1.065778521411625,
+                      "GRIND_WOBBLE_DOWN": 0.06711742618255573
+                    },
+                    "position": 0.1896871945259042,
+                    "epoch": 1783927561.4105084,
+                    "minutes_to_bell": 543.9764915267626,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 339.3568116530003,
+                    "weight_sum": 70.17931375102594,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 35; reserve BAL max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAL": {
+                    "forecast": 66,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 66,
+                    "member_count": 1947
+                  },
+                  "NAP": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 647.3648185659896,
+                    "role": "NOT_CALLABLE",
+                    "current": 35,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.782799244885688,
+                    "ROUND_TRIP": 12.802149392142967,
+                    "LATE_BREAK_UP": 4.108905558785309,
+                    "ONE_STEP_UP": 2.7211309061907385,
+                    "LATE_BREAK_DOWN": 4.358487136235234,
+                    "QUIET_WOBBLE": 70.17931375102594,
+                    "DRIFT_DOWN": 2.36366829058793,
+                    "SLEEPER": 13.445269701008947,
+                    "DRIFT_UP": 2.480523864740372,
+                    "EARLY_SET_DOWN": 3.188001828426818,
+                    "GRIND_WOBBLE_UP": 0.2802611209766555,
+                    "EARLY_SET_UP": 1.065778521411625,
+                    "GRIND_WOBBLE_DOWN": 0.06711742618255573
+                  },
+                  "position": 0.1896871945259042,
+                  "epoch": 1783927561.4105084,
+                  "minutes_to_bell": 543.9764915267626,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 339.3568116530003,
+                  "weight_sum": 70.17931375102594,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 35,
+                "deadline_epoch": 1783960187.000002,
+                "q25": 35,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783960200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BAL": false,
+          "NAP": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BAL",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 66,
+            "close_epoch": 1783960169.6,
+            "floor_cents": 65,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "NAP",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 35,
+            "close_epoch": 1783960179.7,
+            "floor_cents": 32,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "123bae7309c6af1b83c09e2114e8a424f6727d4d1db8c715e64c0ca208c6f962",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

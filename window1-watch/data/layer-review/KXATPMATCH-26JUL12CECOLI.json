@@ -1,0 +1,2429 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL12CECOLI",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "8aa08f7297413edca50f354ae7b9faa16aba19ff67a63984c792da0bc9c2abeb",
+    "stage_cache_sha256": "0580da7c41781b626bc68e254a10a5c7b001de1fe142d970bb50f86650776621",
+    "mirror_projection_sha256": "59cbbab9aa31850d93196610732e1e031187b0de33d873880bf55218ecf4ebde",
+    "mirror_permissions_sha256": "1b36cd664b07595c6046308115859215e729167572c9dbddcc7b2b8a0d51636a",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL12CECOLI",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "0e00b30ea4cec4049a9dc5e9e622f1d915908a701e5c37234a15ba19c35aea87",
+      "row_number": 28,
+      "row_csv": "26JUL12CECOLI,KXATPMATCH-26JUL12CECOLI,ATP_MAIN,1783800341,1783800341,1783879200,1783879200.0,CEC,OLI,1783802949,71.0,74,1783806925.9,79,1783868493.4,3646.25,2825.61,MOVER,8.0,1783858577,76,1783869724.8,POST_BELL_INVALID,1783801954,29.0,21,1783826642.6,25,1783868697.1,4317.82,1001.3,STILL,-4.0,1783858578,23,1783868712.2,POST_BELL_INVALID,1783802949,,,1783868700.0,1783873822.0,1783868700.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783802949,1783868700.0,OK,COMPLETE_AT_DELTA,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783802949,
+      "span_end_epoch": 1783868700,
+      "bell_epoch": 1783868700,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783868700,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "CEC": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 71,
+          "floor_cents": 74,
+          "floor_epoch": 1783806925.9,
+          "minutes_to_bell": 1029.5683333317438,
+          "line": "CEC 74¢ @ 1029.57m to bell",
+          "marker_label": "CEC FLOOR · RECORDED 74¢ @ 1029.57m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 74¢ · 1029m to bell",
+          "hover_note": "Recorded floor 74¢ printed here · 1029m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "OLI": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 29,
+          "floor_cents": 21,
+          "floor_epoch": 1783826642.6,
+          "minutes_to_bell": 700.9566666682562,
+          "line": "OLI 21¢ @ 700.96m to bell",
+          "marker_label": "OLI FLOOR · RECORDED 21¢ @ 700.96m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 21¢ · 700m to bell",
+          "hover_note": "Recorded floor 21¢ printed here · 700m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "CEC",
+      "underdog_leg": "OLI",
+      "pair": {
+        "sum_cents": 95,
+        "discount_cents": 5,
+        "reason": null,
+        "line": "best capturable = 74 + 21 = 95¢",
+        "discount_line": "5¢ under par",
+        "compact_line": "best capturable 95¢ · 5¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12CECOLI",
+        "event_id": "KXATPMATCH-26JUL12CECOLI",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1783800341",
+        "w1_left_epoch": "1783800341",
+        "w1_right_epoch": "1783879200",
+        "scheduled_start_epoch": "1783879200.0",
+        "legA": "CEC",
+        "legB": "OLI",
+        "legA_formation_end_epoch": "1783802949",
+        "legA_open_postformation_c": "71.0",
+        "legA_floor_c": "74",
+        "legA_floor_epoch": "1783806925.9",
+        "legA_close_c": "79",
+        "legA_close_epoch": "1783868493.4",
+        "legA_contracts": "3646.25",
+        "legA_premium_usd": "2825.61",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "8.0",
+        "legA_us_first_post_epoch": "1783858577",
+        "legA_us_fill_c": "76",
+        "legA_us_fill_epoch": "1783869724.8",
+        "legA_us_fill_stamp": "POST_BELL_INVALID",
+        "legB_formation_end_epoch": "1783801954",
+        "legB_open_postformation_c": "29.0",
+        "legB_floor_c": "21",
+        "legB_floor_epoch": "1783826642.6",
+        "legB_close_c": "25",
+        "legB_close_epoch": "1783868697.1",
+        "legB_contracts": "4317.82",
+        "legB_premium_usd": "1001.3",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-4.0",
+        "legB_us_first_post_epoch": "1783858578",
+        "legB_us_fill_c": "23",
+        "legB_us_fill_epoch": "1783868712.2",
+        "legB_us_fill_stamp": "POST_BELL_INVALID",
+        "formation_end_game": "1783802949",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783868700.0",
+        "kalshi_close_time_epoch": "1783873822.0",
+        "bell_epoch": "1783868700.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783802949",
+        "span_end_epoch": "1783868700.0",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12CECOLI.jsonl",
+      "sha256": "1e33026f664fc1b6581bf4fe262b29a0d12b806dc0c489d0295a3ba09670e070",
+      "raw_rows": 1447,
+      "accepted_rows": 119,
+      "start_epoch": 1783802949,
+      "end_epoch": 1783868700
+    }
+  },
+  "first_callable_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+  "first_both_directional_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+  "first_callable_by_side": {
+    "CEC": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+    "OLI": "5fad6135-fb5d-67de-58c3-4d504e656a4e"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+          "epoch": 1783807246.695,
+          "clock": "T−17hr 4min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CEC is strengthening; OLI is weakening.",
+              "WHY": "CEC trades at 74¢ against its 71¢ opening anchor; OLI trades at 26¢ against its 29¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CEC carries 184 eligible past sides from first-price comparisons; OLI carries 230 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CEC calls 73¢ by T−14hr 1min; OLI calls 24¢ by T−5hr 22min.",
+              "WHY": "CEC’s middle half spans 71–73¢; OLI’s middle half spans 22–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CEC has book 73/74 and a standing 73¢ bid; OLI has book 26/27 and a standing 24¢ bid.",
+              "WHY": "CEC: The current pool target was the permitted bid level; OLI: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "CEC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71,
+              "close": 79,
+              "recorded_floor": 74,
+              "P": 74,
+              "Q": 73,
+              "X": 1783818223,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 184,
+              "ess": 62.96665862392668,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 73,
+                "ask_cents": 74,
+                "last_trade_cents": 74,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-104"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 44,
+                "leg": "CEC",
+                "epoch": 1783807246.695,
+                "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 73,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 73,
+                  "ask_cents": 74,
+                  "last_trade_cents": 74,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-104"
+                },
+                "Q": 73,
+                "X": 1783818223,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783802949,
+                "support": null,
+                "accountability_assumption": "91ef93cf3f09ad64f84bfc187b1f9689d9fbc90a680c96ac103b4a2c87078272",
+                "stage_index": 22
+              },
+              "permission": null,
+              "micro": {
+                "Q": 73,
+                "deadline_epoch": 1783818223,
+                "q25": 71,
+                "q75": 73,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 75,
+                "floor_witness": {
+                  "epoch": 1783813692.905,
+                  "price": 75,
+                  "size": 50,
+                  "receipt": "fccf0710-dd20-7ce6-81af-bb18c121001f"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "OLI": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 29,
+              "corrected_open": 29,
+              "close": 25,
+              "recorded_floor": 21,
+              "P": 26,
+              "Q": 24,
+              "X": 1783849355.328468,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 230,
+              "ess": 84.597784402681,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 26,
+                "ask_cents": 27,
+                "last_trade_cents": 29,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-114"
+              },
+              "bid": 24,
+              "filled": null,
+              "decision": {
+                "order": 45,
+                "leg": "OLI",
+                "epoch": 1783807246.695,
+                "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 24,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 26,
+                  "ask_cents": 27,
+                  "last_trade_cents": 29,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-114"
+                },
+                "Q": 24,
+                "X": 1783849355.328468,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783801954,
+                "support": null,
+                "accountability_assumption": "82e15dab19161f6b92e45fe7e80a1ee571159e81dabbf2ceaf3acc874e13e328",
+                "stage_index": 22
+              },
+              "permission": null,
+              "micro": {
+                "Q": 24,
+                "deadline_epoch": 1783849355.328468,
+                "q25": 22,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 21,
+                "floor_witness": {
+                  "epoch": 1783826642.555,
+                  "price": 21,
+                  "size": 60.38,
+                  "receipt": "9dd12731-22f6-6b4b-0581-6cd6909ed9dc"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783819628.529,
+                  "price": 24,
+                  "size": 46,
+                  "receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-CEC-miss",
+          "label": "Last receipt before CEC missed at the bell",
+          "arm": "D",
+          "focus_leg": "CEC",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501",
+          "epoch": 1783868699.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CEC is strengthening; OLI is weakening.",
+              "WHY": "CEC trades at 79¢ against its 71¢ opening anchor; OLI trades at 25¢ against its 29¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CEC carries 345 eligible past sides from first-price comparisons; OLI carries 381 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CEC calls 79¢ by T−0hr 0min; OLI calls 25¢ by T−0hr 0min.",
+              "WHY": "CEC’s middle half spans 79–79¢; OLI’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CEC has book 76/79 and a standing 73¢ bid; OLI has book 23/24 and a recorded purchase at 24¢.",
+              "WHY": "CEC: The desired bid could not be posted below the ask; OLI: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "CEC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71,
+              "close": 79,
+              "recorded_floor": 74,
+              "P": 79,
+              "Q": 79,
+              "X": 1783868699.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 131.00459890647994,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 79,
+                "last_trade_cents": 79,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-22744"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 94,
+                "leg": "CEC",
+                "epoch": 1783868699.000002,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 73,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 79,
+                  "last_trade_cents": 79,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-22744"
+                },
+                "Q": 79,
+                "X": 1783868699.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783802949,
+                "support": null,
+                "accountability_assumption": "6b61fd53dbea8612e4bb92339d865889ea8e67b25a3522ec5b0f01553da3e7a4",
+                "stage_index": 56
+              },
+              "permission": null,
+              "micro": {
+                "Q": 79,
+                "deadline_epoch": 1783868699.000002,
+                "q25": 79,
+                "q75": 79,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "OLI": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 29,
+              "corrected_open": 29,
+              "close": 25,
+              "recorded_floor": 21,
+              "P": 25,
+              "Q": 25,
+              "X": 1783868699.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 381,
+              "ess": 138.04098574887115,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 25,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501"
+              },
+              "bid": null,
+              "filled": 24,
+              "decision": {
+                "order": 93,
+                "leg": "OLI",
+                "epoch": 1783868400,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783868400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 24,
+                  "last_trade_cents": 24,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-8994"
+                },
+                "Q": 24,
+                "X": 1783868400,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783801954,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 54
+              },
+              "permission": null,
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783868699.000002,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783868700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-OLI-fill",
+          "label": "Last receipt before OLI filled",
+          "arm": "D",
+          "focus_leg": "OLI",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213",
+          "epoch": 1783817168.000008,
+          "clock": "T−14hr 19min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CEC is strengthening; OLI is weakening.",
+              "WHY": "CEC trades at 75¢ against its 71¢ opening anchor; OLI trades at 26¢ against its 29¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CEC carries 211 eligible past sides from first-price comparisons; OLI carries 269 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CEC calls 74¢ by T−12hr 27min; OLI calls 23¢ by T−5hr 0min.",
+              "WHY": "CEC’s middle half spans 73–75¢; OLI’s middle half spans 22–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CEC has book 75/75 and a standing 73¢ bid; OLI has book 23/24 and a standing 24¢ bid.",
+              "WHY": "CEC: The book was locked; a new bid was not allowed; OLI: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "CEC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71,
+              "close": 79,
+              "recorded_floor": 74,
+              "P": 75,
+              "Q": 74,
+              "X": 1783823875,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 211,
+              "ess": 77.21366305928353,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 75,
+                "ask_cents": 75,
+                "last_trade_cents": 75,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-216"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 54,
+                "leg": "CEC",
+                "epoch": 1783817168.000008,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 73,
+                  "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+                },
+                "book": {
+                  "bid_cents": 75,
+                  "ask_cents": 75,
+                  "last_trade_cents": 75,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-216"
+                },
+                "Q": 74,
+                "X": 1783823875,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783802949,
+                "support": null,
+                "accountability_assumption": "4ca13bf779bdc1d3264c578247e05e0375993e997c835a9643b36b484a0a9e35",
+                "stage_index": 27
+              },
+              "permission": null,
+              "micro": {
+                "Q": 74,
+                "deadline_epoch": 1783823875,
+                "q25": 73,
+                "q75": 75,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 76,
+                "floor_witness": {
+                  "epoch": 1783858575.085,
+                  "price": 76,
+                  "size": 24,
+                  "receipt": "cab43b53-3d78-713f-e456-a55f2395c859"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "OLI": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 29,
+              "corrected_open": 29,
+              "close": 25,
+              "recorded_floor": 21,
+              "P": 26,
+              "Q": 23,
+              "X": 1783850689.934871,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 269,
+              "ess": 108.05668568172167,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 26,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213"
+              },
+              "bid": 24,
+              "filled": null,
+              "decision": {
+                "order": 55,
+                "leg": "OLI",
+                "epoch": 1783817168.000008,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 24,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 24,
+                  "last_trade_cents": 26,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213"
+                },
+                "Q": 23,
+                "X": 1783850689.934871,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783801954,
+                "support": null,
+                "accountability_assumption": "c87130271251b0f3036f97c1f35523e6385f436d73ca6e82837abf57b6694781",
+                "stage_index": 27
+              },
+              "permission": null,
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1783850689.934871,
+                "q25": 22,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 21,
+                "floor_witness": {
+                  "epoch": 1783826642.555,
+                  "price": 21,
+                  "size": 60.38,
+                  "receipt": "9dd12731-22f6-6b4b-0581-6cd6909ed9dc"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783819628.529,
+                  "price": 24,
+                  "size": 46,
+                  "receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783819628.529,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "OLI",
+              "epoch": 1783819628.529,
+              "cents": 24,
+              "receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940",
+              "order_lineage_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+              "order_lineage_start_epoch": 1783807246.695,
+              "current_price_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+              "current_price_start_epoch": 1783807246.695,
+              "order_lineage_age_minutes": 206.36390000184377,
+              "current_price_age_minutes": 206.36390000184377,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "OLI",
+                "epoch": 1783819628.529,
+                "cents": 24,
+                "receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940",
+                "order_lineage_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "order_lineage_start_epoch": 1783807246.695,
+                "current_price_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "current_price_start_epoch": 1783807246.695,
+                "order_lineage_age_minutes": 206.36390000184377,
+                "current_price_age_minutes": 206.36390000184377,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 55,
+              "leg": "OLI",
+              "epoch": 1783817168.000008,
+              "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 24,
+                "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+              },
+              "book": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 26,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-213"
+              },
+              "Q": 23,
+              "X": 1783850689.934871,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783801954,
+              "support": null,
+              "accountability_assumption": "c87130271251b0f3036f97c1f35523e6385f436d73ca6e82837abf57b6694781",
+              "stage_index": 27
+            },
+            "license_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+            "licensing_deadline_epoch": 1783849355.328468,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: later floor 75¢ outside 71–73¢; no later band print met the deadline. OLI: later floor 21¢ outside 22–25¢; a later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: No strictly later accepted positive print. OLI: later floor 21¢ outside 22–25¢; a later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "CEC": false,
+          "OLI": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 5,
+        "fills": [
+          {
+            "leg": "OLI",
+            "epoch": 1783819628.529,
+            "cents": 24,
+            "receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940",
+            "order_lineage_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+            "order_lineage_start_epoch": 1783807246.695,
+            "current_price_receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+            "current_price_start_epoch": 1783807246.695,
+            "order_lineage_age_minutes": 206.36390000184377,
+            "current_price_age_minutes": 206.36390000184377,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12CECOLI",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "CEC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 79,
+            "close_epoch": 1783868493.4,
+            "floor_cents": 74,
+            "offered_cents": 5,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 5,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "OLI",
+            "filled": true,
+            "fill_cents": 24,
+            "fill_epoch": 1783819628.529,
+            "fill_receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940",
+            "close_cents": 25,
+            "close_epoch": 1783868697.1,
+            "floor_cents": 21,
+            "offered_cents": 4,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0e00b30ea4cec4049a9dc5e9e622f1d915908a701e5c37234a15ba19c35aea87",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+          "epoch": 1783807246.695,
+          "clock": "T−17hr 4min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CEC is strengthening; OLI is weakening.",
+              "WHY": "CEC trades at 74¢ against its 71¢ opening anchor; OLI trades at 26¢ against its 29¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CEC carries 184 eligible past sides from first-price comparisons; OLI carries 230 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CEC calls 73¢ by T−14hr 1min; OLI calls 24¢ by T−5hr 22min.",
+              "WHY": "CEC’s middle half spans 71–73¢; OLI’s middle half spans 22–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CEC has book 73/74 and a standing 73¢ bid; OLI has book 26/27 and no standing bid.",
+              "WHY": "CEC: buying the strengthening side before it strengthens; predicted close 75; bid 73; reserve OLI max(late floor 24, 100 - climber close 75 = 25) = 25; views differ by -1c (floor minus mirror); 73 + 25 = 98 < 100; OLI: The weakening side had not entered its predicted late-floor window. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "CEC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71,
+              "close": 79,
+              "recorded_floor": 74,
+              "P": 74,
+              "Q": 73,
+              "X": 1783818223,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 184,
+              "ess": 62.96665862392668,
+              "family": "DRIFT_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 73,
+                "ask_cents": 74,
+                "last_trade_cents": 74,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-104"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 44,
+                "leg": "CEC",
+                "epoch": 1783807246.695,
+                "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 73,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 75; bid 73; reserve OLI max(late floor 24, 100 - climber close 75 = 25) = 25; views differ by -1c (floor minus mirror); 73 + 25 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 73,
+                  "ask_cents": 74,
+                  "last_trade_cents": 74,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-104"
+                },
+                "Q": 73,
+                "X": 1783818223,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783802949,
+                "stage_index": 22
+              },
+              "permission": {
+                "ordinal": 22,
+                "epoch": 1783807246.695,
+                "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "id": "CEC",
+                "old": null,
+                "proposed": 73,
+                "posted": 73,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 73,
+                  "hand_level": 73,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 75,
+                  "window": {
+                    "family": "DRIFT_UP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.1594497594613184,
+                      "ROUND_TRIP": 1.3357233296479991,
+                      "DRIFT_UP": 2.1539165950548287,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.1352677353685872,
+                      "LATE_BREAK_DOWN": 0.041293263163315067,
+                      "ONE_STEP_UP": 0.5567567786854855,
+                      "EARLY_SET_UP": 1.6421903206400663,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.15266317864971823,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.660711939338116
+                    },
+                    "position": 0.0038442273979464063,
+                    "epoch": 1783803201.7617958,
+                    "minutes_to_bell": 1091.6373034040132,
+                    "open": true,
+                    "member_count": 36,
+                    "ess": 16.91369477259506,
+                    "weight_sum": 2.1539165950548287,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 25,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 24,
+                      "climber_forecast_close": 75,
+                      "mirror_completion_cost": 25,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 75; bid 73; reserve OLI max(late floor 24, 100 - climber close 75 = 25) = 25; views differ by -1c (floor minus mirror); 73 + 25 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 24,
+                    "climber_forecast_close": 75,
+                    "mirror_completion_cost": 25,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "CEC",
+                    "faller": "OLI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 27,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 25,
+                    "ask": 27,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "CEC": {
+                    "forecast": 75,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 62.96665862392668,
+                    "role": "CLIMBER",
+                    "current": 74,
+                    "member_count": 184
+                  },
+                  "OLI": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 84.597784402681,
+                    "role": "FALLER",
+                    "current": 26,
+                    "member_count": 230
+                  }
+                },
+                "window": {
+                  "family": "DRIFT_UP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.1594497594613184,
+                    "ROUND_TRIP": 1.3357233296479991,
+                    "DRIFT_UP": 2.1539165950548287,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.1352677353685872,
+                    "LATE_BREAK_DOWN": 0.041293263163315067,
+                    "ONE_STEP_UP": 0.5567567786854855,
+                    "EARLY_SET_UP": 1.6421903206400663,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.15266317864971823,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.660711939338116
+                  },
+                  "position": 0.0038442273979464063,
+                  "epoch": 1783803201.7617958,
+                  "minutes_to_bell": 1091.6373034040132,
+                  "open": true,
+                  "member_count": 36,
+                  "ess": 16.91369477259506,
+                  "weight_sum": 2.1539165950548287,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 73,
+                "deadline_epoch": 1783818223,
+                "q25": 71,
+                "q75": 73,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 75,
+                "floor_witness": {
+                  "epoch": 1783813692.905,
+                  "price": 75,
+                  "size": 50,
+                  "receipt": "fccf0710-dd20-7ce6-81af-bb18c121001f"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "OLI": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 29,
+              "corrected_open": 29,
+              "close": 25,
+              "recorded_floor": 21,
+              "P": 26,
+              "Q": 24,
+              "X": 1783849355.328468,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 230,
+              "ess": 84.597784402681,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 26,
+                "ask_cents": 27,
+                "last_trade_cents": 29,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-114"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 45,
+                "leg": "OLI",
+                "epoch": 1783807246.695,
+                "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 24; reserve CEC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 26,
+                  "ask_cents": 27,
+                  "last_trade_cents": 29,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-114"
+                },
+                "Q": 24,
+                "X": 1783849355.328468,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783801954,
+                "stage_index": 22
+              },
+              "permission": {
+                "ordinal": 22,
+                "epoch": 1783807246.695,
+                "receipt": "5fad6135-fb5d-67de-58c3-4d504e656a4e",
+                "id": "OLI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 25,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.2383787930715823,
+                      "ROUND_TRIP": 1.9136168538105653,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 1.9428594672123365,
+                      "EARLY_SET_DOWN": 2.5740093232992667,
+                      "QUIET_WOBBLE": 1.1698926590868457,
+                      "LATE_BREAK_UP": 0.06460507588961856,
+                      "ONE_STEP_DOWN": 1.402403648419008,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.3065772153380929,
+                      "SLEEPER": 0.7273622304846005,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.3189709702925562,
+                    "epoch": 1783823244.0363832,
+                    "minutes_to_bell": 757.5993936141332,
+                    "open": false,
+                    "member_count": 58,
+                    "ess": 25.279102117530368,
+                    "weight_sum": 2.5740093232992667,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 24; reserve CEC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 24,
+                    "climber_forecast_close": 75,
+                    "mirror_completion_cost": 25,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "CEC",
+                    "faller": "OLI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CEC": {
+                    "forecast": 75,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 62.96665862392668,
+                    "role": "CLIMBER",
+                    "current": 74,
+                    "member_count": 184
+                  },
+                  "OLI": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 84.597784402681,
+                    "role": "FALLER",
+                    "current": 26,
+                    "member_count": 230
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.2383787930715823,
+                    "ROUND_TRIP": 1.9136168538105653,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 1.9428594672123365,
+                    "EARLY_SET_DOWN": 2.5740093232992667,
+                    "QUIET_WOBBLE": 1.1698926590868457,
+                    "LATE_BREAK_UP": 0.06460507588961856,
+                    "ONE_STEP_DOWN": 1.402403648419008,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.3065772153380929,
+                    "SLEEPER": 0.7273622304846005,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.3189709702925562,
+                  "epoch": 1783823244.0363832,
+                  "minutes_to_bell": 757.5993936141332,
+                  "open": false,
+                  "member_count": 58,
+                  "ess": 25.279102117530368,
+                  "weight_sum": 2.5740093232992667,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 24,
+                "deadline_epoch": 1783849355.328468,
+                "q25": 22,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 21,
+                "floor_witness": {
+                  "epoch": 1783826642.555,
+                  "price": 21,
+                  "size": 60.38,
+                  "receipt": "9dd12731-22f6-6b4b-0581-6cd6909ed9dc"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783819628.529,
+                  "price": 24,
+                  "size": 46,
+                  "receipt": "b68a98e2-e513-7987-cd81-dc5b7d373940"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-CEC-fill",
+          "label": "Last receipt before CEC filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "CEC",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+          "epoch": 1783847100,
+          "clock": "T−6hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CEC is strengthening; OLI is weakening.",
+              "WHY": "CEC trades at 79¢ against its 71¢ opening anchor; OLI trades at 23¢ against its 29¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CEC carries 308 eligible past sides from first-price comparisons; OLI carries 349 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CEC calls 78¢ by T−4hr 43min; OLI calls 21¢ by T−4hr 0min.",
+              "WHY": "CEC’s middle half spans 77–79¢; OLI’s middle half spans 20–22¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CEC has book 77/79 and a standing 78¢ bid; OLI has book 21/23 and no standing bid.",
+              "WHY": "CEC: buying the strengthening side before it strengthens; predicted close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100; OLI: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "CEC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71,
+              "close": 79,
+              "recorded_floor": 74,
+              "P": 79,
+              "Q": 78,
+              "X": 1783851711.301563,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 308,
+              "ess": 116.02020964679923,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 77,
+                "ask_cents": 79,
+                "last_trade_cents": 79,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-484"
+              },
+              "bid": 78,
+              "filled": null,
+              "decision": {
+                "order": 88,
+                "leg": "CEC",
+                "epoch": 1783847100,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 78,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 77,
+                  "ask_cents": 79,
+                  "last_trade_cents": 79,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-484"
+                },
+                "Q": 78,
+                "X": 1783851711.301563,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783802949,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 44,
+                "epoch": 1783847100,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "id": "CEC",
+                "old": 74,
+                "proposed": 78,
+                "posted": 78,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 78,
+                  "hand_level": 78,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 79,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.7641035719956751,
+                      "ROUND_TRIP": 2.3896995895843935,
+                      "DRIFT_UP": 3.07073973585157,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 4.082559316429422,
+                      "LATE_BREAK_DOWN": 0.3056952946136619,
+                      "ONE_STEP_UP": 0.9146539682399605,
+                      "EARLY_SET_UP": 2.704737604624567,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.2388293235371119,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.497690487316717
+                    },
+                    "position": 0.013004940424295263,
+                    "epoch": 1783803804.087838,
+                    "minutes_to_bell": 1081.598536034425,
+                    "open": true,
+                    "member_count": 63,
+                    "ess": 25.550932518114504,
+                    "weight_sum": 4.082559316429422,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 21,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 21,
+                      "climber_forecast_close": 79,
+                      "mirror_completion_cost": 21,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 21,
+                    "climber_forecast_close": 79,
+                    "mirror_completion_cost": 21,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "CEC",
+                    "faller": "OLI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 23,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 23,
+                    "ask": 23,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "CEC": {
+                    "forecast": 79,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 116.02020964679923,
+                    "role": "CLIMBER",
+                    "current": 79,
+                    "member_count": 308
+                  },
+                  "OLI": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 127.21235976129239,
+                    "role": "FALLER",
+                    "current": 23,
+                    "member_count": 349
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.7641035719956751,
+                    "ROUND_TRIP": 2.3896995895843935,
+                    "DRIFT_UP": 3.07073973585157,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 4.082559316429422,
+                    "LATE_BREAK_DOWN": 0.3056952946136619,
+                    "ONE_STEP_UP": 0.9146539682399605,
+                    "EARLY_SET_UP": 2.704737604624567,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.2388293235371119,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.497690487316717
+                  },
+                  "position": 0.013004940424295263,
+                  "epoch": 1783803804.087838,
+                  "minutes_to_bell": 1081.598536034425,
+                  "open": true,
+                  "member_count": 63,
+                  "ess": 25.550932518114504,
+                  "weight_sum": 4.082559316429422,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 78,
+                "deadline_epoch": 1783851711.301563,
+                "q25": 77,
+                "q75": 79,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 76,
+                "floor_witness": {
+                  "epoch": 1783858575.085,
+                  "price": 76,
+                  "size": 24,
+                  "receipt": "cab43b53-3d78-713f-e456-a55f2395c859"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783848917.816,
+                  "price": 77,
+                  "size": 42,
+                  "receipt": "125f8a02-2388-7958-14ae-5ada3504b862"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "OLI": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 29,
+              "corrected_open": 29,
+              "close": 25,
+              "recorded_floor": 21,
+              "P": 23,
+              "Q": 21,
+              "X": 1783854321.780831,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 349,
+              "ess": 127.21235976129239,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 21,
+                "ask_cents": 23,
+                "last_trade_cents": 23,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-544"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 89,
+                "leg": "OLI",
+                "epoch": 1783847100,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 21; reserve CEC max(close 79, ask 79) = 79"
+                },
+                "book": {
+                  "bid_cents": 21,
+                  "ask_cents": 23,
+                  "last_trade_cents": 23,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-544"
+                },
+                "Q": 21,
+                "X": 1783854321.780831,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783801954,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 44,
+                "epoch": 1783847100,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "id": "OLI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 21,
+                  "hand_level": 21,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 23,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.3530355808945606,
+                      "ROUND_TRIP": 3.1545443239444517,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 3.017052669966595,
+                      "EARLY_SET_DOWN": 3.2732583495922607,
+                      "QUIET_WOBBLE": 2.3544692550638184,
+                      "LATE_BREAK_UP": 0.27492762696150014,
+                      "ONE_STEP_DOWN": 2.527701125250098,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.46776411242362775,
+                      "SLEEPER": 2.681121673136342,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.18610143149820654,
+                    "epoch": 1783814375.526147,
+                    "minutes_to_bell": 905.4078975518545,
+                    "open": true,
+                    "member_count": 72,
+                    "ess": 31.595727354412016,
+                    "weight_sum": 3.2732583495922607,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 79,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 79,
+                    "ask": 79,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 21; reserve CEC max(close 79, ask 79) = 79",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 21,
+                    "climber_forecast_close": 79,
+                    "mirror_completion_cost": 21,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "CEC",
+                    "faller": "OLI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CEC": {
+                    "forecast": 79,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 116.02020964679923,
+                    "role": "CLIMBER",
+                    "current": 79,
+                    "member_count": 308
+                  },
+                  "OLI": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 127.21235976129239,
+                    "role": "FALLER",
+                    "current": 23,
+                    "member_count": 349
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.3530355808945606,
+                    "ROUND_TRIP": 3.1545443239444517,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 3.017052669966595,
+                    "EARLY_SET_DOWN": 3.2732583495922607,
+                    "QUIET_WOBBLE": 2.3544692550638184,
+                    "LATE_BREAK_UP": 0.27492762696150014,
+                    "ONE_STEP_DOWN": 2.527701125250098,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.46776411242362775,
+                    "SLEEPER": 2.681121673136342,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.18610143149820654,
+                  "epoch": 1783814375.526147,
+                  "minutes_to_bell": 905.4078975518545,
+                  "open": true,
+                  "member_count": 72,
+                  "ess": 31.595727354412016,
+                  "weight_sum": 3.2732583495922607,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 21,
+                "deadline_epoch": 1783854321.780831,
+                "q25": 20,
+                "q75": 22,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 23,
+                "floor_witness": {
+                  "epoch": 1783848917.971,
+                  "price": 23,
+                  "size": 87,
+                  "receipt": "811fc3ef-e2b0-50f7-5dc4-1b5f71534d3a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783848917.816,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "CEC",
+              "epoch": 1783848917.816,
+              "cents": 78,
+              "receipt": "125f8a02-2388-7958-14ae-5ada3504b862",
+              "order_lineage_receipt": "714388b7-1c09-6729-625e-1ec5470b8830",
+              "order_lineage_start_epoch": 1783810306.615,
+              "current_price_receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+              "current_price_start_epoch": 1783847100,
+              "order_lineage_age_minutes": 643.5200166662534,
+              "current_price_age_minutes": 30.29693333307902,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "CEC",
+                "epoch": 1783848917.816,
+                "cents": 78,
+                "receipt": "125f8a02-2388-7958-14ae-5ada3504b862",
+                "order_lineage_receipt": "714388b7-1c09-6729-625e-1ec5470b8830",
+                "order_lineage_start_epoch": 1783810306.615,
+                "current_price_receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "current_price_start_epoch": 1783847100,
+                "order_lineage_age_minutes": 643.5200166662534,
+                "current_price_age_minutes": 30.29693333307902,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 44,
+              "epoch": 1783847100,
+              "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+              "id": "CEC",
+              "old": 74,
+              "proposed": 78,
+              "posted": 78,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 78,
+                "hand_level": 78,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 79,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.7641035719956751,
+                    "ROUND_TRIP": 2.3896995895843935,
+                    "DRIFT_UP": 3.07073973585157,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 4.082559316429422,
+                    "LATE_BREAK_DOWN": 0.3056952946136619,
+                    "ONE_STEP_UP": 0.9146539682399605,
+                    "EARLY_SET_UP": 2.704737604624567,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.2388293235371119,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.497690487316717
+                  },
+                  "position": 0.013004940424295263,
+                  "epoch": 1783803804.087838,
+                  "minutes_to_bell": 1081.598536034425,
+                  "open": true,
+                  "member_count": 63,
+                  "ess": 25.550932518114504,
+                  "weight_sum": 4.082559316429422,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 21,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 21,
+                    "climber_forecast_close": 79,
+                    "mirror_completion_cost": 21,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 21,
+                  "climber_forecast_close": 79,
+                  "mirror_completion_cost": 21,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "CEC",
+                  "faller": "OLI",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 23,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 23,
+                  "ask": 23,
+                  "sum": 101,
+                  "discount": -1,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "CEC": {
+                  "forecast": 79,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 116.02020964679923,
+                  "role": "CLIMBER",
+                  "current": 79,
+                  "member_count": 308
+                },
+                "OLI": {
+                  "forecast": 23,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 127.21235976129239,
+                  "role": "FALLER",
+                  "current": 23,
+                  "member_count": 349
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.7641035719956751,
+                  "ROUND_TRIP": 2.3896995895843935,
+                  "DRIFT_UP": 3.07073973585157,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 4.082559316429422,
+                  "LATE_BREAK_DOWN": 0.3056952946136619,
+                  "ONE_STEP_UP": 0.9146539682399605,
+                  "EARLY_SET_UP": 2.704737604624567,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.2388293235371119,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 1.497690487316717
+                },
+                "position": 0.013004940424295263,
+                "epoch": 1783803804.087838,
+                "minutes_to_bell": 1081.598536034425,
+                "open": true,
+                "member_count": 63,
+                "ess": 25.550932518114504,
+                "weight_sum": 4.082559316429422,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 88,
+              "leg": "CEC",
+              "epoch": 1783847100,
+              "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 78,
+                "reason": "buying the strengthening side before it strengthens; forecast close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 77,
+                "ask_cents": 79,
+                "last_trade_cents": 79,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-484"
+              },
+              "Q": 78,
+              "X": 1783851711.301563,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783802949,
+              "stage_index": 44
+            },
+            "license_receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+            "licensing_deadline_epoch": 1783851711.301563,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-OLI-miss",
+          "label": "Last receipt before OLI missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "OLI",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501",
+          "epoch": 1783868699.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CEC is strengthening; OLI is weakening.",
+              "WHY": "CEC trades at 79¢ against its 71¢ opening anchor; OLI trades at 25¢ against its 29¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CEC carries 345 eligible past sides from first-price comparisons; OLI carries 381 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CEC calls 79¢ by T−0hr 0min; OLI calls 25¢ by T−0hr 0min.",
+              "WHY": "CEC’s middle half spans 79–79¢; OLI’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CEC has book 76/79 and a recorded purchase at 78¢; OLI has book 23/24 and no standing bid.",
+              "WHY": "CEC: buying the strengthening side before it strengthens; predicted close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100; OLI: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "CEC": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71,
+              "close": 79,
+              "recorded_floor": 74,
+              "P": 79,
+              "Q": 79,
+              "X": 1783868699.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 131.00459890647994,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 79,
+                "last_trade_cents": 79,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-22744"
+              },
+              "bid": null,
+              "filled": 78,
+              "decision": {
+                "order": 88,
+                "leg": "CEC",
+                "epoch": 1783847100,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 78,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 77,
+                  "ask_cents": 79,
+                  "last_trade_cents": 79,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-CEC.csv.gz#row-484"
+                },
+                "Q": 78,
+                "X": 1783851711.301563,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783802949,
+                "stage_index": 44
+              },
+              "permission": {
+                "ordinal": 44,
+                "epoch": 1783847100,
+                "receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+                "id": "CEC",
+                "old": 74,
+                "proposed": 78,
+                "posted": 78,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 78,
+                  "hand_level": 78,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 79,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.7641035719956751,
+                      "ROUND_TRIP": 2.3896995895843935,
+                      "DRIFT_UP": 3.07073973585157,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 4.082559316429422,
+                      "LATE_BREAK_DOWN": 0.3056952946136619,
+                      "ONE_STEP_UP": 0.9146539682399605,
+                      "EARLY_SET_UP": 2.704737604624567,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.2388293235371119,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.497690487316717
+                    },
+                    "position": 0.013004940424295263,
+                    "epoch": 1783803804.087838,
+                    "minutes_to_bell": 1081.598536034425,
+                    "open": true,
+                    "member_count": 63,
+                    "ess": 25.550932518114504,
+                    "weight_sum": 4.082559316429422,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 21,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 21,
+                      "climber_forecast_close": 79,
+                      "mirror_completion_cost": 21,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 79; bid 78; reserve OLI max(late floor 21, 100 - climber close 79 = 21) = 21; views differ by 0c (floor minus mirror); 78 + 21 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 21,
+                    "climber_forecast_close": 79,
+                    "mirror_completion_cost": 21,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "CEC",
+                    "faller": "OLI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 23,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 23,
+                    "ask": 23,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "CEC": {
+                    "forecast": 79,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 116.02020964679923,
+                    "role": "CLIMBER",
+                    "current": 79,
+                    "member_count": 308
+                  },
+                  "OLI": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 127.21235976129239,
+                    "role": "FALLER",
+                    "current": 23,
+                    "member_count": 349
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.7641035719956751,
+                    "ROUND_TRIP": 2.3896995895843935,
+                    "DRIFT_UP": 3.07073973585157,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 4.082559316429422,
+                    "LATE_BREAK_DOWN": 0.3056952946136619,
+                    "ONE_STEP_UP": 0.9146539682399605,
+                    "EARLY_SET_UP": 2.704737604624567,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.2388293235371119,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.497690487316717
+                  },
+                  "position": 0.013004940424295263,
+                  "epoch": 1783803804.087838,
+                  "minutes_to_bell": 1081.598536034425,
+                  "open": true,
+                  "member_count": 63,
+                  "ess": 25.550932518114504,
+                  "weight_sum": 4.082559316429422,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 79,
+                "deadline_epoch": 1783868699.000002,
+                "q25": 79,
+                "q75": 79,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "OLI": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 29,
+              "corrected_open": 29,
+              "close": 25,
+              "recorded_floor": 21,
+              "P": 25,
+              "Q": 25,
+              "X": 1783868699.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 381,
+              "ess": 138.04098574887115,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 25,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 100,
+                "leg": "OLI",
+                "epoch": 1783868699.000002,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 25; reserve CEC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 24,
+                  "last_trade_cents": 25,
+                  "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501"
+                },
+                "Q": 25,
+                "X": 1783868699.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783801954,
+                "stage_index": 56
+              },
+              "permission": {
+                "ordinal": 55,
+                "epoch": 1783868699.000002,
+                "receipt": "KXATPMATCH-26JUL12CECOLI-OLI.csv.gz#row-10501",
+                "id": "OLI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 25,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 25,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.7611932809589846,
+                      "ROUND_TRIP": 2.604207296313698,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 3.1202457504544263,
+                      "EARLY_SET_DOWN": 3.3510999953845086,
+                      "QUIET_WOBBLE": 3.3454499847376495,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_DOWN": 2.7002373356892204,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.46776411242362775,
+                      "SLEEPER": 3.231256389152158,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.15221153846153845,
+                    "epoch": 1783812113.511346,
+                    "minutes_to_bell": 943.1081442316373,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 32.95881994305773,
+                    "weight_sum": 3.3510999953845086,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 25; reserve CEC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 25,
+                    "climber_forecast_close": 79,
+                    "mirror_completion_cost": 21,
+                    "disagreement_cents": 4,
+                    "absolute_disagreement_cents": 4,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "CEC",
+                    "faller": "OLI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CEC": {
+                    "forecast": 79,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 131.00459890647994,
+                    "role": "CLIMBER",
+                    "current": 79,
+                    "member_count": 345
+                  },
+                  "OLI": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 138.04098574887115,
+                    "role": "FALLER",
+                    "current": 25,
+                    "member_count": 381
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.7611932809589846,
+                    "ROUND_TRIP": 2.604207296313698,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 3.1202457504544263,
+                    "EARLY_SET_DOWN": 3.3510999953845086,
+                    "QUIET_WOBBLE": 3.3454499847376495,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_DOWN": 2.7002373356892204,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.46776411242362775,
+                    "SLEEPER": 3.231256389152158,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.15221153846153845,
+                  "epoch": 1783812113.511346,
+                  "minutes_to_bell": 943.1081442316373,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 32.95881994305773,
+                  "weight_sum": 3.3510999953845086,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783868699.000002,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783868700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: later floor 75¢ outside 71–73¢; no later band print met the deadline. OLI: later floor 21¢ outside 22–25¢; a later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: later floor 76¢ outside 77–79¢; a later band print met the deadline. OLI: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "CEC": true,
+          "OLI": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 5,
+        "fills": [
+          {
+            "leg": "CEC",
+            "epoch": 1783848917.816,
+            "cents": 78,
+            "receipt": "125f8a02-2388-7958-14ae-5ada3504b862",
+            "order_lineage_receipt": "714388b7-1c09-6729-625e-1ec5470b8830",
+            "order_lineage_start_epoch": 1783810306.615,
+            "current_price_receipt": "KXATPMATCH-26JUL12CECOLI|ATLAS_GATE|1783847100",
+            "current_price_start_epoch": 1783847100,
+            "order_lineage_age_minutes": 643.5200166662534,
+            "current_price_age_minutes": 30.29693333307902,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12CECOLI",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "CEC",
+            "filled": true,
+            "fill_cents": 78,
+            "fill_epoch": 1783848917.816,
+            "fill_receipt": "125f8a02-2388-7958-14ae-5ada3504b862",
+            "close_cents": 79,
+            "close_epoch": 1783868493.4,
+            "floor_cents": 74,
+            "offered_cents": 5,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "OLI",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 25,
+            "close_epoch": 1783868697.1,
+            "floor_cents": 21,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 4,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0e00b30ea4cec4049a9dc5e9e622f1d915908a701e5c37234a15ba19c35aea87",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

@@ -1,0 +1,2171 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "585607e2b9f7adeaf8462fa3be37143686bf6d368c3c5720cb816dc10f5afb0b",
+    "stage_cache_sha256": "be4a6106eebcbc8ae826fde19e6a4b5014fdc9c4e15d5b88670d9896193303dd",
+    "mirror_projection_sha256": "119d314395cfbb1df6df79a40287222adc33d18c6860982d36bdc96aec745bc2",
+    "mirror_permissions_sha256": "7975fe410d535d707a9b72d4e1000e910b4bd48be2f1622fe6376ea7d06fe518",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "a467d5afe584d9eb48249c3beb0441c34e76d8488492791079e0c3da06861adb",
+      "row_number": 314,
+      "row_csv": "26JUL14IMAMCC,KXATPCHALLENGERMATCH-26JUL14IMAMCC,ATP_CHALL,1784011603,1784011603,1784062666.519,1784064600.0,IMA,MCC,1784011603,37.0,37,1784050102.1,39,1784062354.5,692.6,263.52,STILL,2.0,1784057585,,,,1784011603,61.0,62,1784057583.5,62,1784062649.9,962.33,603.33,STILL,1.0,1784057585,,,,1784011603,,,1784075460.0,1784082600.0,1784075460.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784011603,1784062666.519,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784011603,
+      "span_end_epoch": 1784062666.519,
+      "bell_epoch": 1784075460,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784075460,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "IMA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 37,
+          "floor_cents": 37,
+          "floor_epoch": 1784050102.1,
+          "minutes_to_bell": 422.6316666682561,
+          "line": "IMA 37¢ @ 422.63m to bell",
+          "marker_label": "IMA FLOOR · RECORDED 37¢ @ 422.63m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 37¢ · 422m to bell",
+          "hover_note": "Recorded floor 37¢ printed here · 422m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "MCC": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 61,
+          "floor_cents": 62,
+          "floor_epoch": 1784057583.5,
+          "minutes_to_bell": 297.94166666666666,
+          "line": "MCC 62¢ @ 297.94m to bell",
+          "marker_label": "MCC FLOOR · RECORDED 62¢ @ 297.94m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 62¢ · 297m to bell",
+          "hover_note": "Recorded floor 62¢ printed here · 297m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "MCC",
+      "underdog_leg": "IMA",
+      "pair": {
+        "sum_cents": 99,
+        "discount_cents": 1,
+        "reason": null,
+        "line": "best capturable = 62 + 37 = 99¢",
+        "discount_line": "1¢ under par",
+        "compact_line": "best capturable 99¢ · 1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL14IMAMCC",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784011603",
+        "w1_left_epoch": "1784011603",
+        "w1_right_epoch": "1784062666.519",
+        "scheduled_start_epoch": "1784064600.0",
+        "legA": "IMA",
+        "legB": "MCC",
+        "legA_formation_end_epoch": "1784011603",
+        "legA_open_postformation_c": "37.0",
+        "legA_floor_c": "37",
+        "legA_floor_epoch": "1784050102.1",
+        "legA_close_c": "39",
+        "legA_close_epoch": "1784062354.5",
+        "legA_contracts": "692.6",
+        "legA_premium_usd": "263.52",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "2.0",
+        "legA_us_first_post_epoch": "1784057585",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784011603",
+        "legB_open_postformation_c": "61.0",
+        "legB_floor_c": "62",
+        "legB_floor_epoch": "1784057583.5",
+        "legB_close_c": "62",
+        "legB_close_epoch": "1784062649.9",
+        "legB_contracts": "962.33",
+        "legB_premium_usd": "603.33",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "1.0",
+        "legB_us_first_post_epoch": "1784057585",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784011603",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784075460.0",
+        "kalshi_close_time_epoch": "1784082600.0",
+        "bell_epoch": "1784075460.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784011603",
+        "span_end_epoch": "1784062666.519",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14IMAMCC.jsonl",
+      "sha256": "ee020885a3e49036e4249ec658389252ac915682502eb827787ef554bd5d5093",
+      "raw_rows": 9107,
+      "accepted_rows": 33,
+      "start_epoch": 1784011603,
+      "end_epoch": 1784062666.519
+    }
+  },
+  "first_callable_receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+  "first_both_directional_receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+  "first_callable_by_side": {
+    "IMA": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+    "MCC": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+          "epoch": 1784033195.000002,
+          "clock": "T−8hr 11min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IMA is strengthening; MCC is strengthening.",
+              "WHY": "IMA trades at 39¢ against its 37¢ opening anchor; MCC trades at 64¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IMA carries 122 eligible past sides from first-price comparisons; MCC carries 170 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IMA calls 37¢ by T−6hr 7min; MCC calls 62¢ by T−4hr 40min.",
+              "WHY": "IMA’s middle half spans 35–39¢; MCC’s middle half spans 60–64¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IMA has book 36/37 and no standing bid; MCC has book 62/64 and a standing 62¢ bid.",
+              "WHY": "IMA: The desired bid could not be posted below the ask; MCC: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "IMA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 37,
+              "corrected_open": 37,
+              "close": 39,
+              "recorded_floor": 37,
+              "P": 39,
+              "Q": 37,
+              "X": 1784040624.519,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 122,
+              "ess": 45.176575171235584,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 37,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 30,
+                "leg": "IMA",
+                "epoch": 1784033195.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 37,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011"
+                },
+                "Q": 37,
+                "X": 1784040624.519,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 15
+              },
+              "permission": null,
+              "micro": {
+                "Q": 37,
+                "deadline_epoch": 1784040624.519,
+                "q25": 35,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784050102.139,
+                  "price": 37,
+                  "size": 12.94,
+                  "receipt": "abc441c9-dd41-5936-2be3-3449b5e42f66"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MCC": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 61,
+              "corrected_open": 61,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 64,
+              "Q": 62,
+              "X": 1784045896.519,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 170,
+              "ess": 62.0910004539812,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 62,
+                "ask_cents": 64,
+                "last_trade_cents": 64,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-1652"
+              },
+              "bid": 62,
+              "filled": null,
+              "decision": {
+                "order": 31,
+                "leg": "MCC",
+                "epoch": 1784033195.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 62,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 62,
+                  "ask_cents": 64,
+                  "last_trade_cents": 64,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-1652"
+                },
+                "Q": 62,
+                "X": 1784045896.519,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "support": null,
+                "accountability_assumption": "f784c628346a785fa5a7917884eee2a91df9b231e5b85ad9882f45d1a0fd3509",
+                "stage_index": 15
+              },
+              "permission": null,
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784045896.519,
+                "q25": 60,
+                "q75": 64,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784057583.49,
+                  "price": 62,
+                  "size": 30,
+                  "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784043218.788,
+                  "price": 63,
+                  "size": 387,
+                  "receipt": "28dfd7be-f609-6d81-db85-4142b68d86d8"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-IMA-miss",
+          "label": "Last receipt before IMA missed at the bell",
+          "arm": "D",
+          "focus_leg": "IMA",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+          "epoch": 1784062666.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IMA is strengthening; MCC is not yet directionally called.",
+              "WHY": "IMA trades at 39¢ against its 37¢ opening anchor; MCC trades at 62¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IMA carries 489 eligible past sides from first-price comparisons; MCC carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IMA calls 39¢ by T−0hr 0min; MCC calls 62¢ by T−0hr 0min.",
+              "WHY": "IMA’s middle half spans 39–39¢; MCC’s middle half spans 62–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IMA has book 38/39 and a standing 37¢ bid; MCC has book 61/62 and a recorded purchase at 62¢.",
+              "WHY": "IMA: The desired bid could not be posted below the ask; MCC: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "IMA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 37,
+              "corrected_open": 37,
+              "close": 39,
+              "recorded_floor": 37,
+              "P": 39,
+              "Q": 39,
+              "X": 1784062666.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 489,
+              "ess": 182.59957305238208,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261"
+              },
+              "bid": 37,
+              "filled": null,
+              "decision": {
+                "order": 97,
+                "leg": "IMA",
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 37,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261"
+                },
+                "Q": 39,
+                "X": 1784062666.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "support": null,
+                "accountability_assumption": "28e14e169ce2f68e040c5906a2d06bb410b2d7fa121ce689799e1a19ab51958e",
+                "stage_index": 59
+              },
+              "permission": null,
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784062666.000001,
+                "q25": 39,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MCC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 61,
+              "corrected_open": 61,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 62,
+              "Q": 62,
+              "X": 1784062666.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 708.1655902729435,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3844"
+              },
+              "bid": null,
+              "filled": 62,
+              "decision": {
+                "order": 92,
+                "leg": "MCC",
+                "epoch": 1784062366.519,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC|ATLAS_GATE|1784062366.519",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3736"
+                },
+                "Q": 62,
+                "X": 1784062366.519,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 53
+              },
+              "permission": null,
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784062666.000001,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784062666.519,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MCC-fill",
+          "label": "Last receipt before MCC filled",
+          "arm": "D",
+          "focus_leg": "MCC",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC|ATLAS_GATE|1784057266.519",
+          "epoch": 1784057266.519,
+          "clock": "T−1hr 30min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IMA is not yet directionally called; MCC is strengthening.",
+              "WHY": "IMA trades at 37¢ against its 37¢ opening anchor; MCC trades at 63¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IMA carries 1741 eligible past sides from first-price comparisons; MCC carries 566 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IMA calls 36¢ by T−1hr 28min; MCC calls 62¢ by T−1hr 9min.",
+              "WHY": "IMA’s middle half spans 35–37¢; MCC’s middle half spans 61–63¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IMA has book 37/38 and a standing 36¢ bid; MCC has book 62/63 and a standing 62¢ bid.",
+              "WHY": "IMA: The current pool target was the permitted bid level; MCC: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "IMA": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 37,
+              "corrected_open": 37,
+              "close": 39,
+              "recorded_floor": 37,
+              "P": 37,
+              "Q": 36,
+              "X": 1784057363.071118,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1741,
+              "ess": 637.8788917434165,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 37,
+                "ask_cents": 38,
+                "last_trade_cents": 37,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-5449"
+              },
+              "bid": 36,
+              "filled": null,
+              "decision": {
+                "order": 68,
+                "leg": "IMA",
+                "epoch": 1784057266.519,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC|ATLAS_GATE|1784057266.519",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 36,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 37,
+                  "ask_cents": 38,
+                  "last_trade_cents": 37,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-5449"
+                },
+                "Q": 36,
+                "X": 1784057363.071118,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "support": null,
+                "accountability_assumption": "b9bd407251c422a4bb5181b74291bfd48a554aa7078163e3c1de24f1bb925960",
+                "stage_index": 34
+              },
+              "permission": null,
+              "micro": {
+                "Q": 36,
+                "deadline_epoch": 1784057363.071118,
+                "q25": 35,
+                "q75": 37,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784057583.628,
+                  "price": 38,
+                  "size": 400,
+                  "receipt": "cfdbbccd-b9c3-78bb-cf6f-4050126cba35"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MCC": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 61,
+              "corrected_open": 61,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 63,
+              "Q": 62,
+              "X": 1784058548.2373312,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 566,
+              "ess": 228.15397339402364,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 62,
+                "ask_cents": 63,
+                "last_trade_cents": 63,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3324"
+              },
+              "bid": 62,
+              "filled": null,
+              "decision": {
+                "order": 69,
+                "leg": "MCC",
+                "epoch": 1784057266.519,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC|ATLAS_GATE|1784057266.519",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 62,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 62,
+                  "ask_cents": 63,
+                  "last_trade_cents": 63,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3324"
+                },
+                "Q": 62,
+                "X": 1784058548.2373312,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "support": null,
+                "accountability_assumption": "e877bdf5485958ad96509d22ada5f61487f55c4c34201e3e7b91c10aa00e4e34",
+                "stage_index": 34
+              },
+              "permission": null,
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784058548.2373312,
+                "q25": 61,
+                "q75": 63,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784057583.49,
+                  "price": 62,
+                  "size": 30,
+                  "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784057583.49,
+                  "price": 62,
+                  "size": 30,
+                  "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784057583.49,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "MCC",
+              "epoch": 1784057583.49,
+              "cents": 62,
+              "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+              "order_lineage_start_epoch": 1784033195.000002,
+              "current_price_receipt": "3de9c92d-9376-41b3-cf6b-e91857ccd94d",
+              "current_price_start_epoch": 1784050994.09,
+              "order_lineage_age_minutes": 406.47483330170314,
+              "current_price_age_minutes": 109.8233333349228,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "MCC",
+                "epoch": 1784057583.49,
+                "cents": 62,
+                "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "order_lineage_start_epoch": 1784033195.000002,
+                "current_price_receipt": "3de9c92d-9376-41b3-cf6b-e91857ccd94d",
+                "current_price_start_epoch": 1784050994.09,
+                "order_lineage_age_minutes": 406.47483330170314,
+                "current_price_age_minutes": 109.8233333349228,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 69,
+              "leg": "MCC",
+              "epoch": 1784057266.519,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC|ATLAS_GATE|1784057266.519",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 62,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 62,
+                "ask_cents": 63,
+                "last_trade_cents": 63,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3324"
+              },
+              "Q": 62,
+              "X": 1784058548.2373312,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784011603,
+              "support": null,
+              "accountability_assumption": "e877bdf5485958ad96509d22ada5f61487f55c4c34201e3e7b91c10aa00e4e34",
+              "stage_index": 34
+            },
+            "license_receipt": "3de9c92d-9376-41b3-cf6b-e91857ccd94d",
+            "licensing_deadline_epoch": 1784055983.516437,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "IMA": false,
+          "MCC": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [
+          {
+            "leg": "MCC",
+            "epoch": 1784057583.49,
+            "cents": 62,
+            "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+            "order_lineage_start_epoch": 1784033195.000002,
+            "current_price_receipt": "3de9c92d-9376-41b3-cf6b-e91857ccd94d",
+            "current_price_start_epoch": 1784050994.09,
+            "order_lineage_age_minutes": 406.47483330170314,
+            "current_price_age_minutes": 109.8233333349228,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "IMA",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 39,
+            "close_epoch": 1784062354.5,
+            "floor_cents": 37,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MCC",
+            "filled": true,
+            "fill_cents": 62,
+            "fill_epoch": 1784057583.49,
+            "fill_receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad",
+            "close_cents": 62,
+            "close_epoch": 1784062649.9,
+            "floor_cents": 62,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "a467d5afe584d9eb48249c3beb0441c34e76d8488492791079e0c3da06861adb",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+          "epoch": 1784033195.000002,
+          "clock": "T−8hr 11min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IMA is strengthening; MCC is strengthening.",
+              "WHY": "IMA trades at 39¢ against its 37¢ opening anchor; MCC trades at 64¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IMA carries 122 eligible past sides from first-price comparisons; MCC carries 170 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IMA calls 37¢ by T−6hr 7min; MCC calls 62¢ by T−4hr 40min.",
+              "WHY": "IMA’s middle half spans 35–39¢; MCC’s middle half spans 60–64¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IMA has book 36/37 and no standing bid; MCC has book 62/64 and no standing bid.",
+              "WHY": "IMA: The counterpart reservation did not leave a permitted discount; MCC: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "IMA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 37,
+              "corrected_open": 37,
+              "close": 39,
+              "recorded_floor": 37,
+              "P": 39,
+              "Q": 37,
+              "X": 1784040624.519,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 122,
+              "ess": 45.176575171235584,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 37,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 30,
+                "leg": "IMA",
+                "epoch": 1784033195.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 39; reserve MCC max(close 64, ask 64) = 64"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 37,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011"
+                },
+                "Q": 37,
+                "X": 1784040624.519,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "stage_index": 15
+              },
+              "permission": {
+                "ordinal": 15,
+                "epoch": 1784033195.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "id": "IMA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 36,
+                  "hand_level": 36,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 39,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.2908702142456002,
+                      "ROUND_TRIP": 2.7234483899176305,
+                      "LATE_BREAK_UP": 0.11975098642265283,
+                      "ONE_STEP_UP": 1.1786625827558361,
+                      "LATE_BREAK_DOWN": 0.22795794253353446,
+                      "QUIET_WOBBLE": 2.514633191726811,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.03194027424670586,
+                      "DRIFT_UP": 1.1059264664148343,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.2802943289711846,
+                      "EARLY_SET_UP": 0.4792725346113571,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.20992578849721708,
+                    "epoch": 1784022322.5494895,
+                    "minutes_to_bell": 672.3994918425877,
+                    "open": true,
+                    "member_count": 38,
+                    "ess": 12.481494458542889,
+                    "weight_sum": 2.7234483899176305,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 64,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 64,
+                    "ask": 64,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 39; reserve MCC max(close 64, ask 64) = 64",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MCC": {
+                    "forecast": 64,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 62.0910004539812,
+                    "role": "CLIMBER",
+                    "current": 64,
+                    "member_count": 170
+                  },
+                  "IMA": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 45.176575171235584,
+                    "role": "CLIMBER",
+                    "current": 39,
+                    "member_count": 122
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.2908702142456002,
+                    "ROUND_TRIP": 2.7234483899176305,
+                    "LATE_BREAK_UP": 0.11975098642265283,
+                    "ONE_STEP_UP": 1.1786625827558361,
+                    "LATE_BREAK_DOWN": 0.22795794253353446,
+                    "QUIET_WOBBLE": 2.514633191726811,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.03194027424670586,
+                    "DRIFT_UP": 1.1059264664148343,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.2802943289711846,
+                    "EARLY_SET_UP": 0.4792725346113571,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.20992578849721708,
+                  "epoch": 1784022322.5494895,
+                  "minutes_to_bell": 672.3994918425877,
+                  "open": true,
+                  "member_count": 38,
+                  "ess": 12.481494458542889,
+                  "weight_sum": 2.7234483899176305,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 37,
+                "deadline_epoch": 1784040624.519,
+                "q25": 35,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784050102.139,
+                  "price": 37,
+                  "size": 12.94,
+                  "receipt": "abc441c9-dd41-5936-2be3-3449b5e42f66"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MCC": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 61,
+              "corrected_open": 61,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 64,
+              "Q": 62,
+              "X": 1784045896.519,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 170,
+              "ess": 62.0910004539812,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 62,
+                "ask_cents": 64,
+                "last_trade_cents": 64,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-1652"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 31,
+                "leg": "MCC",
+                "epoch": 1784033195.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 64; reserve IMA max(close 39, ask 37) = 39"
+                },
+                "book": {
+                  "bid_cents": 62,
+                  "ask_cents": 64,
+                  "last_trade_cents": 64,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-1652"
+                },
+                "Q": 62,
+                "X": 1784045896.519,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "stage_index": 15
+              },
+              "permission": {
+                "ordinal": 15,
+                "epoch": 1784033195.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-2011",
+                "id": "MCC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 63,
+                  "hand_level": 63,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 64,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 2.395061445696037,
+                      "ROUND_TRIP": 3.32365235859884,
+                      "LATE_BREAK_DOWN": 0.01588513660710062,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.22686064237704495,
+                      "QUIET_WOBBLE": 3.044211328306685,
+                      "DRIFT_UP": 0.7658833489706519,
+                      "GRIND_WOBBLE_UP": 0.09883872372010313,
+                      "ONE_STEP_DOWN": 0.0765252032101136,
+                      "EARLY_SET_UP": 2.418979504074153,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.009130744554677701
+                    },
+                    "position": 0.14650959860383944,
+                    "epoch": 1784019084.295672,
+                    "minutes_to_bell": 726.3703888018925,
+                    "open": true,
+                    "member_count": 45,
+                    "ess": 17.00198678428725,
+                    "weight_sum": 3.32365235859884,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 39,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 39,
+                    "ask": 37,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 64; reserve IMA max(close 39, ask 37) = 39",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MCC": {
+                    "forecast": 64,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 62.0910004539812,
+                    "role": "CLIMBER",
+                    "current": 64,
+                    "member_count": 170
+                  },
+                  "IMA": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 45.176575171235584,
+                    "role": "CLIMBER",
+                    "current": 39,
+                    "member_count": 122
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 2.395061445696037,
+                    "ROUND_TRIP": 3.32365235859884,
+                    "LATE_BREAK_DOWN": 0.01588513660710062,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.22686064237704495,
+                    "QUIET_WOBBLE": 3.044211328306685,
+                    "DRIFT_UP": 0.7658833489706519,
+                    "GRIND_WOBBLE_UP": 0.09883872372010313,
+                    "ONE_STEP_DOWN": 0.0765252032101136,
+                    "EARLY_SET_UP": 2.418979504074153,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.009130744554677701
+                  },
+                  "position": 0.14650959860383944,
+                  "epoch": 1784019084.295672,
+                  "minutes_to_bell": 726.3703888018925,
+                  "open": true,
+                  "member_count": 45,
+                  "ess": 17.00198678428725,
+                  "weight_sum": 3.32365235859884,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784045896.519,
+                "q25": 60,
+                "q75": 64,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784057583.49,
+                  "price": 62,
+                  "size": 30,
+                  "receipt": "1ede9715-90a4-6760-a0d6-49737a3e77ad"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784043218.788,
+                  "price": 63,
+                  "size": 387,
+                  "receipt": "28dfd7be-f609-6d81-db85-4142b68d86d8"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-IMA-miss",
+          "label": "Last receipt before IMA missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "IMA",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+          "epoch": 1784062666.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IMA is strengthening; MCC is not yet directionally called.",
+              "WHY": "IMA trades at 39¢ against its 37¢ opening anchor; MCC trades at 62¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IMA carries 489 eligible past sides from first-price comparisons; MCC carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IMA calls 39¢ by T−0hr 0min; MCC calls 62¢ by T−0hr 0min.",
+              "WHY": "IMA’s middle half spans 39–39¢; MCC’s middle half spans 62–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IMA has book 38/39 and no standing bid; MCC has book 61/62 and no standing bid.",
+              "WHY": "IMA: The counterpart reservation did not leave a permitted discount; MCC: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "IMA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 37,
+              "corrected_open": 37,
+              "close": 39,
+              "recorded_floor": 37,
+              "P": 39,
+              "Q": 39,
+              "X": 1784062666.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 489,
+              "ess": 182.59957305238208,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "IMA",
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 39; reserve MCC max(close 62, ask 62) = 62"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261"
+                },
+                "Q": 39,
+                "X": 1784062666.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "id": "IMA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 38,
+                  "hand_level": 38,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 39,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "ROUND_TRIP": 5.979773548840502,
+                      "LATE_BREAK_UP": 5.805189554880023,
+                      "ONE_STEP_UP": 2.9975415764685787,
+                      "LATE_BREAK_DOWN": 0,
+                      "QUIET_WOBBLE": 14.287317462668772,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 2.307991774878184,
+                      "DRIFT_UP": 2.676128722254327,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.4118403199200999,
+                      "EARLY_SET_UP": 1.3508887397155058,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.06963696369636964,
+                    "epoch": 1784015158.908419,
+                    "minutes_to_bell": 791.7935096859932,
+                    "open": true,
+                    "member_count": 199,
+                    "ess": 96.22979347887055,
+                    "weight_sum": 14.287317462668772,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 62,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 62,
+                    "ask": 62,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 39; reserve MCC max(close 62, ask 62) = 62",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MCC": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 708.1655902729435,
+                    "role": "NOT_CALLABLE",
+                    "current": 62,
+                    "member_count": 1947
+                  },
+                  "IMA": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 182.59957305238208,
+                    "role": "CLIMBER",
+                    "current": 39,
+                    "member_count": 489
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "ROUND_TRIP": 5.979773548840502,
+                    "LATE_BREAK_UP": 5.805189554880023,
+                    "ONE_STEP_UP": 2.9975415764685787,
+                    "LATE_BREAK_DOWN": 0,
+                    "QUIET_WOBBLE": 14.287317462668772,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 2.307991774878184,
+                    "DRIFT_UP": 2.676128722254327,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.4118403199200999,
+                    "EARLY_SET_UP": 1.3508887397155058,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.06963696369636964,
+                  "epoch": 1784015158.908419,
+                  "minutes_to_bell": 791.7935096859932,
+                  "open": true,
+                  "member_count": 199,
+                  "ess": 96.22979347887055,
+                  "weight_sum": 14.287317462668772,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784062666.000001,
+                "q25": 39,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MCC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 61,
+              "corrected_open": 61,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 62,
+              "Q": 62,
+              "X": 1784062666.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 708.1655902729435,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3844"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 117,
+                "leg": "MCC",
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 62; reserve IMA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3844"
+                },
+                "Q": 62,
+                "X": 1784062666.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "id": "MCC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 7.528640899482752,
+                      "ROUND_TRIP": 22.571626940631813,
+                      "LATE_BREAK_DOWN": 4.343127195862988,
+                      "DRIFT_DOWN": 2.0997927088430774,
+                      "LATE_BREAK_UP": 3.8322329603683203,
+                      "QUIET_WOBBLE": 78.1620324689269,
+                      "DRIFT_UP": 2.8273763809071197,
+                      "GRIND_WOBBLE_UP": 0.5525290583523401,
+                      "ONE_STEP_DOWN": 3.7100896957761935,
+                      "EARLY_SET_UP": 4.211363200545109,
+                      "EARLY_SET_DOWN": 1.3829690355474067,
+                      "GRIND_WOBBLE_DOWN": 0.05465621615023442,
+                      "SLEEPER": 5.340329739650804
+                    },
+                    "position": 0.1469559370747462,
+                    "epoch": 1784019107.087285,
+                    "minutes_to_bell": 725.9905285835266,
+                    "open": true,
+                    "member_count": 1078,
+                    "ess": 402.2721729656666,
+                    "weight_sum": 78.1620324689269,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 62; reserve IMA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MCC": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 708.1655902729435,
+                    "role": "NOT_CALLABLE",
+                    "current": 62,
+                    "member_count": 1947
+                  },
+                  "IMA": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 182.59957305238208,
+                    "role": "CLIMBER",
+                    "current": 39,
+                    "member_count": 489
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 7.528640899482752,
+                    "ROUND_TRIP": 22.571626940631813,
+                    "LATE_BREAK_DOWN": 4.343127195862988,
+                    "DRIFT_DOWN": 2.0997927088430774,
+                    "LATE_BREAK_UP": 3.8322329603683203,
+                    "QUIET_WOBBLE": 78.1620324689269,
+                    "DRIFT_UP": 2.8273763809071197,
+                    "GRIND_WOBBLE_UP": 0.5525290583523401,
+                    "ONE_STEP_DOWN": 3.7100896957761935,
+                    "EARLY_SET_UP": 4.211363200545109,
+                    "EARLY_SET_DOWN": 1.3829690355474067,
+                    "GRIND_WOBBLE_DOWN": 0.05465621615023442,
+                    "SLEEPER": 5.340329739650804
+                  },
+                  "position": 0.1469559370747462,
+                  "epoch": 1784019107.087285,
+                  "minutes_to_bell": 725.9905285835266,
+                  "open": true,
+                  "member_count": 1078,
+                  "ess": 402.2721729656666,
+                  "weight_sum": 78.1620324689269,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784062666.000001,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784062666.519,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MCC-miss",
+          "label": "Last receipt before MCC missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "MCC",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+          "epoch": 1784062666.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IMA is strengthening; MCC is not yet directionally called.",
+              "WHY": "IMA trades at 39¢ against its 37¢ opening anchor; MCC trades at 62¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IMA carries 489 eligible past sides from first-price comparisons; MCC carries 1947 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IMA calls 39¢ by T−0hr 0min; MCC calls 62¢ by T−0hr 0min.",
+              "WHY": "IMA’s middle half spans 39–39¢; MCC’s middle half spans 62–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IMA has book 38/39 and no standing bid; MCC has book 61/62 and no standing bid.",
+              "WHY": "IMA: The counterpart reservation did not leave a permitted discount; MCC: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "IMA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 37,
+              "corrected_open": 37,
+              "close": 39,
+              "recorded_floor": 37,
+              "P": 39,
+              "Q": 39,
+              "X": 1784062666.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 489,
+              "ess": 182.59957305238208,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "IMA",
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 39; reserve MCC max(close 62, ask 62) = 62"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261"
+                },
+                "Q": 39,
+                "X": 1784062666.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "id": "IMA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 38,
+                  "hand_level": 38,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 39,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "ROUND_TRIP": 5.979773548840502,
+                      "LATE_BREAK_UP": 5.805189554880023,
+                      "ONE_STEP_UP": 2.9975415764685787,
+                      "LATE_BREAK_DOWN": 0,
+                      "QUIET_WOBBLE": 14.287317462668772,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 2.307991774878184,
+                      "DRIFT_UP": 2.676128722254327,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.4118403199200999,
+                      "EARLY_SET_UP": 1.3508887397155058,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.06963696369636964,
+                    "epoch": 1784015158.908419,
+                    "minutes_to_bell": 791.7935096859932,
+                    "open": true,
+                    "member_count": 199,
+                    "ess": 96.22979347887055,
+                    "weight_sum": 14.287317462668772,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 62,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 62,
+                    "ask": 62,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 39; reserve MCC max(close 62, ask 62) = 62",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MCC": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 708.1655902729435,
+                    "role": "NOT_CALLABLE",
+                    "current": 62,
+                    "member_count": 1947
+                  },
+                  "IMA": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 182.59957305238208,
+                    "role": "CLIMBER",
+                    "current": 39,
+                    "member_count": 489
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "ROUND_TRIP": 5.979773548840502,
+                    "LATE_BREAK_UP": 5.805189554880023,
+                    "ONE_STEP_UP": 2.9975415764685787,
+                    "LATE_BREAK_DOWN": 0,
+                    "QUIET_WOBBLE": 14.287317462668772,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 2.307991774878184,
+                    "DRIFT_UP": 2.676128722254327,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.4118403199200999,
+                    "EARLY_SET_UP": 1.3508887397155058,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.06963696369636964,
+                  "epoch": 1784015158.908419,
+                  "minutes_to_bell": 791.7935096859932,
+                  "open": true,
+                  "member_count": 199,
+                  "ess": 96.22979347887055,
+                  "weight_sum": 14.287317462668772,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784062666.000001,
+                "q25": 39,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MCC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 61,
+              "corrected_open": 61,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 62,
+              "Q": 62,
+              "X": 1784062666.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 708.1655902729435,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3844"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 117,
+                "leg": "MCC",
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 62; reserve IMA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-MCC.csv.gz#row-3844"
+                },
+                "Q": 62,
+                "X": 1784062666.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784011603,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784062666.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14IMAMCC-IMA.csv.gz#row-6261",
+                "id": "MCC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 7.528640899482752,
+                      "ROUND_TRIP": 22.571626940631813,
+                      "LATE_BREAK_DOWN": 4.343127195862988,
+                      "DRIFT_DOWN": 2.0997927088430774,
+                      "LATE_BREAK_UP": 3.8322329603683203,
+                      "QUIET_WOBBLE": 78.1620324689269,
+                      "DRIFT_UP": 2.8273763809071197,
+                      "GRIND_WOBBLE_UP": 0.5525290583523401,
+                      "ONE_STEP_DOWN": 3.7100896957761935,
+                      "EARLY_SET_UP": 4.211363200545109,
+                      "EARLY_SET_DOWN": 1.3829690355474067,
+                      "GRIND_WOBBLE_DOWN": 0.05465621615023442,
+                      "SLEEPER": 5.340329739650804
+                    },
+                    "position": 0.1469559370747462,
+                    "epoch": 1784019107.087285,
+                    "minutes_to_bell": 725.9905285835266,
+                    "open": true,
+                    "member_count": 1078,
+                    "ess": 402.2721729656666,
+                    "weight_sum": 78.1620324689269,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 62; reserve IMA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MCC": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 708.1655902729435,
+                    "role": "NOT_CALLABLE",
+                    "current": 62,
+                    "member_count": 1947
+                  },
+                  "IMA": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 182.59957305238208,
+                    "role": "CLIMBER",
+                    "current": 39,
+                    "member_count": 489
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 7.528640899482752,
+                    "ROUND_TRIP": 22.571626940631813,
+                    "LATE_BREAK_DOWN": 4.343127195862988,
+                    "DRIFT_DOWN": 2.0997927088430774,
+                    "LATE_BREAK_UP": 3.8322329603683203,
+                    "QUIET_WOBBLE": 78.1620324689269,
+                    "DRIFT_UP": 2.8273763809071197,
+                    "GRIND_WOBBLE_UP": 0.5525290583523401,
+                    "ONE_STEP_DOWN": 3.7100896957761935,
+                    "EARLY_SET_UP": 4.211363200545109,
+                    "EARLY_SET_DOWN": 1.3829690355474067,
+                    "GRIND_WOBBLE_DOWN": 0.05465621615023442,
+                    "SLEEPER": 5.340329739650804
+                  },
+                  "position": 0.1469559370747462,
+                  "epoch": 1784019107.087285,
+                  "minutes_to_bell": 725.9905285835266,
+                  "open": true,
+                  "member_count": 1078,
+                  "ess": 402.2721729656666,
+                  "weight_sum": 78.1620324689269,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784062666.000001,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784062666.519,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "IMA": false,
+          "MCC": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "IMA",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 39,
+            "close_epoch": 1784062354.5,
+            "floor_cents": 37,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MCC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 62,
+            "close_epoch": 1784062649.9,
+            "floor_cents": 62,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "a467d5afe584d9eb48249c3beb0441c34e76d8488492791079e0c3da06861adb",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

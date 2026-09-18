@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "library_queries": 928,
+  "rows": 9637,
+  "model_groups": 116,
+  "models_sha256": "15ff69b8cebcee02828c52f99834a0f47c1e09f16a9533712c25491967450b1c",
+  "earlier_only_training_exactly_reconstructed": true,
+  "no_named_outcomes": true,
+  "code": {
+    "inputs.mjs": "62255b7a7162d92106f0917cfa2ab646c90a15b0ddbeff97184178dc77058035",
+    "generate.mjs": "23002235e1ce250d3b20c735d03af18e08a428c85e35004e9b09fc48501d7be5",
+    "fit.py": "643c7ff1bff5c0b19ce065bc366d04dfa330e81247ebbdf93dedb1453f872baf"
+  },
+  "report_sha256": "a6715e04215354d4c796cdc8fbc36882657de48ee8e495a5660128d4101934da",
+  "raw_sha256": "c74ec126c534f6cae0d894e0e49640647506305d13697b8c2070ca793fcc8d10"
+}

@@ -1,0 +1,97 @@
+{
+  "status": "COMPLETE",
+  "contract": {
+    "status": "FROZEN_BEFORE_FIT",
+    "scope": "Four bed games on unchanged ee2b7f18; ATP_MAIN and ATP_CHALL calibration strictly from earlier library games. No bed/tune outcomes or tutoring. Same ALT/GAS calibration/entry definitions.",
+    "pool": "Installed first-price weights, direction-matched member outcomes, FIRST then BASE; unchanged side/role, category, walk-forward and same-day exclusions",
+    "target": "At least one strictly later cutter-accepted positive-size print at or below translated L and strictly before member bell. No-hit member keeps its weight. No carried price or zero-size print counts.",
+    "witness_limitation": "Held cutter witness source has unknown block status, inherited and disclosed; this experiment does not claim verified non-block reach or known queue priority.",
+    "calibration": "Filed weighted isotonic PAV, category/side/receipt-time role/selected layer/atlas gate separately. One total weight per earlier called library game over all legal integer-cent levels below its current. Train only on games whose bell precedes the query formation, excluding self and event-name same day. No named/tune outcomes. No earlier rows means no permission.",
+    "application": "Piecewise-linear interpolation and explicit endpoint clipping as filed. At a receipt use the latest atlas gate already reached within the query span, never a future gate. Raw probabilities are recomputed at the actual receipt. No curve before the first available gate.",
+    "validation": "Walk-forward held-out library predictions, raw and calibrated probabilities versus realized reach by absolute L, depth below current and gate; raw-only versus common calibration coverage separate. Report Brier and endpoint clipping. No tuning from these results.",
+    "decision": "Legal market increments from band q25 inclusive to below current, maker-only and actual pair cap. Maximize calibrated P(reach before bell) times (riser close destination + faller floor destination - actual filled or licensed riser cost - L). Positive discount and positive expected discount required. Exact objective ties retain the standing feasible level, then lower cent, inheriting filed reach-map order.",
+    "unchanged": "Destinations, role call, learned faller window, fresh deadline requirement, riser entry, post-only, veto, actual commitment cap, same-second rejection, fill law and replay clock. Default flag off. No automatic installation.",
+    "acceptance": "Synthetic strict-witness, isotonic and argmax tests; source/temporal checks; actual OS replay twice; flag-off digest identical; face source equality and hosted verification. No result numbers prescribed."
+  },
+  "raw": {
+    "status": "COMPLETE",
+    "started": "2026-09-18T14:04:18.798Z",
+    "finished": "2026-09-18T14:06:01.456Z",
+    "category": "ATP_CHALL",
+    "queries": 2287,
+    "scorable_directional_rows": 15189,
+    "called_rows": 14167,
+    "contract": {
+      "discovery_side_boundary_cents": 50,
+      "first_bind": "observed pair receipt prefix; flips increment only on an observed directional reversal",
+      "flat_after_cents": 2,
+      "gates_minutes_to_bell": [
+        2880,
+        2160,
+        1440,
+        1080,
+        720,
+        480,
+        360,
+        240,
+        180,
+        120,
+        90,
+        60,
+        30,
+        15,
+        5
+      ],
+      "likelihood_unit": 1,
+      "minute_seconds": 60,
+      "no_call_ess_floor": 10,
+      "prediction_grid": "subsequent fixed atlas gates only; independent of query future ticks",
+      "q": "query current last + weighted quantile(member remaining minimum - member current last)",
+      "quantiles": [
+        0.1,
+        0.25,
+        0.5,
+        0.75,
+        0.9
+      ],
+      "remaining_path": "gate carried state plus native historical member changes through bell; earliest tied minimum",
+      "role_drift_cents": 2,
+      "sleeper_category_quantile": 0.1,
+      "taxonomy_rules": {
+        "grind_reversals": 4,
+        "grind_travel_multiple": 2,
+        "one_step_share": 0.6,
+        "quarter_fraction": 0.25,
+        "quarter_net_share": 0.7,
+        "quiet_net_cents": 5,
+        "round_trip_travel_cents": 10
+      },
+      "taxonomy_samples": 17,
+      "version": "CAUSAL_MEMBER_FLOORS_FIXED_ATLAS_RECEIPT_ROLES",
+      "x": "independent weighted median(member remaining floor minutes-to-bell); query bell - X*60"
+    },
+    "source": {
+      "witness_sha256": "7c01d2899a9c830f4e1042b5c1619e57e8271e183422a4b4c483da6da9187904",
+      "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+      "witness_limitation": "Cutter-accepted positive-size prints; inherited source has unknown block status, as disclosed in the filed reach-map run. No carried price, zero-size, same-time or at/after-bell witness."
+    },
+    "rows_sha256": "0df2f67989caf6b65fdbd0280fc4ae0b68a69c5ea5926ad35f625876178123de",
+    "method": "Actual OS helpers: unchanged first-price weights, direction-conditioned masks, FIRST then BASE; earlier-only and event-name same-day exclusion. All integer-cent levels below current; later positive witnesses only, no-hit members retain weight. Targets are library-only."
+  },
+  "counts": {
+    "raw_called_rows": 14166,
+    "no_earlier_calibration_rows": 428,
+    "calibrated_rows": 13738
+  },
+  "elapsed_seconds": 21.847265243530273,
+  "model_groups": 98,
+  "heldout_prediction_sha256": "55cfe11957ad287c3b3fbf7fe68f54632d1e421ce40e445893fdf4f245466930",
+  "no_named_outcomes": true,
+  "query_binding": {
+    "identity": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    "date": "26JUL14",
+    "formation": 1784007603,
+    "source": "Identity/date/formation only; no named outcomes in calibration"
+  },
+  "calibration_sha256": "1365bb6a6732fde3981b9e58eb7272c8fd16a511c4d90f3d4dd754480dbbb5ac"
+}

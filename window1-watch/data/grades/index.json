@@ -6258,6 +6258,342 @@
         "2026-09-15T18:29:10.531Z · run 262",
         "OS commit order STORE SILENT"
       ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-18T00:12:21.040Z",
+      "os_sha": "80c2b91c60d41ed72e8749618c3a2671a606e7439752fdbdec856940f5f6a64c",
+      "trace_sha": "01a073c994d661430b05f3a24cb42b10e57d79492957d0c8e7d7215ffa4772a9",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": 0,
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/80c2b91c_01a073c9.json",
+      "revision": 0,
+      "grade_sha256": "cca56e841a88ce1bc9daf7ce31cbf7865e72b4414ae358e23e85f41304d56d55",
+      "append_order": 262,
+      "x": 574,
+      "y": 142,
+      "hover_lines": [
+        "80c2b91c60d41ed72e8749618c3a2671a606e7439752fdbdec856940f5f6a64c · N/A",
+        "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+        "2026-09-18T00:12:21.040Z · run 263",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-18T00:16:42.335Z",
+      "os_sha": "80c2b91c60d41ed72e8749618c3a2671a606e7439752fdbdec856940f5f6a64c",
+      "trace_sha": "01a073c994d661430b05f3a24cb42b10e57d79492957d0c8e7d7215ffa4772a9",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": 0,
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/80c2b91c_01a073c9.json",
+      "revision": 1,
+      "grade_sha256": "889ab02c76afc8ad18550a174c502061687a708eef5c9081fd5806c8688e9c9c",
+      "append_order": 263,
+      "x": 608,
+      "y": 142,
+      "hover_lines": [
+        "80c2b91c60d41ed72e8749618c3a2671a606e7439752fdbdec856940f5f6a64c · N/A",
+        "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+        "2026-09-18T00:16:42.335Z · run 264",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-18T00:18:44.967Z",
+      "os_sha": "80c2b91c60d41ed72e8749618c3a2671a606e7439752fdbdec856940f5f6a64c",
+      "trace_sha": "01a073c994d661430b05f3a24cb42b10e57d79492957d0c8e7d7215ffa4772a9",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "PAIR; floor-only MICRO inapplicable",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/80c2b91c_01a073c9.json",
+      "revision": 2,
+      "grade_sha256": "7a40ba0fd74fb9ea051ad8b06b5a41245547b2ec3775558e0752c562e1c56e24",
+      "append_order": 264,
+      "x": 642,
+      "y": 88,
+      "hover_lines": [
+        "80c2b91c60d41ed72e8749618c3a2671a606e7439752fdbdec856940f5f6a64c · F",
+        "PAIR; floor-only MICRO inapplicable",
+        "2026-09-18T00:18:44.967Z · run 265",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-18T04:19:43.433Z",
+      "os_sha": "aba89abfd348ae18f349c3002521245dcc0bac3b20c0eaa9d9a86957d2c26256",
+      "trace_sha": "6d33ecaa4d3b08a5dc3dc189407931d7144ca2b6e842ad676e3385b67979899f",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "PAIR; floor-only MICRO inapplicable",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/aba89abf_6d33ecaa.json",
+      "revision": 0,
+      "grade_sha256": "0ac847ae5a6d5e5091a1e8b13dce2f0d5c6baaa898cea3d989bbbc4e1f6592ec",
+      "append_order": 265,
+      "x": 676,
+      "y": 88,
+      "hover_lines": [
+        "aba89abfd348ae18f349c3002521245dcc0bac3b20c0eaa9d9a86957d2c26256 · F",
+        "PAIR; floor-only MICRO inapplicable",
+        "2026-09-18T04:19:43.433Z · run 266",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-18T05:13:50.959Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "f73d1486ae597a80f1c0b054115076f318352abec59053a48ff04100c9a1476a",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": 0.5,
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/ee2b7f18_f73d1486.json",
+      "revision": 0,
+      "grade_sha256": "73f596f2f238d697b9eab160af751466321a73a218c3ae9592de94175b0d9ebf",
+      "append_order": 266,
+      "x": 710,
+      "y": 142,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · N/A",
+        "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+        "2026-09-18T05:13:50.959Z · run 267",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-18T14:16:26.645Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "214a537fb1720f2a9974d28bf078545c9e1cea9098b2baf1310a10c5b0d64f4b",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to DAN / PRA's close forecast.",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/ee2b7f18_214a537f.json",
+      "revision": 0,
+      "grade_sha256": "94a8125f3bf55a7d1a2b8d6b991c609e338e70c8ed218f9e8882ba3d8fea1372",
+      "append_order": 267,
+      "x": 302,
+      "y": 142,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · N/A",
+        "Handoff experiment · floor-only grade inapplicable to DAN / PRA's close forecast.",
+        "2026-09-18T14:16:26.645Z · run 268",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-18T14:18:41.447Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "606b3b6e839f638020957653195e21ba8ece1d89f2cb99227f57af31803e08df",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · TRADE · PAIR; floor-only MICRO inapplicable",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/ee2b7f18_606b3b6e.json",
+      "revision": 0,
+      "grade_sha256": "e16b2b6ed1d9447b662447501736352ebf492641aef58fc903c0a87c642286e0",
+      "append_order": 268,
+      "x": 302,
+      "y": 88,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · F",
+        "MACRO · TRADE · PAIR; floor-only MICRO inapplicable",
+        "2026-09-18T14:18:41.447Z · run 269",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-18T14:19:33.332Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "516911cbd6196d7a52b7c7950f76758a2ba833eca284996b65d22e7ec05ffa08",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": 0.375,
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to LAJ / SVA's close forecast.",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/ee2b7f18_516911cb.json",
+      "revision": 0,
+      "grade_sha256": "8a4094d86df3747f1eb41526da6a7395f9bd1aef5bb2e0565e14999641388d5e",
+      "append_order": 269,
+      "x": 302,
+      "y": 142,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · N/A",
+        "Handoff experiment · floor-only grade inapplicable to LAJ / SVA's close forecast.",
+        "2026-09-18T14:19:33.332Z · run 270",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-18T15:16:34.847Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "a28a20873040e4caacf9206e88760462eb6392766d6dc7360f7d76c11edfac5d",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "TRADE · PAIR; floor-only MICRO inapplicable",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/ee2b7f18_a28a2087.json",
+      "revision": 0,
+      "grade_sha256": "10dd2e7279ff1bb56826a440037b8bbe7f10c74a83295bca55ec2634b4eae0da",
+      "append_order": 270,
+      "x": 506,
+      "y": 88,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · F",
+        "TRADE · PAIR; floor-only MICRO inapplicable",
+        "2026-09-18T15:16:34.847Z · run 271",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "timestamp": "2026-09-18T17:35:12.063Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "f73d1486ae597a80f1c0b054115076f318352abec59053a48ff04100c9a1476a",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": 0.5,
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+      "url": "/data/grades/KXATPMATCH-26JUL12ALTGAS/ee2b7f18_f73d1486.json",
+      "revision": 1,
+      "grade_sha256": "502736530c51f705262a16ff5db491f9c904ed6266acf5e5909726b564cf2a04",
+      "append_order": 271,
+      "x": 744,
+      "y": 142,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · N/A",
+        "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+        "2026-09-18T17:35:12.063Z · run 272",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "timestamp": "2026-09-18T17:35:12.231Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "606b3b6e839f638020957653195e21ba8ece1d89f2cb99227f57af31803e08df",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "MACRO · TRADE · PAIR; floor-only MICRO inapplicable",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL12GIUBAR/ee2b7f18_606b3b6e.json",
+      "revision": 1,
+      "grade_sha256": "f7a616946482e132b52ae92f6f0bcaad6046d58bb937cefb1448477765b3d348",
+      "append_order": 272,
+      "x": 336,
+      "y": 88,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · F",
+        "MACRO · TRADE · PAIR; floor-only MICRO inapplicable",
+        "2026-09-18T17:35:12.231Z · run 273",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "timestamp": "2026-09-18T17:35:12.501Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "a28a20873040e4caacf9206e88760462eb6392766d6dc7360f7d76c11edfac5d",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "F",
+      "capture_ratio": 0,
+      "governing_section": "TRADE · PAIR; floor-only MICRO inapplicable",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14URSPAL/ee2b7f18_a28a2087.json",
+      "revision": 1,
+      "grade_sha256": "99f53fe5a4686da767b70dfdc435e995ba06e42202e1e9e101f3585bf5e0f1c7",
+      "append_order": 273,
+      "x": 540,
+      "y": 88,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · F",
+        "TRADE · PAIR; floor-only MICRO inapplicable",
+        "2026-09-18T17:35:12.501Z · run 274",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "timestamp": "2026-09-18T17:35:13.507Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "516911cbd6196d7a52b7c7950f76758a2ba833eca284996b65d22e7ec05ffa08",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": 0.375,
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to LAJ / SVA's close forecast.",
+      "url": "/data/grades/KXATPCHALLENGERMATCH-26JUL14LAJSVA/ee2b7f18_516911cb.json",
+      "revision": 1,
+      "grade_sha256": "190d82afe8768ff121bded82ebc05d7d994254147c6ae6f542c62038a9481289",
+      "append_order": 274,
+      "x": 336,
+      "y": 142,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · N/A",
+        "Handoff experiment · floor-only grade inapplicable to LAJ / SVA's close forecast.",
+        "2026-09-18T17:35:13.507Z · run 275",
+        "OS commit order STORE SILENT"
+      ]
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "timestamp": "2026-09-18T17:35:13.611Z",
+      "os_sha": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "trace_sha": "214a537fb1720f2a9974d28bf078545c9e1cea9098b2baf1310a10c5b0d64f4b",
+      "os_commit": "STORE SILENT",
+      "commit_order": null,
+      "grading_commit": "987a2fdde8da717e5070fbe7c73b2008f7c119ec",
+      "letter": "N/A",
+      "capture_ratio": "STORE SILENT",
+      "governing_section": "Handoff experiment · floor-only grade inapplicable to DAN / PRA's close forecast.",
+      "url": "/data/grades/KXATPMATCH-26JUL18DANPRA/ee2b7f18_214a537f.json",
+      "revision": 1,
+      "grade_sha256": "344ec445f366430b73467cd6e947d9f66b7a5f82eacfff0da3c946bbaf2c5679",
+      "append_order": 275,
+      "x": 336,
+      "y": 142,
+      "hover_lines": [
+        "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b · N/A",
+        "Handoff experiment · floor-only grade inapplicable to DAN / PRA's close forecast.",
+        "2026-09-18T17:35:13.611Z · run 276",
+        "OS commit order STORE SILENT"
+      ]
     }
   ],
   "axis": {
@@ -6268,13 +6604,14 @@
       "D",
       "F",
       "STORE SILENT",
-      "NOT OFFERED"
+      "NOT OFFERED",
+      "N/A"
     ]
   },
   "views": {
     "KXATPMATCH-26JUL12ALTGAS": {
-      "width": 604,
-      "height": 158,
+      "width": 808,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6303,12 +6640,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14URSPAL": {
-      "width": 536,
-      "height": 158,
+      "width": 604,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6337,12 +6678,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12GIUBAR": {
-      "width": 332,
-      "height": 158,
+      "width": 400,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6371,12 +6716,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14LAJSVA": {
-      "width": 332,
-      "height": 158,
+      "width": 400,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6405,12 +6754,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL18DANPRA": {
-      "width": 332,
-      "height": 158,
+      "width": 400,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6439,12 +6792,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL13GREVAN": {
       "width": 196,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6473,12 +6830,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20ONCAJD": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6507,12 +6868,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL18LAJYUN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6541,12 +6906,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19WINSHE": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6575,12 +6944,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19DEMBIT": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6609,12 +6982,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12BARREI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6643,12 +7020,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19VISAHT": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6677,12 +7058,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12WESPAA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6711,12 +7096,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14GANZIN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6745,12 +7134,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14JOHBER": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6779,12 +7172,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14LANYIB": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6813,12 +7210,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19RODIVA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6847,12 +7248,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20OLIZIE": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6881,12 +7286,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20CALKUM": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6915,12 +7324,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL15BONJUS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6949,12 +7362,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL16GRESAN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -6983,12 +7400,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12PIETAB": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7017,12 +7438,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19MENKUM": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7051,12 +7476,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20WINARS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7085,12 +7514,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL16BICCAS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7119,12 +7552,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20MAYMAG": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7153,12 +7590,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19HURBIG": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7187,12 +7628,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20GALLLA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7221,12 +7666,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL13BINFUE": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7255,12 +7704,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19BRUKRA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7289,12 +7742,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12HERALM": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7323,12 +7780,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14IMAMCC": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7357,12 +7818,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19ARNPOH": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7391,12 +7856,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20VASSIN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7425,12 +7894,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL13BOUZHA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7459,12 +7932,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20GALARN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7493,12 +7970,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL16FORCUI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7527,12 +8008,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL13NAPBAL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7561,12 +8046,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12FEAWAL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7595,12 +8084,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20ARSRIC": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7629,12 +8122,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14ZHUYUN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7663,12 +8160,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19OLILAS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7697,12 +8198,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12BALPET": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7731,12 +8236,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL20MARROS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7765,12 +8274,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12TROHOR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7799,12 +8312,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7833,12 +8350,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL17ALCRON": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7867,12 +8388,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12BINGIL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7901,12 +8426,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12KOPPRI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7935,12 +8464,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12DEJGAU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -7969,12 +8502,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL19TSICOL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8003,12 +8540,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12BUDPEL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8037,12 +8578,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL19NEUHAN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8071,12 +8616,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL15PRADZU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8105,12 +8654,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL15CARUGO": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8139,12 +8692,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL19STRSHE": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8173,12 +8730,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL16FARRUU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8207,12 +8768,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL19GASDZU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8241,12 +8806,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL19DROUGO": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8275,12 +8844,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL18DOMSKA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8309,12 +8882,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL15VANDRO": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8343,12 +8920,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12OFNTIR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8377,12 +8958,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12CORDAN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8411,12 +8996,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12SLADAM": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8445,12 +9034,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL12CECOLI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8479,12 +9072,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPMATCH-26JUL18HIPGIU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8513,12 +9110,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL16KHOPRO": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8547,12 +9148,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL12ERJBOS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8581,12 +9186,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL13AVDFEI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8615,12 +9224,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL16ZVOHRU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8649,12 +9262,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL16GAOVAL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8683,12 +9300,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL13SELYAN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8717,12 +9338,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL14KOSRUG": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8751,12 +9376,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL15GRAPER": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8785,12 +9414,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL16BASRUS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8819,12 +9452,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL13RAMNOH": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8853,12 +9490,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL20MAZSPI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8887,12 +9528,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL16FEISAM": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8921,12 +9566,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL15ANDRIS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8955,12 +9604,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL18CIRTOT": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -8989,12 +9642,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL13KNUKUR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9023,12 +9680,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13LEPIBR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9057,12 +9718,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13GRAPAR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9091,12 +9756,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13KRETOM": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9125,12 +9794,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13QUERUS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9159,12 +9832,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13PRIGAR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9193,12 +9870,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL16KORANN": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9227,12 +9908,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL18MORAKS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9261,12 +9946,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL12AVASEI": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9295,12 +9984,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL19GAOFRU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9329,12 +10022,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL17PUTSHE": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9363,12 +10060,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL19YASBAR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9397,12 +10098,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13KAWWAL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9431,12 +10136,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL14PUTLIU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9465,12 +10174,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL13MORBEJ": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9499,12 +10212,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL20PODSTU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9533,12 +10250,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL18MICFRU": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9567,12 +10288,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL16VALSAS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9601,12 +10326,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL17UDVBAD": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9635,12 +10364,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL19SALVRB": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9669,12 +10402,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXATPCHALLENGERMATCH-26JUL12WESSEL": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9703,12 +10440,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL14RABRUS": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9737,12 +10478,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTACHALLENGERMATCH-26JUL12BALHUA": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9771,12 +10516,16 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     },
     "KXWTAMATCH-26JUL20KUDKOR": {
       "width": 180,
-      "height": 158,
+      "height": 176,
       "labels": [
         {
           "letter": "A",
@@ -9805,6 +10554,10 @@
         {
           "letter": "N/O",
           "y": 124
+        },
+        {
+          "letter": "N/A",
+          "y": 142
         }
       ]
     }

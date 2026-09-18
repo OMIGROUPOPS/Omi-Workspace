@@ -1,0 +1,2414 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "61514d1ac62681694830451487d9c9b94c9a2fa21c925a8188b539c51bf2e89e",
+    "stage_cache_sha256": "c156787ae40463fc5ed965a2175cc5136623c32086f16b63a4e82a32d8d288a5",
+    "mirror_projection_sha256": "2fe81ba8dcae1d47d581b621bcf1d69e737061d13c995db4c45932b3554d7965",
+    "mirror_permissions_sha256": "d5d521834aeb1a8fb9aeeb19cb1be20662689b9ce4337578f48b982057cad034",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "281176da0781718819b76d78ab2ac9e892bebfd3326fd82cb922679a0cda74df",
+      "row_number": 628,
+      "row_csv": "26JUL19HURBIG,KXATPCHALLENGERMATCH-26JUL19HURBIG,ATP_CHALL,1784447121,1784447121,1784505600,1784500200.0,BIG,HUR,1784450108,57.0,51,1784456772.8,60,1784505599.0,31210.33,18962.68,STILL,3.0,1784493802,61,1784498510.6,PRE_BELL_VALID,1784450108,44.0,37,1784495444.7,42,1784505598.5,15941.26,6580.18,STILL,-2.0,1784493802,37,1784498739.0,PRE_BELL_VALID,1784450108,1784505600,,,1784512205.0,1784505600,MACHINE_RECEIPT,\"EXACT (7 receipts, zero spread)\",1784450108,1784505600,OK,COMPLETE_AT_DELTA,2",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784450108,
+      "span_end_epoch": 1784505600,
+      "bell_epoch": 1784505600,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784505600,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BIG": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 57,
+          "floor_cents": 51,
+          "floor_epoch": 1784456772.8,
+          "minutes_to_bell": 813.7866666674614,
+          "line": "BIG 51¢ @ 813.79m to bell",
+          "marker_label": "BIG FLOOR · RECORDED 51¢ @ 813.79m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 51¢ · 813m to bell",
+          "hover_note": "Recorded floor 51¢ printed here · 813m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "HUR": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 44,
+          "floor_cents": 37,
+          "floor_epoch": 1784495444.7,
+          "minutes_to_bell": 169.25499999920527,
+          "line": "HUR 37¢ @ 169.25m to bell",
+          "marker_label": "HUR FLOOR · RECORDED 37¢ @ 169.25m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 37¢ · 169m to bell",
+          "hover_note": "Recorded floor 37¢ printed here · 169m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "BIG",
+      "underdog_leg": "HUR",
+      "pair": {
+        "sum_cents": 88,
+        "discount_cents": 12,
+        "reason": null,
+        "line": "best capturable = 51 + 37 = 88¢",
+        "discount_line": "12¢ under par",
+        "compact_line": "best capturable 88¢ · 12¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL19HURBIG",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784447121",
+        "w1_left_epoch": "1784447121",
+        "w1_right_epoch": "1784505600",
+        "scheduled_start_epoch": "1784500200.0",
+        "legA": "BIG",
+        "legB": "HUR",
+        "legA_formation_end_epoch": "1784450108",
+        "legA_open_postformation_c": "57.0",
+        "legA_floor_c": "51",
+        "legA_floor_epoch": "1784456772.8",
+        "legA_close_c": "60",
+        "legA_close_epoch": "1784505599.0",
+        "legA_contracts": "31210.33",
+        "legA_premium_usd": "18962.68",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "3.0",
+        "legA_us_first_post_epoch": "1784493802",
+        "legA_us_fill_c": "61",
+        "legA_us_fill_epoch": "1784498510.6",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784450108",
+        "legB_open_postformation_c": "44.0",
+        "legB_floor_c": "37",
+        "legB_floor_epoch": "1784495444.7",
+        "legB_close_c": "42",
+        "legB_close_epoch": "1784505598.5",
+        "legB_contracts": "15941.26",
+        "legB_premium_usd": "6580.18",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-2.0",
+        "legB_us_first_post_epoch": "1784493802",
+        "legB_us_fill_c": "37",
+        "legB_us_fill_epoch": "1784498739.0",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784450108",
+        "bell_machine_epoch": "1784505600",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784512205.0",
+        "bell_epoch": "1784505600",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (7 receipts, zero spread)",
+        "span_start_epoch": "1784450108",
+        "span_end_epoch": "1784505600",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "2"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19HURBIG.jsonl",
+      "sha256": "f0c41b0af637cc6aeacf84262286e9bee71ccc235614fd3e991b066af8063364",
+      "raw_rows": 17609,
+      "accepted_rows": 740,
+      "start_epoch": 1784450108,
+      "end_epoch": 1784505600
+    }
+  },
+  "first_callable_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+  "first_both_directional_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+  "first_callable_by_side": {
+    "BIG": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+    "HUR": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+          "epoch": 1784456538.000001,
+          "clock": "T−13hr 38min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIG is weakening; HUR is strengthening.",
+              "WHY": "BIG trades at 53¢ against its 57¢ opening anchor; HUR trades at 47¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIG carries 49 eligible past sides from first-price comparisons; HUR carries 32 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIG calls 50¢ by T−4hr 7min; HUR calls 46¢ by T−12hr 6min.",
+              "WHY": "BIG’s middle half spans 46–53¢; HUR’s middle half spans 43–47¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIG has book 49/53 and a standing 50¢ bid; HUR has book 45/47 and a standing 46¢ bid.",
+              "WHY": "BIG: The current pool target was the permitted bid level; HUR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIG": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 60,
+              "recorded_floor": 51,
+              "P": 53,
+              "Q": 50,
+              "X": 1784490753,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 49,
+              "ess": 15.74059361492832,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 49,
+                "ask_cents": 53,
+                "last_trade_cents": null,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321"
+              },
+              "bid": 50,
+              "filled": null,
+              "decision": {
+                "order": 32,
+                "leg": "BIG",
+                "epoch": 1784456538.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 50,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 49,
+                  "ask_cents": 53,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321"
+                },
+                "Q": 50,
+                "X": 1784490753,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "support": null,
+                "accountability_assumption": "e42984d5359d8e296f0e35e92552de565f3b39aa3fc296252d791ff2cc9048d3",
+                "stage_index": 16
+              },
+              "permission": null,
+              "micro": {
+                "Q": 50,
+                "deadline_epoch": 1784490753,
+                "q25": 46,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784456772.812,
+                  "price": 51,
+                  "size": 28.43,
+                  "receipt": "e90d054a-90ea-67b8-1102-a632eac6d481"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784456772.812,
+                  "price": 51,
+                  "size": 28.43,
+                  "receipt": "e90d054a-90ea-67b8-1102-a632eac6d481"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "HUR": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 47,
+              "Q": 46,
+              "X": 1784462042.568334,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 32,
+              "ess": 10.299873559221131,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 45,
+                "ask_cents": 47,
+                "last_trade_cents": 50,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-338"
+              },
+              "bid": 46,
+              "filled": null,
+              "decision": {
+                "order": 33,
+                "leg": "HUR",
+                "epoch": 1784456538.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 46,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 45,
+                  "ask_cents": 47,
+                  "last_trade_cents": 50,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-338"
+                },
+                "Q": 46,
+                "X": 1784462042.568334,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "support": null,
+                "accountability_assumption": "3323c366df3c405ec2b4b0b0a09ed809c78e6fef33959694b4dd3ac56a9e7d55",
+                "stage_index": 16
+              },
+              "permission": null,
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784462042.568334,
+                "q25": 43,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784495444.696,
+                  "price": 37,
+                  "size": 1,
+                  "receipt": "9e11c045-fe47-4bb4-cd65-79002134e2fa"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BIG-miss",
+          "label": "Last receipt before BIG missed at the bell",
+          "arm": "D",
+          "focus_leg": "BIG",
+          "outcome": "miss",
+          "receipt": "b363e49c-4f88-41d3-8569-1a24d722fe4d",
+          "epoch": 1784505599.045,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIG is strengthening; HUR is weakening.",
+              "WHY": "BIG trades at 60¢ against its 57¢ opening anchor; HUR trades at 42¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIG carries 695 eligible past sides from first-price comparisons; HUR carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIG calls 60¢ by T−0hr 0min; HUR calls 42¢ by T−0hr 0min.",
+              "WHY": "BIG’s middle half spans 60–60¢; HUR’s middle half spans 42–42¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIG has book 58/60 and a standing 50¢ bid; HUR has book 40/42 and a recorded purchase at 47¢.",
+              "WHY": "BIG: The desired bid could not be posted below the ask; HUR: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 60,
+              "recorded_floor": 51,
+              "P": 60,
+              "Q": 60,
+              "X": 1784505599.045,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 695,
+              "ess": 236.3271253722137,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 60,
+                "last_trade_cents": 60,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14994"
+              },
+              "bid": 50,
+              "filled": null,
+              "decision": {
+                "order": 109,
+                "leg": "BIG",
+                "epoch": 1784505599.045,
+                "receipt": "b363e49c-4f88-41d3-8569-1a24d722fe4d",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 50,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 58,
+                  "ask_cents": 60,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14994"
+                },
+                "Q": 60,
+                "X": 1784505599.045,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "support": null,
+                "accountability_assumption": "136e2489b2d0715efd6b5db6d844d9c94eaea21b481a7f188cedad705ca062c2",
+                "stage_index": 77
+              },
+              "permission": null,
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1784505599.045,
+                "q25": 60,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "HUR": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 42,
+              "Q": 42,
+              "X": 1784505599.045,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 238.79528711404146,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-15133"
+              },
+              "bid": null,
+              "filled": 47,
+              "decision": {
+                "order": 108,
+                "leg": "HUR",
+                "epoch": 1784505300,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784505300",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-14843"
+                },
+                "Q": 42,
+                "X": 1784505300,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 76
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784505599.045,
+                "q25": 42,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784505600,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-HUR-fill",
+          "label": "Last receipt before HUR filled",
+          "arm": "D",
+          "focus_leg": "HUR",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+          "epoch": 1784462400,
+          "clock": "T−12hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIG is weakening; HUR is strengthening.",
+              "WHY": "BIG trades at 52¢ against its 57¢ opening anchor; HUR trades at 48¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIG carries 59 eligible past sides from first-price comparisons; HUR carries 41 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIG calls 50¢ by T−3hr 38min; HUR calls 47¢ by T−10hr 37min.",
+              "WHY": "BIG’s middle half spans 49–51¢; HUR’s middle half spans 43–48¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIG has book 51/52 and a standing 50¢ bid; HUR has book 47/48 and a standing 47¢ bid.",
+              "WHY": "BIG: The current pool target was the permitted bid level; HUR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIG": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 60,
+              "recorded_floor": 51,
+              "P": 52,
+              "Q": 50,
+              "X": 1784492513.724609,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 59,
+              "ess": 14.690585170257947,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 51,
+                "ask_cents": 52,
+                "last_trade_cents": 52,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-808"
+              },
+              "bid": 50,
+              "filled": null,
+              "decision": {
+                "order": 42,
+                "leg": "BIG",
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 50,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 51,
+                  "ask_cents": 52,
+                  "last_trade_cents": 52,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-808"
+                },
+                "Q": 50,
+                "X": 1784492513.724609,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "support": null,
+                "accountability_assumption": "83d1e3c297eb39336a410c8e4d792a5fd2b2c868b9e0ed9fa7b785758f39521f",
+                "stage_index": 21
+              },
+              "permission": null,
+              "micro": {
+                "Q": 50,
+                "deadline_epoch": 1784492513.724609,
+                "q25": 49,
+                "q75": 51,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784462551.583,
+                  "price": 52,
+                  "size": 76.42,
+                  "receipt": "2ca4d249-d24f-43a4-0d91-bcc27c37ca82"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "HUR": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 48,
+              "Q": 47,
+              "X": 1784467358.754425,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 41,
+              "ess": 17.486009754832317,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 47,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+              },
+              "bid": 47,
+              "filled": null,
+              "decision": {
+                "order": 43,
+                "leg": "HUR",
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 47,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 47,
+                  "ask_cents": 48,
+                  "last_trade_cents": 48,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+                },
+                "Q": 47,
+                "X": 1784467358.754425,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "support": null,
+                "accountability_assumption": "b6f97b4629434f7c8013171a62f9ffd8f77e6dd48cf5317528f7185e186b76c5",
+                "stage_index": 21
+              },
+              "permission": null,
+              "micro": {
+                "Q": 47,
+                "deadline_epoch": 1784467358.754425,
+                "q25": 43,
+                "q75": 48,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784495444.696,
+                  "price": 37,
+                  "size": 1,
+                  "receipt": "9e11c045-fe47-4bb4-cd65-79002134e2fa"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784467626.895,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "HUR",
+              "epoch": 1784467626.895,
+              "cents": 47,
+              "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+              "order_lineage_start_epoch": 1784456538.000001,
+              "current_price_receipt": "e90d054a-90ea-67b8-1102-a632eac6d481",
+              "current_price_start_epoch": 1784456772.812,
+              "order_lineage_age_minutes": 184.8149166504542,
+              "current_price_age_minutes": 180.90138333241146,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "HUR",
+                "epoch": 1784467626.895,
+                "cents": 47,
+                "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "order_lineage_start_epoch": 1784456538.000001,
+                "current_price_receipt": "e90d054a-90ea-67b8-1102-a632eac6d481",
+                "current_price_start_epoch": 1784456772.812,
+                "order_lineage_age_minutes": 184.8149166504542,
+                "current_price_age_minutes": 180.90138333241146,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 43,
+              "leg": "HUR",
+              "epoch": 1784462400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 47,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 47,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+              },
+              "Q": 47,
+              "X": 1784467358.754425,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784450108,
+              "support": null,
+              "accountability_assumption": "b6f97b4629434f7c8013171a62f9ffd8f77e6dd48cf5317528f7185e186b76c5",
+              "stage_index": 21
+            },
+            "license_receipt": "e90d054a-90ea-67b8-1102-a632eac6d481",
+            "licensing_deadline_epoch": 1784462042.568334,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIG was weakening; its corrected full-window direction was strengthening. HUR was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HUR was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BIG": false,
+          "HUR": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 12,
+        "fills": [
+          {
+            "leg": "HUR",
+            "epoch": 1784467626.895,
+            "cents": 47,
+            "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+            "order_lineage_start_epoch": 1784456538.000001,
+            "current_price_receipt": "e90d054a-90ea-67b8-1102-a632eac6d481",
+            "current_price_start_epoch": 1784456772.812,
+            "order_lineage_age_minutes": 184.8149166504542,
+            "current_price_age_minutes": 180.90138333241146,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BIG",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 60,
+            "close_epoch": 1784505599,
+            "floor_cents": 51,
+            "offered_cents": 9,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 9,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "HUR",
+            "filled": true,
+            "fill_cents": 47,
+            "fill_epoch": 1784467626.895,
+            "fill_receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+            "close_cents": 42,
+            "close_epoch": 1784505598.5,
+            "floor_cents": 37,
+            "offered_cents": 5,
+            "value_cents": -5,
+            "premium_cents": 5,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "281176da0781718819b76d78ab2ac9e892bebfd3326fd82cb922679a0cda74df",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+          "epoch": 1784456538.000001,
+          "clock": "T−13hr 38min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIG is weakening; HUR is strengthening.",
+              "WHY": "BIG trades at 53¢ against its 57¢ opening anchor; HUR trades at 47¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIG carries 49 eligible past sides from first-price comparisons; HUR carries 32 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIG calls 50¢ by T−4hr 7min; HUR calls 46¢ by T−12hr 6min.",
+              "WHY": "BIG’s middle half spans 46–53¢; HUR’s middle half spans 43–47¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIG has book 49/53 and no standing bid; HUR has book 45/47 and a standing 46¢ bid.",
+              "WHY": "BIG: The weakening side had not entered its predicted late-floor window; HUR: buying the strengthening side before it strengthens; predicted close 48; bid 46; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 46 + 52 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIG": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 60,
+              "recorded_floor": 51,
+              "P": 53,
+              "Q": 50,
+              "X": 1784490753,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 49,
+              "ess": 15.74059361492832,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 49,
+                "ask_cents": 53,
+                "last_trade_cents": null,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 32,
+                "leg": "BIG",
+                "epoch": 1784456538.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 50; reserve HUR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 49,
+                  "ask_cents": 53,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321"
+                },
+                "Q": 50,
+                "X": 1784490753,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "stage_index": 16
+              },
+              "permission": {
+                "ordinal": 16,
+                "epoch": 1784456538.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "id": "BIG",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 54,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.1299324035246864,
+                      "ROUND_TRIP": 1.0368207059690717,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0.044265978945395384,
+                      "LATE_BREAK_UP": 0.09433143438164823,
+                      "QUIET_WOBBLE": 0.08033395255513082,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "ONE_STEP_DOWN": 0.8586216349225093,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 0.3501234141823583,
+                      "GRIND_WOBBLE_DOWN": 0.07239781082214602,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.29356279152795445,
+                    "epoch": 1784466398.3864274,
+                    "minutes_to_bell": 653.3602262099583,
+                    "open": false,
+                    "member_count": 28,
+                    "ess": 12.077371453753836,
+                    "weight_sum": 1.0368207059690717,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 50; reserve HUR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 50,
+                    "climber_forecast_close": 48,
+                    "mirror_completion_cost": 52,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "HUR",
+                    "faller": "BIG",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BIG": {
+                    "forecast": 54,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 15.74059361492832,
+                    "role": "FALLER",
+                    "current": 53,
+                    "member_count": 49
+                  },
+                  "HUR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 10.299873559221131,
+                    "role": "CLIMBER",
+                    "current": 47,
+                    "member_count": 32
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.1299324035246864,
+                    "ROUND_TRIP": 1.0368207059690717,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0.044265978945395384,
+                    "LATE_BREAK_UP": 0.09433143438164823,
+                    "QUIET_WOBBLE": 0.08033395255513082,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 0.8586216349225093,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 0.3501234141823583,
+                    "GRIND_WOBBLE_DOWN": 0.07239781082214602,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.29356279152795445,
+                  "epoch": 1784466398.3864274,
+                  "minutes_to_bell": 653.3602262099583,
+                  "open": false,
+                  "member_count": 28,
+                  "ess": 12.077371453753836,
+                  "weight_sum": 1.0368207059690717,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 50,
+                "deadline_epoch": 1784490753,
+                "q25": 46,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784456772.812,
+                  "price": 51,
+                  "size": 28.43,
+                  "receipt": "e90d054a-90ea-67b8-1102-a632eac6d481"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784456772.812,
+                  "price": 51,
+                  "size": 28.43,
+                  "receipt": "e90d054a-90ea-67b8-1102-a632eac6d481"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "HUR": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 47,
+              "Q": 46,
+              "X": 1784462042.568334,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 32,
+              "ess": 10.299873559221131,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 45,
+                "ask_cents": 47,
+                "last_trade_cents": 50,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-338"
+              },
+              "bid": 46,
+              "filled": null,
+              "decision": {
+                "order": 33,
+                "leg": "HUR",
+                "epoch": 1784456538.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 46,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 48; bid 46; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 46 + 52 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 45,
+                  "ask_cents": 47,
+                  "last_trade_cents": 50,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-338"
+                },
+                "Q": 46,
+                "X": 1784462042.568334,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "stage_index": 16
+              },
+              "permission": {
+                "ordinal": 16,
+                "epoch": 1784456538.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-321",
+                "id": "HUR",
+                "old": null,
+                "proposed": 46,
+                "posted": 46,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 46,
+                  "hand_level": 46,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 48,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.1299324035246864,
+                      "ROUND_TRIP": 0.6764898948867254,
+                      "LATE_BREAK_UP": 0.5010305775354746,
+                      "ONE_STEP_UP": 0.2954319696594733,
+                      "LATE_BREAK_DOWN": 0.01402059792847015,
+                      "QUIET_WOBBLE": 0.2716305797791354,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0,
+                      "DRIFT_UP": 0.16777617297176195,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.01106106764250582,
+                      "EARLY_SET_UP": 0.04124444093597101,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.16428701493018433,
+                    "epoch": 1784459224.6150324,
+                    "minutes_to_bell": 772.9230827927589,
+                    "open": false,
+                    "member_count": 12,
+                    "ess": 6.093160403833203,
+                    "weight_sum": 0.6764898948867254,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 52,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 50,
+                      "climber_forecast_close": 48,
+                      "mirror_completion_cost": 52,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 48; bid 46; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 46 + 52 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 50,
+                    "climber_forecast_close": 48,
+                    "mirror_completion_cost": 52,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "HUR",
+                    "faller": "BIG",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 54,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 54,
+                    "ask": 53,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BIG": {
+                    "forecast": 54,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 15.74059361492832,
+                    "role": "FALLER",
+                    "current": 53,
+                    "member_count": 49
+                  },
+                  "HUR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 10.299873559221131,
+                    "role": "CLIMBER",
+                    "current": 47,
+                    "member_count": 32
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.1299324035246864,
+                    "ROUND_TRIP": 0.6764898948867254,
+                    "LATE_BREAK_UP": 0.5010305775354746,
+                    "ONE_STEP_UP": 0.2954319696594733,
+                    "LATE_BREAK_DOWN": 0.01402059792847015,
+                    "QUIET_WOBBLE": 0.2716305797791354,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0,
+                    "DRIFT_UP": 0.16777617297176195,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.01106106764250582,
+                    "EARLY_SET_UP": 0.04124444093597101,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.16428701493018433,
+                  "epoch": 1784459224.6150324,
+                  "minutes_to_bell": 772.9230827927589,
+                  "open": false,
+                  "member_count": 12,
+                  "ess": 6.093160403833203,
+                  "weight_sum": 0.6764898948867254,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784462042.568334,
+                "q25": 43,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784495444.696,
+                  "price": 37,
+                  "size": 1,
+                  "receipt": "9e11c045-fe47-4bb4-cd65-79002134e2fa"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BIG-miss",
+          "label": "Last receipt before BIG missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BIG",
+          "outcome": "miss",
+          "receipt": "b363e49c-4f88-41d3-8569-1a24d722fe4d",
+          "epoch": 1784505599.045,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIG is strengthening; HUR is weakening.",
+              "WHY": "BIG trades at 60¢ against its 57¢ opening anchor; HUR trades at 42¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIG carries 695 eligible past sides from first-price comparisons; HUR carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIG calls 60¢ by T−0hr 0min; HUR calls 42¢ by T−0hr 0min.",
+              "WHY": "BIG’s middle half spans 60–60¢; HUR’s middle half spans 42–42¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIG has book 58/60 and no standing bid; HUR has book 40/42 and a recorded purchase at 47¢.",
+              "WHY": "BIG: The other commitment left too little room under the pair budget; HUR: buying the strengthening side before it strengthens; predicted close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 60,
+              "recorded_floor": 51,
+              "P": 60,
+              "Q": 60,
+              "X": 1784505599.045,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 695,
+              "ess": 236.3271253722137,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 60,
+                "last_trade_cents": 60,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14994"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 99,
+                "leg": "BIG",
+                "epoch": 1784505599.045,
+                "receipt": "b363e49c-4f88-41d3-8569-1a24d722fe4d",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 60; reserve HUR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 58,
+                  "ask_cents": 60,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-14994"
+                },
+                "Q": 60,
+                "X": 1784505599.045,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "stage_index": 77
+              },
+              "permission": {
+                "ordinal": 77,
+                "epoch": 1784505599.045,
+                "receipt": "b363e49c-4f88-41d3-8569-1a24d722fe4d",
+                "id": "BIG",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "role": "CLIMBER",
+                  "intended": 59,
+                  "hand_level": null,
+                  "hand_mode": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "forecast_close": 60,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 4.578564116194634,
+                      "ROUND_TRIP": 6.563678491337451,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 3.547984061556574,
+                      "QUIET_WOBBLE": 15.929190579224889,
+                      "DRIFT_UP": 3.2809401937744616,
+                      "GRIND_WOBBLE_UP": 0.4221403730777246,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 1.8665800417791083,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.6474294075692504
+                    },
+                    "position": 0.049463937621832356,
+                    "epoch": 1784452852.8528266,
+                    "minutes_to_bell": 879.1191195567449,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 100.23809071848473,
+                    "weight_sum": 15.929190579224889,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 60; reserve HUR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 42,
+                    "climber_forecast_close": 60,
+                    "mirror_completion_cost": 40,
+                    "disagreement_cents": 2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "BIG",
+                    "faller": "HUR",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BIG": {
+                    "forecast": 60,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 236.3271253722137,
+                    "role": "CLIMBER",
+                    "current": 60,
+                    "member_count": 695
+                  },
+                  "HUR": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 238.79528711404146,
+                    "role": "FALLER",
+                    "current": 42,
+                    "member_count": 700
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 4.578564116194634,
+                    "ROUND_TRIP": 6.563678491337451,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 3.547984061556574,
+                    "QUIET_WOBBLE": 15.929190579224889,
+                    "DRIFT_UP": 3.2809401937744616,
+                    "GRIND_WOBBLE_UP": 0.4221403730777246,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 1.8665800417791083,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.6474294075692504
+                  },
+                  "position": 0.049463937621832356,
+                  "epoch": 1784452852.8528266,
+                  "minutes_to_bell": 879.1191195567449,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 100.23809071848473,
+                  "weight_sum": 15.929190579224889,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1784505599.045,
+                "q25": 60,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "HUR": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 42,
+              "Q": 42,
+              "X": 1784505599.045,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 238.79528711404146,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-15133"
+              },
+              "bid": null,
+              "filled": 47,
+              "decision": {
+                "order": 43,
+                "leg": "HUR",
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 47,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 47,
+                  "ask_cents": 48,
+                  "last_trade_cents": 48,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+                },
+                "Q": 47,
+                "X": 1784467358.754425,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "id": "HUR",
+                "old": null,
+                "proposed": 47,
+                "posted": 47,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 47,
+                  "hand_level": 47,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 48,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.16821322831885105,
+                      "ROUND_TRIP": 1.1253754514229937,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0.2954319696594733,
+                      "LATE_BREAK_DOWN": 0.10025898916536202,
+                      "QUIET_WOBBLE": 0.38443669545795955,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0,
+                      "DRIFT_UP": 0.23409431938433667,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.33645771622992826,
+                      "EARLY_SET_UP": 0.04124444093597101,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.07479431870636667,
+                    "epoch": 1784454258.4863336,
+                    "minutes_to_bell": 855.6918944398562,
+                    "open": true,
+                    "member_count": 17,
+                    "ess": 7.2373537641196615,
+                    "weight_sum": 1.1253754514229937,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 52,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 50,
+                      "climber_forecast_close": 48,
+                      "mirror_completion_cost": 52,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 50,
+                    "climber_forecast_close": 48,
+                    "mirror_completion_cost": 52,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "HUR",
+                    "faller": "BIG",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 53,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 53,
+                    "ask": 52,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BIG": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 14.690585170257947,
+                    "role": "FALLER",
+                    "current": 52,
+                    "member_count": 59
+                  },
+                  "HUR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 17.486009754832317,
+                    "role": "CLIMBER",
+                    "current": 48,
+                    "member_count": 41
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.16821322831885105,
+                    "ROUND_TRIP": 1.1253754514229937,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0.2954319696594733,
+                    "LATE_BREAK_DOWN": 0.10025898916536202,
+                    "QUIET_WOBBLE": 0.38443669545795955,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0,
+                    "DRIFT_UP": 0.23409431938433667,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.33645771622992826,
+                    "EARLY_SET_UP": 0.04124444093597101,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.07479431870636667,
+                  "epoch": 1784454258.4863336,
+                  "minutes_to_bell": 855.6918944398562,
+                  "open": true,
+                  "member_count": 17,
+                  "ess": 7.2373537641196615,
+                  "weight_sum": 1.1253754514229937,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784505599.045,
+                "q25": 42,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784505600,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-HUR-fill",
+          "label": "Last receipt before HUR filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "HUR",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+          "epoch": 1784462400,
+          "clock": "T−12hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIG is weakening; HUR is strengthening.",
+              "WHY": "BIG trades at 52¢ against its 57¢ opening anchor; HUR trades at 48¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIG carries 59 eligible past sides from first-price comparisons; HUR carries 41 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIG calls 50¢ by T−3hr 38min; HUR calls 47¢ by T−10hr 37min.",
+              "WHY": "BIG’s middle half spans 49–51¢; HUR’s middle half spans 43–48¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIG has book 51/52 and no standing bid; HUR has book 47/48 and a standing 47¢ bid.",
+              "WHY": "BIG: The weakening side had not entered its predicted late-floor window; HUR: buying the strengthening side before it strengthens; predicted close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIG": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 60,
+              "recorded_floor": 51,
+              "P": 52,
+              "Q": 50,
+              "X": 1784492513.724609,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 59,
+              "ess": 14.690585170257947,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 51,
+                "ask_cents": 52,
+                "last_trade_cents": 52,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-808"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 42,
+                "leg": "BIG",
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 50; reserve HUR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 51,
+                  "ask_cents": 52,
+                  "last_trade_cents": 52,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-BIG.csv.gz#row-808"
+                },
+                "Q": 50,
+                "X": 1784492513.724609,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "id": "BIG",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.1299324035246864,
+                      "ROUND_TRIP": 2.0299299416107455,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0.060734649362993484,
+                      "LATE_BREAK_UP": 0.1805698256185401,
+                      "QUIET_WOBBLE": 0.27793721225423823,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "ONE_STEP_DOWN": 1.2607284601840587,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 0.41964483340804604,
+                      "GRIND_WOBBLE_DOWN": 0.07239781082214602,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.3523869877482045,
+                    "epoch": 1784469662.658724,
+                    "minutes_to_bell": 598.9556879321734,
+                    "open": false,
+                    "member_count": 30,
+                    "ess": 5.038113807244372,
+                    "weight_sum": 2.0299299416107455,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 50; reserve HUR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 50,
+                    "climber_forecast_close": 48,
+                    "mirror_completion_cost": 52,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "HUR",
+                    "faller": "BIG",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BIG": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 14.690585170257947,
+                    "role": "FALLER",
+                    "current": 52,
+                    "member_count": 59
+                  },
+                  "HUR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 17.486009754832317,
+                    "role": "CLIMBER",
+                    "current": 48,
+                    "member_count": 41
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.1299324035246864,
+                    "ROUND_TRIP": 2.0299299416107455,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0.060734649362993484,
+                    "LATE_BREAK_UP": 0.1805698256185401,
+                    "QUIET_WOBBLE": 0.27793721225423823,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 1.2607284601840587,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 0.41964483340804604,
+                    "GRIND_WOBBLE_DOWN": 0.07239781082214602,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.3523869877482045,
+                  "epoch": 1784469662.658724,
+                  "minutes_to_bell": 598.9556879321734,
+                  "open": false,
+                  "member_count": 30,
+                  "ess": 5.038113807244372,
+                  "weight_sum": 2.0299299416107455,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 50,
+                "deadline_epoch": 1784492513.724609,
+                "q25": 49,
+                "q75": 51,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784462551.583,
+                  "price": 52,
+                  "size": 76.42,
+                  "receipt": "2ca4d249-d24f-43a4-0d91-bcc27c37ca82"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "HUR": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 48,
+              "Q": 47,
+              "X": 1784467358.754425,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 41,
+              "ess": 17.486009754832317,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 47,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+              },
+              "bid": 47,
+              "filled": null,
+              "decision": {
+                "order": 43,
+                "leg": "HUR",
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 47,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 47,
+                  "ask_cents": 48,
+                  "last_trade_cents": 48,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+                },
+                "Q": 47,
+                "X": 1784467358.754425,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784450108,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784462400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "id": "HUR",
+                "old": null,
+                "proposed": 47,
+                "posted": 47,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 47,
+                  "hand_level": 47,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 48,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.16821322831885105,
+                      "ROUND_TRIP": 1.1253754514229937,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0.2954319696594733,
+                      "LATE_BREAK_DOWN": 0.10025898916536202,
+                      "QUIET_WOBBLE": 0.38443669545795955,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0,
+                      "DRIFT_UP": 0.23409431938433667,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.33645771622992826,
+                      "EARLY_SET_UP": 0.04124444093597101,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.07479431870636667,
+                    "epoch": 1784454258.4863336,
+                    "minutes_to_bell": 855.6918944398562,
+                    "open": true,
+                    "member_count": 17,
+                    "ess": 7.2373537641196615,
+                    "weight_sum": 1.1253754514229937,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 52,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 50,
+                      "climber_forecast_close": 48,
+                      "mirror_completion_cost": 52,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 50,
+                    "climber_forecast_close": 48,
+                    "mirror_completion_cost": 52,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "HUR",
+                    "faller": "BIG",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 53,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 53,
+                    "ask": 52,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BIG": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 14.690585170257947,
+                    "role": "FALLER",
+                    "current": 52,
+                    "member_count": 59
+                  },
+                  "HUR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 17.486009754832317,
+                    "role": "CLIMBER",
+                    "current": 48,
+                    "member_count": 41
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.16821322831885105,
+                    "ROUND_TRIP": 1.1253754514229937,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0.2954319696594733,
+                    "LATE_BREAK_DOWN": 0.10025898916536202,
+                    "QUIET_WOBBLE": 0.38443669545795955,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0,
+                    "DRIFT_UP": 0.23409431938433667,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.33645771622992826,
+                    "EARLY_SET_UP": 0.04124444093597101,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.07479431870636667,
+                  "epoch": 1784454258.4863336,
+                  "minutes_to_bell": 855.6918944398562,
+                  "open": true,
+                  "member_count": 17,
+                  "ess": 7.2373537641196615,
+                  "weight_sum": 1.1253754514229937,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 47,
+                "deadline_epoch": 1784467358.754425,
+                "q25": 43,
+                "q75": 48,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784495444.696,
+                  "price": 37,
+                  "size": 1,
+                  "receipt": "9e11c045-fe47-4bb4-cd65-79002134e2fa"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784467626.895,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "HUR",
+              "epoch": 1784467626.895,
+              "cents": 47,
+              "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+              "order_lineage_start_epoch": 1784462400,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+              "current_price_start_epoch": 1784462400,
+              "order_lineage_age_minutes": 87.11491666634878,
+              "current_price_age_minutes": 87.11491666634878,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "HUR",
+                "epoch": 1784467626.895,
+                "cents": 47,
+                "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "order_lineage_start_epoch": 1784462400,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+                "current_price_start_epoch": 1784462400,
+                "order_lineage_age_minutes": 87.11491666634878,
+                "current_price_age_minutes": 87.11491666634878,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 21,
+              "epoch": 1784462400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+              "id": "HUR",
+              "old": null,
+              "proposed": 47,
+              "posted": 47,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 47,
+                "hand_level": 47,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 48,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.16821322831885105,
+                    "ROUND_TRIP": 1.1253754514229937,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0.2954319696594733,
+                    "LATE_BREAK_DOWN": 0.10025898916536202,
+                    "QUIET_WOBBLE": 0.38443669545795955,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0,
+                    "DRIFT_UP": 0.23409431938433667,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.33645771622992826,
+                    "EARLY_SET_UP": 0.04124444093597101,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.07479431870636667,
+                  "epoch": 1784454258.4863336,
+                  "minutes_to_bell": 855.6918944398562,
+                  "open": true,
+                  "member_count": 17,
+                  "ess": 7.2373537641196615,
+                  "weight_sum": 1.1253754514229937,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 52,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 50,
+                    "climber_forecast_close": 48,
+                    "mirror_completion_cost": 52,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 50,
+                  "climber_forecast_close": 48,
+                  "mirror_completion_cost": 52,
+                  "disagreement_cents": -2,
+                  "absolute_disagreement_cents": 2,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "HUR",
+                  "faller": "BIG",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 53,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 53,
+                  "ask": 52,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "BIG": {
+                  "forecast": 53,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 14.690585170257947,
+                  "role": "FALLER",
+                  "current": 52,
+                  "member_count": 59
+                },
+                "HUR": {
+                  "forecast": 48,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 17.486009754832317,
+                  "role": "CLIMBER",
+                  "current": 48,
+                  "member_count": 41
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "ONE_STEP_DOWN": 0.16821322831885105,
+                  "ROUND_TRIP": 1.1253754514229937,
+                  "LATE_BREAK_UP": 0,
+                  "ONE_STEP_UP": 0.2954319696594733,
+                  "LATE_BREAK_DOWN": 0.10025898916536202,
+                  "QUIET_WOBBLE": 0.38443669545795955,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 0,
+                  "DRIFT_UP": 0.23409431938433667,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.33645771622992826,
+                  "EARLY_SET_UP": 0.04124444093597101,
+                  "GRIND_WOBBLE_DOWN": 0
+                },
+                "position": 0.07479431870636667,
+                "epoch": 1784454258.4863336,
+                "minutes_to_bell": 855.6918944398562,
+                "open": true,
+                "member_count": 17,
+                "ess": 7.2373537641196615,
+                "weight_sum": 1.1253754514229937,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 43,
+              "leg": "HUR",
+              "epoch": 1784462400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 47,
+                "reason": "buying the strengthening side before it strengthens; forecast close 48; bid 47; reserve BIG max(late floor 50, 100 - climber close 48 = 52) = 52; views differ by -2c (floor minus mirror); 47 + 52 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 47,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG-HUR.csv.gz#row-613"
+              },
+              "Q": 47,
+              "X": 1784467358.754425,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784450108,
+              "stage_index": 21
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+            "licensing_deadline_epoch": 1784467358.754425,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIG was weakening; its corrected full-window direction was strengthening. HUR was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HUR was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BIG": false,
+          "HUR": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 12,
+        "fills": [
+          {
+            "leg": "HUR",
+            "epoch": 1784467626.895,
+            "cents": 47,
+            "receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+            "order_lineage_start_epoch": 1784462400,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19HURBIG|ATLAS_GATE|1784462400",
+            "current_price_start_epoch": 1784462400,
+            "order_lineage_age_minutes": 87.11491666634878,
+            "current_price_age_minutes": 87.11491666634878,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BIG",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 60,
+            "close_epoch": 1784505599,
+            "floor_cents": 51,
+            "offered_cents": 9,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 9,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "HUR",
+            "filled": true,
+            "fill_cents": 47,
+            "fill_epoch": 1784467626.895,
+            "fill_receipt": "65c69fbf-4522-41cd-1f5e-d80e5d6e9f6d",
+            "close_cents": 42,
+            "close_epoch": 1784505598.5,
+            "floor_cents": 37,
+            "offered_cents": 5,
+            "value_cents": -5,
+            "premium_cents": 5,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "281176da0781718819b76d78ab2ac9e892bebfd3326fd82cb922679a0cda74df",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

@@ -1,0 +1,2595 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL15PRADZU",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "b67e53e71ef398b0d821762d884388ec94e1e1c0a3cbbccbb6088d11d6b74297",
+    "stage_cache_sha256": "c568d00f6ab1005804d60a053ff6187dd3c3005952cb8a20727772b49372ae92",
+    "mirror_projection_sha256": "6d2e11268311c21bc162102110e9a2c63bf08a0e6a93f6584d471531954ce601",
+    "mirror_permissions_sha256": "8832cf0af5b3d8ffb8fdd28d4f89b19d64fd7aa41e7c398a86bca3f92ff6db7b",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL15PRADZU",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "d08777bdced578713a0568af4b35f1d145e0f874639a491171223296ead13a4e",
+      "row_number": 408,
+      "row_csv": "26JUL15PRADZU,KXATPMATCH-26JUL15PRADZU,ATP_MAIN,1784058700,1784058700,1784124900,1784134800.0,DZU,PRA,1784065315,66.0,62,1784124409.1,62,1784124892.2,8807.25,5751.18,STILL,-4.0,1784124418,62,1784124441.5,PRE_BELL_VALID,1784065315,34.0,34,1784075615.6,38,1784124894.1,9408.6,3438.7,STILL,4.0,1784124418,,,,1784065315,1784124900,,,1784130894.0,1784124900,MACHINE_RECEIPT,\"EXACT (5 receipts, zero spread)\",1784065315,1784124900,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784065315,
+      "span_end_epoch": 1784124900,
+      "bell_epoch": 1784124900,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784124900,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "DZU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 66,
+          "floor_cents": 62,
+          "floor_epoch": 1784124409.1,
+          "minutes_to_bell": 8.181666668256124,
+          "line": "DZU 62¢ @ 8.18m to bell",
+          "marker_label": "DZU FLOOR · RECORDED 62¢ @ 8.18m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 62¢ · 8m to bell",
+          "hover_note": "Recorded floor 62¢ printed here · 8m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "PRA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 34,
+          "floor_cents": 34,
+          "floor_epoch": 1784075615.6,
+          "minutes_to_bell": 821.4066666682561,
+          "line": "PRA 34¢ @ 821.41m to bell",
+          "marker_label": "PRA FLOOR · RECORDED 34¢ @ 821.41m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 34¢ · 821m to bell",
+          "hover_note": "Recorded floor 34¢ printed here · 821m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "DZU",
+      "underdog_leg": "PRA",
+      "pair": {
+        "sum_cents": 96,
+        "discount_cents": 4,
+        "reason": null,
+        "line": "best capturable = 62 + 34 = 96¢",
+        "discount_line": "4¢ under par",
+        "compact_line": "best capturable 96¢ · 4¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL15PRADZU",
+        "event_id": "KXATPMATCH-26JUL15PRADZU",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1784058700",
+        "w1_left_epoch": "1784058700",
+        "w1_right_epoch": "1784124900",
+        "scheduled_start_epoch": "1784134800.0",
+        "legA": "DZU",
+        "legB": "PRA",
+        "legA_formation_end_epoch": "1784065315",
+        "legA_open_postformation_c": "66.0",
+        "legA_floor_c": "62",
+        "legA_floor_epoch": "1784124409.1",
+        "legA_close_c": "62",
+        "legA_close_epoch": "1784124892.2",
+        "legA_contracts": "8807.25",
+        "legA_premium_usd": "5751.18",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-4.0",
+        "legA_us_first_post_epoch": "1784124418",
+        "legA_us_fill_c": "62",
+        "legA_us_fill_epoch": "1784124441.5",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784065315",
+        "legB_open_postformation_c": "34.0",
+        "legB_floor_c": "34",
+        "legB_floor_epoch": "1784075615.6",
+        "legB_close_c": "38",
+        "legB_close_epoch": "1784124894.1",
+        "legB_contracts": "9408.6",
+        "legB_premium_usd": "3438.7",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "4.0",
+        "legB_us_first_post_epoch": "1784124418",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784065315",
+        "bell_machine_epoch": "1784124900",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784130894.0",
+        "bell_epoch": "1784124900",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (5 receipts, zero spread)",
+        "span_start_epoch": "1784065315",
+        "span_end_epoch": "1784124900",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15PRADZU.jsonl",
+      "sha256": "c56bb1e9e0070c14fb05f70a25c01ab5cb9a0a3e919b51ac23bd5e090a944c3f",
+      "raw_rows": 2663,
+      "accepted_rows": 148,
+      "start_epoch": 1784065315,
+      "end_epoch": 1784124900
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+  "first_both_directional_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+  "first_callable_by_side": {
+    "DZU": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+    "PRA": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+          "epoch": 1784075616.000001,
+          "clock": "T−13hr 41min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is not yet directionally called; PRA is not yet directionally called.",
+              "WHY": "DZU trades at 66¢ against its 66¢ opening anchor; PRA trades at 34¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 580 eligible past sides from first-price comparisons; PRA carries 580 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 65¢ by T−10hr 10min; PRA calls 32¢ by T−7hr 27min.",
+              "WHY": "DZU’s middle half spans 63–65¢; PRA’s middle half spans 30–33¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 65/66 and a standing 65¢ bid; PRA has book 34/35 and a standing 32¢ bid.",
+              "WHY": "DZU: The current pool target was the permitted bid level; PRA: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 66,
+              "Q": 65,
+              "X": 1784088319.277969,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 580,
+              "ess": 212.56154668640792,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 67,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-330"
+              },
+              "bid": 65,
+              "filled": null,
+              "decision": {
+                "order": 46,
+                "leg": "DZU",
+                "epoch": 1784075616.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 65,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 67,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-330"
+                },
+                "Q": 65,
+                "X": 1784088319.277969,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "support": null,
+                "accountability_assumption": "fcebad67e507c87f01c3855021c3559ad9ed7b251b131d0787717c52c8750468",
+                "stage_index": 23
+              },
+              "permission": null,
+              "micro": {
+                "Q": 65,
+                "deadline_epoch": 1784088319.277969,
+                "q25": 63,
+                "q75": 65,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784124409.146,
+                  "price": 62,
+                  "size": 120,
+                  "receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784085936.146,
+                  "price": 65,
+                  "size": 68.32,
+                  "receipt": "fede4efb-ab11-45de-e010-e2e031095b7b"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRA": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 38,
+              "recorded_floor": 34,
+              "P": 34,
+              "Q": 32,
+              "X": 1784098072.689639,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 580,
+              "ess": 212.56154668640792,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 34,
+                "ask_cents": 35,
+                "last_trade_cents": 94,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532"
+              },
+              "bid": 32,
+              "filled": null,
+              "decision": {
+                "order": 47,
+                "leg": "PRA",
+                "epoch": 1784075616.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 32,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 35,
+                  "last_trade_cents": 94,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532"
+                },
+                "Q": 32,
+                "X": 1784098072.689639,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "support": null,
+                "accountability_assumption": "55af0032f7603ba8a77a4b51b7489d4eb361a87f6794fdd8cdf14aff9e98241b",
+                "stage_index": 23
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784098072.689639,
+                "q25": 30,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 34,
+                "floor_witness": {
+                  "epoch": 1784075622.231,
+                  "price": 34,
+                  "size": 4.39,
+                  "receipt": "058f0bed-2da3-4098-b0cd-3b6571b1cd90"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DZU-fill",
+          "label": "Last receipt before DZU filled",
+          "arm": "D",
+          "focus_leg": "DZU",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+          "epoch": 1784091078.000001,
+          "clock": "T−9hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is not yet directionally called; PRA is strengthening.",
+              "WHY": "DZU trades at 66¢ against its 66¢ opening anchor; PRA trades at 36¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 662 eligible past sides from first-price comparisons; PRA carries 135 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 65¢ by T−6hr 44min; PRA calls 34¢ by T−5hr 21min.",
+              "WHY": "DZU’s middle half spans 63–65¢; PRA’s middle half spans 33–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 65/66 and a standing 65¢ bid; PRA has book 35/36 and a standing 34¢ bid.",
+              "WHY": "DZU: The current pool target was the permitted bid level; PRA: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 66,
+              "Q": 65,
+              "X": 1784100642,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 662,
+              "ess": 260.87766386025453,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-633"
+              },
+              "bid": 65,
+              "filled": null,
+              "decision": {
+                "order": 76,
+                "leg": "DZU",
+                "epoch": 1784091078.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 65,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-633"
+                },
+                "Q": 65,
+                "X": 1784100642,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "support": null,
+                "accountability_assumption": "092017f68a7d7c4bdcf9ff3655b169791e86d95d7540e1d4780d78b6ac81ad14",
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 65,
+                "deadline_epoch": 1784100642,
+                "q25": 63,
+                "q75": 65,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784124409.146,
+                  "price": 62,
+                  "size": 120,
+                  "receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784094849.463,
+                  "price": 65,
+                  "size": 27.32,
+                  "receipt": "283b6421-dfce-46bb-37b5-473d153cdd2a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 38,
+              "recorded_floor": 34,
+              "P": 36,
+              "Q": 34,
+              "X": 1784105641,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 135,
+              "ess": 44.63821438661853,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 35,
+                "ask_cents": 36,
+                "last_trade_cents": 36,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857"
+              },
+              "bid": 34,
+              "filled": null,
+              "decision": {
+                "order": 77,
+                "leg": "PRA",
+                "epoch": 1784091078.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 34,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 35,
+                  "ask_cents": 36,
+                  "last_trade_cents": 36,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857"
+                },
+                "Q": 34,
+                "X": 1784105641,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "support": null,
+                "accountability_assumption": "b5e07bc74ba7d2d88a5ca826067d55e99996ff29a186e917a6c71a7dfd1a6bd1",
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784105641,
+                "q25": 33,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 35,
+                "floor_witness": {
+                  "epoch": 1784112150.352,
+                  "price": 35,
+                  "size": 10,
+                  "receipt": "b79f327c-8dc5-533d-b413-0302d4e9aa8b"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784094849.463,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DZU",
+              "epoch": 1784094849.463,
+              "cents": 65,
+              "receipt": "283b6421-dfce-46bb-37b5-473d153cdd2a",
+              "order_lineage_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+              "order_lineage_start_epoch": 1784075616.000001,
+              "current_price_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+              "current_price_start_epoch": 1784091078.000001,
+              "order_lineage_age_minutes": 320.5577166517576,
+              "current_price_age_minutes": 62.857716651757556,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DZU",
+                "epoch": 1784094849.463,
+                "cents": 65,
+                "receipt": "283b6421-dfce-46bb-37b5-473d153cdd2a",
+                "order_lineage_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "order_lineage_start_epoch": 1784075616.000001,
+                "current_price_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+                "current_price_start_epoch": 1784091078.000001,
+                "order_lineage_age_minutes": 320.5577166517576,
+                "current_price_age_minutes": 62.857716651757556,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 76,
+              "leg": "DZU",
+              "epoch": 1784091078.000001,
+              "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 65,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-633"
+              },
+              "Q": 65,
+              "X": 1784100642,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784065315,
+              "support": null,
+              "accountability_assumption": "092017f68a7d7c4bdcf9ff3655b169791e86d95d7540e1d4780d78b6ac81ad14",
+              "stage_index": 38
+            },
+            "license_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+            "licensing_deadline_epoch": 1784100642,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PRA-miss",
+          "label": "Last receipt before PRA missed at the bell",
+          "arm": "D",
+          "focus_leg": "PRA",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-9928",
+          "epoch": 1784124899.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is weakening; PRA is strengthening.",
+              "WHY": "DZU trades at 62¢ against its 66¢ opening anchor; PRA trades at 38¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 230 eligible past sides from first-price comparisons; PRA carries 183 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 62¢ by T−0hr 0min; PRA calls 38¢ by T−0hr 0min.",
+              "WHY": "DZU’s middle half spans 62–62¢; PRA’s middle half spans 38–38¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 62/63 and a recorded purchase at 65¢; PRA has book 36/38 and a standing 34¢ bid.",
+              "WHY": "DZU: This side was already bought, so no new bid was allowed; PRA: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 62,
+              "Q": 62,
+              "X": 1784124899.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 230,
+              "ess": 77.94054578362815,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 62,
+                "ask_cents": 63,
+                "last_trade_cents": 62,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-9928"
+              },
+              "bid": null,
+              "filled": 65,
+              "decision": {
+                "order": 120,
+                "leg": "DZU",
+                "epoch": 1784124600,
+                "receipt": "KXATPMATCH-26JUL15PRADZU|ATLAS_GATE|1784124600",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 63,
+                  "ask_cents": 65,
+                  "last_trade_cents": 65,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-9046"
+                },
+                "Q": 62,
+                "X": 1784124600,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 72
+              },
+              "permission": null,
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784124899.000001,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "PRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 38,
+              "recorded_floor": 34,
+              "P": 38,
+              "Q": 38,
+              "X": 1784124899.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 183,
+              "ess": 59.55346024557215,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 38,
+                "last_trade_cents": 38,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-6010"
+              },
+              "bid": 34,
+              "filled": null,
+              "decision": {
+                "order": 127,
+                "leg": "PRA",
+                "epoch": 1784124899.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-9928",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 34,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 38,
+                  "last_trade_cents": 38,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-6010"
+                },
+                "Q": 38,
+                "X": 1784124899.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "support": null,
+                "accountability_assumption": "591652c19531b6f0f1d447519d06ca368ec255621bcefa8875f76dc882792e12",
+                "stage_index": 79
+              },
+              "permission": null,
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784124899.000001,
+                "q25": 38,
+                "q75": 38,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784124900,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening. PRA was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DZU": true,
+          "PRA": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "DZU",
+            "epoch": 1784094849.463,
+            "cents": 65,
+            "receipt": "283b6421-dfce-46bb-37b5-473d153cdd2a",
+            "order_lineage_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+            "order_lineage_start_epoch": 1784075616.000001,
+            "current_price_receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1857",
+            "current_price_start_epoch": 1784091078.000001,
+            "order_lineage_age_minutes": 320.5577166517576,
+            "current_price_age_minutes": 62.857716651757556,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL15PRADZU",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "DZU",
+            "filled": true,
+            "fill_cents": 65,
+            "fill_epoch": 1784094849.463,
+            "fill_receipt": "283b6421-dfce-46bb-37b5-473d153cdd2a",
+            "close_cents": 62,
+            "close_epoch": 1784124892.2,
+            "floor_cents": 62,
+            "offered_cents": 0,
+            "value_cents": -3,
+            "premium_cents": 3,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PRA",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 38,
+            "close_epoch": 1784124894.1,
+            "floor_cents": 34,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 4,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d08777bdced578713a0568af4b35f1d145e0f874639a491171223296ead13a4e",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+          "epoch": 1784075616.000001,
+          "clock": "T−13hr 41min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is not yet directionally called; PRA is not yet directionally called.",
+              "WHY": "DZU trades at 66¢ against its 66¢ opening anchor; PRA trades at 34¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 580 eligible past sides from first-price comparisons; PRA carries 580 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 65¢ by T−10hr 10min; PRA calls 32¢ by T−7hr 27min.",
+              "WHY": "DZU’s middle half spans 63–65¢; PRA’s middle half spans 30–33¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 65/66 and no standing bid; PRA has book 34/35 and no standing bid.",
+              "WHY": "DZU: The policy was waiting for a directional call; PRA: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 66,
+              "Q": 65,
+              "X": 1784088319.277969,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 580,
+              "ess": 212.56154668640792,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 67,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-330"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 46,
+                "leg": "DZU",
+                "epoch": 1784075616.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 65; reserve PRA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 67,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-330"
+                },
+                "Q": 65,
+                "X": 1784088319.277969,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "stage_index": 23
+              },
+              "permission": {
+                "ordinal": 23,
+                "epoch": 1784075616.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "id": "DZU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.5892338575563492,
+                      "ROUND_TRIP": 8.860009181679006,
+                      "DRIFT_UP": 1.986101346457648,
+                      "ONE_STEP_DOWN": 0.99607076370604,
+                      "QUIET_WOBBLE": 5.772835654943444,
+                      "LATE_BREAK_DOWN": 1.2406044288191718,
+                      "ONE_STEP_UP": 1.446016537846893,
+                      "EARLY_SET_UP": 1.8187395421252723,
+                      "EARLY_SET_DOWN": 1.4330304279485733,
+                      "GRIND_WOBBLE_UP": 0.20948870303504535,
+                      "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                      "DRIFT_DOWN": 0.474369262350606,
+                      "SLEEPER": 1.8371526850992534
+                    },
+                    "position": 0.10622822299651567,
+                    "epoch": 1784071644.6086671,
+                    "minutes_to_bell": 887.589855547746,
+                    "open": true,
+                    "member_count": 188,
+                    "ess": 61.09397624573518,
+                    "weight_sum": 8.860009181679006,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 65; reserve PRA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 212.56154668640792,
+                    "role": "NOT_CALLABLE",
+                    "current": 66,
+                    "member_count": 580
+                  },
+                  "PRA": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 212.56154668640792,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 580
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.5892338575563492,
+                    "ROUND_TRIP": 8.860009181679006,
+                    "DRIFT_UP": 1.986101346457648,
+                    "ONE_STEP_DOWN": 0.99607076370604,
+                    "QUIET_WOBBLE": 5.772835654943444,
+                    "LATE_BREAK_DOWN": 1.2406044288191718,
+                    "ONE_STEP_UP": 1.446016537846893,
+                    "EARLY_SET_UP": 1.8187395421252723,
+                    "EARLY_SET_DOWN": 1.4330304279485733,
+                    "GRIND_WOBBLE_UP": 0.20948870303504535,
+                    "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                    "DRIFT_DOWN": 0.474369262350606,
+                    "SLEEPER": 1.8371526850992534
+                  },
+                  "position": 0.10622822299651567,
+                  "epoch": 1784071644.6086671,
+                  "minutes_to_bell": 887.589855547746,
+                  "open": true,
+                  "member_count": 188,
+                  "ess": 61.09397624573518,
+                  "weight_sum": 8.860009181679006,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 65,
+                "deadline_epoch": 1784088319.277969,
+                "q25": 63,
+                "q75": 65,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784124409.146,
+                  "price": 62,
+                  "size": 120,
+                  "receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784085936.146,
+                  "price": 65,
+                  "size": 68.32,
+                  "receipt": "fede4efb-ab11-45de-e010-e2e031095b7b"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRA": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 38,
+              "recorded_floor": 34,
+              "P": 34,
+              "Q": 32,
+              "X": 1784098072.689639,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 580,
+              "ess": 212.56154668640792,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 34,
+                "ask_cents": 35,
+                "last_trade_cents": 94,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 47,
+                "leg": "PRA",
+                "epoch": 1784075616.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 32; reserve DZU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 35,
+                  "last_trade_cents": 94,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532"
+                },
+                "Q": 32,
+                "X": 1784098072.689639,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "stage_index": 23
+              },
+              "permission": {
+                "ordinal": 23,
+                "epoch": 1784075616.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-1532",
+                "id": "PRA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.5122167110548419,
+                      "ROUND_TRIP": 6.799985469731178,
+                      "ONE_STEP_UP": 0.756652427283316,
+                      "DRIFT_DOWN": 1.654731165592755,
+                      "EARLY_SET_DOWN": 3.5089248395277854,
+                      "QUIET_WOBBLE": 5.728258287681509,
+                      "LATE_BREAK_UP": 1.2420099191331913,
+                      "ONE_STEP_DOWN": 1.6805249056563967,
+                      "GRIND_WOBBLE_UP": 0.034668398159468185,
+                      "DRIFT_UP": 0.8893600059486184,
+                      "GRIND_WOBBLE_DOWN": 0.3423268065538421,
+                      "SLEEPER": 2.821565524917241,
+                      "EARLY_SET_UP": 0.7570313306922863
+                    },
+                    "position": 0.06197679768650867,
+                    "epoch": 1784069007.88749,
+                    "minutes_to_bell": 931.5352084994316,
+                    "open": true,
+                    "member_count": 158,
+                    "ess": 61.63243581354244,
+                    "weight_sum": 6.799985469731178,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 32; reserve DZU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 212.56154668640792,
+                    "role": "NOT_CALLABLE",
+                    "current": 66,
+                    "member_count": 580
+                  },
+                  "PRA": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 212.56154668640792,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 580
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.5122167110548419,
+                    "ROUND_TRIP": 6.799985469731178,
+                    "ONE_STEP_UP": 0.756652427283316,
+                    "DRIFT_DOWN": 1.654731165592755,
+                    "EARLY_SET_DOWN": 3.5089248395277854,
+                    "QUIET_WOBBLE": 5.728258287681509,
+                    "LATE_BREAK_UP": 1.2420099191331913,
+                    "ONE_STEP_DOWN": 1.6805249056563967,
+                    "GRIND_WOBBLE_UP": 0.034668398159468185,
+                    "DRIFT_UP": 0.8893600059486184,
+                    "GRIND_WOBBLE_DOWN": 0.3423268065538421,
+                    "SLEEPER": 2.821565524917241,
+                    "EARLY_SET_UP": 0.7570313306922863
+                  },
+                  "position": 0.06197679768650867,
+                  "epoch": 1784069007.88749,
+                  "minutes_to_bell": 931.5352084994316,
+                  "open": true,
+                  "member_count": 158,
+                  "ess": 61.63243581354244,
+                  "weight_sum": 6.799985469731178,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784098072.689639,
+                "q25": 30,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 34,
+                "floor_witness": {
+                  "epoch": 1784075622.231,
+                  "price": 34,
+                  "size": 4.39,
+                  "receipt": "058f0bed-2da3-4098-b0cd-3b6571b1cd90"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DZU-fill",
+          "label": "Last receipt before DZU filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "DZU",
+          "outcome": "fill",
+          "receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+          "epoch": 1784124553.67,
+          "clock": "T−0hr 6min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is weakening; PRA is strengthening.",
+              "WHY": "DZU trades at 62¢ against its 66¢ opening anchor; PRA trades at 38¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 226 eligible past sides from first-price comparisons; PRA carries 178 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 62¢ by T−0hr 6min; PRA calls 38¢ by T−0hr 6min.",
+              "WHY": "DZU’s middle half spans 60–62¢; PRA’s middle half spans 37–38¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 62/64 and a standing 62¢ bid; PRA has book 36/38 and a recorded purchase at 37¢.",
+              "WHY": "DZU: buying the weakening side in round trip's learned late-floor window; predicted floor 62; bid 62; PRA filled 37; 62 + 37 = 99 < 100; PRA: buying the strengthening side before it strengthens; predicted close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 62,
+              "Q": 62,
+              "X": 1784124553.67,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 226,
+              "ess": 76.28844613987042,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 62,
+                "ask_cents": 64,
+                "last_trade_cents": 65,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8909"
+              },
+              "bid": 62,
+              "filled": null,
+              "decision": {
+                "order": 133,
+                "leg": "DZU",
+                "epoch": 1784124553.67,
+                "receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 62,
+                  "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 62; bid 62; PRA filled 37; 62 + 37 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 62,
+                  "ask_cents": 64,
+                  "last_trade_cents": 65,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8909"
+                },
+                "Q": 62,
+                "X": 1784124553.67,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "stage_index": 68
+              },
+              "permission": {
+                "ordinal": 68,
+                "epoch": 1784124553.67,
+                "receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+                "id": "DZU",
+                "old": 61,
+                "proposed": 62,
+                "posted": 62,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 62,
+                  "hand_level": 62,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.04730420210003897,
+                      "ROUND_TRIP": 3.242867975730945,
+                      "DRIFT_UP": 0.017625085203012664,
+                      "ONE_STEP_DOWN": 1.3276087255237345,
+                      "QUIET_WOBBLE": 1.4652699364691233,
+                      "LATE_BREAK_DOWN": 1.9469352618033966,
+                      "ONE_STEP_UP": 0.049010972793703325,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 1.6636827974113055,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                      "DRIFT_DOWN": 0.5263134274035671,
+                      "SLEEPER": 0.8653630054618655
+                    },
+                    "position": 0.2255872111427667,
+                    "epoch": 1784078756.613976,
+                    "minutes_to_bell": 769.0564337333043,
+                    "open": true,
+                    "member_count": 63,
+                    "ess": 17.602377106429,
+                    "weight_sum": 3.242867975730945,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 37,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 99,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 62; bid 62; PRA filled 37; 62 + 37 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 62,
+                    "climber_forecast_close": 38,
+                    "mirror_completion_cost": 62,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "PRA",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 76.28844613987042,
+                    "role": "FALLER",
+                    "current": 62,
+                    "member_count": 226
+                  },
+                  "PRA": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 57.47550982355791,
+                    "role": "CLIMBER",
+                    "current": 38,
+                    "member_count": 178
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.04730420210003897,
+                    "ROUND_TRIP": 3.242867975730945,
+                    "DRIFT_UP": 0.017625085203012664,
+                    "ONE_STEP_DOWN": 1.3276087255237345,
+                    "QUIET_WOBBLE": 1.4652699364691233,
+                    "LATE_BREAK_DOWN": 1.9469352618033966,
+                    "ONE_STEP_UP": 0.049010972793703325,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 1.6636827974113055,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                    "DRIFT_DOWN": 0.5263134274035671,
+                    "SLEEPER": 0.8653630054618655
+                  },
+                  "position": 0.2255872111427667,
+                  "epoch": 1784078756.613976,
+                  "minutes_to_bell": 769.0564337333043,
+                  "open": true,
+                  "member_count": 63,
+                  "ess": 17.602377106429,
+                  "weight_sum": 3.242867975730945,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784124553.67,
+                "q25": 60,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784124554.877,
+                  "price": 62,
+                  "size": 1.83,
+                  "receipt": "529f7baa-602d-6fa9-b75e-a96d7eaec30b"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 38,
+              "recorded_floor": 34,
+              "P": 38,
+              "Q": 38,
+              "X": 1784124553.67,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 178,
+              "ess": 57.47550982355791,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 38,
+                "last_trade_cents": 38,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-5446"
+              },
+              "bid": null,
+              "filled": 37,
+              "decision": {
+                "order": 129,
+                "leg": "PRA",
+                "epoch": 1784124421.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 37,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 38,
+                  "last_trade_cents": 36,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-5230"
+                },
+                "Q": 38,
+                "X": 1784124421.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "stage_index": 64
+              },
+              "permission": {
+                "ordinal": 64,
+                "epoch": 1784124421.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+                "id": "PRA",
+                "old": 37,
+                "proposed": 37,
+                "posted": 37,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 37,
+                  "hand_level": 37,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 38,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.04730420210003897,
+                      "ROUND_TRIP": 2.3696381821544823,
+                      "ONE_STEP_UP": 0.8280982363512588,
+                      "DRIFT_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "QUIET_WOBBLE": 1.766095799022265,
+                      "LATE_BREAK_UP": 1.6238081516775826,
+                      "ONE_STEP_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.06331783047279593,
+                      "DRIFT_UP": 0.9757681760344322,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.0893946372363377,
+                      "EARLY_SET_UP": 0.7965882028048358
+                    },
+                    "position": 0.03877398081534772,
+                    "epoch": 1784067625.347647,
+                    "minutes_to_bell": 954.5775392174721,
+                    "open": true,
+                    "member_count": 49,
+                    "ess": 15.873455437589204,
+                    "weight_sum": 2.3696381821544823,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 62,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 61,
+                      "climber_forecast_close": 38,
+                      "mirror_completion_cost": 62,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 61,
+                    "climber_forecast_close": 38,
+                    "mirror_completion_cost": 62,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRA",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 65,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 62,
+                    "ask": 65,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 75.99797758146293,
+                    "role": "FALLER",
+                    "current": 62,
+                    "member_count": 225
+                  },
+                  "PRA": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 56.22552706462932,
+                    "role": "CLIMBER",
+                    "current": 38,
+                    "member_count": 172
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.04730420210003897,
+                    "ROUND_TRIP": 2.3696381821544823,
+                    "ONE_STEP_UP": 0.8280982363512588,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 1.766095799022265,
+                    "LATE_BREAK_UP": 1.6238081516775826,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.06331783047279593,
+                    "DRIFT_UP": 0.9757681760344322,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.0893946372363377,
+                    "EARLY_SET_UP": 0.7965882028048358
+                  },
+                  "position": 0.03877398081534772,
+                  "epoch": 1784067625.347647,
+                  "minutes_to_bell": 954.5775392174721,
+                  "open": true,
+                  "member_count": 49,
+                  "ess": 15.873455437589204,
+                  "weight_sum": 2.3696381821544823,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784124553.67,
+                "q25": 37,
+                "q75": 38,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784124779.978,
+                  "price": 37,
+                  "size": 95,
+                  "receipt": "2b259448-fdf2-43a5-85fb-1bb5b46e4dd8"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784124554.877,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DZU",
+              "epoch": 1784124554.877,
+              "cents": 62,
+              "receipt": "529f7baa-602d-6fa9-b75e-a96d7eaec30b",
+              "order_lineage_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+              "order_lineage_start_epoch": 1784124409.146,
+              "current_price_receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+              "current_price_start_epoch": 1784124553.67,
+              "order_lineage_age_minutes": 2.428850003083547,
+              "current_price_age_minutes": 0.020116666952768963,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DZU",
+                "epoch": 1784124554.877,
+                "cents": 62,
+                "receipt": "529f7baa-602d-6fa9-b75e-a96d7eaec30b",
+                "order_lineage_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+                "order_lineage_start_epoch": 1784124409.146,
+                "current_price_receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+                "current_price_start_epoch": 1784124553.67,
+                "order_lineage_age_minutes": 2.428850003083547,
+                "current_price_age_minutes": 0.020116666952768963,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 68,
+              "epoch": 1784124553.67,
+              "receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+              "id": "DZU",
+              "old": 61,
+              "proposed": 62,
+              "posted": 62,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 62,
+                "hand_level": 62,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 62,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.04730420210003897,
+                    "ROUND_TRIP": 3.242867975730945,
+                    "DRIFT_UP": 0.017625085203012664,
+                    "ONE_STEP_DOWN": 1.3276087255237345,
+                    "QUIET_WOBBLE": 1.4652699364691233,
+                    "LATE_BREAK_DOWN": 1.9469352618033966,
+                    "ONE_STEP_UP": 0.049010972793703325,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 1.6636827974113055,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                    "DRIFT_DOWN": 0.5263134274035671,
+                    "SLEEPER": 0.8653630054618655
+                  },
+                  "position": 0.2255872111427667,
+                  "epoch": 1784078756.613976,
+                  "minutes_to_bell": 769.0564337333043,
+                  "open": true,
+                  "member_count": 63,
+                  "ess": 17.602377106429,
+                  "weight_sum": 3.242867975730945,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 37,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 99,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 62; bid 62; PRA filled 37; 62 + 37 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 62,
+                  "climber_forecast_close": 38,
+                  "mirror_completion_cost": 62,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "PRA",
+                  "faller": "DZU",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "DZU": {
+                  "forecast": 62,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 76.28844613987042,
+                  "role": "FALLER",
+                  "current": 62,
+                  "member_count": 226
+                },
+                "PRA": {
+                  "forecast": 38,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 57.47550982355791,
+                  "role": "CLIMBER",
+                  "current": 38,
+                  "member_count": 178
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.04730420210003897,
+                  "ROUND_TRIP": 3.242867975730945,
+                  "DRIFT_UP": 0.017625085203012664,
+                  "ONE_STEP_DOWN": 1.3276087255237345,
+                  "QUIET_WOBBLE": 1.4652699364691233,
+                  "LATE_BREAK_DOWN": 1.9469352618033966,
+                  "ONE_STEP_UP": 0.049010972793703325,
+                  "EARLY_SET_UP": 0,
+                  "EARLY_SET_DOWN": 1.6636827974113055,
+                  "GRIND_WOBBLE_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                  "DRIFT_DOWN": 0.5263134274035671,
+                  "SLEEPER": 0.8653630054618655
+                },
+                "position": 0.2255872111427667,
+                "epoch": 1784078756.613976,
+                "minutes_to_bell": 769.0564337333043,
+                "open": true,
+                "member_count": 63,
+                "ess": 17.602377106429,
+                "weight_sum": 3.242867975730945,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 133,
+              "leg": "DZU",
+              "epoch": 1784124553.67,
+              "receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 62,
+                "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 62; bid 62; PRA filled 37; 62 + 37 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 62,
+                "ask_cents": 64,
+                "last_trade_cents": 65,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8909"
+              },
+              "Q": 62,
+              "X": 1784124553.67,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784065315,
+              "stage_index": 68
+            },
+            "license_receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+            "licensing_deadline_epoch": 1784124553.67,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PRA-fill",
+          "label": "Last receipt before PRA filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "PRA",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+          "epoch": 1784124421.000001,
+          "clock": "T−0hr 8min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is weakening; PRA is strengthening.",
+              "WHY": "DZU trades at 62¢ against its 66¢ opening anchor; PRA trades at 38¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 225 eligible past sides from first-price comparisons; PRA carries 172 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 61¢ by T−0hr 6min; PRA calls 38¢ by T−0hr 8min.",
+              "WHY": "DZU’s middle half spans 60–62¢; PRA’s middle half spans 37–38¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 62/65 and a standing 61¢ bid; PRA has book 36/38 and a standing 37¢ bid.",
+              "WHY": "DZU: buying the weakening side in round trip's learned late-floor window; predicted floor 61; bid 61; reserve PRA max(close 38, ask 38) = 38; 61 + 38 = 99 < 100; PRA: buying the strengthening side before it strengthens; predicted close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 62,
+              "recorded_floor": 62,
+              "P": 62,
+              "Q": 61,
+              "X": 1784124518,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 225,
+              "ess": 75.99797758146293,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 62,
+                "ask_cents": 65,
+                "last_trade_cents": 62,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705"
+              },
+              "bid": 61,
+              "filled": null,
+              "decision": {
+                "order": 128,
+                "leg": "DZU",
+                "epoch": 1784124421.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 61,
+                  "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 61; bid 61; reserve PRA max(close 38, ask 38) = 38; 61 + 38 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 62,
+                  "ask_cents": 65,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705"
+                },
+                "Q": 61,
+                "X": 1784124518,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "stage_index": 64
+              },
+              "permission": {
+                "ordinal": 64,
+                "epoch": 1784124421.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+                "id": "DZU",
+                "old": 61,
+                "proposed": 61,
+                "posted": 61,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 61,
+                  "hand_level": 61,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.10225809642343613,
+                      "ROUND_TRIP": 3.3963955047860375,
+                      "DRIFT_UP": 0,
+                      "ONE_STEP_DOWN": 1.3276087255237345,
+                      "QUIET_WOBBLE": 1.316981410386572,
+                      "LATE_BREAK_DOWN": 1.8736060441450544,
+                      "ONE_STEP_UP": 0.049010972793703325,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 1.6636827974113055,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                      "DRIFT_DOWN": 0.5263134274035671,
+                      "SLEEPER": 0.8653630054618655
+                    },
+                    "position": 0.2255872111427667,
+                    "epoch": 1784078756.613976,
+                    "minutes_to_bell": 769.0564337333043,
+                    "open": true,
+                    "member_count": 66,
+                    "ess": 19.030586470525634,
+                    "weight_sum": 3.3963955047860375,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 38,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 38,
+                    "ask": 38,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 61; bid 61; reserve PRA max(close 38, ask 38) = 38; 61 + 38 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 61,
+                    "climber_forecast_close": 38,
+                    "mirror_completion_cost": 62,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRA",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 75.99797758146293,
+                    "role": "FALLER",
+                    "current": 62,
+                    "member_count": 225
+                  },
+                  "PRA": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 56.22552706462932,
+                    "role": "CLIMBER",
+                    "current": 38,
+                    "member_count": 172
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.10225809642343613,
+                    "ROUND_TRIP": 3.3963955047860375,
+                    "DRIFT_UP": 0,
+                    "ONE_STEP_DOWN": 1.3276087255237345,
+                    "QUIET_WOBBLE": 1.316981410386572,
+                    "LATE_BREAK_DOWN": 1.8736060441450544,
+                    "ONE_STEP_UP": 0.049010972793703325,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 1.6636827974113055,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.06460340036512749,
+                    "DRIFT_DOWN": 0.5263134274035671,
+                    "SLEEPER": 0.8653630054618655
+                  },
+                  "position": 0.2255872111427667,
+                  "epoch": 1784078756.613976,
+                  "minutes_to_bell": 769.0564337333043,
+                  "open": true,
+                  "member_count": 66,
+                  "ess": 19.030586470525634,
+                  "weight_sum": 3.3963955047860375,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784124518,
+                "q25": 60,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784124441.468,
+                  "price": 62,
+                  "size": 120,
+                  "receipt": "f464a85a-602a-60fb-5ff6-9bd3a0c44270"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784124441.468,
+                  "price": 62,
+                  "size": 120,
+                  "receipt": "f464a85a-602a-60fb-5ff6-9bd3a0c44270"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "PRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 38,
+              "recorded_floor": 34,
+              "P": 38,
+              "Q": 38,
+              "X": 1784124421.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 172,
+              "ess": 56.22552706462932,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 38,
+                "last_trade_cents": 36,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-5230"
+              },
+              "bid": 37,
+              "filled": null,
+              "decision": {
+                "order": 129,
+                "leg": "PRA",
+                "epoch": 1784124421.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 37,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 38,
+                  "last_trade_cents": 36,
+                  "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-5230"
+                },
+                "Q": 38,
+                "X": 1784124421.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784065315,
+                "stage_index": 64
+              },
+              "permission": {
+                "ordinal": 64,
+                "epoch": 1784124421.000001,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+                "id": "PRA",
+                "old": 37,
+                "proposed": 37,
+                "posted": 37,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 37,
+                  "hand_level": 37,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 38,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.04730420210003897,
+                      "ROUND_TRIP": 2.3696381821544823,
+                      "ONE_STEP_UP": 0.8280982363512588,
+                      "DRIFT_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "QUIET_WOBBLE": 1.766095799022265,
+                      "LATE_BREAK_UP": 1.6238081516775826,
+                      "ONE_STEP_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.06331783047279593,
+                      "DRIFT_UP": 0.9757681760344322,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.0893946372363377,
+                      "EARLY_SET_UP": 0.7965882028048358
+                    },
+                    "position": 0.03877398081534772,
+                    "epoch": 1784067625.347647,
+                    "minutes_to_bell": 954.5775392174721,
+                    "open": true,
+                    "member_count": 49,
+                    "ess": 15.873455437589204,
+                    "weight_sum": 2.3696381821544823,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 62,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 61,
+                      "climber_forecast_close": 38,
+                      "mirror_completion_cost": 62,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 61,
+                    "climber_forecast_close": 38,
+                    "mirror_completion_cost": 62,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRA",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 65,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 62,
+                    "ask": 65,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 75.99797758146293,
+                    "role": "FALLER",
+                    "current": 62,
+                    "member_count": 225
+                  },
+                  "PRA": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 56.22552706462932,
+                    "role": "CLIMBER",
+                    "current": 38,
+                    "member_count": 172
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.04730420210003897,
+                    "ROUND_TRIP": 2.3696381821544823,
+                    "ONE_STEP_UP": 0.8280982363512588,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 1.766095799022265,
+                    "LATE_BREAK_UP": 1.6238081516775826,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.06331783047279593,
+                    "DRIFT_UP": 0.9757681760344322,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.0893946372363377,
+                    "EARLY_SET_UP": 0.7965882028048358
+                  },
+                  "position": 0.03877398081534772,
+                  "epoch": 1784067625.347647,
+                  "minutes_to_bell": 954.5775392174721,
+                  "open": true,
+                  "member_count": 49,
+                  "ess": 15.873455437589204,
+                  "weight_sum": 2.3696381821544823,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784124421.000001,
+                "q25": 37,
+                "q75": 38,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784124441.468,
+                  "price": 37,
+                  "size": 32,
+                  "receipt": "e2e7e3e7-ff6a-5daf-8c03-8f63eb22e2f2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784124441.468,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "PRA",
+              "epoch": 1784124441.468,
+              "cents": 37,
+              "receipt": "e2e7e3e7-ff6a-5daf-8c03-8f63eb22e2f2",
+              "order_lineage_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+              "order_lineage_start_epoch": 1784124409.146,
+              "current_price_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+              "current_price_start_epoch": 1784124409.146,
+              "order_lineage_age_minutes": 0.5387000004450481,
+              "current_price_age_minutes": 0.5387000004450481,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "PRA",
+                "epoch": 1784124441.468,
+                "cents": 37,
+                "receipt": "e2e7e3e7-ff6a-5daf-8c03-8f63eb22e2f2",
+                "order_lineage_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+                "order_lineage_start_epoch": 1784124409.146,
+                "current_price_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+                "current_price_start_epoch": 1784124409.146,
+                "order_lineage_age_minutes": 0.5387000004450481,
+                "current_price_age_minutes": 0.5387000004450481,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 64,
+              "epoch": 1784124421.000001,
+              "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+              "id": "PRA",
+              "old": 37,
+              "proposed": 37,
+              "posted": 37,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 37,
+                "hand_level": 37,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 38,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.04730420210003897,
+                    "ROUND_TRIP": 2.3696381821544823,
+                    "ONE_STEP_UP": 0.8280982363512588,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 1.766095799022265,
+                    "LATE_BREAK_UP": 1.6238081516775826,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.06331783047279593,
+                    "DRIFT_UP": 0.9757681760344322,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.0893946372363377,
+                    "EARLY_SET_UP": 0.7965882028048358
+                  },
+                  "position": 0.03877398081534772,
+                  "epoch": 1784067625.347647,
+                  "minutes_to_bell": 954.5775392174721,
+                  "open": true,
+                  "member_count": 49,
+                  "ess": 15.873455437589204,
+                  "weight_sum": 2.3696381821544823,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 62,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 61,
+                    "climber_forecast_close": 38,
+                    "mirror_completion_cost": 62,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 61,
+                  "climber_forecast_close": 38,
+                  "mirror_completion_cost": 62,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "PRA",
+                  "faller": "DZU",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 65,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 62,
+                  "ask": 65,
+                  "sum": 102,
+                  "discount": -2,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "DZU": {
+                  "forecast": 62,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 75.99797758146293,
+                  "role": "FALLER",
+                  "current": 62,
+                  "member_count": 225
+                },
+                "PRA": {
+                  "forecast": 38,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 56.22552706462932,
+                  "role": "CLIMBER",
+                  "current": 38,
+                  "member_count": 172
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_DOWN": 0.04730420210003897,
+                  "ROUND_TRIP": 2.3696381821544823,
+                  "ONE_STEP_UP": 0.8280982363512588,
+                  "DRIFT_DOWN": 0,
+                  "EARLY_SET_DOWN": 0,
+                  "QUIET_WOBBLE": 1.766095799022265,
+                  "LATE_BREAK_UP": 1.6238081516775826,
+                  "ONE_STEP_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.06331783047279593,
+                  "DRIFT_UP": 0.9757681760344322,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "SLEEPER": 1.0893946372363377,
+                  "EARLY_SET_UP": 0.7965882028048358
+                },
+                "position": 0.03877398081534772,
+                "epoch": 1784067625.347647,
+                "minutes_to_bell": 954.5775392174721,
+                "open": true,
+                "member_count": 49,
+                "ess": 15.873455437589204,
+                "weight_sum": 2.3696381821544823,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 129,
+              "leg": "PRA",
+              "epoch": 1784124421.000001,
+              "receipt": "KXATPMATCH-26JUL15PRADZU-DZU.csv.gz#row-8705",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 37,
+                "reason": "buying the strengthening side before it strengthens; forecast close 38; bid 37; reserve DZU max(late floor 61, 100 - climber close 38 = 62) = 62; views differ by -1c (floor minus mirror); 37 + 62 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 36,
+                "ask_cents": 38,
+                "last_trade_cents": 36,
+                "receipt": "KXATPMATCH-26JUL15PRADZU-PRA.csv.gz#row-5230"
+              },
+              "Q": 38,
+              "X": 1784124421.000001,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784065315,
+              "stage_index": 64
+            },
+            "license_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+            "licensing_deadline_epoch": 1784124409.146,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening. PRA was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DZU: later floor 62¢ inside 60–62¢; no later band print met the deadline. PRA: later floor 37¢ inside 37–38¢; no later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DZU": true,
+          "PRA": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "PRA",
+            "epoch": 1784124441.468,
+            "cents": 37,
+            "receipt": "e2e7e3e7-ff6a-5daf-8c03-8f63eb22e2f2",
+            "order_lineage_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+            "order_lineage_start_epoch": 1784124409.146,
+            "current_price_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+            "current_price_start_epoch": 1784124409.146,
+            "order_lineage_age_minutes": 0.5387000004450481,
+            "current_price_age_minutes": 0.5387000004450481,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "DZU",
+            "epoch": 1784124554.877,
+            "cents": 62,
+            "receipt": "529f7baa-602d-6fa9-b75e-a96d7eaec30b",
+            "order_lineage_receipt": "c427ecbd-f79a-7e93-ffc6-b276ffa5a8a0",
+            "order_lineage_start_epoch": 1784124409.146,
+            "current_price_receipt": "ccba29e8-d7f6-70bb-87ed-06cae7989d28",
+            "current_price_start_epoch": 1784124553.67,
+            "order_lineage_age_minutes": 2.428850003083547,
+            "current_price_age_minutes": 0.020116666952768963,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL15PRADZU",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "DZU",
+            "filled": true,
+            "fill_cents": 62,
+            "fill_epoch": 1784124554.877,
+            "fill_receipt": "529f7baa-602d-6fa9-b75e-a96d7eaec30b",
+            "close_cents": 62,
+            "close_epoch": 1784124892.2,
+            "floor_cents": 62,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PRA",
+            "filled": true,
+            "fill_cents": 37,
+            "fill_epoch": 1784124441.468,
+            "fill_receipt": "e2e7e3e7-ff6a-5daf-8c03-8f63eb22e2f2",
+            "close_cents": 38,
+            "close_epoch": 1784124894.1,
+            "floor_cents": 34,
+            "offered_cents": 4,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d08777bdced578713a0568af4b35f1d145e0f874639a491171223296ead13a4e",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "games": 104,
+  "changed_assets": [
+    "data/index.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.face.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.grade.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.pressure.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.oracle.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.bid-details.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.face.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.grade.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.pressure.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.oracle.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.bid-details.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.grade.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.pressure.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.oracle.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/bid_actions-0.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/bid_actions-256.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/supersessions-0.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/supersessions-256.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.timeline/0.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.timeline/512.json.gz",
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.timeline/1024.json.gz",
+    "data/KXATPMATCH-26JUL18DANPRA.face.json.gz",
+    "data/KXATPMATCH-26JUL18DANPRA.grade.json.gz",
+    "data/KXATPMATCH-26JUL18DANPRA.pressure.json.gz",
+    "data/KXATPMATCH-26JUL18DANPRA.oracle.json.gz",
+    "data/KXATPMATCH-26JUL18DANPRA.bid-details.json.gz",
+    "data/grades/index.json.gz",
+    "data/scoreboard.json.gz",
+    "data/scoreboard-tune-100.json.gz"
+  ],
+  "removed_superseded_game_chunks": [
+    "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details.json.gz"
+  ],
+  "ALT_and_all_other_game_assets_unchanged": true,
+  "interface_and_project_unchanged": true
+}

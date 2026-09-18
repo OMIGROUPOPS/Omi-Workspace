@@ -141,6 +141,7 @@ export type BidAction = {
   };
 };
 export type FaceData = {
+  grade_applicability?: {status:string;line:string;reason:string;close_forecast_sides:string[]};
   timeline?: Timeline;
   bid_card_details?: BidDetailSource;
   oracle?: { role: string; status: string; reason: string | null; detail_url?: string;
@@ -239,6 +240,8 @@ export type Game = {
   version: number;
 };
 export type Grade = {
+  close_delta_grade?: {kind:string;label:string;status:string;score_cents:number|null};
+  handoff_close_result?: {line:string;role:string;provenance:Record<string,string>;pair_close_sum_cents:number|null;pair_fill_sum_cents:number|null;pair_delta_cents:number|null;filled_leg_close_delta_cents:number|null};
   OUTCOME?: { pair_completed: boolean; pair_sum: number | null; captured_cents: number | null; best_capturable_cents?:number|null };
   event: string;
   timestamp: string;
@@ -284,7 +287,7 @@ export type LoadedGame = {
   history_view?: GradeHistoryView | null;
 };
 export type PressureValue = {label:string;value:number|null;text:string;source:string|null;source_epoch:number|null;reason:string|null};
-export type PressureDisplay = {book:string;spread:string;bid_depth_fraction:number|null;q:string;q_cents:number|null;deadline:string;band:string;count:string;effective:string;role:string;author:string;status:string;step_effective:string;step_status:string;source:string;raw:Record<string,string|null>};
+export type PressureDisplay = {handoff?:{destination_line:string;entry_line:string;reason_line:string;source:string;raw_reason?:string;reach_note?:string;reach_provenance?:string;level_table?:Array<{level:string;reach:string;discount:string;expected:string;choice:string;licensed:boolean;source:string}>};book:string;spread:string;bid_depth_fraction:number|null;q:string;q_cents:number|null;deadline:string;band:string;count:string;effective:string;role:string;author:string;status:string;step_effective:string;step_status:string;source:string;raw:Record<string,string|null>};
 export type PressureExecution = {side:string;receipt_index:number;action_id:string;origin_receipt_index:number|null;origin_receipt:string|null;q_cents:number|null;q:string;cents:number|null;status:string;value:string;clock:string;origin_clock:string;print:string|null;floor_line:string|null;price_age_minutes:number|null;card_lines:string[]|null;source:string};
 export type PressureRow = {
   receipt_index:number;receipt_id:string;receipt:string;timestamp_epoch:number;minutes_to_bell:number;clock_label:string;stage_sha256:string;

@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "source": {
+    "path": "C:\\Users\\omigr\\OMI-Window1-private\\fit-local\\prints.jsonl",
+    "bytes": 1766090446,
+    "scanned_rows": 4836462,
+    "sha256": "e9b5a765b51ddbf0d65364c4f38744ad949ca3c675e5b3a0e472392fbcfabb55"
+  },
+  "witnesses": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "side": "LAJ",
+      "fill_cents": 52,
+      "print": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "LAJ",
+        "timestamp_epoch": 1784060123.219,
+        "source_timestamp_epoch": 1784060123.219,
+        "receipt": "7fb0df36-2082-795a-5cb6-f311235289d1",
+        "kind": "PRINT",
+        "price_cents": 51,
+        "size": 100,
+        "source": "EXTERNAL_CUSTODY_TRUE_PRINTS",
+        "taker_book_side": "ask"
+      },
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+      "standing_license_epoch": 1784059613.000002,
+      "strictly_later_second": true
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "side": "SVA",
+      "fill_cents": 45,
+      "print": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "SVA",
+        "timestamp_epoch": 1784042394.35,
+        "source_timestamp_epoch": 1784042394.35,
+        "receipt": "013d5fa3-3749-40b6-f180-fc6b42c0e326",
+        "kind": "PRINT",
+        "price_cents": 45,
+        "size": 326,
+        "source": "EXTERNAL_CUSTODY_TRUE_PRINTS",
+        "taker_book_side": "ask"
+      },
+      "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3727",
+      "standing_license_epoch": 1784039091.000001,
+      "strictly_later_second": true
+    }
+  ]
+}

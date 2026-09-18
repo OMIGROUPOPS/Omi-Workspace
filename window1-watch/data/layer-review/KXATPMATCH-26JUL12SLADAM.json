@@ -1,0 +1,2693 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL12SLADAM",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "78bcc5c67d580e44f84cc12dc4bd511dd04376d758929aadeb744ba37d1531e7",
+    "stage_cache_sha256": "199ef3d603dd9beee7d5418330ffa366ca937ad346ded584b4b129ec6bdb1484",
+    "mirror_projection_sha256": "14bc63cbd20b74dd52d87595b58b62c4a2bbe8bedf18306a31f12214500e8aa9",
+    "mirror_permissions_sha256": "c204e56d212d14e9dc517e3f503571ac3e29cf1d9309e988a6e3c33053393593",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL12SLADAM",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "3fed1a8e3003f38052dce80e3392707578b1a78dda362f74682122ad5beb0135",
+      "row_number": 136,
+      "row_csv": "26JUL12SLADAM,KXATPMATCH-26JUL12SLADAM,ATP_MAIN,1783789837,1783789837,1783860540,1783854000.0,DAM,SLA,1783796334,79.5,83,1783828355.3,86,1783860353.3,470.37,395.38,MOVER,6.5,,,,,1783796334,20.0,15,1783811831.1,16,1783860330.3,993.52,159.14,STILL,-4.0,,,,,1783796334,,,1783867080.0,1783872317.0,1783867080.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783796334,1783860540,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783796334,
+      "span_end_epoch": 1783860540,
+      "bell_epoch": 1783867080,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783867080,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "DAM": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 79.5,
+          "floor_cents": 83,
+          "floor_epoch": 1783828355.3,
+          "minutes_to_bell": 645.4116666674614,
+          "line": "DAM 83¢ @ 645.41m to bell",
+          "marker_label": "DAM FLOOR · RECORDED 83¢ @ 645.41m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 83¢ · 645m to bell",
+          "hover_note": "Recorded floor 83¢ printed here · 645m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "SLA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 20,
+          "floor_cents": 15,
+          "floor_epoch": 1783811831.1,
+          "minutes_to_bell": 920.8150000015895,
+          "line": "SLA 15¢ @ 920.82m to bell",
+          "marker_label": "SLA FLOOR · RECORDED 15¢ @ 920.82m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 15¢ · 920m to bell",
+          "hover_note": "Recorded floor 15¢ printed here · 920m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "DAM",
+      "underdog_leg": "SLA",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 83 + 15 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12SLADAM",
+        "event_id": "KXATPMATCH-26JUL12SLADAM",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1783789837",
+        "w1_left_epoch": "1783789837",
+        "w1_right_epoch": "1783860540",
+        "scheduled_start_epoch": "1783854000.0",
+        "legA": "DAM",
+        "legB": "SLA",
+        "legA_formation_end_epoch": "1783796334",
+        "legA_open_postformation_c": "79.5",
+        "legA_floor_c": "83",
+        "legA_floor_epoch": "1783828355.3",
+        "legA_close_c": "86",
+        "legA_close_epoch": "1783860353.3",
+        "legA_contracts": "470.37",
+        "legA_premium_usd": "395.38",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "6.5",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783796334",
+        "legB_open_postformation_c": "20.0",
+        "legB_floor_c": "15",
+        "legB_floor_epoch": "1783811831.1",
+        "legB_close_c": "16",
+        "legB_close_epoch": "1783860330.3",
+        "legB_contracts": "993.52",
+        "legB_premium_usd": "159.14",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-4.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783796334",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783867080.0",
+        "kalshi_close_time_epoch": "1783872317.0",
+        "bell_epoch": "1783867080.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783796334",
+        "span_end_epoch": "1783860540",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12SLADAM.jsonl",
+      "sha256": "1e33bef6be5fd13e463821ed908e1e20f4e7cb0e25d00d7e61d28cd4fcc81e9f",
+      "raw_rows": 1227,
+      "accepted_rows": 37,
+      "start_epoch": 1783796334,
+      "end_epoch": 1783860540
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+  "first_both_directional_receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+  "first_callable_by_side": {
+    "DAM": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+    "SLA": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+          "epoch": 1783801991.000005,
+          "clock": "T−16hr 16min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DAM is strengthening; SLA is weakening.",
+              "WHY": "DAM trades at 84¢ against its 79¢ opening anchor; SLA trades at 17¢ against its 20¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DAM carries 192 eligible past sides from first-price comparisons; SLA carries 244 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DAM calls 83¢ by T−13hr 41min; SLA calls 15¢ by T−7hr 9min.",
+              "WHY": "DAM’s middle half spans 81–83¢; SLA’s middle half spans 13–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DAM has book 83/84 and no standing bid; SLA has book 17/17 and no standing bid.",
+              "WHY": "DAM: Only the ask changed, so the existing book veto held the bid decision; SLA: The book was locked; a new bid was not allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DAM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 79,
+              "corrected_open": 79.5,
+              "close": 86,
+              "recorded_floor": 83,
+              "P": 84,
+              "Q": 83,
+              "X": 1783811262,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 192,
+              "ess": 66.69194894690354,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-542"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 58,
+                "leg": "DAM",
+                "epoch": 1783801991.000005,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-542"
+                },
+                "Q": 83,
+                "X": 1783811262,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 29
+              },
+              "permission": null,
+              "micro": {
+                "Q": 83,
+                "deadline_epoch": 1783811262,
+                "q25": 81,
+                "q75": 83,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 83,
+                "floor_witness": {
+                  "epoch": 1783828355.342,
+                  "price": 83,
+                  "size": 2,
+                  "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "SLA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 20,
+              "corrected_open": 20,
+              "close": 16,
+              "recorded_floor": 15,
+              "P": 17,
+              "Q": 15,
+              "X": 1783834782,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 244,
+              "ess": 68.23131734468795,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 17,
+                "ask_cents": 17,
+                "last_trade_cents": 17,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 59,
+                "leg": "SLA",
+                "epoch": 1783801991.000005,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+                },
+                "book": {
+                  "bid_cents": 17,
+                  "ask_cents": 17,
+                  "last_trade_cents": 17,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748"
+                },
+                "Q": 15,
+                "X": 1783834782,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 29
+              },
+              "permission": null,
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783834782,
+                "q25": 13,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783811831.07,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "63711fc7-2454-4756-17fd-e99818063a85"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783811831.07,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "63711fc7-2454-4756-17fd-e99818063a85"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DAM-fill",
+          "label": "Last receipt before DAM filled",
+          "arm": "D",
+          "focus_leg": "DAM",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+          "epoch": 1783822213.000003,
+          "clock": "T−10hr 39min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DAM is strengthening; SLA is weakening.",
+              "WHY": "DAM trades at 84¢ against its 79¢ opening anchor; SLA trades at 15¢ against its 20¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DAM carries 251 eligible past sides from first-price comparisons; SLA carries 300 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DAM calls 83¢ by T−9hr 57min; SLA calls 13¢ by T−5hr 58min.",
+              "WHY": "DAM’s middle half spans 82–84¢; SLA’s middle half spans 12–14¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DAM has book 83/84 and a standing 83¢ bid; SLA has book 15/16 and a recorded purchase at 15¢.",
+              "WHY": "DAM: The current pool target was the permitted bid level; SLA: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DAM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 79,
+              "corrected_open": 79.5,
+              "close": 86,
+              "recorded_floor": 83,
+              "P": 84,
+              "Q": 83,
+              "X": 1783824727.090991,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 251,
+              "ess": 49.10159470166091,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+              },
+              "bid": 83,
+              "filled": null,
+              "decision": {
+                "order": 72,
+                "leg": "DAM",
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 83,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+                },
+                "Q": 83,
+                "X": 1783824727.090991,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "support": null,
+                "accountability_assumption": "cc1446fdb5a1b52f5a957ac4902cc90d93e6d11e893be2b2410ece15dba50491",
+                "stage_index": 39
+              },
+              "permission": null,
+              "micro": {
+                "Q": 83,
+                "deadline_epoch": 1783824727.090991,
+                "q25": 82,
+                "q75": 84,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 83,
+                "floor_witness": {
+                  "epoch": 1783828355.342,
+                  "price": 83,
+                  "size": 2,
+                  "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "SLA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 20,
+              "corrected_open": 20,
+              "close": 16,
+              "recorded_floor": 15,
+              "P": 15,
+              "Q": 13,
+              "X": 1783839039,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 106.24544469104492,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 16,
+                "last_trade_cents": 15,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594"
+              },
+              "bid": null,
+              "filled": 15,
+              "decision": {
+                "order": 71,
+                "leg": "SLA",
+                "epoch": 1783817340,
+                "receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783817340",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 16,
+                  "last_trade_cents": 15,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1390"
+                },
+                "Q": 13,
+                "X": 1783837849,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 13,
+                "deadline_epoch": 1783839039,
+                "q25": 12,
+                "q75": 14,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783849576.226,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783828355.342,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DAM",
+              "epoch": 1783828355.342,
+              "cents": 83,
+              "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+              "order_lineage_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+              "order_lineage_start_epoch": 1783802019.702,
+              "current_price_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+              "current_price_start_epoch": 1783802019.702,
+              "order_lineage_age_minutes": 438.92733333508176,
+              "current_price_age_minutes": 438.92733333508176,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DAM",
+                "epoch": 1783828355.342,
+                "cents": 83,
+                "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+                "order_lineage_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+                "order_lineage_start_epoch": 1783802019.702,
+                "current_price_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+                "current_price_start_epoch": 1783802019.702,
+                "order_lineage_age_minutes": 438.92733333508176,
+                "current_price_age_minutes": 438.92733333508176,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 72,
+              "leg": "DAM",
+              "epoch": 1783822213.000003,
+              "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 83,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+              },
+              "Q": 83,
+              "X": 1783824727.090991,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783796334,
+              "support": null,
+              "accountability_assumption": "cc1446fdb5a1b52f5a957ac4902cc90d93e6d11e893be2b2410ece15dba50491",
+              "stage_index": 39
+            },
+            "license_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+            "licensing_deadline_epoch": 1783811262,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SLA-fill",
+          "label": "Last receipt before SLA filled",
+          "arm": "D",
+          "focus_leg": "SLA",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+          "epoch": 1783811432.000001,
+          "clock": "T−13hr 38min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DAM is strengthening; SLA is weakening.",
+              "WHY": "DAM trades at 84¢ against its 79¢ opening anchor; SLA trades at 17¢ against its 20¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DAM carries 209 eligible past sides from first-price comparisons; SLA carries 269 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DAM calls 83¢ by T−12hr 25min; SLA calls 15¢ by T−6hr 18min.",
+              "WHY": "DAM’s middle half spans 82–84¢; SLA’s middle half spans 13–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DAM has book 83/84 and a standing 83¢ bid; SLA has book 15/17 and a standing 15¢ bid.",
+              "WHY": "DAM: The current pool target was the permitted bid level; SLA: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DAM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 79,
+              "corrected_open": 79.5,
+              "close": 86,
+              "recorded_floor": 83,
+              "P": 84,
+              "Q": 83,
+              "X": 1783815815.074427,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 209,
+              "ess": 84.12682914047973,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801"
+              },
+              "bid": 83,
+              "filled": null,
+              "decision": {
+                "order": 62,
+                "leg": "DAM",
+                "epoch": 1783811432.000001,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 83,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801"
+                },
+                "Q": 83,
+                "X": 1783815815.074427,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "support": null,
+                "accountability_assumption": "bf8bd8b646329ab8d859fc47d9778e840e537dc1369962e80e73c667541f8132",
+                "stage_index": 31
+              },
+              "permission": null,
+              "micro": {
+                "Q": 83,
+                "deadline_epoch": 1783815815.074427,
+                "q25": 82,
+                "q75": 84,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 83,
+                "floor_witness": {
+                  "epoch": 1783828355.342,
+                  "price": 83,
+                  "size": 2,
+                  "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783811838.247,
+                  "price": 84,
+                  "size": 5,
+                  "receipt": "d1f0e1b6-517b-5d1c-a1e1-26e714695fa5"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SLA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 20,
+              "corrected_open": 20,
+              "close": 16,
+              "recorded_floor": 15,
+              "P": 17,
+              "Q": 15,
+              "X": 1783837849,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 269,
+              "ess": 85.68292501890045,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 17,
+                "last_trade_cents": 17,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1025"
+              },
+              "bid": 15,
+              "filled": null,
+              "decision": {
+                "order": 63,
+                "leg": "SLA",
+                "epoch": 1783811432.000001,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 15,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 17,
+                  "last_trade_cents": 17,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1025"
+                },
+                "Q": 15,
+                "X": 1783837849,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "support": null,
+                "accountability_assumption": "6ab61a8396112450b19ffc192828bdc9d31dcdf755ca94b321cfd4f51663190c",
+                "stage_index": 31
+              },
+              "permission": null,
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783837849,
+                "q25": 13,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783811831.07,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "63711fc7-2454-4756-17fd-e99818063a85"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783811831.07,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "63711fc7-2454-4756-17fd-e99818063a85"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783811831.07,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "SLA",
+              "epoch": 1783811831.07,
+              "cents": 15,
+              "receipt": "63711fc7-2454-4756-17fd-e99818063a85",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+              "order_lineage_start_epoch": 1783811432.000001,
+              "current_price_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+              "current_price_start_epoch": 1783811432.000001,
+              "order_lineage_age_minutes": 6.651166649659475,
+              "current_price_age_minutes": 6.651166649659475,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "SLA",
+                "epoch": 1783811831.07,
+                "cents": 15,
+                "receipt": "63711fc7-2454-4756-17fd-e99818063a85",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+                "order_lineage_start_epoch": 1783811432.000001,
+                "current_price_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+                "current_price_start_epoch": 1783811432.000001,
+                "order_lineage_age_minutes": 6.651166649659475,
+                "current_price_age_minutes": 6.651166649659475,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 63,
+              "leg": "SLA",
+              "epoch": 1783811432.000001,
+              "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 15,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 15,
+                "ask_cents": 17,
+                "last_trade_cents": 17,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1025"
+              },
+              "Q": 15,
+              "X": 1783837849,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783796334,
+              "support": null,
+              "accountability_assumption": "6ab61a8396112450b19ffc192828bdc9d31dcdf755ca94b321cfd4f51663190c",
+              "stage_index": 31
+            },
+            "license_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+            "licensing_deadline_epoch": 1783837849,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 81–83¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 82–84¢; no later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DAM": true,
+          "SLA": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "SLA",
+            "epoch": 1783811831.07,
+            "cents": 15,
+            "receipt": "63711fc7-2454-4756-17fd-e99818063a85",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+            "order_lineage_start_epoch": 1783811432.000001,
+            "current_price_receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-801",
+            "current_price_start_epoch": 1783811432.000001,
+            "order_lineage_age_minutes": 6.651166649659475,
+            "current_price_age_minutes": 6.651166649659475,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "DAM",
+            "epoch": 1783828355.342,
+            "cents": 83,
+            "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+            "order_lineage_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+            "order_lineage_start_epoch": 1783802019.702,
+            "current_price_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+            "current_price_start_epoch": 1783802019.702,
+            "order_lineage_age_minutes": 438.92733333508176,
+            "current_price_age_minutes": 438.92733333508176,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12SLADAM",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "DAM",
+            "filled": true,
+            "fill_cents": 83,
+            "fill_epoch": 1783828355.342,
+            "fill_receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+            "close_cents": 86,
+            "close_epoch": 1783860353.3,
+            "floor_cents": 83,
+            "offered_cents": 3,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SLA",
+            "filled": true,
+            "fill_cents": 15,
+            "fill_epoch": 1783811831.07,
+            "fill_receipt": "63711fc7-2454-4756-17fd-e99818063a85",
+            "close_cents": 16,
+            "close_epoch": 1783860330.3,
+            "floor_cents": 15,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "3fed1a8e3003f38052dce80e3392707578b1a78dda362f74682122ad5beb0135",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+          "epoch": 1783801991.000005,
+          "clock": "T−16hr 16min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DAM is strengthening; SLA is weakening.",
+              "WHY": "DAM trades at 84¢ against its 79¢ opening anchor; SLA trades at 17¢ against its 20¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DAM carries 192 eligible past sides from first-price comparisons; SLA carries 244 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DAM calls 83¢ by T−13hr 41min; SLA calls 15¢ by T−7hr 9min.",
+              "WHY": "DAM’s middle half spans 81–83¢; SLA’s middle half spans 13–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DAM has book 83/84 and no standing bid; SLA has book 17/17 and no standing bid.",
+              "WHY": "DAM: Only the ask changed, so the existing book veto held the bid decision; SLA: The weakening side had not entered its predicted late-floor window. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DAM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 79,
+              "corrected_open": 79.5,
+              "close": 86,
+              "recorded_floor": 83,
+              "P": 84,
+              "Q": 83,
+              "X": 1783811262,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 192,
+              "ess": 66.69194894690354,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-542"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 58,
+                "leg": "DAM",
+                "epoch": 1783801991.000005,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 85; reserve SLA max(late floor 15, 100 - climber close 85 = 15) = 15; views differ by 0c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-542"
+                },
+                "Q": 83,
+                "X": 1783811262,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "stage_index": 29
+              },
+              "permission": {
+                "ordinal": 29,
+                "epoch": 1783801991.000005,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+                "id": "DAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 83,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.12274335483889233,
+                      "ROUND_TRIP": 1.0059779775704125,
+                      "DRIFT_UP": 0.8215493829432114,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.0304927716530667,
+                      "LATE_BREAK_DOWN": 0.03112314311853184,
+                      "ONE_STEP_UP": 0.5503231969456966,
+                      "EARLY_SET_UP": 0.9101426274233048,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.04780374289886727,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.1485540280099284
+                    },
+                    "position": 0.007707423580786027,
+                    "epoch": 1783796828.8628385,
+                    "minutes_to_bell": 1061.8522860248884,
+                    "open": true,
+                    "member_count": 26,
+                    "ess": 8.54401257709322,
+                    "weight_sum": 1.0304927716530667,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 15,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": null,
+                    "discount": null,
+                    "components": {
+                      "faller_forecast_late_floor": 15,
+                      "climber_forecast_close": 85,
+                      "mirror_completion_cost": 15,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 85; reserve SLA max(late floor 15, 100 - climber close 85 = 15) = 15; views differ by 0c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "DAM",
+                    "faller": "SLA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  }
+                },
+                "forecasts": {
+                  "DAM": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 66.69194894690354,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 192
+                  },
+                  "SLA": {
+                    "forecast": 17,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 68.23131734468795,
+                    "role": "FALLER",
+                    "current": 17,
+                    "member_count": 244
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.12274335483889233,
+                    "ROUND_TRIP": 1.0059779775704125,
+                    "DRIFT_UP": 0.8215493829432114,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.0304927716530667,
+                    "LATE_BREAK_DOWN": 0.03112314311853184,
+                    "ONE_STEP_UP": 0.5503231969456966,
+                    "EARLY_SET_UP": 0.9101426274233048,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.04780374289886727,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.1485540280099284
+                  },
+                  "position": 0.007707423580786027,
+                  "epoch": 1783796828.8628385,
+                  "minutes_to_bell": 1061.8522860248884,
+                  "open": true,
+                  "member_count": 26,
+                  "ess": 8.54401257709322,
+                  "weight_sum": 1.0304927716530667,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 83,
+                "deadline_epoch": 1783811262,
+                "q25": 81,
+                "q75": 83,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 83,
+                "floor_witness": {
+                  "epoch": 1783828355.342,
+                  "price": 83,
+                  "size": 2,
+                  "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "SLA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 20,
+              "corrected_open": 20,
+              "close": 16,
+              "recorded_floor": 15,
+              "P": 17,
+              "Q": 15,
+              "X": 1783834782,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 244,
+              "ess": 68.23131734468795,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 17,
+                "ask_cents": 17,
+                "last_trade_cents": 17,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 59,
+                "leg": "SLA",
+                "epoch": 1783801991.000005,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 15; reserve DAM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 17,
+                  "ask_cents": 17,
+                  "last_trade_cents": 17,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748"
+                },
+                "Q": 15,
+                "X": 1783834782,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "stage_index": 29
+              },
+              "permission": {
+                "ordinal": 29,
+                "epoch": 1783801991.000005,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-748",
+                "id": "SLA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD",
+                  "forecast_close": 17,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.19385707758763013,
+                      "ROUND_TRIP": 0.8756569484715677,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 0.5545680843514857,
+                      "EARLY_SET_DOWN": 1.3362231189800589,
+                      "QUIET_WOBBLE": 1.241281582892745,
+                      "LATE_BREAK_UP": 0.08534914752038006,
+                      "ONE_STEP_DOWN": 0.6899492014460213,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.2028973860066283,
+                      "SLEEPER": 0.5985305831394496,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.2110376044568245,
+                    "epoch": 1783809883.8804317,
+                    "minutes_to_bell": 844.2686594724655,
+                    "open": false,
+                    "member_count": 60,
+                    "ess": 25.55875699445067,
+                    "weight_sum": 1.3362231189800589,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 15; reserve DAM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "DAM",
+                    "faller": "SLA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DAM": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 66.69194894690354,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 192
+                  },
+                  "SLA": {
+                    "forecast": 17,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 68.23131734468795,
+                    "role": "FALLER",
+                    "current": 17,
+                    "member_count": 244
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.19385707758763013,
+                    "ROUND_TRIP": 0.8756569484715677,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 0.5545680843514857,
+                    "EARLY_SET_DOWN": 1.3362231189800589,
+                    "QUIET_WOBBLE": 1.241281582892745,
+                    "LATE_BREAK_UP": 0.08534914752038006,
+                    "ONE_STEP_DOWN": 0.6899492014460213,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.2028973860066283,
+                    "SLEEPER": 0.5985305831394496,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.2110376044568245,
+                  "epoch": 1783809883.8804317,
+                  "minutes_to_bell": 844.2686594724655,
+                  "open": false,
+                  "member_count": 60,
+                  "ess": 25.55875699445067,
+                  "weight_sum": 1.3362231189800589,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783834782,
+                "q25": 13,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783811831.07,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "63711fc7-2454-4756-17fd-e99818063a85"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783811831.07,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "63711fc7-2454-4756-17fd-e99818063a85"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DAM-fill",
+          "label": "Last receipt before DAM filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "DAM",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+          "epoch": 1783822213.000003,
+          "clock": "T−10hr 39min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DAM is strengthening; SLA is weakening.",
+              "WHY": "DAM trades at 84¢ against its 79¢ opening anchor; SLA trades at 15¢ against its 20¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DAM carries 251 eligible past sides from first-price comparisons; SLA carries 300 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DAM calls 83¢ by T−9hr 57min; SLA calls 13¢ by T−5hr 58min.",
+              "WHY": "DAM’s middle half spans 82–84¢; SLA’s middle half spans 12–14¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DAM has book 83/84 and a standing 83¢ bid; SLA has book 15/16 and a standing 13¢ bid.",
+              "WHY": "DAM: buying the strengthening side before it strengthens; predicted close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100; SLA: buying the weakening side in early set down's learned late-floor window; predicted floor 13; bid 13; reserve DAM max(close 85, ask 84) = 85; 13 + 85 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DAM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 79,
+              "corrected_open": 79.5,
+              "close": 86,
+              "recorded_floor": 83,
+              "P": 84,
+              "Q": 83,
+              "X": 1783824727.090991,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 251,
+              "ess": 49.10159470166091,
+              "family": "SLEEPER",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+              },
+              "bid": 83,
+              "filled": null,
+              "decision": {
+                "order": 78,
+                "leg": "DAM",
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 83,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+                },
+                "Q": 83,
+                "X": 1783824727.090991,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "stage_index": 39
+              },
+              "permission": {
+                "ordinal": 39,
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "id": "DAM",
+                "old": 83,
+                "proposed": 83,
+                "posted": 83,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 83,
+                  "hand_level": 83,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "SLEEPER",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.35650598766730895,
+                      "ROUND_TRIP": 1.0110843799538374,
+                      "DRIFT_UP": 1.0403079664931012,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.0917927064729132,
+                      "LATE_BREAK_DOWN": 0.010436973657472953,
+                      "ONE_STEP_UP": 0.6721484147304908,
+                      "EARLY_SET_UP": 1.1954021611956789,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07580916324264371,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.7180641718104583
+                    },
+                    "position": 0.052812131919905775,
+                    "epoch": 1783799724.855742,
+                    "minutes_to_bell": 1013.5857376337051,
+                    "open": true,
+                    "member_count": 19,
+                    "ess": 3.9898049114784695,
+                    "weight_sum": 1.7180641718104583,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 15,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 13,
+                      "climber_forecast_close": 85,
+                      "mirror_completion_cost": 15,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 13,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "DAM",
+                    "faller": "SLA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": 16,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 15,
+                    "ask": 16,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "DAM": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 49.10159470166091,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 251
+                  },
+                  "SLA": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.24544469104492,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 300
+                  }
+                },
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.35650598766730895,
+                    "ROUND_TRIP": 1.0110843799538374,
+                    "DRIFT_UP": 1.0403079664931012,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.0917927064729132,
+                    "LATE_BREAK_DOWN": 0.010436973657472953,
+                    "ONE_STEP_UP": 0.6721484147304908,
+                    "EARLY_SET_UP": 1.1954021611956789,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07580916324264371,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.7180641718104583
+                  },
+                  "position": 0.052812131919905775,
+                  "epoch": 1783799724.855742,
+                  "minutes_to_bell": 1013.5857376337051,
+                  "open": true,
+                  "member_count": 19,
+                  "ess": 3.9898049114784695,
+                  "weight_sum": 1.7180641718104583,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 83,
+                "deadline_epoch": 1783824727.090991,
+                "q25": 82,
+                "q75": 84,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 83,
+                "floor_witness": {
+                  "epoch": 1783828355.342,
+                  "price": 83,
+                  "size": 2,
+                  "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "SLA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 20,
+              "corrected_open": 20,
+              "close": 16,
+              "recorded_floor": 15,
+              "P": 15,
+              "Q": 13,
+              "X": 1783839039,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 106.24544469104492,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 16,
+                "last_trade_cents": 15,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594"
+              },
+              "bid": 13,
+              "filled": null,
+              "decision": {
+                "order": 79,
+                "leg": "SLA",
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 13,
+                  "reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 13; bid 13; reserve DAM max(close 85, ask 84) = 85; 13 + 85 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 16,
+                  "last_trade_cents": 15,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594"
+                },
+                "Q": 13,
+                "X": 1783839039,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "stage_index": 39
+              },
+              "permission": {
+                "ordinal": 39,
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "id": "SLA",
+                "old": 13,
+                "proposed": 13,
+                "posted": 13,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 13,
+                  "hand_level": 13,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 15,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.20716639348471202,
+                      "ROUND_TRIP": 1.0268431047543463,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 0.8170250725681549,
+                      "EARLY_SET_DOWN": 1.5281714970455933,
+                      "QUIET_WOBBLE": 0.9255802453215074,
+                      "LATE_BREAK_UP": 0.10029382895796071,
+                      "ONE_STEP_DOWN": 0.9454503397603279,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.2126471669141335,
+                      "SLEEPER": 1.2428098022353735,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.15793914469706388,
+                    "epoch": 1783806474.6407244,
+                    "minutes_to_bell": 901.0893212596576,
+                    "open": true,
+                    "member_count": 69,
+                    "ess": 31.41148408621031,
+                    "weight_sum": 1.5281714970455933,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 85,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 85,
+                    "ask": 84,
+                    "sum": 98,
+                    "discount": 2,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 13; bid 13; reserve DAM max(close 85, ask 84) = 85; 13 + 85 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 13,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "DAM",
+                    "faller": "SLA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DAM": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 49.10159470166091,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 251
+                  },
+                  "SLA": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.24544469104492,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 300
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.20716639348471202,
+                    "ROUND_TRIP": 1.0268431047543463,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 0.8170250725681549,
+                    "EARLY_SET_DOWN": 1.5281714970455933,
+                    "QUIET_WOBBLE": 0.9255802453215074,
+                    "LATE_BREAK_UP": 0.10029382895796071,
+                    "ONE_STEP_DOWN": 0.9454503397603279,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.2126471669141335,
+                    "SLEEPER": 1.2428098022353735,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.15793914469706388,
+                  "epoch": 1783806474.6407244,
+                  "minutes_to_bell": 901.0893212596576,
+                  "open": true,
+                  "member_count": 69,
+                  "ess": 31.41148408621031,
+                  "weight_sum": 1.5281714970455933,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 13,
+                "deadline_epoch": 1783839039,
+                "q25": 12,
+                "q75": 14,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783849576.226,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783828355.342,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DAM",
+              "epoch": 1783828355.342,
+              "cents": 83,
+              "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+              "order_lineage_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+              "order_lineage_start_epoch": 1783802019.702,
+              "current_price_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+              "current_price_start_epoch": 1783802019.702,
+              "order_lineage_age_minutes": 438.92733333508176,
+              "current_price_age_minutes": 438.92733333508176,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DAM",
+                "epoch": 1783828355.342,
+                "cents": 83,
+                "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+                "order_lineage_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+                "order_lineage_start_epoch": 1783802019.702,
+                "current_price_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+                "current_price_start_epoch": 1783802019.702,
+                "order_lineage_age_minutes": 438.92733333508176,
+                "current_price_age_minutes": 438.92733333508176,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 39,
+              "epoch": 1783822213.000003,
+              "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+              "id": "DAM",
+              "old": 83,
+              "proposed": 83,
+              "posted": 83,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 83,
+                "hand_level": 83,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 85,
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.35650598766730895,
+                    "ROUND_TRIP": 1.0110843799538374,
+                    "DRIFT_UP": 1.0403079664931012,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.0917927064729132,
+                    "LATE_BREAK_DOWN": 0.010436973657472953,
+                    "ONE_STEP_UP": 0.6721484147304908,
+                    "EARLY_SET_UP": 1.1954021611956789,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07580916324264371,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.7180641718104583
+                  },
+                  "position": 0.052812131919905775,
+                  "epoch": 1783799724.855742,
+                  "minutes_to_bell": 1013.5857376337051,
+                  "open": true,
+                  "member_count": 19,
+                  "ess": 3.9898049114784695,
+                  "weight_sum": 1.7180641718104583,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 15,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 98,
+                  "discount": 2,
+                  "components": {
+                    "faller_forecast_late_floor": 13,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 13,
+                  "climber_forecast_close": 85,
+                  "mirror_completion_cost": 15,
+                  "disagreement_cents": -2,
+                  "absolute_disagreement_cents": 2,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "DAM",
+                  "faller": "SLA",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": true,
+                  "reserve": 16,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 15,
+                  "ask": 16,
+                  "sum": 99,
+                  "discount": 1,
+                  "reason": "RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "DAM": {
+                  "forecast": 85,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 49.10159470166091,
+                  "role": "CLIMBER",
+                  "current": 84,
+                  "member_count": 251
+                },
+                "SLA": {
+                  "forecast": 15,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 106.24544469104492,
+                  "role": "FALLER",
+                  "current": 15,
+                  "member_count": 300
+                }
+              },
+              "window": {
+                "family": "SLEEPER",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.35650598766730895,
+                  "ROUND_TRIP": 1.0110843799538374,
+                  "DRIFT_UP": 1.0403079664931012,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 1.0917927064729132,
+                  "LATE_BREAK_DOWN": 0.010436973657472953,
+                  "ONE_STEP_UP": 0.6721484147304908,
+                  "EARLY_SET_UP": 1.1954021611956789,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.07580916324264371,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 1.7180641718104583
+                },
+                "position": 0.052812131919905775,
+                "epoch": 1783799724.855742,
+                "minutes_to_bell": 1013.5857376337051,
+                "open": true,
+                "member_count": 19,
+                "ess": 3.9898049114784695,
+                "weight_sum": 1.7180641718104583,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 78,
+              "leg": "DAM",
+              "epoch": 1783822213.000003,
+              "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 83,
+                "reason": "buying the strengthening side before it strengthens; forecast close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+              },
+              "Q": 83,
+              "X": 1783824727.090991,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783796334,
+              "stage_index": 39
+            },
+            "license_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+            "licensing_deadline_epoch": 1783811262,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SLA-fill",
+          "label": "Last receipt before SLA filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "SLA",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783846140",
+          "epoch": 1783846140,
+          "clock": "T−4hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DAM is strengthening; SLA is weakening.",
+              "WHY": "DAM trades at 85¢ against its 79¢ opening anchor; SLA trades at 16¢ against its 20¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DAM carries 325 eligible past sides from first-price comparisons; SLA carries 353 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DAM calls 84¢ by T−3hr 23min; SLA calls 15¢ by T−3hr 1min.",
+              "WHY": "DAM’s middle half spans 83–85¢; SLA’s middle half spans 14–15¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DAM has book 85/84 and a recorded purchase at 83¢; SLA has book 15/16 and a standing 15¢ bid.",
+              "WHY": "DAM: buying the strengthening side before it strengthens; predicted close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100; SLA: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 15; bid 15; DAM filled 83; 15 + 83 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DAM": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 79,
+              "corrected_open": 79.5,
+              "close": 86,
+              "recorded_floor": 83,
+              "P": 85,
+              "Q": 84,
+              "X": 1783848348,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 325,
+              "ess": 50.77285478837336,
+              "family": "SLEEPER",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 85,
+                "ask_cents": 84,
+                "last_trade_cents": 85,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-3192"
+              },
+              "bid": null,
+              "filled": 83,
+              "decision": {
+                "order": 78,
+                "leg": "DAM",
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 83,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-DAM.csv.gz#row-1174"
+                },
+                "Q": 83,
+                "X": 1783824727.090991,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "stage_index": 39
+              },
+              "permission": {
+                "ordinal": 39,
+                "epoch": 1783822213.000003,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-1594",
+                "id": "DAM",
+                "old": 83,
+                "proposed": 83,
+                "posted": 83,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 83,
+                  "hand_level": 83,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "SLEEPER",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.35650598766730895,
+                      "ROUND_TRIP": 1.0110843799538374,
+                      "DRIFT_UP": 1.0403079664931012,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.0917927064729132,
+                      "LATE_BREAK_DOWN": 0.010436973657472953,
+                      "ONE_STEP_UP": 0.6721484147304908,
+                      "EARLY_SET_UP": 1.1954021611956789,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07580916324264371,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.7180641718104583
+                    },
+                    "position": 0.052812131919905775,
+                    "epoch": 1783799724.855742,
+                    "minutes_to_bell": 1013.5857376337051,
+                    "open": true,
+                    "member_count": 19,
+                    "ess": 3.9898049114784695,
+                    "weight_sum": 1.7180641718104583,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 15,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 13,
+                      "climber_forecast_close": 85,
+                      "mirror_completion_cost": 15,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 85; bid 83; reserve SLA max(late floor 13, 100 - climber close 85 = 15) = 15; views differ by -2c (floor minus mirror); 83 + 15 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 13,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "DAM",
+                    "faller": "SLA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": 16,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 15,
+                    "ask": 16,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "DAM": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 49.10159470166091,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 251
+                  },
+                  "SLA": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.24544469104492,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 300
+                  }
+                },
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.35650598766730895,
+                    "ROUND_TRIP": 1.0110843799538374,
+                    "DRIFT_UP": 1.0403079664931012,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.0917927064729132,
+                    "LATE_BREAK_DOWN": 0.010436973657472953,
+                    "ONE_STEP_UP": 0.6721484147304908,
+                    "EARLY_SET_UP": 1.1954021611956789,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07580916324264371,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.7180641718104583
+                  },
+                  "position": 0.052812131919905775,
+                  "epoch": 1783799724.855742,
+                  "minutes_to_bell": 1013.5857376337051,
+                  "open": true,
+                  "member_count": 19,
+                  "ess": 3.9898049114784695,
+                  "weight_sum": 1.7180641718104583,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 84,
+                "deadline_epoch": 1783848348,
+                "q25": 83,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 86,
+                "floor_witness": {
+                  "epoch": 1783850505.336,
+                  "price": 86,
+                  "size": 17,
+                  "receipt": "2f0575c7-c805-4f48-386b-d3c769ffcd96"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "SLA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 20,
+              "corrected_open": 20,
+              "close": 16,
+              "recorded_floor": 15,
+              "P": 16,
+              "Q": 15,
+              "X": 1783849666.194218,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 353,
+              "ess": 106.56134814899842,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 16,
+                "last_trade_cents": 16,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-4739"
+              },
+              "bid": 15,
+              "filled": null,
+              "decision": {
+                "order": 87,
+                "leg": "SLA",
+                "epoch": 1783846140,
+                "receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783846140",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 15,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; bid 15; DAM filled 83; 15 + 83 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 16,
+                  "last_trade_cents": 16,
+                  "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-4739"
+                },
+                "Q": 15,
+                "X": 1783849666.194218,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783796334,
+                "stage_index": 47
+              },
+              "permission": {
+                "ordinal": 47,
+                "epoch": 1783846140,
+                "receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783846140",
+                "id": "SLA",
+                "old": 15,
+                "proposed": 15,
+                "posted": 15,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 15,
+                  "hand_level": 15,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 16,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.5043974800204952,
+                      "ROUND_TRIP": 1.4004559331480846,
+                      "ONE_STEP_UP": 0.012914376198362623,
+                      "DRIFT_DOWN": 0.9153240549899582,
+                      "EARLY_SET_DOWN": 1.7549564395261001,
+                      "QUIET_WOBBLE": 2.6224474495788526,
+                      "LATE_BREAK_UP": 0.12390326073833526,
+                      "ONE_STEP_DOWN": 1.2886340245223211,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.2979195648705081,
+                      "SLEEPER": 1.6667116278343461,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.42880907960199005,
+                    "epoch": 1783823866.1157649,
+                    "minutes_to_bell": 611.231403919061,
+                    "open": true,
+                    "member_count": 51,
+                    "ess": 17.66546012372445,
+                    "weight_sum": 2.6224474495788526,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 83,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 98,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; bid 15; DAM filled 83; 15 + 83 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "DAM",
+                    "faller": "SLA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DAM": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 50.77285478837336,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 325
+                  },
+                  "SLA": {
+                    "forecast": 16,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.56134814899842,
+                    "role": "FALLER",
+                    "current": 16,
+                    "member_count": 353
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.5043974800204952,
+                    "ROUND_TRIP": 1.4004559331480846,
+                    "ONE_STEP_UP": 0.012914376198362623,
+                    "DRIFT_DOWN": 0.9153240549899582,
+                    "EARLY_SET_DOWN": 1.7549564395261001,
+                    "QUIET_WOBBLE": 2.6224474495788526,
+                    "LATE_BREAK_UP": 0.12390326073833526,
+                    "ONE_STEP_DOWN": 1.2886340245223211,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.2979195648705081,
+                    "SLEEPER": 1.6667116278343461,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.42880907960199005,
+                  "epoch": 1783823866.1157649,
+                  "minutes_to_bell": 611.231403919061,
+                  "open": true,
+                  "member_count": 51,
+                  "ess": 17.66546012372445,
+                  "weight_sum": 2.6224474495788526,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783849666.194218,
+                "q25": 14,
+                "q75": 15,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783849576.226,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783849576.226,
+                  "price": 15,
+                  "size": 5,
+                  "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783849576.226,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "SLA",
+              "epoch": 1783849576.226,
+              "cents": 15,
+              "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+              "order_lineage_start_epoch": 1783838940,
+              "current_price_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+              "current_price_start_epoch": 1783838940,
+              "order_lineage_age_minutes": 177.27043333450953,
+              "current_price_age_minutes": 177.27043333450953,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "SLA",
+                "epoch": 1783849576.226,
+                "cents": 15,
+                "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+                "order_lineage_start_epoch": 1783838940,
+                "current_price_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+                "current_price_start_epoch": 1783838940,
+                "order_lineage_age_minutes": 177.27043333450953,
+                "current_price_age_minutes": 177.27043333450953,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 47,
+              "epoch": 1783846140,
+              "receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783846140",
+              "id": "SLA",
+              "old": 15,
+              "proposed": 15,
+              "posted": 15,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 15,
+                "hand_level": 15,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 16,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.5043974800204952,
+                    "ROUND_TRIP": 1.4004559331480846,
+                    "ONE_STEP_UP": 0.012914376198362623,
+                    "DRIFT_DOWN": 0.9153240549899582,
+                    "EARLY_SET_DOWN": 1.7549564395261001,
+                    "QUIET_WOBBLE": 2.6224474495788526,
+                    "LATE_BREAK_UP": 0.12390326073833526,
+                    "ONE_STEP_DOWN": 1.2886340245223211,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.2979195648705081,
+                    "SLEEPER": 1.6667116278343461,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.42880907960199005,
+                  "epoch": 1783823866.1157649,
+                  "minutes_to_bell": 611.231403919061,
+                  "open": true,
+                  "member_count": 51,
+                  "ess": 17.66546012372445,
+                  "weight_sum": 2.6224474495788526,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 83,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 98,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; bid 15; DAM filled 83; 15 + 83 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 15,
+                  "climber_forecast_close": 85,
+                  "mirror_completion_cost": 15,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "DAM",
+                  "faller": "SLA",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "DAM": {
+                  "forecast": 85,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 50.77285478837336,
+                  "role": "CLIMBER",
+                  "current": 85,
+                  "member_count": 325
+                },
+                "SLA": {
+                  "forecast": 16,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 106.56134814899842,
+                  "role": "FALLER",
+                  "current": 16,
+                  "member_count": 353
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "LATE_BREAK_DOWN": 0.5043974800204952,
+                  "ROUND_TRIP": 1.4004559331480846,
+                  "ONE_STEP_UP": 0.012914376198362623,
+                  "DRIFT_DOWN": 0.9153240549899582,
+                  "EARLY_SET_DOWN": 1.7549564395261001,
+                  "QUIET_WOBBLE": 2.6224474495788526,
+                  "LATE_BREAK_UP": 0.12390326073833526,
+                  "ONE_STEP_DOWN": 1.2886340245223211,
+                  "GRIND_WOBBLE_UP": 0,
+                  "DRIFT_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 0.2979195648705081,
+                  "SLEEPER": 1.6667116278343461,
+                  "EARLY_SET_UP": 0
+                },
+                "position": 0.42880907960199005,
+                "epoch": 1783823866.1157649,
+                "minutes_to_bell": 611.231403919061,
+                "open": true,
+                "member_count": 51,
+                "ess": 17.66546012372445,
+                "weight_sum": 2.6224474495788526,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 87,
+              "leg": "SLA",
+              "epoch": 1783846140,
+              "receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783846140",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 15,
+                "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; bid 15; DAM filled 83; 15 + 83 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 15,
+                "ask_cents": 16,
+                "last_trade_cents": 16,
+                "receipt": "KXATPMATCH-26JUL12SLADAM-SLA.csv.gz#row-4739"
+              },
+              "Q": 15,
+              "X": 1783849666.194218,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783796334,
+              "stage_index": 47
+            },
+            "license_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+            "licensing_deadline_epoch": 1783846161.780831,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 81–83¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 82–84¢; no later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DAM": true,
+          "SLA": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "DAM",
+            "epoch": 1783828355.342,
+            "cents": 83,
+            "receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+            "order_lineage_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+            "order_lineage_start_epoch": 1783802019.702,
+            "current_price_receipt": "5fc98fda-66f3-5720-f077-047d5318eb35",
+            "current_price_start_epoch": 1783802019.702,
+            "order_lineage_age_minutes": 438.92733333508176,
+            "current_price_age_minutes": 438.92733333508176,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "SLA",
+            "epoch": 1783849576.226,
+            "cents": 15,
+            "receipt": "6c32fe16-7922-7886-b43c-5f14673305f8",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+            "order_lineage_start_epoch": 1783838940,
+            "current_price_receipt": "KXATPMATCH-26JUL12SLADAM|ATLAS_GATE|1783838940",
+            "current_price_start_epoch": 1783838940,
+            "order_lineage_age_minutes": 177.27043333450953,
+            "current_price_age_minutes": 177.27043333450953,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12SLADAM",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "DAM",
+            "filled": true,
+            "fill_cents": 83,
+            "fill_epoch": 1783828355.342,
+            "fill_receipt": "a39f9c26-fb49-76fa-ecff-3a658c78b282",
+            "close_cents": 86,
+            "close_epoch": 1783860353.3,
+            "floor_cents": 83,
+            "offered_cents": 3,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SLA",
+            "filled": true,
+            "fill_cents": 15,
+            "fill_epoch": 1783849576.226,
+            "fill_receipt": "6c32fe16-7922-7886-b43c-5f14673305f8",
+            "close_cents": 16,
+            "close_epoch": 1783860330.3,
+            "floor_cents": 15,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "3fed1a8e3003f38052dce80e3392707578b1a78dda362f74682122ad5beb0135",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

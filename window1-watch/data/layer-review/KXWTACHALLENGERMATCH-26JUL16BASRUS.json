@@ -1,0 +1,2050 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "5e378b771b18987561f78a652459a858faefb3acdb7b99d7ca5939381e726cbb",
+    "stage_cache_sha256": "c5003cb77f28187d96d21d3446d95a5501af09f8529c017d9c4f3b3fef90d844",
+    "mirror_projection_sha256": "379a05fb3b36cba6aecdfd18764c317acabab0cf84e8a2f8786bbbb26391d2c3",
+    "mirror_permissions_sha256": "7f62cc75fefee346aea1f5308341c7f5e34d57fb31b2f2152cf9e66deb1966dd",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "2219cd8710bb475bca2de5df680d2fb2a4c13c0922e1cb3553343fa08c9f9d3e",
+      "row_number": 437,
+      "row_csv": "26JUL16BASRUS,KXWTACHALLENGERMATCH-26JUL16BASRUS,WTA_CHALL,1784162479,1784162479,1784205425.612,1784215800.0,BAS,RUS,1784162659,68.0,66,1784162687.1,70,1784205353.6,5661.56,3907.68,STILL,2.0,1784171825,,,,1784162659,32.0,32,1784171710.3,32,1784205339.9,4282.27,1370.33,STILL,0.0,,,,,1784162659,,,1784205600.0,1784212201.0,1784205600.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784162659,1784205425.612,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784162659,
+      "span_end_epoch": 1784205425.612,
+      "bell_epoch": 1784205600,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784205600,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BAS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 68,
+          "floor_cents": 66,
+          "floor_epoch": 1784162687.1,
+          "minutes_to_bell": 715.2150000015895,
+          "line": "BAS 66¢ @ 715.22m to bell",
+          "marker_label": "BAS FLOOR · RECORDED 66¢ @ 715.22m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 66¢ · 715m to bell",
+          "hover_note": "Recorded floor 66¢ printed here · 715m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "RUS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 32,
+          "floor_cents": 32,
+          "floor_epoch": 1784171710.3,
+          "minutes_to_bell": 564.828333334128,
+          "line": "RUS 32¢ @ 564.83m to bell",
+          "marker_label": "RUS FLOOR · RECORDED 32¢ @ 564.83m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 32¢ · 564m to bell",
+          "hover_note": "Recorded floor 32¢ printed here · 564m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "BAS",
+      "underdog_leg": "RUS",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 66 + 32 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL16BASRUS",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1784162479",
+        "w1_left_epoch": "1784162479",
+        "w1_right_epoch": "1784205425.612",
+        "scheduled_start_epoch": "1784215800.0",
+        "legA": "BAS",
+        "legB": "RUS",
+        "legA_formation_end_epoch": "1784162659",
+        "legA_open_postformation_c": "68.0",
+        "legA_floor_c": "66",
+        "legA_floor_epoch": "1784162687.1",
+        "legA_close_c": "70",
+        "legA_close_epoch": "1784205353.6",
+        "legA_contracts": "5661.56",
+        "legA_premium_usd": "3907.68",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "2.0",
+        "legA_us_first_post_epoch": "1784171825",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784162659",
+        "legB_open_postformation_c": "32.0",
+        "legB_floor_c": "32",
+        "legB_floor_epoch": "1784171710.3",
+        "legB_close_c": "32",
+        "legB_close_epoch": "1784205339.9",
+        "legB_contracts": "4282.27",
+        "legB_premium_usd": "1370.33",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "0.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784162659",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784205600.0",
+        "kalshi_close_time_epoch": "1784212201.0",
+        "bell_epoch": "1784205600.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784162659",
+        "span_end_epoch": "1784205425.612",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16BASRUS.jsonl",
+      "sha256": "249ff3c8c683947bcf56328bab190af20ad58d2f490330ec6f1568d876a316f0",
+      "raw_rows": 3562,
+      "accepted_rows": 38,
+      "start_epoch": 1784162659,
+      "end_epoch": 1784205425.612
+    }
+  },
+  "first_callable_receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "BAS": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+    "RUS": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+          "epoch": 1784173216.000001,
+          "clock": "T−8hr 57min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAS is not yet directionally called; RUS is not yet directionally called.",
+              "WHY": "BAS trades at 69¢ against its 68¢ opening anchor; RUS trades at 32¢ against its 32¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAS carries 91 eligible past sides from first-price comparisons; RUS carries 91 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAS calls 67¢ by T−7hr 13min; RUS calls 31¢ by T−4hr 24min.",
+              "WHY": "BAS’s middle half spans 66–69¢; RUS’s middle half spans 29–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAS has book 68/69 and a standing 67¢ bid; RUS has book 31/32 and a standing 31¢ bid.",
+              "WHY": "BAS: The current pool target was the permitted bid level; RUS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 70,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 67,
+              "X": 1784179475.612,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 91,
+              "ess": 28.04434983979015,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 69,
+                "last_trade_cents": 69,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522"
+              },
+              "bid": 67,
+              "filled": null,
+              "decision": {
+                "order": 56,
+                "leg": "BAS",
+                "epoch": 1784173216.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 67,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 69,
+                  "last_trade_cents": 69,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522"
+                },
+                "Q": 67,
+                "X": 1784179475.612,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "support": null,
+                "accountability_assumption": "b6f6056cbf345b74a837229fcfff73c08cb4fcbe1c0c754100a0fb16c957495a",
+                "stage_index": 28
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784179475.612,
+                "q25": 66,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 69,
+                "floor_witness": {
+                  "epoch": 1784183190.981,
+                  "price": 69,
+                  "size": 0.31,
+                  "receipt": "88b69510-70d3-6789-a636-14660fd43341"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "RUS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 32,
+              "recorded_floor": 32,
+              "P": 32,
+              "Q": 31,
+              "X": 1784189590.612,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 91,
+              "ess": 28.04434983979015,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-435"
+              },
+              "bid": 31,
+              "filled": null,
+              "decision": {
+                "order": 57,
+                "leg": "RUS",
+                "epoch": 1784173216.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 31,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-435"
+                },
+                "Q": 31,
+                "X": 1784189590.612,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "support": null,
+                "accountability_assumption": "e0a1d9de87e16306bba98a7d51c034391a9f222b08d4d3fe99d61d5e031b1023",
+                "stage_index": 28
+              },
+              "permission": null,
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784189590.612,
+                "q25": 29,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 32,
+                "floor_witness": {
+                  "epoch": 1784173743.378,
+                  "price": 32,
+                  "size": 2.98,
+                  "receipt": "5fc5b4b6-3b1c-4008-2e34-9d6acde412a1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784173743.378,
+                  "price": 32,
+                  "size": 2.98,
+                  "receipt": "5fc5b4b6-3b1c-4008-2e34-9d6acde412a1"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAS-miss",
+          "label": "Last receipt before BAS missed at the bell",
+          "arm": "D",
+          "focus_leg": "BAS",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+          "epoch": 1784205420.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAS is not yet directionally called; RUS is not yet directionally called.",
+              "WHY": "BAS trades at 69¢ against its 68¢ opening anchor; RUS trades at 32¢ against its 32¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAS carries 449 eligible past sides from first-price comparisons; RUS carries 449 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAS calls 69¢ by T−0hr 0min; RUS calls 32¢ by T−0hr 0min.",
+              "WHY": "BAS’s middle half spans 69–69¢; RUS’s middle half spans 32–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAS has book 68/69 and a standing 68¢ bid; RUS has book 31/32 and a standing 31¢ bid.",
+              "WHY": "BAS: The desired bid could not be posted below the ask; RUS: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 70,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 69,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 69,
+                "last_trade_cents": 70,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+              },
+              "bid": 68,
+              "filled": null,
+              "decision": {
+                "order": 108,
+                "leg": "BAS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 68,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 69,
+                  "last_trade_cents": 70,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+                },
+                "Q": 69,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "support": null,
+                "accountability_assumption": "db006720488a72e041ff1a62fa61377f476137ff35031971817fb462a9897fa6",
+                "stage_index": 55
+              },
+              "permission": null,
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 69,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RUS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 32,
+              "recorded_floor": 32,
+              "P": 32,
+              "Q": 32,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+              },
+              "bid": 31,
+              "filled": null,
+              "decision": {
+                "order": 109,
+                "leg": "RUS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 31,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+                },
+                "Q": 32,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "support": null,
+                "accountability_assumption": "30d0768ff23f65ea10b85706814a02e2a6c4f29b093d238bfe883918c88dbd89",
+                "stage_index": 55
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 32,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784205425.612,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RUS-miss",
+          "label": "Last receipt before RUS missed at the bell",
+          "arm": "D",
+          "focus_leg": "RUS",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+          "epoch": 1784205420.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAS is not yet directionally called; RUS is not yet directionally called.",
+              "WHY": "BAS trades at 69¢ against its 68¢ opening anchor; RUS trades at 32¢ against its 32¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAS carries 449 eligible past sides from first-price comparisons; RUS carries 449 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAS calls 69¢ by T−0hr 0min; RUS calls 32¢ by T−0hr 0min.",
+              "WHY": "BAS’s middle half spans 69–69¢; RUS’s middle half spans 32–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAS has book 68/69 and a standing 68¢ bid; RUS has book 31/32 and a standing 31¢ bid.",
+              "WHY": "BAS: The desired bid could not be posted below the ask; RUS: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 70,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 69,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 69,
+                "last_trade_cents": 70,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+              },
+              "bid": 68,
+              "filled": null,
+              "decision": {
+                "order": 108,
+                "leg": "BAS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 68,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 69,
+                  "last_trade_cents": 70,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+                },
+                "Q": 69,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "support": null,
+                "accountability_assumption": "db006720488a72e041ff1a62fa61377f476137ff35031971817fb462a9897fa6",
+                "stage_index": 55
+              },
+              "permission": null,
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 69,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RUS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 32,
+              "recorded_floor": 32,
+              "P": 32,
+              "Q": 32,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+              },
+              "bid": 31,
+              "filled": null,
+              "decision": {
+                "order": 109,
+                "leg": "RUS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 31,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+                },
+                "Q": 32,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "support": null,
+                "accountability_assumption": "30d0768ff23f65ea10b85706814a02e2a6c4f29b093d238bfe883918c88dbd89",
+                "stage_index": 55
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 32,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784205425.612,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BAS": false,
+          "RUS": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BAS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 70,
+            "close_epoch": 1784205353.6,
+            "floor_cents": 66,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 4,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RUS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 32,
+            "close_epoch": 1784205339.9,
+            "floor_cents": 32,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "2219cd8710bb475bca2de5df680d2fb2a4c13c0922e1cb3553343fa08c9f9d3e",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+          "epoch": 1784173216.000001,
+          "clock": "T−8hr 57min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAS is not yet directionally called; RUS is not yet directionally called.",
+              "WHY": "BAS trades at 69¢ against its 68¢ opening anchor; RUS trades at 32¢ against its 32¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAS carries 91 eligible past sides from first-price comparisons; RUS carries 91 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAS calls 67¢ by T−7hr 13min; RUS calls 31¢ by T−4hr 24min.",
+              "WHY": "BAS’s middle half spans 66–69¢; RUS’s middle half spans 29–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAS has book 68/69 and no standing bid; RUS has book 31/32 and no standing bid.",
+              "WHY": "BAS: The policy was waiting for a directional call; RUS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 70,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 67,
+              "X": 1784179475.612,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 91,
+              "ess": 28.04434983979015,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 69,
+                "last_trade_cents": 69,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 56,
+                "leg": "BAS",
+                "epoch": 1784173216.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve RUS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 69,
+                  "last_trade_cents": 69,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522"
+                },
+                "Q": 67,
+                "X": 1784179475.612,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "stage_index": 28
+              },
+              "permission": {
+                "ordinal": 28,
+                "epoch": 1784173216.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+                "id": "BAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.21433833683221126,
+                      "ROUND_TRIP": 0.8565820566008335,
+                      "LATE_BREAK_UP": 0.1399263290147732,
+                      "DRIFT_UP": 0.11726290091018816,
+                      "DRIFT_DOWN": 0.31674160361125947,
+                      "ONE_STEP_UP": 0.1091151512016215,
+                      "ONE_STEP_DOWN": 0.09511075040288852,
+                      "QUIET_WOBBLE": 5.035489883372298,
+                      "SLEEPER": 0,
+                      "EARLY_SET_UP": 0.038204854881191144,
+                      "EARLY_SET_DOWN": 0.0633845156748448
+                    },
+                    "position": 0.15340112481477125,
+                    "epoch": 1784169219.4463854,
+                    "minutes_to_bell": 603.4360935767492,
+                    "open": true,
+                    "member_count": 50,
+                    "ess": 16.151029975511094,
+                    "weight_sum": 5.035489883372298,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve RUS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.04434983979015,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 91
+                  },
+                  "RUS": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.04434983979015,
+                    "role": "NOT_CALLABLE",
+                    "current": 32,
+                    "member_count": 91
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.21433833683221126,
+                    "ROUND_TRIP": 0.8565820566008335,
+                    "LATE_BREAK_UP": 0.1399263290147732,
+                    "DRIFT_UP": 0.11726290091018816,
+                    "DRIFT_DOWN": 0.31674160361125947,
+                    "ONE_STEP_UP": 0.1091151512016215,
+                    "ONE_STEP_DOWN": 0.09511075040288852,
+                    "QUIET_WOBBLE": 5.035489883372298,
+                    "SLEEPER": 0,
+                    "EARLY_SET_UP": 0.038204854881191144,
+                    "EARLY_SET_DOWN": 0.0633845156748448
+                  },
+                  "position": 0.15340112481477125,
+                  "epoch": 1784169219.4463854,
+                  "minutes_to_bell": 603.4360935767492,
+                  "open": true,
+                  "member_count": 50,
+                  "ess": 16.151029975511094,
+                  "weight_sum": 5.035489883372298,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784179475.612,
+                "q25": 66,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 69,
+                "floor_witness": {
+                  "epoch": 1784183190.981,
+                  "price": 69,
+                  "size": 0.31,
+                  "receipt": "88b69510-70d3-6789-a636-14660fd43341"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "RUS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 32,
+              "recorded_floor": 32,
+              "P": 32,
+              "Q": 31,
+              "X": 1784189590.612,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 91,
+              "ess": 28.04434983979015,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-435"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 57,
+                "leg": "RUS",
+                "epoch": 1784173216.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 31; reserve BAS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-435"
+                },
+                "Q": 31,
+                "X": 1784189590.612,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "stage_index": 28
+              },
+              "permission": {
+                "ordinal": 28,
+                "epoch": 1784173216.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-522",
+                "id": "RUS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 32,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.1099676392807339,
+                      "LATE_BREAK_DOWN": 0.21712531024833984,
+                      "DRIFT_UP": 0.34138338110053446,
+                      "ONE_STEP_DOWN": 0.2065737794776821,
+                      "ROUND_TRIP": 0.6380425990065945,
+                      "ONE_STEP_UP": 0.17427285242899626,
+                      "EARLY_SET_UP": 0.004428402366100483,
+                      "QUIET_WOBBLE": 4.756818010489373,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0.3939334858816229,
+                      "DRIFT_DOWN": 0.1436109222221314
+                    },
+                    "position": 0.01818181818181818,
+                    "epoch": 1784163436.5747635,
+                    "minutes_to_bell": 699.8172872742017,
+                    "open": true,
+                    "member_count": 48,
+                    "ess": 14.941623430154568,
+                    "weight_sum": 4.756818010489373,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 31; reserve BAS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.04434983979015,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 91
+                  },
+                  "RUS": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.04434983979015,
+                    "role": "NOT_CALLABLE",
+                    "current": 32,
+                    "member_count": 91
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.1099676392807339,
+                    "LATE_BREAK_DOWN": 0.21712531024833984,
+                    "DRIFT_UP": 0.34138338110053446,
+                    "ONE_STEP_DOWN": 0.2065737794776821,
+                    "ROUND_TRIP": 0.6380425990065945,
+                    "ONE_STEP_UP": 0.17427285242899626,
+                    "EARLY_SET_UP": 0.004428402366100483,
+                    "QUIET_WOBBLE": 4.756818010489373,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0.3939334858816229,
+                    "DRIFT_DOWN": 0.1436109222221314
+                  },
+                  "position": 0.01818181818181818,
+                  "epoch": 1784163436.5747635,
+                  "minutes_to_bell": 699.8172872742017,
+                  "open": true,
+                  "member_count": 48,
+                  "ess": 14.941623430154568,
+                  "weight_sum": 4.756818010489373,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784189590.612,
+                "q25": 29,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 32,
+                "floor_witness": {
+                  "epoch": 1784173743.378,
+                  "price": 32,
+                  "size": 2.98,
+                  "receipt": "5fc5b4b6-3b1c-4008-2e34-9d6acde412a1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784173743.378,
+                  "price": 32,
+                  "size": 2.98,
+                  "receipt": "5fc5b4b6-3b1c-4008-2e34-9d6acde412a1"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAS-miss",
+          "label": "Last receipt before BAS missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BAS",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+          "epoch": 1784205420.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAS is not yet directionally called; RUS is not yet directionally called.",
+              "WHY": "BAS trades at 69¢ against its 68¢ opening anchor; RUS trades at 32¢ against its 32¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAS carries 449 eligible past sides from first-price comparisons; RUS carries 449 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAS calls 69¢ by T−0hr 0min; RUS calls 32¢ by T−0hr 0min.",
+              "WHY": "BAS’s middle half spans 69–69¢; RUS’s middle half spans 32–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAS has book 68/69 and no standing bid; RUS has book 31/32 and no standing bid.",
+              "WHY": "BAS: The policy was waiting for a directional call; RUS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 70,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 69,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 69,
+                "last_trade_cents": 70,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 108,
+                "leg": "BAS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 69; reserve RUS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 69,
+                  "last_trade_cents": 70,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+                },
+                "Q": 69,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "stage_index": 55
+              },
+              "permission": {
+                "ordinal": 54,
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "id": "BAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 1.2016886659351136,
+                      "ROUND_TRIP": 3.0136536743143836,
+                      "LATE_BREAK_UP": 0.7917615331143495,
+                      "DRIFT_UP": 0.21292160457361226,
+                      "DRIFT_DOWN": 0.36122731935175667,
+                      "ONE_STEP_UP": 0.6757170517132363,
+                      "ONE_STEP_DOWN": 0.5420444020340249,
+                      "QUIET_WOBBLE": 24.23075968651859,
+                      "SLEEPER": 2.041713573720963,
+                      "EARLY_SET_UP": 0.18841338663296447,
+                      "EARLY_SET_DOWN": 0.30687913621821944
+                    },
+                    "position": 0.15781769793745842,
+                    "epoch": 1784169408.3282545,
+                    "minutes_to_bell": 600.2880624254544,
+                    "open": true,
+                    "member_count": 289,
+                    "ess": 84.60987169726914,
+                    "weight_sum": 24.23075968651859,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 69; reserve RUS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 449
+                  },
+                  "RUS": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 32,
+                    "member_count": 449
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 1.2016886659351136,
+                    "ROUND_TRIP": 3.0136536743143836,
+                    "LATE_BREAK_UP": 0.7917615331143495,
+                    "DRIFT_UP": 0.21292160457361226,
+                    "DRIFT_DOWN": 0.36122731935175667,
+                    "ONE_STEP_UP": 0.6757170517132363,
+                    "ONE_STEP_DOWN": 0.5420444020340249,
+                    "QUIET_WOBBLE": 24.23075968651859,
+                    "SLEEPER": 2.041713573720963,
+                    "EARLY_SET_UP": 0.18841338663296447,
+                    "EARLY_SET_DOWN": 0.30687913621821944
+                  },
+                  "position": 0.15781769793745842,
+                  "epoch": 1784169408.3282545,
+                  "minutes_to_bell": 600.2880624254544,
+                  "open": true,
+                  "member_count": 289,
+                  "ess": 84.60987169726914,
+                  "weight_sum": 24.23075968651859,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 69,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RUS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 32,
+              "recorded_floor": 32,
+              "P": 32,
+              "Q": 32,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 109,
+                "leg": "RUS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 32; reserve BAS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+                },
+                "Q": 32,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "stage_index": 55
+              },
+              "permission": {
+                "ordinal": 54,
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "id": "RUS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 32,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.9340200473416145,
+                      "LATE_BREAK_DOWN": 0.8293344769585231,
+                      "DRIFT_UP": 0.35778162156735416,
+                      "ONE_STEP_DOWN": 0.8396519673433211,
+                      "ROUND_TRIP": 1.8278624710400884,
+                      "ONE_STEP_UP": 0.21019635143784923,
+                      "EARLY_SET_UP": 0.126294054630425,
+                      "QUIET_WOBBLE": 24.830528263199362,
+                      "SLEEPER": 2.765012157199061,
+                      "GRIND_WOBBLE_UP": 0.017496736675375667,
+                      "EARLY_SET_DOWN": 0.6118286705725916,
+                      "DRIFT_DOWN": 0.2167732161616451
+                    },
+                    "position": 0.20694773494434307,
+                    "epoch": 1784171509.4534845,
+                    "minutes_to_bell": 565.269308590889,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 83.79730969100683,
+                    "weight_sum": 24.830528263199362,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 32; reserve BAS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 449
+                  },
+                  "RUS": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 32,
+                    "member_count": 449
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.9340200473416145,
+                    "LATE_BREAK_DOWN": 0.8293344769585231,
+                    "DRIFT_UP": 0.35778162156735416,
+                    "ONE_STEP_DOWN": 0.8396519673433211,
+                    "ROUND_TRIP": 1.8278624710400884,
+                    "ONE_STEP_UP": 0.21019635143784923,
+                    "EARLY_SET_UP": 0.126294054630425,
+                    "QUIET_WOBBLE": 24.830528263199362,
+                    "SLEEPER": 2.765012157199061,
+                    "GRIND_WOBBLE_UP": 0.017496736675375667,
+                    "EARLY_SET_DOWN": 0.6118286705725916,
+                    "DRIFT_DOWN": 0.2167732161616451
+                  },
+                  "position": 0.20694773494434307,
+                  "epoch": 1784171509.4534845,
+                  "minutes_to_bell": 565.269308590889,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 83.79730969100683,
+                  "weight_sum": 24.830528263199362,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 32,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784205425.612,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RUS-miss",
+          "label": "Last receipt before RUS missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "RUS",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+          "epoch": 1784205420.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAS is not yet directionally called; RUS is not yet directionally called.",
+              "WHY": "BAS trades at 69¢ against its 68¢ opening anchor; RUS trades at 32¢ against its 32¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAS carries 449 eligible past sides from first-price comparisons; RUS carries 449 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAS calls 69¢ by T−0hr 0min; RUS calls 32¢ by T−0hr 0min.",
+              "WHY": "BAS’s middle half spans 69–69¢; RUS’s middle half spans 32–32¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAS has book 68/69 and no standing bid; RUS has book 31/32 and no standing bid.",
+              "WHY": "BAS: The policy was waiting for a directional call; RUS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 70,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 69,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 69,
+                "last_trade_cents": 70,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 108,
+                "leg": "BAS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 69; reserve RUS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 69,
+                  "last_trade_cents": 70,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888"
+                },
+                "Q": 69,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "stage_index": 55
+              },
+              "permission": {
+                "ordinal": 54,
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "id": "BAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 1.2016886659351136,
+                      "ROUND_TRIP": 3.0136536743143836,
+                      "LATE_BREAK_UP": 0.7917615331143495,
+                      "DRIFT_UP": 0.21292160457361226,
+                      "DRIFT_DOWN": 0.36122731935175667,
+                      "ONE_STEP_UP": 0.6757170517132363,
+                      "ONE_STEP_DOWN": 0.5420444020340249,
+                      "QUIET_WOBBLE": 24.23075968651859,
+                      "SLEEPER": 2.041713573720963,
+                      "EARLY_SET_UP": 0.18841338663296447,
+                      "EARLY_SET_DOWN": 0.30687913621821944
+                    },
+                    "position": 0.15781769793745842,
+                    "epoch": 1784169408.3282545,
+                    "minutes_to_bell": 600.2880624254544,
+                    "open": true,
+                    "member_count": 289,
+                    "ess": 84.60987169726914,
+                    "weight_sum": 24.23075968651859,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 69; reserve RUS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 449
+                  },
+                  "RUS": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 32,
+                    "member_count": 449
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 1.2016886659351136,
+                    "ROUND_TRIP": 3.0136536743143836,
+                    "LATE_BREAK_UP": 0.7917615331143495,
+                    "DRIFT_UP": 0.21292160457361226,
+                    "DRIFT_DOWN": 0.36122731935175667,
+                    "ONE_STEP_UP": 0.6757170517132363,
+                    "ONE_STEP_DOWN": 0.5420444020340249,
+                    "QUIET_WOBBLE": 24.23075968651859,
+                    "SLEEPER": 2.041713573720963,
+                    "EARLY_SET_UP": 0.18841338663296447,
+                    "EARLY_SET_DOWN": 0.30687913621821944
+                  },
+                  "position": 0.15781769793745842,
+                  "epoch": 1784169408.3282545,
+                  "minutes_to_bell": 600.2880624254544,
+                  "open": true,
+                  "member_count": 289,
+                  "ess": 84.60987169726914,
+                  "weight_sum": 24.23075968651859,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 69,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RUS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 32,
+              "recorded_floor": 32,
+              "P": 32,
+              "Q": 32,
+              "X": 1784205420.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 449,
+              "ess": 136.1107677004487,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 32,
+                "last_trade_cents": 32,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 109,
+                "leg": "RUS",
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 32; reserve BAS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 32,
+                  "last_trade_cents": 32,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-RUS.csv.gz#row-1552"
+                },
+                "Q": 32,
+                "X": 1784205420.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784162659,
+                "stage_index": 55
+              },
+              "permission": {
+                "ordinal": 54,
+                "epoch": 1784205420.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16BASRUS-BAS.csv.gz#row-1888",
+                "id": "RUS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 32,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.9340200473416145,
+                      "LATE_BREAK_DOWN": 0.8293344769585231,
+                      "DRIFT_UP": 0.35778162156735416,
+                      "ONE_STEP_DOWN": 0.8396519673433211,
+                      "ROUND_TRIP": 1.8278624710400884,
+                      "ONE_STEP_UP": 0.21019635143784923,
+                      "EARLY_SET_UP": 0.126294054630425,
+                      "QUIET_WOBBLE": 24.830528263199362,
+                      "SLEEPER": 2.765012157199061,
+                      "GRIND_WOBBLE_UP": 0.017496736675375667,
+                      "EARLY_SET_DOWN": 0.6118286705725916,
+                      "DRIFT_DOWN": 0.2167732161616451
+                    },
+                    "position": 0.20694773494434307,
+                    "epoch": 1784171509.4534845,
+                    "minutes_to_bell": 565.269308590889,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 83.79730969100683,
+                    "weight_sum": 24.830528263199362,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 32; reserve BAS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 449
+                  },
+                  "RUS": {
+                    "forecast": 32,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 136.1107677004487,
+                    "role": "NOT_CALLABLE",
+                    "current": 32,
+                    "member_count": 449
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.9340200473416145,
+                    "LATE_BREAK_DOWN": 0.8293344769585231,
+                    "DRIFT_UP": 0.35778162156735416,
+                    "ONE_STEP_DOWN": 0.8396519673433211,
+                    "ROUND_TRIP": 1.8278624710400884,
+                    "ONE_STEP_UP": 0.21019635143784923,
+                    "EARLY_SET_UP": 0.126294054630425,
+                    "QUIET_WOBBLE": 24.830528263199362,
+                    "SLEEPER": 2.765012157199061,
+                    "GRIND_WOBBLE_UP": 0.017496736675375667,
+                    "EARLY_SET_DOWN": 0.6118286705725916,
+                    "DRIFT_DOWN": 0.2167732161616451
+                  },
+                  "position": 0.20694773494434307,
+                  "epoch": 1784171509.4534845,
+                  "minutes_to_bell": 565.269308590889,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 83.79730969100683,
+                  "weight_sum": 24.830528263199362,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784205420.000001,
+                "q25": 32,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784205425.612,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BAS": false,
+          "RUS": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BAS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 70,
+            "close_epoch": 1784205353.6,
+            "floor_cents": 66,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 4,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RUS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 32,
+            "close_epoch": 1784205339.9,
+            "floor_cents": 32,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "2219cd8710bb475bca2de5df680d2fb2a4c13c0922e1cb3553343fa08c9f9d3e",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

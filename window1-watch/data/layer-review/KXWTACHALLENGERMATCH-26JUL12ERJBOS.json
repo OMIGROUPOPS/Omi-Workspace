@@ -1,0 +1,2205 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "0efdb7acb65d6badbb2b1b71ed971169b4a7083e9b43eb9908971a6b6c71c38b",
+    "stage_cache_sha256": "5d4c742d069a49eec1550139a892ece60af673740ad3da2f43549451845612fe",
+    "mirror_projection_sha256": "b4a06e545e95ba86d9dbbdcca4f2999b0b6b3ee7d2d1df266b18c1dbe1f8fb9d",
+    "mirror_permissions_sha256": "abf75f8ba0aeb4fb6bde04450b8220baebb69ae90c1aeff88eaca60145023529",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "be981a93f466499efaeeb86cfd5d6b62110ab0ee7dbc678daaf8c6da063665c5",
+      "row_number": 50,
+      "row_csv": "26JUL12ERJBOS,KXWTACHALLENGERMATCH-26JUL12ERJBOS,WTA_CHALL,1783870300,1783870300,1783954829.377,1783876200.0,BOS,ERJ,1783902171,19.5,18,1783922248.2,18,1783952542.3,558.47,109.65,STILL,-1.5,1783918608,18,1783922248.2,PRE_BELL_VALID,1783898960,77.0,80,1783902176.0,82,1783954764.0,607.75,498.89,MOVER,5.0,1783918747,81,1783954574.4,PRE_BELL_VALID,1783902171,,,1783959180.0,1783968014.0,1783959180.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783902171,1783954829.377,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783902171,
+      "span_end_epoch": 1783954829.377,
+      "bell_epoch": 1783959180,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783959180,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BOS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 19.5,
+          "floor_cents": 18,
+          "floor_epoch": 1783922248.2,
+          "minutes_to_bell": 615.5299999992053,
+          "line": "BOS 18¢ @ 615.53m to bell",
+          "marker_label": "BOS FLOOR · RECORDED 18¢ @ 615.53m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 18¢ · 615m to bell",
+          "hover_note": "Recorded floor 18¢ printed here · 615m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "ERJ": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 77,
+          "floor_cents": 80,
+          "floor_epoch": 1783902176,
+          "minutes_to_bell": 950.0666666666667,
+          "line": "ERJ 80¢ @ 950.07m to bell",
+          "marker_label": "ERJ FLOOR · RECORDED 80¢ @ 950.07m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 80¢ · 950m to bell",
+          "hover_note": "Recorded floor 80¢ printed here · 950m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "ERJ",
+      "underdog_leg": "BOS",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 80 + 18 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12ERJBOS",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1783870300",
+        "w1_left_epoch": "1783870300",
+        "w1_right_epoch": "1783954829.377",
+        "scheduled_start_epoch": "1783876200.0",
+        "legA": "BOS",
+        "legB": "ERJ",
+        "legA_formation_end_epoch": "1783902171",
+        "legA_open_postformation_c": "19.5",
+        "legA_floor_c": "18",
+        "legA_floor_epoch": "1783922248.2",
+        "legA_close_c": "18",
+        "legA_close_epoch": "1783952542.3",
+        "legA_contracts": "558.47",
+        "legA_premium_usd": "109.65",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-1.5",
+        "legA_us_first_post_epoch": "1783918608",
+        "legA_us_fill_c": "18",
+        "legA_us_fill_epoch": "1783922248.2",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1783898960",
+        "legB_open_postformation_c": "77.0",
+        "legB_floor_c": "80",
+        "legB_floor_epoch": "1783902176.0",
+        "legB_close_c": "82",
+        "legB_close_epoch": "1783954764.0",
+        "legB_contracts": "607.75",
+        "legB_premium_usd": "498.89",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "5.0",
+        "legB_us_first_post_epoch": "1783918747",
+        "legB_us_fill_c": "81",
+        "legB_us_fill_epoch": "1783954574.4",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783902171",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783959180.0",
+        "kalshi_close_time_epoch": "1783968014.0",
+        "bell_epoch": "1783959180.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783902171",
+        "span_end_epoch": "1783954829.377",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL12ERJBOS.jsonl",
+      "sha256": "6650cd27befe99b694d8eb1391ddf3559df4b6e06ae84901a941f2ae7240020c",
+      "raw_rows": 7482,
+      "accepted_rows": 46,
+      "start_epoch": 1783902171,
+      "end_epoch": 1783954829.377
+    }
+  },
+  "first_callable_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+  "first_both_directional_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783951229.377",
+  "first_callable_by_side": {
+    "BOS": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+    "ERJ": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+          "epoch": 1783922248.222,
+          "clock": "T−9hr 3min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BOS is not yet directionally called; ERJ is strengthening.",
+              "WHY": "BOS trades at 18¢ against its 19¢ opening anchor; ERJ trades at 83¢ against its 77¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BOS carries 87 eligible past sides from first-price comparisons; ERJ carries 16 eligible past sides from the base comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BOS calls 16¢ by T−3hr 43min; ERJ calls 80¢ by T−3hr 14min.",
+              "WHY": "BOS’s middle half spans 15–18¢; ERJ’s middle half spans 75–81¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BOS has book 18/19 and a standing 16¢ bid; ERJ has book 81/83 and a standing 80¢ bid.",
+              "WHY": "BOS: The current pool target was the permitted bid level; ERJ: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BOS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 19,
+              "corrected_open": 19.5,
+              "close": 18,
+              "recorded_floor": 18,
+              "P": 18,
+              "Q": 16,
+              "X": 1783941462.377,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 87,
+              "ess": 33.68798228593593,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 18,
+                "ask_cents": 19,
+                "last_trade_cents": 19,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3887"
+              },
+              "bid": 16,
+              "filled": null,
+              "decision": {
+                "order": 190,
+                "leg": "BOS",
+                "epoch": 1783922248.222,
+                "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 16,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 18,
+                  "ask_cents": 19,
+                  "last_trade_cents": 19,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3887"
+                },
+                "Q": 16,
+                "X": 1783941462.377,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783902171,
+                "support": null,
+                "accountability_assumption": "53115202d5f1ccff1626d3924162e81c3a6e82a1f1c33b3837127bac890a2571",
+                "stage_index": 95
+              },
+              "permission": null,
+              "micro": {
+                "Q": 16,
+                "deadline_epoch": 1783941462.377,
+                "q25": 15,
+                "q75": 18,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 18,
+                "floor_witness": {
+                  "epoch": 1783952542.282,
+                  "price": 18,
+                  "size": 1.26,
+                  "receipt": "626a458a-00de-4452-9941-79a327a15465"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ERJ": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 82,
+              "recorded_floor": 80,
+              "P": 83,
+              "Q": 80,
+              "X": 1783943182.377,
+              "layer": "BASE",
+              "members": 16,
+              "ess": 16,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 83,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-1614"
+              },
+              "bid": 80,
+              "filled": null,
+              "decision": {
+                "order": 191,
+                "leg": "ERJ",
+                "epoch": 1783922248.222,
+                "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 80,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 83,
+                  "last_trade_cents": 82,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-1614"
+                },
+                "Q": 80,
+                "X": 1783943182.377,
+                "status": "RESOLVED",
+                "author": "POOL_BASE",
+                "formation_end": 1783898960,
+                "support": null,
+                "accountability_assumption": "13196824de3090518a07aaab8c14803c1d9dcb654b3a1cea99848ab10f875928",
+                "stage_index": 95
+              },
+              "permission": null,
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1783943182.377,
+                "q25": 75,
+                "q75": 81,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 81,
+                "floor_witness": {
+                  "epoch": 1783954574.395,
+                  "price": 81,
+                  "size": 4.02,
+                  "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BOS-fill",
+          "label": "Last receipt before BOS filled",
+          "arm": "D",
+          "focus_leg": "BOS",
+          "outcome": "fill",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783951229.377",
+          "epoch": 1783951229.377,
+          "clock": "T−1hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BOS is strengthening; ERJ is strengthening.",
+              "WHY": "BOS trades at 21¢ against its 19¢ opening anchor; ERJ trades at 82¢ against its 77¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BOS carries 54 eligible past sides from first-price comparisons; ERJ carries 94 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BOS calls 20¢ by T−0hr 58min; ERJ calls 82¢ by T−1hr 0min.",
+              "WHY": "BOS’s middle half spans 19–21¢; ERJ’s middle half spans 81–82¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BOS has book 19/20 and a standing 18¢ bid; ERJ has book 81/82 and a standing 81¢ bid.",
+              "WHY": "BOS: The desired bid could not be posted below the ask; ERJ: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BOS": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 19,
+              "corrected_open": 19.5,
+              "close": 18,
+              "recorded_floor": 18,
+              "P": 21,
+              "Q": 20,
+              "X": 1783951351.377,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 54,
+              "ess": 20.735077137305325,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 19,
+                "ask_cents": 20,
+                "last_trade_cents": 21,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-9870"
+              },
+              "bid": 18,
+              "filled": null,
+              "decision": {
+                "order": 210,
+                "leg": "BOS",
+                "epoch": 1783951229.377,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783951229.377",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 18,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 19,
+                  "ask_cents": 20,
+                  "last_trade_cents": 21,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-9870"
+                },
+                "Q": 20,
+                "X": 1783951351.377,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783902171,
+                "support": null,
+                "accountability_assumption": "80b9ade716bd74f1c7f9f59357327e4c05ea021946c49cca7bfb179efb8ebd3b",
+                "stage_index": 105
+              },
+              "permission": null,
+              "micro": {
+                "Q": 20,
+                "deadline_epoch": 1783951351.377,
+                "q25": 19,
+                "q75": 21,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 18,
+                "floor_witness": {
+                  "epoch": 1783952542.282,
+                  "price": 18,
+                  "size": 1.26,
+                  "receipt": "626a458a-00de-4452-9941-79a327a15465"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ERJ": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 82,
+              "recorded_floor": 80,
+              "P": 82,
+              "Q": 82,
+              "X": 1783951229.377,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 94,
+              "ess": 60.89582849889232,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 82,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-2577"
+              },
+              "bid": 81,
+              "filled": null,
+              "decision": {
+                "order": 211,
+                "leg": "ERJ",
+                "epoch": 1783951229.377,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783951229.377",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 81,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 82,
+                  "last_trade_cents": 82,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-2577"
+                },
+                "Q": 82,
+                "X": 1783951229.377,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783898960,
+                "support": null,
+                "accountability_assumption": "aa65ac1cb7590994a9dc741d109c54eb46c3db2632372b9b55d95dde9463ac51",
+                "stage_index": 105
+              },
+              "permission": null,
+              "micro": {
+                "Q": 82,
+                "deadline_epoch": 1783951229.377,
+                "q25": 81,
+                "q75": 82,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 81,
+                "floor_witness": {
+                  "epoch": 1783954574.395,
+                  "price": 81,
+                  "size": 4.02,
+                  "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783952542.282,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "BOS",
+              "epoch": 1783952542.282,
+              "cents": 18,
+              "receipt": "626a458a-00de-4452-9941-79a327a15465",
+              "order_lineage_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+              "order_lineage_start_epoch": 1783922248.222,
+              "current_price_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+              "current_price_start_epoch": 1783924283.000002,
+              "order_lineage_age_minutes": 504.90100000302,
+              "current_price_age_minutes": 470.988033302625,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "BOS",
+                "epoch": 1783952542.282,
+                "cents": 18,
+                "receipt": "626a458a-00de-4452-9941-79a327a15465",
+                "order_lineage_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "order_lineage_start_epoch": 1783922248.222,
+                "current_price_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+                "current_price_start_epoch": 1783924283.000002,
+                "order_lineage_age_minutes": 504.90100000302,
+                "current_price_age_minutes": 470.988033302625,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 210,
+              "leg": "BOS",
+              "epoch": 1783951229.377,
+              "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783951229.377",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 18,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 19,
+                "ask_cents": 20,
+                "last_trade_cents": 21,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-9870"
+              },
+              "Q": 20,
+              "X": 1783951351.377,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783902171,
+              "support": null,
+              "accountability_assumption": "80b9ade716bd74f1c7f9f59357327e4c05ea021946c49cca7bfb179efb8ebd3b",
+              "stage_index": 105
+            },
+            "license_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+            "licensing_deadline_epoch": 1783937734.377,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-ERJ-fill",
+          "label": "Last receipt before ERJ filled",
+          "arm": "D",
+          "focus_leg": "ERJ",
+          "outcome": "fill",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783954529.377",
+          "epoch": 1783954529.377,
+          "clock": "T−0hr 5min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BOS is not yet directionally called; ERJ is strengthening.",
+              "WHY": "BOS trades at 18¢ against its 19¢ opening anchor; ERJ trades at 82¢ against its 77¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BOS carries 440 eligible past sides from first-price comparisons; ERJ carries 116 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BOS calls 18¢ by T−0hr 5min; ERJ calls 82¢ by T−0hr 5min.",
+              "WHY": "BOS’s middle half spans 18–18¢; ERJ’s middle half spans 82–82¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BOS has book 18/20 and a recorded purchase at 18¢; ERJ has book 81/82 and a standing 81¢ bid.",
+              "WHY": "BOS: This side was already bought, so no new bid was allowed; ERJ: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BOS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 19,
+              "corrected_open": 19.5,
+              "close": 18,
+              "recorded_floor": 18,
+              "P": 18,
+              "Q": 18,
+              "X": 1783954529.377,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 440,
+              "ess": 107.42715328799159,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 18,
+                "ask_cents": 20,
+                "last_trade_cents": 18,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-69888"
+              },
+              "bid": null,
+              "filled": 18,
+              "decision": {
+                "order": 218,
+                "leg": "BOS",
+                "epoch": 1783954529.377,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783954529.377",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 18,
+                  "ask_cents": 20,
+                  "last_trade_cents": 18,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-69888"
+                },
+                "Q": 18,
+                "X": 1783954529.377,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783902171,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 110
+              },
+              "permission": null,
+              "micro": {
+                "Q": 18,
+                "deadline_epoch": 1783954529.377,
+                "q25": 18,
+                "q75": 18,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ERJ": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 82,
+              "recorded_floor": 80,
+              "P": 82,
+              "Q": 82,
+              "X": 1783954529.377,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 116,
+              "ess": 24.402504876965256,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 82,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-4816"
+              },
+              "bid": 81,
+              "filled": null,
+              "decision": {
+                "order": 219,
+                "leg": "ERJ",
+                "epoch": 1783954529.377,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783954529.377",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 81,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 82,
+                  "last_trade_cents": 82,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-4816"
+                },
+                "Q": 82,
+                "X": 1783954529.377,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783898960,
+                "support": null,
+                "accountability_assumption": "3012647554936076931256e620a32ce9b9066911439b5b3488180e320eb86d7a",
+                "stage_index": 110
+              },
+              "permission": null,
+              "micro": {
+                "Q": 82,
+                "deadline_epoch": 1783954529.377,
+                "q25": 82,
+                "q75": 82,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 81,
+                "floor_witness": {
+                  "epoch": 1783954574.395,
+                  "price": 81,
+                  "size": 4.02,
+                  "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783954574.395,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "ERJ",
+              "epoch": 1783954574.395,
+              "cents": 81,
+              "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1",
+              "order_lineage_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+              "order_lineage_start_epoch": 1783922248.222,
+              "current_price_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+              "current_price_start_epoch": 1783924283.000002,
+              "order_lineage_age_minutes": 538.7695500016213,
+              "current_price_age_minutes": 504.8565833012263,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "ERJ",
+                "epoch": 1783954574.395,
+                "cents": 81,
+                "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1",
+                "order_lineage_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "order_lineage_start_epoch": 1783922248.222,
+                "current_price_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+                "current_price_start_epoch": 1783924283.000002,
+                "order_lineage_age_minutes": 538.7695500016213,
+                "current_price_age_minutes": 504.8565833012263,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 219,
+              "leg": "ERJ",
+              "epoch": 1783954529.377,
+              "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS|ATLAS_GATE|1783954529.377",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 81,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 81,
+                "ask_cents": 82,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-4816"
+              },
+              "Q": 82,
+              "X": 1783954529.377,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783898960,
+              "support": null,
+              "accountability_assumption": "3012647554936076931256e620a32ce9b9066911439b5b3488180e320eb86d7a",
+              "stage_index": 110
+            },
+            "license_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+            "licensing_deadline_epoch": 1783937744.377,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BOS": true,
+          "ERJ": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "BOS",
+            "epoch": 1783952542.282,
+            "cents": 18,
+            "receipt": "626a458a-00de-4452-9941-79a327a15465",
+            "order_lineage_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+            "order_lineage_start_epoch": 1783922248.222,
+            "current_price_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+            "current_price_start_epoch": 1783924283.000002,
+            "order_lineage_age_minutes": 504.90100000302,
+            "current_price_age_minutes": 470.988033302625,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "ERJ",
+            "epoch": 1783954574.395,
+            "cents": 81,
+            "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1",
+            "order_lineage_receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+            "order_lineage_start_epoch": 1783922248.222,
+            "current_price_receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3908",
+            "current_price_start_epoch": 1783924283.000002,
+            "order_lineage_age_minutes": 538.7695500016213,
+            "current_price_age_minutes": 504.8565833012263,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+        "category": "WTA_CHALL",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "BOS",
+            "filled": true,
+            "fill_cents": 18,
+            "fill_epoch": 1783952542.282,
+            "fill_receipt": "626a458a-00de-4452-9941-79a327a15465",
+            "close_cents": 18,
+            "close_epoch": 1783952542.3,
+            "floor_cents": 18,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "ERJ",
+            "filled": true,
+            "fill_cents": 81,
+            "fill_epoch": 1783954574.395,
+            "fill_receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1",
+            "close_cents": 82,
+            "close_epoch": 1783954764,
+            "floor_cents": 80,
+            "offered_cents": 2,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "be981a93f466499efaeeb86cfd5d6b62110ab0ee7dbc678daaf8c6da063665c5",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+          "epoch": 1783922248.222,
+          "clock": "T−9hr 3min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BOS is not yet directionally called; ERJ is strengthening.",
+              "WHY": "BOS trades at 18¢ against its 19¢ opening anchor; ERJ trades at 83¢ against its 77¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BOS carries 87 eligible past sides from first-price comparisons; ERJ carries 16 eligible past sides from the base comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BOS calls 16¢ by T−3hr 43min; ERJ calls 80¢ by T−3hr 14min.",
+              "WHY": "BOS’s middle half spans 15–18¢; ERJ’s middle half spans 75–81¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BOS has book 18/19 and no standing bid; ERJ has book 81/83 and no standing bid.",
+              "WHY": "BOS: The policy was waiting for a directional call; ERJ: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BOS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 19,
+              "corrected_open": 19.5,
+              "close": 18,
+              "recorded_floor": 18,
+              "P": 18,
+              "Q": 16,
+              "X": 1783941462.377,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 87,
+              "ess": 33.68798228593593,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 18,
+                "ask_cents": 19,
+                "last_trade_cents": 19,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3887"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 190,
+                "leg": "BOS",
+                "epoch": 1783922248.222,
+                "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 16; reserve ERJ max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 18,
+                  "ask_cents": 19,
+                  "last_trade_cents": 19,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-3887"
+                },
+                "Q": 16,
+                "X": 1783941462.377,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783902171,
+                "stage_index": 95
+              },
+              "permission": {
+                "ordinal": 95,
+                "epoch": 1783922248.222,
+                "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "id": "BOS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 18,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.056325280903508405,
+                      "LATE_BREAK_DOWN": 0.074101403800864,
+                      "DRIFT_UP": 0.09544339312146652,
+                      "ONE_STEP_DOWN": 0.37900092511052264,
+                      "ROUND_TRIP": 0.5276820736311549,
+                      "ONE_STEP_UP": 0.2974793462786184,
+                      "EARLY_SET_UP": 0.011271649899685815,
+                      "QUIET_WOBBLE": 2.3193684296899053,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0.42058807225128386,
+                      "DRIFT_DOWN": 0.08791017130374681
+                    },
+                    "position": 0.04713379930863178,
+                    "epoch": 1783904652.9893734,
+                    "minutes_to_bell": 836.2731271107991,
+                    "open": true,
+                    "member_count": 44,
+                    "ess": 18.62993109788344,
+                    "weight_sum": 2.3193684296899053,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 16; reserve ERJ max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ERJ": {
+                    "forecast": 83,
+                    "layer": "BASE",
+                    "ess": 16,
+                    "role": "CLIMBER",
+                    "current": 83,
+                    "member_count": 16
+                  },
+                  "BOS": {
+                    "forecast": 18,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 33.68798228593593,
+                    "role": "NOT_CALLABLE",
+                    "current": 18,
+                    "member_count": 87
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.056325280903508405,
+                    "LATE_BREAK_DOWN": 0.074101403800864,
+                    "DRIFT_UP": 0.09544339312146652,
+                    "ONE_STEP_DOWN": 0.37900092511052264,
+                    "ROUND_TRIP": 0.5276820736311549,
+                    "ONE_STEP_UP": 0.2974793462786184,
+                    "EARLY_SET_UP": 0.011271649899685815,
+                    "QUIET_WOBBLE": 2.3193684296899053,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0.42058807225128386,
+                    "DRIFT_DOWN": 0.08791017130374681
+                  },
+                  "position": 0.04713379930863178,
+                  "epoch": 1783904652.9893734,
+                  "minutes_to_bell": 836.2731271107991,
+                  "open": true,
+                  "member_count": 44,
+                  "ess": 18.62993109788344,
+                  "weight_sum": 2.3193684296899053,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 16,
+                "deadline_epoch": 1783941462.377,
+                "q25": 15,
+                "q75": 18,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 18,
+                "floor_witness": {
+                  "epoch": 1783952542.282,
+                  "price": 18,
+                  "size": 1.26,
+                  "receipt": "626a458a-00de-4452-9941-79a327a15465"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ERJ": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 82,
+              "recorded_floor": 80,
+              "P": 83,
+              "Q": 80,
+              "X": 1783943182.377,
+              "layer": "BASE",
+              "members": 16,
+              "ess": 16,
+              "family": "ONE_STEP_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 83,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-1614"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 191,
+                "leg": "ERJ",
+                "epoch": 1783922248.222,
+                "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 83; reserve BOS max(close 18, ask 19) = 19"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 83,
+                  "last_trade_cents": 82,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-1614"
+                },
+                "Q": 80,
+                "X": 1783943182.377,
+                "status": "RESOLVED",
+                "author": "POOL_BASE",
+                "formation_end": 1783898960,
+                "stage_index": 95
+              },
+              "permission": {
+                "ordinal": 95,
+                "epoch": 1783922248.222,
+                "receipt": "425e0cab-c0be-6734-d3d8-5ad9a76f6dfd",
+                "id": "ERJ",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 82,
+                  "hand_level": 82,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 83,
+                  "window": {
+                    "family": "ONE_STEP_UP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 3,
+                      "ROUND_TRIP": 2,
+                      "LATE_BREAK_UP": 0,
+                      "DRIFT_UP": 2,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 4,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 3,
+                      "SLEEPER": 0,
+                      "EARLY_SET_UP": 2,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.005042048311426572,
+                    "epoch": 1783899241.6960979,
+                    "minutes_to_bell": 926.461348370711,
+                    "open": true,
+                    "member_count": 4,
+                    "ess": 4,
+                    "weight_sum": 4,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 19,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 18,
+                    "ask": 19,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 83; reserve BOS max(close 18, ask 19) = 19",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ERJ": {
+                    "forecast": 83,
+                    "layer": "BASE",
+                    "ess": 16,
+                    "role": "CLIMBER",
+                    "current": 83,
+                    "member_count": 16
+                  },
+                  "BOS": {
+                    "forecast": 18,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 33.68798228593593,
+                    "role": "NOT_CALLABLE",
+                    "current": 18,
+                    "member_count": 87
+                  }
+                },
+                "window": {
+                  "family": "ONE_STEP_UP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 3,
+                    "ROUND_TRIP": 2,
+                    "LATE_BREAK_UP": 0,
+                    "DRIFT_UP": 2,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 4,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 3,
+                    "SLEEPER": 0,
+                    "EARLY_SET_UP": 2,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.005042048311426572,
+                  "epoch": 1783899241.6960979,
+                  "minutes_to_bell": 926.461348370711,
+                  "open": true,
+                  "member_count": 4,
+                  "ess": 4,
+                  "weight_sum": 4,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1783943182.377,
+                "q25": 75,
+                "q75": 81,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 81,
+                "floor_witness": {
+                  "epoch": 1783954574.395,
+                  "price": 81,
+                  "size": 4.02,
+                  "receipt": "152a282e-0992-79fb-e5b6-13644a04b7f1"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BOS-miss",
+          "label": "Last receipt before BOS missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BOS",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+          "epoch": 1783954803.000008,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BOS is not yet directionally called; ERJ is strengthening.",
+              "WHY": "BOS trades at 18¢ against its 19¢ opening anchor; ERJ trades at 82¢ against its 77¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BOS carries 448 eligible past sides from first-price comparisons; ERJ carries 115 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BOS calls 18¢ by T−0hr 0min; ERJ calls 82¢ by T−0hr 0min.",
+              "WHY": "BOS’s middle half spans 18–18¢; ERJ’s middle half spans 82–82¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BOS has book 18/20 and no standing bid; ERJ has book 81/82 and no standing bid.",
+              "WHY": "BOS: The policy was waiting for a directional call; ERJ: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BOS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 19,
+              "corrected_open": 19.5,
+              "close": 18,
+              "recorded_floor": 18,
+              "P": 18,
+              "Q": 18,
+              "X": 1783954803.000008,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 109.82483870452886,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 18,
+                "ask_cents": 20,
+                "last_trade_cents": 18,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 224,
+                "leg": "BOS",
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 18; reserve ERJ max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 18,
+                  "ask_cents": 20,
+                  "last_trade_cents": 18,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124"
+                },
+                "Q": 18,
+                "X": 1783954803.000008,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783902171,
+                "stage_index": 113
+              },
+              "permission": {
+                "ordinal": 112,
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "id": "BOS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 18,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4061945080369508,
+                      "LATE_BREAK_DOWN": 0.3367728697478003,
+                      "DRIFT_UP": 0.10435140165108338,
+                      "ONE_STEP_DOWN": 0.7809268610244595,
+                      "ROUND_TRIP": 1.5099743947277964,
+                      "ONE_STEP_UP": 0.3118818115120646,
+                      "EARLY_SET_UP": 0.033410067009019655,
+                      "QUIET_WOBBLE": 14.045710650343437,
+                      "SLEEPER": 1.7057490238630078,
+                      "GRIND_WOBBLE_UP": 0.009340921312280641,
+                      "EARLY_SET_DOWN": 0.6654157594854775,
+                      "DRIFT_DOWN": 0.2395530203794276
+                    },
+                    "position": 0.14230072463768115,
+                    "epoch": 1783909664.3252053,
+                    "minutes_to_bell": 752.750863246123,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 62.925141655863705,
+                    "weight_sum": 14.045710650343437,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 18; reserve ERJ max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ERJ": {
+                    "forecast": 82,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 24.985021612464312,
+                    "role": "CLIMBER",
+                    "current": 82,
+                    "member_count": 115
+                  },
+                  "BOS": {
+                    "forecast": 18,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.82483870452886,
+                    "role": "NOT_CALLABLE",
+                    "current": 18,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4061945080369508,
+                    "LATE_BREAK_DOWN": 0.3367728697478003,
+                    "DRIFT_UP": 0.10435140165108338,
+                    "ONE_STEP_DOWN": 0.7809268610244595,
+                    "ROUND_TRIP": 1.5099743947277964,
+                    "ONE_STEP_UP": 0.3118818115120646,
+                    "EARLY_SET_UP": 0.033410067009019655,
+                    "QUIET_WOBBLE": 14.045710650343437,
+                    "SLEEPER": 1.7057490238630078,
+                    "GRIND_WOBBLE_UP": 0.009340921312280641,
+                    "EARLY_SET_DOWN": 0.6654157594854775,
+                    "DRIFT_DOWN": 0.2395530203794276
+                  },
+                  "position": 0.14230072463768115,
+                  "epoch": 1783909664.3252053,
+                  "minutes_to_bell": 752.750863246123,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 62.925141655863705,
+                  "weight_sum": 14.045710650343437,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 18,
+                "deadline_epoch": 1783954803.000008,
+                "q25": 18,
+                "q75": 18,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ERJ": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 82,
+              "recorded_floor": 80,
+              "P": 82,
+              "Q": 82,
+              "X": 1783954803.000008,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 115,
+              "ess": 24.985021612464312,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 82,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-5015"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 225,
+                "leg": "ERJ",
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 82; reserve BOS max(close 18, ask 20) = 20"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 82,
+                  "last_trade_cents": 82,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-5015"
+                },
+                "Q": 82,
+                "X": 1783954803.000008,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783898960,
+                "stage_index": 113
+              },
+              "permission": {
+                "ordinal": 112,
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "id": "ERJ",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 81,
+                  "hand_level": 81,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 82,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.4580689573826176,
+                      "LATE_BREAK_UP": 0.7458166251885128,
+                      "DRIFT_UP": 0.09519743675546136,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.5154662810310833,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 3.1290843843531833,
+                      "SLEEPER": 0.041066472834079285,
+                      "EARLY_SET_UP": 0.24511917089679644,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.15340112481477125,
+                    "epoch": 1783907530.4252746,
+                    "minutes_to_bell": 788.3158620913823,
+                    "open": true,
+                    "member_count": 58,
+                    "ess": 10.857687348913297,
+                    "weight_sum": 3.1290843843531833,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 20,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 18,
+                    "ask": 20,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 82; reserve BOS max(close 18, ask 20) = 20",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ERJ": {
+                    "forecast": 82,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 24.985021612464312,
+                    "role": "CLIMBER",
+                    "current": 82,
+                    "member_count": 115
+                  },
+                  "BOS": {
+                    "forecast": 18,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.82483870452886,
+                    "role": "NOT_CALLABLE",
+                    "current": 18,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.4580689573826176,
+                    "LATE_BREAK_UP": 0.7458166251885128,
+                    "DRIFT_UP": 0.09519743675546136,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.5154662810310833,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 3.1290843843531833,
+                    "SLEEPER": 0.041066472834079285,
+                    "EARLY_SET_UP": 0.24511917089679644,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.15340112481477125,
+                  "epoch": 1783907530.4252746,
+                  "minutes_to_bell": 788.3158620913823,
+                  "open": true,
+                  "member_count": 58,
+                  "ess": 10.857687348913297,
+                  "weight_sum": 3.1290843843531833,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 82,
+                "deadline_epoch": 1783954803.000008,
+                "q25": 82,
+                "q75": 82,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783954829.377,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-ERJ-miss",
+          "label": "Last receipt before ERJ missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "ERJ",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+          "epoch": 1783954803.000008,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BOS is not yet directionally called; ERJ is strengthening.",
+              "WHY": "BOS trades at 18¢ against its 19¢ opening anchor; ERJ trades at 82¢ against its 77¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BOS carries 448 eligible past sides from first-price comparisons; ERJ carries 115 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BOS calls 18¢ by T−0hr 0min; ERJ calls 82¢ by T−0hr 0min.",
+              "WHY": "BOS’s middle half spans 18–18¢; ERJ’s middle half spans 82–82¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BOS has book 18/20 and no standing bid; ERJ has book 81/82 and no standing bid.",
+              "WHY": "BOS: The policy was waiting for a directional call; ERJ: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BOS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 19,
+              "corrected_open": 19.5,
+              "close": 18,
+              "recorded_floor": 18,
+              "P": 18,
+              "Q": 18,
+              "X": 1783954803.000008,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 109.82483870452886,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 18,
+                "ask_cents": 20,
+                "last_trade_cents": 18,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 224,
+                "leg": "BOS",
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 18; reserve ERJ max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 18,
+                  "ask_cents": 20,
+                  "last_trade_cents": 18,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124"
+                },
+                "Q": 18,
+                "X": 1783954803.000008,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783902171,
+                "stage_index": 113
+              },
+              "permission": {
+                "ordinal": 112,
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "id": "BOS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 18,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4061945080369508,
+                      "LATE_BREAK_DOWN": 0.3367728697478003,
+                      "DRIFT_UP": 0.10435140165108338,
+                      "ONE_STEP_DOWN": 0.7809268610244595,
+                      "ROUND_TRIP": 1.5099743947277964,
+                      "ONE_STEP_UP": 0.3118818115120646,
+                      "EARLY_SET_UP": 0.033410067009019655,
+                      "QUIET_WOBBLE": 14.045710650343437,
+                      "SLEEPER": 1.7057490238630078,
+                      "GRIND_WOBBLE_UP": 0.009340921312280641,
+                      "EARLY_SET_DOWN": 0.6654157594854775,
+                      "DRIFT_DOWN": 0.2395530203794276
+                    },
+                    "position": 0.14230072463768115,
+                    "epoch": 1783909664.3252053,
+                    "minutes_to_bell": 752.750863246123,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 62.925141655863705,
+                    "weight_sum": 14.045710650343437,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 18; reserve ERJ max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ERJ": {
+                    "forecast": 82,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 24.985021612464312,
+                    "role": "CLIMBER",
+                    "current": 82,
+                    "member_count": 115
+                  },
+                  "BOS": {
+                    "forecast": 18,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.82483870452886,
+                    "role": "NOT_CALLABLE",
+                    "current": 18,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4061945080369508,
+                    "LATE_BREAK_DOWN": 0.3367728697478003,
+                    "DRIFT_UP": 0.10435140165108338,
+                    "ONE_STEP_DOWN": 0.7809268610244595,
+                    "ROUND_TRIP": 1.5099743947277964,
+                    "ONE_STEP_UP": 0.3118818115120646,
+                    "EARLY_SET_UP": 0.033410067009019655,
+                    "QUIET_WOBBLE": 14.045710650343437,
+                    "SLEEPER": 1.7057490238630078,
+                    "GRIND_WOBBLE_UP": 0.009340921312280641,
+                    "EARLY_SET_DOWN": 0.6654157594854775,
+                    "DRIFT_DOWN": 0.2395530203794276
+                  },
+                  "position": 0.14230072463768115,
+                  "epoch": 1783909664.3252053,
+                  "minutes_to_bell": 752.750863246123,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 62.925141655863705,
+                  "weight_sum": 14.045710650343437,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 18,
+                "deadline_epoch": 1783954803.000008,
+                "q25": 18,
+                "q75": 18,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ERJ": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 82,
+              "recorded_floor": 80,
+              "P": 82,
+              "Q": 82,
+              "X": 1783954803.000008,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 115,
+              "ess": 24.985021612464312,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 82,
+                "last_trade_cents": 82,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-5015"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 225,
+                "leg": "ERJ",
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 82; reserve BOS max(close 18, ask 20) = 20"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 82,
+                  "last_trade_cents": 82,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-ERJ.csv.gz#row-5015"
+                },
+                "Q": 82,
+                "X": 1783954803.000008,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783898960,
+                "stage_index": 113
+              },
+              "permission": {
+                "ordinal": 112,
+                "epoch": 1783954803.000008,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL12ERJBOS-BOS.csv.gz#row-70124",
+                "id": "ERJ",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 81,
+                  "hand_level": 81,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 82,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.4580689573826176,
+                      "LATE_BREAK_UP": 0.7458166251885128,
+                      "DRIFT_UP": 0.09519743675546136,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.5154662810310833,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 3.1290843843531833,
+                      "SLEEPER": 0.041066472834079285,
+                      "EARLY_SET_UP": 0.24511917089679644,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.15340112481477125,
+                    "epoch": 1783907530.4252746,
+                    "minutes_to_bell": 788.3158620913823,
+                    "open": true,
+                    "member_count": 58,
+                    "ess": 10.857687348913297,
+                    "weight_sum": 3.1290843843531833,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 20,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 18,
+                    "ask": 20,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 82; reserve BOS max(close 18, ask 20) = 20",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ERJ": {
+                    "forecast": 82,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 24.985021612464312,
+                    "role": "CLIMBER",
+                    "current": 82,
+                    "member_count": 115
+                  },
+                  "BOS": {
+                    "forecast": 18,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.82483870452886,
+                    "role": "NOT_CALLABLE",
+                    "current": 18,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.4580689573826176,
+                    "LATE_BREAK_UP": 0.7458166251885128,
+                    "DRIFT_UP": 0.09519743675546136,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.5154662810310833,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 3.1290843843531833,
+                    "SLEEPER": 0.041066472834079285,
+                    "EARLY_SET_UP": 0.24511917089679644,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.15340112481477125,
+                  "epoch": 1783907530.4252746,
+                  "minutes_to_bell": 788.3158620913823,
+                  "open": true,
+                  "member_count": 58,
+                  "ess": 10.857687348913297,
+                  "weight_sum": 3.1290843843531833,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 82,
+                "deadline_epoch": 1783954803.000008,
+                "q25": 82,
+                "q75": 82,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783954829.377,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BOS": false,
+          "ERJ": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BOS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 18,
+            "close_epoch": 1783952542.3,
+            "floor_cents": 18,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "ERJ",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 82,
+            "close_epoch": 1783954764,
+            "floor_cents": 80,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "be981a93f466499efaeeb86cfd5d6b62110ab0ee7dbc678daaf8c6da063665c5",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

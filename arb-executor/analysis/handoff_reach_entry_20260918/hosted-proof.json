@@ -1,0 +1,41 @@
+{
+  "url": "https://omi-window1-watch.vercel.app/?tab=lab&event=KXATPMATCH-26JUL12ALTGAS&gate=480",
+  "os": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+  "trace": "f73d1486ae597a80f1c0b054115076f318352abec59053a48ff04100c9a1476a",
+  "grade": "N/A",
+  "applicability": {
+    "status": "INAPPLICABLE",
+    "close_forecast_sides": [
+      "ALT"
+    ],
+    "line": "Handoff experiment · floor-only grade inapplicable to ALT's close forecast.",
+    "reason": "A close destination is not a remaining-floor forecast. No replacement close rubric is introduced. Floor rulers and trade outcomes remain unchanged.",
+    "source": "Stored sentence.handoff.destination_kind = W1_CLOSE"
+  },
+  "lines": [
+    {
+      "side": "ALT",
+      "lines": [
+        "Destination: 65¢ close",
+        "Entry: none — already filled",
+        "Reason: ALT: waiting: already filled; destination 65¢ from 184 past risers; GAS reserved at 36¢; pair unknown¢."
+      ]
+    },
+    {
+      "side": "GAS",
+      "lines": [
+        "Destination: 36¢ floor",
+        "Entry: 38¢ licensed",
+        "Reason: 38¢ has the greatest estimated pair discount (2.11¢); maker-only and under par."
+      ]
+    }
+  ],
+  "table": "BID CHOICES · REACH BEFORE BELL\nLevel\tReach\tDiscount\tExpected\tChoice\n35¢\t4.11%\t6¢\t0.25¢\talternative\n36¢\t15.89%\t5¢\t0.79¢\talternative\n37¢\t40.48%\t4¢\t1.62¢\talternative\n38¢\t70.27%\t3¢\t2.11¢\tchosen\n39¢\t70.27%\t2¢\t1.41¢\talternative\nPositive print before bell · 256 earlier calibration games · latest calibration T−480m. Discount is against pair destinations, not realized closes.\nFull licensing reason",
+  "rawReason": "ALT bought 60¢ → 65¢; GAS → 36¢ floor; pair destination sum 101¢; 35¢ reaches 4.109285878482235% for 6¢ = 0.24655715270893414¢; 36¢ reaches 15.887928509320984% for 5¢ = 0.7943964254660492¢; 37¢ reaches 40.484197144527734% for 4¢ = 1.6193678857811094¢; 38¢ reaches 70.27418071236298% for 3¢ = 2.1082254213708893¢; 39¢ reaches 70.27418071236298% for 2¢ = 1.4054836142472595¢; entering 38¢ maximizes expected pair discount; pair cost 98¢; maker-only in the learned window, under par.",
+  "overflows": false,
+  "gameCount": 104,
+  "pressure": "OK",
+  "oracle": "OK",
+  "closeResult": "W1 closes 65 + 38 = 103¢ · pair cost 98¢ · +5¢ vs closes",
+  "errors": []
+}

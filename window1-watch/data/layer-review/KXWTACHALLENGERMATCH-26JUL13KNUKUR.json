@@ -1,0 +1,2175 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "d6ee7d8bbf62b3cbe2c27972c32f57966edb20d1928be4769e1d58ec7e8b43c3",
+    "stage_cache_sha256": "6a1d0b3e8ef9609d601b2782667bf478a5f9cbefdba816ab0c0e855175020bca",
+    "mirror_projection_sha256": "20a3c38a41d05b9c8addb8e63e04673591c8afe6634388c60d21996d5fdd581a",
+    "mirror_permissions_sha256": "13e767437998c263ccfbb02b84007e051ea0bd867389e3f5c563b932b87d7fe7",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "f7b687f022ffad05f8e8d25eadbb1c66f30098e1a5cae036b384ba12543312d9",
+      "row_number": 202,
+      "row_csv": "26JUL13KNUKUR,KXWTACHALLENGERMATCH-26JUL13KNUKUR,WTA_CHALL,1783902638,1783902638,1783945823.414,1783956000.0,KNU,KUR,1783904913,86.0,85,1783921478.7,90,1783945665.4,1404.55,1245.19,STILL,4.0,,,,,1783909110,14.0,9,1783942772.6,10,1783945804.8,2787.57,281.91,STILL,-4.0,1783922012,9,1783942772.6,PRE_BELL_VALID,1783909110,,,1783953060.0,1783960505.0,1783953060.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783909110,1783945823.414,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783909110,
+      "span_end_epoch": 1783945823.414,
+      "bell_epoch": 1783953060,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783953060,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "KNU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 86,
+          "floor_cents": 85,
+          "floor_epoch": 1783921478.7,
+          "minutes_to_bell": 526.3549999992052,
+          "line": "KNU 85¢ @ 526.35m to bell",
+          "marker_label": "KNU FLOOR · RECORDED 85¢ @ 526.35m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 85¢ · 526m to bell",
+          "hover_note": "Recorded floor 85¢ printed here · 526m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "KUR": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 14,
+          "floor_cents": 9,
+          "floor_epoch": 1783942772.6,
+          "minutes_to_bell": 171.45666666825613,
+          "line": "KUR 9¢ @ 171.46m to bell",
+          "marker_label": "KUR FLOOR · RECORDED 9¢ @ 171.46m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 9¢ · 171m to bell",
+          "hover_note": "Recorded floor 9¢ printed here · 171m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "KNU",
+      "underdog_leg": "KUR",
+      "pair": {
+        "sum_cents": 94,
+        "discount_cents": 6,
+        "reason": null,
+        "line": "best capturable = 85 + 9 = 94¢",
+        "discount_line": "6¢ under par",
+        "compact_line": "best capturable 94¢ · 6¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL13KNUKUR",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1783902638",
+        "w1_left_epoch": "1783902638",
+        "w1_right_epoch": "1783945823.414",
+        "scheduled_start_epoch": "1783956000.0",
+        "legA": "KNU",
+        "legB": "KUR",
+        "legA_formation_end_epoch": "1783904913",
+        "legA_open_postformation_c": "86.0",
+        "legA_floor_c": "85",
+        "legA_floor_epoch": "1783921478.7",
+        "legA_close_c": "90",
+        "legA_close_epoch": "1783945665.4",
+        "legA_contracts": "1404.55",
+        "legA_premium_usd": "1245.19",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "4.0",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783909110",
+        "legB_open_postformation_c": "14.0",
+        "legB_floor_c": "9",
+        "legB_floor_epoch": "1783942772.6",
+        "legB_close_c": "10",
+        "legB_close_epoch": "1783945804.8",
+        "legB_contracts": "2787.57",
+        "legB_premium_usd": "281.91",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-4.0",
+        "legB_us_first_post_epoch": "1783922012",
+        "legB_us_fill_c": "9",
+        "legB_us_fill_epoch": "1783942772.6",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783909110",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783953060.0",
+        "kalshi_close_time_epoch": "1783960505.0",
+        "bell_epoch": "1783953060.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783909110",
+        "span_end_epoch": "1783945823.414",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13KNUKUR.jsonl",
+      "sha256": "09189c841db536812a638b8a4376be6133d8e640425791128883f386ac7e1a0e",
+      "raw_rows": 2986,
+      "accepted_rows": 59,
+      "start_epoch": 1783909110,
+      "end_epoch": 1783945823.414
+    }
+  },
+  "first_callable_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+  "first_both_directional_receipt": "01a626ab-506d-62f5-4a89-2211c42e4d2a",
+  "first_callable_by_side": {
+    "KNU": "10b29cba-882c-7c33-9413-9cb79307ca25",
+    "KUR": "10b29cba-882c-7c33-9413-9cb79307ca25"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+          "epoch": 1783921478.661,
+          "clock": "T−6hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KNU is not yet directionally called; KUR is not yet directionally called.",
+              "WHY": "KNU trades at 85¢ against its 86¢ opening anchor; KUR trades at 14¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KNU carries 178 eligible past sides from first-price comparisons; KUR carries 178 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KNU calls 84¢ by T−5hr 2min; KUR calls 13¢ by T−4hr 19min.",
+              "WHY": "KNU’s middle half spans 83–84¢; KUR’s middle half spans 11–14¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KNU has book 84/87 and a standing 84¢ bid; KUR has book 12/14 and a standing 13¢ bid.",
+              "WHY": "KNU: The current pool target was the permitted bid level; KUR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KNU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 84,
+              "X": 1783927713.414,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 178,
+              "ess": 60.5127391184489,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 84,
+                "ask_cents": 87,
+                "last_trade_cents": 86,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1283"
+              },
+              "bid": 84,
+              "filled": null,
+              "decision": {
+                "order": 198,
+                "leg": "KNU",
+                "epoch": 1783921478.661,
+                "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 84,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 84,
+                  "ask_cents": 87,
+                  "last_trade_cents": 86,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1283"
+                },
+                "Q": 84,
+                "X": 1783927713.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783904913,
+                "support": null,
+                "accountability_assumption": "7b28d264f8251060978476c6c05ab0b23058296e020ba8c35c0eda0e7e06bca9",
+                "stage_index": 99
+              },
+              "permission": null,
+              "micro": {
+                "Q": 84,
+                "deadline_epoch": 1783927713.414,
+                "q25": 83,
+                "q75": 84,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783922305.771,
+                  "price": 88,
+                  "size": 2.25,
+                  "receipt": "2efbec76-d1f4-4bd3-cdea-6922043fd68f"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "KUR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 14,
+              "Q": 13,
+              "X": 1783930312.414,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 178,
+              "ess": 60.5127391184489,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 12,
+                "ask_cents": 14,
+                "last_trade_cents": 14,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-131150"
+              },
+              "bid": 13,
+              "filled": null,
+              "decision": {
+                "order": 199,
+                "leg": "KUR",
+                "epoch": 1783921478.661,
+                "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 13,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 12,
+                  "ask_cents": 14,
+                  "last_trade_cents": 14,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-131150"
+                },
+                "Q": 13,
+                "X": 1783930312.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783909110,
+                "support": null,
+                "accountability_assumption": "3dfad2a398fa1a40d4bed0314904540bba44f8c91d9579f392ce0a0b65e92521",
+                "stage_index": 99
+              },
+              "permission": null,
+              "micro": {
+                "Q": 13,
+                "deadline_epoch": 1783930312.414,
+                "q25": 11,
+                "q75": 14,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783942772.625,
+                  "price": 9,
+                  "size": 0.01,
+                  "receipt": "d7eda212-0236-5d6f-65d7-a64634a800ec"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KNU-miss",
+          "label": "Last receipt before KNU missed at the bell",
+          "arm": "D",
+          "focus_leg": "KNU",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+          "epoch": 1783945819.000003,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KNU is strengthening; KUR is weakening.",
+              "WHY": "KNU trades at 90¢ against its 86¢ opening anchor; KUR trades at 10¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KNU carries 113 eligible past sides from first-price comparisons; KUR carries 145 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KNU calls 90¢ by T−0hr 0min; KUR calls 10¢ by T−0hr 0min.",
+              "WHY": "KNU’s middle half spans 90–90¢; KUR’s middle half spans 10–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KNU has book 89/90 and a standing 84¢ bid; KUR has book 10/11 and a recorded purchase at 13¢.",
+              "WHY": "KNU: The desired bid could not be posted below the ask; KUR: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KNU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 85,
+              "P": 90,
+              "Q": 90,
+              "X": 1783945819.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 113,
+              "ess": 42.48030033501071,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-3514"
+              },
+              "bid": 84,
+              "filled": null,
+              "decision": {
+                "order": 235,
+                "leg": "KNU",
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 84,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-3514"
+                },
+                "Q": 90,
+                "X": 1783945819.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783904913,
+                "support": null,
+                "accountability_assumption": "3440bc2dd8e524ca65998079ac84f73a0208a837e7c13e45c5396b7d449bb6f1",
+                "stage_index": 124
+              },
+              "permission": null,
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1783945819.000003,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "KUR": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 10,
+              "Q": 10,
+              "X": 1783945819.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 145,
+              "ess": 34.68403707439648,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 10,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617"
+              },
+              "bid": null,
+              "filled": 13,
+              "decision": {
+                "order": 233,
+                "leg": "KUR",
+                "epoch": 1783945523.414,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR|ATLAS_GATE|1783945523.414",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 9,
+                  "ask_cents": 10,
+                  "last_trade_cents": 10,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133458"
+                },
+                "Q": 10,
+                "X": 1783945523.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783909110,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 121
+              },
+              "permission": null,
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783945819.000003,
+                "q25": 10,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783945823.414,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-KUR-fill",
+          "label": "Last receipt before KUR filled",
+          "arm": "D",
+          "focus_leg": "KUR",
+          "outcome": "fill",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1900",
+          "epoch": 1783935023.414,
+          "clock": "T−3hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KNU is strengthening; KUR is not yet directionally called.",
+              "WHY": "KNU trades at 88¢ against its 86¢ opening anchor; KUR trades at 14¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KNU carries 74 eligible past sides from first-price comparisons; KUR carries 327 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KNU calls 87¢ by T−2hr 43min; KUR calls 13¢ by T−2hr 57min.",
+              "WHY": "KNU’s middle half spans 86–88¢; KUR’s middle half spans 13–14¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KNU has book 87/88 and a standing 84¢ bid; KUR has book 12/13 and a standing 13¢ bid.",
+              "WHY": "KNU: The other commitment left too little room under the pair budget; KUR: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KNU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 85,
+              "P": 88,
+              "Q": 87,
+              "X": 1783936017.414,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 74,
+              "ess": 25.99619348952988,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 87,
+                "ask_cents": 88,
+                "last_trade_cents": 88,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1900"
+              },
+              "bid": 84,
+              "filled": null,
+              "decision": {
+                "order": 210,
+                "leg": "KNU",
+                "epoch": 1783935023.414,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1900",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 84,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 87,
+                  "ask_cents": 88,
+                  "last_trade_cents": 88,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1900"
+                },
+                "Q": 87,
+                "X": 1783936017.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783904913,
+                "support": null,
+                "accountability_assumption": "f792b0851f52d66283a025f67e0373c50b114061563bd5f3a1fd211d1ec71a40",
+                "stage_index": 105
+              },
+              "permission": null,
+              "micro": {
+                "Q": 87,
+                "deadline_epoch": 1783936017.414,
+                "q25": 86,
+                "q75": 88,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783935203.519,
+                  "price": 88,
+                  "size": 29.12,
+                  "receipt": "7c3e1437-a600-5d87-75cd-7257608a5628"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783935203.519,
+                  "price": 88,
+                  "size": 29.12,
+                  "receipt": "7c3e1437-a600-5d87-75cd-7257608a5628"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "KUR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 14,
+              "Q": 13,
+              "X": 1783935233.414,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 327,
+              "ess": 88.34741975625482,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 12,
+                "ask_cents": 13,
+                "last_trade_cents": 14,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-132131"
+              },
+              "bid": 13,
+              "filled": null,
+              "decision": {
+                "order": 211,
+                "leg": "KUR",
+                "epoch": 1783935023.414,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1900",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 13,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 12,
+                  "ask_cents": 13,
+                  "last_trade_cents": 14,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-132131"
+                },
+                "Q": 13,
+                "X": 1783935233.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783909110,
+                "support": null,
+                "accountability_assumption": "1e8a972b8d09335f1d662390f3ccaa84578de549f6b3f9aa1e3eb832aa5f9b87",
+                "stage_index": 105
+              },
+              "permission": null,
+              "micro": {
+                "Q": 13,
+                "deadline_epoch": 1783935233.414,
+                "q25": 13,
+                "q75": 14,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783942772.625,
+                  "price": 9,
+                  "size": 0.01,
+                  "receipt": "d7eda212-0236-5d6f-65d7-a64634a800ec"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783936955.034,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "KUR",
+              "epoch": 1783936955.034,
+              "cents": 13,
+              "receipt": "449948e6-6879-42a9-c1ab-db5c289ffa09",
+              "order_lineage_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+              "order_lineage_start_epoch": 1783921478.661,
+              "current_price_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+              "current_price_start_epoch": 1783921478.661,
+              "order_lineage_age_minutes": 257.9395499984423,
+              "current_price_age_minutes": 257.9395499984423,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "KUR",
+                "epoch": 1783936955.034,
+                "cents": 13,
+                "receipt": "449948e6-6879-42a9-c1ab-db5c289ffa09",
+                "order_lineage_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "order_lineage_start_epoch": 1783921478.661,
+                "current_price_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "current_price_start_epoch": 1783921478.661,
+                "order_lineage_age_minutes": 257.9395499984423,
+                "current_price_age_minutes": 257.9395499984423,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 211,
+              "leg": "KUR",
+              "epoch": 1783935023.414,
+              "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1900",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 13,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 12,
+                "ask_cents": 13,
+                "last_trade_cents": 14,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-132131"
+              },
+              "Q": 13,
+              "X": 1783935233.414,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783909110,
+              "support": null,
+              "accountability_assumption": "1e8a972b8d09335f1d662390f3ccaa84578de549f6b3f9aa1e3eb832aa5f9b87",
+              "stage_index": 105
+            },
+            "license_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+            "licensing_deadline_epoch": 1783930312.414,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KNU was not yet directionally called; its corrected full-window direction was strengthening. KUR was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KUR was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KNU": false,
+          "KUR": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 6,
+        "fills": [
+          {
+            "leg": "KUR",
+            "epoch": 1783936955.034,
+            "cents": 13,
+            "receipt": "449948e6-6879-42a9-c1ab-db5c289ffa09",
+            "order_lineage_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+            "order_lineage_start_epoch": 1783921478.661,
+            "current_price_receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+            "current_price_start_epoch": 1783921478.661,
+            "order_lineage_age_minutes": 257.9395499984423,
+            "current_price_age_minutes": 257.9395499984423,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+        "category": "WTA_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "KNU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 90,
+            "close_epoch": 1783945665.4,
+            "floor_cents": 85,
+            "offered_cents": 5,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 5,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "KUR",
+            "filled": true,
+            "fill_cents": 13,
+            "fill_epoch": 1783936955.034,
+            "fill_receipt": "449948e6-6879-42a9-c1ab-db5c289ffa09",
+            "close_cents": 10,
+            "close_epoch": 1783945804.8,
+            "floor_cents": 9,
+            "offered_cents": 1,
+            "value_cents": -3,
+            "premium_cents": 3,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "f7b687f022ffad05f8e8d25eadbb1c66f30098e1a5cae036b384ba12543312d9",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+          "epoch": 1783921478.661,
+          "clock": "T−6hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KNU is not yet directionally called; KUR is not yet directionally called.",
+              "WHY": "KNU trades at 85¢ against its 86¢ opening anchor; KUR trades at 14¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KNU carries 178 eligible past sides from first-price comparisons; KUR carries 178 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KNU calls 84¢ by T−5hr 2min; KUR calls 13¢ by T−4hr 19min.",
+              "WHY": "KNU’s middle half spans 83–84¢; KUR’s middle half spans 11–14¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KNU has book 84/87 and no standing bid; KUR has book 12/14 and no standing bid.",
+              "WHY": "KNU: The policy was waiting for a directional call; KUR: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KNU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 84,
+              "X": 1783927713.414,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 178,
+              "ess": 60.5127391184489,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 84,
+                "ask_cents": 87,
+                "last_trade_cents": 86,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1283"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 198,
+                "leg": "KNU",
+                "epoch": 1783921478.661,
+                "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 84; reserve KUR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 84,
+                  "ask_cents": 87,
+                  "last_trade_cents": 86,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-1283"
+                },
+                "Q": 84,
+                "X": 1783927713.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783904913,
+                "stage_index": 99
+              },
+              "permission": {
+                "ordinal": 99,
+                "epoch": 1783921478.661,
+                "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "id": "KNU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.13954735243325653,
+                      "ROUND_TRIP": 0.6658238924008687,
+                      "LATE_BREAK_UP": 0.3216108752415918,
+                      "DRIFT_UP": 0.03252738438703964,
+                      "DRIFT_DOWN": 0.1387436383718246,
+                      "ONE_STEP_UP": 0.20156479542451503,
+                      "ONE_STEP_DOWN": 0.18379436913742586,
+                      "QUIET_WOBBLE": 4.620678985539959,
+                      "SLEEPER": 0.03657733050671726,
+                      "EARLY_SET_UP": 0.3607274618432436,
+                      "EARLY_SET_DOWN": 0.030116543521763118
+                    },
+                    "position": 0.11197124743303716,
+                    "epoch": 1783909493.7900887,
+                    "minutes_to_bell": 605.4937318563461,
+                    "open": true,
+                    "member_count": 111,
+                    "ess": 37.753491710465276,
+                    "weight_sum": 4.620678985539959,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 84; reserve KUR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KNU": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 60.5127391184489,
+                    "role": "NOT_CALLABLE",
+                    "current": 85,
+                    "member_count": 178
+                  },
+                  "KUR": {
+                    "forecast": 14,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 60.5127391184489,
+                    "role": "NOT_CALLABLE",
+                    "current": 14,
+                    "member_count": 178
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.13954735243325653,
+                    "ROUND_TRIP": 0.6658238924008687,
+                    "LATE_BREAK_UP": 0.3216108752415918,
+                    "DRIFT_UP": 0.03252738438703964,
+                    "DRIFT_DOWN": 0.1387436383718246,
+                    "ONE_STEP_UP": 0.20156479542451503,
+                    "ONE_STEP_DOWN": 0.18379436913742586,
+                    "QUIET_WOBBLE": 4.620678985539959,
+                    "SLEEPER": 0.03657733050671726,
+                    "EARLY_SET_UP": 0.3607274618432436,
+                    "EARLY_SET_DOWN": 0.030116543521763118
+                  },
+                  "position": 0.11197124743303716,
+                  "epoch": 1783909493.7900887,
+                  "minutes_to_bell": 605.4937318563461,
+                  "open": true,
+                  "member_count": 111,
+                  "ess": 37.753491710465276,
+                  "weight_sum": 4.620678985539959,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 84,
+                "deadline_epoch": 1783927713.414,
+                "q25": 83,
+                "q75": 84,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783922305.771,
+                  "price": 88,
+                  "size": 2.25,
+                  "receipt": "2efbec76-d1f4-4bd3-cdea-6922043fd68f"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "KUR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 14,
+              "Q": 13,
+              "X": 1783930312.414,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 178,
+              "ess": 60.5127391184489,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 12,
+                "ask_cents": 14,
+                "last_trade_cents": 14,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-131150"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 199,
+                "leg": "KUR",
+                "epoch": 1783921478.661,
+                "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 13; reserve KNU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 12,
+                  "ask_cents": 14,
+                  "last_trade_cents": 14,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-131150"
+                },
+                "Q": 13,
+                "X": 1783930312.414,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783909110,
+                "stage_index": 99
+              },
+              "permission": {
+                "ordinal": 99,
+                "epoch": 1783921478.661,
+                "receipt": "10b29cba-882c-7c33-9413-9cb79307ca25",
+                "id": "KUR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 14,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.07424090503613764,
+                      "LATE_BREAK_DOWN": 0.2994107612038592,
+                      "DRIFT_UP": 0.05059945148142024,
+                      "ONE_STEP_DOWN": 0.3737517035624043,
+                      "ROUND_TRIP": 0.925863917067776,
+                      "ONE_STEP_UP": 0.16920748439609395,
+                      "EARLY_SET_UP": 0.012962837964292524,
+                      "QUIET_WOBBLE": 4.458993306163167,
+                      "SLEEPER": 0.03323889236206891,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0.2720725687782147,
+                      "DRIFT_DOWN": 0.06137080079276841
+                    },
+                    "position": 0.17522281753510582,
+                    "epoch": 1783915543.0278425,
+                    "minutes_to_bell": 504.6731026252111,
+                    "open": true,
+                    "member_count": 110,
+                    "ess": 38.18522704200269,
+                    "weight_sum": 4.458993306163167,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 13; reserve KNU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KNU": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 60.5127391184489,
+                    "role": "NOT_CALLABLE",
+                    "current": 85,
+                    "member_count": 178
+                  },
+                  "KUR": {
+                    "forecast": 14,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 60.5127391184489,
+                    "role": "NOT_CALLABLE",
+                    "current": 14,
+                    "member_count": 178
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.07424090503613764,
+                    "LATE_BREAK_DOWN": 0.2994107612038592,
+                    "DRIFT_UP": 0.05059945148142024,
+                    "ONE_STEP_DOWN": 0.3737517035624043,
+                    "ROUND_TRIP": 0.925863917067776,
+                    "ONE_STEP_UP": 0.16920748439609395,
+                    "EARLY_SET_UP": 0.012962837964292524,
+                    "QUIET_WOBBLE": 4.458993306163167,
+                    "SLEEPER": 0.03323889236206891,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0.2720725687782147,
+                    "DRIFT_DOWN": 0.06137080079276841
+                  },
+                  "position": 0.17522281753510582,
+                  "epoch": 1783915543.0278425,
+                  "minutes_to_bell": 504.6731026252111,
+                  "open": true,
+                  "member_count": 110,
+                  "ess": 38.18522704200269,
+                  "weight_sum": 4.458993306163167,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 13,
+                "deadline_epoch": 1783930312.414,
+                "q25": 11,
+                "q75": 14,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783942772.625,
+                  "price": 9,
+                  "size": 0.01,
+                  "receipt": "d7eda212-0236-5d6f-65d7-a64634a800ec"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KNU-miss",
+          "label": "Last receipt before KNU missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KNU",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+          "epoch": 1783945819.000003,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KNU is strengthening; KUR is weakening.",
+              "WHY": "KNU trades at 90¢ against its 86¢ opening anchor; KUR trades at 10¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KNU carries 113 eligible past sides from first-price comparisons; KUR carries 145 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KNU calls 90¢ by T−0hr 0min; KUR calls 10¢ by T−0hr 0min.",
+              "WHY": "KNU’s middle half spans 90–90¢; KUR’s middle half spans 10–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KNU has book 89/90 and a standing 89¢ bid; KUR has book 10/11 and no standing bid.",
+              "WHY": "KNU: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve KUR max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100; KUR: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KNU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 85,
+              "P": 90,
+              "Q": 90,
+              "X": 1783945819.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 113,
+              "ess": 42.48030033501071,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-3514"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 246,
+                "leg": "KNU",
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve KUR max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-3514"
+                },
+                "Q": 90,
+                "X": 1783945819.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783904913,
+                "stage_index": 124
+              },
+              "permission": {
+                "ordinal": 123,
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "id": "KNU",
+                "old": 89,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.473168592742062,
+                      "LATE_BREAK_UP": 0.5098512630306151,
+                      "DRIFT_UP": 0.054297626344971844,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.7135241766400809,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.9814703365202808,
+                      "SLEEPER": 0.03145002485579287,
+                      "EARLY_SET_UP": 0.4085009787886986,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.07378601276818575,
+                    "epoch": 1783907931.6163297,
+                    "minutes_to_bell": 631.5299611727397,
+                    "open": true,
+                    "member_count": 57,
+                    "ess": 26.520379691510318,
+                    "weight_sum": 1.9814703365202808,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve KUR max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KNU",
+                    "faller": "KUR",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 11,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 10,
+                    "ask": 11,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KNU": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 42.48030033501071,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 113
+                  },
+                  "KUR": {
+                    "forecast": 10,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 34.68403707439648,
+                    "role": "FALLER",
+                    "current": 10,
+                    "member_count": 145
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.473168592742062,
+                    "LATE_BREAK_UP": 0.5098512630306151,
+                    "DRIFT_UP": 0.054297626344971844,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.7135241766400809,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.9814703365202808,
+                    "SLEEPER": 0.03145002485579287,
+                    "EARLY_SET_UP": 0.4085009787886986,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.07378601276818575,
+                  "epoch": 1783907931.6163297,
+                  "minutes_to_bell": 631.5299611727397,
+                  "open": true,
+                  "member_count": 57,
+                  "ess": 26.520379691510318,
+                  "weight_sum": 1.9814703365202808,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1783945819.000003,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "KUR": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 10,
+              "Q": 10,
+              "X": 1783945819.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 145,
+              "ess": 34.68403707439648,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 10,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 247,
+                "leg": "KUR",
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve KNU max(close 90, ask 90) = 90"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 10,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617"
+                },
+                "Q": 10,
+                "X": 1783945819.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783909110,
+                "stage_index": 124
+              },
+              "permission": {
+                "ordinal": 123,
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "id": "KUR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 10,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0,
+                      "LATE_BREAK_DOWN": 0.3818668724175277,
+                      "DRIFT_UP": 0,
+                      "ONE_STEP_DOWN": 0.733698464753379,
+                      "ROUND_TRIP": 0.6779510622915976,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "QUIET_WOBBLE": 3.0383318510312267,
+                      "SLEEPER": 0.12716878469574888,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0.7042903698137477,
+                      "DRIFT_DOWN": 0.1116347456471938
+                    },
+                    "position": 0.3211769759450172,
+                    "epoch": 1783920901.5032852,
+                    "minutes_to_bell": 415.36517858107885,
+                    "open": true,
+                    "member_count": 74,
+                    "ess": 14.147653409420577,
+                    "weight_sum": 3.0383318510312267,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 90,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 90,
+                    "ask": 90,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve KNU max(close 90, ask 90) = 90",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KNU",
+                    "faller": "KUR",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KNU": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 42.48030033501071,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 113
+                  },
+                  "KUR": {
+                    "forecast": 10,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 34.68403707439648,
+                    "role": "FALLER",
+                    "current": 10,
+                    "member_count": 145
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0,
+                    "LATE_BREAK_DOWN": 0.3818668724175277,
+                    "DRIFT_UP": 0,
+                    "ONE_STEP_DOWN": 0.733698464753379,
+                    "ROUND_TRIP": 0.6779510622915976,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "QUIET_WOBBLE": 3.0383318510312267,
+                    "SLEEPER": 0.12716878469574888,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0.7042903698137477,
+                    "DRIFT_DOWN": 0.1116347456471938
+                  },
+                  "position": 0.3211769759450172,
+                  "epoch": 1783920901.5032852,
+                  "minutes_to_bell": 415.36517858107885,
+                  "open": true,
+                  "member_count": 74,
+                  "ess": 14.147653409420577,
+                  "weight_sum": 3.0383318510312267,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783945819.000003,
+                "q25": 10,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783945823.414,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-KUR-miss",
+          "label": "Last receipt before KUR missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KUR",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+          "epoch": 1783945819.000003,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KNU is strengthening; KUR is weakening.",
+              "WHY": "KNU trades at 90¢ against its 86¢ opening anchor; KUR trades at 10¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KNU carries 113 eligible past sides from first-price comparisons; KUR carries 145 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KNU calls 90¢ by T−0hr 0min; KUR calls 10¢ by T−0hr 0min.",
+              "WHY": "KNU’s middle half spans 90–90¢; KUR’s middle half spans 10–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KNU has book 89/90 and a standing 89¢ bid; KUR has book 10/11 and no standing bid.",
+              "WHY": "KNU: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve KUR max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100; KUR: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KNU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 85,
+              "P": 90,
+              "Q": 90,
+              "X": 1783945819.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 113,
+              "ess": 42.48030033501071,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-3514"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 246,
+                "leg": "KNU",
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve KUR max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KNU.csv.gz#row-3514"
+                },
+                "Q": 90,
+                "X": 1783945819.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783904913,
+                "stage_index": 124
+              },
+              "permission": {
+                "ordinal": 123,
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "id": "KNU",
+                "old": 89,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.473168592742062,
+                      "LATE_BREAK_UP": 0.5098512630306151,
+                      "DRIFT_UP": 0.054297626344971844,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.7135241766400809,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.9814703365202808,
+                      "SLEEPER": 0.03145002485579287,
+                      "EARLY_SET_UP": 0.4085009787886986,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.07378601276818575,
+                    "epoch": 1783907931.6163297,
+                    "minutes_to_bell": 631.5299611727397,
+                    "open": true,
+                    "member_count": 57,
+                    "ess": 26.520379691510318,
+                    "weight_sum": 1.9814703365202808,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve KUR max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KNU",
+                    "faller": "KUR",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 11,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 10,
+                    "ask": 11,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KNU": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 42.48030033501071,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 113
+                  },
+                  "KUR": {
+                    "forecast": 10,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 34.68403707439648,
+                    "role": "FALLER",
+                    "current": 10,
+                    "member_count": 145
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.473168592742062,
+                    "LATE_BREAK_UP": 0.5098512630306151,
+                    "DRIFT_UP": 0.054297626344971844,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.7135241766400809,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.9814703365202808,
+                    "SLEEPER": 0.03145002485579287,
+                    "EARLY_SET_UP": 0.4085009787886986,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.07378601276818575,
+                  "epoch": 1783907931.6163297,
+                  "minutes_to_bell": 631.5299611727397,
+                  "open": true,
+                  "member_count": 57,
+                  "ess": 26.520379691510318,
+                  "weight_sum": 1.9814703365202808,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1783945819.000003,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "KUR": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 10,
+              "Q": 10,
+              "X": 1783945819.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 145,
+              "ess": 34.68403707439648,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 10,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 247,
+                "leg": "KUR",
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve KNU max(close 90, ask 90) = 90"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 10,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617"
+                },
+                "Q": 10,
+                "X": 1783945819.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783909110,
+                "stage_index": 124
+              },
+              "permission": {
+                "ordinal": 123,
+                "epoch": 1783945819.000003,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13KNUKUR-KUR.csv.gz#row-133617",
+                "id": "KUR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 10,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0,
+                      "LATE_BREAK_DOWN": 0.3818668724175277,
+                      "DRIFT_UP": 0,
+                      "ONE_STEP_DOWN": 0.733698464753379,
+                      "ROUND_TRIP": 0.6779510622915976,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "QUIET_WOBBLE": 3.0383318510312267,
+                      "SLEEPER": 0.12716878469574888,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0.7042903698137477,
+                      "DRIFT_DOWN": 0.1116347456471938
+                    },
+                    "position": 0.3211769759450172,
+                    "epoch": 1783920901.5032852,
+                    "minutes_to_bell": 415.36517858107885,
+                    "open": true,
+                    "member_count": 74,
+                    "ess": 14.147653409420577,
+                    "weight_sum": 3.0383318510312267,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 90,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 90,
+                    "ask": 90,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve KNU max(close 90, ask 90) = 90",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KNU",
+                    "faller": "KUR",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KNU": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 42.48030033501071,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 113
+                  },
+                  "KUR": {
+                    "forecast": 10,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 34.68403707439648,
+                    "role": "FALLER",
+                    "current": 10,
+                    "member_count": 145
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0,
+                    "LATE_BREAK_DOWN": 0.3818668724175277,
+                    "DRIFT_UP": 0,
+                    "ONE_STEP_DOWN": 0.733698464753379,
+                    "ROUND_TRIP": 0.6779510622915976,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "QUIET_WOBBLE": 3.0383318510312267,
+                    "SLEEPER": 0.12716878469574888,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0.7042903698137477,
+                    "DRIFT_DOWN": 0.1116347456471938
+                  },
+                  "position": 0.3211769759450172,
+                  "epoch": 1783920901.5032852,
+                  "minutes_to_bell": 415.36517858107885,
+                  "open": true,
+                  "member_count": 74,
+                  "ess": 14.147653409420577,
+                  "weight_sum": 3.0383318510312267,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783945819.000003,
+                "q25": 10,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783945823.414,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KNU was not yet directionally called; its corrected full-window direction was strengthening. KUR was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KNU: No strictly later accepted positive print. KUR: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KNU": false,
+          "KUR": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 6,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "KNU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 90,
+            "close_epoch": 1783945665.4,
+            "floor_cents": 85,
+            "offered_cents": 5,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 5,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "KUR",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 10,
+            "close_epoch": 1783945804.8,
+            "floor_cents": 9,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "f7b687f022ffad05f8e8d25eadbb1c66f30098e1a5cae036b384ba12543312d9",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

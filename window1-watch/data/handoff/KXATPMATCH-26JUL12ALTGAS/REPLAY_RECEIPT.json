@@ -1,0 +1,255 @@
+{
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "flag": "W1_DIRECTION_HANDOFF=on",
+  "amendment": {
+    "status": "FROZEN_BEFORE_FIT",
+    "scope": "ATP_MAIN calibration required by the one-game ALT/GAS flagged replay; no tuning or other-tour claim",
+    "pool": "Installed first-price weights, direction-matched member outcomes, FIRST then BASE; unchanged side/role, category, walk-forward and same-day exclusions",
+    "target": "At least one strictly later cutter-accepted positive-size print at or below translated L and strictly before member bell. No-hit member keeps its weight. No carried price or zero-size print counts.",
+    "witness_limitation": "Held cutter witness source has unknown block status, inherited and disclosed; this experiment does not claim verified non-block reach or known queue priority.",
+    "calibration": "Filed weighted isotonic PAV, category/side/receipt-time role/selected layer/atlas gate separately. One total weight per earlier called library game over all legal integer-cent levels below its current. Train only on games whose bell precedes the query formation, excluding self and event-name same day. No named/tune outcomes. No earlier rows means no permission.",
+    "application": "Piecewise-linear interpolation and explicit endpoint clipping as filed. At a receipt use the latest atlas gate already reached within the query span, never a future gate. Raw probabilities are recomputed at the actual receipt. No curve before the first available gate.",
+    "validation": "Walk-forward held-out library predictions, raw and calibrated probabilities versus realized reach by absolute L, depth below current and gate; raw-only versus common calibration coverage separate. Report Brier and endpoint clipping. No tuning from these results.",
+    "decision": "Legal market increments from band q25 inclusive to below current, maker-only and actual pair cap. Maximize calibrated P(reach before bell) times (riser close destination + faller floor destination - actual filled or licensed riser cost - L). Positive discount and positive expected discount required. Exact objective ties retain the standing feasible level, then lower cent, inheriting filed reach-map order.",
+    "unchanged": "Destinations, role call, learned faller window, fresh deadline requirement, riser entry, post-only, veto, actual commitment cap, same-second rejection, fill law and replay clock. Default flag off. No automatic installation.",
+    "acceptance": "Synthetic strict-witness, isotonic and argmax tests; source/temporal checks; actual OS replay twice; flag-off digest identical; face source equality and hosted verification. No result numbers prescribed."
+  },
+  "started": "2026-09-18T04:46:21.121Z",
+  "finished": "2026-09-18T05:12:37.339Z",
+  "sources": {
+    "window1_v54_dual_belief_os.js": {
+      "path": "C:/Users/omigr/omi-w1-face/arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "sha256": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "bytes": 51123,
+      "rows": null
+    },
+    "window1_v54_functionable_os.js": {
+      "path": "C:/Users/omigr/omi-w1-face/arb-executor/analysis/window1_v54_functionable_os.js",
+      "sha256": "584f4aab94708095ce94815172f1b99f3563ff20690f8730be7dd1b1b2810698",
+      "bytes": 52256,
+      "rows": null
+    },
+    "build_window1_v54_dual_belief.js": {
+      "path": "C:/Users/omigr/omi-w1-face/arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "sha256": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5",
+      "bytes": 183137,
+      "rows": null
+    }
+  },
+  "meta": {
+    "event_id": "KXATPMATCH-26JUL12ALTGAS",
+    "event_date": "26JUL12",
+    "category": "ATP_MAIN",
+    "discovery_epoch": 1783777733,
+    "bell_epoch": 1784035200,
+    "span_end_epoch": 1784035200,
+    "bell_source": "MACHINE_RECEIPT",
+    "bell_source_used": "MACHINE_RECEIPT",
+    "bell_alignment": {
+      "original_bell_epoch": 1784035200,
+      "corrected_ruler_bell_epoch": 1784035200,
+      "used_bell_epoch": 1784035200,
+      "delta_seconds": 0,
+      "applied": false,
+      "source": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "corrections_source": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl"
+    },
+    "leg_ids": [
+      "ALT",
+      "GAS"
+    ],
+    "anchors_cents": {
+      "ALT": 57,
+      "GAS": 43
+    },
+    "formation_end_epochs": {
+      "ALT": 1783790234,
+      "GAS": 1783790234
+    },
+    "truth_closes_cents": {
+      "ALT": 65,
+      "GAS": 38
+    },
+    "truth_fill_stamps": {
+      "ALT": null,
+      "GAS": "PRE_BELL_VALID"
+    },
+    "correction_receipt": null
+  },
+  "trace": {
+    "path": "C:\\tmp\\handoff_reach_entry_20260918\\on/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "sha256": "f73d1486ae597a80f1c0b054115076f318352abec59053a48ff04100c9a1476a",
+    "bytes": 2404584,
+    "rows": null
+  },
+  "execution": {
+    "run_source": "V54_BOOK_VETO_ONLY_20260826",
+    "gradeable": true,
+    "completed": true,
+    "combined_entry_cents": 98,
+    "delta_vs_100_cents": 2,
+    "legs": {
+      "ALT": {
+        "credited": true,
+        "entry_cents": 60,
+        "standing_target_cents": null,
+        "fill_receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPMATCH-26JUL12ALTGAS|ALT",
+          "captured_at_receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+          "row_refs": [
+            "79019007-2092-520a-da1f-f79d3263dadf"
+          ],
+          "context": {
+            "event_id": "KXATPMATCH-26JUL12ALTGAS",
+            "leg_id": "ALT",
+            "entry_cents": 60,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 60,
+            "fill_timestamp_epoch": 1784000663.801,
+            "prior_standing_target_cents": 60,
+            "standing_license_basis": "ALT: destination 64¢ from 202 past risers; entering at 60¢ because maker entry is below the forecast close; GAS reserved at 37¢; pair 97¢, under par.",
+            "standing_license_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-24fcb788bc384ef56566d6855ef45ee233014f5549eb92cc75f21bb3b668619a"
+        },
+        "fill_timestamp_epoch": 1784000663.801,
+        "standing_license_basis": null,
+        "standing_license_receipt": null,
+        "standing_captured_rest_level_cents": null,
+        "standing_captured_rest_license_receipt": null
+      },
+      "GAS": {
+        "credited": true,
+        "entry_cents": 38,
+        "standing_target_cents": null,
+        "fill_receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPMATCH-26JUL12ALTGAS|GAS",
+          "captured_at_receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+          "row_refs": [
+            "132195bc-2998-60e0-053e-da2627a5edaa"
+          ],
+          "context": {
+            "event_id": "KXATPMATCH-26JUL12ALTGAS",
+            "leg_id": "GAS",
+            "entry_cents": 38,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 38,
+            "fill_timestamp_epoch": 1784025043.114,
+            "prior_standing_target_cents": 38,
+            "standing_license_basis": "ALT bought 60¢ → 65¢; GAS → 36¢ floor; pair destination sum 101¢; 35¢ reaches 6.628310769813886% for 6¢ = 0.39769864618883316¢; 36¢ reaches 21.46913659902591% for 5¢ = 1.0734568299512954¢; 37¢ reaches 43.582761036250936% for 4¢ = 1.7433104414500376¢; 38¢ reaches 67.31273575629268% for 3¢ = 2.0193820726887806¢; entering 38¢ maximizes expected pair discount; pair cost 98¢; maker-only in the learned window, under par.",
+            "standing_license_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-0e0065bbb642f191bfdee8921c53d7053bffc6a98b59365a7e366c4f4e04d9f6"
+        },
+        "fill_timestamp_epoch": 1784025043.114,
+        "standing_license_basis": null,
+        "standing_license_receipt": null,
+        "standing_captured_rest_level_cents": null,
+        "standing_captured_rest_license_receipt": null
+      }
+    }
+  },
+  "fills": [
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPMATCH-26JUL12ALTGAS|ALT",
+      "captured_at_receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+      "row_refs": [
+        "79019007-2092-520a-da1f-f79d3263dadf"
+      ],
+      "context": {
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "leg_id": "ALT",
+        "entry_cents": 60,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 60,
+        "fill_timestamp_epoch": 1784000663.801,
+        "prior_standing_target_cents": 60,
+        "standing_license_basis": "ALT: destination 64¢ from 202 past risers; entering at 60¢ because maker entry is below the forecast close; GAS reserved at 37¢; pair 97¢, under par.",
+        "standing_license_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-24fcb788bc384ef56566d6855ef45ee233014f5549eb92cc75f21bb3b668619a"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPMATCH-26JUL12ALTGAS|GAS",
+      "captured_at_receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+      "row_refs": [
+        "132195bc-2998-60e0-053e-da2627a5edaa"
+      ],
+      "context": {
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "leg_id": "GAS",
+        "entry_cents": 38,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 38,
+        "fill_timestamp_epoch": 1784025043.114,
+        "prior_standing_target_cents": 38,
+        "standing_license_basis": "ALT bought 60¢ → 65¢; GAS → 36¢ floor; pair destination sum 101¢; 35¢ reaches 6.628310769813886% for 6¢ = 0.39769864618883316¢; 36¢ reaches 21.46913659902591% for 5¢ = 1.0734568299512954¢; 37¢ reaches 43.582761036250936% for 4¢ = 1.7433104414500376¢; 38¢ reaches 67.31273575629268% for 3¢ = 2.0193820726887806¢; entering 38¢ maximizes expected pair discount; pair cost 98¢; maker-only in the learned window, under par.",
+        "standing_license_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-0e0065bbb642f191bfdee8921c53d7053bffc6a98b59365a7e366c4f4e04d9f6"
+    }
+  ],
+  "determinism_x2": true,
+  "digest": {
+    "sha256": "50a04ac984c8aedd62b183d6743775014cf0436115790929ecb921acfb783f8d",
+    "bytes": 91674653,
+    "counts": {
+      "stage_reads": 170,
+      "rearm_attempts": 40657,
+      "fill_events": 2,
+      "floor_print_decision_instants": 71
+    }
+  },
+  "market_increment_records": [
+    {
+      "ticker": "KXATPMATCH-26JUL12ALTGAS-ALT",
+      "path": "C:\\tmp\\reach_map_20260916\\named_inputs\\KXATPMATCH-26JUL12ALTGAS-ALT.grid.json",
+      "sha256": "783f1f43f0c698578e5f9e5bd5731af0e375be35c8297639827fd13263bac94b"
+    },
+    {
+      "ticker": "KXATPMATCH-26JUL12ALTGAS-GAS",
+      "path": "C:\\tmp\\reach_map_20260916\\named_inputs\\KXATPMATCH-26JUL12ALTGAS-GAS.grid.json",
+      "sha256": "fa746a2cf9e230f969cbf9d95bfdcf0cec599db0fa430867382b5395080049b8"
+    }
+  ],
+  "calibration": {
+    "path": "C:\\tmp\\handoff_reach_entry_20260918/CALIBRATION_RECEIPT.json",
+    "sha256": "6debe138b41ae285aecd09098d2f0857b1a4380462022433a137bb0bd5cf1955",
+    "bytes": 5860,
+    "rows": null
+  },
+  "calibration_models": {
+    "path": "C:\\tmp\\handoff_reach_entry_20260918/CALIBRATION_MODELS.json",
+    "sha256": "15ff69b8cebcee02828c52f99834a0f47c1e09f16a9533712c25491967450b1c",
+    "bytes": 4602739,
+    "rows": null
+  },
+  "witness": {
+    "witness_sha256": "7c01d2899a9c830f4e1042b5c1619e57e8271e183422a4b4c483da6da9187904",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "witness_limitation": "Cutter-accepted positive-size prints; inherited source has unknown block status, as disclosed in the filed reach-map run. No carried price, zero-size, same-time or at/after-bell witness."
+  },
+  "scope": "One-game actual OS replay: calibrated expected pair discount changes flagged faller entry only. No default installation."
+}

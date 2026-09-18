@@ -1,0 +1,2728 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL13GRAPAR",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "086c171aba7a9cbd6f35053475abb4abc3c894ff74953d603dae59eb88c88644",
+    "stage_cache_sha256": "215bbe4e1a70721295e8c6e06d6e2bb91cfa59eb3d09742ced44d1c0e22cdddf",
+    "mirror_projection_sha256": "7f87be7f189fa1cbd480cfc3bf90f978e4f6cc25e8a2274ef9024294d242d1b9",
+    "mirror_permissions_sha256": "460e2c410ace53efca44f8678d15838be71caf5fbed2ce61937f5d384c8e7cb8",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "a594d3ebcd5fd1bce77c3ea17de5dd328659a32c9ee8c6ecc6a28c0906c9444c",
+      "row_number": 189,
+      "row_csv": "26JUL13GRAPAR,KXWTAMATCH-26JUL13GRAPAR,WTA_MAIN,1783851035,1783851035,1783966500,1783947600.0,GRA,PAR,1783851035,14.0,10,1783888171.1,12,1783966499.1,11777.2,1311.8,STILL,-2.0,1783922089,10,1783932077.8,PRE_BELL_VALID,1783851035,86.0,88,1783870625.1,90,1783966218.8,15451.7,13918.61,STILL,4.0,1783922047,89,1783960103.8,PRE_BELL_VALID,1783851035,1783966500,,,1783975218.0,1783966500,MACHINE_RECEIPT,\"EXACT (9 receipts, zero spread)\",1783851035,1783966500,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783851035,
+      "span_end_epoch": 1783966500,
+      "bell_epoch": 1783966500,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1783966500,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "GRA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 14,
+          "floor_cents": 10,
+          "floor_epoch": 1783888171.1,
+          "minutes_to_bell": 1305.4816666682561,
+          "line": "GRA 10¢ @ 1305.48m to bell",
+          "marker_label": "GRA FLOOR · RECORDED 10¢ @ 1305.48m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 10¢ · 1305m to bell",
+          "hover_note": "Recorded floor 10¢ printed here · 1305m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "PAR": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 86,
+          "floor_cents": 88,
+          "floor_epoch": 1783870625.1,
+          "minutes_to_bell": 1597.9150000015895,
+          "line": "PAR 88¢ @ 1597.92m to bell",
+          "marker_label": "PAR FLOOR · RECORDED 88¢ @ 1597.92m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 88¢ · 1597m to bell",
+          "hover_note": "Recorded floor 88¢ printed here · 1597m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "PAR",
+      "underdog_leg": "GRA",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 88 + 10 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL13GRAPAR",
+        "event_id": "KXWTAMATCH-26JUL13GRAPAR",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1783851035",
+        "w1_left_epoch": "1783851035",
+        "w1_right_epoch": "1783966500",
+        "scheduled_start_epoch": "1783947600.0",
+        "legA": "GRA",
+        "legB": "PAR",
+        "legA_formation_end_epoch": "1783851035",
+        "legA_open_postformation_c": "14.0",
+        "legA_floor_c": "10",
+        "legA_floor_epoch": "1783888171.1",
+        "legA_close_c": "12",
+        "legA_close_epoch": "1783966499.1",
+        "legA_contracts": "11777.2",
+        "legA_premium_usd": "1311.8",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-2.0",
+        "legA_us_first_post_epoch": "1783922089",
+        "legA_us_fill_c": "10",
+        "legA_us_fill_epoch": "1783932077.8",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1783851035",
+        "legB_open_postformation_c": "86.0",
+        "legB_floor_c": "88",
+        "legB_floor_epoch": "1783870625.1",
+        "legB_close_c": "90",
+        "legB_close_epoch": "1783966218.8",
+        "legB_contracts": "15451.7",
+        "legB_premium_usd": "13918.61",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "4.0",
+        "legB_us_first_post_epoch": "1783922047",
+        "legB_us_fill_c": "89",
+        "legB_us_fill_epoch": "1783960103.8",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783851035",
+        "bell_machine_epoch": "1783966500",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1783975218.0",
+        "bell_epoch": "1783966500",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (9 receipts, zero spread)",
+        "span_start_epoch": "1783851035",
+        "span_end_epoch": "1783966500",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13GRAPAR.jsonl",
+      "sha256": "30da699fc72a788e2f22d2a47f0a055479bffaffbef5554178448072b1e018de",
+      "raw_rows": 8917,
+      "accepted_rows": 237,
+      "start_epoch": 1783851035,
+      "end_epoch": 1783966500
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+  "first_both_directional_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+  "first_callable_by_side": {
+    "GRA": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+    "PAR": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+          "epoch": 1783880100,
+          "clock": "T−24hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GRA is weakening; PAR is strengthening.",
+              "WHY": "GRA trades at 12¢ against its 14¢ opening anchor; PAR trades at 89¢ against its 86¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GRA carries 145 eligible past sides from first-price comparisons; PAR carries 108 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GRA calls 10¢ by T−12hr 57min; PAR calls 88¢ by T−17hr 5min.",
+              "WHY": "GRA’s middle half spans 10–11¢; PAR’s middle half spans 87–88¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GRA has book 10/12 and a standing 10¢ bid; PAR has book 88/90 and a standing 88¢ bid.",
+              "WHY": "GRA: The current pool target was the permitted bid level; PAR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "GRA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 12,
+              "recorded_floor": 10,
+              "P": 12,
+              "Q": 10,
+              "X": 1783919853,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 145,
+              "ess": 39.77651341191749,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 12,
+                "last_trade_cents": null,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-272"
+              },
+              "bid": 10,
+              "filled": null,
+              "decision": {
+                "order": 30,
+                "leg": "GRA",
+                "epoch": 1783880100,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 10,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 12,
+                  "last_trade_cents": null,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-272"
+                },
+                "Q": 10,
+                "X": 1783919853,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "247d8782b9ac7e91aa142f368bc7dcabfc37cbae531d6a42454f9db10ccef50f",
+                "stage_index": 15
+              },
+              "permission": null,
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783919853,
+                "q25": 10,
+                "q75": 11,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 10,
+                "floor_witness": {
+                  "epoch": 1783888171.054,
+                  "price": 10,
+                  "size": 68,
+                  "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783888171.054,
+                  "price": 10,
+                  "size": 68,
+                  "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "PAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 88,
+              "P": 89,
+              "Q": 88,
+              "X": 1783905006.613792,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 108,
+              "ess": 30.01982448472772,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 89,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-421"
+              },
+              "bid": 88,
+              "filled": null,
+              "decision": {
+                "order": 31,
+                "leg": "PAR",
+                "epoch": 1783880100,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 88,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 89,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-421"
+                },
+                "Q": 88,
+                "X": 1783905006.613792,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "9544e8ace30d43a88a631b4bbbf8e53cee19ab48ce53e99a4909a791b86b2c60",
+                "stage_index": 15
+              },
+              "permission": null,
+              "micro": {
+                "Q": 88,
+                "deadline_epoch": 1783905006.613792,
+                "q25": 87,
+                "q75": 88,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-GRA-fill",
+          "label": "Last receipt before GRA filled",
+          "arm": "D",
+          "focus_leg": "GRA",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353",
+          "epoch": 1783883321.000002,
+          "clock": "T−23hr 6min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GRA is weakening; PAR is strengthening.",
+              "WHY": "GRA trades at 12¢ against its 14¢ opening anchor; PAR trades at 89¢ against its 86¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GRA carries 147 eligible past sides from first-price comparisons; PAR carries 109 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GRA calls 11¢ by T−12hr 56min; PAR calls 88¢ by T−17hr 3min.",
+              "WHY": "GRA’s middle half spans 10–11¢; PAR’s middle half spans 87–88¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GRA has book 10/11 and a standing 10¢ bid; PAR has book 88/90 and a standing 88¢ bid.",
+              "WHY": "GRA: The desired bid could not be posted below the ask; PAR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "GRA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 12,
+              "recorded_floor": 10,
+              "P": 12,
+              "Q": 11,
+              "X": 1783919948,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 147,
+              "ess": 39.54297389885197,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353"
+              },
+              "bid": 10,
+              "filled": null,
+              "decision": {
+                "order": 34,
+                "leg": "GRA",
+                "epoch": 1783883321.000002,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 10,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 12,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353"
+                },
+                "Q": 11,
+                "X": 1783919948,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "63ee2d62cecb17a9d758dfef7590b35ee9363cfa9eb8d70247e73927ec77016a",
+                "stage_index": 17
+              },
+              "permission": null,
+              "micro": {
+                "Q": 11,
+                "deadline_epoch": 1783919948,
+                "q25": 10,
+                "q75": 11,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 10,
+                "floor_witness": {
+                  "epoch": 1783888171.054,
+                  "price": 10,
+                  "size": 68,
+                  "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783888171.054,
+                  "price": 10,
+                  "size": 68,
+                  "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "PAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 88,
+              "P": 89,
+              "Q": 88,
+              "X": 1783905097,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 109,
+              "ess": 28.70450561827889,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 89,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-423"
+              },
+              "bid": 88,
+              "filled": null,
+              "decision": {
+                "order": 35,
+                "leg": "PAR",
+                "epoch": 1783883321.000002,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 88,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 89,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-423"
+                },
+                "Q": 88,
+                "X": 1783905097,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "a2b8fa2d8436b4f43ab83d16ea56a31419d094dc98165f650db266f92e7d1f03",
+                "stage_index": 17
+              },
+              "permission": null,
+              "micro": {
+                "Q": 88,
+                "deadline_epoch": 1783905097,
+                "q25": 87,
+                "q75": 88,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783888171.054,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GRA",
+              "epoch": 1783888171.054,
+              "cents": 10,
+              "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+              "order_lineage_start_epoch": 1783880100,
+              "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+              "current_price_start_epoch": 1783880100,
+              "order_lineage_age_minutes": 134.51756666501362,
+              "current_price_age_minutes": 134.51756666501362,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GRA",
+                "epoch": 1783888171.054,
+                "cents": 10,
+                "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "order_lineage_start_epoch": 1783880100,
+                "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "current_price_start_epoch": 1783880100,
+                "order_lineage_age_minutes": 134.51756666501362,
+                "current_price_age_minutes": 134.51756666501362,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 34,
+              "leg": "GRA",
+              "epoch": 1783883321.000002,
+              "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 10,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353"
+              },
+              "Q": 11,
+              "X": 1783919948,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783851035,
+              "support": null,
+              "accountability_assumption": "63ee2d62cecb17a9d758dfef7590b35ee9363cfa9eb8d70247e73927ec77016a",
+              "stage_index": 17
+            },
+            "license_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+            "licensing_deadline_epoch": 1783919853,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PAR-fill",
+          "label": "Last receipt before PAR filled",
+          "arm": "D",
+          "focus_leg": "PAR",
+          "outcome": "fill",
+          "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+          "epoch": 1783888171.054,
+          "clock": "T−21hr 45min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GRA is weakening; PAR is strengthening.",
+              "WHY": "GRA trades at 10¢ against its 14¢ opening anchor; PAR trades at 89¢ against its 86¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GRA carries 157 eligible past sides from first-price comparisons; PAR carries 121 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GRA calls 9¢ by T−12hr 38min; PAR calls 88¢ by T−16hr 47min.",
+              "WHY": "GRA’s middle half spans 8–9¢; PAR’s middle half spans 87–88¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GRA has book 10/11 and a recorded purchase at 10¢; PAR has book 88/90 and a standing 88¢ bid.",
+              "WHY": "GRA: The desired bid could not be posted below the ask; PAR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "GRA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 12,
+              "recorded_floor": 10,
+              "P": 10,
+              "Q": 9,
+              "X": 1783921032,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 157,
+              "ess": 41.72122835038393,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-413"
+              },
+              "bid": null,
+              "filled": 10,
+              "decision": {
+                "order": 34,
+                "leg": "GRA",
+                "epoch": 1783883321.000002,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 10,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 12,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-353"
+                },
+                "Q": 11,
+                "X": 1783919948,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "63ee2d62cecb17a9d758dfef7590b35ee9363cfa9eb8d70247e73927ec77016a",
+                "stage_index": 17
+              },
+              "permission": null,
+              "micro": {
+                "Q": 9,
+                "deadline_epoch": 1783921032,
+                "q25": 8,
+                "q75": 9,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 10,
+                "floor_witness": {
+                  "epoch": 1783895721.371,
+                  "price": 10,
+                  "size": 5,
+                  "receipt": "a31dadc9-f923-65ac-df50-56e0b7d177c4"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 88,
+              "P": 89,
+              "Q": 88,
+              "X": 1783906051,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 121,
+              "ess": 33.09028591974723,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 89,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-433"
+              },
+              "bid": 88,
+              "filled": null,
+              "decision": {
+                "order": 36,
+                "leg": "PAR",
+                "epoch": 1783888171.054,
+                "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 88,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 89,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-433"
+                },
+                "Q": 88,
+                "X": 1783906051,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "69feee955c48e47b998b6684dcc1019c29b8fcb6bcc79b45fafc0320b3545b36",
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 88,
+                "deadline_epoch": 1783906051,
+                "q25": 87,
+                "q75": 88,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783892584.217,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "PAR",
+              "epoch": 1783892584.217,
+              "cents": 88,
+              "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+              "order_lineage_start_epoch": 1783880100,
+              "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+              "current_price_start_epoch": 1783880100,
+              "order_lineage_age_minutes": 208.07028333346048,
+              "current_price_age_minutes": 208.07028333346048,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "PAR",
+                "epoch": 1783892584.217,
+                "cents": 88,
+                "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "order_lineage_start_epoch": 1783880100,
+                "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "current_price_start_epoch": 1783880100,
+                "order_lineage_age_minutes": 208.07028333346048,
+                "current_price_age_minutes": 208.07028333346048,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 37,
+              "leg": "PAR",
+              "epoch": 1783888171.054,
+              "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+              "trigger": "FILL_HANDOFF_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 88,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 89,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-433"
+              },
+              "Q": 88,
+              "X": 1783906051,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783851035,
+              "support": null,
+              "accountability_assumption": "69feee955c48e47b998b6684dcc1019c29b8fcb6bcc79b45fafc0320b3545b36",
+              "stage_index": 19
+            },
+            "license_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+            "licensing_deadline_epoch": 1783905006.613792,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "GRA": true,
+          "PAR": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "GRA",
+            "epoch": 1783888171.054,
+            "cents": 10,
+            "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+            "order_lineage_start_epoch": 1783880100,
+            "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+            "current_price_start_epoch": 1783880100,
+            "order_lineage_age_minutes": 134.51756666501362,
+            "current_price_age_minutes": 134.51756666501362,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "PAR",
+            "epoch": 1783892584.217,
+            "cents": 88,
+            "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+            "order_lineage_start_epoch": 1783880100,
+            "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+            "current_price_start_epoch": 1783880100,
+            "order_lineage_age_minutes": 208.07028333346048,
+            "current_price_age_minutes": 208.07028333346048,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL13GRAPAR",
+        "category": "WTA_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "GRA",
+            "filled": true,
+            "fill_cents": 10,
+            "fill_epoch": 1783888171.054,
+            "fill_receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc",
+            "close_cents": 12,
+            "close_epoch": 1783966499.1,
+            "floor_cents": 10,
+            "offered_cents": 2,
+            "value_cents": 2,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PAR",
+            "filled": true,
+            "fill_cents": 88,
+            "fill_epoch": 1783892584.217,
+            "fill_receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466",
+            "close_cents": 90,
+            "close_epoch": 1783966218.8,
+            "floor_cents": 88,
+            "offered_cents": 2,
+            "value_cents": 2,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "a594d3ebcd5fd1bce77c3ea17de5dd328659a32c9ee8c6ecc6a28c0906c9444c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+          "epoch": 1783880100,
+          "clock": "T−24hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GRA is weakening; PAR is strengthening.",
+              "WHY": "GRA trades at 12¢ against its 14¢ opening anchor; PAR trades at 89¢ against its 86¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GRA carries 145 eligible past sides from first-price comparisons; PAR carries 108 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GRA calls 10¢ by T−12hr 57min; PAR calls 88¢ by T−17hr 5min.",
+              "WHY": "GRA’s middle half spans 10–11¢; PAR’s middle half spans 87–88¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GRA has book 10/12 and no standing bid; PAR has book 88/90 and no standing bid.",
+              "WHY": "GRA: The counterpart reservation did not leave a permitted discount; PAR: The available bid was not below the predicted closing price. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "GRA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 12,
+              "recorded_floor": 10,
+              "P": 12,
+              "Q": 10,
+              "X": 1783919853,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 145,
+              "ess": 39.77651341191749,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 12,
+                "last_trade_cents": null,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-272"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 30,
+                "leg": "GRA",
+                "epoch": 1783880100,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve PAR max(close 89, ask 90) = 90"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 12,
+                  "last_trade_cents": null,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-272"
+                },
+                "Q": 10,
+                "X": 1783919853,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 15
+              },
+              "permission": {
+                "ordinal": 15,
+                "epoch": 1783880100,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "id": "GRA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 12,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.06142401262297438,
+                      "LATE_BREAK_UP": 0,
+                      "DRIFT_DOWN": 0.24100832038967687,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 2.716790957170535,
+                      "ROUND_TRIP": 0.5243382518327205,
+                      "ONE_STEP_DOWN": 0.23238470811629888,
+                      "EARLY_SET_DOWN": 1.6330775737716625,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.0179819568147394
+                    },
+                    "position": 0.004632152588555858,
+                    "epoch": 1783851569.8514986,
+                    "minutes_to_bell": 1915.5024750232697,
+                    "open": true,
+                    "member_count": 43,
+                    "ess": 15.544687443016638,
+                    "weight_sum": 2.716790957170535,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 90,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 89,
+                    "ask": 90,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve PAR max(close 89, ask 90) = 90",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 89,
+                    "mirror_completion_cost": 11,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PAR",
+                    "faller": "GRA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PAR": {
+                    "forecast": 89,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 30.01982448472772,
+                    "role": "CLIMBER",
+                    "current": 89,
+                    "member_count": 108
+                  },
+                  "GRA": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 39.77651341191749,
+                    "role": "FALLER",
+                    "current": 12,
+                    "member_count": 145
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.06142401262297438,
+                    "LATE_BREAK_UP": 0,
+                    "DRIFT_DOWN": 0.24100832038967687,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 2.716790957170535,
+                    "ROUND_TRIP": 0.5243382518327205,
+                    "ONE_STEP_DOWN": 0.23238470811629888,
+                    "EARLY_SET_DOWN": 1.6330775737716625,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.0179819568147394
+                  },
+                  "position": 0.004632152588555858,
+                  "epoch": 1783851569.8514986,
+                  "minutes_to_bell": 1915.5024750232697,
+                  "open": true,
+                  "member_count": 43,
+                  "ess": 15.544687443016638,
+                  "weight_sum": 2.716790957170535,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783919853,
+                "q25": 10,
+                "q75": 11,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 10,
+                "floor_witness": {
+                  "epoch": 1783888171.054,
+                  "price": 10,
+                  "size": 68,
+                  "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783888171.054,
+                  "price": 10,
+                  "size": 68,
+                  "receipt": "9fcc7f30-8bdb-6a74-a55d-60f7f4c8c7bc"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "PAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 88,
+              "P": 89,
+              "Q": 88,
+              "X": 1783905006.613792,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 108,
+              "ess": 30.01982448472772,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 89,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-421"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 31,
+                "leg": "PAR",
+                "epoch": 1783880100,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 89; reserve GRA max(late floor 10, 100 - climber close 89 = 11) = 11; views differ by -1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 89,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-421"
+                },
+                "Q": 88,
+                "X": 1783905006.613792,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 15
+              },
+              "permission": {
+                "ordinal": 15,
+                "epoch": 1783880100,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR|ATLAS_GATE|1783880100",
+                "id": "PAR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 89,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.014092437981121569,
+                      "LATE_BREAK_DOWN": 0.023837429816138338,
+                      "DRIFT_UP": 0.20610787465263367,
+                      "ROUND_TRIP": 1.1283259014490266,
+                      "QUIET_WOBBLE": 1.4874241486538036,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.32809687079737937,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.018982453279705148,
+                      "EARLY_SET_UP": 1.2925662142362342,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.0044669675966656575,
+                    "epoch": 1783851550.7784135,
+                    "minutes_to_bell": 1915.8203597744307,
+                    "open": true,
+                    "member_count": 22,
+                    "ess": 6.744384993095287,
+                    "weight_sum": 1.4874241486538036,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 11,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 89,
+                      "mirror_completion_cost": 11,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 89; reserve GRA max(late floor 10, 100 - climber close 89 = 11) = 11; views differ by -1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 89,
+                    "mirror_completion_cost": 11,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PAR",
+                    "faller": "GRA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 12,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 12,
+                    "ask": 12,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PAR": {
+                    "forecast": 89,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 30.01982448472772,
+                    "role": "CLIMBER",
+                    "current": 89,
+                    "member_count": 108
+                  },
+                  "GRA": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 39.77651341191749,
+                    "role": "FALLER",
+                    "current": 12,
+                    "member_count": 145
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.014092437981121569,
+                    "LATE_BREAK_DOWN": 0.023837429816138338,
+                    "DRIFT_UP": 0.20610787465263367,
+                    "ROUND_TRIP": 1.1283259014490266,
+                    "QUIET_WOBBLE": 1.4874241486538036,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.32809687079737937,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.018982453279705148,
+                    "EARLY_SET_UP": 1.2925662142362342,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.0044669675966656575,
+                  "epoch": 1783851550.7784135,
+                  "minutes_to_bell": 1915.8203597744307,
+                  "open": true,
+                  "member_count": 22,
+                  "ess": 6.744384993095287,
+                  "weight_sum": 1.4874241486538036,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 88,
+                "deadline_epoch": 1783905006.613792,
+                "q25": 87,
+                "q75": 88,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783892584.217,
+                  "price": 88,
+                  "size": 1,
+                  "receipt": "f922245d-b4d3-6b81-5421-ec25b16dc466"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-GRA-fill",
+          "label": "Last receipt before GRA filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "GRA",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+          "epoch": 1783915815.000001,
+          "clock": "T−14hr 5min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GRA is weakening; PAR is strengthening.",
+              "WHY": "GRA trades at 11¢ against its 14¢ opening anchor; PAR trades at 90¢ against its 86¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GRA carries 241 eligible past sides from first-price comparisons; PAR carries 195 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GRA calls 10¢ by T−10hr 15min; PAR calls 89¢ by T−8hr 16min.",
+              "WHY": "GRA’s middle half spans 9–10¢; PAR’s middle half spans 88–89¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GRA has book 10/11 and a standing 10¢ bid; PAR has book 89/90 and a recorded purchase at 89¢.",
+              "WHY": "GRA: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 10; bid 10; PAR filled 89; 10 + 89 = 99 < 100; PAR: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "GRA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 12,
+              "recorded_floor": 10,
+              "P": 11,
+              "Q": 10,
+              "X": 1783929582,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 241,
+              "ess": 65.50045486198506,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 11,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-1018"
+              },
+              "bid": 10,
+              "filled": null,
+              "decision": {
+                "order": 56,
+                "leg": "GRA",
+                "epoch": 1783915815.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 10,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; bid 10; PAR filled 89; 10 + 89 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-1018"
+                },
+                "Q": 10,
+                "X": 1783929582,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 28
+              },
+              "permission": {
+                "ordinal": 28,
+                "epoch": 1783915815.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+                "id": "GRA",
+                "old": null,
+                "proposed": 10,
+                "posted": 10,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 11,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.1121362963755582,
+                      "LATE_BREAK_UP": 0.02917258479063498,
+                      "DRIFT_DOWN": 0.4728297486693838,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 3.338799101594719,
+                      "ROUND_TRIP": 1.128655317613528,
+                      "ONE_STEP_DOWN": 0.5075741914697299,
+                      "EARLY_SET_DOWN": 2.8652848710934986,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0.06674141257954641,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.03978308443417933
+                    },
+                    "position": 0.03896201241203336,
+                    "epoch": 1783855533.748763,
+                    "minutes_to_bell": 1849.4375206152597,
+                    "open": true,
+                    "member_count": 65,
+                    "ess": 20.416448811659013,
+                    "weight_sum": 3.338799101594719,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 89,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 99,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; bid 10; PAR filled 89; 10 + 89 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "PAR",
+                    "faller": "GRA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PAR": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 56.83684330716103,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 195
+                  },
+                  "GRA": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 65.50045486198506,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 241
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.1121362963755582,
+                    "LATE_BREAK_UP": 0.02917258479063498,
+                    "DRIFT_DOWN": 0.4728297486693838,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 3.338799101594719,
+                    "ROUND_TRIP": 1.128655317613528,
+                    "ONE_STEP_DOWN": 0.5075741914697299,
+                    "EARLY_SET_DOWN": 2.8652848710934986,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0.06674141257954641,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.03978308443417933
+                  },
+                  "position": 0.03896201241203336,
+                  "epoch": 1783855533.748763,
+                  "minutes_to_bell": 1849.4375206152597,
+                  "open": true,
+                  "member_count": 65,
+                  "ess": 20.416448811659013,
+                  "weight_sum": 3.338799101594719,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783929582,
+                "q25": 9,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 10,
+                "floor_witness": {
+                  "epoch": 1783922046.487,
+                  "price": 10,
+                  "size": 22,
+                  "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783922046.487,
+                  "price": 10,
+                  "size": 22,
+                  "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "PAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 88,
+              "P": 90,
+              "Q": 89,
+              "X": 1783936760,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 195,
+              "ess": 56.83684330716103,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566"
+              },
+              "bid": null,
+              "filled": 89,
+              "decision": {
+                "order": 55,
+                "leg": "PAR",
+                "epoch": 1783904734.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-534"
+                },
+                "Q": 89,
+                "X": 1783917264,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 27
+              },
+              "permission": {
+                "ordinal": 27,
+                "epoch": 1783904734.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+                "id": "PAR",
+                "old": 89,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.0185765651904807,
+                      "LATE_BREAK_DOWN": 0.040548716215493594,
+                      "DRIFT_UP": 0.2927202083564265,
+                      "ROUND_TRIP": 1.6782355363466845,
+                      "QUIET_WOBBLE": 1.8701609073531489,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.5288303826158697,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.06236405578421413,
+                      "EARLY_SET_UP": 1.5495588139505119,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.011838640921042502
+                    },
+                    "position": 0.0044669675966656575,
+                    "epoch": 1783851550.7784135,
+                    "minutes_to_bell": 1915.8203597744307,
+                    "open": true,
+                    "member_count": 32,
+                    "ess": 9.971679903782617,
+                    "weight_sum": 1.8701609073531489,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "PAR",
+                    "faller": "GRA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 11,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 11,
+                    "ask": 11,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PAR": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 44.357366291494834,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 153
+                  },
+                  "GRA": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.83863093251662,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 202
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.0185765651904807,
+                    "LATE_BREAK_DOWN": 0.040548716215493594,
+                    "DRIFT_UP": 0.2927202083564265,
+                    "ROUND_TRIP": 1.6782355363466845,
+                    "QUIET_WOBBLE": 1.8701609073531489,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.5288303826158697,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.06236405578421413,
+                    "EARLY_SET_UP": 1.5495588139505119,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.011838640921042502
+                  },
+                  "position": 0.0044669675966656575,
+                  "epoch": 1783851550.7784135,
+                  "minutes_to_bell": 1915.8203597744307,
+                  "open": true,
+                  "member_count": 32,
+                  "ess": 9.971679903782617,
+                  "weight_sum": 1.8701609073531489,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783936760,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783966186.732,
+                  "price": 88,
+                  "size": 3,
+                  "receipt": "d4efc5ef-02c6-59e7-20e8-820931e005d6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783922046.487,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GRA",
+              "epoch": 1783922046.487,
+              "cents": 10,
+              "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+              "order_lineage_start_epoch": 1783915815.000001,
+              "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+              "current_price_start_epoch": 1783915815.000001,
+              "order_lineage_age_minutes": 103.85811665058137,
+              "current_price_age_minutes": 103.85811665058137,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GRA",
+                "epoch": 1783922046.487,
+                "cents": 10,
+                "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+                "order_lineage_start_epoch": 1783915815.000001,
+                "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+                "current_price_start_epoch": 1783915815.000001,
+                "order_lineage_age_minutes": 103.85811665058137,
+                "current_price_age_minutes": 103.85811665058137,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 28,
+              "epoch": 1783915815.000001,
+              "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+              "id": "GRA",
+              "old": null,
+              "proposed": 10,
+              "posted": 10,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 10,
+                "hand_level": 10,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 11,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.1121362963755582,
+                    "LATE_BREAK_UP": 0.02917258479063498,
+                    "DRIFT_DOWN": 0.4728297486693838,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 3.338799101594719,
+                    "ROUND_TRIP": 1.128655317613528,
+                    "ONE_STEP_DOWN": 0.5075741914697299,
+                    "EARLY_SET_DOWN": 2.8652848710934986,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0.06674141257954641,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.03978308443417933
+                  },
+                  "position": 0.03896201241203336,
+                  "epoch": 1783855533.748763,
+                  "minutes_to_bell": 1849.4375206152597,
+                  "open": true,
+                  "member_count": 65,
+                  "ess": 20.416448811659013,
+                  "weight_sum": 3.338799101594719,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 89,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 99,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; bid 10; PAR filled 89; 10 + 89 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 10,
+                  "climber_forecast_close": 90,
+                  "mirror_completion_cost": 10,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "PAR",
+                  "faller": "GRA",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "PAR": {
+                  "forecast": 90,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 56.83684330716103,
+                  "role": "CLIMBER",
+                  "current": 90,
+                  "member_count": 195
+                },
+                "GRA": {
+                  "forecast": 11,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 65.50045486198506,
+                  "role": "FALLER",
+                  "current": 11,
+                  "member_count": 241
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_UP": 0,
+                  "LATE_BREAK_DOWN": 0.1121362963755582,
+                  "LATE_BREAK_UP": 0.02917258479063498,
+                  "DRIFT_DOWN": 0.4728297486693838,
+                  "DRIFT_UP": 0,
+                  "QUIET_WOBBLE": 3.338799101594719,
+                  "ROUND_TRIP": 1.128655317613528,
+                  "ONE_STEP_DOWN": 0.5075741914697299,
+                  "EARLY_SET_DOWN": 2.8652848710934986,
+                  "EARLY_SET_UP": 0,
+                  "SLEEPER": 0.06674141257954641,
+                  "GRIND_WOBBLE_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 0.03978308443417933
+                },
+                "position": 0.03896201241203336,
+                "epoch": 1783855533.748763,
+                "minutes_to_bell": 1849.4375206152597,
+                "open": true,
+                "member_count": 65,
+                "ess": 20.416448811659013,
+                "weight_sum": 3.338799101594719,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 56,
+              "leg": "GRA",
+              "epoch": 1783915815.000001,
+              "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 10,
+                "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; bid 10; PAR filled 89; 10 + 89 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 11,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-1018"
+              },
+              "Q": 10,
+              "X": 1783929582,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783851035,
+              "stage_index": 28
+            },
+            "license_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+            "licensing_deadline_epoch": 1783929582,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PAR-fill",
+          "label": "Last receipt before PAR filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "PAR",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+          "epoch": 1783904734.000001,
+          "clock": "T−17hr 9min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GRA is weakening; PAR is strengthening.",
+              "WHY": "GRA trades at 11¢ against its 14¢ opening anchor; PAR trades at 90¢ against its 86¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GRA carries 202 eligible past sides from first-price comparisons; PAR carries 153 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GRA calls 10¢ by T−11hr 18min; PAR calls 89¢ by T−13hr 41min.",
+              "WHY": "GRA’s middle half spans 9–10¢; PAR’s middle half spans 88–89¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GRA has book 10/11 and no standing bid; PAR has book 88/90 and a standing 89¢ bid.",
+              "WHY": "GRA: The counterpart reservation did not leave a permitted discount; PAR: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "GRA": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14,
+              "close": 12,
+              "recorded_floor": 10,
+              "P": 11,
+              "Q": 10,
+              "X": 1783925794,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 202,
+              "ess": 54.83863093251662,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 10,
+                "ask_cents": 11,
+                "last_trade_cents": 11,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 54,
+                "leg": "GRA",
+                "epoch": 1783904734.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "CANCEL_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve PAR max(close 90, ask 90) = 90"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898"
+                },
+                "Q": 10,
+                "X": 1783925794,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 27
+              },
+              "permission": {
+                "ordinal": 27,
+                "epoch": 1783904734.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+                "id": "GRA",
+                "old": 9,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 11,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.06142401262297438,
+                      "LATE_BREAK_UP": 0.013516169674873301,
+                      "DRIFT_DOWN": 0.46153921543379495,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 2.9566551224893995,
+                      "ROUND_TRIP": 1.0504888852056948,
+                      "ONE_STEP_DOWN": 0.3679817144787915,
+                      "EARLY_SET_DOWN": 2.498540769991581,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0.02408777582697456,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.03978308443417933
+                    },
+                    "position": 0.029435718440954044,
+                    "epoch": 1783854433.7952297,
+                    "minutes_to_bell": 1867.7700795054436,
+                    "open": true,
+                    "member_count": 56,
+                    "ess": 18.12351074125023,
+                    "weight_sum": 2.9566551224893995,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 90,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 90,
+                    "ask": 90,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve PAR max(close 90, ask 90) = 90",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "PAR",
+                    "faller": "GRA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PAR": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 44.357366291494834,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 153
+                  },
+                  "GRA": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.83863093251662,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 202
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.06142401262297438,
+                    "LATE_BREAK_UP": 0.013516169674873301,
+                    "DRIFT_DOWN": 0.46153921543379495,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 2.9566551224893995,
+                    "ROUND_TRIP": 1.0504888852056948,
+                    "ONE_STEP_DOWN": 0.3679817144787915,
+                    "EARLY_SET_DOWN": 2.498540769991581,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0.02408777582697456,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.03978308443417933
+                  },
+                  "position": 0.029435718440954044,
+                  "epoch": 1783854433.7952297,
+                  "minutes_to_bell": 1867.7700795054436,
+                  "open": true,
+                  "member_count": 56,
+                  "ess": 18.12351074125023,
+                  "weight_sum": 2.9566551224893995,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783925794,
+                "q25": 9,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 10,
+                "floor_witness": {
+                  "epoch": 1783922046.487,
+                  "price": 10,
+                  "size": 22,
+                  "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783922046.487,
+                  "price": 10,
+                  "size": 22,
+                  "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "PAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 86,
+              "corrected_open": 86,
+              "close": 90,
+              "recorded_floor": 88,
+              "P": 90,
+              "Q": 89,
+              "X": 1783917264,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 153,
+              "ess": 44.357366291494834,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-534"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 55,
+                "leg": "PAR",
+                "epoch": 1783904734.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-534"
+                },
+                "Q": 89,
+                "X": 1783917264,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 27
+              },
+              "permission": {
+                "ordinal": 27,
+                "epoch": 1783904734.000001,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+                "id": "PAR",
+                "old": 89,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.0185765651904807,
+                      "LATE_BREAK_DOWN": 0.040548716215493594,
+                      "DRIFT_UP": 0.2927202083564265,
+                      "ROUND_TRIP": 1.6782355363466845,
+                      "QUIET_WOBBLE": 1.8701609073531489,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.5288303826158697,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.06236405578421413,
+                      "EARLY_SET_UP": 1.5495588139505119,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.011838640921042502
+                    },
+                    "position": 0.0044669675966656575,
+                    "epoch": 1783851550.7784135,
+                    "minutes_to_bell": 1915.8203597744307,
+                    "open": true,
+                    "member_count": 32,
+                    "ess": 9.971679903782617,
+                    "weight_sum": 1.8701609073531489,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "PAR",
+                    "faller": "GRA",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 11,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 11,
+                    "ask": 11,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PAR": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 44.357366291494834,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 153
+                  },
+                  "GRA": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.83863093251662,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 202
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.0185765651904807,
+                    "LATE_BREAK_DOWN": 0.040548716215493594,
+                    "DRIFT_UP": 0.2927202083564265,
+                    "ROUND_TRIP": 1.6782355363466845,
+                    "QUIET_WOBBLE": 1.8701609073531489,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.5288303826158697,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.06236405578421413,
+                    "EARLY_SET_UP": 1.5495588139505119,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.011838640921042502
+                  },
+                  "position": 0.0044669675966656575,
+                  "epoch": 1783851550.7784135,
+                  "minutes_to_bell": 1915.8203597744307,
+                  "open": true,
+                  "member_count": 32,
+                  "ess": 9.971679903782617,
+                  "weight_sum": 1.8701609073531489,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783917264,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 88,
+                "floor_witness": {
+                  "epoch": 1783966186.732,
+                  "price": 88,
+                  "size": 3,
+                  "receipt": "d4efc5ef-02c6-59e7-20e8-820931e005d6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783906902.263,
+                  "price": 89,
+                  "size": 0.4,
+                  "receipt": "92f20b17-7d86-502a-09ed-42e7af86f982"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783906902.263,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "PAR",
+              "epoch": 1783906902.263,
+              "cents": 89,
+              "receipt": "92f20b17-7d86-502a-09ed-42e7af86f982",
+              "order_lineage_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+              "order_lineage_start_epoch": 1783899691.184,
+              "current_price_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+              "current_price_start_epoch": 1783899691.184,
+              "order_lineage_age_minutes": 120.18464999993643,
+              "current_price_age_minutes": 120.18464999993643,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "PAR",
+                "epoch": 1783906902.263,
+                "cents": 89,
+                "receipt": "92f20b17-7d86-502a-09ed-42e7af86f982",
+                "order_lineage_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+                "order_lineage_start_epoch": 1783899691.184,
+                "current_price_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+                "current_price_start_epoch": 1783899691.184,
+                "order_lineage_age_minutes": 120.18464999993643,
+                "current_price_age_minutes": 120.18464999993643,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 27,
+              "epoch": 1783904734.000001,
+              "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+              "id": "PAR",
+              "old": 89,
+              "proposed": 89,
+              "posted": 89,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 89,
+                "hand_level": 89,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 90,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.0185765651904807,
+                    "LATE_BREAK_DOWN": 0.040548716215493594,
+                    "DRIFT_UP": 0.2927202083564265,
+                    "ROUND_TRIP": 1.6782355363466845,
+                    "QUIET_WOBBLE": 1.8701609073531489,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.5288303826158697,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.06236405578421413,
+                    "EARLY_SET_UP": 1.5495588139505119,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.011838640921042502
+                  },
+                  "position": 0.0044669675966656575,
+                  "epoch": 1783851550.7784135,
+                  "minutes_to_bell": 1915.8203597744307,
+                  "open": true,
+                  "member_count": 32,
+                  "ess": 9.971679903782617,
+                  "weight_sum": 1.8701609073531489,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 10,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 10,
+                  "climber_forecast_close": 90,
+                  "mirror_completion_cost": 10,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "PAR",
+                  "faller": "GRA",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 11,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 11,
+                  "ask": 11,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "PAR": {
+                  "forecast": 90,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 44.357366291494834,
+                  "role": "CLIMBER",
+                  "current": 90,
+                  "member_count": 153
+                },
+                "GRA": {
+                  "forecast": 11,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 54.83863093251662,
+                  "role": "FALLER",
+                  "current": 11,
+                  "member_count": 202
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_DOWN": 0,
+                  "LATE_BREAK_UP": 0.0185765651904807,
+                  "LATE_BREAK_DOWN": 0.040548716215493594,
+                  "DRIFT_UP": 0.2927202083564265,
+                  "ROUND_TRIP": 1.6782355363466845,
+                  "QUIET_WOBBLE": 1.8701609073531489,
+                  "DRIFT_DOWN": 0,
+                  "ONE_STEP_UP": 0.5288303826158697,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.06236405578421413,
+                  "EARLY_SET_UP": 1.5495588139505119,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "SLEEPER": 0.011838640921042502
+                },
+                "position": 0.0044669675966656575,
+                "epoch": 1783851550.7784135,
+                "minutes_to_bell": 1915.8203597744307,
+                "open": true,
+                "member_count": 32,
+                "ess": 9.971679903782617,
+                "weight_sum": 1.8701609073531489,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 55,
+              "leg": "PAR",
+              "epoch": 1783904734.000001,
+              "receipt": "KXWTAMATCH-26JUL13GRAPAR-GRA.csv.gz#row-898",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 89,
+                "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve GRA max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-534"
+              },
+              "Q": 89,
+              "X": 1783917264,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783851035,
+              "stage_index": 27
+            },
+            "license_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+            "licensing_deadline_epoch": 1783912507.640623,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "GRA": true,
+          "PAR": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "PAR",
+            "epoch": 1783906902.263,
+            "cents": 89,
+            "receipt": "92f20b17-7d86-502a-09ed-42e7af86f982",
+            "order_lineage_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+            "order_lineage_start_epoch": 1783899691.184,
+            "current_price_receipt": "82decfc8-2f51-7c4a-3914-a8cefebf99f6",
+            "current_price_start_epoch": 1783899691.184,
+            "order_lineage_age_minutes": 120.18464999993643,
+            "current_price_age_minutes": 120.18464999993643,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "GRA",
+            "epoch": 1783922046.487,
+            "cents": 10,
+            "receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+            "order_lineage_start_epoch": 1783915815.000001,
+            "current_price_receipt": "KXWTAMATCH-26JUL13GRAPAR-PAR.csv.gz#row-566",
+            "current_price_start_epoch": 1783915815.000001,
+            "order_lineage_age_minutes": 103.85811665058137,
+            "current_price_age_minutes": 103.85811665058137,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL13GRAPAR",
+        "category": "WTA_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "GRA",
+            "filled": true,
+            "fill_cents": 10,
+            "fill_epoch": 1783922046.487,
+            "fill_receipt": "29303f7b-00bb-449c-bcaa-cc655da8cf3c",
+            "close_cents": 12,
+            "close_epoch": 1783966499.1,
+            "floor_cents": 10,
+            "offered_cents": 2,
+            "value_cents": 2,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PAR",
+            "filled": true,
+            "fill_cents": 89,
+            "fill_epoch": 1783906902.263,
+            "fill_receipt": "92f20b17-7d86-502a-09ed-42e7af86f982",
+            "close_cents": 90,
+            "close_epoch": 1783966218.8,
+            "floor_cents": 88,
+            "offered_cents": 2,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "a594d3ebcd5fd1bce77c3ea17de5dd328659a32c9ee8c6ecc6a28c0906c9444c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

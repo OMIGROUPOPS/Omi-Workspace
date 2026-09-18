@@ -1,0 +1,13 @@
+{
+  "digest": {
+    "sha256": "44a78f9d3413e656c3088b4ecdce5abf67d58680b3854cb2622a6bfe39301332",
+    "bytes": 62805139,
+    "counts": {
+      "stage_reads": 118,
+      "rearm_attempts": 2948,
+      "fill_events": 2,
+      "floor_print_decision_instants": 17
+    }
+  },
+  "completed": "2026-09-18T14:12:23.115Z"
+}

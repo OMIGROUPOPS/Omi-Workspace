@@ -1,0 +1,2755 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL12ALTGAS",
+  "category": "ATP_MAIN",
+  "named_only": true,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "c5a1a0fcbc4c91b2f5ef3f49bf1744ca4ffa963e5989213e4bdcd11c7941dcf2",
+    "stage_cache_sha256": "4c813bea786093c1eba37aa771a2866998d022dcce85cbc24bf6d49eca9afe13",
+    "mirror_projection_sha256": "8b98d2bbf29ca3c9d5287e564c498261245223324fa5f4fc95198dfadafe139a",
+    "mirror_permissions_sha256": "d32d3b606225a99286d5ba9a3f5503364e499efe16eeea8d46585011d021f4b9",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL12ALTGAS",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+      "row_number": 2,
+      "row_csv": "26JUL12ALTGAS,KXATPMATCH-26JUL12ALTGAS,ATP_MAIN,1783777733,1783777733,1784035200,1783854000.0,ALT,GAS,1783790234,57.0,58,1783833446.5,65,1784035191.2,26863.91,16855.19,MOVER,8.0,1783862363,,,,1783790234,43.0,38,1784009667.7,38,1784035157.2,9760.39,3821.17,MOVER,-5.0,1783862363,41,1783877860.5,PRE_BELL_VALID,1783790234,1784035200,1784114025.0,,1784041324.0,1784035200,MACHINE_RECEIPT,\"EXACT (26 receipts, zero spread)\",1783790234,1784035200,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783790234,
+      "span_end_epoch": 1784035200,
+      "bell_epoch": 1784035200,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784035200,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "ALT": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 57,
+          "floor_cents": 58,
+          "floor_epoch": 1783833446.5,
+          "minutes_to_bell": 3362.5583333333334,
+          "line": "ALT 58¢ @ 3362.56m to bell",
+          "marker_label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 58¢ · 3362m to bell",
+          "hover_note": "Recorded floor 58¢ printed here · 3362m to bell · from the truth table (not an OS input)",
+          "markers": {
+            "play": {
+              "progress": 0.15163661238896195,
+              "display_progress": 0.15163661238896195,
+              "boundary": null,
+              "glyph": "⚑",
+              "label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+              "hover_note": "Recorded floor 58¢ printed here · 3362m to bell · from the truth table (not an OS input)",
+              "price": 0.14
+            },
+            "inspection": {
+              "progress": 0.21639083843464485,
+              "display_progress": 0.21639083843464485,
+              "boundary": null,
+              "glyph": "⚑",
+              "label": "ALT FLOOR · RECORDED 58¢ @ 3362.56m to bell — RULER — NOT AN OS INPUT",
+              "hover_note": "Recorded floor 58¢ printed here · 3362m to bell · from the truth table (not an OS input)",
+              "price": 0.4090909090909091
+            }
+          }
+        },
+        "GAS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 43,
+          "floor_cents": 38,
+          "floor_epoch": 1784009667.7,
+          "minutes_to_bell": 425.5383333325386,
+          "line": "GAS 38¢ @ 425.54m to bell",
+          "marker_label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 38¢ · 425m to bell",
+          "hover_note": "Recorded floor 38¢ printed here · 425m to bell · from the truth table (not an OS input)",
+          "markers": {
+            "play": {
+              "progress": 0.8926379541298622,
+              "display_progress": 0.8926379541298622,
+              "boundary": null,
+              "glyph": "⚑",
+              "label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+              "hover_note": "Recorded floor 38¢ printed here · 425m to bell · from the truth table (not an OS input)",
+              "price": 0.54
+            },
+            "inspection": {
+              "progress": 0.900832728077591,
+              "display_progress": 0.900832728077591,
+              "boundary": null,
+              "glyph": "⚑",
+              "label": "GAS FLOOR · RECORDED 38¢ @ 425.54m to bell — RULER — NOT AN OS INPUT",
+              "hover_note": "Recorded floor 38¢ printed here · 425m to bell · from the truth table (not an OS input)",
+              "price": 0.6363636363636364
+            }
+          }
+        }
+      },
+      "favorite_leg": "ALT",
+      "underdog_leg": "GAS",
+      "pair": {
+        "sum_cents": 96,
+        "discount_cents": 4,
+        "reason": null,
+        "line": "best capturable = 58 + 38 = 96¢",
+        "discount_line": "4¢ under par",
+        "compact_line": "best capturable 96¢ · 4¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12ALTGAS",
+        "event_id": "KXATPMATCH-26JUL12ALTGAS",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1783777733",
+        "w1_left_epoch": "1783777733",
+        "w1_right_epoch": "1784035200",
+        "scheduled_start_epoch": "1783854000.0",
+        "legA": "ALT",
+        "legB": "GAS",
+        "legA_formation_end_epoch": "1783790234",
+        "legA_open_postformation_c": "57.0",
+        "legA_floor_c": "58",
+        "legA_floor_epoch": "1783833446.5",
+        "legA_close_c": "65",
+        "legA_close_epoch": "1784035191.2",
+        "legA_contracts": "26863.91",
+        "legA_premium_usd": "16855.19",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "8.0",
+        "legA_us_first_post_epoch": "1783862363",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783790234",
+        "legB_open_postformation_c": "43.0",
+        "legB_floor_c": "38",
+        "legB_floor_epoch": "1784009667.7",
+        "legB_close_c": "38",
+        "legB_close_epoch": "1784035157.2",
+        "legB_contracts": "9760.39",
+        "legB_premium_usd": "3821.17",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "-5.0",
+        "legB_us_first_post_epoch": "1783862363",
+        "legB_us_fill_c": "41",
+        "legB_us_fill_epoch": "1783877860.5",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783790234",
+        "bell_machine_epoch": "1784035200",
+        "bell_observed_inplay_epoch": "1784114025.0",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784041324.0",
+        "bell_epoch": "1784035200",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (26 receipts, zero spread)",
+        "span_start_epoch": "1783790234",
+        "span_end_epoch": "1784035200",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\reach_map_20260916\\named_inputs\\KXATPMATCH-26JUL12ALTGAS.jsonl",
+      "sha256": "4080f5db9d93a155cc0194e52daa67b3877dc7ecea1c4a1a4d4ea08ac27b29ff",
+      "raw_rows": 2552,
+      "accepted_rows": 340,
+      "start_epoch": 1783790234,
+      "end_epoch": 1784035200
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+  "first_both_directional_receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-744",
+  "first_callable_by_side": {
+    "ALT": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+    "GAS": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+          "epoch": 1783820728.000002,
+          "clock": "T−59hr 35min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALT is strengthening; GAS is not yet directionally called.",
+              "WHY": "ALT trades at 59¢ against its 57¢ opening anchor; GAS trades at 44¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALT carries 10 eligible past sides from the base comparisons; GAS carries 36 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALT calls 57¢ by T−30hr 40min; GAS calls 40¢ by T−17hr 15min.",
+              "WHY": "ALT’s middle half spans 55–58¢; GAS’s middle half spans 39–41¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALT has book 57/58 and a standing 57¢ bid; GAS has book 41/42 and a standing 40¢ bid.",
+              "WHY": "ALT: The current pool target was the permitted bid level; GAS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "ALT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 65,
+              "recorded_floor": 58,
+              "P": 59,
+              "Q": 57,
+              "X": 1783924788,
+              "layer": "BASE",
+              "members": 10,
+              "ess": 10,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 59,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271"
+              },
+              "bid": 57,
+              "filled": null,
+              "decision": {
+                "order": 40,
+                "leg": "ALT",
+                "epoch": 1783820728.000002,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 57,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 59,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271"
+                },
+                "Q": 57,
+                "X": 1783924788,
+                "status": "RESOLVED",
+                "author": "POOL_BASE",
+                "formation_end": 1783790234,
+                "support": null,
+                "accountability_assumption": "35637c749495232f21666a6fc3d79f6c70f7e2f819ce18f138c85b848351aa8e",
+                "stage_index": 20
+              },
+              "permission": null,
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1783924788,
+                "q25": 55,
+                "q75": 58,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 58,
+                "floor_witness": {
+                  "epoch": 1783833446.549,
+                  "price": 58,
+                  "size": 17.25,
+                  "receipt": "5b79349b-8403-46fd-d416-5142f89f5f27"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783833446.549,
+                  "price": 58,
+                  "size": 17.25,
+                  "receipt": "5b79349b-8403-46fd-d416-5142f89f5f27"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 38,
+              "recorded_floor": 38,
+              "P": 44,
+              "Q": 40,
+              "X": 1783973103.780604,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 36,
+              "ess": 15.996616701902287,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 44,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-221"
+              },
+              "bid": 40,
+              "filled": null,
+              "decision": {
+                "order": 41,
+                "leg": "GAS",
+                "epoch": 1783820728.000002,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 40,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 42,
+                  "last_trade_cents": 44,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-221"
+                },
+                "Q": 40,
+                "X": 1783973103.780604,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "support": null,
+                "accountability_assumption": "38e1e05025976c130b0b63f52319e58bfcd330baf75b8d2ba50299aeb5e3d834",
+                "stage_index": 20
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1783973103.780604,
+                "q25": 39,
+                "q75": 41,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784009667.69,
+                  "price": 38,
+                  "size": 125.44,
+                  "receipt": "ccfd87ed-a316-75af-a54c-854f3bd0ea8d"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783862356.23,
+                  "price": 41,
+                  "size": 9.32,
+                  "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-ALT-fill",
+          "label": "Last receipt before ALT filled",
+          "arm": "D",
+          "focus_leg": "ALT",
+          "outcome": "fill",
+          "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+          "epoch": 1784000659.786,
+          "clock": "T−9hr 36min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALT is strengthening; GAS is weakening.",
+              "WHY": "ALT trades at 61¢ against its 57¢ opening anchor; GAS trades at 41¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALT carries 264 eligible past sides from first-price comparisons; GAS carries 313 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALT calls 60¢ by T−7hr 58min; GAS calls 39¢ by T−5hr 1min.",
+              "WHY": "ALT’s middle half spans 58–61¢; GAS’s middle half spans 38–40¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALT has book 60/61 and a standing 60¢ bid; GAS has book 40/41 and a standing 39¢ bid.",
+              "WHY": "ALT: The current pool target was the permitted bid level; GAS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "ALT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 65,
+              "recorded_floor": 58,
+              "P": 61,
+              "Q": 60,
+              "X": 1784006540.936851,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 264,
+              "ess": 119.74288471667883,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+              },
+              "bid": 60,
+              "filled": null,
+              "decision": {
+                "order": 122,
+                "leg": "ALT",
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 60,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+                },
+                "Q": 60,
+                "X": 1784006540.936851,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "support": null,
+                "accountability_assumption": "aff41fdcac6f540426878dafa2510b9d873bf4b52c9115d7eb7c165b6d0a434e",
+                "stage_index": 61
+              },
+              "permission": null,
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1784006540.936851,
+                "q25": 58,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784000663.801,
+                  "price": 60,
+                  "size": 43.18,
+                  "receipt": "79019007-2092-520a-da1f-f79d3263dadf"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784000663.801,
+                  "price": 60,
+                  "size": 43.18,
+                  "receipt": "79019007-2092-520a-da1f-f79d3263dadf"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 38,
+              "recorded_floor": 38,
+              "P": 41,
+              "Q": 39,
+              "X": 1784017134.980664,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 313,
+              "ess": 124.81579419430417,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 41,
+                "last_trade_cents": 41,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18552"
+              },
+              "bid": 39,
+              "filled": null,
+              "decision": {
+                "order": 123,
+                "leg": "GAS",
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 39,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 41,
+                  "last_trade_cents": 41,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18552"
+                },
+                "Q": 39,
+                "X": 1784017134.980664,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "support": null,
+                "accountability_assumption": "b28b9348d1cb29b41a4e7f2b90bd377ee4e4a0928ebea3a12a334b7f93508d15",
+                "stage_index": 61
+              },
+              "permission": null,
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784017134.980664,
+                "q25": 38,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784009667.69,
+                  "price": 38,
+                  "size": 125.44,
+                  "receipt": "ccfd87ed-a316-75af-a54c-854f3bd0ea8d"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784002241.523,
+                  "price": 40,
+                  "size": 10,
+                  "receipt": "69e1d85d-3cbd-5919-bea8-4703b7c99e8d"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784000663.801,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "ALT",
+              "epoch": 1784000663.801,
+              "cents": 60,
+              "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+              "order_lineage_start_epoch": 1783820728.000002,
+              "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+              "current_price_start_epoch": 1784000298.337,
+              "order_lineage_age_minutes": 2998.9300166368484,
+              "current_price_age_minutes": 6.091066670417786,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "ALT",
+                "epoch": 1784000663.801,
+                "cents": 60,
+                "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "order_lineage_start_epoch": 1783820728.000002,
+                "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+                "current_price_start_epoch": 1784000298.337,
+                "order_lineage_age_minutes": 2998.9300166368484,
+                "current_price_age_minutes": 6.091066670417786,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 122,
+              "leg": "ALT",
+              "epoch": 1784000659.786,
+              "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 60,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+              },
+              "Q": 60,
+              "X": 1784006540.936851,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783790234,
+              "support": null,
+              "accountability_assumption": "aff41fdcac6f540426878dafa2510b9d873bf4b52c9115d7eb7c165b6d0a434e",
+              "stage_index": 61
+            },
+            "license_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+            "licensing_deadline_epoch": 1784006051,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GAS-fill",
+          "label": "Last receipt before GAS filled",
+          "arm": "D",
+          "focus_leg": "GAS",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+          "epoch": 1784024400,
+          "clock": "T−3hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALT is strengthening; GAS is weakening.",
+              "WHY": "ALT trades at 62¢ against its 57¢ opening anchor; GAS trades at 39¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALT carries 327 eligible past sides from first-price comparisons; GAS carries 364 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALT calls 61¢ by T−1hr 53min; GAS calls 38¢ by T−1hr 57min.",
+              "WHY": "ALT’s middle half spans 60–62¢; GAS’s middle half spans 36–39¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALT has book 61/62 and a recorded purchase at 60¢; GAS has book 38/39 and a standing 38¢ bid.",
+              "WHY": "ALT: This side was already bought, so no new bid was allowed; GAS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "ALT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 65,
+              "recorded_floor": 58,
+              "P": 62,
+              "Q": 61,
+              "X": 1784028421.31704,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 327,
+              "ess": 132.50596019890602,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16248"
+              },
+              "bid": null,
+              "filled": 60,
+              "decision": {
+                "order": 154,
+                "leg": "ALT",
+                "epoch": 1784024400,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16248"
+                },
+                "Q": 61,
+                "X": 1784028421.31704,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 89
+              },
+              "permission": null,
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784028421.31704,
+                "q25": 60,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784025019.954,
+                  "price": 62,
+                  "size": 90.11,
+                  "receipt": "03e769b4-0778-5722-83cb-b3636bd2410c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784025019.954,
+                  "price": 62,
+                  "size": 90.11,
+                  "receipt": "03e769b4-0778-5722-83cb-b3636bd2410c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 38,
+              "recorded_floor": 38,
+              "P": 39,
+              "Q": 38,
+              "X": 1784028203,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 364,
+              "ess": 146.9494812858929,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-19969"
+              },
+              "bid": 38,
+              "filled": null,
+              "decision": {
+                "order": 155,
+                "leg": "GAS",
+                "epoch": 1784024400,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 38,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-19969"
+                },
+                "Q": 38,
+                "X": 1784028203,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "support": null,
+                "accountability_assumption": "3e2b646291b0b9cdcf3e0250700c9008f192eadbe345e4a22f9a59a737952a97",
+                "stage_index": 89
+              },
+              "permission": null,
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784028203,
+                "q25": 36,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784025043.114,
+                  "price": 38,
+                  "size": 51.53,
+                  "receipt": "132195bc-2998-60e0-053e-da2627a5edaa"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784024409.936,
+                  "price": 39,
+                  "size": 2.45,
+                  "receipt": "df980c73-8181-7b18-2c4e-3f103e8244b2"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784025043.114,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GAS",
+              "epoch": 1784025043.114,
+              "cents": 38,
+              "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+              "order_lineage_start_epoch": 1783810130.000001,
+              "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+              "current_price_start_epoch": 1784024400,
+              "order_lineage_age_minutes": 3581.8852333188056,
+              "current_price_age_minutes": 10.7185666680336,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GAS",
+                "epoch": 1784025043.114,
+                "cents": 38,
+                "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+                "order_lineage_start_epoch": 1783810130.000001,
+                "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+                "current_price_start_epoch": 1784024400,
+                "order_lineage_age_minutes": 3581.8852333188056,
+                "current_price_age_minutes": 10.7185666680336,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 155,
+              "leg": "GAS",
+              "epoch": 1784024400,
+              "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 38,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-19969"
+              },
+              "Q": 38,
+              "X": 1784028203,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783790234,
+              "support": null,
+              "accountability_assumption": "3e2b646291b0b9cdcf3e0250700c9008f192eadbe345e4a22f9a59a737952a97",
+              "stage_index": 89
+            },
+            "license_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+            "licensing_deadline_epoch": 1784028203,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAS was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "GAS: bought at 38¢ against a 38¢ close, not strictly below it."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "ALT": true,
+          "GAS": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "ALT",
+            "epoch": 1784000663.801,
+            "cents": 60,
+            "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+            "order_lineage_start_epoch": 1783820728.000002,
+            "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+            "current_price_start_epoch": 1784000298.337,
+            "order_lineage_age_minutes": 2998.9300166368484,
+            "current_price_age_minutes": 6.091066670417786,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "GAS",
+            "epoch": 1784025043.114,
+            "cents": 38,
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-148",
+            "order_lineage_start_epoch": 1783810130.000001,
+            "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+            "current_price_start_epoch": 1784024400,
+            "order_lineage_age_minutes": 3581.8852333188056,
+            "current_price_age_minutes": 10.7185666680336,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12ALTGAS",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "ALT",
+            "filled": true,
+            "fill_cents": 60,
+            "fill_epoch": 1784000663.801,
+            "fill_receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+            "close_cents": 65,
+            "close_epoch": 1784035191.2,
+            "floor_cents": 58,
+            "offered_cents": 7,
+            "value_cents": 5,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GAS",
+            "filled": true,
+            "fill_cents": 38,
+            "fill_epoch": 1784025043.114,
+            "fill_receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "close_cents": 38,
+            "close_epoch": 1784035157.2,
+            "floor_cents": 38,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": true
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+          "epoch": 1783820728.000002,
+          "clock": "T−59hr 35min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALT is strengthening; GAS is not yet directionally called.",
+              "WHY": "ALT trades at 59¢ against its 57¢ opening anchor; GAS trades at 44¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALT carries 10 eligible past sides from the base comparisons; GAS carries 36 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALT calls 57¢ by T−30hr 40min; GAS calls 40¢ by T−17hr 15min.",
+              "WHY": "ALT’s middle half spans 55–58¢; GAS’s middle half spans 39–41¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALT has book 57/58 and a standing 57¢ bid; GAS has book 41/42 and no standing bid.",
+              "WHY": "ALT: buying the strengthening side before it strengthens; predicted close 60; bid 57; reserve GAS max(close 42, ask 42) = 42; 57 + 42 = 99 < 100; GAS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "ALT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 65,
+              "recorded_floor": 58,
+              "P": 59,
+              "Q": 57,
+              "X": 1783924788,
+              "layer": "BASE",
+              "members": 10,
+              "ess": 10,
+              "family": "EARLY_SET_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 59,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271"
+              },
+              "bid": 57,
+              "filled": null,
+              "decision": {
+                "order": 40,
+                "leg": "ALT",
+                "epoch": 1783820728.000002,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 57,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 60; bid 57; reserve GAS max(close 42, ask 42) = 42; 57 + 42 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 59,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271"
+                },
+                "Q": 57,
+                "X": 1783924788,
+                "status": "RESOLVED",
+                "author": "POOL_BASE",
+                "formation_end": 1783790234,
+                "stage_index": 20
+              },
+              "permission": {
+                "ordinal": 20,
+                "epoch": 1783820728.000002,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "id": "ALT",
+                "old": null,
+                "proposed": 57,
+                "posted": 57,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 57,
+                  "hand_level": 57,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 60,
+                  "window": {
+                    "family": "EARLY_SET_UP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0,
+                      "ROUND_TRIP": 1,
+                      "DRIFT_UP": 1,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 3,
+                      "EARLY_SET_UP": 3,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.00022532047319226065,
+                    "epoch": 1783790289.1958551,
+                    "minutes_to_bell": 4081.846735747655,
+                    "open": true,
+                    "member_count": 3,
+                    "ess": 3,
+                    "weight_sum": 3,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 42,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 42,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 60; bid 57; reserve GAS max(close 42, ask 42) = 42; 57 + 42 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALT": {
+                    "forecast": 60,
+                    "layer": "BASE",
+                    "ess": 10,
+                    "role": "CLIMBER",
+                    "current": 59,
+                    "member_count": 10
+                  },
+                  "GAS": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 15.996616701902287,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 36
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_UP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0,
+                    "ROUND_TRIP": 1,
+                    "DRIFT_UP": 1,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 3,
+                    "EARLY_SET_UP": 3,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.00022532047319226065,
+                  "epoch": 1783790289.1958551,
+                  "minutes_to_bell": 4081.846735747655,
+                  "open": true,
+                  "member_count": 3,
+                  "ess": 3,
+                  "weight_sum": 3,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1783924788,
+                "q25": 55,
+                "q75": 58,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 58,
+                "floor_witness": {
+                  "epoch": 1783833446.549,
+                  "price": 58,
+                  "size": 17.25,
+                  "receipt": "5b79349b-8403-46fd-d416-5142f89f5f27"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783833446.549,
+                  "price": 58,
+                  "size": 17.25,
+                  "receipt": "5b79349b-8403-46fd-d416-5142f89f5f27"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 38,
+              "recorded_floor": 38,
+              "P": 44,
+              "Q": 40,
+              "X": 1783973103.780604,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 36,
+              "ess": 15.996616701902287,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 44,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-221"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 41,
+                "leg": "GAS",
+                "epoch": 1783820728.000002,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 40; reserve ALT max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 42,
+                  "last_trade_cents": 44,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-221"
+                },
+                "Q": 40,
+                "X": 1783973103.780604,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "stage_index": 20
+              },
+              "permission": {
+                "ordinal": 20,
+                "epoch": 1783820728.000002,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-271",
+                "id": "GAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 1.0041769206197417,
+                      "ONE_STEP_UP": 0.1746784419679585,
+                      "DRIFT_DOWN": 0.6921636757287015,
+                      "EARLY_SET_DOWN": 0.26156168858991874,
+                      "QUIET_WOBBLE": 0.4262816754557673,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_DOWN": 0.30199426209525493,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0.09145788980577718,
+                      "GRIND_WOBBLE_DOWN": 0.11905371877843014,
+                      "SLEEPER": 0,
+                      "EARLY_SET_UP": 0.16199125769914577
+                    },
+                    "position": 0.048782211138819614,
+                    "epoch": 1783802183.9831338,
+                    "minutes_to_bell": 3883.600281103452,
+                    "open": true,
+                    "member_count": 13,
+                    "ess": 5.93982395753164,
+                    "weight_sum": 1.0041769206197417,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 40; reserve ALT max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALT": {
+                    "forecast": 60,
+                    "layer": "BASE",
+                    "ess": 10,
+                    "role": "CLIMBER",
+                    "current": 59,
+                    "member_count": 10
+                  },
+                  "GAS": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 15.996616701902287,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 36
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 1.0041769206197417,
+                    "ONE_STEP_UP": 0.1746784419679585,
+                    "DRIFT_DOWN": 0.6921636757287015,
+                    "EARLY_SET_DOWN": 0.26156168858991874,
+                    "QUIET_WOBBLE": 0.4262816754557673,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_DOWN": 0.30199426209525493,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0.09145788980577718,
+                    "GRIND_WOBBLE_DOWN": 0.11905371877843014,
+                    "SLEEPER": 0,
+                    "EARLY_SET_UP": 0.16199125769914577
+                  },
+                  "position": 0.048782211138819614,
+                  "epoch": 1783802183.9831338,
+                  "minutes_to_bell": 3883.600281103452,
+                  "open": true,
+                  "member_count": 13,
+                  "ess": 5.93982395753164,
+                  "weight_sum": 1.0041769206197417,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1783973103.780604,
+                "q25": 39,
+                "q75": 41,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784009667.69,
+                  "price": 38,
+                  "size": 125.44,
+                  "receipt": "ccfd87ed-a316-75af-a54c-854f3bd0ea8d"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783862356.23,
+                  "price": 41,
+                  "size": 9.32,
+                  "receipt": "87517932-7806-63a5-6104-8b6bf4d17f87"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-ALT-fill",
+          "label": "Last receipt before ALT filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "ALT",
+          "outcome": "fill",
+          "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+          "epoch": 1784000659.786,
+          "clock": "T−9hr 36min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALT is strengthening; GAS is weakening.",
+              "WHY": "ALT trades at 61¢ against its 57¢ opening anchor; GAS trades at 41¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALT carries 264 eligible past sides from first-price comparisons; GAS carries 313 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALT calls 60¢ by T−7hr 58min; GAS calls 39¢ by T−5hr 1min.",
+              "WHY": "ALT’s middle half spans 58–61¢; GAS’s middle half spans 38–40¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALT has book 60/61 and a standing 60¢ bid; GAS has book 40/41 and no standing bid.",
+              "WHY": "ALT: buying the strengthening side before it strengthens; predicted close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100; GAS: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "ALT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 65,
+              "recorded_floor": 58,
+              "P": 61,
+              "Q": 60,
+              "X": 1784006540.936851,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 264,
+              "ess": 119.74288471667883,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+              },
+              "bid": 60,
+              "filled": null,
+              "decision": {
+                "order": 122,
+                "leg": "ALT",
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 60,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+                },
+                "Q": 60,
+                "X": 1784006540.936851,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "stage_index": 61
+              },
+              "permission": {
+                "ordinal": 61,
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "id": "ALT",
+                "old": 60,
+                "proposed": 60,
+                "posted": 60,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 60,
+                  "hand_level": 60,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4499934485141055,
+                      "ROUND_TRIP": 4.07963652983169,
+                      "DRIFT_UP": 3.2482518388341117,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.7493625277759375,
+                      "LATE_BREAK_DOWN": 0.09880703567380403,
+                      "ONE_STEP_UP": 2.5233471500066127,
+                      "EARLY_SET_UP": 2.5033847433850576,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.5479727003969577,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.1173237510169263
+                    },
+                    "position": 0.0694134948192889,
+                    "epoch": 1783807237.946172,
+                    "minutes_to_bell": 3799.3675638000173,
+                    "open": true,
+                    "member_count": 57,
+                    "ess": 27.14196245822051,
+                    "weight_sum": 4.07963652983169,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 39,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 39,
+                      "climber_forecast_close": 62,
+                      "mirror_completion_cost": 38,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 39,
+                    "climber_forecast_close": 62,
+                    "mirror_completion_cost": 38,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "ALT",
+                    "faller": "GAS",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 41,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 41,
+                    "ask": 41,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "ALT": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 119.74288471667883,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 264
+                  },
+                  "GAS": {
+                    "forecast": 41,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 124.81579419430417,
+                    "role": "FALLER",
+                    "current": 41,
+                    "member_count": 313
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4499934485141055,
+                    "ROUND_TRIP": 4.07963652983169,
+                    "DRIFT_UP": 3.2482518388341117,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.7493625277759375,
+                    "LATE_BREAK_DOWN": 0.09880703567380403,
+                    "ONE_STEP_UP": 2.5233471500066127,
+                    "EARLY_SET_UP": 2.5033847433850576,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.5479727003969577,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.1173237510169263
+                  },
+                  "position": 0.0694134948192889,
+                  "epoch": 1783807237.946172,
+                  "minutes_to_bell": 3799.3675638000173,
+                  "open": true,
+                  "member_count": 57,
+                  "ess": 27.14196245822051,
+                  "weight_sum": 4.07963652983169,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1784006540.936851,
+                "q25": 58,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784000663.801,
+                  "price": 60,
+                  "size": 43.18,
+                  "receipt": "79019007-2092-520a-da1f-f79d3263dadf"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784000663.801,
+                  "price": 60,
+                  "size": 43.18,
+                  "receipt": "79019007-2092-520a-da1f-f79d3263dadf"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 38,
+              "recorded_floor": 38,
+              "P": 41,
+              "Q": 39,
+              "X": 1784017134.980664,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 313,
+              "ess": 124.81579419430417,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 41,
+                "last_trade_cents": 41,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18552"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 123,
+                "leg": "GAS",
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 39; reserve ALT max(close 62, ask 61) = 62"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 41,
+                  "last_trade_cents": 41,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-18552"
+                },
+                "Q": 39,
+                "X": 1784017134.980664,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "stage_index": 61
+              },
+              "permission": {
+                "ordinal": 61,
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "id": "GAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 39,
+                  "hand_level": 39,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 41,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.36244242561232587,
+                      "ROUND_TRIP": 5.262542830925481,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 3.1998484894170742,
+                      "EARLY_SET_DOWN": 4.495866196426061,
+                      "QUIET_WOBBLE": 1.93868412428984,
+                      "LATE_BREAK_UP": 0.08586817874215012,
+                      "ONE_STEP_DOWN": 2.743393606542523,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 1.153052541048504,
+                      "SLEEPER": 1.3198180677784275,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.054228855721393035,
+                    "epoch": 1783803518.2258706,
+                    "minutes_to_bell": 3861.362902156512,
+                    "open": true,
+                    "member_count": 59,
+                    "ess": 21.112935992239123,
+                    "weight_sum": 5.262542830925481,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 62,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 62,
+                    "ask": 61,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 39; reserve ALT max(close 62, ask 61) = 62",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 39,
+                    "climber_forecast_close": 62,
+                    "mirror_completion_cost": 38,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "ALT",
+                    "faller": "GAS",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALT": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 119.74288471667883,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 264
+                  },
+                  "GAS": {
+                    "forecast": 41,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 124.81579419430417,
+                    "role": "FALLER",
+                    "current": 41,
+                    "member_count": 313
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.36244242561232587,
+                    "ROUND_TRIP": 5.262542830925481,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 3.1998484894170742,
+                    "EARLY_SET_DOWN": 4.495866196426061,
+                    "QUIET_WOBBLE": 1.93868412428984,
+                    "LATE_BREAK_UP": 0.08586817874215012,
+                    "ONE_STEP_DOWN": 2.743393606542523,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 1.153052541048504,
+                    "SLEEPER": 1.3198180677784275,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.054228855721393035,
+                  "epoch": 1783803518.2258706,
+                  "minutes_to_bell": 3861.362902156512,
+                  "open": true,
+                  "member_count": 59,
+                  "ess": 21.112935992239123,
+                  "weight_sum": 5.262542830925481,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784017134.980664,
+                "q25": 38,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784009667.69,
+                  "price": 38,
+                  "size": 125.44,
+                  "receipt": "ccfd87ed-a316-75af-a54c-854f3bd0ea8d"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784002241.523,
+                  "price": 40,
+                  "size": 10,
+                  "receipt": "69e1d85d-3cbd-5919-bea8-4703b7c99e8d"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784000663.801,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "ALT",
+              "epoch": 1784000663.801,
+              "cents": 60,
+              "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+              "order_lineage_receipt": "1833c3ba-70e9-522d-a93e-715d54f10f13",
+              "order_lineage_start_epoch": 1783994484.656,
+              "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+              "current_price_start_epoch": 1784000298.337,
+              "order_lineage_age_minutes": 102.98575000365575,
+              "current_price_age_minutes": 6.091066670417786,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "ALT",
+                "epoch": 1784000663.801,
+                "cents": 60,
+                "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+                "order_lineage_receipt": "1833c3ba-70e9-522d-a93e-715d54f10f13",
+                "order_lineage_start_epoch": 1783994484.656,
+                "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+                "current_price_start_epoch": 1784000298.337,
+                "order_lineage_age_minutes": 102.98575000365575,
+                "current_price_age_minutes": 6.091066670417786,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 61,
+              "epoch": 1784000659.786,
+              "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+              "id": "ALT",
+              "old": 60,
+              "proposed": 60,
+              "posted": 60,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 60,
+                "hand_level": 60,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 62,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4499934485141055,
+                    "ROUND_TRIP": 4.07963652983169,
+                    "DRIFT_UP": 3.2482518388341117,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.7493625277759375,
+                    "LATE_BREAK_DOWN": 0.09880703567380403,
+                    "ONE_STEP_UP": 2.5233471500066127,
+                    "EARLY_SET_UP": 2.5033847433850576,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.5479727003969577,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.1173237510169263
+                  },
+                  "position": 0.0694134948192889,
+                  "epoch": 1783807237.946172,
+                  "minutes_to_bell": 3799.3675638000173,
+                  "open": true,
+                  "member_count": 57,
+                  "ess": 27.14196245822051,
+                  "weight_sum": 4.07963652983169,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 39,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 39,
+                    "climber_forecast_close": 62,
+                    "mirror_completion_cost": 38,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 39,
+                  "climber_forecast_close": 62,
+                  "mirror_completion_cost": 38,
+                  "disagreement_cents": 1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "FALLER_FLOOR",
+                  "climber": "ALT",
+                  "faller": "GAS",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 41,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 41,
+                  "ask": 41,
+                  "sum": 101,
+                  "discount": -1,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "ALT": {
+                  "forecast": 62,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 119.74288471667883,
+                  "role": "CLIMBER",
+                  "current": 61,
+                  "member_count": 264
+                },
+                "GAS": {
+                  "forecast": 41,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 124.81579419430417,
+                  "role": "FALLER",
+                  "current": 41,
+                  "member_count": 313
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.4499934485141055,
+                  "ROUND_TRIP": 4.07963652983169,
+                  "DRIFT_UP": 3.2482518388341117,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 1.7493625277759375,
+                  "LATE_BREAK_DOWN": 0.09880703567380403,
+                  "ONE_STEP_UP": 2.5233471500066127,
+                  "EARLY_SET_UP": 2.5033847433850576,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.5479727003969577,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 1.1173237510169263
+                },
+                "position": 0.0694134948192889,
+                "epoch": 1783807237.946172,
+                "minutes_to_bell": 3799.3675638000173,
+                "open": true,
+                "member_count": 57,
+                "ess": 27.14196245822051,
+                "weight_sum": 4.07963652983169,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 122,
+              "leg": "ALT",
+              "epoch": 1784000659.786,
+              "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 60,
+                "reason": "buying the strengthening side before it strengthens; forecast close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+              },
+              "Q": 60,
+              "X": 1784006540.936851,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783790234,
+              "stage_index": 61
+            },
+            "license_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+            "licensing_deadline_epoch": 1784006051,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GAS-fill",
+          "label": "Last receipt before GAS filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "GAS",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+          "epoch": 1784024400,
+          "clock": "T−3hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "ALT is strengthening; GAS is weakening.",
+              "WHY": "ALT trades at 62¢ against its 57¢ opening anchor; GAS trades at 39¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "ALT carries 327 eligible past sides from first-price comparisons; GAS carries 364 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "ALT calls 61¢ by T−1hr 53min; GAS calls 38¢ by T−1hr 57min.",
+              "WHY": "ALT’s middle half spans 60–62¢; GAS’s middle half spans 36–39¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "ALT has book 61/62 and a recorded purchase at 60¢; GAS has book 38/39 and a standing 38¢ bid.",
+              "WHY": "ALT: buying the strengthening side before it strengthens; predicted close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100; GAS: buying the weakening side in round trip's learned late-floor window; predicted floor 38; bid 38; ALT filled 60; 38 + 60 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "ALT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 57,
+              "corrected_open": 57,
+              "close": 65,
+              "recorded_floor": 58,
+              "P": 62,
+              "Q": 61,
+              "X": 1784028421.31704,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 327,
+              "ess": 132.50596019890602,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-16248"
+              },
+              "bid": null,
+              "filled": 60,
+              "decision": {
+                "order": 122,
+                "leg": "ALT",
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 60,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-ALT.csv.gz#row-14592"
+                },
+                "Q": 60,
+                "X": 1784006540.936851,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "stage_index": 61
+              },
+              "permission": {
+                "ordinal": 61,
+                "epoch": 1784000659.786,
+                "receipt": "6dc1e207-2ec0-41ba-7a4f-4b5b3697696e",
+                "id": "ALT",
+                "old": 60,
+                "proposed": 60,
+                "posted": 60,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 60,
+                  "hand_level": 60,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4499934485141055,
+                      "ROUND_TRIP": 4.07963652983169,
+                      "DRIFT_UP": 3.2482518388341117,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.7493625277759375,
+                      "LATE_BREAK_DOWN": 0.09880703567380403,
+                      "ONE_STEP_UP": 2.5233471500066127,
+                      "EARLY_SET_UP": 2.5033847433850576,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.5479727003969577,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.1173237510169263
+                    },
+                    "position": 0.0694134948192889,
+                    "epoch": 1783807237.946172,
+                    "minutes_to_bell": 3799.3675638000173,
+                    "open": true,
+                    "member_count": 57,
+                    "ess": 27.14196245822051,
+                    "weight_sum": 4.07963652983169,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 39,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 39,
+                      "climber_forecast_close": 62,
+                      "mirror_completion_cost": 38,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 62; bid 60; reserve GAS max(late floor 39, 100 - climber close 62 = 38) = 39; views differ by 1c (floor minus mirror); 60 + 39 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 39,
+                    "climber_forecast_close": 62,
+                    "mirror_completion_cost": 38,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "ALT",
+                    "faller": "GAS",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 41,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 41,
+                    "ask": 41,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "ALT": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 119.74288471667883,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 264
+                  },
+                  "GAS": {
+                    "forecast": 41,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 124.81579419430417,
+                    "role": "FALLER",
+                    "current": 41,
+                    "member_count": 313
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4499934485141055,
+                    "ROUND_TRIP": 4.07963652983169,
+                    "DRIFT_UP": 3.2482518388341117,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.7493625277759375,
+                    "LATE_BREAK_DOWN": 0.09880703567380403,
+                    "ONE_STEP_UP": 2.5233471500066127,
+                    "EARLY_SET_UP": 2.5033847433850576,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.5479727003969577,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.1173237510169263
+                  },
+                  "position": 0.0694134948192889,
+                  "epoch": 1783807237.946172,
+                  "minutes_to_bell": 3799.3675638000173,
+                  "open": true,
+                  "member_count": 57,
+                  "ess": 27.14196245822051,
+                  "weight_sum": 4.07963652983169,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784028421.31704,
+                "q25": 60,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 62,
+                "floor_witness": {
+                  "epoch": 1784025019.954,
+                  "price": 62,
+                  "size": 90.11,
+                  "receipt": "03e769b4-0778-5722-83cb-b3636bd2410c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784025019.954,
+                  "price": 62,
+                  "size": 90.11,
+                  "receipt": "03e769b4-0778-5722-83cb-b3636bd2410c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 38,
+              "recorded_floor": 38,
+              "P": 39,
+              "Q": 38,
+              "X": 1784028203,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 364,
+              "ess": 146.9494812858929,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-19969"
+              },
+              "bid": 38,
+              "filled": null,
+              "decision": {
+                "order": 151,
+                "leg": "GAS",
+                "epoch": 1784024400,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 38,
+                  "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 38; bid 38; ALT filled 60; 38 + 60 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-19969"
+                },
+                "Q": 38,
+                "X": 1784028203,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790234,
+                "stage_index": 89
+              },
+              "permission": {
+                "ordinal": 89,
+                "epoch": 1784024400,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+                "id": "GAS",
+                "old": 37,
+                "proposed": 38,
+                "posted": 38,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 38,
+                  "hand_level": 38,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 39,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.3937269812893742,
+                      "ROUND_TRIP": 5.7023983668640685,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 3.330822773331352,
+                      "EARLY_SET_DOWN": 4.760769019002424,
+                      "QUIET_WOBBLE": 2.6680044855262466,
+                      "LATE_BREAK_UP": 0.25898362116450824,
+                      "ONE_STEP_DOWN": 3.166966261899909,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 1.1679611793410496,
+                      "SLEEPER": 1.5055422536728085,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.323582995951417,
+                    "epoch": 1783869500.8321862,
+                    "minutes_to_bell": 2761.6527968962987,
+                    "open": true,
+                    "member_count": 65,
+                    "ess": 24.43985152463463,
+                    "weight_sum": 5.7023983668640685,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 60,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 98,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 38; bid 38; ALT filled 60; 38 + 60 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 38,
+                    "climber_forecast_close": 62,
+                    "mirror_completion_cost": 38,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "ALT",
+                    "faller": "GAS",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ALT": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 132.50596019890602,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 327
+                  },
+                  "GAS": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 146.9494812858929,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 364
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.3937269812893742,
+                    "ROUND_TRIP": 5.7023983668640685,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 3.330822773331352,
+                    "EARLY_SET_DOWN": 4.760769019002424,
+                    "QUIET_WOBBLE": 2.6680044855262466,
+                    "LATE_BREAK_UP": 0.25898362116450824,
+                    "ONE_STEP_DOWN": 3.166966261899909,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 1.1679611793410496,
+                    "SLEEPER": 1.5055422536728085,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.323582995951417,
+                  "epoch": 1783869500.8321862,
+                  "minutes_to_bell": 2761.6527968962987,
+                  "open": true,
+                  "member_count": 65,
+                  "ess": 24.43985152463463,
+                  "weight_sum": 5.7023983668640685,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784028203,
+                "q25": 36,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784025043.114,
+                  "price": 38,
+                  "size": 51.53,
+                  "receipt": "132195bc-2998-60e0-053e-da2627a5edaa"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784024409.936,
+                  "price": 39,
+                  "size": 2.45,
+                  "receipt": "df980c73-8181-7b18-2c4e-3f103e8244b2"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784025043.114,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GAS",
+              "epoch": 1784025043.114,
+              "cents": 38,
+              "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784013600",
+              "order_lineage_start_epoch": 1784013600,
+              "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+              "current_price_start_epoch": 1784024400,
+              "order_lineage_age_minutes": 190.7185666680336,
+              "current_price_age_minutes": 10.7185666680336,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GAS",
+                "epoch": 1784025043.114,
+                "cents": 38,
+                "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784013600",
+                "order_lineage_start_epoch": 1784013600,
+                "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+                "current_price_start_epoch": 1784024400,
+                "order_lineage_age_minutes": 190.7185666680336,
+                "current_price_age_minutes": 10.7185666680336,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 89,
+              "epoch": 1784024400,
+              "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+              "id": "GAS",
+              "old": 37,
+              "proposed": 38,
+              "posted": 38,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 38,
+                "hand_level": 38,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 39,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.3937269812893742,
+                    "ROUND_TRIP": 5.7023983668640685,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 3.330822773331352,
+                    "EARLY_SET_DOWN": 4.760769019002424,
+                    "QUIET_WOBBLE": 2.6680044855262466,
+                    "LATE_BREAK_UP": 0.25898362116450824,
+                    "ONE_STEP_DOWN": 3.166966261899909,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 1.1679611793410496,
+                    "SLEEPER": 1.5055422536728085,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.323582995951417,
+                  "epoch": 1783869500.8321862,
+                  "minutes_to_bell": 2761.6527968962987,
+                  "open": true,
+                  "member_count": 65,
+                  "ess": 24.43985152463463,
+                  "weight_sum": 5.7023983668640685,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 60,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 98,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 38; bid 38; ALT filled 60; 38 + 60 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 38,
+                  "climber_forecast_close": 62,
+                  "mirror_completion_cost": 38,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "ALT",
+                  "faller": "GAS",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "ALT": {
+                  "forecast": 62,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 132.50596019890602,
+                  "role": "CLIMBER",
+                  "current": 62,
+                  "member_count": 327
+                },
+                "GAS": {
+                  "forecast": 39,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 146.9494812858929,
+                  "role": "FALLER",
+                  "current": 39,
+                  "member_count": 364
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_DOWN": 0.3937269812893742,
+                  "ROUND_TRIP": 5.7023983668640685,
+                  "ONE_STEP_UP": 0,
+                  "DRIFT_DOWN": 3.330822773331352,
+                  "EARLY_SET_DOWN": 4.760769019002424,
+                  "QUIET_WOBBLE": 2.6680044855262466,
+                  "LATE_BREAK_UP": 0.25898362116450824,
+                  "ONE_STEP_DOWN": 3.166966261899909,
+                  "GRIND_WOBBLE_UP": 0,
+                  "DRIFT_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 1.1679611793410496,
+                  "SLEEPER": 1.5055422536728085,
+                  "EARLY_SET_UP": 0
+                },
+                "position": 0.323582995951417,
+                "epoch": 1783869500.8321862,
+                "minutes_to_bell": 2761.6527968962987,
+                "open": true,
+                "member_count": 65,
+                "ess": 24.43985152463463,
+                "weight_sum": 5.7023983668640685,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 151,
+              "leg": "GAS",
+              "epoch": 1784024400,
+              "receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 38,
+                "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 38; bid 38; ALT filled 60; 38 + 60 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPMATCH-26JUL12ALTGAS-GAS.csv.gz#row-19969"
+              },
+              "Q": 38,
+              "X": 1784028203,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783790234,
+              "stage_index": 89
+            },
+            "license_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+            "licensing_deadline_epoch": 1784028203,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAS was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "GAS: bought at 38¢ against a 38¢ close, not strictly below it."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "ALT": true,
+          "GAS": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "ALT",
+            "epoch": 1784000663.801,
+            "cents": 60,
+            "receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+            "order_lineage_receipt": "1833c3ba-70e9-522d-a93e-715d54f10f13",
+            "order_lineage_start_epoch": 1783994484.656,
+            "current_price_receipt": "a2ca4621-32b8-7a9a-e49e-47ac366cba96",
+            "current_price_start_epoch": 1784000298.337,
+            "order_lineage_age_minutes": 102.98575000365575,
+            "current_price_age_minutes": 6.091066670417786,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "GAS",
+            "epoch": 1784025043.114,
+            "cents": 38,
+            "receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784013600",
+            "order_lineage_start_epoch": 1784013600,
+            "current_price_receipt": "KXATPMATCH-26JUL12ALTGAS|ATLAS_GATE|1784024400",
+            "current_price_start_epoch": 1784024400,
+            "order_lineage_age_minutes": 190.7185666680336,
+            "current_price_age_minutes": 10.7185666680336,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12ALTGAS",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "ALT",
+            "filled": true,
+            "fill_cents": 60,
+            "fill_epoch": 1784000663.801,
+            "fill_receipt": "79019007-2092-520a-da1f-f79d3263dadf",
+            "close_cents": 65,
+            "close_epoch": 1784035191.2,
+            "floor_cents": 58,
+            "offered_cents": 7,
+            "value_cents": 5,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GAS",
+            "filled": true,
+            "fill_cents": 38,
+            "fill_epoch": 1784025043.114,
+            "fill_receipt": "132195bc-2998-60e0-053e-da2627a5edaa",
+            "close_cents": 38,
+            "close_epoch": 1784035157.2,
+            "floor_cents": 38,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d81ec33f9ac5f4131f3dbad6b1e1d51b95279362739ca59aad1f6d3c37c5b01a",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": true
+      }
+    }
+  }
+}

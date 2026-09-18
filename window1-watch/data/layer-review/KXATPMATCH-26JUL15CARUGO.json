@@ -1,0 +1,2423 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL15CARUGO",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "8ff56fe33708938cd094daea38dc4d7cda07ffe065491f5f68de32a778155223",
+    "stage_cache_sha256": "38facb6bacdc1cb98cb8b4654e8c7d3450d1c129cbcc28a4e386367c1eda84ef",
+    "mirror_projection_sha256": "4d087ee0eae02a80efd01989a69c3f1493160dcac910b608d0c48dab5a17193a",
+    "mirror_permissions_sha256": "b66d33f8d68a7e68b279851b529c9b0c339a15497e9ce00b6db29f981e30fa16",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL15CARUGO",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "39759508e8334b8e1e7352fed0537fd86cd5429f507e096048279d678df655a4",
+      "row_number": 382,
+      "row_csv": "26JUL15CARUGO,KXATPMATCH-26JUL15CARUGO,ATP_MAIN,1784050034,1784050034,1784125920,1784134800.0,CAR,UGO,1784055184,59.0,60,1784063858.9,61,1784121010.5,7623.09,4706.97,STILL,2.0,1784063860,61,1784078160.2,UNKNOWN_BELL,1784055184,41.0,38,1784085980.8,40,1784121147.4,5329.65,2116.28,STILL,-1.0,1784063861,38,1784085980.8,UNKNOWN_BELL,1784055184,,1784121225.0,1784131560.0,1784142293.0,1784121225.0,OBSERVED_STARTS_UPPER_BOUND,\"discovery-lagged upper bound; tape inference later, contradicted\",1784055184,1784121225.0,OK,COMPLETE_AT_DELTA,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784055184,
+      "span_end_epoch": 1784121225,
+      "bell_epoch": 1784121225,
+      "bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+      "table_bell_epoch": 1784121225,
+      "table_bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "CAR": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 59,
+          "floor_cents": 60,
+          "floor_epoch": 1784063858.9,
+          "minutes_to_bell": 956.1016666650772,
+          "line": "CAR 60¢ @ 956.10m to bell",
+          "marker_label": "CAR FLOOR · RECORDED 60¢ @ 956.10m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 60¢ · 956m to bell",
+          "hover_note": "Recorded floor 60¢ printed here · 956m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "UGO": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 41,
+          "floor_cents": 38,
+          "floor_epoch": 1784085980.8,
+          "minutes_to_bell": 587.4033333341281,
+          "line": "UGO 38¢ @ 587.40m to bell",
+          "marker_label": "UGO FLOOR · RECORDED 38¢ @ 587.40m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 38¢ · 587m to bell",
+          "hover_note": "Recorded floor 38¢ printed here · 587m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "CAR",
+      "underdog_leg": "UGO",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 60 + 38 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL15CARUGO",
+        "event_id": "KXATPMATCH-26JUL15CARUGO",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1784050034",
+        "w1_left_epoch": "1784050034",
+        "w1_right_epoch": "1784125920",
+        "scheduled_start_epoch": "1784134800.0",
+        "legA": "CAR",
+        "legB": "UGO",
+        "legA_formation_end_epoch": "1784055184",
+        "legA_open_postformation_c": "59.0",
+        "legA_floor_c": "60",
+        "legA_floor_epoch": "1784063858.9",
+        "legA_close_c": "61",
+        "legA_close_epoch": "1784121010.5",
+        "legA_contracts": "7623.09",
+        "legA_premium_usd": "4706.97",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "2.0",
+        "legA_us_first_post_epoch": "1784063860",
+        "legA_us_fill_c": "61",
+        "legA_us_fill_epoch": "1784078160.2",
+        "legA_us_fill_stamp": "UNKNOWN_BELL",
+        "legB_formation_end_epoch": "1784055184",
+        "legB_open_postformation_c": "41.0",
+        "legB_floor_c": "38",
+        "legB_floor_epoch": "1784085980.8",
+        "legB_close_c": "40",
+        "legB_close_epoch": "1784121147.4",
+        "legB_contracts": "5329.65",
+        "legB_premium_usd": "2116.28",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-1.0",
+        "legB_us_first_post_epoch": "1784063861",
+        "legB_us_fill_c": "38",
+        "legB_us_fill_epoch": "1784085980.8",
+        "legB_us_fill_stamp": "UNKNOWN_BELL",
+        "formation_end_game": "1784055184",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "1784121225.0",
+        "bell_tape_signature_epoch": "1784131560.0",
+        "kalshi_close_time_epoch": "1784142293.0",
+        "bell_epoch": "1784121225.0",
+        "bell_source": "OBSERVED_STARTS_UPPER_BOUND",
+        "bell_precision": "discovery-lagged upper bound; tape inference later, contradicted",
+        "span_start_epoch": "1784055184",
+        "span_end_epoch": "1784121225.0",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL15CARUGO.jsonl",
+      "sha256": "532af5e6f895df1d9cb1d3ebd089b82d66bb7a552e84204023c0fabf94dd8492",
+      "raw_rows": 10939,
+      "accepted_rows": 184,
+      "start_epoch": 1784055184,
+      "end_epoch": 1784121225
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+  "first_both_directional_receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+  "first_callable_by_side": {
+    "CAR": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+    "UGO": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+          "epoch": 1784055330.000001,
+          "clock": "T−18hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CAR is strengthening; UGO is strengthening.",
+              "WHY": "CAR trades at 64¢ against its 59¢ opening anchor; UGO trades at 45¢ against its 41¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CAR carries 163 eligible past sides from first-price comparisons; UGO carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CAR calls 62¢ by T−13hr 16min; UGO calls 42¢ by T−11hr 55min.",
+              "WHY": "CAR’s middle half spans 60–63¢; UGO’s middle half spans 40–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CAR has book 54/64 and no standing bid; UGO has book 36/45 and no standing bid.",
+              "WHY": "CAR: Only the ask changed, so the existing book veto held the bid decision; UGO: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "CAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 60,
+              "P": 64,
+              "Q": 62,
+              "X": 1784073457,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 163,
+              "ess": 93.6235020799915,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 54,
+                "ask_cents": 64,
+                "last_trade_cents": 90,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 24,
+                "leg": "CAR",
+                "epoch": 1784055330.000001,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 54,
+                  "ask_cents": 64,
+                  "last_trade_cents": 90,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28"
+                },
+                "Q": 62,
+                "X": 1784073457,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 12
+              },
+              "permission": null,
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784073457,
+                "q25": 60,
+                "q75": 63,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784063858.87,
+                  "price": 60,
+                  "size": 11.99,
+                  "receipt": "d594840f-a8f0-6668-00dc-d143b87d6e9a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784056587.937,
+                  "price": 61,
+                  "size": 20,
+                  "receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 38,
+              "P": 45,
+              "Q": 42,
+              "X": 1784078346.436756,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 32.00752297168538,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 45,
+                "last_trade_cents": null,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-30"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 25,
+                "leg": "UGO",
+                "epoch": 1784055330.000001,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 45,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-30"
+                },
+                "Q": 42,
+                "X": 1784078346.436756,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 12
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784078346.436756,
+                "q25": 40,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784085980.847,
+                  "price": 38,
+                  "size": 31.39,
+                  "receipt": "f1eae3f6-1381-6a8b-bce6-63c91570b22b"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784062162.524,
+                  "price": 40,
+                  "size": 10,
+                  "receipt": "e11285b5-b5c0-7740-6dba-e3d96a88eedd"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-CAR-fill",
+          "label": "Last receipt before CAR filled",
+          "arm": "D",
+          "focus_leg": "CAR",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+          "epoch": 1784056425,
+          "clock": "T−18hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CAR is strengthening; UGO is strengthening.",
+              "WHY": "CAR trades at 64¢ against its 59¢ opening anchor; UGO trades at 45¢ against its 41¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CAR carries 165 eligible past sides from first-price comparisons; UGO carries 89 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CAR calls 62¢ by T−13hr 11min; UGO calls 42¢ by T−11hr 55min.",
+              "WHY": "CAR’s middle half spans 60–63¢; UGO’s middle half spans 41–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CAR has book 59/63 and a standing 62¢ bid; UGO has book 37/42 and no standing bid.",
+              "WHY": "CAR: The current pool target was the permitted bid level; UGO: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "CAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 60,
+              "P": 64,
+              "Q": 62,
+              "X": 1784073760,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 165,
+              "ess": 93.84967312964498,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 59,
+                "ask_cents": 63,
+                "last_trade_cents": 63,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-49"
+              },
+              "bid": 62,
+              "filled": null,
+              "decision": {
+                "order": 32,
+                "leg": "CAR",
+                "epoch": 1784056425,
+                "receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 62,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 59,
+                  "ask_cents": 63,
+                  "last_trade_cents": 63,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-49"
+                },
+                "Q": 62,
+                "X": 1784073760,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "support": null,
+                "accountability_assumption": "ee92b927481a60ef943ca577d532845a933d59fd162b96e633b7af69cfb82371",
+                "stage_index": 16
+              },
+              "permission": null,
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784073760,
+                "q25": 60,
+                "q75": 63,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784063858.87,
+                  "price": 60,
+                  "size": 11.99,
+                  "receipt": "d594840f-a8f0-6668-00dc-d143b87d6e9a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784056587.937,
+                  "price": 61,
+                  "size": 20,
+                  "receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 38,
+              "P": 45,
+              "Q": 42,
+              "X": 1784078346.436756,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 89,
+              "ess": 31.164288818199047,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 37,
+                "ask_cents": 42,
+                "last_trade_cents": 45,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-61"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 33,
+                "leg": "UGO",
+                "epoch": 1784056425,
+                "receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 37,
+                  "ask_cents": 42,
+                  "last_trade_cents": 45,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-61"
+                },
+                "Q": 42,
+                "X": 1784078346.436756,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 16
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784078346.436756,
+                "q25": 41,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784085980.847,
+                  "price": 38,
+                  "size": 31.39,
+                  "receipt": "f1eae3f6-1381-6a8b-bce6-63c91570b22b"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784056587.937,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "CAR",
+              "epoch": 1784056587.937,
+              "cents": 62,
+              "receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83",
+              "order_lineage_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+              "order_lineage_start_epoch": 1784056425,
+              "current_price_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+              "current_price_start_epoch": 1784056425,
+              "order_lineage_age_minutes": 2.7156166672706603,
+              "current_price_age_minutes": 2.7156166672706603,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "CAR",
+                "epoch": 1784056587.937,
+                "cents": 62,
+                "receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83",
+                "order_lineage_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+                "order_lineage_start_epoch": 1784056425,
+                "current_price_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+                "current_price_start_epoch": 1784056425,
+                "order_lineage_age_minutes": 2.7156166672706603,
+                "current_price_age_minutes": 2.7156166672706603,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 32,
+              "leg": "CAR",
+              "epoch": 1784056425,
+              "receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 62,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 59,
+                "ask_cents": 63,
+                "last_trade_cents": 63,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-49"
+              },
+              "Q": 62,
+              "X": 1784073760,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784055184,
+              "support": null,
+              "accountability_assumption": "ee92b927481a60ef943ca577d532845a933d59fd162b96e633b7af69cfb82371",
+              "stage_index": 16
+            },
+            "license_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+            "licensing_deadline_epoch": 1784073760,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-UGO-miss",
+          "label": "Last receipt before UGO missed at the bell",
+          "arm": "D",
+          "focus_leg": "UGO",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197",
+          "epoch": 1784121209.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CAR is strengthening; UGO is not yet directionally called.",
+              "WHY": "CAR trades at 61¢ against its 59¢ opening anchor; UGO trades at 40¢ against its 41¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CAR carries 346 eligible past sides from first-price comparisons; UGO carries 734 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CAR calls 61¢ by T−0hr 0min; UGO calls 40¢ by T−0hr 0min.",
+              "WHY": "CAR’s middle half spans 61–61¢; UGO’s middle half spans 40–40¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CAR has book 60/61 and a recorded purchase at 62¢; UGO has book 39/40 and a standing 37¢ bid.",
+              "WHY": "CAR: This side was already bought, so no new bid was allowed; UGO: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "CAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 60,
+              "P": 61,
+              "Q": 61,
+              "X": 1784121209.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 346,
+              "ess": 215.6693515986348,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-4656"
+              },
+              "bid": null,
+              "filled": 62,
+              "decision": {
+                "order": 79,
+                "leg": "CAR",
+                "epoch": 1784120925,
+                "receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784120925",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-4619"
+                },
+                "Q": 61,
+                "X": 1784120925,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 52
+              },
+              "permission": null,
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784121209.000002,
+                "q25": 61,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "UGO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 38,
+              "P": 40,
+              "Q": 40,
+              "X": 1784121209.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 734,
+              "ess": 386.8946154723312,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 40,
+                "last_trade_cents": 40,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197"
+              },
+              "bid": 37,
+              "filled": null,
+              "decision": {
+                "order": 81,
+                "leg": "UGO",
+                "epoch": 1784121209.000002,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 37,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 40,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197"
+                },
+                "Q": 40,
+                "X": 1784121209.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "support": null,
+                "accountability_assumption": "acd0e5c2379efe9246a4acb5d5758425e3997b1a650e5bd4e9b57cf1ee895323",
+                "stage_index": 54
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784121209.000002,
+                "q25": 40,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784121225,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "CAR": true,
+          "UGO": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "CAR",
+            "epoch": 1784056587.937,
+            "cents": 62,
+            "receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83",
+            "order_lineage_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+            "order_lineage_start_epoch": 1784056425,
+            "current_price_receipt": "KXATPMATCH-26JUL15CARUGO|ATLAS_GATE|1784056425",
+            "current_price_start_epoch": 1784056425,
+            "order_lineage_age_minutes": 2.7156166672706603,
+            "current_price_age_minutes": 2.7156166672706603,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL15CARUGO",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "CAR",
+            "filled": true,
+            "fill_cents": 62,
+            "fill_epoch": 1784056587.937,
+            "fill_receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83",
+            "close_cents": 61,
+            "close_epoch": 1784121010.5,
+            "floor_cents": 60,
+            "offered_cents": 1,
+            "value_cents": -1,
+            "premium_cents": 1,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "UGO",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 40,
+            "close_epoch": 1784121147.4,
+            "floor_cents": 38,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "39759508e8334b8e1e7352fed0537fd86cd5429f507e096048279d678df655a4",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+          "epoch": 1784055330.000001,
+          "clock": "T−18hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CAR is strengthening; UGO is strengthening.",
+              "WHY": "CAR trades at 64¢ against its 59¢ opening anchor; UGO trades at 45¢ against its 41¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CAR carries 163 eligible past sides from first-price comparisons; UGO carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CAR calls 62¢ by T−13hr 16min; UGO calls 42¢ by T−11hr 55min.",
+              "WHY": "CAR’s middle half spans 60–63¢; UGO’s middle half spans 40–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CAR has book 54/64 and no standing bid; UGO has book 36/45 and no standing bid.",
+              "WHY": "CAR: Only the ask changed, so the existing book veto held the bid decision; UGO: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "CAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 60,
+              "P": 64,
+              "Q": 62,
+              "X": 1784073457,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 163,
+              "ess": 93.6235020799915,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 54,
+                "ask_cents": 64,
+                "last_trade_cents": 90,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 24,
+                "leg": "CAR",
+                "epoch": 1784055330.000001,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 65; reserve UGO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 54,
+                  "ask_cents": 64,
+                  "last_trade_cents": 90,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28"
+                },
+                "Q": 62,
+                "X": 1784073457,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "stage_index": 12
+              },
+              "permission": {
+                "ordinal": 12,
+                "epoch": 1784055330.000001,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+                "id": "CAR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 63,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 65,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.2089415311540961,
+                      "ROUND_TRIP": 1.8725251272675967,
+                      "DRIFT_UP": 1.4134261581435699,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 0.3935384940183306,
+                      "LATE_BREAK_DOWN": 0.01762147803717327,
+                      "ONE_STEP_UP": 0.7451518634397903,
+                      "EARLY_SET_UP": 0.7912024756968001,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.1001287404843392,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.12244556810512065
+                    },
+                    "position": 0.0526059706895999,
+                    "epoch": 1784058658.1509104,
+                    "minutes_to_bell": 1042.780818160375,
+                    "open": false,
+                    "member_count": 42,
+                    "ess": 25.434492683901464,
+                    "weight_sum": 1.8725251272675967,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 65; reserve UGO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAR": {
+                    "forecast": 65,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 93.6235020799915,
+                    "role": "CLIMBER",
+                    "current": 64,
+                    "member_count": 163
+                  },
+                  "UGO": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 32.00752297168538,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 90
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.2089415311540961,
+                    "ROUND_TRIP": 1.8725251272675967,
+                    "DRIFT_UP": 1.4134261581435699,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.3935384940183306,
+                    "LATE_BREAK_DOWN": 0.01762147803717327,
+                    "ONE_STEP_UP": 0.7451518634397903,
+                    "EARLY_SET_UP": 0.7912024756968001,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.1001287404843392,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.12244556810512065
+                  },
+                  "position": 0.0526059706895999,
+                  "epoch": 1784058658.1509104,
+                  "minutes_to_bell": 1042.780818160375,
+                  "open": false,
+                  "member_count": 42,
+                  "ess": 25.434492683901464,
+                  "weight_sum": 1.8725251272675967,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784073457,
+                "q25": 60,
+                "q75": 63,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784063858.87,
+                  "price": 60,
+                  "size": 11.99,
+                  "receipt": "d594840f-a8f0-6668-00dc-d143b87d6e9a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784056587.937,
+                  "price": 61,
+                  "size": 20,
+                  "receipt": "29e99fdc-382b-6a91-e27b-7e833257fb83"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 38,
+              "P": 45,
+              "Q": 42,
+              "X": 1784078346.436756,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 32.00752297168538,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 36,
+                "ask_cents": 45,
+                "last_trade_cents": null,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-30"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 25,
+                "leg": "UGO",
+                "epoch": 1784055330.000001,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 44; reserve CAR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 36,
+                  "ask_cents": 45,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-30"
+                },
+                "Q": 42,
+                "X": 1784078346.436756,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "stage_index": 12
+              },
+              "permission": {
+                "ordinal": 12,
+                "epoch": 1784055330.000001,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-28",
+                "id": "UGO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 44,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 44,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 1.136538027249004,
+                      "ONE_STEP_UP": 0.18872436069878984,
+                      "DRIFT_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "QUIET_WOBBLE": 0.34670380021280867,
+                      "LATE_BREAK_UP": 0.09836334105443542,
+                      "ONE_STEP_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.08577941574906664,
+                      "DRIFT_UP": 0.6846341541530667,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.0698624270013281,
+                      "EARLY_SET_UP": 0.6279581136251382
+                    },
+                    "position": 0.06702448717168734,
+                    "epoch": 1784059610.3641572,
+                    "minutes_to_bell": 1026.9105973800024,
+                    "open": false,
+                    "member_count": 36,
+                    "ess": 21.71978397013218,
+                    "weight_sum": 1.136538027249004,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 44; reserve CAR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAR": {
+                    "forecast": 65,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 93.6235020799915,
+                    "role": "CLIMBER",
+                    "current": 64,
+                    "member_count": 163
+                  },
+                  "UGO": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 32.00752297168538,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 90
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 1.136538027249004,
+                    "ONE_STEP_UP": 0.18872436069878984,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 0.34670380021280867,
+                    "LATE_BREAK_UP": 0.09836334105443542,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.08577941574906664,
+                    "DRIFT_UP": 0.6846341541530667,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.0698624270013281,
+                    "EARLY_SET_UP": 0.6279581136251382
+                  },
+                  "position": 0.06702448717168734,
+                  "epoch": 1784059610.3641572,
+                  "minutes_to_bell": 1026.9105973800024,
+                  "open": false,
+                  "member_count": 36,
+                  "ess": 21.71978397013218,
+                  "weight_sum": 1.136538027249004,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784078346.436756,
+                "q25": 40,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784085980.847,
+                  "price": 38,
+                  "size": 31.39,
+                  "receipt": "f1eae3f6-1381-6a8b-bce6-63c91570b22b"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784062162.524,
+                  "price": 40,
+                  "size": 10,
+                  "receipt": "e11285b5-b5c0-7740-6dba-e3d96a88eedd"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-CAR-fill",
+          "label": "Last receipt before CAR filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "CAR",
+          "outcome": "fill",
+          "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+          "epoch": 1784078743.584,
+          "clock": "T−11hr 48min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CAR is strengthening; UGO is weakening.",
+              "WHY": "CAR trades at 62¢ against its 59¢ opening anchor; UGO trades at 39¢ against its 41¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CAR carries 236 eligible past sides from first-price comparisons; UGO carries 285 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CAR calls 61¢ by T−9hr 32min; UGO calls 37¢ by T−5hr 0min.",
+              "WHY": "CAR’s middle half spans 59–61¢; UGO’s middle half spans 35–38¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CAR has book 61/62 and a standing 61¢ bid; UGO has book 39/40 and no standing bid.",
+              "WHY": "CAR: buying the strengthening side before it strengthens; predicted close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100; UGO: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "CAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 60,
+              "P": 62,
+              "Q": 61,
+              "X": 1784086909.156863,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 236,
+              "ess": 137.55342422722237,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-1797"
+              },
+              "bid": 61,
+              "filled": null,
+              "decision": {
+                "order": 60,
+                "leg": "CAR",
+                "epoch": 1784078743.584,
+                "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 61,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-1797"
+                },
+                "Q": 61,
+                "X": 1784086909.156863,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "stage_index": 30
+              },
+              "permission": {
+                "ordinal": 30,
+                "epoch": 1784078743.584,
+                "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "id": "CAR",
+                "old": null,
+                "proposed": 61,
+                "posted": 61,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 61,
+                  "hand_level": 61,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 63,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.2611998344312492,
+                      "ROUND_TRIP": 2.2024954055625905,
+                      "DRIFT_UP": 1.9577331483363867,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.2680798856027782,
+                      "LATE_BREAK_DOWN": 0.01762147803717327,
+                      "ONE_STEP_UP": 1.3447903008670963,
+                      "EARLY_SET_UP": 1.7301290959905196,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.31663751526326134,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.6977148852470652
+                    },
+                    "position": 0.0892089703413277,
+                    "epoch": 1784061075.4496102,
+                    "minutes_to_bell": 1002.4925064961116,
+                    "open": true,
+                    "member_count": 50,
+                    "ess": 26.05495021168707,
+                    "weight_sum": 2.2024954055625905,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 37,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 37,
+                      "climber_forecast_close": 63,
+                      "mirror_completion_cost": 37,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 37,
+                    "climber_forecast_close": 63,
+                    "mirror_completion_cost": 37,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "CAR",
+                    "faller": "UGO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 40,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 38,
+                    "ask": 40,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "CAR": {
+                    "forecast": 63,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 137.55342422722237,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 236
+                  },
+                  "UGO": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 147.4416396526897,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 285
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.2611998344312492,
+                    "ROUND_TRIP": 2.2024954055625905,
+                    "DRIFT_UP": 1.9577331483363867,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.2680798856027782,
+                    "LATE_BREAK_DOWN": 0.01762147803717327,
+                    "ONE_STEP_UP": 1.3447903008670963,
+                    "EARLY_SET_UP": 1.7301290959905196,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.31663751526326134,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.6977148852470652
+                  },
+                  "position": 0.0892089703413277,
+                  "epoch": 1784061075.4496102,
+                  "minutes_to_bell": 1002.4925064961116,
+                  "open": true,
+                  "member_count": 50,
+                  "ess": 26.05495021168707,
+                  "weight_sum": 2.2024954055625905,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784086909.156863,
+                "q25": 59,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784120351.699,
+                  "price": 60,
+                  "size": 7,
+                  "receipt": "3b69bc51-41ce-5f9a-c266-6da3fa329085"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784079865.054,
+                  "price": 61,
+                  "size": 15,
+                  "receipt": "c487d0b0-b4e3-4cb8-2fd4-6a336a7a180d"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 38,
+              "P": 39,
+              "Q": 37,
+              "X": 1784103214.934871,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 285,
+              "ess": 147.4416396526897,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 40,
+                "last_trade_cents": 40,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-1861"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 61,
+                "leg": "UGO",
+                "epoch": 1784078743.584,
+                "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 37; reserve CAR max(close 63, ask 62) = 63"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 40,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-1861"
+                },
+                "Q": 37,
+                "X": 1784103214.934871,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "stage_index": 30
+              },
+              "permission": {
+                "ordinal": 30,
+                "epoch": 1784078743.584,
+                "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "id": "UGO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 37,
+                  "hand_level": 37,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 38,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.18583159013932657,
+                      "ROUND_TRIP": 2.5281047205383724,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 1.7626454966456735,
+                      "EARLY_SET_DOWN": 3.2771297760974014,
+                      "QUIET_WOBBLE": 0.9362873109993629,
+                      "LATE_BREAK_UP": 0.10986479679857702,
+                      "ONE_STEP_DOWN": 2.1785092526482117,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.7018906801570153,
+                      "SLEEPER": 1.1483747984127401,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.14753746178012134,
+                    "epoch": 1784064927.5215135,
+                    "minutes_to_bell": 938.2913081089656,
+                    "open": true,
+                    "member_count": 69,
+                    "ess": 41.98871369668709,
+                    "weight_sum": 3.2771297760974014,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 63,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 63,
+                    "ask": 62,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 37; reserve CAR max(close 63, ask 62) = 63",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 37,
+                    "climber_forecast_close": 63,
+                    "mirror_completion_cost": 37,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "CAR",
+                    "faller": "UGO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAR": {
+                    "forecast": 63,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 137.55342422722237,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 236
+                  },
+                  "UGO": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 147.4416396526897,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 285
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.18583159013932657,
+                    "ROUND_TRIP": 2.5281047205383724,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 1.7626454966456735,
+                    "EARLY_SET_DOWN": 3.2771297760974014,
+                    "QUIET_WOBBLE": 0.9362873109993629,
+                    "LATE_BREAK_UP": 0.10986479679857702,
+                    "ONE_STEP_DOWN": 2.1785092526482117,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.7018906801570153,
+                    "SLEEPER": 1.1483747984127401,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.14753746178012134,
+                  "epoch": 1784064927.5215135,
+                  "minutes_to_bell": 938.2913081089656,
+                  "open": true,
+                  "member_count": 69,
+                  "ess": 41.98871369668709,
+                  "weight_sum": 3.2771297760974014,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 37,
+                "deadline_epoch": 1784103214.934871,
+                "q25": 35,
+                "q75": 38,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784085980.847,
+                  "price": 38,
+                  "size": 31.39,
+                  "receipt": "f1eae3f6-1381-6a8b-bce6-63c91570b22b"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784085980.847,
+                  "price": 38,
+                  "size": 31.39,
+                  "receipt": "f1eae3f6-1381-6a8b-bce6-63c91570b22b"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784079865.054,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "CAR",
+              "epoch": 1784079865.054,
+              "cents": 61,
+              "receipt": "c487d0b0-b4e3-4cb8-2fd4-6a336a7a180d",
+              "order_lineage_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+              "order_lineage_start_epoch": 1784078743.584,
+              "current_price_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+              "current_price_start_epoch": 1784078743.584,
+              "order_lineage_age_minutes": 18.69116666316986,
+              "current_price_age_minutes": 18.69116666316986,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "CAR",
+                "epoch": 1784079865.054,
+                "cents": 61,
+                "receipt": "c487d0b0-b4e3-4cb8-2fd4-6a336a7a180d",
+                "order_lineage_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "order_lineage_start_epoch": 1784078743.584,
+                "current_price_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "current_price_start_epoch": 1784078743.584,
+                "order_lineage_age_minutes": 18.69116666316986,
+                "current_price_age_minutes": 18.69116666316986,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 30,
+              "epoch": 1784078743.584,
+              "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+              "id": "CAR",
+              "old": null,
+              "proposed": 61,
+              "posted": 61,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 61,
+                "hand_level": 61,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 63,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.2611998344312492,
+                    "ROUND_TRIP": 2.2024954055625905,
+                    "DRIFT_UP": 1.9577331483363867,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.2680798856027782,
+                    "LATE_BREAK_DOWN": 0.01762147803717327,
+                    "ONE_STEP_UP": 1.3447903008670963,
+                    "EARLY_SET_UP": 1.7301290959905196,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.31663751526326134,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.6977148852470652
+                  },
+                  "position": 0.0892089703413277,
+                  "epoch": 1784061075.4496102,
+                  "minutes_to_bell": 1002.4925064961116,
+                  "open": true,
+                  "member_count": 50,
+                  "ess": 26.05495021168707,
+                  "weight_sum": 2.2024954055625905,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 37,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 98,
+                  "discount": 2,
+                  "components": {
+                    "faller_forecast_late_floor": 37,
+                    "climber_forecast_close": 63,
+                    "mirror_completion_cost": 37,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 37,
+                  "climber_forecast_close": 63,
+                  "mirror_completion_cost": 37,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "CAR",
+                  "faller": "UGO",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 40,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 38,
+                  "ask": 40,
+                  "sum": 101,
+                  "discount": -1,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "CAR": {
+                  "forecast": 63,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 137.55342422722237,
+                  "role": "CLIMBER",
+                  "current": 62,
+                  "member_count": 236
+                },
+                "UGO": {
+                  "forecast": 38,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 147.4416396526897,
+                  "role": "FALLER",
+                  "current": 39,
+                  "member_count": 285
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.2611998344312492,
+                  "ROUND_TRIP": 2.2024954055625905,
+                  "DRIFT_UP": 1.9577331483363867,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 1.2680798856027782,
+                  "LATE_BREAK_DOWN": 0.01762147803717327,
+                  "ONE_STEP_UP": 1.3447903008670963,
+                  "EARLY_SET_UP": 1.7301290959905196,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.31663751526326134,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 0.6977148852470652
+                },
+                "position": 0.0892089703413277,
+                "epoch": 1784061075.4496102,
+                "minutes_to_bell": 1002.4925064961116,
+                "open": true,
+                "member_count": 50,
+                "ess": 26.05495021168707,
+                "weight_sum": 2.2024954055625905,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 60,
+              "leg": "CAR",
+              "epoch": 1784078743.584,
+              "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 61,
+                "reason": "buying the strengthening side before it strengthens; forecast close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-1797"
+              },
+              "Q": 61,
+              "X": 1784086909.156863,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784055184,
+              "stage_index": 30
+            },
+            "license_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+            "licensing_deadline_epoch": 1784086909.156863,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-UGO-miss",
+          "label": "Last receipt before UGO missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "UGO",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197",
+          "epoch": 1784121209.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "CAR is strengthening; UGO is not yet directionally called.",
+              "WHY": "CAR trades at 61¢ against its 59¢ opening anchor; UGO trades at 40¢ against its 41¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "CAR carries 346 eligible past sides from first-price comparisons; UGO carries 734 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "CAR calls 61¢ by T−0hr 0min; UGO calls 40¢ by T−0hr 0min.",
+              "WHY": "CAR’s middle half spans 61–61¢; UGO’s middle half spans 40–40¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "CAR has book 60/61 and a recorded purchase at 61¢; UGO has book 39/40 and no standing bid.",
+              "WHY": "CAR: buying the strengthening side before it strengthens; predicted close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100; UGO: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "CAR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 60,
+              "P": 61,
+              "Q": 61,
+              "X": 1784121209.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 346,
+              "ess": 215.6693515986348,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-4656"
+              },
+              "bid": null,
+              "filled": 61,
+              "decision": {
+                "order": 60,
+                "leg": "CAR",
+                "epoch": 1784078743.584,
+                "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 61,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-CAR.csv.gz#row-1797"
+                },
+                "Q": 61,
+                "X": 1784086909.156863,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "stage_index": 30
+              },
+              "permission": {
+                "ordinal": 30,
+                "epoch": 1784078743.584,
+                "receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+                "id": "CAR",
+                "old": null,
+                "proposed": 61,
+                "posted": 61,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 61,
+                  "hand_level": 61,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 63,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.2611998344312492,
+                      "ROUND_TRIP": 2.2024954055625905,
+                      "DRIFT_UP": 1.9577331483363867,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.2680798856027782,
+                      "LATE_BREAK_DOWN": 0.01762147803717327,
+                      "ONE_STEP_UP": 1.3447903008670963,
+                      "EARLY_SET_UP": 1.7301290959905196,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.31663751526326134,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.6977148852470652
+                    },
+                    "position": 0.0892089703413277,
+                    "epoch": 1784061075.4496102,
+                    "minutes_to_bell": 1002.4925064961116,
+                    "open": true,
+                    "member_count": 50,
+                    "ess": 26.05495021168707,
+                    "weight_sum": 2.2024954055625905,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 37,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 37,
+                      "climber_forecast_close": 63,
+                      "mirror_completion_cost": 37,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 63; bid 61; reserve UGO max(late floor 37, 100 - climber close 63 = 37) = 37; views differ by 0c (floor minus mirror); 61 + 37 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 37,
+                    "climber_forecast_close": 63,
+                    "mirror_completion_cost": 37,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "CAR",
+                    "faller": "UGO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 40,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 38,
+                    "ask": 40,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "CAR": {
+                    "forecast": 63,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 137.55342422722237,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 236
+                  },
+                  "UGO": {
+                    "forecast": 38,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 147.4416396526897,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 285
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.2611998344312492,
+                    "ROUND_TRIP": 2.2024954055625905,
+                    "DRIFT_UP": 1.9577331483363867,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.2680798856027782,
+                    "LATE_BREAK_DOWN": 0.01762147803717327,
+                    "ONE_STEP_UP": 1.3447903008670963,
+                    "EARLY_SET_UP": 1.7301290959905196,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.31663751526326134,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.6977148852470652
+                  },
+                  "position": 0.0892089703413277,
+                  "epoch": 1784061075.4496102,
+                  "minutes_to_bell": 1002.4925064961116,
+                  "open": true,
+                  "member_count": 50,
+                  "ess": 26.05495021168707,
+                  "weight_sum": 2.2024954055625905,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784121209.000002,
+                "q25": 61,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "UGO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 38,
+              "P": 40,
+              "Q": 40,
+              "X": 1784121209.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 734,
+              "ess": 386.8946154723312,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 40,
+                "last_trade_cents": 40,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 84,
+                "leg": "UGO",
+                "epoch": 1784121209.000002,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 40; reserve CAR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 40,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197"
+                },
+                "Q": 40,
+                "X": 1784121209.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784055184,
+                "stage_index": 54
+              },
+              "permission": {
+                "ordinal": 53,
+                "epoch": 1784121209.000002,
+                "receipt": "KXATPMATCH-26JUL15CARUGO-UGO.csv.gz#row-5197",
+                "id": "UGO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 40,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.7440397220731031,
+                      "ROUND_TRIP": 8.683576934551175,
+                      "ONE_STEP_UP": 0.8417501823527138,
+                      "DRIFT_DOWN": 1.9637702054448942,
+                      "EARLY_SET_DOWN": 3.520157749187131,
+                      "QUIET_WOBBLE": 5.432988902281916,
+                      "LATE_BREAK_UP": 1.0405402814427884,
+                      "ONE_STEP_DOWN": 2.592098301899682,
+                      "GRIND_WOBBLE_UP": 0.13218572200110276,
+                      "DRIFT_UP": 1.0493396348645232,
+                      "GRIND_WOBBLE_DOWN": 0.739005267655872,
+                      "SLEEPER": 3.667792781822361,
+                      "EARLY_SET_UP": 1.2717264016998127
+                    },
+                    "position": 0.13232421875,
+                    "epoch": 1784063922.8237305,
+                    "minutes_to_bell": 955.0362711588542,
+                    "open": true,
+                    "member_count": 186,
+                    "ess": 93.58384586245744,
+                    "weight_sum": 8.683576934551175,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 40; reserve CAR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAR": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 215.6693515986348,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 346
+                  },
+                  "UGO": {
+                    "forecast": 40,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 386.8946154723312,
+                    "role": "NOT_CALLABLE",
+                    "current": 40,
+                    "member_count": 734
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.7440397220731031,
+                    "ROUND_TRIP": 8.683576934551175,
+                    "ONE_STEP_UP": 0.8417501823527138,
+                    "DRIFT_DOWN": 1.9637702054448942,
+                    "EARLY_SET_DOWN": 3.520157749187131,
+                    "QUIET_WOBBLE": 5.432988902281916,
+                    "LATE_BREAK_UP": 1.0405402814427884,
+                    "ONE_STEP_DOWN": 2.592098301899682,
+                    "GRIND_WOBBLE_UP": 0.13218572200110276,
+                    "DRIFT_UP": 1.0493396348645232,
+                    "GRIND_WOBBLE_DOWN": 0.739005267655872,
+                    "SLEEPER": 3.667792781822361,
+                    "EARLY_SET_UP": 1.2717264016998127
+                  },
+                  "position": 0.13232421875,
+                  "epoch": 1784063922.8237305,
+                  "minutes_to_bell": 955.0362711588542,
+                  "open": true,
+                  "member_count": 186,
+                  "ess": 93.58384586245744,
+                  "weight_sum": 8.683576934551175,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784121209.000002,
+                "q25": 40,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784121225,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "CAR": true,
+          "UGO": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "CAR",
+            "epoch": 1784079865.054,
+            "cents": 61,
+            "receipt": "c487d0b0-b4e3-4cb8-2fd4-6a336a7a180d",
+            "order_lineage_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+            "order_lineage_start_epoch": 1784078743.584,
+            "current_price_receipt": "d5cc1135-0807-73a4-8c17-1c4805e635d7",
+            "current_price_start_epoch": 1784078743.584,
+            "order_lineage_age_minutes": 18.69116666316986,
+            "current_price_age_minutes": 18.69116666316986,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL15CARUGO",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "CAR",
+            "filled": true,
+            "fill_cents": 61,
+            "fill_epoch": 1784079865.054,
+            "fill_receipt": "c487d0b0-b4e3-4cb8-2fd4-6a336a7a180d",
+            "close_cents": 61,
+            "close_epoch": 1784121010.5,
+            "floor_cents": 60,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "UGO",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 40,
+            "close_epoch": 1784121147.4,
+            "floor_cents": 38,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "39759508e8334b8e1e7352fed0537fd86cd5429f507e096048279d678df655a4",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

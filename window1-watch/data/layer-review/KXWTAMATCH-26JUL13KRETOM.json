@@ -1,0 +1,2471 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL13KRETOM",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "e95e2e48f536adb6193f2838c7e43d17e5dbc05461a1ce547a798d6a7171bcc1",
+    "stage_cache_sha256": "1adcf4ac41c6093518dcd3c41dafa6c9d9660b1149303a799a7151accb5fb96b",
+    "mirror_projection_sha256": "d2f3a8fc58929f287683c03d906739c3f0cb695623af934f852feb0a7b5c296f",
+    "mirror_permissions_sha256": "95fdd049e0e048da3d61c0c52c920692f656cdc15ec4b752fead77812755bca4",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL13KRETOM",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "cce386422b99ac37c388a7d6dd387301a9eb18e3826e9b539f8f0e15f52607d3",
+      "row_number": 205,
+      "row_csv": "26JUL13KRETOM,KXWTAMATCH-26JUL13KRETOM,WTA_MAIN,1783851035,1783851035,1784039700,1783947600.0,KRE,TOM,1783851035,85.0,87,1783872419.1,90,1784039565.6,28432.27,25849.91,MOVER,5.0,1784030812,91,1784031184.0,PRE_BELL_VALID,1783851035,14.5,9,1783974837.6,10,1784039643.3,31992.7,3443.52,STILL,-4.5,1784030693,,,,1783851035,1784039700,,,1784045120.0,1784039700,MACHINE_RECEIPT,\"EXACT (8 receipts, zero spread)\",1783851035,1784039700,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783851035,
+      "span_end_epoch": 1784039700,
+      "bell_epoch": 1784039700,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784039700,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "KRE": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 85,
+          "floor_cents": 87,
+          "floor_epoch": 1783872419.1,
+          "minutes_to_bell": 2788.0150000015897,
+          "line": "KRE 87¢ @ 2788.02m to bell",
+          "marker_label": "KRE FLOOR · RECORDED 87¢ @ 2788.02m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 87¢ · 2788m to bell",
+          "hover_note": "Recorded floor 87¢ printed here · 2788m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "TOM": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 14.5,
+          "floor_cents": 9,
+          "floor_epoch": 1783974837.6,
+          "minutes_to_bell": 1081.0400000015895,
+          "line": "TOM 9¢ @ 1081.04m to bell",
+          "marker_label": "TOM FLOOR · RECORDED 9¢ @ 1081.04m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 9¢ · 1081m to bell",
+          "hover_note": "Recorded floor 9¢ printed here · 1081m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "KRE",
+      "underdog_leg": "TOM",
+      "pair": {
+        "sum_cents": 96,
+        "discount_cents": 4,
+        "reason": null,
+        "line": "best capturable = 87 + 9 = 96¢",
+        "discount_line": "4¢ under par",
+        "compact_line": "best capturable 96¢ · 4¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL13KRETOM",
+        "event_id": "KXWTAMATCH-26JUL13KRETOM",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1783851035",
+        "w1_left_epoch": "1783851035",
+        "w1_right_epoch": "1784039700",
+        "scheduled_start_epoch": "1783947600.0",
+        "legA": "KRE",
+        "legB": "TOM",
+        "legA_formation_end_epoch": "1783851035",
+        "legA_open_postformation_c": "85.0",
+        "legA_floor_c": "87",
+        "legA_floor_epoch": "1783872419.1",
+        "legA_close_c": "90",
+        "legA_close_epoch": "1784039565.6",
+        "legA_contracts": "28432.27",
+        "legA_premium_usd": "25849.91",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "5.0",
+        "legA_us_first_post_epoch": "1784030812",
+        "legA_us_fill_c": "91",
+        "legA_us_fill_epoch": "1784031184.0",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1783851035",
+        "legB_open_postformation_c": "14.5",
+        "legB_floor_c": "9",
+        "legB_floor_epoch": "1783974837.6",
+        "legB_close_c": "10",
+        "legB_close_epoch": "1784039643.3",
+        "legB_contracts": "31992.7",
+        "legB_premium_usd": "3443.52",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-4.5",
+        "legB_us_first_post_epoch": "1784030693",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783851035",
+        "bell_machine_epoch": "1784039700",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784045120.0",
+        "bell_epoch": "1784039700",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (8 receipts, zero spread)",
+        "span_start_epoch": "1783851035",
+        "span_end_epoch": "1784039700",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13KRETOM.jsonl",
+      "sha256": "cebc2d758975346c8a266e59503ea832a693a188e2c428c82bf483d302bfcc2e",
+      "raw_rows": 1296,
+      "accepted_rows": 261,
+      "start_epoch": 1783851035,
+      "end_epoch": 1784039700
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+  "first_both_directional_receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef",
+  "first_callable_by_side": {
+    "KRE": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+    "TOM": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+          "epoch": 1783891011.000001,
+          "clock": "T−41hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KRE is strengthening; TOM is not yet directionally called.",
+              "WHY": "KRE trades at 90¢ against its 85¢ opening anchor; TOM trades at 13¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KRE carries 31 eligible past sides from first-price comparisons; TOM carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KRE calls 89¢ by T−23hr 9min; TOM calls 11¢ by T−16hr 8min.",
+              "WHY": "KRE’s middle half spans 88–89¢; TOM’s middle half spans 10–12¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KRE has book 89/90 and no standing bid; TOM has book 11/12 and no standing bid.",
+              "WHY": "KRE: Only the ask changed, so the existing book veto held the bid decision; TOM: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KRE": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 85,
+              "corrected_open": 85,
+              "close": 90,
+              "recorded_floor": 87,
+              "P": 90,
+              "Q": 89,
+              "X": 1783956365.100618,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 31,
+              "ess": 13.178572431351766,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-1675"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 38,
+                "leg": "KRE",
+                "epoch": 1783891011.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-1675"
+                },
+                "Q": 89,
+                "X": 1783956365.100618,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783956365.100618,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783951437.497,
+                  "price": 89,
+                  "size": 1,
+                  "receipt": "7329dc03-4b62-50c5-310f-ba92db5a119c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783951437.497,
+                  "price": 89,
+                  "size": 1,
+                  "receipt": "7329dc03-4b62-50c5-310f-ba92db5a119c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "TOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 14,
+              "corrected_open": 14.5,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 13,
+              "Q": 11,
+              "X": 1783981641.806691,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 34.491142087828784,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 13,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 39,
+                "leg": "TOM",
+                "epoch": 1783891011.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 13,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037"
+                },
+                "Q": 11,
+                "X": 1783981641.806691,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 11,
+                "deadline_epoch": 1783981641.806691,
+                "q25": 10,
+                "q75": 12,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783974837.61,
+                  "price": 9,
+                  "size": 12,
+                  "receipt": "13d35521-1bcf-5128-fb96-dc4ded1a9ea4"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783932907.951,
+                  "price": 11,
+                  "size": 100,
+                  "receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KRE-miss",
+          "label": "Last receipt before KRE missed at the bell",
+          "arm": "D",
+          "focus_leg": "KRE",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-12399",
+          "epoch": 1784039698.000012,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KRE is strengthening; TOM is weakening.",
+              "WHY": "KRE trades at 90¢ against its 85¢ opening anchor; TOM trades at 10¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KRE carries 300 eligible past sides from first-price comparisons; TOM carries 365 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KRE calls 90¢ by T−0hr 0min; TOM calls 10¢ by T−0hr 0min.",
+              "WHY": "KRE’s middle half spans 90–90¢; TOM’s middle half spans 10–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KRE has book 90/91 and a standing 88¢ bid; TOM has book 9/10 and a recorded purchase at 11¢.",
+              "WHY": "KRE: The other commitment left too little room under the pair budget; TOM: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KRE": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 85,
+              "corrected_open": 85,
+              "close": 90,
+              "recorded_floor": 87,
+              "P": 90,
+              "Q": 90,
+              "X": 1784039698.000012,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 113.8377805333539,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 90,
+                "ask_cents": 91,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-12399"
+              },
+              "bid": 88,
+              "filled": null,
+              "decision": {
+                "order": 106,
+                "leg": "KRE",
+                "epoch": 1784039698.000012,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-12399",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 88,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 90,
+                  "ask_cents": 91,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-12399"
+                },
+                "Q": 90,
+                "X": 1784039698.000012,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "4a59252a7e73354cb1fdc02075e3ba58e71caac46ba95a3616fadc96a8c8c2bf",
+                "stage_index": 68
+              },
+              "permission": null,
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1784039698.000012,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "TOM": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14.5,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 10,
+              "Q": 10,
+              "X": 1784039698.000012,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 365,
+              "ess": 124.06825869578313,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 9,
+                "ask_cents": 10,
+                "last_trade_cents": 10,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-7300"
+              },
+              "bid": null,
+              "filled": 11,
+              "decision": {
+                "order": 105,
+                "leg": "TOM",
+                "epoch": 1784039400,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM|ATLAS_GATE|1784039400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 10,
+                  "ask_cents": 11,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-6458"
+                },
+                "Q": 11,
+                "X": 1784039400,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 67
+              },
+              "permission": null,
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1784039698.000012,
+                "q25": 10,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784039700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-TOM-fill",
+          "label": "Last receipt before TOM filled",
+          "arm": "D",
+          "focus_leg": "TOM",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-5939",
+          "epoch": 1783926613.000001,
+          "clock": "T−31hr 25min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KRE is strengthening; TOM is not yet directionally called.",
+              "WHY": "KRE trades at 90¢ against its 85¢ opening anchor; TOM trades at 13¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KRE carries 82 eligible past sides from first-price comparisons; TOM carries 254 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KRE calls 89¢ by T−19hr 26min; TOM calls 11¢ by T−14hr 10min.",
+              "WHY": "KRE’s middle half spans 88–89¢; TOM’s middle half spans 10–12¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KRE has book 89/90 and a standing 88¢ bid; TOM has book 11/12 and a standing 11¢ bid.",
+              "WHY": "KRE: The other commitment left too little room under the pair budget; TOM: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KRE": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 85,
+              "corrected_open": 85,
+              "close": 90,
+              "recorded_floor": 87,
+              "P": 90,
+              "Q": 89,
+              "X": 1783969718.19034,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 82,
+              "ess": 39.041197740695246,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-5939"
+              },
+              "bid": 88,
+              "filled": null,
+              "decision": {
+                "order": 48,
+                "leg": "KRE",
+                "epoch": 1783926613.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-5939",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 88,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-5939"
+                },
+                "Q": 89,
+                "X": 1783969718.19034,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "2147686e07697a2937c8d9e048c1a6fe4e45f83c2daafefd0752823b9c3503ce",
+                "stage_index": 24
+              },
+              "permission": null,
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783969718.19034,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783951437.497,
+                  "price": 89,
+                  "size": 1,
+                  "receipt": "7329dc03-4b62-50c5-310f-ba92db5a119c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783951437.497,
+                  "price": 89,
+                  "size": 1,
+                  "receipt": "7329dc03-4b62-50c5-310f-ba92db5a119c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "TOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 14,
+              "corrected_open": 14.5,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 13,
+              "Q": 11,
+              "X": 1783988727,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 254,
+              "ess": 103.12655260326562,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 13,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1310"
+              },
+              "bid": 11,
+              "filled": null,
+              "decision": {
+                "order": 49,
+                "leg": "TOM",
+                "epoch": 1783926613.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-5939",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 11,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 13,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1310"
+                },
+                "Q": 11,
+                "X": 1783988727,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "support": null,
+                "accountability_assumption": "9c8a5b1d50ab0ec415a90025f22c6fe1f53f39b319a897660c408bf665b3ccbf",
+                "stage_index": 24
+              },
+              "permission": null,
+              "micro": {
+                "Q": 11,
+                "deadline_epoch": 1783988727,
+                "q25": 10,
+                "q75": 12,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783974837.61,
+                  "price": 9,
+                  "size": 12,
+                  "receipt": "13d35521-1bcf-5128-fb96-dc4ded1a9ea4"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783932907.951,
+                  "price": 11,
+                  "size": 100,
+                  "receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783932907.951,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "TOM",
+              "epoch": 1783932907.951,
+              "cents": 11,
+              "receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+              "order_lineage_start_epoch": 1783905026.000004,
+              "current_price_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+              "current_price_start_epoch": 1783905026.000004,
+              "order_lineage_age_minutes": 464.69918326536816,
+              "current_price_age_minutes": 464.69918326536816,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "TOM",
+                "epoch": 1783932907.951,
+                "cents": 11,
+                "receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+                "order_lineage_start_epoch": 1783905026.000004,
+                "current_price_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+                "current_price_start_epoch": 1783905026.000004,
+                "order_lineage_age_minutes": 464.69918326536816,
+                "current_price_age_minutes": 464.69918326536816,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 49,
+              "leg": "TOM",
+              "epoch": 1783926613.000001,
+              "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-5939",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 11,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 13,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1310"
+              },
+              "Q": 11,
+              "X": 1783988727,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783851035,
+              "support": null,
+              "accountability_assumption": "9c8a5b1d50ab0ec415a90025f22c6fe1f53f39b319a897660c408bf665b3ccbf",
+              "stage_index": 24
+            },
+            "license_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+            "licensing_deadline_epoch": 1783974763.727536,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOM was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOM was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KRE": false,
+          "TOM": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "TOM",
+            "epoch": 1783932907.951,
+            "cents": 11,
+            "receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+            "order_lineage_start_epoch": 1783905026.000004,
+            "current_price_receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-4433",
+            "current_price_start_epoch": 1783905026.000004,
+            "order_lineage_age_minutes": 464.69918326536816,
+            "current_price_age_minutes": 464.69918326536816,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL13KRETOM",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "KRE",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 90,
+            "close_epoch": 1784039565.6,
+            "floor_cents": 87,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "TOM",
+            "filled": true,
+            "fill_cents": 11,
+            "fill_epoch": 1783932907.951,
+            "fill_receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef",
+            "close_cents": 10,
+            "close_epoch": 1784039643.3,
+            "floor_cents": 9,
+            "offered_cents": 1,
+            "value_cents": -1,
+            "premium_cents": 1,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "cce386422b99ac37c388a7d6dd387301a9eb18e3826e9b539f8f0e15f52607d3",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+          "epoch": 1783891011.000001,
+          "clock": "T−41hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KRE is strengthening; TOM is not yet directionally called.",
+              "WHY": "KRE trades at 90¢ against its 85¢ opening anchor; TOM trades at 13¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KRE carries 31 eligible past sides from first-price comparisons; TOM carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KRE calls 89¢ by T−23hr 9min; TOM calls 11¢ by T−16hr 8min.",
+              "WHY": "KRE’s middle half spans 88–89¢; TOM’s middle half spans 10–12¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KRE has book 89/90 and no standing bid; TOM has book 11/12 and no standing bid.",
+              "WHY": "KRE: Only the ask changed, so the existing book veto held the bid decision; TOM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KRE": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 85,
+              "corrected_open": 85,
+              "close": 90,
+              "recorded_floor": 87,
+              "P": 90,
+              "Q": 89,
+              "X": 1783956365.100618,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 31,
+              "ess": 13.178572431351766,
+              "family": "EARLY_SET_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-1675"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 38,
+                "leg": "KRE",
+                "epoch": 1783891011.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 91; reserve TOM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-1675"
+                },
+                "Q": 89,
+                "X": 1783956365.100618,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 19
+              },
+              "permission": {
+                "ordinal": 19,
+                "epoch": 1783891011.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+                "id": "KRE",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 91,
+                  "window": {
+                    "family": "EARLY_SET_UP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.024313271422619413,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_UP": 0.20529687413606224,
+                      "ROUND_TRIP": 0.34549174549660605,
+                      "QUIET_WOBBLE": 0.391115907977118,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.15387228113953647,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0.4240103535010908,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.0021511286779800744,
+                    "epoch": 1783851440.8426921,
+                    "minutes_to_bell": 3137.6526217977207,
+                    "open": true,
+                    "member_count": 8,
+                    "ess": 3.347457809883526,
+                    "weight_sum": 0.4240103535010908,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 91; reserve TOM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KRE": {
+                    "forecast": 91,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 13.178572431351766,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 31
+                  },
+                  "TOM": {
+                    "forecast": 13,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 34.491142087828784,
+                    "role": "NOT_CALLABLE",
+                    "current": 13,
+                    "member_count": 90
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_UP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.024313271422619413,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_UP": 0.20529687413606224,
+                    "ROUND_TRIP": 0.34549174549660605,
+                    "QUIET_WOBBLE": 0.391115907977118,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.15387228113953647,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0.4240103535010908,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.0021511286779800744,
+                  "epoch": 1783851440.8426921,
+                  "minutes_to_bell": 3137.6526217977207,
+                  "open": true,
+                  "member_count": 8,
+                  "ess": 3.347457809883526,
+                  "weight_sum": 0.4240103535010908,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783956365.100618,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783951437.497,
+                  "price": 89,
+                  "size": 1,
+                  "receipt": "7329dc03-4b62-50c5-310f-ba92db5a119c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783951437.497,
+                  "price": 89,
+                  "size": 1,
+                  "receipt": "7329dc03-4b62-50c5-310f-ba92db5a119c"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "TOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 14,
+              "corrected_open": 14.5,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 13,
+              "Q": 11,
+              "X": 1783981641.806691,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 34.491142087828784,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 13,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 39,
+                "leg": "TOM",
+                "epoch": 1783891011.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 11; reserve KRE max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 13,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037"
+                },
+                "Q": 11,
+                "X": 1783981641.806691,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 19
+              },
+              "permission": {
+                "ordinal": 19,
+                "epoch": 1783891011.000001,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-1037",
+                "id": "TOM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 13,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.021985453271911204,
+                      "LATE_BREAK_DOWN": 0.026283681510086948,
+                      "LATE_BREAK_UP": 0.03831597716084393,
+                      "DRIFT_DOWN": 0.06251727531235489,
+                      "DRIFT_UP": 0.06071014584294454,
+                      "QUIET_WOBBLE": 1.0864167016846462,
+                      "ROUND_TRIP": 0.8282192263644182,
+                      "ONE_STEP_DOWN": 0.07298364948121894,
+                      "EARLY_SET_DOWN": 0.802995800368394,
+                      "EARLY_SET_UP": 0.04234273377138309,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0.041568414158706296,
+                      "GRIND_WOBBLE_DOWN": 0.01349464188369869
+                    },
+                    "position": 0.10478539505860528,
+                    "epoch": 1783870804.3365588,
+                    "minutes_to_bell": 2814.9277240196866,
+                    "open": true,
+                    "member_count": 30,
+                    "ess": 13.002659854882666,
+                    "weight_sum": 1.0864167016846462,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 11; reserve KRE max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KRE": {
+                    "forecast": 91,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 13.178572431351766,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 31
+                  },
+                  "TOM": {
+                    "forecast": 13,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 34.491142087828784,
+                    "role": "NOT_CALLABLE",
+                    "current": 13,
+                    "member_count": 90
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.021985453271911204,
+                    "LATE_BREAK_DOWN": 0.026283681510086948,
+                    "LATE_BREAK_UP": 0.03831597716084393,
+                    "DRIFT_DOWN": 0.06251727531235489,
+                    "DRIFT_UP": 0.06071014584294454,
+                    "QUIET_WOBBLE": 1.0864167016846462,
+                    "ROUND_TRIP": 0.8282192263644182,
+                    "ONE_STEP_DOWN": 0.07298364948121894,
+                    "EARLY_SET_DOWN": 0.802995800368394,
+                    "EARLY_SET_UP": 0.04234273377138309,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0.041568414158706296,
+                    "GRIND_WOBBLE_DOWN": 0.01349464188369869
+                  },
+                  "position": 0.10478539505860528,
+                  "epoch": 1783870804.3365588,
+                  "minutes_to_bell": 2814.9277240196866,
+                  "open": true,
+                  "member_count": 30,
+                  "ess": 13.002659854882666,
+                  "weight_sum": 1.0864167016846462,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 11,
+                "deadline_epoch": 1783981641.806691,
+                "q25": 10,
+                "q75": 12,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783974837.61,
+                  "price": 9,
+                  "size": 12,
+                  "receipt": "13d35521-1bcf-5128-fb96-dc4ded1a9ea4"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783932907.951,
+                  "price": 11,
+                  "size": 100,
+                  "receipt": "aba86a77-b8b6-5caa-65bc-20cd5fa4a6ef"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KRE-fill",
+          "label": "Last receipt before KRE filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KRE",
+          "outcome": "fill",
+          "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+          "epoch": 1783965227.068,
+          "clock": "T−20hr 41min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KRE is strengthening; TOM is weakening.",
+              "WHY": "KRE trades at 90¢ against its 85¢ opening anchor; TOM trades at 11¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KRE carries 128 eligible past sides from first-price comparisons; TOM carries 168 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KRE calls 89¢ by T−14hr 0min; TOM calls 10¢ by T−12hr 45min.",
+              "WHY": "KRE’s middle half spans 88–89¢; TOM’s middle half spans 9–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KRE has book 89/90 and a standing 89¢ bid; TOM has book 11/12 and no standing bid.",
+              "WHY": "KRE: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100; TOM: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KRE": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 85,
+              "corrected_open": 85,
+              "close": 90,
+              "recorded_floor": 87,
+              "P": 90,
+              "Q": 89,
+              "X": 1783989318,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 128,
+              "ess": 54.8034570093105,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-6734"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 66,
+                "leg": "KRE",
+                "epoch": 1783965227.068,
+                "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-6734"
+                },
+                "Q": 89,
+                "X": 1783989318,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1783965227.068,
+                "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "id": "KRE",
+                "old": null,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.024313271422619413,
+                      "LATE_BREAK_DOWN": 0.010298188180214256,
+                      "DRIFT_UP": 0.3382820036680311,
+                      "ROUND_TRIP": 1.8164010699856132,
+                      "QUIET_WOBBLE": 1.9770415756421431,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.48490724936313195,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.030956622864795523,
+                      "EARLY_SET_UP": 1.4254638165680589,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.003384707770346889,
+                    "epoch": 1783851673.5758915,
+                    "minutes_to_bell": 3133.773735141754,
+                    "open": true,
+                    "member_count": 28,
+                    "ess": 15.586722781820374,
+                    "weight_sum": 1.9770415756421431,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KRE",
+                    "faller": "TOM",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 12,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 12,
+                    "ask": 12,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KRE": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.8034570093105,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 128
+                  },
+                  "TOM": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 67.99123024741064,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 168
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.024313271422619413,
+                    "LATE_BREAK_DOWN": 0.010298188180214256,
+                    "DRIFT_UP": 0.3382820036680311,
+                    "ROUND_TRIP": 1.8164010699856132,
+                    "QUIET_WOBBLE": 1.9770415756421431,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.48490724936313195,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.030956622864795523,
+                    "EARLY_SET_UP": 1.4254638165680589,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.003384707770346889,
+                  "epoch": 1783851673.5758915,
+                  "minutes_to_bell": 3133.773735141754,
+                  "open": true,
+                  "member_count": 28,
+                  "ess": 15.586722781820374,
+                  "weight_sum": 1.9770415756421431,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783989318,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783968333.775,
+                  "price": 89,
+                  "size": 148,
+                  "receipt": "3e57c486-d65e-5bf7-5870-a3baea5d6b20"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783968333.775,
+                  "price": 89,
+                  "size": 148,
+                  "receipt": "3e57c486-d65e-5bf7-5870-a3baea5d6b20"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "TOM": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14.5,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 11,
+              "Q": 10,
+              "X": 1783993796.148314,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 168,
+              "ess": 67.99123024741064,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-3047"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "TOM",
+                "epoch": 1783965227.068,
+                "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve KRE max(close 90, ask 90) = 90"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 12,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-3047"
+                },
+                "Q": 10,
+                "X": 1783993796.148314,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1783965227.068,
+                "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "id": "TOM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 12,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.06566565817921982,
+                      "LATE_BREAK_UP": 0.00982929402216874,
+                      "DRIFT_DOWN": 0.4067810755929787,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 3.36325914120452,
+                      "ROUND_TRIP": 0.9197745328342478,
+                      "ONE_STEP_DOWN": 0.37418901874051996,
+                      "EARLY_SET_DOWN": 2.2073579529164453,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.024489450596151242
+                    },
+                    "position": 0.180432308458114,
+                    "epoch": 1783885076.2614753,
+                    "minutes_to_bell": 2577.0623087445897,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 26.452535515184174,
+                    "weight_sum": 3.36325914120452,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 90,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 90,
+                    "ask": 90,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve KRE max(close 90, ask 90) = 90",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KRE",
+                    "faller": "TOM",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KRE": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.8034570093105,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 128
+                  },
+                  "TOM": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 67.99123024741064,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 168
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.06566565817921982,
+                    "LATE_BREAK_UP": 0.00982929402216874,
+                    "DRIFT_DOWN": 0.4067810755929787,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 3.36325914120452,
+                    "ROUND_TRIP": 0.9197745328342478,
+                    "ONE_STEP_DOWN": 0.37418901874051996,
+                    "EARLY_SET_DOWN": 2.2073579529164453,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.024489450596151242
+                  },
+                  "position": 0.180432308458114,
+                  "epoch": 1783885076.2614753,
+                  "minutes_to_bell": 2577.0623087445897,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 26.452535515184174,
+                  "weight_sum": 3.36325914120452,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783993796.148314,
+                "q25": 9,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 9,
+                "floor_witness": {
+                  "epoch": 1783974837.61,
+                  "price": 9,
+                  "size": 12,
+                  "receipt": "13d35521-1bcf-5128-fb96-dc4ded1a9ea4"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783968872.072,
+                  "price": 10,
+                  "size": 24,
+                  "receipt": "51e1e4bc-0f5b-7246-5254-c9a7be9b3a69"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783968333.775,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "KRE",
+              "epoch": 1783968333.775,
+              "cents": 89,
+              "receipt": "3e57c486-d65e-5bf7-5870-a3baea5d6b20",
+              "order_lineage_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+              "order_lineage_start_epoch": 1783965227.068,
+              "current_price_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+              "current_price_start_epoch": 1783965227.068,
+              "order_lineage_age_minutes": 51.7784500002861,
+              "current_price_age_minutes": 51.7784500002861,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "KRE",
+                "epoch": 1783968333.775,
+                "cents": 89,
+                "receipt": "3e57c486-d65e-5bf7-5870-a3baea5d6b20",
+                "order_lineage_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "order_lineage_start_epoch": 1783965227.068,
+                "current_price_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "current_price_start_epoch": 1783965227.068,
+                "order_lineage_age_minutes": 51.7784500002861,
+                "current_price_age_minutes": 51.7784500002861,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 33,
+              "epoch": 1783965227.068,
+              "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+              "id": "KRE",
+              "old": null,
+              "proposed": 89,
+              "posted": 89,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 89,
+                "hand_level": 89,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 90,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.024313271422619413,
+                    "LATE_BREAK_DOWN": 0.010298188180214256,
+                    "DRIFT_UP": 0.3382820036680311,
+                    "ROUND_TRIP": 1.8164010699856132,
+                    "QUIET_WOBBLE": 1.9770415756421431,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.48490724936313195,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.030956622864795523,
+                    "EARLY_SET_UP": 1.4254638165680589,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.003384707770346889,
+                  "epoch": 1783851673.5758915,
+                  "minutes_to_bell": 3133.773735141754,
+                  "open": true,
+                  "member_count": 28,
+                  "ess": 15.586722781820374,
+                  "weight_sum": 1.9770415756421431,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 10,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 10,
+                  "climber_forecast_close": 90,
+                  "mirror_completion_cost": 10,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "KRE",
+                  "faller": "TOM",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 12,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 12,
+                  "ask": 12,
+                  "sum": 101,
+                  "discount": -1,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "KRE": {
+                  "forecast": 90,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 54.8034570093105,
+                  "role": "CLIMBER",
+                  "current": 90,
+                  "member_count": 128
+                },
+                "TOM": {
+                  "forecast": 12,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 67.99123024741064,
+                  "role": "FALLER",
+                  "current": 11,
+                  "member_count": 168
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_DOWN": 0,
+                  "LATE_BREAK_UP": 0.024313271422619413,
+                  "LATE_BREAK_DOWN": 0.010298188180214256,
+                  "DRIFT_UP": 0.3382820036680311,
+                  "ROUND_TRIP": 1.8164010699856132,
+                  "QUIET_WOBBLE": 1.9770415756421431,
+                  "DRIFT_DOWN": 0,
+                  "ONE_STEP_UP": 0.48490724936313195,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.030956622864795523,
+                  "EARLY_SET_UP": 1.4254638165680589,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "SLEEPER": 0
+                },
+                "position": 0.003384707770346889,
+                "epoch": 1783851673.5758915,
+                "minutes_to_bell": 3133.773735141754,
+                "open": true,
+                "member_count": 28,
+                "ess": 15.586722781820374,
+                "weight_sum": 1.9770415756421431,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 66,
+              "leg": "KRE",
+              "epoch": 1783965227.068,
+              "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 89,
+                "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-6734"
+              },
+              "Q": 89,
+              "X": 1783989318,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783851035,
+              "stage_index": 33
+            },
+            "license_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+            "licensing_deadline_epoch": 1783989318,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-TOM-miss",
+          "label": "Last receipt before TOM missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "TOM",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-12399",
+          "epoch": 1784039698.000012,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KRE is strengthening; TOM is weakening.",
+              "WHY": "KRE trades at 90¢ against its 85¢ opening anchor; TOM trades at 10¢ against its 14¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KRE carries 300 eligible past sides from first-price comparisons; TOM carries 365 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KRE calls 90¢ by T−0hr 0min; TOM calls 10¢ by T−0hr 0min.",
+              "WHY": "KRE’s middle half spans 90–90¢; TOM’s middle half spans 10–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KRE has book 90/91 and a recorded purchase at 89¢; TOM has book 9/10 and a recorded purchase at 10¢.",
+              "WHY": "KRE: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100; TOM: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 10; bid 10; KRE filled 89; 10 + 89 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KRE": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 85,
+              "corrected_open": 85,
+              "close": 90,
+              "recorded_floor": 87,
+              "P": 90,
+              "Q": 90,
+              "X": 1784039698.000012,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 113.8377805333539,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 90,
+                "ask_cents": 91,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-12399"
+              },
+              "bid": null,
+              "filled": 89,
+              "decision": {
+                "order": 66,
+                "leg": "KRE",
+                "epoch": 1783965227.068,
+                "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-KRE.csv.gz#row-6734"
+                },
+                "Q": 89,
+                "X": 1783989318,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1783965227.068,
+                "receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+                "id": "KRE",
+                "old": null,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.024313271422619413,
+                      "LATE_BREAK_DOWN": 0.010298188180214256,
+                      "DRIFT_UP": 0.3382820036680311,
+                      "ROUND_TRIP": 1.8164010699856132,
+                      "QUIET_WOBBLE": 1.9770415756421431,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.48490724936313195,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.030956622864795523,
+                      "EARLY_SET_UP": 1.4254638165680589,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.003384707770346889,
+                    "epoch": 1783851673.5758915,
+                    "minutes_to_bell": 3133.773735141754,
+                    "open": true,
+                    "member_count": 28,
+                    "ess": 15.586722781820374,
+                    "weight_sum": 1.9770415756421431,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve TOM max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "KRE",
+                    "faller": "TOM",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 12,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 12,
+                    "ask": 12,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "KRE": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.8034570093105,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 128
+                  },
+                  "TOM": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 67.99123024741064,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 168
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.024313271422619413,
+                    "LATE_BREAK_DOWN": 0.010298188180214256,
+                    "DRIFT_UP": 0.3382820036680311,
+                    "ROUND_TRIP": 1.8164010699856132,
+                    "QUIET_WOBBLE": 1.9770415756421431,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.48490724936313195,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.030956622864795523,
+                    "EARLY_SET_UP": 1.4254638165680589,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.003384707770346889,
+                  "epoch": 1783851673.5758915,
+                  "minutes_to_bell": 3133.773735141754,
+                  "open": true,
+                  "member_count": 28,
+                  "ess": 15.586722781820374,
+                  "weight_sum": 1.9770415756421431,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1784039698.000012,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "TOM": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 14,
+              "corrected_open": 14.5,
+              "close": 10,
+              "recorded_floor": 9,
+              "P": 10,
+              "Q": 10,
+              "X": 1784039698.000012,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 365,
+              "ess": 124.06825869578313,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 9,
+                "ask_cents": 10,
+                "last_trade_cents": 10,
+                "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-7300"
+              },
+              "bid": null,
+              "filled": 10,
+              "decision": {
+                "order": 68,
+                "leg": "TOM",
+                "epoch": 1783968872.01,
+                "receipt": "f3298a8f-ae8f-49d3-b300-a6b1ab7bba7a",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 10,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; bid 10; KRE filled 89; 10 + 89 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL13KRETOM-TOM.csv.gz#row-3126"
+                },
+                "Q": 10,
+                "X": 1783998611,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783851035,
+                "stage_index": 34
+              },
+              "permission": {
+                "ordinal": 34,
+                "epoch": 1783968872.01,
+                "receipt": "f3298a8f-ae8f-49d3-b300-a6b1ab7bba7a",
+                "id": "TOM",
+                "old": null,
+                "proposed": 10,
+                "posted": 10,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 11,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.085366331257858,
+                      "LATE_BREAK_UP": 0.00982929402216874,
+                      "DRIFT_DOWN": 0.4615447312984457,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 3.2779877365615,
+                      "ROUND_TRIP": 0.8530105322510868,
+                      "ONE_STEP_DOWN": 0.4150688140821784,
+                      "EARLY_SET_DOWN": 2.482305642200254,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.024489450596151242
+                    },
+                    "position": 0.180432308458114,
+                    "epoch": 1783885076.2614753,
+                    "minutes_to_bell": 2577.0623087445897,
+                    "open": true,
+                    "member_count": 48,
+                    "ess": 25.95013178637955,
+                    "weight_sum": 3.2779877365615,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 89,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 99,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; bid 10; KRE filled 89; 10 + 89 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 89,
+                    "mirror_completion_cost": 11,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KRE",
+                    "faller": "TOM",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "KRE": {
+                    "forecast": 89,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 59.53324565553484,
+                    "role": "CLIMBER",
+                    "current": 89,
+                    "member_count": 139
+                  },
+                  "TOM": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 69.6060775495931,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 173
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.085366331257858,
+                    "LATE_BREAK_UP": 0.00982929402216874,
+                    "DRIFT_DOWN": 0.4615447312984457,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 3.2779877365615,
+                    "ROUND_TRIP": 0.8530105322510868,
+                    "ONE_STEP_DOWN": 0.4150688140821784,
+                    "EARLY_SET_DOWN": 2.482305642200254,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.024489450596151242
+                  },
+                  "position": 0.180432308458114,
+                  "epoch": 1783885076.2614753,
+                  "minutes_to_bell": 2577.0623087445897,
+                  "open": true,
+                  "member_count": 48,
+                  "ess": 25.95013178637955,
+                  "weight_sum": 3.2779877365615,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1784039698.000012,
+                "q25": 10,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784039700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [
+              {
+                "leg": "TOM",
+                "epoch": 1783968872.072,
+                "cents": 10,
+                "receipt": "51e1e4bc-0f5b-7246-5254-c9a7be9b3a69",
+                "order_lineage_receipt": "f3298a8f-ae8f-49d3-b300-a6b1ab7bba7a",
+                "order_lineage_start_epoch": 1783968872.01,
+                "current_price_receipt": "f3298a8f-ae8f-49d3-b300-a6b1ab7bba7a",
+                "current_price_start_epoch": 1783968872.01,
+                "order_lineage_age_minutes": 0.001033333937327067,
+                "current_price_age_minutes": 0.001033333937327067,
+                "same_second_fill": true,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOM was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "TOM: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KRE": true,
+          "TOM": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "KRE",
+            "epoch": 1783968333.775,
+            "cents": 89,
+            "receipt": "3e57c486-d65e-5bf7-5870-a3baea5d6b20",
+            "order_lineage_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+            "order_lineage_start_epoch": 1783965227.068,
+            "current_price_receipt": "39315e97-b90f-58cf-d630-93d681b6dff2",
+            "current_price_start_epoch": 1783965227.068,
+            "order_lineage_age_minutes": 51.7784500002861,
+            "current_price_age_minutes": 51.7784500002861,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "TOM",
+            "epoch": 1783968872.072,
+            "cents": 10,
+            "receipt": "51e1e4bc-0f5b-7246-5254-c9a7be9b3a69",
+            "order_lineage_receipt": "f3298a8f-ae8f-49d3-b300-a6b1ab7bba7a",
+            "order_lineage_start_epoch": 1783968872.01,
+            "current_price_receipt": "f3298a8f-ae8f-49d3-b300-a6b1ab7bba7a",
+            "current_price_start_epoch": 1783968872.01,
+            "order_lineage_age_minutes": 0.001033333937327067,
+            "current_price_age_minutes": 0.001033333937327067,
+            "same_second_fill": true,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": [
+          {
+            "leg": "TOM",
+            "receipt": "51e1e4bc-0f5b-7246-5254-c9a7be9b3a69",
+            "reason": "SAME_SECOND"
+          }
+        ]
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL13KRETOM",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "KRE",
+            "filled": true,
+            "fill_cents": 89,
+            "fill_epoch": 1783968333.775,
+            "fill_receipt": "3e57c486-d65e-5bf7-5870-a3baea5d6b20",
+            "close_cents": 90,
+            "close_epoch": 1784039565.6,
+            "floor_cents": 87,
+            "offered_cents": 3,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "TOM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 10,
+            "close_epoch": 1784039643.3,
+            "floor_cents": 9,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "cce386422b99ac37c388a7d6dd387301a9eb18e3826e9b539f8f0e15f52607d3",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [
+          {
+            "leg": "TOM",
+            "receipt": "51e1e4bc-0f5b-7246-5254-c9a7be9b3a69",
+            "reason": "SAME_SECOND"
+          }
+        ],
+        "named_only": false
+      }
+    }
+  }
+}

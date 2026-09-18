@@ -1,0 +1,1042 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "155233ff2809e7e15b8d15777fea621e479f9271a7575fa13e21bcb8b0fc79d7",
+    "stage_cache_sha256": "0b65f1ec7ffdf4bc07ef4f4a14aa0ba4e0754eb836aace5c11f6358496e89095",
+    "mirror_projection_sha256": "b0b7fb89e95b36763d0dc1a8ec04f5d4e25596b183d5902855d4e3e2a5eca678",
+    "mirror_permissions_sha256": "50c15d921df28492e2d9bf2da5d1cd5c78ee416bdcf478074db63d76d2381cba",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "78a2f672512798e742548acfef1c9ae02aeba9a00948a93a635063c406a303a7",
+      "row_number": 9,
+      "row_csv": "26JUL12BALHUA,KXWTACHALLENGERMATCH-26JUL12BALHUA,WTA_CHALL,1783856660,1783856660,1783865100,1783865100.0,BAL,HUA,1783857540,20.0,,,,,,,,,1783857508,17,1783857770.0,POST_BELL_INVALID,1783857546,82.5,,,,,,,,,1783857509,78,1783857511.6,POST_BELL_INVALID,1783857546,,,1783857240.0,1783863657.0,1783857240.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783857546,1783857240.0,EMPTY (bell before formation end),COMPLETE_AT_DELTA,",
+      "verified_span": "EMPTY (bell before formation end)",
+      "status": "STORE_SILENT",
+      "reason": "EMPTY (bell before formation end)",
+      "span_start_epoch": 1783857546,
+      "span_end_epoch": 1783857240,
+      "bell_epoch": 1783857240,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783857240,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BAL": {
+          "status": "STORE_SILENT",
+          "reason": "EMPTY (bell before formation end)",
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 20,
+          "floor_cents": null,
+          "floor_epoch": null,
+          "minutes_to_bell": null,
+          "line": "BAL: STORE SILENT — EMPTY (bell before formation end)",
+          "marker_label": null,
+          "chart_label": null,
+          "hover_note": null,
+          "markers": {}
+        },
+        "HUA": {
+          "status": "STORE_SILENT",
+          "reason": "EMPTY (bell before formation end)",
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 82.5,
+          "floor_cents": null,
+          "floor_epoch": null,
+          "minutes_to_bell": null,
+          "line": "HUA: STORE SILENT — EMPTY (bell before formation end)",
+          "marker_label": null,
+          "chart_label": null,
+          "hover_note": null,
+          "markers": {}
+        }
+      },
+      "favorite_leg": "HUA",
+      "underdog_leg": "BAL",
+      "pair": {
+        "sum_cents": null,
+        "discount_cents": null,
+        "reason": "EMPTY (bell before formation end)",
+        "line": "best capturable = STORE SILENT — EMPTY (bell before formation end)",
+        "discount_line": "STORE SILENT",
+        "compact_line": "best capturable STORE SILENT — EMPTY (bell before formation end)"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12BALHUA",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1783856660",
+        "w1_left_epoch": "1783856660",
+        "w1_right_epoch": "1783865100",
+        "scheduled_start_epoch": "1783865100.0",
+        "legA": "BAL",
+        "legB": "HUA",
+        "legA_formation_end_epoch": "1783857540",
+        "legA_open_postformation_c": "20.0",
+        "legA_floor_c": "",
+        "legA_floor_epoch": "",
+        "legA_close_c": "",
+        "legA_close_epoch": "",
+        "legA_contracts": "",
+        "legA_premium_usd": "",
+        "legA_journey": "",
+        "legA_net_travel_c": "",
+        "legA_us_first_post_epoch": "1783857508",
+        "legA_us_fill_c": "17",
+        "legA_us_fill_epoch": "1783857770.0",
+        "legA_us_fill_stamp": "POST_BELL_INVALID",
+        "legB_formation_end_epoch": "1783857546",
+        "legB_open_postformation_c": "82.5",
+        "legB_floor_c": "",
+        "legB_floor_epoch": "",
+        "legB_close_c": "",
+        "legB_close_epoch": "",
+        "legB_contracts": "",
+        "legB_premium_usd": "",
+        "legB_journey": "",
+        "legB_net_travel_c": "",
+        "legB_us_first_post_epoch": "1783857509",
+        "legB_us_fill_c": "78",
+        "legB_us_fill_epoch": "1783857511.6",
+        "legB_us_fill_stamp": "POST_BELL_INVALID",
+        "formation_end_game": "1783857546",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783857240.0",
+        "kalshi_close_time_epoch": "1783863657.0",
+        "bell_epoch": "1783857240.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783857546",
+        "span_end_epoch": "1783857240.0",
+        "verified_span": "EMPTY (bell before formation end)",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL12BALHUA.jsonl",
+      "sha256": "314fee3fe322090716d73bfd322ffbd524685857e0513b0de86afe9fe86ed0bb",
+      "raw_rows": 965,
+      "accepted_rows": 0,
+      "start_epoch": 1783857546,
+      "end_epoch": null
+    }
+  },
+  "first_callable_receipt": null,
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "BAL": null,
+    "HUA": null
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": null,
+          "epoch": null,
+          "clock": "no time recorded",
+          "cells": {
+            "MACRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 20,
+              "corrected_open": 20,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            },
+            "HUA": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 82,
+              "corrected_open": 82.5,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            }
+          },
+          "macro_status": "UNKNOWN",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAL-unknown",
+          "label": "BAL: outcome cannot be scored",
+          "arm": "D",
+          "focus_leg": "BAL",
+          "outcome": "unknown",
+          "receipt": null,
+          "epoch": null,
+          "clock": "no time recorded",
+          "cells": {
+            "MACRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 20,
+              "corrected_open": 20,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            },
+            "HUA": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 82,
+              "corrected_open": 82.5,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            }
+          },
+          "macro_status": "UNKNOWN",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": null,
+          "outcome_evidence": {
+            "credited": null,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": null,
+            "permitted_policy_window": null,
+            "passed": null,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-HUA-unknown",
+          "label": "HUA: outcome cannot be scored",
+          "arm": "D",
+          "focus_leg": "HUA",
+          "outcome": "unknown",
+          "receipt": null,
+          "epoch": null,
+          "clock": "no time recorded",
+          "cells": {
+            "MACRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 20,
+              "corrected_open": 20,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            },
+            "HUA": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 82,
+              "corrected_open": 82.5,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            }
+          },
+          "macro_status": "UNKNOWN",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": null,
+          "outcome_evidence": {
+            "credited": null,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": null,
+            "permitted_policy_window": null,
+            "passed": null,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "UNKNOWN",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "UNKNOWN",
+          "exit": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "UNKNOWN",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "UNKNOWN",
+          "exit": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": false,
+        "legs": {
+          "BAL": null,
+          "HUA": null
+        },
+        "valid_fills": null,
+        "pair_completed": null,
+        "pair_sum": null,
+        "captured_cents": null,
+        "best_capturable_cents": null,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+        "category": "WTA_CHALL",
+        "group": "unknown",
+        "legs": [
+          {
+            "id": "BAL",
+            "filled": null,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": null,
+            "close_epoch": null,
+            "floor_cents": null,
+            "offered_cents": null,
+            "value_cents": null,
+            "premium_cents": null,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "HUA",
+            "filled": null,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": null,
+            "close_epoch": null,
+            "floor_cents": null,
+            "offered_cents": null,
+            "value_cents": null,
+            "premium_cents": null,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": null,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "78a2f672512798e742548acfef1c9ae02aeba9a00948a93a635063c406a303a7",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "STORE_SILENT",
+          "reason": "EMPTY (bell before formation end)"
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": null,
+          "epoch": null,
+          "clock": "no time recorded",
+          "cells": {
+            "MACRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 20,
+              "corrected_open": 20,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            },
+            "HUA": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 82,
+              "corrected_open": 82.5,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            }
+          },
+          "macro_status": "UNKNOWN",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAL-unknown",
+          "label": "BAL: outcome cannot be scored",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BAL",
+          "outcome": "unknown",
+          "receipt": null,
+          "epoch": null,
+          "clock": "no time recorded",
+          "cells": {
+            "MACRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 20,
+              "corrected_open": 20,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            },
+            "HUA": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 82,
+              "corrected_open": 82.5,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            }
+          },
+          "macro_status": "UNKNOWN",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": null,
+          "outcome_evidence": {
+            "credited": null,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": null,
+            "permitted_policy_window": null,
+            "passed": null,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-HUA-unknown",
+          "label": "HUA: outcome cannot be scored",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "HUA",
+          "outcome": "unknown",
+          "receipt": null,
+          "epoch": null,
+          "clock": "no time recorded",
+          "cells": {
+            "MACRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "WHY": "No data here: no saved receipt meets this checkpoint’s definition.",
+              "HOW": "No data here: no saved receipt meets this checkpoint’s definition."
+            }
+          },
+          "legs": {
+            "BAL": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 20,
+              "corrected_open": 20,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            },
+            "HUA": {
+              "role": null,
+              "realized_role": null,
+              "role_right": null,
+              "open": 82,
+              "corrected_open": 82.5,
+              "close": null,
+              "recorded_floor": null,
+              "P": null,
+              "Q": null,
+              "X": null,
+              "layer": null,
+              "members": null,
+              "ess": null,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": null,
+              "bid": null,
+              "filled": null,
+              "decision": null,
+              "permission": null,
+              "micro": {
+                "Q": null,
+                "deadline_epoch": null,
+                "q25": null,
+                "q75": null,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No callable receipt"
+              }
+            }
+          },
+          "macro_status": "UNKNOWN",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": null,
+          "outcome_evidence": {
+            "credited": null,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": null,
+            "permitted_policy_window": null,
+            "passed": null,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "UNKNOWN",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "UNKNOWN",
+          "exit": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "UNKNOWN",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "UNKNOWN",
+          "exit": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": false,
+        "legs": {
+          "BAL": null,
+          "HUA": null
+        },
+        "valid_fills": null,
+        "pair_completed": null,
+        "pair_sum": null,
+        "captured_cents": null,
+        "best_capturable_cents": null,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+        "category": "WTA_CHALL",
+        "group": "unknown",
+        "legs": [
+          {
+            "id": "BAL",
+            "filled": null,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": null,
+            "close_epoch": null,
+            "floor_cents": null,
+            "offered_cents": null,
+            "value_cents": null,
+            "premium_cents": null,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "HUA",
+            "filled": null,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": null,
+            "close_epoch": null,
+            "floor_cents": null,
+            "offered_cents": null,
+            "value_cents": null,
+            "premium_cents": null,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": null,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "78a2f672512798e742548acfef1c9ae02aeba9a00948a93a635063c406a303a7",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "STORE_SILENT",
+          "reason": "EMPTY (bell before formation end)"
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

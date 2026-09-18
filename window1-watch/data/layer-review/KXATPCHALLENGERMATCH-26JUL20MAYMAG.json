@@ -1,0 +1,2181 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "eb8892b6e9060445face7391ffa3ba32ae6322fb2ccf7321b4959c8f38adc5f6",
+    "stage_cache_sha256": "62cf34209308b256df2d0772d74b974270a75e7d38503856d50d682a6c412813",
+    "mirror_projection_sha256": "3811b2281d7ae23d4b0deff3e74a52cb180ab089fa375fbbd8f955d832162b1d",
+    "mirror_permissions_sha256": "7659c142609a6d9b9e8d7f8f0dbeea5e1f86678cb0460d80ab8a39a94d5326d0",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "c0a9dc18ea670ecfc05265bcd24bc76e7439d483c4884b2fb4c9c12a33a780e4",
+      "row_number": 752,
+      "row_csv": "26JUL20MAYMAG,KXATPCHALLENGERMATCH-26JUL20MAYMAG,ATP_CHALL,1784514168,1784514168,1784554020,1784566800.0,MAG,MAY,1784514168,31.5,31,1784517313.4,35,1784553935.4,15373.32,5210.03,STILL,3.5,,,,,1784514168,68.0,66,1784526722.8,67,1784553935.6,1570.26,1060.2,STILL,-1.0,,,,,1784514168,,,1784556240.0,1784566808.0,1784556240.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784514168,1784554020,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784514168,
+      "span_end_epoch": 1784554020,
+      "bell_epoch": 1784556240,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784556240,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "MAG": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 31.5,
+          "floor_cents": 31,
+          "floor_epoch": 1784517313.4,
+          "minutes_to_bell": 648.7766666650772,
+          "line": "MAG 31¢ @ 648.78m to bell",
+          "marker_label": "MAG FLOOR · RECORDED 31¢ @ 648.78m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 31¢ · 648m to bell",
+          "hover_note": "Recorded floor 31¢ printed here · 648m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "MAY": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 68,
+          "floor_cents": 66,
+          "floor_epoch": 1784526722.8,
+          "minutes_to_bell": 491.95333333412805,
+          "line": "MAY 66¢ @ 491.95m to bell",
+          "marker_label": "MAY FLOOR · RECORDED 66¢ @ 491.95m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 66¢ · 491m to bell",
+          "hover_note": "Recorded floor 66¢ printed here · 491m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "MAY",
+      "underdog_leg": "MAG",
+      "pair": {
+        "sum_cents": 97,
+        "discount_cents": 3,
+        "reason": null,
+        "line": "best capturable = 66 + 31 = 97¢",
+        "discount_line": "3¢ under par",
+        "compact_line": "best capturable 97¢ · 3¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL20MAYMAG",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784514168",
+        "w1_left_epoch": "1784514168",
+        "w1_right_epoch": "1784554020",
+        "scheduled_start_epoch": "1784566800.0",
+        "legA": "MAG",
+        "legB": "MAY",
+        "legA_formation_end_epoch": "1784514168",
+        "legA_open_postformation_c": "31.5",
+        "legA_floor_c": "31",
+        "legA_floor_epoch": "1784517313.4",
+        "legA_close_c": "35",
+        "legA_close_epoch": "1784553935.4",
+        "legA_contracts": "15373.32",
+        "legA_premium_usd": "5210.03",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "3.5",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784514168",
+        "legB_open_postformation_c": "68.0",
+        "legB_floor_c": "66",
+        "legB_floor_epoch": "1784526722.8",
+        "legB_close_c": "67",
+        "legB_close_epoch": "1784553935.6",
+        "legB_contracts": "1570.26",
+        "legB_premium_usd": "1060.2",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-1.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784514168",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784556240.0",
+        "kalshi_close_time_epoch": "1784566808.0",
+        "bell_epoch": "1784556240.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784514168",
+        "span_end_epoch": "1784554020",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20MAYMAG.jsonl",
+      "sha256": "55887538bb893c9ead5985f02412667a8c8b48f89e8838f77ae626ffab46e7f4",
+      "raw_rows": 19784,
+      "accepted_rows": 112,
+      "start_epoch": 1784514168,
+      "end_epoch": 1784554020
+    }
+  },
+  "first_callable_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "MAG": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+    "MAY": "c7a6d8ca-0128-7139-c656-9fc0b829538b"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+          "epoch": 1784516322.625,
+          "clock": "T−10hr 28min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "MAG is strengthening; MAY is not yet directionally called.",
+              "WHY": "MAG trades at 33¢ against its 31¢ opening anchor; MAY trades at 69¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "MAG carries 56 eligible past sides from first-price comparisons; MAY carries 310 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "MAG calls 31¢ by T−6hr 8min; MAY calls 67¢ by T−8hr 19min.",
+              "WHY": "MAG’s middle half spans 26–32¢; MAY’s middle half spans 66–69¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "MAG has book 31/33 and a standing 31¢ bid; MAY has book 67/69 and a standing 67¢ bid.",
+              "WHY": "MAG: The current pool target was the permitted bid level; MAY: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "MAG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 31,
+              "corrected_open": 31.5,
+              "close": 35,
+              "recorded_floor": 31,
+              "P": 33,
+              "Q": 31,
+              "X": 1784531957.872796,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 56,
+              "ess": 21.88870150859666,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 33,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-67"
+              },
+              "bid": 31,
+              "filled": null,
+              "decision": {
+                "order": 22,
+                "leg": "MAG",
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 31,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 33,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-67"
+                },
+                "Q": 31,
+                "X": 1784531957.872796,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "support": null,
+                "accountability_assumption": "f7b5da03185e572f4c65c191428b252449b707c0fb82335d51ab81e25819d17c",
+                "stage_index": 11
+              },
+              "permission": null,
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784531957.872796,
+                "q25": 26,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 31,
+                "floor_witness": {
+                  "epoch": 1784517313.447,
+                  "price": 31,
+                  "size": 32.81,
+                  "receipt": "d0c9bed8-7ad8-4f67-d3c4-c184dd3ca19b"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784517296.265,
+                  "price": 32,
+                  "size": 32.81,
+                  "receipt": "bd83d310-285e-54d1-bcd1-47ebd0af3335"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "MAY": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 67,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 67,
+              "X": 1784524086.999185,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 310,
+              "ess": 113.25663150017877,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 69,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+              },
+              "bid": 67,
+              "filled": null,
+              "decision": {
+                "order": 23,
+                "leg": "MAY",
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 67,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 69,
+                  "last_trade_cents": 69,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+                },
+                "Q": 67,
+                "X": 1784524086.999185,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "support": null,
+                "accountability_assumption": "683e09c245280e17b3b7546e40ff7e0c0734653121877625cef5fba55f918664",
+                "stage_index": 11
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784524086.999185,
+                "q25": 66,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784526722.829,
+                  "price": 66,
+                  "size": 71.91,
+                  "receipt": "1a623b58-e7a7-5729-22dd-d4e1e2638917"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784516605.584,
+                  "price": 67,
+                  "size": 5.31,
+                  "receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-MAG-miss",
+          "label": "Last receipt before MAG missed at the bell",
+          "arm": "D",
+          "focus_leg": "MAG",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+          "epoch": 1784553987.000001,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "MAG is strengthening; MAY is not yet directionally called.",
+              "WHY": "MAG trades at 34¢ against its 31¢ opening anchor; MAY trades at 67¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "MAG carries 479 eligible past sides from first-price comparisons; MAY carries 1944 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "MAG calls 34¢ by T−0hr 1min; MAY calls 67¢ by T−0hr 1min.",
+              "WHY": "MAG’s middle half spans 34–34¢; MAY’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "MAG has book 33/34 and a standing 32¢ bid; MAY has book 66/67 and a recorded purchase at 67¢.",
+              "WHY": "MAG: The desired bid could not be posted below the ask; MAY: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "MAG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 31,
+              "corrected_open": 31.5,
+              "close": 35,
+              "recorded_floor": 31,
+              "P": 34,
+              "Q": 34,
+              "X": 1784553987.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 479,
+              "ess": 215.16422467026874,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330"
+              },
+              "bid": 32,
+              "filled": null,
+              "decision": {
+                "order": 64,
+                "leg": "MAG",
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 32,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330"
+                },
+                "Q": 34,
+                "X": 1784553987.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "support": null,
+                "accountability_assumption": "9a18ac7395b530105e5dfd2526ee0af43580c51552baa25f10c4fdd7695d3c71",
+                "stage_index": 43
+              },
+              "permission": null,
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784553987.000001,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MAY": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 67,
+              "recorded_floor": 66,
+              "P": 67,
+              "Q": 67,
+              "X": 1784553987.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1944,
+              "ess": 726.5742449797006,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-984"
+              },
+              "bid": null,
+              "filled": 67,
+              "decision": {
+                "order": 61,
+                "leg": "MAY",
+                "epoch": 1784553720,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG|ATLAS_GATE|1784553720",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-975"
+                },
+                "Q": 67,
+                "X": 1784553720,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 39
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784553987.000001,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784554020,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MAY-fill",
+          "label": "Last receipt before MAY filled",
+          "arm": "D",
+          "focus_leg": "MAY",
+          "outcome": "fill",
+          "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+          "epoch": 1784516322.625,
+          "clock": "T−10hr 28min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "MAG is strengthening; MAY is not yet directionally called.",
+              "WHY": "MAG trades at 33¢ against its 31¢ opening anchor; MAY trades at 69¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "MAG carries 56 eligible past sides from first-price comparisons; MAY carries 310 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "MAG calls 31¢ by T−6hr 8min; MAY calls 67¢ by T−8hr 19min.",
+              "WHY": "MAG’s middle half spans 26–32¢; MAY’s middle half spans 66–69¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "MAG has book 31/33 and a standing 31¢ bid; MAY has book 67/69 and a standing 67¢ bid.",
+              "WHY": "MAG: The current pool target was the permitted bid level; MAY: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "MAG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 31,
+              "corrected_open": 31.5,
+              "close": 35,
+              "recorded_floor": 31,
+              "P": 33,
+              "Q": 31,
+              "X": 1784531957.872796,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 56,
+              "ess": 21.88870150859666,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 33,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-67"
+              },
+              "bid": 31,
+              "filled": null,
+              "decision": {
+                "order": 22,
+                "leg": "MAG",
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 31,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 33,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-67"
+                },
+                "Q": 31,
+                "X": 1784531957.872796,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "support": null,
+                "accountability_assumption": "f7b5da03185e572f4c65c191428b252449b707c0fb82335d51ab81e25819d17c",
+                "stage_index": 11
+              },
+              "permission": null,
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784531957.872796,
+                "q25": 26,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 31,
+                "floor_witness": {
+                  "epoch": 1784517313.447,
+                  "price": 31,
+                  "size": 32.81,
+                  "receipt": "d0c9bed8-7ad8-4f67-d3c4-c184dd3ca19b"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784517296.265,
+                  "price": 32,
+                  "size": 32.81,
+                  "receipt": "bd83d310-285e-54d1-bcd1-47ebd0af3335"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "MAY": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 67,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 67,
+              "X": 1784524086.999185,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 310,
+              "ess": 113.25663150017877,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 69,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+              },
+              "bid": 67,
+              "filled": null,
+              "decision": {
+                "order": 23,
+                "leg": "MAY",
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 67,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 69,
+                  "last_trade_cents": 69,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+                },
+                "Q": 67,
+                "X": 1784524086.999185,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "support": null,
+                "accountability_assumption": "683e09c245280e17b3b7546e40ff7e0c0734653121877625cef5fba55f918664",
+                "stage_index": 11
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784524086.999185,
+                "q25": 66,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784526722.829,
+                  "price": 66,
+                  "size": 71.91,
+                  "receipt": "1a623b58-e7a7-5729-22dd-d4e1e2638917"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784516605.584,
+                  "price": 67,
+                  "size": 5.31,
+                  "receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784516605.584,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "MAY",
+              "epoch": 1784516605.584,
+              "cents": 67,
+              "receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1",
+              "order_lineage_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+              "order_lineage_start_epoch": 1784516322.625,
+              "current_price_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+              "current_price_start_epoch": 1784516322.625,
+              "order_lineage_age_minutes": 4.715983335177103,
+              "current_price_age_minutes": 4.715983335177103,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "MAY",
+                "epoch": 1784516605.584,
+                "cents": 67,
+                "receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1",
+                "order_lineage_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "order_lineage_start_epoch": 1784516322.625,
+                "current_price_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "current_price_start_epoch": 1784516322.625,
+                "order_lineage_age_minutes": 4.715983335177103,
+                "current_price_age_minutes": 4.715983335177103,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 23,
+              "leg": "MAY",
+              "epoch": 1784516322.625,
+              "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 67,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 67,
+                "ask_cents": 69,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+              },
+              "Q": 67,
+              "X": 1784524086.999185,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784514168,
+              "support": null,
+              "accountability_assumption": "683e09c245280e17b3b7546e40ff7e0c0734653121877625cef5fba55f918664",
+              "stage_index": 11
+            },
+            "license_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+            "licensing_deadline_epoch": 1784524086.999185,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "MAG": false,
+          "MAY": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "fills": [
+          {
+            "leg": "MAY",
+            "epoch": 1784516605.584,
+            "cents": 67,
+            "receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1",
+            "order_lineage_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+            "order_lineage_start_epoch": 1784516322.625,
+            "current_price_receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+            "current_price_start_epoch": 1784516322.625,
+            "order_lineage_age_minutes": 4.715983335177103,
+            "current_price_age_minutes": 4.715983335177103,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "MAG",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 35,
+            "close_epoch": 1784553935.4,
+            "floor_cents": 31,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 4,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MAY",
+            "filled": true,
+            "fill_cents": 67,
+            "fill_epoch": 1784516605.584,
+            "fill_receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1",
+            "close_cents": 67,
+            "close_epoch": 1784553935.6,
+            "floor_cents": 66,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "c0a9dc18ea670ecfc05265bcd24bc76e7439d483c4884b2fb4c9c12a33a780e4",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+          "epoch": 1784516322.625,
+          "clock": "T−10hr 28min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "MAG is strengthening; MAY is not yet directionally called.",
+              "WHY": "MAG trades at 33¢ against its 31¢ opening anchor; MAY trades at 69¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "MAG carries 56 eligible past sides from first-price comparisons; MAY carries 310 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "MAG calls 31¢ by T−6hr 8min; MAY calls 67¢ by T−8hr 19min.",
+              "WHY": "MAG’s middle half spans 26–32¢; MAY’s middle half spans 66–69¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "MAG has book 31/33 and no standing bid; MAY has book 67/69 and no standing bid.",
+              "WHY": "MAG: The counterpart reservation did not leave a permitted discount; MAY: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "MAG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 31,
+              "corrected_open": 31.5,
+              "close": 35,
+              "recorded_floor": 31,
+              "P": 33,
+              "Q": 31,
+              "X": 1784531957.872796,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 56,
+              "ess": 21.88870150859666,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 31,
+                "ask_cents": 33,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-67"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 22,
+                "leg": "MAG",
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 33; reserve MAY max(close 69, ask 69) = 69"
+                },
+                "book": {
+                  "bid_cents": 31,
+                  "ask_cents": 33,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-67"
+                },
+                "Q": 31,
+                "X": 1784531957.872796,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "stage_index": 11
+              },
+              "permission": {
+                "ordinal": 11,
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "id": "MAG",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 32,
+                  "hand_level": 32,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 33,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.04228355754606547,
+                      "ROUND_TRIP": 0.9451897198409964,
+                      "LATE_BREAK_UP": 0.05237264460655109,
+                      "ONE_STEP_UP": 0.26484913061452825,
+                      "LATE_BREAK_DOWN": 0.4522546638149868,
+                      "QUIET_WOBBLE": 0.21404183688196035,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0,
+                      "DRIFT_UP": 0.17112572140642707,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.051138469666137526,
+                      "EARLY_SET_UP": 0.49998876311693524,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.03450611857125547,
+                    "epoch": 1784515543.1378374,
+                    "minutes_to_bell": 641.2810360431671,
+                    "open": true,
+                    "member_count": 23,
+                    "ess": 11.850124809411488,
+                    "weight_sum": 0.9451897198409964,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 69,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 69,
+                    "ask": 69,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 33; reserve MAY max(close 69, ask 69) = 69",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MAY": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 113.25663150017877,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 310
+                  },
+                  "MAG": {
+                    "forecast": 33,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 21.88870150859666,
+                    "role": "CLIMBER",
+                    "current": 33,
+                    "member_count": 56
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.04228355754606547,
+                    "ROUND_TRIP": 0.9451897198409964,
+                    "LATE_BREAK_UP": 0.05237264460655109,
+                    "ONE_STEP_UP": 0.26484913061452825,
+                    "LATE_BREAK_DOWN": 0.4522546638149868,
+                    "QUIET_WOBBLE": 0.21404183688196035,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0,
+                    "DRIFT_UP": 0.17112572140642707,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.051138469666137526,
+                    "EARLY_SET_UP": 0.49998876311693524,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.03450611857125547,
+                  "epoch": 1784515543.1378374,
+                  "minutes_to_bell": 641.2810360431671,
+                  "open": true,
+                  "member_count": 23,
+                  "ess": 11.850124809411488,
+                  "weight_sum": 0.9451897198409964,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784531957.872796,
+                "q25": 26,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 31,
+                "floor_witness": {
+                  "epoch": 1784517313.447,
+                  "price": 31,
+                  "size": 32.81,
+                  "receipt": "d0c9bed8-7ad8-4f67-d3c4-c184dd3ca19b"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784517296.265,
+                  "price": 32,
+                  "size": 32.81,
+                  "receipt": "bd83d310-285e-54d1-bcd1-47ebd0af3335"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "MAY": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 67,
+              "recorded_floor": 66,
+              "P": 69,
+              "Q": 67,
+              "X": 1784524086.999185,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 310,
+              "ess": 113.25663150017877,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 69,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 23,
+                "leg": "MAY",
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve MAG max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 69,
+                  "last_trade_cents": 69,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-31"
+                },
+                "Q": 67,
+                "X": 1784524086.999185,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "stage_index": 11
+              },
+              "permission": {
+                "ordinal": 11,
+                "epoch": 1784516322.625,
+                "receipt": "c7a6d8ca-0128-7139-c656-9fc0b829538b",
+                "id": "MAY",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.6328394063994456,
+                      "ROUND_TRIP": 5.302200513034747,
+                      "LATE_BREAK_DOWN": 0.5649010698868947,
+                      "DRIFT_DOWN": 0.20364825980535656,
+                      "LATE_BREAK_UP": 0.6351066178715857,
+                      "QUIET_WOBBLE": 9.0834150823454,
+                      "DRIFT_UP": 0.3988714190595045,
+                      "GRIND_WOBBLE_UP": 0,
+                      "ONE_STEP_DOWN": 0.5821098305653609,
+                      "EARLY_SET_UP": 0.6609007502532259,
+                      "EARLY_SET_DOWN": 0.8142813453643631,
+                      "GRIND_WOBBLE_DOWN": 0.009374276912338284,
+                      "SLEEPER": 0.03378673634018971
+                    },
+                    "position": 0.0706897803223489,
+                    "epoch": 1784516985.1291254,
+                    "minutes_to_bell": 617.247847910722,
+                    "open": false,
+                    "member_count": 111,
+                    "ess": 39.20595922412544,
+                    "weight_sum": 9.0834150823454,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve MAG max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MAY": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 113.25663150017877,
+                    "role": "NOT_CALLABLE",
+                    "current": 69,
+                    "member_count": 310
+                  },
+                  "MAG": {
+                    "forecast": 33,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 21.88870150859666,
+                    "role": "CLIMBER",
+                    "current": 33,
+                    "member_count": 56
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.6328394063994456,
+                    "ROUND_TRIP": 5.302200513034747,
+                    "LATE_BREAK_DOWN": 0.5649010698868947,
+                    "DRIFT_DOWN": 0.20364825980535656,
+                    "LATE_BREAK_UP": 0.6351066178715857,
+                    "QUIET_WOBBLE": 9.0834150823454,
+                    "DRIFT_UP": 0.3988714190595045,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 0.5821098305653609,
+                    "EARLY_SET_UP": 0.6609007502532259,
+                    "EARLY_SET_DOWN": 0.8142813453643631,
+                    "GRIND_WOBBLE_DOWN": 0.009374276912338284,
+                    "SLEEPER": 0.03378673634018971
+                  },
+                  "position": 0.0706897803223489,
+                  "epoch": 1784516985.1291254,
+                  "minutes_to_bell": 617.247847910722,
+                  "open": false,
+                  "member_count": 111,
+                  "ess": 39.20595922412544,
+                  "weight_sum": 9.0834150823454,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784524086.999185,
+                "q25": 66,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784526722.829,
+                  "price": 66,
+                  "size": 71.91,
+                  "receipt": "1a623b58-e7a7-5729-22dd-d4e1e2638917"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784516605.584,
+                  "price": 67,
+                  "size": 5.31,
+                  "receipt": "1a685d9a-2df0-5ded-4bca-928c86e175a1"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-MAG-miss",
+          "label": "Last receipt before MAG missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "MAG",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+          "epoch": 1784553987.000001,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "MAG is strengthening; MAY is not yet directionally called.",
+              "WHY": "MAG trades at 34¢ against its 31¢ opening anchor; MAY trades at 67¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "MAG carries 479 eligible past sides from first-price comparisons; MAY carries 1944 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "MAG calls 34¢ by T−0hr 1min; MAY calls 67¢ by T−0hr 1min.",
+              "WHY": "MAG’s middle half spans 34–34¢; MAY’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "MAG has book 33/34 and no standing bid; MAY has book 66/67 and no standing bid.",
+              "WHY": "MAG: The counterpart reservation did not leave a permitted discount; MAY: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "MAG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 31,
+              "corrected_open": 31.5,
+              "close": 35,
+              "recorded_floor": 31,
+              "P": 34,
+              "Q": 34,
+              "X": 1784553987.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 479,
+              "ess": 215.16422467026874,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 84,
+                "leg": "MAG",
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 34; reserve MAY max(close 67, ask 67) = 67"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330"
+                },
+                "Q": 34,
+                "X": 1784553987.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "id": "MAG",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 33,
+                  "hand_level": 33,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.022631647107069518,
+                      "ROUND_TRIP": 4.200865963718949,
+                      "LATE_BREAK_UP": 3.8993327487359886,
+                      "ONE_STEP_UP": 2.3363555314931785,
+                      "LATE_BREAK_DOWN": 0,
+                      "QUIET_WOBBLE": 12.325398501225342,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.3365101515349553,
+                      "DRIFT_UP": 2.2771909890793864,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.3613582010745623,
+                      "EARLY_SET_UP": 1.260266533125185,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.07705580035066292,
+                    "epoch": 1784517238.8277557,
+                    "minutes_to_bell": 613.019537405173,
+                    "open": true,
+                    "member_count": 195,
+                    "ess": 85.01422780821767,
+                    "weight_sum": 12.325398501225342,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 67,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 67,
+                    "ask": 67,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 34; reserve MAY max(close 67, ask 67) = 67",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MAY": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 726.5742449797006,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 1944
+                  },
+                  "MAG": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 215.16422467026874,
+                    "role": "CLIMBER",
+                    "current": 34,
+                    "member_count": 479
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.022631647107069518,
+                    "ROUND_TRIP": 4.200865963718949,
+                    "LATE_BREAK_UP": 3.8993327487359886,
+                    "ONE_STEP_UP": 2.3363555314931785,
+                    "LATE_BREAK_DOWN": 0,
+                    "QUIET_WOBBLE": 12.325398501225342,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.3365101515349553,
+                    "DRIFT_UP": 2.2771909890793864,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.3613582010745623,
+                    "EARLY_SET_UP": 1.260266533125185,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.07705580035066292,
+                  "epoch": 1784517238.8277557,
+                  "minutes_to_bell": 613.019537405173,
+                  "open": true,
+                  "member_count": 195,
+                  "ess": 85.01422780821767,
+                  "weight_sum": 12.325398501225342,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784553987.000001,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MAY": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 67,
+              "recorded_floor": 66,
+              "P": 67,
+              "Q": 67,
+              "X": 1784553987.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1944,
+              "ess": 726.5742449797006,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-984"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 85,
+                "leg": "MAY",
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve MAG max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-984"
+                },
+                "Q": 67,
+                "X": 1784553987.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "id": "MAY",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 6.431139104493256,
+                      "ROUND_TRIP": 18.232269653829082,
+                      "LATE_BREAK_DOWN": 3.8553741133623483,
+                      "DRIFT_DOWN": 1.3356132694254426,
+                      "LATE_BREAK_UP": 2.7508750624583613,
+                      "QUIET_WOBBLE": 67.22112743151266,
+                      "DRIFT_UP": 2.8849479745331372,
+                      "GRIND_WOBBLE_UP": 0.30535146446524475,
+                      "ONE_STEP_DOWN": 3.213069867700871,
+                      "EARLY_SET_UP": 3.6486992485577,
+                      "EARLY_SET_DOWN": 1.7386993678006764,
+                      "GRIND_WOBBLE_DOWN": 0.14976510856444514,
+                      "SLEEPER": 5.594893259603909
+                    },
+                    "position": 0.11526610644257704,
+                    "epoch": 1784518761.584874,
+                    "minutes_to_bell": 587.6402521014213,
+                    "open": true,
+                    "member_count": 1078,
+                    "ess": 397.2840306823722,
+                    "weight_sum": 67.22112743151266,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve MAG max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MAY": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 726.5742449797006,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 1944
+                  },
+                  "MAG": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 215.16422467026874,
+                    "role": "CLIMBER",
+                    "current": 34,
+                    "member_count": 479
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 6.431139104493256,
+                    "ROUND_TRIP": 18.232269653829082,
+                    "LATE_BREAK_DOWN": 3.8553741133623483,
+                    "DRIFT_DOWN": 1.3356132694254426,
+                    "LATE_BREAK_UP": 2.7508750624583613,
+                    "QUIET_WOBBLE": 67.22112743151266,
+                    "DRIFT_UP": 2.8849479745331372,
+                    "GRIND_WOBBLE_UP": 0.30535146446524475,
+                    "ONE_STEP_DOWN": 3.213069867700871,
+                    "EARLY_SET_UP": 3.6486992485577,
+                    "EARLY_SET_DOWN": 1.7386993678006764,
+                    "GRIND_WOBBLE_DOWN": 0.14976510856444514,
+                    "SLEEPER": 5.594893259603909
+                  },
+                  "position": 0.11526610644257704,
+                  "epoch": 1784518761.584874,
+                  "minutes_to_bell": 587.6402521014213,
+                  "open": true,
+                  "member_count": 1078,
+                  "ess": 397.2840306823722,
+                  "weight_sum": 67.22112743151266,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784553987.000001,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784554020,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MAY-miss",
+          "label": "Last receipt before MAY missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "MAY",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+          "epoch": 1784553987.000001,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "MAG is strengthening; MAY is not yet directionally called.",
+              "WHY": "MAG trades at 34¢ against its 31¢ opening anchor; MAY trades at 67¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "MAG carries 479 eligible past sides from first-price comparisons; MAY carries 1944 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "MAG calls 34¢ by T−0hr 1min; MAY calls 67¢ by T−0hr 1min.",
+              "WHY": "MAG’s middle half spans 34–34¢; MAY’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "MAG has book 33/34 and no standing bid; MAY has book 66/67 and no standing bid.",
+              "WHY": "MAG: The counterpart reservation did not leave a permitted discount; MAY: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "MAG": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 31,
+              "corrected_open": 31.5,
+              "close": 35,
+              "recorded_floor": 31,
+              "P": 34,
+              "Q": 34,
+              "X": 1784553987.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 479,
+              "ess": 215.16422467026874,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 84,
+                "leg": "MAG",
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 34; reserve MAY max(close 67, ask 67) = 67"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330"
+                },
+                "Q": 34,
+                "X": 1784553987.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "id": "MAG",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 33,
+                  "hand_level": 33,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.022631647107069518,
+                      "ROUND_TRIP": 4.200865963718949,
+                      "LATE_BREAK_UP": 3.8993327487359886,
+                      "ONE_STEP_UP": 2.3363555314931785,
+                      "LATE_BREAK_DOWN": 0,
+                      "QUIET_WOBBLE": 12.325398501225342,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.3365101515349553,
+                      "DRIFT_UP": 2.2771909890793864,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.3613582010745623,
+                      "EARLY_SET_UP": 1.260266533125185,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.07705580035066292,
+                    "epoch": 1784517238.8277557,
+                    "minutes_to_bell": 613.019537405173,
+                    "open": true,
+                    "member_count": 195,
+                    "ess": 85.01422780821767,
+                    "weight_sum": 12.325398501225342,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 67,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 67,
+                    "ask": 67,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 34; reserve MAY max(close 67, ask 67) = 67",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MAY": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 726.5742449797006,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 1944
+                  },
+                  "MAG": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 215.16422467026874,
+                    "role": "CLIMBER",
+                    "current": 34,
+                    "member_count": 479
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.022631647107069518,
+                    "ROUND_TRIP": 4.200865963718949,
+                    "LATE_BREAK_UP": 3.8993327487359886,
+                    "ONE_STEP_UP": 2.3363555314931785,
+                    "LATE_BREAK_DOWN": 0,
+                    "QUIET_WOBBLE": 12.325398501225342,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.3365101515349553,
+                    "DRIFT_UP": 2.2771909890793864,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.3613582010745623,
+                    "EARLY_SET_UP": 1.260266533125185,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.07705580035066292,
+                  "epoch": 1784517238.8277557,
+                  "minutes_to_bell": 613.019537405173,
+                  "open": true,
+                  "member_count": 195,
+                  "ess": 85.01422780821767,
+                  "weight_sum": 12.325398501225342,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784553987.000001,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MAY": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68,
+              "close": 67,
+              "recorded_floor": 66,
+              "P": 67,
+              "Q": 67,
+              "X": 1784553987.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1944,
+              "ess": 726.5742449797006,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-984"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 85,
+                "leg": "MAY",
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve MAG max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAY.csv.gz#row-984"
+                },
+                "Q": 67,
+                "X": 1784553987.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784514168,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784553987.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20MAYMAG-MAG.csv.gz#row-1330",
+                "id": "MAY",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 6.431139104493256,
+                      "ROUND_TRIP": 18.232269653829082,
+                      "LATE_BREAK_DOWN": 3.8553741133623483,
+                      "DRIFT_DOWN": 1.3356132694254426,
+                      "LATE_BREAK_UP": 2.7508750624583613,
+                      "QUIET_WOBBLE": 67.22112743151266,
+                      "DRIFT_UP": 2.8849479745331372,
+                      "GRIND_WOBBLE_UP": 0.30535146446524475,
+                      "ONE_STEP_DOWN": 3.213069867700871,
+                      "EARLY_SET_UP": 3.6486992485577,
+                      "EARLY_SET_DOWN": 1.7386993678006764,
+                      "GRIND_WOBBLE_DOWN": 0.14976510856444514,
+                      "SLEEPER": 5.594893259603909
+                    },
+                    "position": 0.11526610644257704,
+                    "epoch": 1784518761.584874,
+                    "minutes_to_bell": 587.6402521014213,
+                    "open": true,
+                    "member_count": 1078,
+                    "ess": 397.2840306823722,
+                    "weight_sum": 67.22112743151266,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve MAG max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "MAY": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 726.5742449797006,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 1944
+                  },
+                  "MAG": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 215.16422467026874,
+                    "role": "CLIMBER",
+                    "current": 34,
+                    "member_count": 479
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 6.431139104493256,
+                    "ROUND_TRIP": 18.232269653829082,
+                    "LATE_BREAK_DOWN": 3.8553741133623483,
+                    "DRIFT_DOWN": 1.3356132694254426,
+                    "LATE_BREAK_UP": 2.7508750624583613,
+                    "QUIET_WOBBLE": 67.22112743151266,
+                    "DRIFT_UP": 2.8849479745331372,
+                    "GRIND_WOBBLE_UP": 0.30535146446524475,
+                    "ONE_STEP_DOWN": 3.213069867700871,
+                    "EARLY_SET_UP": 3.6486992485577,
+                    "EARLY_SET_DOWN": 1.7386993678006764,
+                    "GRIND_WOBBLE_DOWN": 0.14976510856444514,
+                    "SLEEPER": 5.594893259603909
+                  },
+                  "position": 0.11526610644257704,
+                  "epoch": 1784518761.584874,
+                  "minutes_to_bell": 587.6402521014213,
+                  "open": true,
+                  "member_count": 1078,
+                  "ess": 397.2840306823722,
+                  "weight_sum": 67.22112743151266,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784553987.000001,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784554020,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "MAG": false,
+          "MAY": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "MAG",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 35,
+            "close_epoch": 1784553935.4,
+            "floor_cents": 31,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 4,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MAY",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 67,
+            "close_epoch": 1784553935.6,
+            "floor_cents": 66,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "c0a9dc18ea670ecfc05265bcd24bc76e7439d483c4884b2fb4c9c12a33a780e4",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

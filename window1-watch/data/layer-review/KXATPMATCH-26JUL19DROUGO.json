@@ -1,0 +1,2723 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL19DROUGO",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "41d5f9e10396908235aa4153354be21dca1297c73589cad376d8a1a611853b7a",
+    "stage_cache_sha256": "ce9dbf7171e5788b59708b66eace7db9439f0912f575d23640fcf8291d28f46c",
+    "mirror_projection_sha256": "f8c20ab1edc9b2585299d5c7a1967084e5cbc8b6ee025b6ac85545c5e7069b08",
+    "mirror_permissions_sha256": "c61eb63f77c2c9cc9211ee620070d2c914ce3978aeeb487e20d3e13ee064390a",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL19DROUGO",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "5ed9218ff03dd5b11c7abf9bdffbf0579939ee2357bb6e6d51ece413c310150d",
+      "row_number": 617,
+      "row_csv": "26JUL19DROUGO,KXATPMATCH-26JUL19DROUGO,ATP_MAIN,1784389131,1784389131,1784549760,1784469600.0,DRO,UGO,1784396593,50.0,45,1784397821.1,47,1784549649.6,35998.92,17229.19,STILL,-3.0,1784403925,48,1784496424.4,PRE_BELL_VALID,1784396593,50.0,51,1784458569.7,55,1784549661.0,110162.14,59376.42,MOVER,5.0,1784403937,51,1784488505.9,PRE_BELL_VALID,1784396593,,,1784549700.0,1784559011.0,1784549700.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784396593,1784549700.0,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784396593,
+      "span_end_epoch": 1784549700,
+      "bell_epoch": 1784549700,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784549700,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "DRO": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 50,
+          "floor_cents": 45,
+          "floor_epoch": 1784397821.1,
+          "minutes_to_bell": 2531.3150000015894,
+          "line": "DRO 45¢ @ 2531.32m to bell",
+          "marker_label": "DRO FLOOR · RECORDED 45¢ @ 2531.32m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 45¢ · 2531m to bell",
+          "hover_note": "Recorded floor 45¢ printed here · 2531m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "UGO": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 50,
+          "floor_cents": 51,
+          "floor_epoch": 1784458569.7,
+          "minutes_to_bell": 1518.8383333325387,
+          "line": "UGO 51¢ @ 1518.84m to bell",
+          "marker_label": "UGO FLOOR · RECORDED 51¢ @ 1518.84m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 51¢ · 1518m to bell",
+          "hover_note": "Recorded floor 51¢ printed here · 1518m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": null,
+      "underdog_leg": null,
+      "pair": {
+        "sum_cents": null,
+        "discount_cents": null,
+        "reason": "FAVORITE/UNDERDOG NOT IDENTIFIABLE FROM TABLE OPENS",
+        "line": "best capturable = STORE SILENT — FAVORITE/UNDERDOG NOT IDENTIFIABLE FROM TABLE OPENS",
+        "discount_line": "STORE SILENT",
+        "compact_line": "best capturable STORE SILENT — FAVORITE/UNDERDOG NOT IDENTIFIABLE FROM TABLE OPENS"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL19DROUGO",
+        "event_id": "KXATPMATCH-26JUL19DROUGO",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1784389131",
+        "w1_left_epoch": "1784389131",
+        "w1_right_epoch": "1784549760",
+        "scheduled_start_epoch": "1784469600.0",
+        "legA": "DRO",
+        "legB": "UGO",
+        "legA_formation_end_epoch": "1784396593",
+        "legA_open_postformation_c": "50.0",
+        "legA_floor_c": "45",
+        "legA_floor_epoch": "1784397821.1",
+        "legA_close_c": "47",
+        "legA_close_epoch": "1784549649.6",
+        "legA_contracts": "35998.92",
+        "legA_premium_usd": "17229.19",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-3.0",
+        "legA_us_first_post_epoch": "1784403925",
+        "legA_us_fill_c": "48",
+        "legA_us_fill_epoch": "1784496424.4",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784396593",
+        "legB_open_postformation_c": "50.0",
+        "legB_floor_c": "51",
+        "legB_floor_epoch": "1784458569.7",
+        "legB_close_c": "55",
+        "legB_close_epoch": "1784549661.0",
+        "legB_contracts": "110162.14",
+        "legB_premium_usd": "59376.42",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "5.0",
+        "legB_us_first_post_epoch": "1784403937",
+        "legB_us_fill_c": "51",
+        "legB_us_fill_epoch": "1784488505.9",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784396593",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784549700.0",
+        "kalshi_close_time_epoch": "1784559011.0",
+        "bell_epoch": "1784549700.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784396593",
+        "span_end_epoch": "1784549700.0",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19DROUGO.jsonl",
+      "sha256": "1a87c2fda6763669066a6b20c34492f7b5a71fcf6c1af3b5ae0e1fdcb9133c7c",
+      "raw_rows": 14473,
+      "accepted_rows": 1231,
+      "start_epoch": 1784396593,
+      "end_epoch": 1784549700
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+  "first_both_directional_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+  "first_callable_by_side": {
+    "DRO": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+    "UGO": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+          "epoch": 1784397918.000001,
+          "clock": "T−42hr 10min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DRO is weakening; UGO is strengthening.",
+              "WHY": "DRO trades at 45¢ against its 50¢ opening anchor; UGO trades at 55¢ against its 50¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DRO carries 48 eligible past sides from first-price comparisons; UGO carries 32 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DRO calls 42¢ by T−1hr 8min; UGO calls 54¢ by T−30hr 11min.",
+              "WHY": "DRO’s middle half spans 40–42¢; UGO’s middle half spans 52–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DRO has book 45/50 and a standing 42¢ bid; UGO has book 50/55 and a standing 54¢ bid.",
+              "WHY": "DRO: The current pool target was the permitted bid level; UGO: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DRO": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 47,
+              "recorded_floor": 45,
+              "P": 45,
+              "Q": 42,
+              "X": 1784545634,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 48,
+              "ess": 19.015476015479358,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 45,
+                "ask_cents": 50,
+                "last_trade_cents": 45,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-84"
+              },
+              "bid": 42,
+              "filled": null,
+              "decision": {
+                "order": 22,
+                "leg": "DRO",
+                "epoch": 1784397918.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 42,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 45,
+                  "ask_cents": 50,
+                  "last_trade_cents": 45,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-84"
+                },
+                "Q": 42,
+                "X": 1784545634,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "support": null,
+                "accountability_assumption": "45217ab1822d27c417a40dc270d557771f873a07fe9001564635b38c79088bdb",
+                "stage_index": 11
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784545634,
+                "q25": 40,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784519072.242,
+                  "price": 46,
+                  "size": 42.09,
+                  "receipt": "fadded3d-7983-700e-47b9-6a861e67d2bb"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 55,
+              "recorded_floor": 51,
+              "P": 55,
+              "Q": 54,
+              "X": 1784441021,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 32,
+              "ess": 16.969853686186255,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 50,
+                "ask_cents": 55,
+                "last_trade_cents": null,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67"
+              },
+              "bid": 54,
+              "filled": null,
+              "decision": {
+                "order": 23,
+                "leg": "UGO",
+                "epoch": 1784397918.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 54,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 50,
+                  "ask_cents": 55,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67"
+                },
+                "Q": 54,
+                "X": 1784441021,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "support": null,
+                "accountability_assumption": "3f46a0d13423845f5832037c397ae7332c5013811b36f86ca2d29029df93351e",
+                "stage_index": 11
+              },
+              "permission": null,
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1784441021,
+                "q25": 52,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784458569.674,
+                  "price": 51,
+                  "size": 70.14,
+                  "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784403921.277,
+                  "price": 53,
+                  "size": 25,
+                  "receipt": "f1b7b30d-eab6-4c39-df7d-42883e375513"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DRO-fill",
+          "label": "Last receipt before DRO filled",
+          "arm": "D",
+          "focus_leg": "DRO",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+          "epoch": 1784520900,
+          "clock": "T−8hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DRO is weakening; UGO is strengthening.",
+              "WHY": "DRO trades at 48¢ against its 50¢ opening anchor; UGO trades at 54¢ against its 50¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DRO carries 321 eligible past sides from first-price comparisons; UGO carries 284 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DRO calls 46¢ by T−3hr 27min; UGO calls 52¢ by T−6hr 10min.",
+              "WHY": "DRO’s middle half spans 45–47¢; UGO’s middle half spans 51–53¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DRO has book 46/48 and a standing 46¢ bid; UGO has book 52/54 and a recorded purchase at 51¢.",
+              "WHY": "DRO: The current pool target was the permitted bid level; UGO: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DRO": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 47,
+              "recorded_floor": 45,
+              "P": 48,
+              "Q": 46,
+              "X": 1784537280.462639,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 321,
+              "ess": 110.85279885538766,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-24211"
+              },
+              "bid": 46,
+              "filled": null,
+              "decision": {
+                "order": 102,
+                "leg": "DRO",
+                "epoch": 1784520900,
+                "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 46,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 48,
+                  "last_trade_cents": 48,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-24211"
+                },
+                "Q": 46,
+                "X": 1784537280.462639,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "support": null,
+                "accountability_assumption": "3afa59cb35b9850f181ec9f65f249c68a7fc9ae72ed56b35b71c7cef43f311de",
+                "stage_index": 59
+              },
+              "permission": null,
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784537280.462639,
+                "q25": 45,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784526842.339,
+                  "price": 46,
+                  "size": 20.1,
+                  "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784521379.147,
+                  "price": 47,
+                  "size": 1,
+                  "receipt": "9e08b9f3-cde3-5232-2db5-47746aff3e2b"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 55,
+              "recorded_floor": 51,
+              "P": 54,
+              "Q": 52,
+              "X": 1784527522,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 284,
+              "ess": 91.00589628416702,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 54,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-11306"
+              },
+              "bid": null,
+              "filled": 51,
+              "decision": {
+                "order": 103,
+                "leg": "UGO",
+                "epoch": 1784520900,
+                "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 54,
+                  "last_trade_cents": 54,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-11306"
+                },
+                "Q": 52,
+                "X": 1784527522,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 59
+              },
+              "permission": null,
+              "micro": {
+                "Q": 52,
+                "deadline_epoch": 1784527522,
+                "q25": 51,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784530735.044,
+                  "price": 51,
+                  "size": 2.24,
+                  "receipt": "6d2c9948-6725-6bc1-d067-abf9636d75f6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784521334.596,
+                  "price": 53,
+                  "size": 8.97,
+                  "receipt": "25933161-e1cd-518a-54bd-b68ab57a9553"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784526842.339,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DRO",
+              "epoch": 1784526842.339,
+              "cents": 46,
+              "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+              "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+              "order_lineage_start_epoch": 1784397918.000001,
+              "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+              "current_price_start_epoch": 1784520900,
+              "order_lineage_age_minutes": 2148.738983317216,
+              "current_price_age_minutes": 99.0389833331108,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DRO",
+                "epoch": 1784526842.339,
+                "cents": 46,
+                "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+                "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "order_lineage_start_epoch": 1784397918.000001,
+                "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+                "current_price_start_epoch": 1784520900,
+                "order_lineage_age_minutes": 2148.738983317216,
+                "current_price_age_minutes": 99.0389833331108,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 102,
+              "leg": "DRO",
+              "epoch": 1784520900,
+              "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 46,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 46,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-24211"
+              },
+              "Q": 46,
+              "X": 1784537280.462639,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784396593,
+              "support": null,
+              "accountability_assumption": "3afa59cb35b9850f181ec9f65f249c68a7fc9ae72ed56b35b71c7cef43f311de",
+              "stage_index": 59
+            },
+            "license_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+            "licensing_deadline_epoch": 1784537280.462639,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-UGO-fill",
+          "label": "Last receipt before UGO filled",
+          "arm": "D",
+          "focus_leg": "UGO",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-668",
+          "epoch": 1784457739.000005,
+          "clock": "T−25hr 33min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DRO is not yet directionally called; UGO is strengthening.",
+              "WHY": "DRO trades at 49¢ against its 50¢ opening anchor; UGO trades at 54¢ against its 50¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DRO carries 340 eligible past sides from first-price comparisons; UGO carries 118 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DRO calls 47¢ by T−11hr 53min; UGO calls 51¢ by T−11hr 18min.",
+              "WHY": "DRO’s middle half spans 45–48¢; UGO’s middle half spans 49–53¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DRO has book 48/49 and a standing 47¢ bid; UGO has book 50/51 and a standing 51¢ bid.",
+              "WHY": "DRO: The current pool target was the permitted bid level; UGO: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DRO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 47,
+              "recorded_floor": 45,
+              "P": 49,
+              "Q": 47,
+              "X": 1784506893.459677,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 340,
+              "ess": 98.98186480966373,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 48,
+                "ask_cents": 49,
+                "last_trade_cents": 49,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-668"
+              },
+              "bid": 47,
+              "filled": null,
+              "decision": {
+                "order": 78,
+                "leg": "DRO",
+                "epoch": 1784457739.000005,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-668",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 47,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 48,
+                  "ask_cents": 49,
+                  "last_trade_cents": 49,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-668"
+                },
+                "Q": 47,
+                "X": 1784506893.459677,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "support": null,
+                "accountability_assumption": "7dc16846f21d02475557b5f9c3dcaa5cdad252d8205f2a1907b29995e65be249",
+                "stage_index": 39
+              },
+              "permission": null,
+              "micro": {
+                "Q": 47,
+                "deadline_epoch": 1784506893.459677,
+                "q25": 45,
+                "q75": 48,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784519072.242,
+                  "price": 46,
+                  "size": 42.09,
+                  "receipt": "fadded3d-7983-700e-47b9-6a861e67d2bb"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784496424.441,
+                  "price": 48,
+                  "size": 1,
+                  "receipt": "037ee02e-f7b7-771a-6a4b-fcf0bf05864d"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 55,
+              "recorded_floor": 51,
+              "P": 54,
+              "Q": 51,
+              "X": 1784508991.93798,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 118,
+              "ess": 45.05703099698938,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 50,
+                "ask_cents": 51,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-449"
+              },
+              "bid": 51,
+              "filled": null,
+              "decision": {
+                "order": 79,
+                "leg": "UGO",
+                "epoch": 1784457739.000005,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-668",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 51,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 50,
+                  "ask_cents": 51,
+                  "last_trade_cents": 54,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-449"
+                },
+                "Q": 51,
+                "X": 1784508991.93798,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "support": null,
+                "accountability_assumption": "2c2a7f8f2fec09e6dbc3cdb779710569f2e1779b160de159c37202d93cb0b99d",
+                "stage_index": 39
+              },
+              "permission": null,
+              "micro": {
+                "Q": 51,
+                "deadline_epoch": 1784508991.93798,
+                "q25": 49,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784458569.674,
+                  "price": 51,
+                  "size": 70.14,
+                  "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784458569.674,
+                  "price": 51,
+                  "size": 70.14,
+                  "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784458569.674,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "UGO",
+              "epoch": 1784458569.674,
+              "cents": 51,
+              "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783",
+              "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-78",
+              "order_lineage_start_epoch": 1784398898.000001,
+              "current_price_receipt": "7dab94ef-73c7-5d39-055f-252377a0125d",
+              "current_price_start_epoch": 1784455881.569,
+              "order_lineage_age_minutes": 994.5278999845187,
+              "current_price_age_minutes": 44.80175000031789,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "UGO",
+                "epoch": 1784458569.674,
+                "cents": 51,
+                "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783",
+                "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-78",
+                "order_lineage_start_epoch": 1784398898.000001,
+                "current_price_receipt": "7dab94ef-73c7-5d39-055f-252377a0125d",
+                "current_price_start_epoch": 1784455881.569,
+                "order_lineage_age_minutes": 994.5278999845187,
+                "current_price_age_minutes": 44.80175000031789,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 79,
+              "leg": "UGO",
+              "epoch": 1784457739.000005,
+              "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-668",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 51,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 50,
+                "ask_cents": 51,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-449"
+              },
+              "Q": 51,
+              "X": 1784508991.93798,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784396593,
+              "support": null,
+              "accountability_assumption": "2c2a7f8f2fec09e6dbc3cdb779710569f2e1779b160de159c37202d93cb0b99d",
+              "stage_index": 39
+            },
+            "license_receipt": "7dab94ef-73c7-5d39-055f-252377a0125d",
+            "licensing_deadline_epoch": 1784508991.93798,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DRO: later floor 46¢ outside 40–42¢; no later band print met the deadline. UGO: later floor 51¢ outside 52–55¢; a later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DRO": true,
+          "UGO": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 97,
+        "captured_cents": 3,
+        "best_capturable_cents": null,
+        "fills": [
+          {
+            "leg": "UGO",
+            "epoch": 1784458569.674,
+            "cents": 51,
+            "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783",
+            "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-78",
+            "order_lineage_start_epoch": 1784398898.000001,
+            "current_price_receipt": "7dab94ef-73c7-5d39-055f-252377a0125d",
+            "current_price_start_epoch": 1784455881.569,
+            "order_lineage_age_minutes": 994.5278999845187,
+            "current_price_age_minutes": 44.80175000031789,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "DRO",
+            "epoch": 1784526842.339,
+            "cents": 46,
+            "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+            "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+            "order_lineage_start_epoch": 1784397918.000001,
+            "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+            "current_price_start_epoch": 1784520900,
+            "order_lineage_age_minutes": 2148.738983317216,
+            "current_price_age_minutes": 99.0389833331108,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL19DROUGO",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "DRO",
+            "filled": true,
+            "fill_cents": 46,
+            "fill_epoch": 1784526842.339,
+            "fill_receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+            "close_cents": 47,
+            "close_epoch": 1784549649.6,
+            "floor_cents": 45,
+            "offered_cents": 2,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "UGO",
+            "filled": true,
+            "fill_cents": 51,
+            "fill_epoch": 1784458569.674,
+            "fill_receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783",
+            "close_cents": 55,
+            "close_epoch": 1784549661,
+            "floor_cents": 51,
+            "offered_cents": 4,
+            "value_cents": 4,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "5ed9218ff03dd5b11c7abf9bdffbf0579939ee2357bb6e6d51ece413c310150d",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+          "epoch": 1784397918.000001,
+          "clock": "T−42hr 10min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DRO is weakening; UGO is strengthening.",
+              "WHY": "DRO trades at 45¢ against its 50¢ opening anchor; UGO trades at 55¢ against its 50¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DRO carries 48 eligible past sides from first-price comparisons; UGO carries 32 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DRO calls 42¢ by T−1hr 8min; UGO calls 54¢ by T−30hr 11min.",
+              "WHY": "DRO’s middle half spans 40–42¢; UGO’s middle half spans 52–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DRO has book 45/50 and no standing bid; UGO has book 50/55 and a standing 54¢ bid.",
+              "WHY": "DRO: The weakening side had not entered its predicted late-floor window; UGO: buying the strengthening side before it strengthens; predicted close 58; bid 54; reserve DRO max(late floor 42, 100 - climber close 58 = 42) = 42; views differ by 0c (floor minus mirror); 54 + 42 = 96 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DRO": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 47,
+              "recorded_floor": 45,
+              "P": 45,
+              "Q": 42,
+              "X": 1784545634,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 48,
+              "ess": 19.015476015479358,
+              "family": "ONE_STEP_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 45,
+                "ask_cents": 50,
+                "last_trade_cents": 45,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-84"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 22,
+                "leg": "DRO",
+                "epoch": 1784397918.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 42; reserve UGO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 45,
+                  "ask_cents": 50,
+                  "last_trade_cents": 45,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-84"
+                },
+                "Q": 42,
+                "X": 1784545634,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "stage_index": 11
+              },
+              "permission": {
+                "ordinal": 11,
+                "epoch": 1784397918.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "id": "DRO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 43,
+                  "window": {
+                    "family": "ONE_STEP_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.5424784473108866,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 0.5183352836713083,
+                      "EARLY_SET_DOWN": 0.33125111437780225,
+                      "QUIET_WOBBLE": 0.14197955844131366,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_DOWN": 0.7682851257939354,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.42470846847177063,
+                      "SLEEPER": 0,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.9540247383444339,
+                    "epoch": 1784542660.8656137,
+                    "minutes_to_bell": 117.31890643835068,
+                    "open": false,
+                    "member_count": 9,
+                    "ess": 3.5883735854122585,
+                    "weight_sum": 0.7682851257939354,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 42; reserve UGO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 42,
+                    "climber_forecast_close": 58,
+                    "mirror_completion_cost": 42,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "UGO",
+                    "faller": "DRO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "UGO": {
+                    "forecast": 58,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 16.969853686186255,
+                    "role": "CLIMBER",
+                    "current": 55,
+                    "member_count": 32
+                  },
+                  "DRO": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 19.015476015479358,
+                    "role": "FALLER",
+                    "current": 45,
+                    "member_count": 48
+                  }
+                },
+                "window": {
+                  "family": "ONE_STEP_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.5424784473108866,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 0.5183352836713083,
+                    "EARLY_SET_DOWN": 0.33125111437780225,
+                    "QUIET_WOBBLE": 0.14197955844131366,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_DOWN": 0.7682851257939354,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.42470846847177063,
+                    "SLEEPER": 0,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.9540247383444339,
+                  "epoch": 1784542660.8656137,
+                  "minutes_to_bell": 117.31890643835068,
+                  "open": false,
+                  "member_count": 9,
+                  "ess": 3.5883735854122585,
+                  "weight_sum": 0.7682851257939354,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784545634,
+                "q25": 40,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784519072.242,
+                  "price": 46,
+                  "size": 42.09,
+                  "receipt": "fadded3d-7983-700e-47b9-6a861e67d2bb"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 55,
+              "recorded_floor": 51,
+              "P": 55,
+              "Q": 54,
+              "X": 1784441021,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 32,
+              "ess": 16.969853686186255,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 50,
+                "ask_cents": 55,
+                "last_trade_cents": null,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67"
+              },
+              "bid": 54,
+              "filled": null,
+              "decision": {
+                "order": 23,
+                "leg": "UGO",
+                "epoch": 1784397918.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 54,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 58; bid 54; reserve DRO max(late floor 42, 100 - climber close 58 = 42) = 42; views differ by 0c (floor minus mirror); 54 + 42 = 96 < 100"
+                },
+                "book": {
+                  "bid_cents": 50,
+                  "ask_cents": 55,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67"
+                },
+                "Q": 54,
+                "X": 1784441021,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "stage_index": 11
+              },
+              "permission": {
+                "ordinal": 11,
+                "epoch": 1784397918.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-67",
+                "id": "UGO",
+                "old": null,
+                "proposed": 54,
+                "posted": 54,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 54,
+                  "hand_level": 54,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 58,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.07956119555708008,
+                      "ROUND_TRIP": 0.38892071213683466,
+                      "DRIFT_UP": 0.3778352356564527,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 0.10587615985610642,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 0.2430922829051169,
+                      "EARLY_SET_UP": 0.1674236286174541,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.15765666977902706,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0
+                    },
+                    "position": 0.015744242007562737,
+                    "epoch": 1784399003.553661,
+                    "minutes_to_bell": 2511.607438981533,
+                    "open": false,
+                    "member_count": 9,
+                    "ess": 3.7246732977280064,
+                    "weight_sum": 0.38892071213683466,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 42,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 96,
+                    "discount": 4,
+                    "components": {
+                      "faller_forecast_late_floor": 42,
+                      "climber_forecast_close": 58,
+                      "mirror_completion_cost": 42,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 58; bid 54; reserve DRO max(late floor 42, 100 - climber close 58 = 42) = 42; views differ by 0c (floor minus mirror); 54 + 42 = 96 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 42,
+                    "climber_forecast_close": 58,
+                    "mirror_completion_cost": 42,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "UGO",
+                    "faller": "DRO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 50,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 43,
+                    "ask": 50,
+                    "sum": 104,
+                    "discount": -4,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "UGO": {
+                    "forecast": 58,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 16.969853686186255,
+                    "role": "CLIMBER",
+                    "current": 55,
+                    "member_count": 32
+                  },
+                  "DRO": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 19.015476015479358,
+                    "role": "FALLER",
+                    "current": 45,
+                    "member_count": 48
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.07956119555708008,
+                    "ROUND_TRIP": 0.38892071213683466,
+                    "DRIFT_UP": 0.3778352356564527,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.10587615985610642,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 0.2430922829051169,
+                    "EARLY_SET_UP": 0.1674236286174541,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.15765666977902706,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0
+                  },
+                  "position": 0.015744242007562737,
+                  "epoch": 1784399003.553661,
+                  "minutes_to_bell": 2511.607438981533,
+                  "open": false,
+                  "member_count": 9,
+                  "ess": 3.7246732977280064,
+                  "weight_sum": 0.38892071213683466,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1784441021,
+                "q25": 52,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784458569.674,
+                  "price": 51,
+                  "size": 70.14,
+                  "receipt": "8e8324c1-f06b-4506-0d23-c1e8c439f783"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784403921.277,
+                  "price": 53,
+                  "size": 25,
+                  "receipt": "f1b7b30d-eab6-4c39-df7d-42883e375513"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DRO-fill",
+          "label": "Last receipt before DRO filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "DRO",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+          "epoch": 1784520900,
+          "clock": "T−8hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DRO is weakening; UGO is strengthening.",
+              "WHY": "DRO trades at 48¢ against its 50¢ opening anchor; UGO trades at 54¢ against its 50¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DRO carries 321 eligible past sides from first-price comparisons; UGO carries 284 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DRO calls 46¢ by T−3hr 27min; UGO calls 52¢ by T−6hr 10min.",
+              "WHY": "DRO’s middle half spans 45–47¢; UGO’s middle half spans 51–53¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DRO has book 46/48 and a standing 46¢ bid; UGO has book 52/54 and a recorded purchase at 52¢.",
+              "WHY": "DRO: buying the weakening side in round trip's learned late-floor window; predicted floor 46; bid 46; UGO filled 52; 46 + 52 = 98 < 100; UGO: buying the strengthening side before it strengthens; predicted close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DRO": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 47,
+              "recorded_floor": 45,
+              "P": 48,
+              "Q": 46,
+              "X": 1784537280.462639,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 321,
+              "ess": 110.85279885538766,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-24211"
+              },
+              "bid": 46,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "DRO",
+                "epoch": 1784520900,
+                "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 46,
+                  "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 46; bid 46; UGO filled 52; 46 + 52 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 48,
+                  "last_trade_cents": 48,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-24211"
+                },
+                "Q": 46,
+                "X": 1784537280.462639,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 59,
+                "epoch": 1784520900,
+                "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+                "id": "DRO",
+                "old": 45,
+                "proposed": 46,
+                "posted": 46,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 46,
+                  "hand_level": 46,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 48,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.5257646379185174,
+                      "ROUND_TRIP": 5.2717797626605165,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 2.2665092053484504,
+                      "EARLY_SET_DOWN": 3.8527103321179443,
+                      "QUIET_WOBBLE": 1.7995626714239967,
+                      "LATE_BREAK_UP": 0.2733629116243304,
+                      "ONE_STEP_DOWN": 3.5897511692199813,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.9807706814693952,
+                      "SLEEPER": 0.9797740810127403,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.326802504730066,
+                    "epoch": 1784446628.7510917,
+                    "minutes_to_bell": 1717.8541484713555,
+                    "open": true,
+                    "member_count": 56,
+                    "ess": 15.971874312986765,
+                    "weight_sum": 5.2717797626605165,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 52,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 98,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 46; bid 46; UGO filled 52; 46 + 52 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 46,
+                    "climber_forecast_close": 54,
+                    "mirror_completion_cost": 46,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "UGO",
+                    "faller": "DRO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "UGO": {
+                    "forecast": 54,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 91.00589628416702,
+                    "role": "CLIMBER",
+                    "current": 54,
+                    "member_count": 284
+                  },
+                  "DRO": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 110.85279885538766,
+                    "role": "FALLER",
+                    "current": 48,
+                    "member_count": 321
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.5257646379185174,
+                    "ROUND_TRIP": 5.2717797626605165,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.2665092053484504,
+                    "EARLY_SET_DOWN": 3.8527103321179443,
+                    "QUIET_WOBBLE": 1.7995626714239967,
+                    "LATE_BREAK_UP": 0.2733629116243304,
+                    "ONE_STEP_DOWN": 3.5897511692199813,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.9807706814693952,
+                    "SLEEPER": 0.9797740810127403,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.326802504730066,
+                  "epoch": 1784446628.7510917,
+                  "minutes_to_bell": 1717.8541484713555,
+                  "open": true,
+                  "member_count": 56,
+                  "ess": 15.971874312986765,
+                  "weight_sum": 5.2717797626605165,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784537280.462639,
+                "q25": 45,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784526842.339,
+                  "price": 46,
+                  "size": 20.1,
+                  "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784521379.147,
+                  "price": 47,
+                  "size": 1,
+                  "receipt": "9e08b9f3-cde3-5232-2db5-47746aff3e2b"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 55,
+              "recorded_floor": 51,
+              "P": 54,
+              "Q": 52,
+              "X": 1784527522,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 284,
+              "ess": 91.00589628416702,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 54,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-11306"
+              },
+              "bid": null,
+              "filled": 52,
+              "decision": {
+                "order": 113,
+                "leg": "UGO",
+                "epoch": 1784508638.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 52,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 53,
+                  "last_trade_cents": 53,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-3763"
+                },
+                "Q": 51,
+                "X": 1784517727.301344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "stage_index": 56
+              },
+              "permission": {
+                "ordinal": 56,
+                "epoch": 1784508638.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+                "id": "UGO",
+                "old": 52,
+                "proposed": 52,
+                "posted": 52,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 52,
+                  "hand_level": 52,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.6608075627128177,
+                      "ROUND_TRIP": 4.636183734913627,
+                      "DRIFT_UP": 2.0752446086800886,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2.05205686742257,
+                      "LATE_BREAK_DOWN": 0.0279894796957164,
+                      "ONE_STEP_UP": 1.7126971247078424,
+                      "EARLY_SET_UP": 2.1494034230603187,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.7444340393481349,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.5775155926456911
+                    },
+                    "position": 0.06084953982713102,
+                    "epoch": 1784405909.4904943,
+                    "minutes_to_bell": 2396.508491762479,
+                    "open": true,
+                    "member_count": 48,
+                    "ess": 11.996865856208041,
+                    "weight_sum": 4.636183734913627,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 47,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 44,
+                      "climber_forecast_close": 53,
+                      "mirror_completion_cost": 47,
+                      "disagreement_cents": -3,
+                      "absolute_disagreement_cents": 3,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 44,
+                    "climber_forecast_close": 53,
+                    "mirror_completion_cost": 47,
+                    "disagreement_cents": -3,
+                    "absolute_disagreement_cents": 3,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UGO",
+                    "faller": "DRO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": 47,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 46,
+                    "ask": 47,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "UGO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 72.88617140812407,
+                    "role": "CLIMBER",
+                    "current": 53,
+                    "member_count": 239
+                  },
+                  "DRO": {
+                    "forecast": 46,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 98.21412551996134,
+                    "role": "FALLER",
+                    "current": 47,
+                    "member_count": 289
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.6608075627128177,
+                    "ROUND_TRIP": 4.636183734913627,
+                    "DRIFT_UP": 2.0752446086800886,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.05205686742257,
+                    "LATE_BREAK_DOWN": 0.0279894796957164,
+                    "ONE_STEP_UP": 1.7126971247078424,
+                    "EARLY_SET_UP": 2.1494034230603187,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.7444340393481349,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.5775155926456911
+                  },
+                  "position": 0.06084953982713102,
+                  "epoch": 1784405909.4904943,
+                  "minutes_to_bell": 2396.508491762479,
+                  "open": true,
+                  "member_count": 48,
+                  "ess": 11.996865856208041,
+                  "weight_sum": 4.636183734913627,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 52,
+                "deadline_epoch": 1784527522,
+                "q25": 51,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784530735.044,
+                  "price": 51,
+                  "size": 2.24,
+                  "receipt": "6d2c9948-6725-6bc1-d067-abf9636d75f6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784521334.596,
+                  "price": 53,
+                  "size": 8.97,
+                  "receipt": "25933161-e1cd-518a-54bd-b68ab57a9553"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784526842.339,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DRO",
+              "epoch": 1784526842.339,
+              "cents": 46,
+              "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+              "order_lineage_receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+              "order_lineage_start_epoch": 1784508745.118,
+              "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+              "current_price_start_epoch": 1784520900,
+              "order_lineage_age_minutes": 301.62034999926885,
+              "current_price_age_minutes": 99.0389833331108,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DRO",
+                "epoch": 1784526842.339,
+                "cents": 46,
+                "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+                "order_lineage_receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+                "order_lineage_start_epoch": 1784508745.118,
+                "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+                "current_price_start_epoch": 1784520900,
+                "order_lineage_age_minutes": 301.62034999926885,
+                "current_price_age_minutes": 99.0389833331108,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 59,
+              "epoch": 1784520900,
+              "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+              "id": "DRO",
+              "old": 45,
+              "proposed": 46,
+              "posted": 46,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 46,
+                "hand_level": 46,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 48,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.5257646379185174,
+                    "ROUND_TRIP": 5.2717797626605165,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.2665092053484504,
+                    "EARLY_SET_DOWN": 3.8527103321179443,
+                    "QUIET_WOBBLE": 1.7995626714239967,
+                    "LATE_BREAK_UP": 0.2733629116243304,
+                    "ONE_STEP_DOWN": 3.5897511692199813,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.9807706814693952,
+                    "SLEEPER": 0.9797740810127403,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.326802504730066,
+                  "epoch": 1784446628.7510917,
+                  "minutes_to_bell": 1717.8541484713555,
+                  "open": true,
+                  "member_count": 56,
+                  "ess": 15.971874312986765,
+                  "weight_sum": 5.2717797626605165,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 52,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 98,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 46; bid 46; UGO filled 52; 46 + 52 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 46,
+                  "climber_forecast_close": 54,
+                  "mirror_completion_cost": 46,
+                  "disagreement_cents": 0,
+                  "absolute_disagreement_cents": 0,
+                  "dominant": "EQUAL",
+                  "climber": "UGO",
+                  "faller": "DRO",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "UGO": {
+                  "forecast": 54,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 91.00589628416702,
+                  "role": "CLIMBER",
+                  "current": 54,
+                  "member_count": 284
+                },
+                "DRO": {
+                  "forecast": 48,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 110.85279885538766,
+                  "role": "FALLER",
+                  "current": 48,
+                  "member_count": 321
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_DOWN": 0.5257646379185174,
+                  "ROUND_TRIP": 5.2717797626605165,
+                  "ONE_STEP_UP": 0,
+                  "DRIFT_DOWN": 2.2665092053484504,
+                  "EARLY_SET_DOWN": 3.8527103321179443,
+                  "QUIET_WOBBLE": 1.7995626714239967,
+                  "LATE_BREAK_UP": 0.2733629116243304,
+                  "ONE_STEP_DOWN": 3.5897511692199813,
+                  "GRIND_WOBBLE_UP": 0,
+                  "DRIFT_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 0.9807706814693952,
+                  "SLEEPER": 0.9797740810127403,
+                  "EARLY_SET_UP": 0
+                },
+                "position": 0.326802504730066,
+                "epoch": 1784446628.7510917,
+                "minutes_to_bell": 1717.8541484713555,
+                "open": true,
+                "member_count": 56,
+                "ess": 15.971874312986765,
+                "weight_sum": 5.2717797626605165,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 116,
+              "leg": "DRO",
+              "epoch": 1784520900,
+              "receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 46,
+                "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 46; bid 46; UGO filled 52; 46 + 52 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 46,
+                "ask_cents": 48,
+                "last_trade_cents": 48,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-24211"
+              },
+              "Q": 46,
+              "X": 1784537280.462639,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784396593,
+              "stage_index": 59
+            },
+            "license_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+            "licensing_deadline_epoch": 1784537280.462639,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-UGO-fill",
+          "label": "Last receipt before UGO filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "UGO",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+          "epoch": 1784508638.000001,
+          "clock": "T−11hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DRO is weakening; UGO is strengthening.",
+              "WHY": "DRO trades at 47¢ against its 50¢ opening anchor; UGO trades at 53¢ against its 50¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DRO carries 289 eligible past sides from first-price comparisons; UGO carries 239 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DRO calls 44¢ by T−3hr 30min; UGO calls 51¢ by T−8hr 53min.",
+              "WHY": "DRO’s middle half spans 43–46¢; UGO’s middle half spans 50–52¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DRO has book 46/47 and no standing bid; UGO has book 52/53 and a standing 52¢ bid.",
+              "WHY": "DRO: The existing book or budget check blocked the policy’s desired level; UGO: buying the strengthening side before it strengthens; predicted close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DRO": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 47,
+              "recorded_floor": 45,
+              "P": 47,
+              "Q": 44,
+              "X": 1784537114,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 289,
+              "ess": 98.21412551996134,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 47,
+                "last_trade_cents": 49,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 112,
+                "leg": "DRO",
+                "epoch": 1784508638.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "CANCEL_REST",
+                  "target_cents": null,
+                  "reason": "no bid: VETO_BLOCKED_CURRENT_POLICY_LEVEL; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 44; reserve UGO max(close 53, ask 53) = 53"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 47,
+                  "last_trade_cents": 49,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813"
+                },
+                "Q": 44,
+                "X": 1784537114,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "stage_index": 56
+              },
+              "permission": {
+                "ordinal": 56,
+                "epoch": 1784508638.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+                "id": "DRO",
+                "old": 45,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "VETO_BLOCKED_CURRENT_POLICY_LEVEL",
+                  "role": "FALLER",
+                  "intended": 44,
+                  "hand_level": 45,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 46,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.4655062539363747,
+                      "ROUND_TRIP": 5.028596061866465,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 2.180843782912702,
+                      "EARLY_SET_DOWN": 3.6985157848202683,
+                      "QUIET_WOBBLE": 1.352733321401681,
+                      "LATE_BREAK_UP": 0.06626267741995077,
+                      "ONE_STEP_DOWN": 3.4168901356551253,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.9621760032010287,
+                      "SLEEPER": 0.8355981409037524,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.18558766859344894,
+                    "epoch": 1784425007.7711754,
+                    "minutes_to_bell": 2078.203813743591,
+                    "open": true,
+                    "member_count": 56,
+                    "ess": 15.159696193635588,
+                    "weight_sum": 5.028596061866465,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 53,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 53,
+                    "ask": 53,
+                    "sum": 98,
+                    "discount": 2,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: VETO_BLOCKED_CURRENT_POLICY_LEVEL; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 44; reserve UGO max(close 53, ask 53) = 53",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 44,
+                    "climber_forecast_close": 53,
+                    "mirror_completion_cost": 47,
+                    "disagreement_cents": -3,
+                    "absolute_disagreement_cents": 3,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UGO",
+                    "faller": "DRO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "UGO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 72.88617140812407,
+                    "role": "CLIMBER",
+                    "current": 53,
+                    "member_count": 239
+                  },
+                  "DRO": {
+                    "forecast": 46,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 98.21412551996134,
+                    "role": "FALLER",
+                    "current": 47,
+                    "member_count": 289
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.4655062539363747,
+                    "ROUND_TRIP": 5.028596061866465,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.180843782912702,
+                    "EARLY_SET_DOWN": 3.6985157848202683,
+                    "QUIET_WOBBLE": 1.352733321401681,
+                    "LATE_BREAK_UP": 0.06626267741995077,
+                    "ONE_STEP_DOWN": 3.4168901356551253,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.9621760032010287,
+                    "SLEEPER": 0.8355981409037524,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.18558766859344894,
+                  "epoch": 1784425007.7711754,
+                  "minutes_to_bell": 2078.203813743591,
+                  "open": true,
+                  "member_count": 56,
+                  "ess": 15.159696193635588,
+                  "weight_sum": 5.028596061866465,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 44,
+                "deadline_epoch": 1784537114,
+                "q25": 43,
+                "q75": 46,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784519072.242,
+                  "price": 46,
+                  "size": 42.09,
+                  "receipt": "fadded3d-7983-700e-47b9-6a861e67d2bb"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784519072.242,
+                  "price": 46,
+                  "size": 42.09,
+                  "receipt": "fadded3d-7983-700e-47b9-6a861e67d2bb"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UGO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 50,
+              "corrected_open": 50,
+              "close": 55,
+              "recorded_floor": 51,
+              "P": 53,
+              "Q": 51,
+              "X": 1784517727.301344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 239,
+              "ess": 72.88617140812407,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 53,
+                "last_trade_cents": 53,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-3763"
+              },
+              "bid": 52,
+              "filled": null,
+              "decision": {
+                "order": 113,
+                "leg": "UGO",
+                "epoch": 1784508638.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 52,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 53,
+                  "last_trade_cents": 53,
+                  "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-3763"
+                },
+                "Q": 51,
+                "X": 1784517727.301344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784396593,
+                "stage_index": 56
+              },
+              "permission": {
+                "ordinal": 56,
+                "epoch": 1784508638.000001,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+                "id": "UGO",
+                "old": 52,
+                "proposed": 52,
+                "posted": 52,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 52,
+                  "hand_level": 52,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.6608075627128177,
+                      "ROUND_TRIP": 4.636183734913627,
+                      "DRIFT_UP": 2.0752446086800886,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2.05205686742257,
+                      "LATE_BREAK_DOWN": 0.0279894796957164,
+                      "ONE_STEP_UP": 1.7126971247078424,
+                      "EARLY_SET_UP": 2.1494034230603187,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.7444340393481349,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.5775155926456911
+                    },
+                    "position": 0.06084953982713102,
+                    "epoch": 1784405909.4904943,
+                    "minutes_to_bell": 2396.508491762479,
+                    "open": true,
+                    "member_count": 48,
+                    "ess": 11.996865856208041,
+                    "weight_sum": 4.636183734913627,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 47,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 44,
+                      "climber_forecast_close": 53,
+                      "mirror_completion_cost": 47,
+                      "disagreement_cents": -3,
+                      "absolute_disagreement_cents": 3,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 44,
+                    "climber_forecast_close": 53,
+                    "mirror_completion_cost": 47,
+                    "disagreement_cents": -3,
+                    "absolute_disagreement_cents": 3,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UGO",
+                    "faller": "DRO",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": 47,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 46,
+                    "ask": 47,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "UGO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 72.88617140812407,
+                    "role": "CLIMBER",
+                    "current": 53,
+                    "member_count": 239
+                  },
+                  "DRO": {
+                    "forecast": 46,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 98.21412551996134,
+                    "role": "FALLER",
+                    "current": 47,
+                    "member_count": 289
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.6608075627128177,
+                    "ROUND_TRIP": 4.636183734913627,
+                    "DRIFT_UP": 2.0752446086800886,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.05205686742257,
+                    "LATE_BREAK_DOWN": 0.0279894796957164,
+                    "ONE_STEP_UP": 1.7126971247078424,
+                    "EARLY_SET_UP": 2.1494034230603187,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.7444340393481349,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.5775155926456911
+                  },
+                  "position": 0.06084953982713102,
+                  "epoch": 1784405909.4904943,
+                  "minutes_to_bell": 2396.508491762479,
+                  "open": true,
+                  "member_count": 48,
+                  "ess": 11.996865856208041,
+                  "weight_sum": 4.636183734913627,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 51,
+                "deadline_epoch": 1784517727.301344,
+                "q25": 50,
+                "q75": 52,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 51,
+                "floor_witness": {
+                  "epoch": 1784508745.118,
+                  "price": 51,
+                  "size": 5.93,
+                  "receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784508745.118,
+                  "price": 51,
+                  "size": 5.93,
+                  "receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784508745.118,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "UGO",
+              "epoch": 1784508745.118,
+              "cents": 52,
+              "receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+              "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-1839",
+              "order_lineage_start_epoch": 1784497116.000001,
+              "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784506500",
+              "current_price_start_epoch": 1784506500,
+              "order_lineage_age_minutes": 193.8186333179474,
+              "current_price_age_minutes": 37.41863333384196,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "UGO",
+                "epoch": 1784508745.118,
+                "cents": 52,
+                "receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+                "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-1839",
+                "order_lineage_start_epoch": 1784497116.000001,
+                "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784506500",
+                "current_price_start_epoch": 1784506500,
+                "order_lineage_age_minutes": 193.8186333179474,
+                "current_price_age_minutes": 37.41863333384196,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 56,
+              "epoch": 1784508638.000001,
+              "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+              "id": "UGO",
+              "old": 52,
+              "proposed": 52,
+              "posted": 52,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 52,
+                "hand_level": 52,
+                "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                "forecast_close": 53,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.6608075627128177,
+                    "ROUND_TRIP": 4.636183734913627,
+                    "DRIFT_UP": 2.0752446086800886,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.05205686742257,
+                    "LATE_BREAK_DOWN": 0.0279894796957164,
+                    "ONE_STEP_UP": 1.7126971247078424,
+                    "EARLY_SET_UP": 2.1494034230603187,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.7444340393481349,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.5775155926456911
+                  },
+                  "position": 0.06084953982713102,
+                  "epoch": 1784405909.4904943,
+                  "minutes_to_bell": 2396.508491762479,
+                  "open": true,
+                  "member_count": 48,
+                  "ess": 11.996865856208041,
+                  "weight_sum": 4.636183734913627,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 47,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 44,
+                    "climber_forecast_close": 53,
+                    "mirror_completion_cost": 47,
+                    "disagreement_cents": -3,
+                    "absolute_disagreement_cents": 3,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 44,
+                  "climber_forecast_close": 53,
+                  "mirror_completion_cost": 47,
+                  "disagreement_cents": -3,
+                  "absolute_disagreement_cents": 3,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "UGO",
+                  "faller": "DRO",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": true,
+                  "reserve": 47,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 46,
+                  "ask": 47,
+                  "sum": 99,
+                  "discount": 1,
+                  "reason": "RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "UGO": {
+                  "forecast": 53,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 72.88617140812407,
+                  "role": "CLIMBER",
+                  "current": 53,
+                  "member_count": 239
+                },
+                "DRO": {
+                  "forecast": 46,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 98.21412551996134,
+                  "role": "FALLER",
+                  "current": 47,
+                  "member_count": 289
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.6608075627128177,
+                  "ROUND_TRIP": 4.636183734913627,
+                  "DRIFT_UP": 2.0752446086800886,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 2.05205686742257,
+                  "LATE_BREAK_DOWN": 0.0279894796957164,
+                  "ONE_STEP_UP": 1.7126971247078424,
+                  "EARLY_SET_UP": 2.1494034230603187,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.7444340393481349,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 0.5775155926456911
+                },
+                "position": 0.06084953982713102,
+                "epoch": 1784405909.4904943,
+                "minutes_to_bell": 2396.508491762479,
+                "open": true,
+                "member_count": 48,
+                "ess": 11.996865856208041,
+                "weight_sum": 4.636183734913627,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 113,
+              "leg": "UGO",
+              "epoch": 1784508638.000001,
+              "receipt": "KXATPMATCH-26JUL19DROUGO-DRO.csv.gz#row-5813",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 52,
+                "reason": "buying the strengthening side before it strengthens; forecast close 53; bid 52; reserve DRO max(late floor 44, 100 - climber close 53 = 47) = 47; views differ by -3c (floor minus mirror); 52 + 47 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 52,
+                "ask_cents": 53,
+                "last_trade_cents": 53,
+                "receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-3763"
+              },
+              "Q": 51,
+              "X": 1784517727.301344,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784396593,
+              "stage_index": 56
+            },
+            "license_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784506500",
+            "licensing_deadline_epoch": 1784515374.687166,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DRO: later floor 46¢ outside 40–42¢; no later band print met the deadline. UGO: later floor 51¢ outside 52–55¢; a later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DRO": true,
+          "UGO": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": null,
+        "fills": [
+          {
+            "leg": "UGO",
+            "epoch": 1784508745.118,
+            "cents": 52,
+            "receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+            "order_lineage_receipt": "KXATPMATCH-26JUL19DROUGO-UGO.csv.gz#row-1839",
+            "order_lineage_start_epoch": 1784497116.000001,
+            "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784506500",
+            "current_price_start_epoch": 1784506500,
+            "order_lineage_age_minutes": 193.8186333179474,
+            "current_price_age_minutes": 37.41863333384196,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "DRO",
+            "epoch": 1784526842.339,
+            "cents": 46,
+            "receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+            "order_lineage_receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+            "order_lineage_start_epoch": 1784508745.118,
+            "current_price_receipt": "KXATPMATCH-26JUL19DROUGO|ATLAS_GATE|1784520900",
+            "current_price_start_epoch": 1784520900,
+            "order_lineage_age_minutes": 301.62034999926885,
+            "current_price_age_minutes": 99.0389833331108,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL19DROUGO",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "DRO",
+            "filled": true,
+            "fill_cents": 46,
+            "fill_epoch": 1784526842.339,
+            "fill_receipt": "3b3ed035-1a8b-4c56-424c-80704f25ece7",
+            "close_cents": 47,
+            "close_epoch": 1784549649.6,
+            "floor_cents": 45,
+            "offered_cents": 2,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "UGO",
+            "filled": true,
+            "fill_cents": 52,
+            "fill_epoch": 1784508745.118,
+            "fill_receipt": "05ad47e2-a274-65e9-9f1a-49fcb90a0651",
+            "close_cents": 55,
+            "close_epoch": 1784549661,
+            "floor_cents": 51,
+            "offered_cents": 4,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "5ed9218ff03dd5b11c7abf9bdffbf0579939ee2357bb6e6d51ece413c310150d",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

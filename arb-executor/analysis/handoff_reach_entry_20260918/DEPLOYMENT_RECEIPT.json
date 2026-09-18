@@ -1,0 +1,18 @@
+{
+  "status":"VERIFIED",
+  "deployment_id":"dpl_4vm2KVZeoRkGeaYH9auPeqpcczPn",
+  "deployment_url":"https://omi-window1-watch-lpa43xf6s-omi-groups-projects.vercel.app",
+  "lab_url":"https://omi-window1-watch.vercel.app/?tab=lab&event=KXATPMATCH-26JUL12ALTGAS&gate=480",
+  "os_sha256":"ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+  "trace_sha256":"f73d1486ae597a80f1c0b054115076f318352abec59053a48ff04100c9a1476a",
+  "calibration_sha256":"15ff69b8cebcee02828c52f99834a0f47c1e09f16a9533712c25491967450b1c",
+  "replay_digest_sha256":"50a04ac984c8aedd62b183d6743775014cf0436115790929ecb921acfb783f8d",
+  "determinism_x2":true,
+  "flag_off_default_digest_unchanged":true,
+  "flag":"W1_DIRECTION_HANDOFF=on; one-game experiment; default off",
+  "assets":{"files":1256,"bytes":176333132,"games":104,"other_103_games_unchanged":true,"engine_code_or_raw_witnesses_uploaded":false},
+  "checks":["CALIBRATION_VERIFICATION.json","LITERAL_AUDIT.json","FILL_WITNESS_VERIFICATION.json","FACE_VERIFICATION.json","BUNDLE_VERIFICATION.json","hosted-proof.json"],
+  "screenshot":"C:/tmp/handoff_reach_entry_20260918/hosted-480.png",
+  "result":{"ALT_fill_cents":60,"GAS_fill_cents":38,"pair_cost_cents":98,"realized_close_sum_cents":103,"close_delta_cents":5,"under_par_cents":2},
+  "commit_or_push_performed":false
+}

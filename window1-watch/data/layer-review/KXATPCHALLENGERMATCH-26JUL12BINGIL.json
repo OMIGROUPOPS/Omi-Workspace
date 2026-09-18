@@ -1,0 +1,2199 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "cba8f16edd9cc654bf059a5604ad46037872edf0fb2945a7f2217d3c7ad1e5d2",
+    "stage_cache_sha256": "b6affce4e5dc1debb68d9cf13d77c9a4739bd5672c2d93d8a28a40a9e63a4b93",
+    "mirror_projection_sha256": "cb08dcde5c1613d038fd4085cc8f69631531afdc84e7ba67312d45f0c5a39ee9",
+    "mirror_permissions_sha256": "5ef7bb82d1d7a54724775d948d7c7ab8dc938f9fd96ba5ff38fce5114073214d",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "0c70e2ce07a45cfb18f46dae89b5609fa1a08da077a4a5238cf72a87dffa81de",
+      "row_number": 14,
+      "row_csv": "26JUL12BINGIL,KXATPCHALLENGERMATCH-26JUL12BINGIL,ATP_CHALL,1783813297,1783813297,1783864200,1783866600.0,BIN,GIL,1783813642,77.0,85,1783838239.1,85,1783863791.1,144.75,123.04,MOVER,8.0,,,,,1783813642,23.0,15,1783863789.7,15,1783864081.0,434.4,66.66,MOVER,-8.0,,,,,1783813642,,,1783864320.0,1783871434.0,1783864320.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783813642,1783864200,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783813642,
+      "span_end_epoch": 1783864200,
+      "bell_epoch": 1783864320,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783864320,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BIN": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 77,
+          "floor_cents": 85,
+          "floor_epoch": 1783838239.1,
+          "minutes_to_bell": 434.6816666682561,
+          "line": "BIN 85¢ @ 434.68m to bell",
+          "marker_label": "BIN FLOOR · RECORDED 85¢ @ 434.68m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 85¢ · 434m to bell",
+          "hover_note": "Recorded floor 85¢ printed here · 434m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "GIL": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 23,
+          "floor_cents": 15,
+          "floor_epoch": 1783863789.7,
+          "minutes_to_bell": 8.838333332538605,
+          "line": "GIL 15¢ @ 8.84m to bell",
+          "marker_label": "GIL FLOOR · RECORDED 15¢ @ 8.84m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 15¢ · 8m to bell",
+          "hover_note": "Recorded floor 15¢ printed here · 8m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "BIN",
+      "underdog_leg": "GIL",
+      "pair": {
+        "sum_cents": 100,
+        "discount_cents": 0,
+        "reason": null,
+        "line": "best capturable = 85 + 15 = 100¢",
+        "discount_line": "0¢ under par",
+        "compact_line": "best capturable 100¢ · 0¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12BINGIL",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1783813297",
+        "w1_left_epoch": "1783813297",
+        "w1_right_epoch": "1783864200",
+        "scheduled_start_epoch": "1783866600.0",
+        "legA": "BIN",
+        "legB": "GIL",
+        "legA_formation_end_epoch": "1783813642",
+        "legA_open_postformation_c": "77.0",
+        "legA_floor_c": "85",
+        "legA_floor_epoch": "1783838239.1",
+        "legA_close_c": "85",
+        "legA_close_epoch": "1783863791.1",
+        "legA_contracts": "144.75",
+        "legA_premium_usd": "123.04",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "8.0",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783813642",
+        "legB_open_postformation_c": "23.0",
+        "legB_floor_c": "15",
+        "legB_floor_epoch": "1783863789.7",
+        "legB_close_c": "15",
+        "legB_close_epoch": "1783864081.0",
+        "legB_contracts": "434.4",
+        "legB_premium_usd": "66.66",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "-8.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783813642",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783864320.0",
+        "kalshi_close_time_epoch": "1783871434.0",
+        "bell_epoch": "1783864320.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783813642",
+        "span_end_epoch": "1783864200",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL12BINGIL.jsonl",
+      "sha256": "39f4f48f38f5785cb1b804a8ccc678d67acae0a898b8d434b4baba393576b8c3",
+      "raw_rows": 1778,
+      "accepted_rows": 23,
+      "start_epoch": 1783813642,
+      "end_epoch": 1783864200
+    }
+  },
+  "first_callable_receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+  "first_both_directional_receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+  "first_callable_by_side": {
+    "BIN": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+    "GIL": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+          "epoch": 1783859136.48,
+          "clock": "T−1hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIN is strengthening; GIL is weakening.",
+              "WHY": "BIN trades at 85¢ against its 77¢ opening anchor; GIL trades at 16¢ against its 23¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIN carries 572 eligible past sides from first-price comparisons; GIL carries 616 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIN calls 85¢ by T−1hr 24min; GIL calls 16¢ by T−1hr 24min.",
+              "WHY": "BIN’s middle half spans 83–85¢; GIL’s middle half spans 14–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIN has book 83/85 and no standing bid; GIL has book 15/16 and no standing bid.",
+              "WHY": "BIN: The desired bid could not be posted below the ask; GIL: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIN": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 85,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 85,
+              "X": 1783859136.48,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 572,
+              "ess": 133.67820907652649,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 85,
+                "last_trade_cents": 85,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-1068"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 68,
+                "leg": "BIN",
+                "epoch": 1783859136.48,
+                "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 85,
+                  "last_trade_cents": 85,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-1068"
+                },
+                "Q": 85,
+                "X": 1783859136.48,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 34
+              },
+              "permission": null,
+              "micro": {
+                "Q": 85,
+                "deadline_epoch": 1783859136.48,
+                "q25": 83,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 85,
+                "floor_witness": {
+                  "epoch": 1783860379.452,
+                  "price": 85,
+                  "size": 1.16,
+                  "receipt": "b201dac7-ae16-6a96-125f-3686a8f610de"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GIL": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 23,
+              "corrected_open": 23,
+              "close": 15,
+              "recorded_floor": 15,
+              "P": 16,
+              "Q": 16,
+              "X": 1783859136.48,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 616,
+              "ess": 89.72074745144886,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 16,
+                "last_trade_cents": null,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-1154"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 69,
+                "leg": "GIL",
+                "epoch": 1783859136.48,
+                "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 16,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-1154"
+                },
+                "Q": 16,
+                "X": 1783859136.48,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 34
+              },
+              "permission": null,
+              "micro": {
+                "Q": 16,
+                "deadline_epoch": 1783859136.48,
+                "q25": 14,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783863789.664,
+                  "price": 15,
+                  "size": 62,
+                  "receipt": "429b3017-f293-5ae4-360e-f6e168618ae6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BIN-miss",
+          "label": "Last receipt before BIN missed at the bell",
+          "arm": "D",
+          "focus_leg": "BIN",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+          "epoch": 1783864198.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIN is strengthening; GIL is weakening.",
+              "WHY": "BIN trades at 85¢ against its 77¢ opening anchor; GIL trades at 15¢ against its 23¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIN carries 696 eligible past sides from first-price comparisons; GIL carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIN calls 85¢ by T−0hr 0min; GIL calls 15¢ by T−0hr 0min.",
+              "WHY": "BIN’s middle half spans 85–85¢; GIL’s middle half spans 15–15¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIN has book 85/86 and no standing bid; GIL has book 14/15 and a recorded purchase at 16¢.",
+              "WHY": "BIN: The other commitment left too little room under the pair budget; GIL: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIN": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 85,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 85,
+              "X": 1783864198.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 168.24340868827232,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 85,
+                "ask_cents": 86,
+                "last_trade_cents": 85,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 105,
+                "leg": "BIN",
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 85,
+                  "ask_cents": 86,
+                  "last_trade_cents": 85,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479"
+                },
+                "Q": 85,
+                "X": 1783864198.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 58
+              },
+              "permission": null,
+              "micro": {
+                "Q": 85,
+                "deadline_epoch": 1783864198.000001,
+                "q25": 85,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GIL": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 23,
+              "corrected_open": 23,
+              "close": 15,
+              "recorded_floor": 15,
+              "P": 15,
+              "Q": 15,
+              "X": 1783864198.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 139.60792904037578,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 14,
+                "ask_cents": 15,
+                "last_trade_cents": 15,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3578"
+              },
+              "bid": null,
+              "filled": 16,
+              "decision": {
+                "order": 102,
+                "leg": "GIL",
+                "epoch": 1783863900,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL|ATLAS_GATE|1783863900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 14,
+                  "ask_cents": 15,
+                  "last_trade_cents": 15,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3267"
+                },
+                "Q": 15,
+                "X": 1783863900,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 55
+              },
+              "permission": null,
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783864198.000001,
+                "q25": 15,
+                "q75": 15,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783864200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GIL-fill",
+          "label": "Last receipt before GIL filled",
+          "arm": "D",
+          "focus_leg": "GIL",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL|ATLAS_GATE|1783863300",
+          "epoch": 1783863300,
+          "clock": "T−0hr 15min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIN is strengthening; GIL is weakening.",
+              "WHY": "BIN trades at 85¢ against its 77¢ opening anchor; GIL trades at 16¢ against its 23¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIN carries 647 eligible past sides from first-price comparisons; GIL carries 664 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIN calls 85¢ by T−0hr 15min; GIL calls 16¢ by T−0hr 15min.",
+              "WHY": "BIN’s middle half spans 84–85¢; GIL’s middle half spans 15–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIN has book 83/85 and no standing bid; GIL has book 15/17 and a standing 16¢ bid.",
+              "WHY": "BIN: The desired bid could not be posted below the ask; GIL: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIN": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 85,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 85,
+              "X": 1783863300,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 647,
+              "ess": 158.97564622465836,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 85,
+                "last_trade_cents": 85,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-3268"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 90,
+                "leg": "BIN",
+                "epoch": 1783863300,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL|ATLAS_GATE|1783863300",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 85,
+                  "last_trade_cents": 85,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-3268"
+                },
+                "Q": 85,
+                "X": 1783863300,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 45
+              },
+              "permission": null,
+              "micro": {
+                "Q": 85,
+                "deadline_epoch": 1783863300,
+                "q25": 84,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 85,
+                "floor_witness": {
+                  "epoch": 1783863791.058,
+                  "price": 85,
+                  "size": 50,
+                  "receipt": "a2546223-417e-67d7-b5c0-46c31575ff41"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GIL": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 23,
+              "corrected_open": 23,
+              "close": 15,
+              "recorded_floor": 15,
+              "P": 16,
+              "Q": 16,
+              "X": 1783863300,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 664,
+              "ess": 154.01711549312535,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 17,
+                "last_trade_cents": 16,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-2364"
+              },
+              "bid": 16,
+              "filled": null,
+              "decision": {
+                "order": 91,
+                "leg": "GIL",
+                "epoch": 1783863300,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL|ATLAS_GATE|1783863300",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 16,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 17,
+                  "last_trade_cents": 16,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-2364"
+                },
+                "Q": 16,
+                "X": 1783863300,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "support": null,
+                "accountability_assumption": "09924c6464ee7bbb2e37988d38c4b15ab043d0d33202b5054919c18174b0594b",
+                "stage_index": 45
+              },
+              "permission": null,
+              "micro": {
+                "Q": 16,
+                "deadline_epoch": 1783863300,
+                "q25": 15,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783863789.664,
+                  "price": 15,
+                  "size": 62,
+                  "receipt": "429b3017-f293-5ae4-360e-f6e168618ae6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783863789.664,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GIL",
+              "epoch": 1783863789.664,
+              "cents": 16,
+              "receipt": "429b3017-f293-5ae4-360e-f6e168618ae6",
+              "order_lineage_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+              "order_lineage_start_epoch": 1783862780.786,
+              "current_price_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+              "current_price_start_epoch": 1783862780.786,
+              "order_lineage_age_minutes": 16.814633333683012,
+              "current_price_age_minutes": 16.814633333683012,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GIL",
+                "epoch": 1783863789.664,
+                "cents": 16,
+                "receipt": "429b3017-f293-5ae4-360e-f6e168618ae6",
+                "order_lineage_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+                "order_lineage_start_epoch": 1783862780.786,
+                "current_price_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+                "current_price_start_epoch": 1783862780.786,
+                "order_lineage_age_minutes": 16.814633333683012,
+                "current_price_age_minutes": 16.814633333683012,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 91,
+              "leg": "GIL",
+              "epoch": 1783863300,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL|ATLAS_GATE|1783863300",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 16,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 15,
+                "ask_cents": 17,
+                "last_trade_cents": 16,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-2364"
+              },
+              "Q": 16,
+              "X": 1783863300,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783813642,
+              "support": null,
+              "accountability_assumption": "09924c6464ee7bbb2e37988d38c4b15ab043d0d33202b5054919c18174b0594b",
+              "stage_index": 45
+            },
+            "license_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+            "licensing_deadline_epoch": 1783862780.786,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: later floor 85¢ inside 83–85¢; no later band print met the deadline. GIL: later floor 15¢ inside 14–16¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: No strictly later accepted positive print. GIL: later floor 15¢ inside 15–16¢; no later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BIN": false,
+          "GIL": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [
+          {
+            "leg": "GIL",
+            "epoch": 1783863789.664,
+            "cents": 16,
+            "receipt": "429b3017-f293-5ae4-360e-f6e168618ae6",
+            "order_lineage_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+            "order_lineage_start_epoch": 1783862780.786,
+            "current_price_receipt": "153033e4-79fd-43c5-16a3-26a0ba60c36d",
+            "current_price_start_epoch": 1783862780.786,
+            "order_lineage_age_minutes": 16.814633333683012,
+            "current_price_age_minutes": 16.814633333683012,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BIN",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 85,
+            "close_epoch": 1783863791.1,
+            "floor_cents": 85,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GIL",
+            "filled": true,
+            "fill_cents": 16,
+            "fill_epoch": 1783863789.664,
+            "fill_receipt": "429b3017-f293-5ae4-360e-f6e168618ae6",
+            "close_cents": 15,
+            "close_epoch": 1783864081,
+            "floor_cents": 15,
+            "offered_cents": 0,
+            "value_cents": -1,
+            "premium_cents": 1,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0c70e2ce07a45cfb18f46dae89b5609fa1a08da077a4a5238cf72a87dffa81de",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+          "epoch": 1783859136.48,
+          "clock": "T−1hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIN is strengthening; GIL is weakening.",
+              "WHY": "BIN trades at 85¢ against its 77¢ opening anchor; GIL trades at 16¢ against its 23¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIN carries 572 eligible past sides from first-price comparisons; GIL carries 616 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIN calls 85¢ by T−1hr 24min; GIL calls 16¢ by T−1hr 24min.",
+              "WHY": "BIN’s middle half spans 83–85¢; GIL’s middle half spans 14–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIN has book 83/85 and no standing bid; GIL has book 15/16 and no standing bid.",
+              "WHY": "BIN: The counterpart reservation did not leave a permitted discount; GIL: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIN": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 85,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 85,
+              "X": 1783859136.48,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 572,
+              "ess": 133.67820907652649,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 85,
+                "last_trade_cents": 85,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-1068"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 68,
+                "leg": "BIN",
+                "epoch": 1783859136.48,
+                "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 85; reserve GIL max(late floor 16, 100 - climber close 85 = 15) = 16; views differ by 1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 85,
+                  "last_trade_cents": 85,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-1068"
+                },
+                "Q": 85,
+                "X": 1783859136.48,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "stage_index": 34
+              },
+              "permission": {
+                "ordinal": 34,
+                "epoch": 1783859136.48,
+                "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+                "id": "BIN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 84,
+                  "hand_level": 84,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.4761154652440807,
+                      "ROUND_TRIP": 1.0714726679342956,
+                      "LATE_BREAK_DOWN": 0.1726177581352733,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.14657326756395653,
+                      "QUIET_WOBBLE": 3.569209416591597,
+                      "DRIFT_UP": 0.4647416904516147,
+                      "GRIND_WOBBLE_UP": 0.04344358882232781,
+                      "ONE_STEP_DOWN": 0.0023069250396744127,
+                      "EARLY_SET_UP": 0.8731570041812522,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.18549104312334325
+                    },
+                    "position": 0.05377419563583325,
+                    "epoch": 1783816360.7157829,
+                    "minutes_to_bell": 797.3214036186536,
+                    "open": true,
+                    "member_count": 240,
+                    "ess": 60.37547952070297,
+                    "weight_sum": 3.569209416591597,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 16,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 16,
+                      "climber_forecast_close": 85,
+                      "mirror_completion_cost": 15,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 85; reserve GIL max(late floor 16, 100 - climber close 85 = 15) = 16; views differ by 1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 16,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "BIN",
+                    "faller": "GIL",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 16,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 16,
+                    "ask": 16,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BIN": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 133.67820907652649,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 572
+                  },
+                  "GIL": {
+                    "forecast": 16,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 89.72074745144886,
+                    "role": "FALLER",
+                    "current": 16,
+                    "member_count": 616
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.4761154652440807,
+                    "ROUND_TRIP": 1.0714726679342956,
+                    "LATE_BREAK_DOWN": 0.1726177581352733,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.14657326756395653,
+                    "QUIET_WOBBLE": 3.569209416591597,
+                    "DRIFT_UP": 0.4647416904516147,
+                    "GRIND_WOBBLE_UP": 0.04344358882232781,
+                    "ONE_STEP_DOWN": 0.0023069250396744127,
+                    "EARLY_SET_UP": 0.8731570041812522,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.18549104312334325
+                  },
+                  "position": 0.05377419563583325,
+                  "epoch": 1783816360.7157829,
+                  "minutes_to_bell": 797.3214036186536,
+                  "open": true,
+                  "member_count": 240,
+                  "ess": 60.37547952070297,
+                  "weight_sum": 3.569209416591597,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 85,
+                "deadline_epoch": 1783859136.48,
+                "q25": 83,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 85,
+                "floor_witness": {
+                  "epoch": 1783860379.452,
+                  "price": 85,
+                  "size": 1.16,
+                  "receipt": "b201dac7-ae16-6a96-125f-3686a8f610de"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GIL": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 23,
+              "corrected_open": 23,
+              "close": 15,
+              "recorded_floor": 15,
+              "P": 16,
+              "Q": 16,
+              "X": 1783859136.48,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 616,
+              "ess": 89.72074745144886,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 16,
+                "last_trade_cents": null,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-1154"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 69,
+                "leg": "GIL",
+                "epoch": 1783859136.48,
+                "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 16; reserve BIN max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 16,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-1154"
+                },
+                "Q": 16,
+                "X": 1783859136.48,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "stage_index": 34
+              },
+              "permission": {
+                "ordinal": 34,
+                "epoch": 1783859136.48,
+                "receipt": "06e3f722-46d6-6f25-6d4e-3fc1fd9d362e",
+                "id": "GIL",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 16,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 16,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.1554403519056367,
+                      "ROUND_TRIP": 1.488591274008783,
+                      "LATE_BREAK_UP": 0.16706070986263877,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.08986937171266232,
+                      "QUIET_WOBBLE": 3.78433598864687,
+                      "DRIFT_DOWN": 0.6106473436048663,
+                      "SLEEPER": 1.0149304903099237,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 0.596222748730081,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.006411826965167164
+                    },
+                    "position": 0.5221070811744387,
+                    "epoch": 1783840038.68981,
+                    "minutes_to_bell": 402.68850316603977,
+                    "open": true,
+                    "member_count": 262,
+                    "ess": 59.48696023564875,
+                    "weight_sum": 3.78433598864687,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 16; reserve BIN max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 16,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "BIN",
+                    "faller": "GIL",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BIN": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 133.67820907652649,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 572
+                  },
+                  "GIL": {
+                    "forecast": 16,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 89.72074745144886,
+                    "role": "FALLER",
+                    "current": 16,
+                    "member_count": 616
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.1554403519056367,
+                    "ROUND_TRIP": 1.488591274008783,
+                    "LATE_BREAK_UP": 0.16706070986263877,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.08986937171266232,
+                    "QUIET_WOBBLE": 3.78433598864687,
+                    "DRIFT_DOWN": 0.6106473436048663,
+                    "SLEEPER": 1.0149304903099237,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 0.596222748730081,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.006411826965167164
+                  },
+                  "position": 0.5221070811744387,
+                  "epoch": 1783840038.68981,
+                  "minutes_to_bell": 402.68850316603977,
+                  "open": true,
+                  "member_count": 262,
+                  "ess": 59.48696023564875,
+                  "weight_sum": 3.78433598864687,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 16,
+                "deadline_epoch": 1783859136.48,
+                "q25": 14,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 15,
+                "floor_witness": {
+                  "epoch": 1783863789.664,
+                  "price": 15,
+                  "size": 62,
+                  "receipt": "429b3017-f293-5ae4-360e-f6e168618ae6"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BIN-miss",
+          "label": "Last receipt before BIN missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BIN",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+          "epoch": 1783864198.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIN is strengthening; GIL is weakening.",
+              "WHY": "BIN trades at 85¢ against its 77¢ opening anchor; GIL trades at 15¢ against its 23¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIN carries 696 eligible past sides from first-price comparisons; GIL carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIN calls 85¢ by T−0hr 0min; GIL calls 15¢ by T−0hr 0min.",
+              "WHY": "BIN’s middle half spans 85–85¢; GIL’s middle half spans 15–15¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIN has book 85/86 and no standing bid; GIL has book 14/15 and no standing bid.",
+              "WHY": "BIN: The available bid was not below the predicted closing price; GIL: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIN": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 85,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 85,
+              "X": 1783864198.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 168.24340868827232,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 85,
+                "ask_cents": 86,
+                "last_trade_cents": 85,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "BIN",
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 85; reserve GIL max(late floor 15, 100 - climber close 85 = 15) = 15; views differ by 0c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 85,
+                  "ask_cents": 86,
+                  "last_trade_cents": 85,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479"
+                },
+                "Q": 85,
+                "X": 1783864198.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "id": "BIN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 85,
+                  "hand_level": 85,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.5497526271513375,
+                      "ROUND_TRIP": 1.1557203844745196,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.574332246214633,
+                      "QUIET_WOBBLE": 5.392966767580621,
+                      "DRIFT_UP": 0.4647416904516147,
+                      "GRIND_WOBBLE_UP": 0.04344358882232781,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 0.9103155011893176,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.638698849396863
+                    },
+                    "position": 0.054370102471368295,
+                    "epoch": 1783816390.8436408,
+                    "minutes_to_bell": 796.8192726532618,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 78.87322524286273,
+                    "weight_sum": 5.392966767580621,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 15,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 15,
+                      "climber_forecast_close": 85,
+                      "mirror_completion_cost": 15,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 85; reserve GIL max(late floor 15, 100 - climber close 85 = 15) = 15; views differ by 0c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "BIN",
+                    "faller": "GIL",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 15,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 15,
+                    "ask": 15,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BIN": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 168.24340868827232,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 696
+                  },
+                  "GIL": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.60792904037578,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 700
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.5497526271513375,
+                    "ROUND_TRIP": 1.1557203844745196,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.574332246214633,
+                    "QUIET_WOBBLE": 5.392966767580621,
+                    "DRIFT_UP": 0.4647416904516147,
+                    "GRIND_WOBBLE_UP": 0.04344358882232781,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 0.9103155011893176,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.638698849396863
+                  },
+                  "position": 0.054370102471368295,
+                  "epoch": 1783816390.8436408,
+                  "minutes_to_bell": 796.8192726532618,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 78.87322524286273,
+                  "weight_sum": 5.392966767580621,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 85,
+                "deadline_epoch": 1783864198.000001,
+                "q25": 85,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GIL": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 23,
+              "corrected_open": 23,
+              "close": 15,
+              "recorded_floor": 15,
+              "P": 15,
+              "Q": 15,
+              "X": 1783864198.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 139.60792904037578,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 14,
+                "ask_cents": 15,
+                "last_trade_cents": 15,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3578"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 117,
+                "leg": "GIL",
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; reserve BIN max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 14,
+                  "ask_cents": 15,
+                  "last_trade_cents": 15,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3578"
+                },
+                "Q": 15,
+                "X": 1783864198.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "id": "GIL",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 15,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 15,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.4591641026136397,
+                      "ROUND_TRIP": 1.1549395565537102,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.5863393766203289,
+                      "QUIET_WOBBLE": 6.043791297531387,
+                      "DRIFT_DOWN": 0.6509814405525356,
+                      "SLEEPER": 1.1159938981248412,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 0.7636765261010785,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.006411826965167164
+                    },
+                    "position": 0.5147569444444444,
+                    "epoch": 1783839667.0815973,
+                    "minutes_to_bell": 408.8819733778636,
+                    "open": true,
+                    "member_count": 293,
+                    "ess": 50.10021633890519,
+                    "weight_sum": 6.043791297531387,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; reserve BIN max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "BIN",
+                    "faller": "GIL",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BIN": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 168.24340868827232,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 696
+                  },
+                  "GIL": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.60792904037578,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 700
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.4591641026136397,
+                    "ROUND_TRIP": 1.1549395565537102,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.5863393766203289,
+                    "QUIET_WOBBLE": 6.043791297531387,
+                    "DRIFT_DOWN": 0.6509814405525356,
+                    "SLEEPER": 1.1159938981248412,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 0.7636765261010785,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.006411826965167164
+                  },
+                  "position": 0.5147569444444444,
+                  "epoch": 1783839667.0815973,
+                  "minutes_to_bell": 408.8819733778636,
+                  "open": true,
+                  "member_count": 293,
+                  "ess": 50.10021633890519,
+                  "weight_sum": 6.043791297531387,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783864198.000001,
+                "q25": 15,
+                "q75": 15,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783864200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GIL-miss",
+          "label": "Last receipt before GIL missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "GIL",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+          "epoch": 1783864198.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIN is strengthening; GIL is weakening.",
+              "WHY": "BIN trades at 85¢ against its 77¢ opening anchor; GIL trades at 15¢ against its 23¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIN carries 696 eligible past sides from first-price comparisons; GIL carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIN calls 85¢ by T−0hr 0min; GIL calls 15¢ by T−0hr 0min.",
+              "WHY": "BIN’s middle half spans 85–85¢; GIL’s middle half spans 15–15¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIN has book 85/86 and no standing bid; GIL has book 14/15 and no standing bid.",
+              "WHY": "BIN: The available bid was not below the predicted closing price; GIL: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIN": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 77,
+              "corrected_open": 77,
+              "close": 85,
+              "recorded_floor": 85,
+              "P": 85,
+              "Q": 85,
+              "X": 1783864198.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 168.24340868827232,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 85,
+                "ask_cents": 86,
+                "last_trade_cents": 85,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "BIN",
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 85; reserve GIL max(late floor 15, 100 - climber close 85 = 15) = 15; views differ by 0c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 85,
+                  "ask_cents": 86,
+                  "last_trade_cents": 85,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479"
+                },
+                "Q": 85,
+                "X": 1783864198.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "id": "BIN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 85,
+                  "hand_level": 85,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 85,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.5497526271513375,
+                      "ROUND_TRIP": 1.1557203844745196,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.574332246214633,
+                      "QUIET_WOBBLE": 5.392966767580621,
+                      "DRIFT_UP": 0.4647416904516147,
+                      "GRIND_WOBBLE_UP": 0.04344358882232781,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 0.9103155011893176,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.638698849396863
+                    },
+                    "position": 0.054370102471368295,
+                    "epoch": 1783816390.8436408,
+                    "minutes_to_bell": 796.8192726532618,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 78.87322524286273,
+                    "weight_sum": 5.392966767580621,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 15,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 15,
+                      "climber_forecast_close": 85,
+                      "mirror_completion_cost": 15,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 85; reserve GIL max(late floor 15, 100 - climber close 85 = 15) = 15; views differ by 0c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "BIN",
+                    "faller": "GIL",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 15,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 15,
+                    "ask": 15,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BIN": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 168.24340868827232,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 696
+                  },
+                  "GIL": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.60792904037578,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 700
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.5497526271513375,
+                    "ROUND_TRIP": 1.1557203844745196,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.574332246214633,
+                    "QUIET_WOBBLE": 5.392966767580621,
+                    "DRIFT_UP": 0.4647416904516147,
+                    "GRIND_WOBBLE_UP": 0.04344358882232781,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 0.9103155011893176,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.638698849396863
+                  },
+                  "position": 0.054370102471368295,
+                  "epoch": 1783816390.8436408,
+                  "minutes_to_bell": 796.8192726532618,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 78.87322524286273,
+                  "weight_sum": 5.392966767580621,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 85,
+                "deadline_epoch": 1783864198.000001,
+                "q25": 85,
+                "q75": 85,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GIL": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 23,
+              "corrected_open": 23,
+              "close": 15,
+              "recorded_floor": 15,
+              "P": 15,
+              "Q": 15,
+              "X": 1783864198.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 139.60792904037578,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 14,
+                "ask_cents": 15,
+                "last_trade_cents": 15,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3578"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 117,
+                "leg": "GIL",
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; reserve BIN max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 14,
+                  "ask_cents": 15,
+                  "last_trade_cents": 15,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-GIL.csv.gz#row-3578"
+                },
+                "Q": 15,
+                "X": 1783864198.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783813642,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1783864198.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL12BINGIL-BIN.csv.gz#row-4479",
+                "id": "GIL",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 15,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 15,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.4591641026136397,
+                      "ROUND_TRIP": 1.1549395565537102,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.5863393766203289,
+                      "QUIET_WOBBLE": 6.043791297531387,
+                      "DRIFT_DOWN": 0.6509814405525356,
+                      "SLEEPER": 1.1159938981248412,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 0.7636765261010785,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.006411826965167164
+                    },
+                    "position": 0.5147569444444444,
+                    "epoch": 1783839667.0815973,
+                    "minutes_to_bell": 408.8819733778636,
+                    "open": true,
+                    "member_count": 293,
+                    "ess": 50.10021633890519,
+                    "weight_sum": 6.043791297531387,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; reserve BIN max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 85,
+                    "mirror_completion_cost": 15,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "BIN",
+                    "faller": "GIL",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BIN": {
+                    "forecast": 85,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 168.24340868827232,
+                    "role": "CLIMBER",
+                    "current": 85,
+                    "member_count": 696
+                  },
+                  "GIL": {
+                    "forecast": 15,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.60792904037578,
+                    "role": "FALLER",
+                    "current": 15,
+                    "member_count": 700
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.4591641026136397,
+                    "ROUND_TRIP": 1.1549395565537102,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.5863393766203289,
+                    "QUIET_WOBBLE": 6.043791297531387,
+                    "DRIFT_DOWN": 0.6509814405525356,
+                    "SLEEPER": 1.1159938981248412,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 0.7636765261010785,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.006411826965167164
+                  },
+                  "position": 0.5147569444444444,
+                  "epoch": 1783839667.0815973,
+                  "minutes_to_bell": 408.8819733778636,
+                  "open": true,
+                  "member_count": 293,
+                  "ess": 50.10021633890519,
+                  "weight_sum": 6.043791297531387,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1783864198.000001,
+                "q25": 15,
+                "q75": 15,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783864200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: later floor 85¢ inside 83–85¢; no later band print met the deadline. GIL: later floor 15¢ inside 14–16¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BIN: No strictly later accepted positive print. GIL: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BIN": false,
+          "GIL": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BIN",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 85,
+            "close_epoch": 1783863791.1,
+            "floor_cents": 85,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GIL",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 15,
+            "close_epoch": 1783864081,
+            "floor_cents": 15,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0c70e2ce07a45cfb18f46dae89b5609fa1a08da077a4a5238cf72a87dffa81de",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

@@ -118,6 +118,19 @@ function conditionPriorDistribution({ side, layer }) {
     weight_sum: selected?.weight_sum ?? null, family_distribution: selected?.family ?? null };
 }
 function pricingAuthorityForLeg({ pool, legId }) {
+  if (base.directionHandoffEnabled()) {
+    const handoff = pool.sides?.[legId]?.handoff, layer = handoff?.selected_layer;
+    const view = layer ? handoff.layers[layer] : null;
+    const target = view?.status === "OK" ? cent(view.destination_cents) : null;
+    return { authority_source: layer ? `DIRECTION_HANDOFF:${layer}:${view.destination_kind}` : "INSUFFICIENT_EVIDENCE",
+      target_cents: target, effective_target_cents: target, handoff,
+      true_conditioning: { method: "DIRECTION_CONDITIONED_DESTINATION_SEPARATE_FROM_ENTRY", selected_layer: layer ?? null,
+        conditioned: target !== null, posterior_q50_cents: target, member_count: view?.member_count ?? null,
+        ess: view?.ess ?? null, weight_sum: view?.weight_sum ?? null, quantiles: null },
+      base_target_lawful: target !== null, own_evidence_rows: [], panel_rows: [],
+      conditioning_chain: { prior_cents: null, conditioned_cents: target, final_level_cents: target },
+      book_role: "MAKER_ENTRY_ONLY_DESTINATION_FROM_MEMBERS" };
+  }
   const side = pool.sides?.[legId], layer = side?.selected_layer ?? null;
   const conditioning = conditionPriorDistribution({ side, layer });
   const target = conditioning.conditioned ? cent(conditioning.quantiles?.q50?.level_cents) : null;
@@ -128,6 +141,12 @@ function pricingAuthorityForLeg({ pool, legId }) {
     book_role: "VETO_ONLY_NOT_PRICE_AUTHOR" };
 }
 function freshDeadline(state, authority) {
+  if (authority.handoff) {
+    const layer = authority.handoff.selected_layer, view = layer ? authority.handoff.layers[layer] : null;
+    return { deadline_epoch: view?.deadline_epoch ?? null, predicted_minutes_to_bell: view?.deadline_minutes_to_bell ?? null,
+      emitted_at_epoch: state.current_epoch, emitted_at_receipt: state.receipt,
+      source: view ? `HANDOFF_${view.destination_kind}` : "INSUFFICIENT_EVIDENCE", stale_modeled_deadline_clamped_to_emission: false };
+  }
   const floor = authority.true_conditioning.quantiles?.q50;
   return { deadline_epoch: floor?.epoch ?? null, predicted_minutes_to_bell: floor?.minutes_to_bell ?? null,
     emitted_at_epoch: state.current_epoch, emitted_at_receipt: state.receipt,
@@ -168,9 +187,10 @@ function restSupportDecision(state, id, belief, authority, target, blockedReason
   const fresh = belief.status === "RESOLVED" && belief.deadline.emitted_at_receipt === state.receipt
     && belief.deadline.emitted_at_epoch === state.current_epoch
     && Number.isFinite(belief.deadline.deadline_epoch) && belief.deadline.deadline_epoch > state.current_epoch;
-  const exactRestSupported = fresh && belief.predicted_cents === active && target === active;
+  const supportLevel = authority.handoff ? belief.entry_license?.allowed ? belief.entry_license.entry_cents : null : belief.predicted_cents;
+  const exactRestSupported = fresh && supportLevel === active && target === active;
   const replacementSupported = !reviewOnly && fresh && Number.isInteger(target)
-    && target !== active && belief.predicted_cents === target;
+    && target !== active && supportLevel === target;
   return { required, assumption_id: old.assumption_id, original_Q: old.Q, original_X_epoch: old.X_epoch,
     prior_status: priorStatus, deadline_passed: deadlinePassed, assumption_superseded: superseded,
     fresh_sentence_receipt: state.receipt, fresh_Q: belief.predicted_cents,
@@ -196,13 +216,21 @@ function accountableAssumption(state, derivation) {
     action: derivation.action.action, action_reason: derivation.action.reason,
     own_print_receipt: state.legs[id].prints.findLast(Boolean)?.receipt ?? null,
     formation_end_epoch: state.legs[id].formation_end_epoch, bell_epoch: state.bell_epoch };
+  if (belief.handoff) Object.assign(snapshot, { destination_kind: belief.handoff.destination_kind,
+    destination_cents: belief.predicted_cents, entry_cents: derivation.action.target_cents,
+    entry_license: belief.entry_license, layer: belief.handoff.layer, ESS: belief.handoff.ess,
+    member_count: belief.handoff.member_count, weight_sum: belief.handoff.weight_sum });
   return Object.freeze({ assumption_id: base.sha256(JSON.stringify(snapshot)), ...snapshot });
+}
+function pairEntryArithmeticChanged(old, candidate) {
+  return ["pair_destination_sum_cents", "destination_band_lower_cents", "chosen_expected_discount_cents", "chosen_probability"]
+    .some(key => old?.entry_license?.pair_entry?.[key] !== candidate?.entry_license?.pair_entry?.[key]);
 }
 function accountableDecision(state, derivation) {
   const ledger = accountableBids(state), id = derivation.leg_id, position = state.positions[id];
   const old = ledger.active[id] ?? null, action = derivation.action;
   if (position.credited || !Number.isInteger(position.standing_target_cents)) {
-    if (action.reason === "PULL_UNSUPPORTED") accountableLine(state, "PULL_UNSUPPORTED", {
+    if (action.reason === "PULL_UNSUPPORTED" || (base.directionHandoffEnabled() && derivation.derivation.rest_support?.pull)) accountableLine(state, "PULL_UNSUPPORTED", {
       leg_id: id, assumption_id: old?.assumption_id ?? null,
       action: action.action, reason: derivation.derivation.rest_support?.reason ?? action.reason,
       support_review: derivation.derivation.rest_support });
@@ -214,7 +242,10 @@ function accountableDecision(state, derivation) {
   const candidate = accountableAssumption(state, derivation);
   const changed = old && (action.action === "REPRICE_REST" || old.Q !== candidate.Q
     || old.X_epoch !== candidate.X_epoch || old.q_author !== candidate.q_author
-    || old.x_author !== candidate.x_author || old.authority_source !== candidate.authority_source);
+    || old.x_author !== candidate.x_author || old.authority_source !== candidate.authority_source
+    || pairEntryArithmeticChanged(old, candidate)
+    || (candidate.entry_license && (old.entry_license?.reserve_cents !== candidate.entry_license.reserve_cents
+      || old.entry_license?.reserve_basis !== candidate.entry_license.reserve_basis)));
   let supersession = null;
   if (!old || changed) {
     ledger.records.push(candidate);
@@ -233,6 +264,9 @@ function accountableDecision(state, derivation) {
       // Name that observed change; never fabricate a role or print explanation.
       if (old.Q !== candidate.Q) reasons.push("AUTHORITY_FORECAST_LEVEL_CHANGED");
       if (old.X_epoch !== candidate.X_epoch) reasons.push("AUTHORITY_FORECAST_DEADLINE_CHANGED");
+      if (pairEntryArithmeticChanged(old, candidate)) reasons.push("PAIR_ENTRY_ARITHMETIC_CHANGED");
+      if (candidate.entry_license && (old.entry_license?.reserve_cents !== candidate.entry_license.reserve_cents
+          || old.entry_license?.reserve_basis !== candidate.entry_license.reserve_basis)) reasons.push("COUNTERPART_PURCHASE_PLAN_CHANGED");
       if (!reasons.length) reasons.push("AUTHORITY_TARGET_NOW_EXECUTED");
       supersession = accountableLine(state, "SUPERSESSION", { leg_id: id,
         old_assumption_id: old.assumption_id, new_assumption_id: candidate.assumption_id,
@@ -259,7 +293,17 @@ function accountableRenewals(state, tick, phase = "TICK") {
       && Number.isFinite(a.bell_epoch) && tick.timestamp_epoch < a.bell_epoch;
     const onTime = inSpan && Number.isFinite(a.X_epoch) && tick.timestamp_epoch <= a.X_epoch;
     const wasPending = monitor.status === "PENDING";
-    if (wasPending && onTime && Number.isFinite(a.Q) && tick.price_cents <= a.Q) {
+    if (wasPending && a.destination_kind === "W1_CLOSE" && Number.isFinite(a.X_epoch) && state.current_epoch >= a.X_epoch) {
+      const close = state.legs[id].prints.findLast(row => row.timestamp_epoch < a.bell_epoch && row.size > 0)?.price_cents;
+      monitor.status = Number.isFinite(close) && close >= a.Q ? "FULFILLED" : "MISSED_AT_DEADLINE";
+      monitor.witness = { price_cents: close ?? null, timestamp_epoch: a.bell_epoch, basis: "LAST_ACCEPTED_OWN_PRINT_BEFORE_BELL" };
+      effect = monitor.status === "FULFILLED" ? "supports" : "contradicts";
+      evidence = "CLOSE_DESTINATION_CHECKED_AT_BELL_NOT_A_FLOOR_TOUCH";
+    } else if (wasPending && a.destination_kind === "W1_CLOSE") {
+      if (onTime && Number.isFinite(monitor.last_print_cents) && Math.abs(tick.price_cents - a.Q) < Math.abs(monitor.last_print_cents - a.Q)) {
+        effect = "supports"; evidence = "OWN_PRINT_APPROACHED_CLOSE_DESTINATION_STILL_PENDING";
+      }
+    } else if (wasPending && onTime && Number.isFinite(a.Q) && tick.price_cents <= a.Q) {
       monitor.status = "FULFILLED";
       monitor.witness = { receipt: tick.receipt, timestamp_epoch: tick.timestamp_epoch, price_cents: tick.price_cents, size: tick.size };
       effect = "supports"; evidence = "LATER_POSITIVE_TRUE_PRINT_REACHED_FROZEN_Q_BY_X";
@@ -303,6 +347,109 @@ function accountableRenewals(state, tick, phase = "TICK") {
   }
   return rows;
 }
+let handoffMarkets = new Map();
+function configureDirectionHandoffMarkets(markets) {
+  handoffMarkets = new Map(markets.map(row => {
+    const ranges = row.record?.pricing?.price_ranges;
+    if (ranges?.length !== 1 || !(Number(ranges[0].step) > 0) || !row.receipt?.sha256) throw new Error("HANDOFF_MARKET_INCREMENT_UNVERIFIED");
+    return [row.record.ticker ?? row.record.market?.ticker ?? row.ticker, { increment_cents: Number(ranges[0].step) * CONTRACT_SUM_CENTS, source: row.receipt }];
+  }));
+}
+function handoffEntryPlan(state, reads, beliefs, authorities, reviewOnly) {
+  const ids = state.leg_ids, plans = {};
+  // A not-yet-filled riser's permission must exist before the faller can use
+  // its entry as a cost. This order does not change the riser's price rule.
+  const ordered = [...ids.filter(id => authorities[id].handoff?.role !== "FALLER"),
+    ...ids.filter(id => authorities[id].handoff?.role === "FALLER")];
+  for (const id of ordered) {
+    const a = authorities[id], h = a.handoff, view = h?.selected_layer ? h.layers[h.selected_layer] : null;
+    const b = reads.books.value[id], bid = cent(b?.bid_cents), ask = cent(b?.ask_cents);
+    const sibling = ids.find(other => other !== id), other = state.positions[sibling];
+    const faller = h?.role === "FALLER", reach = h?.reach;
+    const reserve = other.credited ? other.entry_cents : faller
+      ? plans[sibling]?.allowed ? plans[sibling].entry_cents : null : beliefs[sibling].predicted_cents;
+    const reserveBasis = other.credited ? "ACTUAL_FILL" : faller ? "LICENSED_RISER_ENTRY" : "ELIGIBLE_DESTINATION";
+    const destinationSum = [a.target_cents, beliefs[sibling].predicted_cents].every(Number.isFinite)
+      ? a.target_cents + beliefs[sibling].predicted_cents : null;
+    const market = handoffMarkets.get(`${state.event_id}-${id}`);
+    const levelTable = (reach?.levels ?? []).map(row => {
+      const level = row.level_cents, discount = [destinationSum, reserve].every(Number.isFinite) ? destinationSum - reserve - level : null;
+      const expected = Number.isFinite(discount) && Number.isFinite(row.probability) ? row.probability * discount : null;
+      const blocked = !market || level % market.increment_cents !== 0 ? "INVALID_MARKET_INCREMENT"
+        : !Number.isFinite(ask) || level >= ask ? "NOT_MAKER_POSTABLE"
+        : !Number.isFinite(reserve) || level + reserve > base.PAR_BUDGET_CENTS ? "PAIR_CAP"
+        : !(discount > 0) ? "NO_POSITIVE_PAIR_DISCOUNT" : !(expected > 0) ? "NO_POSITIVE_EXPECTED_DISCOUNT" : null;
+      return { ...row, pair_discount_cents: discount, expected_pair_discount_cents: expected, eligible: blocked === null, blocked_reason: blocked };
+    });
+    const standing = state.positions[id].standing_target_cents;
+    const best = levelTable.filter(row => row.eligible).sort((a, b) => b.expected_pair_discount_cents - a.expected_pair_discount_cents
+      || Number(b.level_cents === standing) - Number(a.level_cents === standing) || a.level_cents - b.level_cents)[0] ?? null;
+    const pairEntry = faller ? { riser: sibling, riser_cost_cents: reserve ?? null, riser_cost_basis: reserveBasis,
+      riser_destination_cents: beliefs[sibling].predicted_cents, pair_destination_sum_cents: destinationSum,
+      destination_band_lower_cents: view?.floor_band.q25 ?? null, current_cents: h.current_cents,
+      reach: reach ? { ...reach, levels: undefined } : null, level_table: levelTable,
+      chosen_probability: best?.probability ?? null, chosen_expected_discount_cents: best?.expected_pair_discount_cents ?? null,
+      chosen_level_cents: best?.level_cents ?? null,
+      formula: "MAX_CALIBRATED_REACH_TIMES_PAIR_DESTINATION_SUM_MINUS_RISER_COST_MINUS_LEVEL" } : null;
+    let why = null, proposed = null;
+    if (state.positions[id].credited) why = "already filled";
+    else if (h?.role === "NOT_CALLABLE" || !h) why = "cannot yet tell which side rises";
+    else if (beliefs[id].status !== "RESOLVED") why = "too few direction-matched past games";
+    else if (!(beliefs[id].deadline.deadline_epoch > state.current_epoch)) why = "no destination deadline ahead";
+    else if (bid === null || ask === null || bid >= ask) why = "missing or locked book";
+    else if (!Number.isFinite(reserve)) why = "counterpart has no eligible purchase plan";
+    else if (h.role === "CLIMBER") {
+      if (!market) throw new Error(`HANDOFF_MARKET_INCREMENT_MISSING ${id}`);
+      // Prefer the approved maker improvement, then join best bid; neither may
+      // cross, exceed the destination, or consume the counterpart reservation.
+      proposed = [cent(ask - market.increment_cents), bid].find(level => level !== null && level >= bid && level < ask
+        && level < a.target_cents && level + reserve < CONTRACT_SUM_CENTS) ?? null;
+      if (proposed === null) why = "no near-market maker entry below destination within the pair budget";
+    } else if (h.role === "FALLER") {
+      if (!view.window.open) why = "waiting for the learned faller window";
+      else if (reach?.status !== "OK") why = "no earlier positive-print reach calibration";
+      else if (!best) why = "no positive expected pair discount at a lawful maker level";
+      else {
+        proposed = cent(best.level_cents);
+        if (proposed === null) why = "reach optimization gives no valid maker price";
+      }
+    } else why = "flat reference only; no side discount claimed";
+    if (!why && proposed + reserve >= CONTRACT_SUM_CENTS) why = "entry plus counterpart reserve is not under par";
+    if (!why && proposed >= ask) why = "licensed entry is not maker-postable";
+    if (!why && reviewOnly?.includes(id) && proposed !== state.positions[id].standing_target_cents) why = "pre-print review may renew only the exact existing entry";
+    plans[id] = { allowed: !why, entry_cents: proposed, destination_cents: a.target_cents,
+      destination_kind: view?.destination_kind ?? null, role: h?.role ?? "NOT_CALLABLE",
+      member_count: view?.member_count ?? null, ess: view?.ess ?? null, layer: h?.selected_layer ?? null,
+      counterpart: sibling, reserve_cents: reserve ?? null, reserve_basis: reserveBasis,
+      pair_cents: Number.isFinite(proposed) && Number.isFinite(reserve) ? proposed + reserve : null,
+      ...(pairEntry ? { pair_entry: { ...pairEntry,
+        discount_to_destinations_cents: [destinationSum, proposed, reserve].every(Number.isFinite) ? destinationSum - proposed - reserve : null } } : {}),
+      price_increment: market ?? null, window: view?.window ?? null, waiting_reason: why };
+  }
+  return plans;
+}
+function handoffReason(id, plan) {
+  if (plan.pair_entry) {
+    const p = plan.pair_entry, value = cents => Number.isFinite(cents) ? `${cents}¢` : "unknown";
+    const numbers = p.level_table.map(row => `${value(row.level_cents)} reaches ${Number.isFinite(row.probability) ? row.probability * CONTRACT_SUM_CENTS + "%" : "unknown"} for ${value(row.pair_discount_cents)} = ${value(row.expected_pair_discount_cents)}${row.blocked_reason ? ` (${row.blocked_reason})` : ""}`).join("; ");
+    const arithmetic = `${p.riser} ${p.riser_cost_basis === "ACTUAL_FILL" ? "bought" : "licensed at"} ${value(p.riser_cost_cents)} → ${value(p.riser_destination_cents)}; ${id} → ${value(plan.destination_cents)} floor; pair destination sum ${value(p.pair_destination_sum_cents)}; ${numbers || "no calibrated levels"}`;
+    return plan.allowed ? `${arithmetic}; entering ${value(plan.entry_cents)} maximizes expected pair discount; pair cost ${value(plan.pair_cents)}; maker-only in the learned window, under par.`
+      : `${id}: waiting: ${plan.waiting_reason}; ${arithmetic}.`;
+  }
+  const destination = Number.isFinite(plan.destination_cents) ? `destination ${plan.destination_cents}¢ from ${plan.member_count} past ${plan.role === "CLIMBER" ? "risers" : "fallers"}` : "no licensed destination";
+  const budget = `${plan.counterpart} ${plan.reserve_basis === "ACTUAL_FILL" ? "filled" : "reserved"} at ${plan.reserve_cents ?? "unknown"}¢; pair ${plan.pair_cents ?? "unknown"}¢`;
+  return plan.allowed ? `${id}: ${destination}; entering at ${plan.entry_cents}¢ because ${plan.role === "CLIMBER" ? "maker entry is below the forecast close" : "the conditioned floor is postable in its learned window"}; ${budget}, under par.`
+    : `${id}: waiting: ${plan.waiting_reason}; ${destination}; ${budget}.`;
+}
+function renewPairEntryDependencies(state, plans, targets) {
+  for (const [id, plan] of Object.entries(plans)) {
+    if (plan.allowed && plan.pair_entry && !state.positions[plan.counterpart].credited && !plans[plan.counterpart].allowed) {
+      plan.allowed = false;
+      plan.waiting_reason = "riser entry was withheld; no filled or licensed riser cost";
+      targets[id] = null;
+    }
+  }
+}
 function deriveJointActions({ state, reads, resources, restReviewLegIds = null }) {
   base.assertResources(resources);
   state.dual_belief ??= { first_coherence: null, rearm_by_leg: {}, coherence_history: [] };
@@ -329,6 +476,20 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
     belief.plain_sentence = resolved
       ? `${id} is ${belief.belief_price_cents}¢ now; ${layer} writes Q ${belief.predicted_cents}¢ by ${belief.predicted_minutes_to_bell} minutes to bell. ${selected.member_count} members, weight ${selected.weight_sum}, ESS ${selected.ess}. STEP-FORECAST is pile telemetry only.`
       : `${id}: INSUFFICIENT_EVIDENCE; no pool layer may write a new bid.`;
+    if (authority.handoff) {
+      const h = authority.handoff, v = h.selected_layer ? h.layers[h.selected_layer] : null;
+      belief.status = formationComplete && authority.base_target_lawful ? "RESOLVED" : "INSUFFICIENT_EVIDENCE";
+      belief.predicted_cents = belief.status === "RESOLVED" ? authority.target_cents : null;
+      belief.predicted_minutes_to_bell = deadline.predicted_minutes_to_bell;
+      belief.q_author = authority.authority_source; belief.x_author = deadline.source;
+      belief.family = v?.family ?? null;
+      belief.handoff = { flag: h.flag, role: h.role, destination_kind: v?.destination_kind ?? null,
+        destination_cents: belief.predicted_cents, layer: h.selected_layer, member_count: v?.member_count ?? null,
+        ess: v?.ess ?? null, weight_sum: v?.weight_sum ?? null, floor_band: v?.floor_band ?? null,
+        close_band: v?.close_band ?? null, window: v?.window ?? null, reach: h.reach };
+      belief.candidate_level_q25_cents = (h.role === "CLIMBER" ? v?.close_band : v?.floor_band)?.q25 ?? null;
+      belief.candidate_level_q75_cents = (h.role === "CLIMBER" ? v?.close_band : v?.floor_band)?.q75 ?? null;
+    }
     return [id, belief];
   }));
   const resolved = ids.every(id => beliefs[id].status === "RESOLVED");
@@ -348,11 +509,11 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
   const macro = layerReceipt(state, "MACRO", pool.status === "BOUND" ? "RESOLVED" : "INSUFFICIENT_EVIDENCE", references, {
     pool_cascade: pool, families: Object.fromEntries(ids.map(id => [id, { family: beliefs[id].family }])),
     survivor_shapes: null, step_author_role: pool.step_author_role });
-  const micro = layerReceipt(state, "MICRO", resolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE", references, { beliefs });
   const microMicro = layerReceipt(state, "MICRO_MICRO", microMicroResolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE", [state.receipt, ...ids.map(id => reads.books.value[id]?.receipt)], { tick_state: reads.books.value });
   const targets = {}, modes = {}, postability = {};
+  const handoffPlans = base.directionHandoffEnabled() ? handoffEntryPlan(state, reads, beliefs, authorities, restReviewLegIds) : null;
   for (const id of ids) {
-    const position = state.positions[id], active = cent(position.standing_target_cents), q = beliefs[id].predicted_cents;
+    const position = state.positions[id], active = cent(position.standing_target_cents), q = handoffPlans ? handoffPlans[id].allowed ? handoffPlans[id].entry_cents : null : beliefs[id].predicted_cents;
     const book = reads.books.value[id], ask = cent(book?.ask_cents), bid = cent(book?.bid_cents);
     const formed = Number.isFinite(state.legs[id].formation_end_epoch) && state.current_epoch >= state.legs[id].formation_end_epoch;
     const locked = Number.isInteger(bid) && Number.isInteger(ask) && bid >= ask;
@@ -371,12 +532,27 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
       mode = standingPostable ? "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST" : "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST";
     }
     targets[id] = target; modes[id] = mode;
+    if (handoffPlans && !handoffPlans[id].allowed) targets[id] = null;
   }
   state.dual_belief.last_postability = postability;
   const planSum = sum(ids.map(id => state.positions[id].credited ? state.positions[id].entry_cents : targets[id]));
   const pairBlocked = planSum > base.PAR_BUDGET_CENTS;
   if (pairBlocked) for (const id of ids.filter(id => !state.positions[id].credited)) {
     targets[id] = cent(state.positions[id].standing_target_cents); modes[id] = "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE";
+  }
+  if (handoffPlans) for (const id of ids) {
+    const plan = handoffPlans[id];
+    if (plan.allowed && targets[id] !== plan.entry_cents) {
+      plan.allowed = false; plan.waiting_reason = `entry withheld by ${modes[id]}`;
+    }
+    if (!plan.allowed) targets[id] = null;
+  }
+  if (handoffPlans) renewPairEntryDependencies(state, handoffPlans, targets);
+  if (handoffPlans) for (const id of ids) {
+    const plan = handoffPlans[id];
+    plan.written_reason = handoffReason(id, plan);
+    beliefs[id].entry_license = plan;
+    beliefs[id].plain_sentence = plan.written_reason;
   }
   // Post-only, book veto and pair cap above still select or block a new target.
   // None of those blocks, by itself, renews the old price's promise.
@@ -391,11 +567,24 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
       targets[id] = check.active_rest_cents; modes[id] = "FRESH_SENTENCE_SUPPORTS_EXACT_REST";
     }
   }
+  if (handoffPlans) for (const id of ids) {
+    const plan = handoffPlans[id];
+    if (plan.allowed && targets[id] !== plan.entry_cents) { plan.allowed = false; plan.waiting_reason = restSupport[id]?.reason ?? modes[id]; }
+  }
+  if (handoffPlans) renewPairEntryDependencies(state, handoffPlans, targets);
+  if (handoffPlans) for (const id of ids) {
+    const plan = handoffPlans[id];
+    plan.written_reason = handoffReason(id, plan); beliefs[id].plain_sentence = plan.written_reason;
+  }
+  // Seal the citation only after the entry license is complete; destination
+  // and licensing text must not mutate an already-hashed receipt context.
+  const micro = layerReceipt(state, "MICRO", resolved ? "RESOLVED" : "INSUFFICIENT_EVIDENCE", references, { beliefs });
   const allocation = { targets, lawful: sum(ids.map(id => state.positions[id].credited ? state.positions[id].entry_cents : targets[id])) <= base.PAR_BUDGET_CENTS,
-    reason: pairBlocked ? "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE" : "POOL_Q_UNCHANGED_POST_ONLY_AND_PAIR_VETO", mode: "VETO_ONLY_NOT_PRICE_AUTHOR" };
+    reason: pairBlocked ? "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE" : handoffPlans ? "DIRECTION_DESTINATION_LICENSES_SEPARATE_MAKER_ENTRY" : "POOL_Q_UNCHANGED_POST_ONLY_AND_PAIR_VETO", mode: "VETO_ONLY_NOT_PRICE_AUTHOR" };
   const derivations = ids.map(id => {
     const position = state.positions[id], active = cent(position.standing_target_cents), target = targets[id], mode = modes[id];
     const action = actionForTarget(active, target, mode);
+    if (handoffPlans) action.reason = handoffPlans[id].written_reason;
     const pending = state.dual_belief.rearm_by_leg[id];
     let rearm;
     if (action.action === "CANCEL_REST" && active !== null) {
@@ -411,15 +600,21 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
       rearm = { ...pending, latest_attempt_epoch: state.current_epoch, latest_attempt_receipt: state.receipt, attempts: pending.attempts + 1 };
       state.dual_belief.rearm_by_leg[id] = rearm;
     } else rearm = { status: "NO_REARM_PENDING_OR_TRIGGERED", attempts: 0 };
-    const side = pool.sides?.[id], selected = side?.selected_layer ? side.layers[side.selected_layer] : null;
+    const side = pool.sides?.[id], selected = handoffPlans ? side?.handoff?.layers?.[side.handoff.selected_layer]
+      : side?.selected_layer ? side.layers[side.selected_layer] : null;
     const lane = mode === "PRICING_AUTHORITY_TARGET_EXECUTED" ? "POOL_CASCADE_WRITER" : active !== null && target === active ? "ACTIVE_REST_HOLD" : "NO_ACTION";
     const arbitration = { decision_instant_epoch: state.current_epoch, source_receipt: state.receipt,
       winner: { lane, ...action }, losers: [{ lane: "STEP-FORECAST", eligible: false, disposition: "PILE_TELEMETRY_NOT_AN_AUTHOR" }],
       emitted_order_count: ["PLACE_REST", "REPRICE_REST", "CANCEL_REST"].includes(action.action) ? 1 : 0,
       pricing_authority_target_cents: authorities[id].target_cents, lane_may_replace_authority: false };
+    if (handoffPlans) Object.assign(arbitration, { destination_cents: authorities[id].target_cents,
+      licensed_entry_cents: handoffPlans[id].allowed ? handoffPlans[id].entry_cents : null,
+      authority_contract: "DESTINATION_IS_NOT_ENTRY; ENTRY_REQUIRES_FRESH_LICENSE" });
     const placement = { mode, writer_lane: lane, active_target_before_cents: active, chosen_target_cents: target,
-      post_only_test: { target_cents: authorities[id].target_cents, live_ask_cents: reads.books.value[id]?.ask_cents ?? null, lawful: postability[id].postable },
+      post_only_test: { target_cents: handoffPlans ? handoffPlans[id].entry_cents : authorities[id].target_cents, live_ask_cents: reads.books.value[id]?.ask_cents ?? null, lawful: postability[id].postable },
       post_only_role: "VETO_ONLY_NOT_PRICE_AUTHOR", technique_contract: "C01_PRICING_AUTHORITY_OVER_LANE_LEVEL_SELECTION" };
+    if (handoffPlans) Object.assign(placement, { destination_cents: authorities[id].target_cents,
+      entry_license: handoffPlans[id], technique_contract: "FLAGGED_DESTINATION_ENTRY_HANDOFF" });
     const citations = Object.fromEntries([macro, micro, microMicro].map(receipt => [receipt.receipt_id, receipt]));
     const actionStatement = `ACTION=${action.action}; TARGET_CENTS=${target ?? "NONE"}; ACTIVE_TARGET_BEFORE_CENTS=${active ?? "NONE"}.`;
     const sentence = `${ids.map(leg => beliefs[leg].plain_sentence).join(" || ")} [${macro.receipt_id}] [${micro.receipt_id}] [${microMicro.receipt_id}]. ${actionStatement}`;
@@ -437,6 +632,7 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
       pair_conservation: { sibling_leg_id: sibling, sibling_commitment_cents: siblingCommitment, evaluated_target_cents: target, sum_cents: pairSum,
         at_or_below_99: pairSum === null || pairSum <= base.PAR_BUDGET_CENTS },
       derivation: { formation_end_epoch: state.legs[id].formation_end_epoch, target_basis: authorities[id].authority_source,
+        ...(handoffPlans ? { entry_license: handoffPlans[id] } : {}),
         rest_support: restSupport[id],
         target_authority: authorities[id].authority_source, derived_target_cents: target,
         lawful_unallocated_target_cents: authorities[id].target_cents, pricing_authority: authorities[id], allocation,
@@ -463,3 +659,4 @@ function deriveJointActions({ state, reads, resources, restReviewLegIds = null }
 
 module.exports = { ...base, CONTRACT_SUM_CENTS, SPREAD_SETTLE_COHERENCE_MAX_CENTS, LAYER_PROVENANCE, TECHNIQUE_CONTRACTS, PHASE_CENTRAL_BANDS, configurePhaseCentralSurface, configureNeighborSpecialistBinding, configureSurvivorShapeLibraries: survivorShapes.configureSurvivorShapeLibraries, weightedModeFloorSideCents, predictionSeatImmunityDecision, bookVetoOnlyDecision, pricingAuthorityForLeg, conditionPriorDistribution, deriveJointActions };
 Object.assign(module.exports, { accountableDecision, accountableRenewals, expiredRestLegIds, restSupportDecision });
+Object.assign(module.exports, { configureDirectionHandoffMarkets, handoffEntryPlan, renewPairEntryDependencies });

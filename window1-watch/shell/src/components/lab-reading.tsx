@@ -11,6 +11,7 @@ import { LabSide, LabBidLog } from './lab-panels';
 import { TuneReceipts } from './tune-receipts';
 import { ReceiptInspector } from './receipt-inspector';
 import type {FaultRecord} from './fault-taxonomy';
+import { LayerReview } from './layer-review';
 import '../lab-reading.css';
 import '../lab-engine.css';
 
@@ -45,7 +46,7 @@ export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,pl
         <div className="engine-ruler" title={`Recorded floors · hindsight only\nTruth ${game.face.truth?.table_commit}\nRow ${game.face.truth?.row_sha256}`}><small>RECORDED FLOORS · KNOWN AFTERWARD</small><div>{game.face.legs.map(side=><span key={side} title={game.face.truth?.legs[side]?.line}>{side} <b>{cents(game.face.truth?.legs[side]?.floor_cents)}</b></span>)}</div><small>{plain(game.face.truth?.pair.compact_line)}</small></div>
         <div className="reading-result" title={`Final grade (known afterward)\n${game.grade?.display.governing??'No grade here'}\nOS ${game.face.provenance.os_sha256}\nTrace ${game.face.provenance.trace_sha256}`}>
           <span data-grade-letter className="reading-grade">{game.grade?.display.letter??'—'}</span>
-          <p><span>FINAL PAIR</span><br/><b>{!outcome?'No result':outcome.pair_completed&&outcome.pair_sum!=null?`${outcome.pair_sum}¢`:'Incomplete'}</b><br/><em>{outcome?.captured_cents??'—'} of {outcome?.best_capturable_cents??'—'}¢ captured</em>{fault?.credit.safety_excluded?<small>Safety fill excluded</small>:null}</p>
+          {game.grade?.handoff_close_result?<p data-close-delta-grade><span>W1 CLOSE-DELTA GRADE</span><br/><b>{game.grade.handoff_close_result.pair_fill_sum_cents!=null?`${game.grade.handoff_close_result.pair_fill_sum_cents}¢ cost`:'Pair incomplete'}</b><br/><em>vs {game.grade.handoff_close_result.pair_close_sum_cents??'—'}¢ closes</em><br/><small>{game.grade.close_delta_grade?.status}</small></p>:<p><span>FINAL PAIR</span><br/><b>{!outcome?'No result':outcome.pair_completed&&outcome.pair_sum!=null?`${outcome.pair_sum}¢`:'Incomplete'}</b><br/><em>{outcome?.captured_cents??'—'} of {outcome?.best_capturable_cents??'—'}¢ captured</em>{fault?.credit.safety_excluded?<small>Safety fill excluded</small>:null}</p>}
         </div>
         <button className="reading-details-button" aria-expanded={details} aria-controls="reading-details" onClick={()=>setDetails(v=>!v)}>Details {details?'−':'+'}</button>
       </header>
@@ -65,7 +66,9 @@ export function LabReading({game,fault,games,event,frame,receipt,receiptIndex,pl
         </div>
         <span className="reading-time" title={`${now.minutesToBell} minutes to bell · stored tape clock`}>{replayClock(now.minutesToBell)}</span>
       </div>
-      <p className="reading-ruler-note" title={`OS ${game.face.provenance.os_sha256}\nTrace ${game.face.provenance.trace_sha256}`}>Floor, perfect sentence &amp; final grade: hindsight, not machine inputs. <span>OS {game.face.provenance.os_sha256?.slice(0,8)} · trace {game.face.provenance.trace_sha256?.slice(0,8)}</span></p>
+      <p className="reading-ruler-note" title={`OS ${game.face.provenance.os_sha256}\nTrace ${game.face.provenance.trace_sha256}`}>{game.face.grade_applicability?.line??'Floor, perfect sentence & final grade: hindsight, not machine inputs.'} <span>OS {game.face.provenance.os_sha256?.slice(0,8)} · trace {game.face.provenance.trace_sha256?.slice(0,8)}</span></p>
+      {game.grade?.handoff_close_result?<p className="reading-ruler-note" data-handoff-close-result title={`${game.grade.handoff_close_result.role}\n${JSON.stringify(game.grade.handoff_close_result.provenance)}`}>{game.grade.handoff_close_result.line}</p>:null}
+      {game.face.provenance.event_id?<LayerReview event={game.face.provenance.event_id} chartTrace={game.face.provenance.trace_sha256}/>:null}
     </div>
     {details?<section id="reading-details" className="reading-details-panel" ref={detailPanel} aria-label="Replay details">
       <header><h2>Details · every recorded field</h2><button onClick={()=>setDetails(false)}>Close details</button></header>

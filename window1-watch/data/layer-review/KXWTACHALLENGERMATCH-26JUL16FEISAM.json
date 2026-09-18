@@ -1,0 +1,2055 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "1b4100de7a034d21e000ea8c0486f2a4c32b7fbf10399f071c780903132c6ee5",
+    "stage_cache_sha256": "38bc28f8efa8a19c576bddf9ed8314c8f0d00b9815838b390eea2793a1108f26",
+    "mirror_projection_sha256": "bdc26987521c53dd9f83a0a7bb358a48e8330ee5dca32036a1084d2bb9f37e65",
+    "mirror_permissions_sha256": "f74beb32a2cd9b3b736bf601d4dd762e807f7a603f5c8c8bb475d1ba3a3577a1",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "9ecaaa1e3615b749be0f2615032c65eb10b75a6b5612038ff5dc659f26e3f58a",
+      "row_number": 449,
+      "row_csv": "26JUL16FEISAM,KXWTACHALLENGERMATCH-26JUL16FEISAM,WTA_CHALL,1784154226,1784154226,1784197200,1784207400.0,FEI,SAM,1784154528,33.5,33,1784173705.8,34,1784196947.0,387.59,131.58,STILL,0.5,,,,,1784154528,66.5,67,1784155044.9,67,1784197166.2,1112.24,745.2,STILL,0.5,,,,,1784154528,,,1784197440.0,1784203806.0,1784197440.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784154528,1784197200,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784154528,
+      "span_end_epoch": 1784197200,
+      "bell_epoch": 1784197440,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784197440,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "FEI": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 33.5,
+          "floor_cents": 33,
+          "floor_epoch": 1784173705.8,
+          "minutes_to_bell": 395.5700000007947,
+          "line": "FEI 33¢ @ 395.57m to bell",
+          "marker_label": "FEI FLOOR · RECORDED 33¢ @ 395.57m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 33¢ · 395m to bell",
+          "hover_note": "Recorded floor 33¢ printed here · 395m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "SAM": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 66.5,
+          "floor_cents": 67,
+          "floor_epoch": 1784155044.9,
+          "minutes_to_bell": 706.5849999984106,
+          "line": "SAM 67¢ @ 706.58m to bell",
+          "marker_label": "SAM FLOOR · RECORDED 67¢ @ 706.58m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 67¢ · 706m to bell",
+          "hover_note": "Recorded floor 67¢ printed here · 706m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "SAM",
+      "underdog_leg": "FEI",
+      "pair": {
+        "sum_cents": 100,
+        "discount_cents": 0,
+        "reason": null,
+        "line": "best capturable = 67 + 33 = 100¢",
+        "discount_line": "0¢ under par",
+        "compact_line": "best capturable 100¢ · 0¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL16FEISAM",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1784154226",
+        "w1_left_epoch": "1784154226",
+        "w1_right_epoch": "1784197200",
+        "scheduled_start_epoch": "1784207400.0",
+        "legA": "FEI",
+        "legB": "SAM",
+        "legA_formation_end_epoch": "1784154528",
+        "legA_open_postformation_c": "33.5",
+        "legA_floor_c": "33",
+        "legA_floor_epoch": "1784173705.8",
+        "legA_close_c": "34",
+        "legA_close_epoch": "1784196947.0",
+        "legA_contracts": "387.59",
+        "legA_premium_usd": "131.58",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "0.5",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784154528",
+        "legB_open_postformation_c": "66.5",
+        "legB_floor_c": "67",
+        "legB_floor_epoch": "1784155044.9",
+        "legB_close_c": "67",
+        "legB_close_epoch": "1784197166.2",
+        "legB_contracts": "1112.24",
+        "legB_premium_usd": "745.2",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "0.5",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784154528",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784197440.0",
+        "kalshi_close_time_epoch": "1784203806.0",
+        "bell_epoch": "1784197440.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784154528",
+        "span_end_epoch": "1784197200",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL16FEISAM.jsonl",
+      "sha256": "b0964faf629b023bfd4f2b68242a02e3344f3bdbb34fd8e36e8bde034c39ab35",
+      "raw_rows": 1535,
+      "accepted_rows": 37,
+      "start_epoch": 1784154528,
+      "end_epoch": 1784197200
+    }
+  },
+  "first_callable_receipt": "a81812cd-9baf-60c8-7669-90b20f256213",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "FEI": "a81812cd-9baf-60c8-7669-90b20f256213",
+    "SAM": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-267"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "a81812cd-9baf-60c8-7669-90b20f256213",
+          "epoch": 1784164893.767,
+          "clock": "T−8hr 58min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FEI is strengthening; SAM is not yet directionally called.",
+              "WHY": "FEI trades at 35¢ against its 33¢ opening anchor; SAM trades at 67¢ against its 66¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FEI carries 11 eligible past sides from the base comparisons; SAM carries 89 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FEI calls 31¢ by T−1hr 42min; SAM calls 65¢ by T−4hr 45min.",
+              "WHY": "FEI’s middle half spans 14–34¢; SAM’s middle half spans 64–66¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FEI has book 32/33 and no standing bid; SAM has book 65/67 and a standing 64¢ bid.",
+              "WHY": "FEI: No fresh target was licensed, and D retained the existing bid; SAM: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FEI": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 33,
+              "corrected_open": 33.5,
+              "close": 34,
+              "recorded_floor": 33,
+              "P": 35,
+              "Q": 31,
+              "X": 1784191092,
+              "layer": "BASE",
+              "members": 11,
+              "ess": 11,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 33,
+                "last_trade_cents": 35,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-431"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 60,
+                "leg": "FEI",
+                "epoch": 1784162761.206,
+                "receipt": "bb31d7fd-0787-5794-af59-90e18f0fabeb",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 33,
+                  "last_trade_cents": 35,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-418"
+                },
+                "Q": null,
+                "X": null,
+                "status": "INSUFFICIENT_EVIDENCE",
+                "author": "INSUFFICIENT_EVIDENCE",
+                "formation_end": 1784154528,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 30
+              },
+              "permission": null,
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784191092,
+                "q25": 14,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 33,
+                "floor_witness": {
+                  "epoch": 1784173705.775,
+                  "price": 33,
+                  "size": 2.89,
+                  "receipt": "65ae10e0-5ae6-7303-666f-66ffa5628e25"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784173705.775,
+                  "price": 33,
+                  "size": 2.89,
+                  "receipt": "65ae10e0-5ae6-7303-666f-66ffa5628e25"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66.5,
+              "close": 67,
+              "recorded_floor": 67,
+              "P": 67,
+              "Q": 65,
+              "X": 1784180115,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 89,
+              "ess": 21.297517995164885,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-301"
+              },
+              "bid": 64,
+              "filled": null,
+              "decision": {
+                "order": 61,
+                "leg": "SAM",
+                "epoch": 1784162761.206,
+                "receipt": "bb31d7fd-0787-5794-af59-90e18f0fabeb",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 64,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-294"
+                },
+                "Q": 64,
+                "X": 1784184796,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "support": null,
+                "accountability_assumption": "5e2aec43935724f5da44751a2ebd585a582903d1e71128a54ce309880a1da07a",
+                "stage_index": 30
+              },
+              "permission": null,
+              "micro": {
+                "Q": 65,
+                "deadline_epoch": 1784180115,
+                "q25": 64,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 67,
+                "floor_witness": {
+                  "epoch": 1784166175.414,
+                  "price": 67,
+                  "size": 1,
+                  "receipt": "369f1be2-08a7-6c64-5305-2ebe2e3218eb"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-FEI-miss",
+          "label": "Last receipt before FEI missed at the bell",
+          "arm": "D",
+          "focus_leg": "FEI",
+          "outcome": "miss",
+          "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+          "epoch": 1784197166.17,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FEI is not yet directionally called; SAM is not yet directionally called.",
+              "WHY": "FEI trades at 34¢ against its 33¢ opening anchor; SAM trades at 67¢ against its 66¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FEI carries 448 eligible past sides from first-price comparisons; SAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FEI calls 34¢ by T−0hr 1min; SAM calls 67¢ by T−0hr 1min.",
+              "WHY": "FEI’s middle half spans 34–34¢; SAM’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FEI has book 33/34 and a standing 32¢ bid; SAM has book 66/67 and a standing 66¢ bid.",
+              "WHY": "FEI: The desired bid could not be posted below the ask; SAM: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 33,
+              "corrected_open": 33.5,
+              "close": 34,
+              "recorded_floor": 33,
+              "P": 34,
+              "Q": 34,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 34,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+              },
+              "bid": 32,
+              "filled": null,
+              "decision": {
+                "order": 138,
+                "leg": "FEI",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 32,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 34,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+                },
+                "Q": 34,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "support": null,
+                "accountability_assumption": "8e12614c2446a82a0f445bd44fb6f2d9413d915c2546954b351396fb3ba542f3",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784197166.17,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66.5,
+              "close": 67,
+              "recorded_floor": 67,
+              "P": 67,
+              "Q": 67,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+              },
+              "bid": 66,
+              "filled": null,
+              "decision": {
+                "order": 139,
+                "leg": "SAM",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 66,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+                },
+                "Q": 67,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "support": null,
+                "accountability_assumption": "d73ab56e5d8410296f29871892670989c0cc8c1ac73d57753bcdbe77e477fc5e",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784197166.17,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784197200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SAM-miss",
+          "label": "Last receipt before SAM missed at the bell",
+          "arm": "D",
+          "focus_leg": "SAM",
+          "outcome": "miss",
+          "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+          "epoch": 1784197166.17,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FEI is not yet directionally called; SAM is not yet directionally called.",
+              "WHY": "FEI trades at 34¢ against its 33¢ opening anchor; SAM trades at 67¢ against its 66¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FEI carries 448 eligible past sides from first-price comparisons; SAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FEI calls 34¢ by T−0hr 1min; SAM calls 67¢ by T−0hr 1min.",
+              "WHY": "FEI’s middle half spans 34–34¢; SAM’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FEI has book 33/34 and a standing 32¢ bid; SAM has book 66/67 and a standing 66¢ bid.",
+              "WHY": "FEI: The desired bid could not be posted below the ask; SAM: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 33,
+              "corrected_open": 33.5,
+              "close": 34,
+              "recorded_floor": 33,
+              "P": 34,
+              "Q": 34,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 34,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+              },
+              "bid": 32,
+              "filled": null,
+              "decision": {
+                "order": 138,
+                "leg": "FEI",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 32,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 34,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+                },
+                "Q": 34,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "support": null,
+                "accountability_assumption": "8e12614c2446a82a0f445bd44fb6f2d9413d915c2546954b351396fb3ba542f3",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784197166.17,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66.5,
+              "close": 67,
+              "recorded_floor": 67,
+              "P": 67,
+              "Q": 67,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+              },
+              "bid": 66,
+              "filled": null,
+              "decision": {
+                "order": 139,
+                "leg": "SAM",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 66,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+                },
+                "Q": 67,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "support": null,
+                "accountability_assumption": "d73ab56e5d8410296f29871892670989c0cc8c1ac73d57753bcdbe77e477fc5e",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784197166.17,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784197200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was strengthening; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "FEI": false,
+          "SAM": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "FEI",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 34,
+            "close_epoch": 1784196947,
+            "floor_cents": 33,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SAM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 67,
+            "close_epoch": 1784197166.2,
+            "floor_cents": 67,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "9ecaaa1e3615b749be0f2615032c65eb10b75a6b5612038ff5dc659f26e3f58a",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "a81812cd-9baf-60c8-7669-90b20f256213",
+          "epoch": 1784164893.767,
+          "clock": "T−8hr 58min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FEI is strengthening; SAM is not yet directionally called.",
+              "WHY": "FEI trades at 35¢ against its 33¢ opening anchor; SAM trades at 67¢ against its 66¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FEI carries 11 eligible past sides from the base comparisons; SAM carries 89 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FEI calls 31¢ by T−1hr 42min; SAM calls 65¢ by T−4hr 45min.",
+              "WHY": "FEI’s middle half spans 14–34¢; SAM’s middle half spans 64–66¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FEI has book 32/33 and no standing bid; SAM has book 65/67 and no standing bid.",
+              "WHY": "FEI: buying the strengthening side before it strengthens; predicted close 38; bid 32; reserve SAM max(close 67, ask 67) = 67; 32 + 67 = 99 < 100; SAM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FEI": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 33,
+              "corrected_open": 33.5,
+              "close": 34,
+              "recorded_floor": 33,
+              "P": 35,
+              "Q": 31,
+              "X": 1784191092,
+              "layer": "BASE",
+              "members": 11,
+              "ess": 11,
+              "family": "DRIFT_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 33,
+                "last_trade_cents": 35,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-431"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 60,
+                "leg": "FEI",
+                "epoch": 1784162761.206,
+                "receipt": "bb31d7fd-0787-5794-af59-90e18f0fabeb",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_ELIGIBLE_POOL_FORECAST; buying the strengthening side before it strengthens; forecast close unknown; reserve SAM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 33,
+                  "last_trade_cents": 35,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-418"
+                },
+                "Q": null,
+                "X": null,
+                "status": "INSUFFICIENT_EVIDENCE",
+                "author": "INSUFFICIENT_EVIDENCE",
+                "formation_end": 1784154528,
+                "stage_index": 30
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1784164893.767,
+                "receipt": "a81812cd-9baf-60c8-7669-90b20f256213",
+                "id": "FEI",
+                "old": null,
+                "proposed": 32,
+                "posted": 32,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 32,
+                  "hand_level": 32,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 38,
+                  "window": {
+                    "family": "DRIFT_UP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 1,
+                      "LATE_BREAK_DOWN": 1,
+                      "DRIFT_UP": 3,
+                      "ONE_STEP_DOWN": 0,
+                      "ROUND_TRIP": 2,
+                      "ONE_STEP_UP": 2,
+                      "EARLY_SET_UP": 1,
+                      "QUIET_WOBBLE": 1,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "DRIFT_DOWN": 0
+                    },
+                    "position": 0.028776499002705,
+                    "epoch": 1784155755.9507654,
+                    "minutes_to_bell": 690.734153910478,
+                    "open": true,
+                    "member_count": 3,
+                    "ess": 3,
+                    "weight_sum": 3,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 67,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 67,
+                    "ask": 67,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 38; bid 32; reserve SAM max(close 67, ask 67) = 67; 32 + 67 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SAM": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 21.297517995164885,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 89
+                  },
+                  "FEI": {
+                    "forecast": 38,
+                    "layer": "BASE",
+                    "ess": 11,
+                    "role": "CLIMBER",
+                    "current": 35,
+                    "member_count": 11
+                  }
+                },
+                "window": {
+                  "family": "DRIFT_UP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 1,
+                    "LATE_BREAK_DOWN": 1,
+                    "DRIFT_UP": 3,
+                    "ONE_STEP_DOWN": 0,
+                    "ROUND_TRIP": 2,
+                    "ONE_STEP_UP": 2,
+                    "EARLY_SET_UP": 1,
+                    "QUIET_WOBBLE": 1,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "DRIFT_DOWN": 0
+                  },
+                  "position": 0.028776499002705,
+                  "epoch": 1784155755.9507654,
+                  "minutes_to_bell": 690.734153910478,
+                  "open": true,
+                  "member_count": 3,
+                  "ess": 3,
+                  "weight_sum": 3,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 31,
+                "deadline_epoch": 1784191092,
+                "q25": 14,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 33,
+                "floor_witness": {
+                  "epoch": 1784173705.775,
+                  "price": 33,
+                  "size": 2.89,
+                  "receipt": "65ae10e0-5ae6-7303-666f-66ffa5628e25"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784173705.775,
+                  "price": 33,
+                  "size": 2.89,
+                  "receipt": "65ae10e0-5ae6-7303-666f-66ffa5628e25"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66.5,
+              "close": 67,
+              "recorded_floor": 67,
+              "P": 67,
+              "Q": 65,
+              "X": 1784180115,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 89,
+              "ess": 21.297517995164885,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-301"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 61,
+                "leg": "SAM",
+                "epoch": 1784162761.206,
+                "receipt": "bb31d7fd-0787-5794-af59-90e18f0fabeb",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 64; reserve FEI max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-294"
+                },
+                "Q": 64,
+                "X": 1784184796,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "stage_index": 30
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1784164893.767,
+                "receipt": "a81812cd-9baf-60c8-7669-90b20f256213",
+                "id": "SAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.7217086508321627,
+                      "ROUND_TRIP": 0.9298005807288269,
+                      "LATE_BREAK_UP": 0.43830098693757485,
+                      "DRIFT_UP": 0.11986601747747062,
+                      "DRIFT_DOWN": 0.3483236168299578,
+                      "ONE_STEP_UP": 0.15920187066332314,
+                      "ONE_STEP_DOWN": 0.1037120277471218,
+                      "QUIET_WOBBLE": 5.41270329043517,
+                      "SLEEPER": 0,
+                      "EARLY_SET_UP": 0.03424006544287962,
+                      "EARLY_SET_DOWN": 0.04790311184328995
+                    },
+                    "position": 0.13788407599040745,
+                    "epoch": 1784160411.7892907,
+                    "minutes_to_bell": 613.136845155557,
+                    "open": true,
+                    "member_count": 48,
+                    "ess": 11.30389360758899,
+                    "weight_sum": 5.41270329043517,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 65; reserve FEI max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SAM": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 21.297517995164885,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 89
+                  },
+                  "FEI": {
+                    "forecast": 38,
+                    "layer": "BASE",
+                    "ess": 11,
+                    "role": "CLIMBER",
+                    "current": 35,
+                    "member_count": 11
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.7217086508321627,
+                    "ROUND_TRIP": 0.9298005807288269,
+                    "LATE_BREAK_UP": 0.43830098693757485,
+                    "DRIFT_UP": 0.11986601747747062,
+                    "DRIFT_DOWN": 0.3483236168299578,
+                    "ONE_STEP_UP": 0.15920187066332314,
+                    "ONE_STEP_DOWN": 0.1037120277471218,
+                    "QUIET_WOBBLE": 5.41270329043517,
+                    "SLEEPER": 0,
+                    "EARLY_SET_UP": 0.03424006544287962,
+                    "EARLY_SET_DOWN": 0.04790311184328995
+                  },
+                  "position": 0.13788407599040745,
+                  "epoch": 1784160411.7892907,
+                  "minutes_to_bell": 613.136845155557,
+                  "open": true,
+                  "member_count": 48,
+                  "ess": 11.30389360758899,
+                  "weight_sum": 5.41270329043517,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 65,
+                "deadline_epoch": 1784180115,
+                "q25": 64,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 67,
+                "floor_witness": {
+                  "epoch": 1784166175.414,
+                  "price": 67,
+                  "size": 1,
+                  "receipt": "369f1be2-08a7-6c64-5305-2ebe2e3218eb"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-FEI-miss",
+          "label": "Last receipt before FEI missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "FEI",
+          "outcome": "miss",
+          "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+          "epoch": 1784197166.17,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FEI is not yet directionally called; SAM is not yet directionally called.",
+              "WHY": "FEI trades at 34¢ against its 33¢ opening anchor; SAM trades at 67¢ against its 66¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FEI carries 448 eligible past sides from first-price comparisons; SAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FEI calls 34¢ by T−0hr 1min; SAM calls 67¢ by T−0hr 1min.",
+              "WHY": "FEI’s middle half spans 34–34¢; SAM’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FEI has book 33/34 and no standing bid; SAM has book 66/67 and no standing bid.",
+              "WHY": "FEI: The policy was waiting for a directional call; SAM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 33,
+              "corrected_open": 33.5,
+              "close": 34,
+              "recorded_floor": 33,
+              "P": 34,
+              "Q": 34,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 34,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 138,
+                "leg": "FEI",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 34; reserve SAM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 34,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+                },
+                "Q": 34,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 69,
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "id": "FEI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 1.2252628039414726,
+                      "LATE_BREAK_DOWN": 1.526643656376799,
+                      "DRIFT_UP": 0.3959089479750112,
+                      "ONE_STEP_DOWN": 0.9588329856867075,
+                      "ROUND_TRIP": 1.7713623060133639,
+                      "ONE_STEP_UP": 0.24587939925241223,
+                      "EARLY_SET_UP": 0.6742227154140727,
+                      "QUIET_WOBBLE": 20.51093224023058,
+                      "SLEEPER": 2.706700949121293,
+                      "GRIND_WOBBLE_UP": 0.02078879328657351,
+                      "EARLY_SET_DOWN": 0.7144904891836351,
+                      "DRIFT_DOWN": 0.24460847716695594
+                    },
+                    "position": 0.1972530864197531,
+                    "epoch": 1784162945.1837037,
+                    "minutes_to_bell": 570.9136049389839,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 79.84847745348267,
+                    "weight_sum": 20.51093224023058,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 34; reserve SAM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SAM": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 448
+                  },
+                  "FEI": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 1.2252628039414726,
+                    "LATE_BREAK_DOWN": 1.526643656376799,
+                    "DRIFT_UP": 0.3959089479750112,
+                    "ONE_STEP_DOWN": 0.9588329856867075,
+                    "ROUND_TRIP": 1.7713623060133639,
+                    "ONE_STEP_UP": 0.24587939925241223,
+                    "EARLY_SET_UP": 0.6742227154140727,
+                    "QUIET_WOBBLE": 20.51093224023058,
+                    "SLEEPER": 2.706700949121293,
+                    "GRIND_WOBBLE_UP": 0.02078879328657351,
+                    "EARLY_SET_DOWN": 0.7144904891836351,
+                    "DRIFT_DOWN": 0.24460847716695594
+                  },
+                  "position": 0.1972530864197531,
+                  "epoch": 1784162945.1837037,
+                  "minutes_to_bell": 570.9136049389839,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 79.84847745348267,
+                  "weight_sum": 20.51093224023058,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784197166.17,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66.5,
+              "close": 67,
+              "recorded_floor": 67,
+              "P": 67,
+              "Q": 67,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 139,
+                "leg": "SAM",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve FEI max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+                },
+                "Q": 67,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 69,
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "id": "SAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 1.383220669100773,
+                      "ROUND_TRIP": 3.2948244608241364,
+                      "LATE_BREAK_UP": 1.1568103114650277,
+                      "DRIFT_UP": 0.19824428939436214,
+                      "DRIFT_DOWN": 0.39746898674532893,
+                      "ONE_STEP_UP": 0.8227168782553562,
+                      "ONE_STEP_DOWN": 0.8014455350633998,
+                      "QUIET_WOBBLE": 20.43382482456054,
+                      "SLEEPER": 1.4505092513659943,
+                      "EARLY_SET_UP": 0.22197362778461757,
+                      "EARLY_SET_DOWN": 0.8345949290893401
+                    },
+                    "position": 0.20054896397141705,
+                    "epoch": 1784163085.8253906,
+                    "minutes_to_bell": 568.5695768237114,
+                    "open": true,
+                    "member_count": 288,
+                    "ess": 81.41167013877198,
+                    "weight_sum": 20.43382482456054,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve FEI max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SAM": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 448
+                  },
+                  "FEI": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 1.383220669100773,
+                    "ROUND_TRIP": 3.2948244608241364,
+                    "LATE_BREAK_UP": 1.1568103114650277,
+                    "DRIFT_UP": 0.19824428939436214,
+                    "DRIFT_DOWN": 0.39746898674532893,
+                    "ONE_STEP_UP": 0.8227168782553562,
+                    "ONE_STEP_DOWN": 0.8014455350633998,
+                    "QUIET_WOBBLE": 20.43382482456054,
+                    "SLEEPER": 1.4505092513659943,
+                    "EARLY_SET_UP": 0.22197362778461757,
+                    "EARLY_SET_DOWN": 0.8345949290893401
+                  },
+                  "position": 0.20054896397141705,
+                  "epoch": 1784163085.8253906,
+                  "minutes_to_bell": 568.5695768237114,
+                  "open": true,
+                  "member_count": 288,
+                  "ess": 81.41167013877198,
+                  "weight_sum": 20.43382482456054,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784197166.17,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784197200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SAM-miss",
+          "label": "Last receipt before SAM missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "SAM",
+          "outcome": "miss",
+          "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+          "epoch": 1784197166.17,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FEI is not yet directionally called; SAM is not yet directionally called.",
+              "WHY": "FEI trades at 34¢ against its 33¢ opening anchor; SAM trades at 67¢ against its 66¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FEI carries 448 eligible past sides from first-price comparisons; SAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FEI calls 34¢ by T−0hr 1min; SAM calls 67¢ by T−0hr 1min.",
+              "WHY": "FEI’s middle half spans 34–34¢; SAM’s middle half spans 67–67¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FEI has book 33/34 and no standing bid; SAM has book 66/67 and no standing bid.",
+              "WHY": "FEI: The policy was waiting for a directional call; SAM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 33,
+              "corrected_open": 33.5,
+              "close": 34,
+              "recorded_floor": 33,
+              "P": 34,
+              "Q": 34,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 33,
+                "ask_cents": 34,
+                "last_trade_cents": 34,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 138,
+                "leg": "FEI",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 34; reserve SAM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 33,
+                  "ask_cents": 34,
+                  "last_trade_cents": 34,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-FEI.csv.gz#row-2184"
+                },
+                "Q": 34,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 69,
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "id": "FEI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 1.2252628039414726,
+                      "LATE_BREAK_DOWN": 1.526643656376799,
+                      "DRIFT_UP": 0.3959089479750112,
+                      "ONE_STEP_DOWN": 0.9588329856867075,
+                      "ROUND_TRIP": 1.7713623060133639,
+                      "ONE_STEP_UP": 0.24587939925241223,
+                      "EARLY_SET_UP": 0.6742227154140727,
+                      "QUIET_WOBBLE": 20.51093224023058,
+                      "SLEEPER": 2.706700949121293,
+                      "GRIND_WOBBLE_UP": 0.02078879328657351,
+                      "EARLY_SET_DOWN": 0.7144904891836351,
+                      "DRIFT_DOWN": 0.24460847716695594
+                    },
+                    "position": 0.1972530864197531,
+                    "epoch": 1784162945.1837037,
+                    "minutes_to_bell": 570.9136049389839,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 79.84847745348267,
+                    "weight_sum": 20.51093224023058,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 34; reserve SAM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SAM": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 448
+                  },
+                  "FEI": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 1.2252628039414726,
+                    "LATE_BREAK_DOWN": 1.526643656376799,
+                    "DRIFT_UP": 0.3959089479750112,
+                    "ONE_STEP_DOWN": 0.9588329856867075,
+                    "ROUND_TRIP": 1.7713623060133639,
+                    "ONE_STEP_UP": 0.24587939925241223,
+                    "EARLY_SET_UP": 0.6742227154140727,
+                    "QUIET_WOBBLE": 20.51093224023058,
+                    "SLEEPER": 2.706700949121293,
+                    "GRIND_WOBBLE_UP": 0.02078879328657351,
+                    "EARLY_SET_DOWN": 0.7144904891836351,
+                    "DRIFT_DOWN": 0.24460847716695594
+                  },
+                  "position": 0.1972530864197531,
+                  "epoch": 1784162945.1837037,
+                  "minutes_to_bell": 570.9136049389839,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 79.84847745348267,
+                  "weight_sum": 20.51093224023058,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784197166.17,
+                "q25": 34,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66.5,
+              "close": 67,
+              "recorded_floor": 67,
+              "P": 67,
+              "Q": 67,
+              "X": 1784197166.17,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 130.82575851497776,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 67,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 139,
+                "leg": "SAM",
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve FEI max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 67,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL16FEISAM-SAM.csv.gz#row-950"
+                },
+                "Q": 67,
+                "X": 1784197166.17,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784154528,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 69,
+                "epoch": 1784197166.17,
+                "receipt": "85123921-86c2-4361-c8e9-08f944c015ca",
+                "id": "SAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 1.383220669100773,
+                      "ROUND_TRIP": 3.2948244608241364,
+                      "LATE_BREAK_UP": 1.1568103114650277,
+                      "DRIFT_UP": 0.19824428939436214,
+                      "DRIFT_DOWN": 0.39746898674532893,
+                      "ONE_STEP_UP": 0.8227168782553562,
+                      "ONE_STEP_DOWN": 0.8014455350633998,
+                      "QUIET_WOBBLE": 20.43382482456054,
+                      "SLEEPER": 1.4505092513659943,
+                      "EARLY_SET_UP": 0.22197362778461757,
+                      "EARLY_SET_DOWN": 0.8345949290893401
+                    },
+                    "position": 0.20054896397141705,
+                    "epoch": 1784163085.8253906,
+                    "minutes_to_bell": 568.5695768237114,
+                    "open": true,
+                    "member_count": 288,
+                    "ess": 81.41167013877198,
+                    "weight_sum": 20.43382482456054,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve FEI max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SAM": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 67,
+                    "member_count": 448
+                  },
+                  "FEI": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 130.82575851497776,
+                    "role": "NOT_CALLABLE",
+                    "current": 34,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 1.383220669100773,
+                    "ROUND_TRIP": 3.2948244608241364,
+                    "LATE_BREAK_UP": 1.1568103114650277,
+                    "DRIFT_UP": 0.19824428939436214,
+                    "DRIFT_DOWN": 0.39746898674532893,
+                    "ONE_STEP_UP": 0.8227168782553562,
+                    "ONE_STEP_DOWN": 0.8014455350633998,
+                    "QUIET_WOBBLE": 20.43382482456054,
+                    "SLEEPER": 1.4505092513659943,
+                    "EARLY_SET_UP": 0.22197362778461757,
+                    "EARLY_SET_DOWN": 0.8345949290893401
+                  },
+                  "position": 0.20054896397141705,
+                  "epoch": 1784163085.8253906,
+                  "minutes_to_bell": 568.5695768237114,
+                  "open": true,
+                  "member_count": 288,
+                  "ess": 81.41167013877198,
+                  "weight_sum": 20.43382482456054,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784197166.17,
+                "q25": 67,
+                "q75": 67,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784197200,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was strengthening; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "FEI": false,
+          "SAM": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "FEI",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 34,
+            "close_epoch": 1784196947,
+            "floor_cents": 33,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SAM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 67,
+            "close_epoch": 1784197166.2,
+            "floor_cents": 67,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "9ecaaa1e3615b749be0f2615032c65eb10b75a6b5612038ff5dc659f26e3f58a",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

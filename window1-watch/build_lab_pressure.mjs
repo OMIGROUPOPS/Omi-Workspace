@@ -7,6 +7,7 @@ import { gunzipSync } from 'node:zlib';
 import { packFace, unpackFace } from './face_encoding.mjs';
 import { readBidDetails } from './bid_card_details.mjs';
 import {refreshGzipMirror} from './json_storage.mjs';
+import {handoffDisplay} from './handoff_display.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
 export const sha = value => createHash('sha256').update(value).digest('hex');
@@ -62,27 +63,31 @@ export function projectStage(face, receipt, detail, sourceSha) {
         reason:'No exact game / receipt / span-bound feature is present in this replay. Library recovery is not a named-game measurement.'};
     }
     const sidePool = pool?.sides?.[side], selected = sidePool?.layers?.[sidePool.selected_layer];
-    const q = selected?.floors?.q50?.level_cents, count = selected?.member_count;
+    const belief = row.layers?.micro?.context?.beliefs?.[side];
+    const handoff = handoffDisplay(belief), h = belief?.handoff;
+    const handoffBand = h?.destination_kind === 'W1_CLOSE' ? h.close_band : h?.floor_band;
+    const q = h ? h.destination_cents : selected?.floors?.q50?.level_cents, count = h ? h.member_count : selected?.member_count;
     const author = finite(q) && finite(count) ? `${number(q)}¢ · pool of ${number(count)} games` : absent;
     const step = sidePool?.layers?.['STEP-FORECAST'];
-    const deadline = selected?.floors?.q50;
-    const x = finite(deadline?.epoch) ? (face.bell.timestamp_epoch-deadline.epoch)/60 : null;
+    const deadlineEpoch = h ? belief?.deadline?.deadline_epoch : selected?.floors?.q50?.epoch;
+    const x = finite(deadlineEpoch) ? (face.bell.timestamp_epoch-deadlineEpoch)/60 : null;
     const depthTotal = values.bid_depth.value === null || values.ask_depth.value === null ? null : values.bid_depth.value+values.ask_depth.value;
     const spread = values.book_ask.value === null || values.book_bid.value === null ? null : values.book_ask.value-values.book_bid.value;
     return [side, {values,
       display:{
+        ...(handoff ? {handoff} : {}),
         book: values.book_bid.value === null || values.book_ask.value === null ? absent : `${money(values.book_bid.value)} / ${money(values.book_ask.value)}`,
         spread:money(spread), bid_depth_fraction:depthTotal>0?values.bid_depth.value/depthTotal:null,
         q:money(q), q_cents:finite(q)?q:null, deadline:tMinus(x),
-        band:finite(selected?.floors?.q25?.level_cents)&&finite(selected?.floors?.q75?.level_cents)?`${number(selected.floors.q25.level_cents)}–${number(selected.floors.q75.level_cents)}¢`:absent,
+        band:h ? finite(handoffBand?.q25)&&finite(handoffBand?.q75)?`${number(handoffBand.q25)}–${number(handoffBand.q75)}¢`:absent : finite(selected?.floors?.q25?.level_cents)&&finite(selected?.floors?.q75?.level_cents)?`${number(selected.floors.q25.level_cents)}–${number(selected.floors.q75.level_cents)}¢`:absent,
         count:finite(count)?`${number(count)} matching games`:absent,
-        effective:finite(selected?.ess)?number(selected.ess):absent,
+        effective:finite(h ? h.ess : selected?.ess)?number(h ? h.ess : selected.ess):absent,
         role:{CLIMBER:'rising',FALLER:'falling',NOT_CALLABLE:'direction not called'}[sidePool?.roles?.current_role]??absent,
-        author:{'FIRST-TICK-ONLY':'First-price pool',BASE:'Broad pool','STEP-FORECAST':'Move-tested pool'}[sidePool?.selected_layer]??absent,
-        status:sidePool?.status==='RESOLVED'?'price-setting forecast':sidePool?.status?'not enough evidence':absent,
+        author:{'FIRST-TICK-ONLY':'First-price pool',BASE:'Broad pool','STEP-FORECAST':'Move-tested pool'}[h ? h.layer : sidePool?.selected_layer]??absent,
+        status:h ? belief.status==='RESOLVED'?'direction-conditioned destination':'not enough evidence' : sidePool?.status==='RESOLVED'?'price-setting forecast':sidePool?.status?'not enough evidence':absent,
         step_effective:finite(step?.ess)?number(step.ess):absent,
         step_status:step?.status==='OK'?'enough effective games':step?.status?.startsWith('NO-CALL')?'too few to call':absent,
-        source:'row.layers.macro.context.pool_cascade.sides (or stored derivation); deadlines use corrected face bell',
+        source:h ? 'row.layers.micro.context.beliefs.handoff / entry_license; deadlines use corrected face bell' : 'row.layers.macro.context.pool_cascade.sides (or stored derivation); deadlines use corrected face bell',
         raw:{selected_layer:sidePool?.selected_layer??null,status:sidePool?.status??null,role:sidePool?.roles?.current_role??null,step_status:step?.status??null},
       }, cards:[
       {label:'Trading', text:`${values.contracts.text} · ${values.prints.text}`, keys:['contracts','prints']},

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "trace_sha256": "f73d1486ae597a80f1c0b054115076f318352abec59053a48ff04100c9a1476a",
+  "method": "Read held target prints via the unchanged builder; match each actual fill's leg and exact timestamp, require positive size and print price at or below its standing bid. Grade checks separately verified no same-second fills and corrected-span eligibility.",
+  "fills": [
+    {"side":"ALT","epoch":1784000663.801,"bid_cents":60,"print_cents":60,"size":43.18,"receipt":"79019007-2092-520a-da1f-f79d3263dadf","minutes_to_bell":575.6033166646957},
+    {"side":"GAS","epoch":1784025043.114,"bid_cents":38,"print_cents":38,"size":51.53,"receipt":"132195bc-2998-60e0-053e-da2627a5edaa","minutes_to_bell":169.2814333319664}
+  ],
+  "queue_position": "UNKNOWN; replay credit is not evidence of live queue priority"
+}

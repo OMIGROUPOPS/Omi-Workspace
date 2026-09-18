@@ -1,0 +1,13 @@
+{
+  "receipts": [
+    "window1-watch/data/handoff/KXATPMATCH-26JUL12ALTGAS/REPLAY_RECEIPT.json",
+    "window1-watch/data/handoff/KXATPCHALLENGERMATCH-26JUL12GIUBAR/REPLAY_RECEIPT.json",
+    "window1-watch/data/handoff/KXATPCHALLENGERMATCH-26JUL14URSPAL/REPLAY_RECEIPT.json",
+    "window1-watch/data/handoff/KXATPCHALLENGERMATCH-26JUL14LAJSVA/REPLAY_RECEIPT.json",
+    "window1-watch/data/handoff/KXATPMATCH-26JUL18DANPRA/REPLAY_RECEIPT.json"
+  ],
+  "prior_manifest": {
+    "path": "window1-watch/data/handoff/PRIOR_ASSET_MANIFEST.json",
+    "sha256": "9e4c85f3ed42ea22235241baade53456a17bae319fc4cac4d71887f95d00a5dd"
+  }
+}

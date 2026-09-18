@@ -1,0 +1,18 @@
+{
+  "scope": "Immediate verified handoff publication; in-flight time-surface excluded",
+  "os_sha256": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+  "functionable_sha256": "584f4aab94708095ce94815172f1b99f3563ff20690f8730be7dd1b1b2810698",
+  "builder_sha256": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5",
+  "checks": {
+    "five_game_source_hash_and_determinism_receipt_binding": "PASS",
+    "copied_public_asset_compressed_and_uncompressed_hashes": "PASS against previously hosted, verified handoff manifest",
+    "javascript_syntax_modules": 11,
+    "typescript_diagnostics_in_publication_files": 0,
+    "typescript_diagnostics_elsewhere_in_existing_worktree": 7,
+    "close_delta_projection": "ALT/GAS +5 cents; LAJ/SVA +4 cents; GIU/BAR, URS/PAL, DAN/PRA zero filled value and explicitly incomplete. Both fee-rounding scenarios shown separately.",
+    "full_clean_checkout_asset_repackage": "NOT COMPLETED: stopped publication verifier for machine memory pressure after 655 assets; no failure was observed before stopping. This is not a new full build or hosted verification claim. Prior hosted source verification is retained in the handoff receipts."
+  },
+  "default": "W1_DIRECTION_HANDOFF remains opt-in; no time-surface flag or source is published",
+  "deployment": "Claude Code deploys this push. Build root window1-watch/shell, npm run build:demo. The checked-in data/handoff/PUBLISH_INDEX.json supplies repository-relative verification receipts by default; no desktop C:/tmp environment path is required.",
+  "cleanup": "The six specifically authorized C:/tmp roots contained no raw replay traces, including hidden-file inventory. Receipts, derived projections and held positive-print inputs were preserved. Only this publication verifier's disposable generated assets were removed."
+}

@@ -1,0 +1,29 @@
+.layer-review {margin:18px 0;padding:16px 0;border-top:1px solid var(--rule,#d1d1cd);color:inherit;font-size:13px;line-height:1.55}
+.layer-review header {display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.layer-review h2 {font-size:18px;font-weight:500;margin:3px 0 0}
+.layer-review small {font-size:10px;letter-spacing:.08em}
+.layer-review-controls {display:flex;gap:12px;flex-wrap:wrap}
+.layer-review-controls label {display:flex;flex-direction:column;gap:4px;font-size:11px}
+.layer-review select {color:inherit;background:transparent;border:1px solid #aaa9a3;border-radius:2px;padding:6px;max-width:100%}
+.layer-review-scope {font-size:11px;opacity:.75;margin:8px 0}
+.layer-review-clock {margin:14px 0 8px}
+.layer-review-grid {overflow-x:auto}
+.layer-review table {border-collapse:collapse;width:100%;table-layout:fixed;min-width:710px;font-size:13px;line-height:1.55}
+.layer-review th,.layer-review td {text-align:left;vertical-align:top;border-top:1px solid #d1d1cd;padding:12px 14px 12px 0;overflow-wrap:anywhere}
+.layer-review th:first-child {width:116px;font-size:11px;font-weight:500;letter-spacing:.025em}
+.layer-review thead th {font-size:10px;font-weight:500;letter-spacing:.06em;padding-top:7px;padding-bottom:7px}
+.layer-review-funnel {display:flex;gap:24px;flex-wrap:wrap;font-size:12px;border-top:1px solid #d1d1cd}
+.layer-review-funnel p {flex:1;min-width:240px}
+.layer-review details {font-size:12px;margin-top:8px}
+.layer-review details p {overflow-wrap:anywhere}
+.layer-review summary {cursor:pointer}
+.layer-review a {text-decoration:underline}
+@media(max-width:700px){
+ .layer-review-controls {width:100%}.layer-review-controls label{width:100%}.layer-review-funnel{gap:0}
+ .layer-review table{min-width:0}.layer-review-grid{overflow:visible}
+ .layer-review thead{position:absolute;clip-path:inset(50%);height:1px;width:1px;overflow:hidden}
+ .layer-review tbody,.layer-review tr,.layer-review td,.layer-review tbody th{display:block;width:auto}
+ .layer-review th:first-child{width:auto;padding:12px 0 8px}
+ .layer-review td{border-top:0;padding:0 0 12px}
+ .layer-review td::before{content:attr(data-question);display:block;font-size:10px;letter-spacing:.06em;opacity:.7;margin-bottom:3px}
+}

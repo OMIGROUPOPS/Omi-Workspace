@@ -350,7 +350,9 @@ function assertResources(resources) {
 // Pool mathematics are the causal bench contract, loaded with the library.
 // Price coordinates and contract volume never share a distance sum.
 let tickLibrary = null;
+let handoffReach = null;
 const PRICE_FIELDS = Object.freeze(["last", "bid", "ask"]);
+function directionHandoffEnabled() { return process.env.W1_DIRECTION_HANDOFF === "on"; }
 
 function upperBound(values, value) {
   let low = 0, high = values.length;
@@ -408,6 +410,64 @@ function poolRole(value, open, contract) {
   const drift = value - open;
   return drift >= contract.role_drift_cents ? "CLIMBER" : drift <= -contract.role_drift_cents ? "FALLER" : "NOT_CALLABLE";
 }
+function configureHandoffReach(binding) {
+  if (!binding?.witnesses || !binding?.receipt?.witness_sha256 || !binding.receipt.library_sha256) throw new Error("HANDOFF_REACH_UNVERIFIED");
+  if (tickLibrary && binding.receipt.library_sha256 !== tickLibrary.receipt.index.sha256) throw new Error("HANDOFF_REACH_LIBRARY_MISMATCH");
+  handoffReach = binding;
+}
+function directionMemberMask(members, states, side, role, gate) {
+  return members.map((member, index) => {
+    const at = states[index].sides[side], close = member.legs[side].last.at(-1);
+    if (member.first_mtb < gate || ![at.last, at.bid, at.ask, close].every(Number.isFinite) || at.bid > at.ask) return false;
+    const move = close - at.last, spread = at.ask - at.bid;
+    return role === "CLIMBER" ? move > spread : role === "FALLER" ? -move > spread : false;
+  });
+}
+function directionReachDistribution(query, members, weights, side, gate, contract, lower = contract.likelihood_unit) {
+  if (!handoffReach) throw new Error("HANDOFF_REACH_UNBOUND");
+  const own = poolLevels(query, gate, contract).sides[side], now = query.bell - gate * contract.minute_seconds;
+  const total = sum(weights);
+  const minima = members.map((member, index) => {
+    if (!(weights[index] > 0)) return Infinity;
+    const leg = member.legs[side], witness = handoffReach.witnesses.get(leg.ticker);
+    if (!witness?.complete || witness.formation !== leg.formation || witness.bell !== leg.bell) throw new Error(`HANDOFF_REACH_WITNESS_MISSING ${leg.ticker}`);
+    // Compare on the query clock: no same-time, carried, zero-size or after-bell witness.
+    let low = 0, high = witness.epoch.length;
+    while (low < high) {
+      const middle = low + Math.floor((high - low) / 2);
+      if (query.bell - (leg.bell - witness.epoch[middle]) <= now) low = middle + 1; else high = middle;
+    }
+    return low < witness.epoch.length ? own.last + witness.suffix[low] - poolSample(leg, leg.bell - gate * contract.minute_seconds).last : Infinity;
+  });
+  const levels = [];
+  for (let level = Math.max(contract.likelihood_unit, Math.ceil(lower)); level < own.last && level <= PAR_BUDGET_CENTS; level += contract.likelihood_unit) {
+    const hitWeight = sum(weights.filter((weight, index) => minima[index] <= level));
+    levels.push({ level_cents: level, raw_probability: total > 0 ? hitWeight / total : null });
+  }
+  return { levels, member_count: weights.filter(weight => weight > 0).length, weight_sum: total, ess: poolEss(weights) };
+}
+function calibratedDirectionReach(query, members, weights, side, role, layer, gate, floorBand, contract) {
+  const raw = directionReachDistribution(query, members, weights, side, gate, contract, floorBand.q25), binding = handoffReach.models;
+  if (!binding || binding.query_identity !== query.identity || binding.query_formation !== query.formation || binding.query_date !== query.date) throw new Error("HANDOFF_REACH_CALIBRATION_QUERY_MISMATCH");
+  const at = contract.gates_minutes_to_bell.filter(value => value >= gate && value <= query.first_mtb).at(-1);
+  const model = binding.curves[[query.category, side, role, layer, at].join("|")];
+  const status = model?.x?.length ? "OK" : "NO_EARLIER_CALIBRATION";
+  if (model && !(model.latest_training_bell < query.formation)) throw new Error("HANDOFF_REACH_TRAINING_NOT_EARLIER");
+  const levels = raw.levels.filter(row => row.level_cents >= floorBand.q25).map(row => {
+    let probability = null, clippedEndpoint = false;
+    if (status === "OK") {
+      const p = row.raw_probability, last = model.x.length - 1, next = upperBound(model.x, p);
+      clippedEndpoint = p < model.x[0] || p > model.x[last];
+      probability = next === 0 ? model.y[0] : next > last ? model.y[last] :
+        model.y[next - 1] + (p - model.x[next - 1]) / (model.x[next] - model.x[next - 1]) * (model.y[next] - model.y[next - 1]);
+    }
+    return { ...row, probability, calibration_endpoint_clipped: clippedEndpoint };
+  });
+  return { status, ...raw, levels, horizon: "STRICTLY_LATER_POSITIVE_PRINT_BEFORE_BELL", calibration_gate_minutes: at ?? null,
+    calibration_training_games: model?.training_games ?? 0, calibration_latest_training_bell: model?.latest_training_bell ?? null,
+    calibration_sha256: handoffReach.receipt.calibration_sha256, witness_sha256: handoffReach.receipt.witness_sha256,
+    witness_limitation: handoffReach.receipt.witness_limitation };
+}
 function poolFamily(leg, threshold, contract) {
   const count = contract.taxonomy_samples, samples = [];
   for (let index = 0; index < count; index += 1) {
@@ -437,6 +497,7 @@ function compactTickLeg(row, counts) {
   const leg = { id: row.leg_id, ticker: row.ticker, formation: row.formation_end_epoch, bell: row.bell_epoch,
     open: row.postformation_open_cents ?? row.anchor_cents, print_total: row.true_print_count_in_span,
     count_seconds: Float64Array.from(counts.seconds), count_cum: Float64Array.from(counts.counts) };
+  if (directionHandoffEnabled()) leg.floor_fraction = row.floor_fraction;
   for (const [key, source] of Object.entries({ epoch: "ts", last: "last_cents", bid: "bid_cents", ask: "ask_cents", volume: "volume_cum" })) {
     leg[key] = Float64Array.from(row.path, point => Number.isFinite(point[source]) ? point[source] : NaN);
   }
@@ -563,6 +624,53 @@ function poolForecast(query, members, weights, gate, contract, families) {
   });
   return { member_count: weights.filter(weight => weight > 0).length, weight_sum: sum(weights), ess: poolEss(weights), sides };
 }
+// Port of direction_handoff.views / asynchronous_pair.lateWindow. Query roles
+// remain the installed receipt-time drift call; only earlier members' realized
+// outcomes are used to condition the destination. No query future is read.
+function directionHandoffForecast(query, members, firstWeights, baseWeights, gate, contract) {
+  const current = poolLevels(query, gate, contract);
+  const states = members.map(member => poolLevels(member, gate, contract));
+  const forecasts = Object.fromEntries(query.legs.map((leg, side) => {
+    const own = current.sides[side], role = poolRole(own.last, leg.open, contract);
+    const mask = directionMemberMask(members, states, side, role, gate);
+    const layers = Object.fromEntries([["FIRST-TICK-ONLY", firstWeights], ["BASE", baseWeights]].map(([name, ws]) => {
+      const weights = ws.map((weight, index) => mask[index] ? weight : 0);
+      const total = sum(weights), effective = poolEss(weights);
+      const remaining = members.map(member => poolRemaining(member.legs[side], gate, contract));
+      const closes = members.map((member, index) => own.last + member.legs[side].last.at(-1) - states[index].sides[side].last);
+      const floors = remaining.map((value, index) => own.last + value.level - states[index].sides[side].last);
+      const quantiles = values => Object.fromEntries(contract.quantiles.map(fraction => [
+        `q${fraction * (PAR_BUDGET_CENTS + contract.likelihood_unit)}`, poolQuantile(values, weights, fraction)]));
+      const familyMass = {};
+      members.forEach((member, index) => { const family = member.legs[side].family; if (family) familyMass[family] = (familyMass[family] ?? 0) + weights[index]; });
+      const family = total ? Object.keys(familyMass).sort((a, b) => familyMass[b] - familyMass[a] || a.localeCompare(b))[0] : null;
+      const familyWeights = weights.map((weight, index) => members[index].legs[side].family === family ? weight : 0);
+      const fraction = poolQuantile(members.map(member => member.legs[side].floor_fraction), familyWeights, contract.taxonomy_rules.quarter_fraction);
+      const start = Number.isFinite(fraction) ? leg.formation + fraction * (query.bell - leg.formation) : null;
+      const closeBand = quantiles(closes), floorBand = quantiles(floors), floorTimes = quantiles(remaining.map(value => value.mtb));
+      const deadline = role === "CLIMBER" ? query.bell : Number.isFinite(floorTimes.q50) ? query.bell - floorTimes.q50 * contract.minute_seconds : null;
+      return [name, { status: effective >= contract.no_call_ess_floor ? "OK" : "INSUFFICIENT_EVIDENCE", member_count: weights.filter(weight => weight > 0).length,
+        ess: effective, weight_sum: total, close_band: closeBand, floor_band: floorBand,
+        destination_kind: role === "CLIMBER" ? "W1_CLOSE" : "REMAINING_FLOOR",
+        destination_cents: role === "CLIMBER" ? closeBand.q50 : floorBand.q50,
+        deadline_epoch: deadline, deadline_minutes_to_bell: Number.isFinite(deadline) ? (query.bell - deadline) / contract.minute_seconds : null,
+        family, window: { family, fraction, start_epoch: start, end_epoch: query.bell,
+          open: Number.isFinite(start) && query.bell - gate * contract.minute_seconds >= start && gate > 0,
+          member_count: familyWeights.filter(weight => weight > 0).length, ess: poolEss(familyWeights) } }];
+    }));
+    const selected = ["FIRST-TICK-ONLY", "BASE"].find(name => layers[name].status === "OK") ?? null;
+    const reach = role === "FALLER" && selected ? calibratedDirectionReach(query, members,
+      (selected === "BASE" ? baseWeights : firstWeights).map((weight, index) => mask[index] ? weight : 0),
+      side, role, selected, gate, layers[selected].floor_band, contract) : null;
+    return [leg.id, { flag: "W1_DIRECTION_HANDOFF=on", role, current_cents: own.last, reach,
+      neutral_reference_cents: role === "NOT_CALLABLE" ? own.last : null,
+      neutral_interpretation: role === "NOT_CALLABLE" ? "NOT_CALLABLE_IS_NOT_A_FLAT_PREDICTION_NO_ENTRY" : null,
+      selected_layer: selected, status: selected ? "OK" : "INSUFFICIENT_EVIDENCE", layers,
+      member_filter: "EARLIER_MEMBER_CLOSE_MINUS_CURRENT_OUTSIDE_OWN_SPREAD_AT_SAME_MTB",
+      prior_art: "direction_handoff.views; asynchronous_pair.lateWindow" }];
+  }));
+  return forecasts;
+}
 function poolSnapshot(state) {
   if (!tickLibrary) throw new Error("POOL_TICK_LIBRARY_UNBOUND");
   const { contract, pairs, families } = tickLibrary;
@@ -647,6 +755,10 @@ function poolSnapshot(state) {
       current_last_cents: poolLevels(query, gate, contract).sides[index].last,
       roles: roles[leg.id], layers: Object.fromEntries(Object.entries(layers).map(([name, layer]) => [name, layer.sides[index]])) }];
   }));
+  if (directionHandoffEnabled()) {
+    const handoff = directionHandoffForecast(query, memory.members, memory.first_weights, baseWeights, gate, contract);
+    for (const id of Object.keys(sides)) sides[id].handoff = handoff[id];
+  }
   return { status: "BOUND", receipt: state.receipt, minutes_to_bell: gate, first_tick: { epoch: query.first_epoch, mtb: query.first_mtb,
     legs: query.legs.map(leg => leg.id), prices: memory.first.sides.map(side => side.last) },
     pool_member_count: memory.members.length, initial_ess: poolEss(memory.first_weights), layers: Object.fromEntries(Object.entries(layers).map(([name, layer]) => [name,
@@ -657,3 +769,5 @@ function poolSnapshot(state) {
 
 
 module.exports = { PAR_BUDGET_CENTS, READER_NAMES, EXPECTED_RESOURCE_IDS, SIMILARITY_DECLARATION, CONDITIONAL_DIP_DECLARATION, sha256, createTapeState, observe, creditPosition, readAll, vectorFromReads, retrieveNeighborhood, assertResources, captureReceipt, assertCaptureReceipt, configureNeighborSpecialistBinding, configureTrueBellCellDepthMap, compactTickLeg, configureTickLibrary, poolPair, poolSnapshot, atlasGateEpochs };
+Object.assign(module.exports, { directionHandoffEnabled, directionHandoffForecast, configureHandoffReach,
+  directionMemberMask, directionReachDistribution, poolLevels, poolRole, poolEss });

@@ -1,0 +1,70 @@
+{
+  "schema": "NINE_CELL_REVIEW_CONTRACT_V1",
+  "definition": "MACRO: weighted possible pair futures; MICRO: own-window price and time belief; MICRO-MICRO: immediate evidence and permission, not a completed directional arrival model.",
+  "scope": "Frozen 100, D and recorded mirror-reserve policy, no replay or engine change; ALT/GAS extra named check excluded from all denominators.",
+  "selection_sha256": "c8d0710d1aab2b43e9cb9d9e2813fc9c38f233e8e4941e8647d347aa0a6e4c7b",
+  "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+  "baseline_contract_sha256": "5c3ad0cda56100f8ae90d8d12309b9b6a43edd13275928e1a35405399250f8e1",
+  "mirror_contract_sha256": "27161d58d69a77ebe4d085e0cfa4fe36c519a46b795df032c5658036b9a087bd",
+  "mirror_report_sha256": "90f76bf1fa1e27560df4756464a814d1901e88692fc9166dfa517d2f3d7416cc",
+  "first_callable": "First saved D decision receipt in source order where both sides have RESOLVED finite Q and X before D bell; no hindsight choice, no directional-role requirement silently added. Per-side first callable and first both-directional receipt are reported separately.",
+  "terminal": "Last saved decision receipt with epoch strictly less than each credited fill; otherwise strictly less than D bell. A safety-excluded attempted fill is not a credited fill and the side is reviewed as a miss; attempted fill evidence is retained.",
+  "macro": "Both called directional roles at the selected receipt must match corrected full-span close minus opening anchor under the filed role threshold; NOT_CALLABLE is not a successful directional call. Family labels, when available, remain separate; direction correctness is not a family-accuracy claim.",
+  "role_threshold": {
+    "value": 2,
+    "source": "Mirror contract organ_contract.role_drift_cents, inherited unchanged from D"
+  },
+  "micro": "Both actual strictly-later positive-print remaining floors must lie in the stored q25–q75 bands AND each side must have a strictly later accepted positive print in that band by its saved X. Corrected close and full-span floor are separate rulers, never relabeled as forecasts. Also report whether the actual remaining floor itself printed by X.",
+  "micro_micro": "Each side must have an audited credited fill strictly below corrected W1 close inside its permitted policy window. D: saved standing-rest permission, before D bell; no new deadline-expiry rule. Mirror: last saved permission for same bid, including role, budget and learned faller window when applicable. Licensing-sentence deadline hit is diagnostic only, not a new gate.",
+  "funnel": "Two separate fixed-checkpoint funnels: first pair-callable, and each side last before its own outcome. Both-side intersections; PASS/FAIL/UNKNOWN and all-100 denominators. The first non-pass layer is an attribution label, not proof of causality; fills can precede first pair-callable and are flagged.",
+  "prints": "Existing approved selected true-print extracts only; exact ticker+receipt/trade-id dedupe; true_print true, size>0, no block trades; formation/corrected span start inclusive, min(D bell,corrected span end) exclusive; carried book lasts never fill or floor witnesses.",
+  "limitations": [
+    "Saved decision-stage cadence, not every omitted raw book receipt.",
+    "Mirror-reserve is an uninstalled failed-admission bench policy; no independent subsecond predictor exists in either arm.",
+    "Missing span, forecast, future print, or closing price remains unknown.",
+    "The current LAB chart can be another replay version; these policy cards carry independent D/mirror provenance and do not alter chart data."
+  ],
+  "sources": {
+    "print_receipt": {
+      "path": "C:/tmp/tune_expansion_20260914/SELECTED_PRINTS_RECEIPT.json",
+      "sha256": "437adf787840ef23b22a3f9be5321229a832a8a289a7ff1ee84b3fe26846c2df"
+    },
+    "named_spec_sha256": "2defcc56915ff1932f168c82c152b51ef690189fdeee1436c75c92bd79610cd1"
+  },
+  "definition_sources": [
+    {
+      "file": ".claude/window1_live_v4_replay/v54_layered_dual_belief_20260823/FOUNDATION_LIBRARY_RECEIPT.json",
+      "sha256": "9b12984275b635c84a18c938d51e4a1945494173d10d8adb24ade0303b7ccfc5"
+    },
+    {
+      "file": ".claude/window1_live_v4_replay/v54_layered_dual_belief_20260823/LAYERED_DUAL_BELIEF_RECEIPT.json",
+      "sha256": "aa75edb9fc4fd0d1b9b5d02c0ffdd0e9359a44807ad0df8fc9d103e47102622d"
+    },
+    {
+      "file": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/FINDINGS_VERIFICATION_SEAT.md",
+      "sha256": "6224b498b2e5b64951871e5c0b1b0cf43451ade2f016e9d040ea77cd595f93dc"
+    },
+    {
+      "file": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/MACHINE_PALANTIR.md",
+      "sha256": "716feb2d32105c8c3a84d94cf9ed20c75605aae850c981bf92eb9da7723d47c9"
+    },
+    {
+      "file": "artifacts/review_mirror/GATE_1_OBJECT.md",
+      "sha256": "bbeee3207af290c75ca6fb2cf3dfbc36d58afdfb588ed969fd425b40ad365398"
+    }
+  ],
+  "code_sha256": {
+    "builder": "b9269913bcef733a7be814a8bcdd6c7b5b52d148a87e100e5368cd141900e790",
+    "core": "618dca71a10a096e463f70b7be8ba28234e842c33fc6131b99e094d7356a534b"
+  },
+  "installed_before": {
+    "arb-executor/analysis/build_window1_v54_dual_belief.js": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5",
+    "arb-executor/analysis/window1_named_subset_guard.js": "df062b5c0f7188079d7421bfa6811b5e3caba6705e4bee7c95e63753da1e3959",
+    "arb-executor/analysis/window1_v54_bell_bound_library.js": "b49c14b7de3258db83686a52b79f99c38604a0181e765725fe361b72c396ed41",
+    "arb-executor/analysis/window1_v54_dual_belief_reporter.js": "99a6b9df10a5d67ed8fbf7da12666bf6f6b043c445a7ec95047e732254270189",
+    "arb-executor/analysis/window1_v54_causal_tape_clock.js": "6696b1c9bc7035a3e21f3eeb49e2b5d8e4cdfcc2e448f72433e0bda8f5aabed6",
+    "arb-executor/analysis/window1_v54_dual_belief_os.js": "30b40a1a22894a5296094f4458e2be5ee036766f31f1615ffebf5ad7079cebc9",
+    "arb-executor/analysis/window1_v54_survivor_shape_elimination.js": "3a9c8e10afe7ae66b0477095eceeb432c1c1f22af5d79ca3723fe051e2f0462e",
+    "arb-executor/analysis/window1_v54_functionable_os.js": "83f44682de821f754e99ecfdc0b56fd4ac8a03d65b0ee986f39c47f7df4e6c74"
+  }
+}

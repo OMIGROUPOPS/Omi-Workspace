@@ -1,0 +1,2187 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL12AVASEI",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "73315d8c3364c325f93ae916da93c0d9ef542d8b1e3e61ddf5356dbd05176618",
+    "stage_cache_sha256": "77cbed23aaf57b4e7ba9136d57be792ca54d224cfbea9262b78bb46490c74192",
+    "mirror_projection_sha256": "d410f4365e798a730d6712e2fd9112f992631b87cad8f1f702cf00a1f281a472",
+    "mirror_permissions_sha256": "4e9b770f8be9cb1e13af5800423f2fdd811279877dc716386885f49d6d4654b6",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL12AVASEI",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "597d4eff5ebeb8b6945a3acd36b9c8484cda3c13dfc8f217cf32379d56071222",
+      "row_number": 6,
+      "row_csv": "26JUL12AVASEI,KXWTAMATCH-26JUL12AVASEI,WTA_MAIN,1783781797,1783781797,1783851840,1783850400.0,AVA,SEI,1783809268,87.5,89,1783828975.0,91,1783851778.6,162.21,146.05,STILL,3.5,,,,,1783809268,13.0,11,1783811853.6,12,1783851839.3,945.3,110.51,STILL,-1.0,,,,,1783809268,,,1783853160.0,1783857930.0,1783853160.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783809268,1783851840,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783809268,
+      "span_end_epoch": 1783851840,
+      "bell_epoch": 1783853160,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783853160,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "AVA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 87.5,
+          "floor_cents": 89,
+          "floor_epoch": 1783828975,
+          "minutes_to_bell": 403.0833333333333,
+          "line": "AVA 89¢ @ 403.08m to bell",
+          "marker_label": "AVA FLOOR · RECORDED 89¢ @ 403.08m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 89¢ · 403m to bell",
+          "hover_note": "Recorded floor 89¢ printed here · 403m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "SEI": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 13,
+          "floor_cents": 11,
+          "floor_epoch": 1783811853.6,
+          "minutes_to_bell": 688.4400000015895,
+          "line": "SEI 11¢ @ 688.44m to bell",
+          "marker_label": "SEI FLOOR · RECORDED 11¢ @ 688.44m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 11¢ · 688m to bell",
+          "hover_note": "Recorded floor 11¢ printed here · 688m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "AVA",
+      "underdog_leg": "SEI",
+      "pair": {
+        "sum_cents": 100,
+        "discount_cents": 0,
+        "reason": null,
+        "line": "best capturable = 89 + 11 = 100¢",
+        "discount_line": "0¢ under par",
+        "compact_line": "best capturable 100¢ · 0¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12AVASEI",
+        "event_id": "KXWTAMATCH-26JUL12AVASEI",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1783781797",
+        "w1_left_epoch": "1783781797",
+        "w1_right_epoch": "1783851840",
+        "scheduled_start_epoch": "1783850400.0",
+        "legA": "AVA",
+        "legB": "SEI",
+        "legA_formation_end_epoch": "1783809268",
+        "legA_open_postformation_c": "87.5",
+        "legA_floor_c": "89",
+        "legA_floor_epoch": "1783828975.0",
+        "legA_close_c": "91",
+        "legA_close_epoch": "1783851778.6",
+        "legA_contracts": "162.21",
+        "legA_premium_usd": "146.05",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "3.5",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783809268",
+        "legB_open_postformation_c": "13.0",
+        "legB_floor_c": "11",
+        "legB_floor_epoch": "1783811853.6",
+        "legB_close_c": "12",
+        "legB_close_epoch": "1783851839.3",
+        "legB_contracts": "945.3",
+        "legB_premium_usd": "110.51",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-1.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783809268",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783853160.0",
+        "kalshi_close_time_epoch": "1783857930.0",
+        "bell_epoch": "1783853160.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783809268",
+        "span_end_epoch": "1783851840",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL12AVASEI.jsonl",
+      "sha256": "ba44e04d82d5d65c3bc515d2d7130b87667f591ed5e64b1bc342a5c79ae2115a",
+      "raw_rows": 473,
+      "accepted_rows": 39,
+      "start_epoch": 1783809268,
+      "end_epoch": 1783851840
+    }
+  },
+  "first_callable_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+  "first_both_directional_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+  "first_callable_by_side": {
+    "AVA": "343136f4-944d-68dc-a088-87b20f10fd03",
+    "SEI": "343136f4-944d-68dc-a088-87b20f10fd03"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+          "epoch": 1783813657.637,
+          "clock": "T−10hr 36min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AVA is strengthening; SEI is weakening.",
+              "WHY": "AVA trades at 90¢ against its 87¢ opening anchor; SEI trades at 11¢ against its 13¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AVA carries 238 eligible past sides from first-price comparisons; SEI carries 286 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AVA calls 89¢ by T−5hr 45min; SEI calls 10¢ by T−6hr 47min.",
+              "WHY": "AVA’s middle half spans 88–89¢; SEI’s middle half spans 9–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AVA has book 88/90 and a standing 89¢ bid; SEI has book 11/12 and a standing 10¢ bid.",
+              "WHY": "AVA: The current pool target was the permitted bid level; SEI: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "AVA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 87,
+              "corrected_open": 87.5,
+              "close": 91,
+              "recorded_floor": 89,
+              "P": 90,
+              "Q": 89,
+              "X": 1783831151,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 238,
+              "ess": 80.97543814417317,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-327"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 48,
+                "leg": "AVA",
+                "epoch": 1783813657.637,
+                "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 89,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-327"
+                },
+                "Q": 89,
+                "X": 1783831151,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "support": null,
+                "accountability_assumption": "6a072979e4145ab306c5d33116d509e04be582602e63e919b8ee8af35e2bf655",
+                "stage_index": 24
+              },
+              "permission": null,
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783831151,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783828974.987,
+                  "price": 89,
+                  "size": 29.12,
+                  "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783828974.987,
+                  "price": 89,
+                  "size": 29.12,
+                  "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SEI": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 13,
+              "corrected_open": 13,
+              "close": 12,
+              "recorded_floor": 11,
+              "P": 11,
+              "Q": 10,
+              "X": 1783827391.341573,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 286,
+              "ess": 93.53586670459309,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 11,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-291"
+              },
+              "bid": 10,
+              "filled": null,
+              "decision": {
+                "order": 49,
+                "leg": "SEI",
+                "epoch": 1783813657.637,
+                "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 10,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-291"
+                },
+                "Q": 10,
+                "X": 1783827391.341573,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "support": null,
+                "accountability_assumption": "c6b15ba6f737ea88251cd8fa09c5af8781349a530f88e67bde94c51d38d10f1c",
+                "stage_index": 24
+              },
+              "permission": null,
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783827391.341573,
+                "q25": 9,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 11,
+                "floor_witness": {
+                  "epoch": 1783813664.636,
+                  "price": 11,
+                  "size": 5,
+                  "receipt": "0aab2ba5-cc4f-5b59-220a-34d52b8fc7df"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-AVA-fill",
+          "label": "Last receipt before AVA filled",
+          "arm": "D",
+          "focus_leg": "AVA",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060",
+          "epoch": 1783824996.000001,
+          "clock": "T−7hr 27min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AVA is strengthening; SEI is weakening.",
+              "WHY": "AVA trades at 90¢ against its 87¢ opening anchor; SEI trades at 11¢ against its 13¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AVA carries 271 eligible past sides from first-price comparisons; SEI carries 311 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AVA calls 89¢ by T−4hr 2min; SEI calls 10¢ by T−5hr 4min.",
+              "WHY": "AVA’s middle half spans 88–89¢; SEI’s middle half spans 9–11¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AVA has book 88/89 and a standing 89¢ bid; SEI has book 11/12 and a standing 10¢ bid.",
+              "WHY": "AVA: The desired bid could not be posted below the ask; SEI: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "AVA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 87,
+              "corrected_open": 87.5,
+              "close": 91,
+              "recorded_floor": 89,
+              "P": 90,
+              "Q": 89,
+              "X": 1783837347.60046,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 271,
+              "ess": 70.63831285832941,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 89,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 56,
+                "leg": "AVA",
+                "epoch": 1783824996.000001,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 89,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 89,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060"
+                },
+                "Q": 89,
+                "X": 1783837347.60046,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "support": null,
+                "accountability_assumption": "c4e912c35df2c609184cd4b48ebc760628ae01a4f11ca6fd316d79f93f00e4f7",
+                "stage_index": 28
+              },
+              "permission": null,
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783837347.60046,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783828974.987,
+                  "price": 89,
+                  "size": 29.12,
+                  "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783828974.987,
+                  "price": 89,
+                  "size": 29.12,
+                  "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SEI": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 13,
+              "corrected_open": 13,
+              "close": 12,
+              "recorded_floor": 11,
+              "P": 11,
+              "Q": 10,
+              "X": 1783833578.18439,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 311,
+              "ess": 110.81073541209996,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 11,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-872"
+              },
+              "bid": 10,
+              "filled": null,
+              "decision": {
+                "order": 57,
+                "leg": "SEI",
+                "epoch": 1783824996.000001,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 10,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-872"
+                },
+                "Q": 10,
+                "X": 1783833578.18439,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "support": null,
+                "accountability_assumption": "9f34d99b1ae295467bce0e0d84822de10cae1fac1b40582ab53a4403176f5c60",
+                "stage_index": 28
+              },
+              "permission": null,
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783833578.18439,
+                "q25": 9,
+                "q75": 11,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 11,
+                "floor_witness": {
+                  "epoch": 1783836901.52,
+                  "price": 11,
+                  "size": 100,
+                  "receipt": "244a5d81-bc46-59ae-fae4-a4619fc249b8"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783828974.987,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "AVA",
+              "epoch": 1783828974.987,
+              "cents": 89,
+              "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99",
+              "order_lineage_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+              "order_lineage_start_epoch": 1783813657.637,
+              "current_price_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+              "current_price_start_epoch": 1783813657.637,
+              "order_lineage_age_minutes": 255.2891666650772,
+              "current_price_age_minutes": 255.2891666650772,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "AVA",
+                "epoch": 1783828974.987,
+                "cents": 89,
+                "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99",
+                "order_lineage_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "order_lineage_start_epoch": 1783813657.637,
+                "current_price_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "current_price_start_epoch": 1783813657.637,
+                "order_lineage_age_minutes": 255.2891666650772,
+                "current_price_age_minutes": 255.2891666650772,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 56,
+              "leg": "AVA",
+              "epoch": 1783824996.000001,
+              "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 89,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 88,
+                "ask_cents": 89,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-1060"
+              },
+              "Q": 89,
+              "X": 1783837347.60046,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783809268,
+              "support": null,
+              "accountability_assumption": "c4e912c35df2c609184cd4b48ebc760628ae01a4f11ca6fd316d79f93f00e4f7",
+              "stage_index": 28
+            },
+            "license_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+            "licensing_deadline_epoch": 1783831151,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SEI-miss",
+          "label": "Last receipt before SEI missed at the bell",
+          "arm": "D",
+          "focus_leg": "SEI",
+          "outcome": "miss",
+          "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+          "epoch": 1783851839.344,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AVA is strengthening; SEI is not yet directionally called.",
+              "WHY": "AVA trades at 90¢ against its 87¢ opening anchor; SEI trades at 12¢ against its 13¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AVA carries 300 eligible past sides from first-price comparisons; SEI carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AVA calls 90¢ by T−0hr 0min; SEI calls 12¢ by T−0hr 0min.",
+              "WHY": "AVA’s middle half spans 90–90¢; SEI’s middle half spans 12–12¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AVA has book 89/90 and a recorded purchase at 89¢; SEI has book 11/12 and a standing 10¢ bid.",
+              "WHY": "AVA: This side was already bought, so no new bid was allowed; SEI: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "AVA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 87,
+              "corrected_open": 87.5,
+              "close": 91,
+              "recorded_floor": 89,
+              "P": 90,
+              "Q": 90,
+              "X": 1783851839.344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 83.68187887654658,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 91,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-3149"
+              },
+              "bid": null,
+              "filled": 89,
+              "decision": {
+                "order": 86,
+                "leg": "AVA",
+                "epoch": 1783851540,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI|ATLAS_GATE|1783851540",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-3137"
+                },
+                "Q": 90,
+                "X": 1783851540,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 49
+              },
+              "permission": null,
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1783851839.344,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 13,
+              "corrected_open": 13,
+              "close": 12,
+              "recorded_floor": 11,
+              "P": 12,
+              "Q": 12,
+              "X": 1783851839.344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 201.71667715333902,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3484"
+              },
+              "bid": 10,
+              "filled": null,
+              "decision": {
+                "order": 88,
+                "leg": "SEI",
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 10,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 12,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3484"
+                },
+                "Q": 12,
+                "X": 1783851839.344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "support": null,
+                "accountability_assumption": "b28611991ad5f96b27517d80df6e035901d733e1b9a9a341142769727f1f25a5",
+                "stage_index": 51
+              },
+              "permission": null,
+              "micro": {
+                "Q": 12,
+                "deadline_epoch": 1783851839.344,
+                "q25": 12,
+                "q75": 12,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783851840,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "AVA": true,
+          "SEI": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [
+          {
+            "leg": "AVA",
+            "epoch": 1783828974.987,
+            "cents": 89,
+            "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99",
+            "order_lineage_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+            "order_lineage_start_epoch": 1783813657.637,
+            "current_price_receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+            "current_price_start_epoch": 1783813657.637,
+            "order_lineage_age_minutes": 255.2891666650772,
+            "current_price_age_minutes": 255.2891666650772,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL12AVASEI",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "AVA",
+            "filled": true,
+            "fill_cents": 89,
+            "fill_epoch": 1783828974.987,
+            "fill_receipt": "d5b45f38-c824-79f7-f045-28de804e2d99",
+            "close_cents": 91,
+            "close_epoch": 1783851778.6,
+            "floor_cents": 89,
+            "offered_cents": 2,
+            "value_cents": 2,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SEI",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 12,
+            "close_epoch": 1783851839.3,
+            "floor_cents": 11,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 2,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "597d4eff5ebeb8b6945a3acd36b9c8484cda3c13dfc8f217cf32379d56071222",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+          "epoch": 1783813657.637,
+          "clock": "T−10hr 36min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AVA is strengthening; SEI is weakening.",
+              "WHY": "AVA trades at 90¢ against its 87¢ opening anchor; SEI trades at 11¢ against its 13¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AVA carries 238 eligible past sides from first-price comparisons; SEI carries 286 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AVA calls 89¢ by T−5hr 45min; SEI calls 10¢ by T−6hr 47min.",
+              "WHY": "AVA’s middle half spans 88–89¢; SEI’s middle half spans 9–10¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AVA has book 88/90 and a standing 89¢ bid; SEI has book 11/12 and no standing bid.",
+              "WHY": "AVA: buying the strengthening side before it strengthens; predicted close 90; bid 89; reserve SEI max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100; SEI: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "AVA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 87,
+              "corrected_open": 87.5,
+              "close": 91,
+              "recorded_floor": 89,
+              "P": 90,
+              "Q": 89,
+              "X": 1783831151,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 238,
+              "ess": 80.97543814417317,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 88,
+                "ask_cents": 90,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-327"
+              },
+              "bid": 89,
+              "filled": null,
+              "decision": {
+                "order": 48,
+                "leg": "AVA",
+                "epoch": 1783813657.637,
+                "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 89,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve SEI max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 88,
+                  "ask_cents": 90,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-327"
+                },
+                "Q": 89,
+                "X": 1783831151,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "stage_index": 24
+              },
+              "permission": {
+                "ordinal": 24,
+                "epoch": 1783813657.637,
+                "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "id": "AVA",
+                "old": null,
+                "proposed": 89,
+                "posted": 89,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.013110117244354002,
+                      "LATE_BREAK_UP": 0.05925520766902897,
+                      "LATE_BREAK_DOWN": 0.03382433840305987,
+                      "DRIFT_UP": 0.2635158948307491,
+                      "ROUND_TRIP": 1.2429857949082628,
+                      "QUIET_WOBBLE": 1.4933532807664338,
+                      "DRIFT_DOWN": 0.012113995357254288,
+                      "ONE_STEP_UP": 0.36613196102928025,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.03963294551695254,
+                      "EARLY_SET_UP": 1.002050650143868,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.19629654191358412
+                    },
+                    "position": 0.00762105329119744,
+                    "epoch": 1783809592.4434807,
+                    "minutes_to_bell": 704.1259419878323,
+                    "open": true,
+                    "member_count": 58,
+                    "ess": 15.957649311560253,
+                    "weight_sum": 1.4933532807664338,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 10,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 10,
+                      "climber_forecast_close": 90,
+                      "mirror_completion_cost": 10,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 90; bid 89; reserve SEI max(late floor 10, 100 - climber close 90 = 10) = 10; views differ by 0c (floor minus mirror); 89 + 10 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "AVA",
+                    "faller": "SEI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 12,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 11,
+                    "ask": 12,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "AVA": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 80.97543814417317,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 238
+                  },
+                  "SEI": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 93.53586670459309,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 286
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.013110117244354002,
+                    "LATE_BREAK_UP": 0.05925520766902897,
+                    "LATE_BREAK_DOWN": 0.03382433840305987,
+                    "DRIFT_UP": 0.2635158948307491,
+                    "ROUND_TRIP": 1.2429857949082628,
+                    "QUIET_WOBBLE": 1.4933532807664338,
+                    "DRIFT_DOWN": 0.012113995357254288,
+                    "ONE_STEP_UP": 0.36613196102928025,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.03963294551695254,
+                    "EARLY_SET_UP": 1.002050650143868,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.19629654191358412
+                  },
+                  "position": 0.00762105329119744,
+                  "epoch": 1783809592.4434807,
+                  "minutes_to_bell": 704.1259419878323,
+                  "open": true,
+                  "member_count": 58,
+                  "ess": 15.957649311560253,
+                  "weight_sum": 1.4933532807664338,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 89,
+                "deadline_epoch": 1783831151,
+                "q25": 88,
+                "q75": 89,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 89,
+                "floor_witness": {
+                  "epoch": 1783828974.987,
+                  "price": 89,
+                  "size": 29.12,
+                  "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783828974.987,
+                  "price": 89,
+                  "size": 29.12,
+                  "receipt": "d5b45f38-c824-79f7-f045-28de804e2d99"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SEI": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 13,
+              "corrected_open": 13,
+              "close": 12,
+              "recorded_floor": 11,
+              "P": 11,
+              "Q": 10,
+              "X": 1783827391.341573,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 286,
+              "ess": 93.53586670459309,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 11,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-291"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 49,
+                "leg": "SEI",
+                "epoch": 1783813657.637,
+                "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve AVA max(close 90, ask 90) = 90"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 11,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-291"
+                },
+                "Q": 10,
+                "X": 1783827391.341573,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "stage_index": 24
+              },
+              "permission": {
+                "ordinal": 24,
+                "epoch": 1783813657.637,
+                "receipt": "343136f4-944d-68dc-a088-87b20f10fd03",
+                "id": "SEI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "FALLER",
+                  "intended": 10,
+                  "hand_level": 10,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 11,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.08479133487434132,
+                      "LATE_BREAK_UP": 0.015603845445323342,
+                      "DRIFT_DOWN": 0.4262391651951071,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 1.7938662028155399,
+                      "ROUND_TRIP": 0.7205578474539014,
+                      "ONE_STEP_DOWN": 0.43516976981372296,
+                      "EARLY_SET_DOWN": 1.5625070789364746,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0.2462629736362832,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.038889891241038844
+                    },
+                    "position": 0.09661817253700868,
+                    "epoch": 1783813381.2288413,
+                    "minutes_to_bell": 640.9795193115871,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 32.11086076295203,
+                    "weight_sum": 1.7938662028155399,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 90,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 90,
+                    "ask": 90,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 10; reserve AVA max(close 90, ask 90) = 90",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 10,
+                    "climber_forecast_close": 90,
+                    "mirror_completion_cost": 10,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "AVA",
+                    "faller": "SEI",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AVA": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 80.97543814417317,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 238
+                  },
+                  "SEI": {
+                    "forecast": 11,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 93.53586670459309,
+                    "role": "FALLER",
+                    "current": 11,
+                    "member_count": 286
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.08479133487434132,
+                    "LATE_BREAK_UP": 0.015603845445323342,
+                    "DRIFT_DOWN": 0.4262391651951071,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 1.7938662028155399,
+                    "ROUND_TRIP": 0.7205578474539014,
+                    "ONE_STEP_DOWN": 0.43516976981372296,
+                    "EARLY_SET_DOWN": 1.5625070789364746,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0.2462629736362832,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.038889891241038844
+                  },
+                  "position": 0.09661817253700868,
+                  "epoch": 1783813381.2288413,
+                  "minutes_to_bell": 640.9795193115871,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 32.11086076295203,
+                  "weight_sum": 1.7938662028155399,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 10,
+                "deadline_epoch": 1783827391.341573,
+                "q25": 9,
+                "q75": 10,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 11,
+                "floor_witness": {
+                  "epoch": 1783813664.636,
+                  "price": 11,
+                  "size": 5,
+                  "receipt": "0aab2ba5-cc4f-5b59-220a-34d52b8fc7df"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-AVA-miss",
+          "label": "Last receipt before AVA missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "AVA",
+          "outcome": "miss",
+          "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+          "epoch": 1783851839.344,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AVA is strengthening; SEI is not yet directionally called.",
+              "WHY": "AVA trades at 90¢ against its 87¢ opening anchor; SEI trades at 12¢ against its 13¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AVA carries 300 eligible past sides from first-price comparisons; SEI carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AVA calls 90¢ by T−0hr 0min; SEI calls 12¢ by T−0hr 0min.",
+              "WHY": "AVA’s middle half spans 90–90¢; SEI’s middle half spans 12–12¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AVA has book 89/90 and no standing bid; SEI has book 11/12 and no standing bid.",
+              "WHY": "AVA: The counterpart reservation did not leave a permitted discount; SEI: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "AVA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 87,
+              "corrected_open": 87.5,
+              "close": 91,
+              "recorded_floor": 89,
+              "P": 90,
+              "Q": 90,
+              "X": 1783851839.344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 83.68187887654658,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 91,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-3149"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 100,
+                "leg": "AVA",
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 90; reserve SEI max(close 12, ask 12) = 12"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 91,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-3149"
+                },
+                "Q": 90,
+                "X": 1783851839.344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "stage_index": 51
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "id": "AVA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.2438877137864724,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_UP": 0.8352207459981781,
+                      "ROUND_TRIP": 1.0730830628869197,
+                      "QUIET_WOBBLE": 1.50214626412437,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.8336836080319754,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.03963294551695254,
+                      "EARLY_SET_UP": 1.0638560333772182,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.4783037889858295
+                    },
+                    "position": 0.013708275042402858,
+                    "epoch": 1783809851.588685,
+                    "minutes_to_bell": 699.8068552494049,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 32.82159438123681,
+                    "weight_sum": 1.50214626412437,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 12,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 12,
+                    "ask": 12,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 90; reserve SEI max(close 12, ask 12) = 12",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AVA": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 83.68187887654658,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 300
+                  },
+                  "SEI": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 201.71667715333902,
+                    "role": "NOT_CALLABLE",
+                    "current": 12,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.2438877137864724,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_UP": 0.8352207459981781,
+                    "ROUND_TRIP": 1.0730830628869197,
+                    "QUIET_WOBBLE": 1.50214626412437,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.8336836080319754,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.03963294551695254,
+                    "EARLY_SET_UP": 1.0638560333772182,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.4783037889858295
+                  },
+                  "position": 0.013708275042402858,
+                  "epoch": 1783809851.588685,
+                  "minutes_to_bell": 699.8068552494049,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 32.82159438123681,
+                  "weight_sum": 1.50214626412437,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1783851839.344,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 13,
+              "corrected_open": 13,
+              "close": 12,
+              "recorded_floor": 11,
+              "P": 12,
+              "Q": 12,
+              "X": 1783851839.344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 201.71667715333902,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3484"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 101,
+                "leg": "SEI",
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 12; reserve AVA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 12,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3484"
+                },
+                "Q": 12,
+                "X": 1783851839.344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "stage_index": 51
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "id": "SEI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 12,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.275615490950225,
+                      "LATE_BREAK_DOWN": 0.2674138085198952,
+                      "LATE_BREAK_UP": 0.4388960223958245,
+                      "DRIFT_DOWN": 0.5110073307546368,
+                      "DRIFT_UP": 0.5102939971989159,
+                      "QUIET_WOBBLE": 5.649271095663959,
+                      "ROUND_TRIP": 2.0687134963069336,
+                      "ONE_STEP_DOWN": 1.0637577668076026,
+                      "EARLY_SET_DOWN": 1.847395925388364,
+                      "EARLY_SET_UP": 0.164833293624069,
+                      "SLEEPER": 1.3746538301930569,
+                      "GRIND_WOBBLE_UP": 0.04383980364283369,
+                      "GRIND_WOBBLE_DOWN": 0.053089822632001446
+                    },
+                    "position": 0.12222982216142271,
+                    "epoch": 1783814471.567989,
+                    "minutes_to_bell": 622.8072001814842,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 74.59268981587695,
+                    "weight_sum": 5.649271095663959,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 12; reserve AVA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AVA": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 83.68187887654658,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 300
+                  },
+                  "SEI": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 201.71667715333902,
+                    "role": "NOT_CALLABLE",
+                    "current": 12,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.275615490950225,
+                    "LATE_BREAK_DOWN": 0.2674138085198952,
+                    "LATE_BREAK_UP": 0.4388960223958245,
+                    "DRIFT_DOWN": 0.5110073307546368,
+                    "DRIFT_UP": 0.5102939971989159,
+                    "QUIET_WOBBLE": 5.649271095663959,
+                    "ROUND_TRIP": 2.0687134963069336,
+                    "ONE_STEP_DOWN": 1.0637577668076026,
+                    "EARLY_SET_DOWN": 1.847395925388364,
+                    "EARLY_SET_UP": 0.164833293624069,
+                    "SLEEPER": 1.3746538301930569,
+                    "GRIND_WOBBLE_UP": 0.04383980364283369,
+                    "GRIND_WOBBLE_DOWN": 0.053089822632001446
+                  },
+                  "position": 0.12222982216142271,
+                  "epoch": 1783814471.567989,
+                  "minutes_to_bell": 622.8072001814842,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 74.59268981587695,
+                  "weight_sum": 5.649271095663959,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 12,
+                "deadline_epoch": 1783851839.344,
+                "q25": 12,
+                "q75": 12,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783851840,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SEI-miss",
+          "label": "Last receipt before SEI missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "SEI",
+          "outcome": "miss",
+          "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+          "epoch": 1783851839.344,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AVA is strengthening; SEI is not yet directionally called.",
+              "WHY": "AVA trades at 90¢ against its 87¢ opening anchor; SEI trades at 12¢ against its 13¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AVA carries 300 eligible past sides from first-price comparisons; SEI carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AVA calls 90¢ by T−0hr 0min; SEI calls 12¢ by T−0hr 0min.",
+              "WHY": "AVA’s middle half spans 90–90¢; SEI’s middle half spans 12–12¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AVA has book 89/90 and no standing bid; SEI has book 11/12 and no standing bid.",
+              "WHY": "AVA: The counterpart reservation did not leave a permitted discount; SEI: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "AVA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 87,
+              "corrected_open": 87.5,
+              "close": 91,
+              "recorded_floor": 89,
+              "P": 90,
+              "Q": 90,
+              "X": 1783851839.344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 83.68187887654658,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 89,
+                "ask_cents": 90,
+                "last_trade_cents": 91,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-3149"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 100,
+                "leg": "AVA",
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 90; reserve SEI max(close 12, ask 12) = 12"
+                },
+                "book": {
+                  "bid_cents": 89,
+                  "ask_cents": 90,
+                  "last_trade_cents": 91,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-AVA.csv.gz#row-3149"
+                },
+                "Q": 90,
+                "X": 1783851839.344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "stage_index": 51
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "id": "AVA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 89,
+                  "hand_level": 89,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 90,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.2438877137864724,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_UP": 0.8352207459981781,
+                      "ROUND_TRIP": 1.0730830628869197,
+                      "QUIET_WOBBLE": 1.50214626412437,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.8336836080319754,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.03963294551695254,
+                      "EARLY_SET_UP": 1.0638560333772182,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.4783037889858295
+                    },
+                    "position": 0.013708275042402858,
+                    "epoch": 1783809851.588685,
+                    "minutes_to_bell": 699.8068552494049,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 32.82159438123681,
+                    "weight_sum": 1.50214626412437,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 12,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 12,
+                    "ask": 12,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 90; reserve SEI max(close 12, ask 12) = 12",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AVA": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 83.68187887654658,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 300
+                  },
+                  "SEI": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 201.71667715333902,
+                    "role": "NOT_CALLABLE",
+                    "current": 12,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.2438877137864724,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_UP": 0.8352207459981781,
+                    "ROUND_TRIP": 1.0730830628869197,
+                    "QUIET_WOBBLE": 1.50214626412437,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.8336836080319754,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.03963294551695254,
+                    "EARLY_SET_UP": 1.0638560333772182,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.4783037889858295
+                  },
+                  "position": 0.013708275042402858,
+                  "epoch": 1783809851.588685,
+                  "minutes_to_bell": 699.8068552494049,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 32.82159438123681,
+                  "weight_sum": 1.50214626412437,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 90,
+                "deadline_epoch": 1783851839.344,
+                "q25": 90,
+                "q75": 90,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SEI": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 13,
+              "corrected_open": 13,
+              "close": 12,
+              "recorded_floor": 11,
+              "P": 12,
+              "Q": 12,
+              "X": 1783851839.344,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 201.71667715333902,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 11,
+                "ask_cents": 12,
+                "last_trade_cents": 12,
+                "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3484"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 101,
+                "leg": "SEI",
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 12; reserve AVA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 11,
+                  "ask_cents": 12,
+                  "last_trade_cents": 12,
+                  "receipt": "KXWTAMATCH-26JUL12AVASEI-SEI.csv.gz#row-3484"
+                },
+                "Q": 12,
+                "X": 1783851839.344,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783809268,
+                "stage_index": 51
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1783851839.344,
+                "receipt": "eacfac90-fc9a-791f-331e-bc1e1f4ee5ee",
+                "id": "SEI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 12,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.275615490950225,
+                      "LATE_BREAK_DOWN": 0.2674138085198952,
+                      "LATE_BREAK_UP": 0.4388960223958245,
+                      "DRIFT_DOWN": 0.5110073307546368,
+                      "DRIFT_UP": 0.5102939971989159,
+                      "QUIET_WOBBLE": 5.649271095663959,
+                      "ROUND_TRIP": 2.0687134963069336,
+                      "ONE_STEP_DOWN": 1.0637577668076026,
+                      "EARLY_SET_DOWN": 1.847395925388364,
+                      "EARLY_SET_UP": 0.164833293624069,
+                      "SLEEPER": 1.3746538301930569,
+                      "GRIND_WOBBLE_UP": 0.04383980364283369,
+                      "GRIND_WOBBLE_DOWN": 0.053089822632001446
+                    },
+                    "position": 0.12222982216142271,
+                    "epoch": 1783814471.567989,
+                    "minutes_to_bell": 622.8072001814842,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 74.59268981587695,
+                    "weight_sum": 5.649271095663959,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 12; reserve AVA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AVA": {
+                    "forecast": 90,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 83.68187887654658,
+                    "role": "CLIMBER",
+                    "current": 90,
+                    "member_count": 300
+                  },
+                  "SEI": {
+                    "forecast": 12,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 201.71667715333902,
+                    "role": "NOT_CALLABLE",
+                    "current": 12,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.275615490950225,
+                    "LATE_BREAK_DOWN": 0.2674138085198952,
+                    "LATE_BREAK_UP": 0.4388960223958245,
+                    "DRIFT_DOWN": 0.5110073307546368,
+                    "DRIFT_UP": 0.5102939971989159,
+                    "QUIET_WOBBLE": 5.649271095663959,
+                    "ROUND_TRIP": 2.0687134963069336,
+                    "ONE_STEP_DOWN": 1.0637577668076026,
+                    "EARLY_SET_DOWN": 1.847395925388364,
+                    "EARLY_SET_UP": 0.164833293624069,
+                    "SLEEPER": 1.3746538301930569,
+                    "GRIND_WOBBLE_UP": 0.04383980364283369,
+                    "GRIND_WOBBLE_DOWN": 0.053089822632001446
+                  },
+                  "position": 0.12222982216142271,
+                  "epoch": 1783814471.567989,
+                  "minutes_to_bell": 622.8072001814842,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 74.59268981587695,
+                  "weight_sum": 5.649271095663959,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 12,
+                "deadline_epoch": 1783851839.344,
+                "q25": 12,
+                "q75": 12,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783851840,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "AVA": false,
+          "SEI": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 0,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL12AVASEI",
+        "category": "WTA_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "AVA",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 91,
+            "close_epoch": 1783851778.6,
+            "floor_cents": 89,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SEI",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 12,
+            "close_epoch": 1783851839.3,
+            "floor_cents": 11,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "597d4eff5ebeb8b6945a3acd36b9c8484cda3c13dfc8f217cf32379d56071222",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

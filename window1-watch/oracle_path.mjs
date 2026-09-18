@@ -82,12 +82,13 @@ export function buildOraclePath(face, { prints, bookReceipts, bookSources = [], 
     for (let i = 0; i < timeline.length; i++) {
       const state = selected[i]?.legs?.[leg], sentence = state?.sentence;
       const q = finite(sentence?.Q) ? sentence.Q : null, floor = floors[i];
-      const gap = q != null && floor != null ? q - floor : null;
-      const layer = state?.pool_cascade?.selected_layer ?? sentence?.authority_source ?? sentence?.q_author ?? null;
-      const ess = state?.pool_cascade?.layers?.[layer]?.ess ?? null;
+      const closeDestination = sentence?.handoff?.destination_kind === 'W1_CLOSE';
+      const gap = !closeDestination && q != null && floor != null ? q - floor : null;
+      const layer = sentence?.handoff ? sentence.authority_source ?? sentence.q_author : state?.pool_cascade?.selected_layer ?? sentence?.authority_source ?? sentence?.q_author ?? null;
+      const ess = sentence?.handoff ? sentence.handoff.ess : state?.pool_cascade?.layers?.[layer]?.ess ?? null;
       const renewal = renewals.get(`${timeline[i].receipt}|${leg}`) ?? null;
       const profile = { Q: q, perfect: floor, gap, layer, ess, renewal_status: renewal,
-        lines: [`Q ${fmt(q)}¢ · perfect ${fmt(floor)}¢ · gap ${gap > 0 ? "+" : ""}${fmt(gap)}¢`,
+        lines: [closeDestination ? `Close destination ${fmt(q)}¢ · floor-gap score inapplicable` : `Q ${fmt(q)}¢ · perfect ${fmt(floor)}¢ · gap ${gap > 0 ? "+" : ""}${fmt(gap)}¢`,
           `layer ${layer ?? SILENT} · ESS ${fmt(ess)}`, `renewal ${renewal ?? SILENT}`] };
       const key = JSON.stringify(profile);
       if (!profileMap.has(key)) { profileMap.set(key, profiles.length); profiles.push(profile); }
@@ -121,7 +122,7 @@ export function buildOraclePath(face, { prints, bookReceipts, bookSources = [], 
       widest_minutes_to_bell: widestMtb, receipt_count: timeline.length, comparable_receipts: gaps.length,
       missing_q_receipts: values.filter(v => profiles[v[0]].Q == null).length,
       no_future_print_receipts: floors.filter(f => f == null).length,
-      hud_line: `${leg} GAP: mean |Q − floor| from first tick ${fmt(mean)}¢ · at fill ${fmt(fillPoints[0]?.gap)}¢ · widest ${fmt(widest ? extent : null)}¢ at ${fmt(widestMtb)}m`,
+      hud_line: face.grade_applicability?.close_forecast_sides.includes(leg) ? `${leg} GAP: floor-only comparison inapplicable to close destinations; floor ruler retained.` : `${leg} GAP: mean |Q − floor| from first tick ${fmt(mean)}¢ · at fill ${fmt(fillPoints[0]?.gap)}¢ · widest ${fmt(widest ? extent : null)}¢ at ${fmt(widestMtb)}m`,
       path, fill_points: fillPoints, extent };
     detail.legs[leg] = { profiles, values };
   }

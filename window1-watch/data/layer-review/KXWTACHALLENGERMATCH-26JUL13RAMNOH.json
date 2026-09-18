@@ -1,0 +1,2055 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "c5720e12486885bd26da55ebac5974c9ae280197dac8983d34603d64dd9238ea",
+    "stage_cache_sha256": "44206ac78789d332540a5141ee01e9fdbb613e7b6a5e8e4345331f247b462869",
+    "mirror_projection_sha256": "ac9502df7f93b0a41db9ef14ad17d274ec09cb88e5312d6096bcc9f9df83d377",
+    "mirror_permissions_sha256": "60bea2e3b37e5c4d4e6467c7a2b2b48e84b36a713ae13fc64d934369a8b9a917",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "23a2c04ca1ec22e98639023ce6f63321f9d945f36d5c45d42b1876e2f05eca5c",
+      "row_number": 239,
+      "row_csv": "26JUL13RAMNOH,KXWTACHALLENGERMATCH-26JUL13RAMNOH,WTA_CHALL,1783912883,1783912883,1783955700,1783966200.0,NOH,RAM,1783913061,74.0,76,1783941228.7,77,1783955408.6,193.09,148.6,STILL,3.0,,,,,1783913061,26.0,25,1783952526.1,25,1783953973.9,54.0,13.5,STILL,-1.0,,,,,1783913061,,,1783956300.0,1783962609.0,1783956300.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783913061,1783955700,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783913061,
+      "span_end_epoch": 1783955700,
+      "bell_epoch": 1783956300,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1783956300,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "NOH": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 74,
+          "floor_cents": 76,
+          "floor_epoch": 1783941228.7,
+          "minutes_to_bell": 251.1883333325386,
+          "line": "NOH 76¢ @ 251.19m to bell",
+          "marker_label": "NOH FLOOR · RECORDED 76¢ @ 251.19m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 76¢ · 251m to bell",
+          "hover_note": "Recorded floor 76¢ printed here · 251m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "RAM": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 26,
+          "floor_cents": 25,
+          "floor_epoch": 1783952526.1,
+          "minutes_to_bell": 62.89833333492279,
+          "line": "RAM 25¢ @ 62.90m to bell",
+          "marker_label": "RAM FLOOR · RECORDED 25¢ @ 62.90m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 25¢ · 62m to bell",
+          "hover_note": "Recorded floor 25¢ printed here · 62m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "NOH",
+      "underdog_leg": "RAM",
+      "pair": {
+        "sum_cents": 101,
+        "discount_cents": -1,
+        "reason": null,
+        "line": "best capturable = 76 + 25 = 101¢",
+        "discount_line": "-1¢ under par",
+        "compact_line": "best capturable 101¢ · -1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL13RAMNOH",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1783912883",
+        "w1_left_epoch": "1783912883",
+        "w1_right_epoch": "1783955700",
+        "scheduled_start_epoch": "1783966200.0",
+        "legA": "NOH",
+        "legB": "RAM",
+        "legA_formation_end_epoch": "1783913061",
+        "legA_open_postformation_c": "74.0",
+        "legA_floor_c": "76",
+        "legA_floor_epoch": "1783941228.7",
+        "legA_close_c": "77",
+        "legA_close_epoch": "1783955408.6",
+        "legA_contracts": "193.09",
+        "legA_premium_usd": "148.6",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "3.0",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783913061",
+        "legB_open_postformation_c": "26.0",
+        "legB_floor_c": "25",
+        "legB_floor_epoch": "1783952526.1",
+        "legB_close_c": "25",
+        "legB_close_epoch": "1783953973.9",
+        "legB_contracts": "54.0",
+        "legB_premium_usd": "13.5",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-1.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783913061",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1783956300.0",
+        "kalshi_close_time_epoch": "1783962609.0",
+        "bell_epoch": "1783956300.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783913061",
+        "span_end_epoch": "1783955700",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL13RAMNOH.jsonl",
+      "sha256": "e1dfd2fcea128664bf71c21cbebdab6e64db842c0aba3dfb4bd4583b2c27aadc",
+      "raw_rows": 1595,
+      "accepted_rows": 14,
+      "start_epoch": 1783913061,
+      "end_epoch": 1783955700
+    }
+  },
+  "first_callable_receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "NOH": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+    "RAM": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+          "epoch": 1783953900,
+          "clock": "T−0hr 30min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "NOH is strengthening; RAM is not yet directionally called.",
+              "WHY": "NOH trades at 77¢ against its 74¢ opening anchor; RAM trades at 25¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "NOH carries 106 eligible past sides from first-price comparisons; RAM carries 417 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "NOH calls 77¢ by T−0hr 30min; RAM calls 25¢ by T−0hr 30min.",
+              "WHY": "NOH’s middle half spans 75–77¢; RAM’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "NOH has book 76/77 and no standing bid; RAM has book 24/25 and no standing bid.",
+              "WHY": "NOH: The desired bid could not be posted below the ask; RAM: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "NOH": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 77,
+              "recorded_floor": 76,
+              "P": 77,
+              "Q": 77,
+              "X": 1783953900,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 106,
+              "ess": 21.672178678018636,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-8983"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 66,
+                "leg": "NOH",
+                "epoch": 1783953900,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-8983"
+                },
+                "Q": 77,
+                "X": 1783953900,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 33
+              },
+              "permission": null,
+              "micro": {
+                "Q": 77,
+                "deadline_epoch": 1783953900,
+                "q25": 75,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 77,
+                "floor_witness": {
+                  "epoch": 1783954272.218,
+                  "price": 77,
+                  "size": 3.19,
+                  "receipt": "c0129e94-7940-45c4-f7f7-f96fb1c2075d"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "RAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 25,
+              "recorded_floor": 25,
+              "P": 25,
+              "Q": 25,
+              "X": 1783953900,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 417,
+              "ess": 96.67064809507431,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2448"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "RAM",
+                "epoch": 1783953900,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2448"
+                },
+                "Q": 25,
+                "X": 1783953900,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 33
+              },
+              "permission": null,
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783953900,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 25,
+                "floor_witness": {
+                  "epoch": 1783953973.887,
+                  "price": 25,
+                  "size": 50,
+                  "receipt": "25addc17-7e24-6fb6-0ef6-e3019e42bc9e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-NOH-miss",
+          "label": "Last receipt before NOH missed at the bell",
+          "arm": "D",
+          "focus_leg": "NOH",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+          "epoch": 1783955675.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "NOH is strengthening; RAM is not yet directionally called.",
+              "WHY": "NOH trades at 77¢ against its 74¢ opening anchor; RAM trades at 25¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "NOH carries 115 eligible past sides from first-price comparisons; RAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "NOH calls 77¢ by T−0hr 0min; RAM calls 25¢ by T−0hr 0min.",
+              "WHY": "NOH’s middle half spans 77–77¢; RAM’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "NOH has book 76/77 and no standing bid; RAM has book 24/25 and no standing bid.",
+              "WHY": "NOH: The desired bid could not be posted below the ask; RAM: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "NOH": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 77,
+              "recorded_floor": 76,
+              "P": 77,
+              "Q": 77,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 115,
+              "ess": 25.607165361710944,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "NOH",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+                },
+                "Q": 77,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 77,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 77,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 25,
+              "recorded_floor": 25,
+              "P": 25,
+              "Q": 25,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 107.01456973163847,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 75,
+                "leg": "RAM",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+                },
+                "Q": 25,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783955700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RAM-miss",
+          "label": "Last receipt before RAM missed at the bell",
+          "arm": "D",
+          "focus_leg": "RAM",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+          "epoch": 1783955675.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "NOH is strengthening; RAM is not yet directionally called.",
+              "WHY": "NOH trades at 77¢ against its 74¢ opening anchor; RAM trades at 25¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "NOH carries 115 eligible past sides from first-price comparisons; RAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "NOH calls 77¢ by T−0hr 0min; RAM calls 25¢ by T−0hr 0min.",
+              "WHY": "NOH’s middle half spans 77–77¢; RAM’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "NOH has book 76/77 and no standing bid; RAM has book 24/25 and no standing bid.",
+              "WHY": "NOH: The desired bid could not be posted below the ask; RAM: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "NOH": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 77,
+              "recorded_floor": 76,
+              "P": 77,
+              "Q": 77,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 115,
+              "ess": 25.607165361710944,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "NOH",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+                },
+                "Q": 77,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 77,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 77,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 25,
+              "recorded_floor": 25,
+              "P": 25,
+              "Q": 25,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 107.01456973163847,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 75,
+                "leg": "RAM",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+                },
+                "Q": 25,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 38
+              },
+              "permission": null,
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783955700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "NOH": false,
+          "RAM": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": -1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "NOH",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 77,
+            "close_epoch": 1783955408.6,
+            "floor_cents": 76,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RAM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 25,
+            "close_epoch": 1783953973.9,
+            "floor_cents": 25,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "23a2c04ca1ec22e98639023ce6f63321f9d945f36d5c45d42b1876e2f05eca5c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+          "epoch": 1783953900,
+          "clock": "T−0hr 30min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "NOH is strengthening; RAM is not yet directionally called.",
+              "WHY": "NOH trades at 77¢ against its 74¢ opening anchor; RAM trades at 25¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "NOH carries 106 eligible past sides from first-price comparisons; RAM carries 417 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "NOH calls 77¢ by T−0hr 30min; RAM calls 25¢ by T−0hr 30min.",
+              "WHY": "NOH’s middle half spans 75–77¢; RAM’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "NOH has book 76/77 and no standing bid; RAM has book 24/25 and no standing bid.",
+              "WHY": "NOH: The counterpart reservation did not leave a permitted discount; RAM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "NOH": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 77,
+              "recorded_floor": 76,
+              "P": 77,
+              "Q": 77,
+              "X": 1783953900,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 106,
+              "ess": 21.672178678018636,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-8983"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 66,
+                "leg": "NOH",
+                "epoch": 1783953900,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 77; reserve RAM max(close 25, ask 25) = 25"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-8983"
+                },
+                "Q": 77,
+                "X": 1783953900,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1783953900,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+                "id": "NOH",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 76,
+                  "hand_level": 76,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 77,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.0836456456365772,
+                      "ROUND_TRIP": 0.19151158144978778,
+                      "LATE_BREAK_UP": 0.23411535388489813,
+                      "DRIFT_UP": 0.03695330998800348,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.0983983385142899,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 0.7425995262035322,
+                      "SLEEPER": 0.09579624469548405,
+                      "EARLY_SET_UP": 0.05972009889511517,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.16010197578075208,
+                    "epoch": 1783919887.5881453,
+                    "minutes_to_bell": 596.8735309123992,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 7.4068113761303875,
+                    "weight_sum": 0.7425995262035322,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 25,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 25,
+                    "ask": 25,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 77; reserve RAM max(close 25, ask 25) = 25",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "NOH": {
+                    "forecast": 77,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 21.672178678018636,
+                    "role": "CLIMBER",
+                    "current": 77,
+                    "member_count": 106
+                  },
+                  "RAM": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 96.67064809507431,
+                    "role": "NOT_CALLABLE",
+                    "current": 25,
+                    "member_count": 417
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.0836456456365772,
+                    "ROUND_TRIP": 0.19151158144978778,
+                    "LATE_BREAK_UP": 0.23411535388489813,
+                    "DRIFT_UP": 0.03695330998800348,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.0983983385142899,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.7425995262035322,
+                    "SLEEPER": 0.09579624469548405,
+                    "EARLY_SET_UP": 0.05972009889511517,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.16010197578075208,
+                  "epoch": 1783919887.5881453,
+                  "minutes_to_bell": 596.8735309123992,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 7.4068113761303875,
+                  "weight_sum": 0.7425995262035322,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 77,
+                "deadline_epoch": 1783953900,
+                "q25": 75,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 77,
+                "floor_witness": {
+                  "epoch": 1783954272.218,
+                  "price": 77,
+                  "size": 3.19,
+                  "receipt": "c0129e94-7940-45c4-f7f7-f96fb1c2075d"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "RAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 25,
+              "recorded_floor": 25,
+              "P": 25,
+              "Q": 25,
+              "X": 1783953900,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 417,
+              "ess": 96.67064809507431,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2448"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "RAM",
+                "epoch": 1783953900,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 25; reserve NOH max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2448"
+                },
+                "Q": 25,
+                "X": 1783953900,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "stage_index": 33
+              },
+              "permission": {
+                "ordinal": 33,
+                "epoch": 1783953900,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH|ATLAS_GATE|1783953900",
+                "id": "RAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 25,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.18709833950973653,
+                      "LATE_BREAK_DOWN": 0.26416202871865185,
+                      "DRIFT_UP": 0.01686528416947195,
+                      "ONE_STEP_DOWN": 0.18436940676304525,
+                      "ROUND_TRIP": 0.5030980149016097,
+                      "ONE_STEP_UP": 0.04379756583008037,
+                      "EARLY_SET_UP": 0.007714117774694628,
+                      "QUIET_WOBBLE": 5.406566759542669,
+                      "SLEEPER": 0.7081920665904671,
+                      "GRIND_WOBBLE_UP": 0.02204780660595287,
+                      "EARLY_SET_DOWN": 0.07968640528094098,
+                      "DRIFT_DOWN": 0.022426870208738778
+                    },
+                    "position": 0.16474358974358974,
+                    "epoch": 1783920085.501923,
+                    "minutes_to_bell": 593.5749679485957,
+                    "open": true,
+                    "member_count": 276,
+                    "ess": 61.30326041821387,
+                    "weight_sum": 5.406566759542669,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 25; reserve NOH max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "NOH": {
+                    "forecast": 77,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 21.672178678018636,
+                    "role": "CLIMBER",
+                    "current": 77,
+                    "member_count": 106
+                  },
+                  "RAM": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 96.67064809507431,
+                    "role": "NOT_CALLABLE",
+                    "current": 25,
+                    "member_count": 417
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.18709833950973653,
+                    "LATE_BREAK_DOWN": 0.26416202871865185,
+                    "DRIFT_UP": 0.01686528416947195,
+                    "ONE_STEP_DOWN": 0.18436940676304525,
+                    "ROUND_TRIP": 0.5030980149016097,
+                    "ONE_STEP_UP": 0.04379756583008037,
+                    "EARLY_SET_UP": 0.007714117774694628,
+                    "QUIET_WOBBLE": 5.406566759542669,
+                    "SLEEPER": 0.7081920665904671,
+                    "GRIND_WOBBLE_UP": 0.02204780660595287,
+                    "EARLY_SET_DOWN": 0.07968640528094098,
+                    "DRIFT_DOWN": 0.022426870208738778
+                  },
+                  "position": 0.16474358974358974,
+                  "epoch": 1783920085.501923,
+                  "minutes_to_bell": 593.5749679485957,
+                  "open": true,
+                  "member_count": 276,
+                  "ess": 61.30326041821387,
+                  "weight_sum": 5.406566759542669,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783953900,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 25,
+                "floor_witness": {
+                  "epoch": 1783953973.887,
+                  "price": 25,
+                  "size": 50,
+                  "receipt": "25addc17-7e24-6fb6-0ef6-e3019e42bc9e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-NOH-miss",
+          "label": "Last receipt before NOH missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "NOH",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+          "epoch": 1783955675.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "NOH is strengthening; RAM is not yet directionally called.",
+              "WHY": "NOH trades at 77¢ against its 74¢ opening anchor; RAM trades at 25¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "NOH carries 115 eligible past sides from first-price comparisons; RAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "NOH calls 77¢ by T−0hr 0min; RAM calls 25¢ by T−0hr 0min.",
+              "WHY": "NOH’s middle half spans 77–77¢; RAM’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "NOH has book 76/77 and no standing bid; RAM has book 24/25 and no standing bid.",
+              "WHY": "NOH: The counterpart reservation did not leave a permitted discount; RAM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "NOH": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 77,
+              "recorded_floor": 76,
+              "P": 77,
+              "Q": 77,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 115,
+              "ess": 25.607165361710944,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "NOH",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 77; reserve RAM max(close 25, ask 25) = 25"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+                },
+                "Q": 77,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "stage_index": 38
+              },
+              "permission": {
+                "ordinal": 37,
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "id": "NOH",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 76,
+                  "hand_level": 76,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 77,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.20892822670104097,
+                      "LATE_BREAK_UP": 0.32590043158774945,
+                      "DRIFT_UP": 0.03695330998800348,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.1582841598769029,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.0722610598909732,
+                      "SLEEPER": 0.08934141377965607,
+                      "EARLY_SET_UP": 0.05972009889511517,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.16010197578075208,
+                    "epoch": 1783919887.5881453,
+                    "minutes_to_bell": 596.8735309123992,
+                    "open": true,
+                    "member_count": 58,
+                    "ess": 10.638136100322546,
+                    "weight_sum": 1.0722610598909732,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 25,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 25,
+                    "ask": 25,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 77; reserve RAM max(close 25, ask 25) = 25",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "NOH": {
+                    "forecast": 77,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 25.607165361710944,
+                    "role": "CLIMBER",
+                    "current": 77,
+                    "member_count": 115
+                  },
+                  "RAM": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 107.01456973163847,
+                    "role": "NOT_CALLABLE",
+                    "current": 25,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.20892822670104097,
+                    "LATE_BREAK_UP": 0.32590043158774945,
+                    "DRIFT_UP": 0.03695330998800348,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.1582841598769029,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.0722610598909732,
+                    "SLEEPER": 0.08934141377965607,
+                    "EARLY_SET_UP": 0.05972009889511517,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.16010197578075208,
+                  "epoch": 1783919887.5881453,
+                  "minutes_to_bell": 596.8735309123992,
+                  "open": true,
+                  "member_count": 58,
+                  "ess": 10.638136100322546,
+                  "weight_sum": 1.0722610598909732,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 77,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 77,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 25,
+              "recorded_floor": 25,
+              "P": 25,
+              "Q": 25,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 107.01456973163847,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 75,
+                "leg": "RAM",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 25; reserve NOH max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+                },
+                "Q": 25,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "stage_index": 38
+              },
+              "permission": {
+                "ordinal": 37,
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "id": "RAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 25,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4404789524982241,
+                      "LATE_BREAK_DOWN": 0.26416202871865185,
+                      "DRIFT_UP": 0.030030805239238796,
+                      "ONE_STEP_DOWN": 0.19921244957257367,
+                      "ROUND_TRIP": 0.671248097612669,
+                      "ONE_STEP_UP": 0.04379756583008037,
+                      "EARLY_SET_UP": 0.007714117774694628,
+                      "QUIET_WOBBLE": 5.59100048463841,
+                      "SLEEPER": 1.8107964371736178,
+                      "GRIND_WOBBLE_UP": 0.02204780660595287,
+                      "EARLY_SET_DOWN": 0.07968640528094098,
+                      "DRIFT_DOWN": 0.07925364127695006
+                    },
+                    "position": 0.16474358974358974,
+                    "epoch": 1783920085.501923,
+                    "minutes_to_bell": 593.5749679485957,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 64.866257610292,
+                    "weight_sum": 5.59100048463841,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 25; reserve NOH max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "NOH": {
+                    "forecast": 77,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 25.607165361710944,
+                    "role": "CLIMBER",
+                    "current": 77,
+                    "member_count": 115
+                  },
+                  "RAM": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 107.01456973163847,
+                    "role": "NOT_CALLABLE",
+                    "current": 25,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4404789524982241,
+                    "LATE_BREAK_DOWN": 0.26416202871865185,
+                    "DRIFT_UP": 0.030030805239238796,
+                    "ONE_STEP_DOWN": 0.19921244957257367,
+                    "ROUND_TRIP": 0.671248097612669,
+                    "ONE_STEP_UP": 0.04379756583008037,
+                    "EARLY_SET_UP": 0.007714117774694628,
+                    "QUIET_WOBBLE": 5.59100048463841,
+                    "SLEEPER": 1.8107964371736178,
+                    "GRIND_WOBBLE_UP": 0.02204780660595287,
+                    "EARLY_SET_DOWN": 0.07968640528094098,
+                    "DRIFT_DOWN": 0.07925364127695006
+                  },
+                  "position": 0.16474358974358974,
+                  "epoch": 1783920085.501923,
+                  "minutes_to_bell": 593.5749679485957,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 64.866257610292,
+                  "weight_sum": 5.59100048463841,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783955700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RAM-miss",
+          "label": "Last receipt before RAM missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "RAM",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+          "epoch": 1783955675.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "NOH is strengthening; RAM is not yet directionally called.",
+              "WHY": "NOH trades at 77¢ against its 74¢ opening anchor; RAM trades at 25¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "NOH carries 115 eligible past sides from first-price comparisons; RAM carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "NOH calls 77¢ by T−0hr 0min; RAM calls 25¢ by T−0hr 0min.",
+              "WHY": "NOH’s middle half spans 77–77¢; RAM’s middle half spans 25–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "NOH has book 76/77 and no standing bid; RAM has book 24/25 and no standing bid.",
+              "WHY": "NOH: The counterpart reservation did not leave a permitted discount; RAM: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "NOH": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 77,
+              "recorded_floor": 76,
+              "P": 77,
+              "Q": 77,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 115,
+              "ess": 25.607165361710944,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 76,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "NOH",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 77; reserve RAM max(close 25, ask 25) = 25"
+                },
+                "book": {
+                  "bid_cents": 76,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753"
+                },
+                "Q": 77,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "stage_index": 38
+              },
+              "permission": {
+                "ordinal": 37,
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "id": "NOH",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 76,
+                  "hand_level": 76,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 77,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0,
+                      "ROUND_TRIP": 0.20892822670104097,
+                      "LATE_BREAK_UP": 0.32590043158774945,
+                      "DRIFT_UP": 0.03695330998800348,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.1582841598769029,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 1.0722610598909732,
+                      "SLEEPER": 0.08934141377965607,
+                      "EARLY_SET_UP": 0.05972009889511517,
+                      "EARLY_SET_DOWN": 0
+                    },
+                    "position": 0.16010197578075208,
+                    "epoch": 1783919887.5881453,
+                    "minutes_to_bell": 596.8735309123992,
+                    "open": true,
+                    "member_count": 58,
+                    "ess": 10.638136100322546,
+                    "weight_sum": 1.0722610598909732,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 25,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 25,
+                    "ask": 25,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 77; reserve RAM max(close 25, ask 25) = 25",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "NOH": {
+                    "forecast": 77,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 25.607165361710944,
+                    "role": "CLIMBER",
+                    "current": 77,
+                    "member_count": 115
+                  },
+                  "RAM": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 107.01456973163847,
+                    "role": "NOT_CALLABLE",
+                    "current": 25,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0,
+                    "ROUND_TRIP": 0.20892822670104097,
+                    "LATE_BREAK_UP": 0.32590043158774945,
+                    "DRIFT_UP": 0.03695330998800348,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.1582841598769029,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 1.0722610598909732,
+                    "SLEEPER": 0.08934141377965607,
+                    "EARLY_SET_UP": 0.05972009889511517,
+                    "EARLY_SET_DOWN": 0
+                  },
+                  "position": 0.16010197578075208,
+                  "epoch": 1783919887.5881453,
+                  "minutes_to_bell": 596.8735309123992,
+                  "open": true,
+                  "member_count": 58,
+                  "ess": 10.638136100322546,
+                  "weight_sum": 1.0722610598909732,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 77,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 77,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RAM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 25,
+              "recorded_floor": 25,
+              "P": 25,
+              "Q": 25,
+              "X": 1783955675.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 107.01456973163847,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 75,
+                "leg": "RAM",
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 25; reserve NOH max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-RAM.csv.gz#row-2707"
+                },
+                "Q": 25,
+                "X": 1783955675.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783913061,
+                "stage_index": 38
+              },
+              "permission": {
+                "ordinal": 37,
+                "epoch": 1783955675.000002,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL13RAMNOH-NOH.csv.gz#row-9753",
+                "id": "RAM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 25,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4404789524982241,
+                      "LATE_BREAK_DOWN": 0.26416202871865185,
+                      "DRIFT_UP": 0.030030805239238796,
+                      "ONE_STEP_DOWN": 0.19921244957257367,
+                      "ROUND_TRIP": 0.671248097612669,
+                      "ONE_STEP_UP": 0.04379756583008037,
+                      "EARLY_SET_UP": 0.007714117774694628,
+                      "QUIET_WOBBLE": 5.59100048463841,
+                      "SLEEPER": 1.8107964371736178,
+                      "GRIND_WOBBLE_UP": 0.02204780660595287,
+                      "EARLY_SET_DOWN": 0.07968640528094098,
+                      "DRIFT_DOWN": 0.07925364127695006
+                    },
+                    "position": 0.16474358974358974,
+                    "epoch": 1783920085.501923,
+                    "minutes_to_bell": 593.5749679485957,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 64.866257610292,
+                    "weight_sum": 5.59100048463841,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 25; reserve NOH max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "NOH": {
+                    "forecast": 77,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 25.607165361710944,
+                    "role": "CLIMBER",
+                    "current": 77,
+                    "member_count": 115
+                  },
+                  "RAM": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 107.01456973163847,
+                    "role": "NOT_CALLABLE",
+                    "current": 25,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4404789524982241,
+                    "LATE_BREAK_DOWN": 0.26416202871865185,
+                    "DRIFT_UP": 0.030030805239238796,
+                    "ONE_STEP_DOWN": 0.19921244957257367,
+                    "ROUND_TRIP": 0.671248097612669,
+                    "ONE_STEP_UP": 0.04379756583008037,
+                    "EARLY_SET_UP": 0.007714117774694628,
+                    "QUIET_WOBBLE": 5.59100048463841,
+                    "SLEEPER": 1.8107964371736178,
+                    "GRIND_WOBBLE_UP": 0.02204780660595287,
+                    "EARLY_SET_DOWN": 0.07968640528094098,
+                    "DRIFT_DOWN": 0.07925364127695006
+                  },
+                  "position": 0.16474358974358974,
+                  "epoch": 1783920085.501923,
+                  "minutes_to_bell": 593.5749679485957,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 64.866257610292,
+                  "weight_sum": 5.59100048463841,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1783955675.000002,
+                "q25": 25,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783955700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "NOH": false,
+          "RAM": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": -1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "NOH",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 77,
+            "close_epoch": 1783955408.6,
+            "floor_cents": 76,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RAM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 25,
+            "close_epoch": 1783953973.9,
+            "floor_cents": 25,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "23a2c04ca1ec22e98639023ce6f63321f9d945f36d5c45d42b1876e2f05eca5c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

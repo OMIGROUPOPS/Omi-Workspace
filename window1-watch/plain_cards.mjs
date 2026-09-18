@@ -1,5 +1,6 @@
 // Builder-only text: FIELDS.md is the translation table, not executable instructions.
 import fs from "node:fs";
+import {handoffDisplay} from './handoff_display.mjs';
 const document = fs.readFileSync(
   new URL("./FIELDS.md", import.meta.url),
   "utf8",
@@ -97,6 +98,8 @@ export function plainCard(a) {
       : a.kind === "REMOVE"
         ? "Pulled bid"
         : `Moved bid ${cents(a.old_cents)} → ${cents(a.new_cents)}`;
+  const handoff = handoffDisplay(a.fill?.placing_sentence ?? a.sentence);
+  if (handoff) return [`${a.leg} · ${action}`, handoff.destination_line, handoff.entry_line, handoff.reason_line];
   if (a.fill) {
     const f = a.fill,
       delta = f.floor_difference_cents;

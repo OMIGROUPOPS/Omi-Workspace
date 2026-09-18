@@ -1,0 +1,2156 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL13LEPIBR",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "251f839fb5681804e7a1996ff1dbdc24183de2a385369732b8019c380272634e",
+    "stage_cache_sha256": "33aa234de8e6aac1b3ef46c9584fc229016048ac54bbba8830b54eb71dc7b287",
+    "mirror_projection_sha256": "738bf986f519d1b7cb51ad73b318f3e195d0af0bf56107976ce296ff7efc7204",
+    "mirror_permissions_sha256": "bfbebcc4fa8129e45c7ede22cc099d9b42e7e178e1e6375152d3aecf1d4a7591",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "5fbffb0c8f9799b4e16d461e89fbb09f488544a18ad6d887fe57b0e03ee6bb30",
+      "row_number": 212,
+      "row_csv": "26JUL13LEPIBR,KXWTAMATCH-26JUL13LEPIBR,WTA_MAIN,1783883791,1783883791,1783944000,1783954800.0,IBR,LEP,1783891806,44.0,43,1783913207.8,44,1783943982.2,2658.14,1177.24,STILL,0.0,1783913214,,,,1783891806,56.0,55,1783942702.8,57,1783943933.2,8646.89,4927.03,STILL,1.0,1783913216,56,1783922243.7,PRE_BELL_VALID,1783891806,1783944000,,,1783950020.0,1783944000,MACHINE_RECEIPT,\"EXACT (6 receipts, zero spread)\",1783891806,1783944000,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783891806,
+      "span_end_epoch": 1783944000,
+      "bell_epoch": 1783944000,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1783944000,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "IBR": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 44,
+          "floor_cents": 43,
+          "floor_epoch": 1783913207.8,
+          "minutes_to_bell": 513.203333334128,
+          "line": "IBR 43¢ @ 513.20m to bell",
+          "marker_label": "IBR FLOOR · RECORDED 43¢ @ 513.20m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 43¢ · 513m to bell",
+          "hover_note": "Recorded floor 43¢ printed here · 513m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "LEP": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 56,
+          "floor_cents": 55,
+          "floor_epoch": 1783942702.8,
+          "minutes_to_bell": 21.62000000079473,
+          "line": "LEP 55¢ @ 21.62m to bell",
+          "marker_label": "LEP FLOOR · RECORDED 55¢ @ 21.62m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 55¢ · 21m to bell",
+          "hover_note": "Recorded floor 55¢ printed here · 21m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "LEP",
+      "underdog_leg": "IBR",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 55 + 43 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL13LEPIBR",
+        "event_id": "KXWTAMATCH-26JUL13LEPIBR",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1783883791",
+        "w1_left_epoch": "1783883791",
+        "w1_right_epoch": "1783944000",
+        "scheduled_start_epoch": "1783954800.0",
+        "legA": "IBR",
+        "legB": "LEP",
+        "legA_formation_end_epoch": "1783891806",
+        "legA_open_postformation_c": "44.0",
+        "legA_floor_c": "43",
+        "legA_floor_epoch": "1783913207.8",
+        "legA_close_c": "44",
+        "legA_close_epoch": "1783943982.2",
+        "legA_contracts": "2658.14",
+        "legA_premium_usd": "1177.24",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "0.0",
+        "legA_us_first_post_epoch": "1783913214",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783891806",
+        "legB_open_postformation_c": "56.0",
+        "legB_floor_c": "55",
+        "legB_floor_epoch": "1783942702.8",
+        "legB_close_c": "57",
+        "legB_close_epoch": "1783943933.2",
+        "legB_contracts": "8646.89",
+        "legB_premium_usd": "4927.03",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "1.0",
+        "legB_us_first_post_epoch": "1783913216",
+        "legB_us_fill_c": "56",
+        "legB_us_fill_epoch": "1783922243.7",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783891806",
+        "bell_machine_epoch": "1783944000",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1783950020.0",
+        "bell_epoch": "1783944000",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (6 receipts, zero spread)",
+        "span_start_epoch": "1783891806",
+        "span_end_epoch": "1783944000",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL13LEPIBR.jsonl",
+      "sha256": "1e03e202a8977b7c887a9bb04f124a4199a321f4766ade400a60571f1799010b",
+      "raw_rows": 3168,
+      "accepted_rows": 142,
+      "start_epoch": 1783891806,
+      "end_epoch": 1783944000
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+  "first_both_directional_receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+  "first_callable_by_side": {
+    "IBR": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+    "LEP": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+          "epoch": 1783894516.000001,
+          "clock": "T−13hr 45min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IBR is strengthening; LEP is strengthening.",
+              "WHY": "IBR trades at 48¢ against its 44¢ opening anchor; LEP trades at 60¢ against its 56¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IBR carries 112 eligible past sides from first-price comparisons; LEP carries 195 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IBR calls 46¢ by T−5hr 58min; LEP calls 59¢ by T−10hr 9min.",
+              "WHY": "IBR’s middle half spans 43–47¢; LEP’s middle half spans 58–59¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IBR has book 40/44 and no standing bid; LEP has book 54/60 and a standing 59¢ bid.",
+              "WHY": "IBR: The desired bid could not be posted below the ask; LEP: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "IBR": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 44,
+              "recorded_floor": 43,
+              "P": 48,
+              "Q": 46,
+              "X": 1783922494,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 112,
+              "ess": 60.053032372800025,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 44,
+                "last_trade_cents": 48,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-262"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 68,
+                "leg": "IBR",
+                "epoch": 1783894516.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 44,
+                  "last_trade_cents": 48,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-262"
+                },
+                "Q": 46,
+                "X": 1783922494,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 34
+              },
+              "permission": null,
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1783922494,
+                "q25": 43,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1783913207.793,
+                  "price": 43,
+                  "size": 100,
+                  "receipt": "18d34e74-7cb7-5d06-d247-c622fb07e513"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783898427.374,
+                  "price": 44,
+                  "size": 22.22,
+                  "receipt": "708edd0c-7bc4-4609-0c9c-158822c76974"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "LEP": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 57,
+              "recorded_floor": 55,
+              "P": 60,
+              "Q": 59,
+              "X": 1783907466,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 195,
+              "ess": 85.05770174635026,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 54,
+                "ask_cents": 60,
+                "last_trade_cents": 60,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246"
+              },
+              "bid": 59,
+              "filled": null,
+              "decision": {
+                "order": 69,
+                "leg": "LEP",
+                "epoch": 1783894516.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 59,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 54,
+                  "ask_cents": 60,
+                  "last_trade_cents": 60,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246"
+                },
+                "Q": 59,
+                "X": 1783907466,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "support": null,
+                "accountability_assumption": "7f884c89d075c14daa7861c7005e2561a53cf6fca1ceed40cd29103317abb108",
+                "stage_index": 34
+              },
+              "permission": null,
+              "micro": {
+                "Q": 59,
+                "deadline_epoch": 1783907466,
+                "q25": 58,
+                "q75": 59,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 55,
+                "floor_witness": {
+                  "epoch": 1783942702.752,
+                  "price": 55,
+                  "size": 1.7,
+                  "receipt": "ac12830c-6f3b-7f8c-0096-eccc47a4a98a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-IBR-miss",
+          "label": "Last receipt before IBR missed at the bell",
+          "arm": "D",
+          "focus_leg": "IBR",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+          "epoch": 1783943999.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IBR is not yet directionally called; LEP is not yet directionally called.",
+              "WHY": "IBR trades at 44¢ against its 44¢ opening anchor; LEP trades at 57¢ against its 56¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IBR carries 751 eligible past sides from first-price comparisons; LEP carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IBR calls 44¢ by T−0hr 0min; LEP calls 57¢ by T−0hr 0min.",
+              "WHY": "IBR’s middle half spans 44–44¢; LEP’s middle half spans 57–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IBR has book 43/44 and a standing 43¢ bid; LEP has book 56/57 and a recorded purchase at 56¢.",
+              "WHY": "IBR: The desired bid could not be posted below the ask; LEP: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "IBR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 44,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 44,
+              "X": 1783943999.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 376.7639661014991,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 145,
+                "leg": "IBR",
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 43,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446"
+                },
+                "Q": 44,
+                "X": 1783943999.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "support": null,
+                "accountability_assumption": "8cfda11922fbd03ae5182af981f57524a4dc4854399768174d8d7bb2e7e1fb01",
+                "stage_index": 75
+              },
+              "permission": null,
+              "micro": {
+                "Q": 44,
+                "deadline_epoch": 1783943999.000001,
+                "q25": 44,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "LEP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 57,
+              "recorded_floor": 55,
+              "P": 57,
+              "Q": 57,
+              "X": 1783943999.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 376.7639661014991,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-4023"
+              },
+              "bid": null,
+              "filled": 56,
+              "decision": {
+                "order": 144,
+                "leg": "LEP",
+                "epoch": 1783943700,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR|ATLAS_GATE|1783943700",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-3895"
+                },
+                "Q": 57,
+                "X": 1783943700,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 74
+              },
+              "permission": null,
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1783943999.000001,
+                "q25": 57,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783944000,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-LEP-fill",
+          "label": "Last receipt before LEP filled",
+          "arm": "D",
+          "focus_leg": "LEP",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR|ATLAS_GATE|1783929600",
+          "epoch": 1783929600,
+          "clock": "T−4hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IBR is not yet directionally called; LEP is not yet directionally called.",
+              "WHY": "IBR trades at 44¢ against its 44¢ opening anchor; LEP trades at 57¢ against its 56¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IBR carries 720 eligible past sides from first-price comparisons; LEP carries 720 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IBR calls 43¢ by T−2hr 46min; LEP calls 56¢ by T−2hr 45min.",
+              "WHY": "IBR’s middle half spans 42–44¢; LEP’s middle half spans 54–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IBR has book 43/44 and a standing 43¢ bid; LEP has book 56/57 and a standing 56¢ bid.",
+              "WHY": "IBR: The current pool target was the permitted bid level; LEP: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "IBR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 44,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 43,
+              "X": 1783934058,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 720,
+              "ess": 357.3103950589647,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-4811"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 124,
+                "leg": "IBR",
+                "epoch": 1783929600,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR|ATLAS_GATE|1783929600",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 43,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-4811"
+                },
+                "Q": 43,
+                "X": 1783934058,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "support": null,
+                "accountability_assumption": "8eecc68fbbe9a6a74c0f62101808e92721c342e8950cecbeb8b8ee0215c875f2",
+                "stage_index": 62
+              },
+              "permission": null,
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1783934058,
+                "q25": 42,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 44,
+                "floor_witness": {
+                  "epoch": 1783933583.239,
+                  "price": 44,
+                  "size": 15.13,
+                  "receipt": "13c0cafd-e4cf-5f12-9fdb-b7af2be6fc75"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783933583.239,
+                  "price": 44,
+                  "size": 15.13,
+                  "receipt": "13c0cafd-e4cf-5f12-9fdb-b7af2be6fc75"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "LEP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 57,
+              "recorded_floor": 55,
+              "P": 57,
+              "Q": 56,
+              "X": 1783934070.310136,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 720,
+              "ess": 357.3103950589647,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-2750"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 125,
+                "leg": "LEP",
+                "epoch": 1783929600,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR|ATLAS_GATE|1783929600",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 56,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-2750"
+                },
+                "Q": 56,
+                "X": 1783934070.310136,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "support": null,
+                "accountability_assumption": "23bdd877f8cb522f0c9d3461af05e82ead6a54ad00250135e2d673a83d0fdb39",
+                "stage_index": 62
+              },
+              "permission": null,
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1783934070.310136,
+                "q25": 54,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 55,
+                "floor_witness": {
+                  "epoch": 1783942702.752,
+                  "price": 55,
+                  "size": 1.7,
+                  "receipt": "ac12830c-6f3b-7f8c-0096-eccc47a4a98a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783930566.732,
+                  "price": 57,
+                  "size": 667.62,
+                  "receipt": "71a29391-48e2-5ecc-3583-fe8098b245bf"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783931703.199,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "LEP",
+              "epoch": 1783931703.199,
+              "cents": 56,
+              "receipt": "e981eba4-508a-64c2-c50d-17ae7d96f634",
+              "order_lineage_receipt": "a30b4979-06e2-4022-9efb-457d275fa5fe",
+              "order_lineage_start_epoch": 1783899324.453,
+              "current_price_receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-4365",
+              "current_price_start_epoch": 1783926985.000001,
+              "order_lineage_age_minutes": 539.6457666635513,
+              "current_price_age_minutes": 78.6366499821345,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "LEP",
+                "epoch": 1783931703.199,
+                "cents": 56,
+                "receipt": "e981eba4-508a-64c2-c50d-17ae7d96f634",
+                "order_lineage_receipt": "a30b4979-06e2-4022-9efb-457d275fa5fe",
+                "order_lineage_start_epoch": 1783899324.453,
+                "current_price_receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-4365",
+                "current_price_start_epoch": 1783926985.000001,
+                "order_lineage_age_minutes": 539.6457666635513,
+                "current_price_age_minutes": 78.6366499821345,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 125,
+              "leg": "LEP",
+              "epoch": 1783929600,
+              "receipt": "KXWTAMATCH-26JUL13LEPIBR|ATLAS_GATE|1783929600",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 56,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-2750"
+              },
+              "Q": 56,
+              "X": 1783934070.310136,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783891806,
+              "support": null,
+              "accountability_assumption": "23bdd877f8cb522f0c9d3461af05e82ead6a54ad00250135e2d673a83d0fdb39",
+              "stage_index": 62
+            },
+            "license_receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-4365",
+            "licensing_deadline_epoch": 1783932200,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was strengthening; its corrected full-window direction was below the filed directional threshold. LEP was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was not yet directionally called; its corrected full-window direction was below the filed directional threshold. LEP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "IBR": false,
+          "LEP": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "LEP",
+            "epoch": 1783931703.199,
+            "cents": 56,
+            "receipt": "e981eba4-508a-64c2-c50d-17ae7d96f634",
+            "order_lineage_receipt": "a30b4979-06e2-4022-9efb-457d275fa5fe",
+            "order_lineage_start_epoch": 1783899324.453,
+            "current_price_receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-4365",
+            "current_price_start_epoch": 1783926985.000001,
+            "order_lineage_age_minutes": 539.6457666635513,
+            "current_price_age_minutes": 78.6366499821345,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL13LEPIBR",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "IBR",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 44,
+            "close_epoch": 1783943982.2,
+            "floor_cents": 43,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "LEP",
+            "filled": true,
+            "fill_cents": 56,
+            "fill_epoch": 1783931703.199,
+            "fill_receipt": "e981eba4-508a-64c2-c50d-17ae7d96f634",
+            "close_cents": 57,
+            "close_epoch": 1783943933.2,
+            "floor_cents": 55,
+            "offered_cents": 2,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "5fbffb0c8f9799b4e16d461e89fbb09f488544a18ad6d887fe57b0e03ee6bb30",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+          "epoch": 1783894516.000001,
+          "clock": "T−13hr 45min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IBR is strengthening; LEP is strengthening.",
+              "WHY": "IBR trades at 48¢ against its 44¢ opening anchor; LEP trades at 60¢ against its 56¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IBR carries 112 eligible past sides from first-price comparisons; LEP carries 195 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IBR calls 46¢ by T−5hr 58min; LEP calls 59¢ by T−10hr 9min.",
+              "WHY": "IBR’s middle half spans 43–47¢; LEP’s middle half spans 58–59¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IBR has book 40/44 and no standing bid; LEP has book 54/60 and no standing bid.",
+              "WHY": "IBR: The other commitment left too little room under the pair budget; LEP: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "IBR": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 44,
+              "recorded_floor": 43,
+              "P": 48,
+              "Q": 46,
+              "X": 1783922494,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 112,
+              "ess": 60.053032372800025,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 44,
+                "last_trade_cents": 48,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-262"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 68,
+                "leg": "IBR",
+                "epoch": 1783894516.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 48; reserve LEP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 44,
+                  "last_trade_cents": 48,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-262"
+                },
+                "Q": 46,
+                "X": 1783922494,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "stage_index": 34
+              },
+              "permission": {
+                "ordinal": 34,
+                "epoch": 1783894516.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+                "id": "IBR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "role": "CLIMBER",
+                  "intended": 43,
+                  "hand_level": null,
+                  "hand_mode": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "forecast_close": 48,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.31681985786342093,
+                      "LATE_BREAK_DOWN": 0.16756256786776424,
+                      "LATE_BREAK_UP": 0.13849831807017712,
+                      "DRIFT_DOWN": 0,
+                      "DRIFT_UP": 0.7503595596984185,
+                      "QUIET_WOBBLE": 0.9106547236397802,
+                      "ROUND_TRIP": 1.2209478333994455,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_DOWN": 0.0371777759945414,
+                      "EARLY_SET_UP": 0.6281073031328623,
+                      "SLEEPER": 0.3594570163028884,
+                      "GRIND_WOBBLE_UP": 0.31172812449819,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.1510022735120014,
+                    "epoch": 1783899687.4126637,
+                    "minutes_to_bell": 738.5431222716967,
+                    "open": false,
+                    "member_count": 26,
+                    "ess": 14.305719775833532,
+                    "weight_sum": 1.2209478333994455,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 48; reserve LEP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "LEP": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.05770174635026,
+                    "role": "CLIMBER",
+                    "current": 60,
+                    "member_count": 195
+                  },
+                  "IBR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 60.053032372800025,
+                    "role": "CLIMBER",
+                    "current": 48,
+                    "member_count": 112
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.31681985786342093,
+                    "LATE_BREAK_DOWN": 0.16756256786776424,
+                    "LATE_BREAK_UP": 0.13849831807017712,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 0.7503595596984185,
+                    "QUIET_WOBBLE": 0.9106547236397802,
+                    "ROUND_TRIP": 1.2209478333994455,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0.0371777759945414,
+                    "EARLY_SET_UP": 0.6281073031328623,
+                    "SLEEPER": 0.3594570163028884,
+                    "GRIND_WOBBLE_UP": 0.31172812449819,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.1510022735120014,
+                  "epoch": 1783899687.4126637,
+                  "minutes_to_bell": 738.5431222716967,
+                  "open": false,
+                  "member_count": 26,
+                  "ess": 14.305719775833532,
+                  "weight_sum": 1.2209478333994455,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1783922494,
+                "q25": 43,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1783913207.793,
+                  "price": 43,
+                  "size": 100,
+                  "receipt": "18d34e74-7cb7-5d06-d247-c622fb07e513"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783898427.374,
+                  "price": 44,
+                  "size": 22.22,
+                  "receipt": "708edd0c-7bc4-4609-0c9c-158822c76974"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "LEP": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 57,
+              "recorded_floor": 55,
+              "P": 60,
+              "Q": 59,
+              "X": 1783907466,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 195,
+              "ess": 85.05770174635026,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 54,
+                "ask_cents": 60,
+                "last_trade_cents": 60,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 69,
+                "leg": "LEP",
+                "epoch": 1783894516.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 61; reserve IBR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 54,
+                  "ask_cents": 60,
+                  "last_trade_cents": 60,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246"
+                },
+                "Q": 59,
+                "X": 1783907466,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "stage_index": 34
+              },
+              "permission": {
+                "ordinal": 34,
+                "epoch": 1783894516.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-246",
+                "id": "LEP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "role": "CLIMBER",
+                  "intended": 59,
+                  "hand_level": null,
+                  "hand_mode": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "forecast_close": 61,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.33999890796311794,
+                      "LATE_BREAK_DOWN": 0.10512065833397,
+                      "DRIFT_UP": 0.9153648594977265,
+                      "ROUND_TRIP": 1.3351407410308052,
+                      "QUIET_WOBBLE": 0.8077919639628038,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.9229267220395841,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07596240829791508,
+                      "EARLY_SET_UP": 1.0138510988267244,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.12220027464347508
+                    },
+                    "position": 0.01883540472213562,
+                    "epoch": 1783892789.095114,
+                    "minutes_to_bell": 853.5150814334552,
+                    "open": true,
+                    "member_count": 56,
+                    "ess": 25.186871209115385,
+                    "weight_sum": 1.3351407410308052,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 61; reserve IBR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "LEP": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.05770174635026,
+                    "role": "CLIMBER",
+                    "current": 60,
+                    "member_count": 195
+                  },
+                  "IBR": {
+                    "forecast": 48,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 60.053032372800025,
+                    "role": "CLIMBER",
+                    "current": 48,
+                    "member_count": 112
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.33999890796311794,
+                    "LATE_BREAK_DOWN": 0.10512065833397,
+                    "DRIFT_UP": 0.9153648594977265,
+                    "ROUND_TRIP": 1.3351407410308052,
+                    "QUIET_WOBBLE": 0.8077919639628038,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.9229267220395841,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07596240829791508,
+                    "EARLY_SET_UP": 1.0138510988267244,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.12220027464347508
+                  },
+                  "position": 0.01883540472213562,
+                  "epoch": 1783892789.095114,
+                  "minutes_to_bell": 853.5150814334552,
+                  "open": true,
+                  "member_count": 56,
+                  "ess": 25.186871209115385,
+                  "weight_sum": 1.3351407410308052,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 59,
+                "deadline_epoch": 1783907466,
+                "q25": 58,
+                "q75": 59,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 55,
+                "floor_witness": {
+                  "epoch": 1783942702.752,
+                  "price": 55,
+                  "size": 1.7,
+                  "receipt": "ac12830c-6f3b-7f8c-0096-eccc47a4a98a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-IBR-miss",
+          "label": "Last receipt before IBR missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "IBR",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+          "epoch": 1783943999.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IBR is not yet directionally called; LEP is not yet directionally called.",
+              "WHY": "IBR trades at 44¢ against its 44¢ opening anchor; LEP trades at 57¢ against its 56¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IBR carries 751 eligible past sides from first-price comparisons; LEP carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IBR calls 44¢ by T−0hr 0min; LEP calls 57¢ by T−0hr 0min.",
+              "WHY": "IBR’s middle half spans 44–44¢; LEP’s middle half spans 57–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IBR has book 43/44 and no standing bid; LEP has book 56/57 and no standing bid.",
+              "WHY": "IBR: The policy was waiting for a directional call; LEP: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "IBR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 44,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 44,
+              "X": 1783943999.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 376.7639661014991,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 150,
+                "leg": "IBR",
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 44; reserve LEP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446"
+                },
+                "Q": 44,
+                "X": 1783943999.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "stage_index": 75
+              },
+              "permission": {
+                "ordinal": 75,
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "id": "IBR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 44,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.8568594590318996,
+                      "LATE_BREAK_DOWN": 0.8085317114839826,
+                      "LATE_BREAK_UP": 1.4128384740427653,
+                      "DRIFT_DOWN": 1.4793282618655952,
+                      "DRIFT_UP": 1.5972585818672422,
+                      "QUIET_WOBBLE": 8.844061792677385,
+                      "ROUND_TRIP": 5.648168504612441,
+                      "ONE_STEP_DOWN": 2.0291825098758185,
+                      "EARLY_SET_DOWN": 2.1639979563599003,
+                      "EARLY_SET_UP": 0.6281073031328623,
+                      "SLEEPER": 4.091714108208463,
+                      "GRIND_WOBBLE_UP": 0.5205242815383673,
+                      "GRIND_WOBBLE_DOWN": 0.2915499220804986
+                    },
+                    "position": 0.18655244029075804,
+                    "epoch": 1783901542.9180686,
+                    "minutes_to_bell": 707.6180321892102,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 143.27147981460607,
+                    "weight_sum": 8.844061792677385,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 44; reserve LEP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "LEP": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 751
+                  },
+                  "IBR": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.8568594590318996,
+                    "LATE_BREAK_DOWN": 0.8085317114839826,
+                    "LATE_BREAK_UP": 1.4128384740427653,
+                    "DRIFT_DOWN": 1.4793282618655952,
+                    "DRIFT_UP": 1.5972585818672422,
+                    "QUIET_WOBBLE": 8.844061792677385,
+                    "ROUND_TRIP": 5.648168504612441,
+                    "ONE_STEP_DOWN": 2.0291825098758185,
+                    "EARLY_SET_DOWN": 2.1639979563599003,
+                    "EARLY_SET_UP": 0.6281073031328623,
+                    "SLEEPER": 4.091714108208463,
+                    "GRIND_WOBBLE_UP": 0.5205242815383673,
+                    "GRIND_WOBBLE_DOWN": 0.2915499220804986
+                  },
+                  "position": 0.18655244029075804,
+                  "epoch": 1783901542.9180686,
+                  "minutes_to_bell": 707.6180321892102,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 143.27147981460607,
+                  "weight_sum": 8.844061792677385,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 44,
+                "deadline_epoch": 1783943999.000001,
+                "q25": 44,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "LEP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 57,
+              "recorded_floor": 55,
+              "P": 57,
+              "Q": 57,
+              "X": 1783943999.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 376.7639661014991,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-4023"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 151,
+                "leg": "LEP",
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve IBR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-4023"
+                },
+                "Q": 57,
+                "X": 1783943999.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "stage_index": 75
+              },
+              "permission": {
+                "ordinal": 75,
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "id": "LEP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 57,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.304582833231326,
+                      "LATE_BREAK_UP": 0.8946995656847004,
+                      "LATE_BREAK_DOWN": 1.3152916591050337,
+                      "DRIFT_UP": 1.2510266004580626,
+                      "ROUND_TRIP": 5.903959850982792,
+                      "QUIET_WOBBLE": 8.869431690771581,
+                      "DRIFT_DOWN": 1.810015215552825,
+                      "ONE_STEP_UP": 1.9810067558822027,
+                      "EARLY_SET_DOWN": 2.111962619252273,
+                      "GRIND_WOBBLE_UP": 0.22098066079242845,
+                      "EARLY_SET_UP": 1.3099950138709795,
+                      "GRIND_WOBBLE_DOWN": 0.13785670096914704,
+                      "SLEEPER": 2.2613137002238664
+                    },
+                    "position": 0.12424242424242424,
+                    "epoch": 1783898290.709091,
+                    "minutes_to_bell": 761.8215151508649,
+                    "open": true,
+                    "member_count": 256,
+                    "ess": 136.74537455005301,
+                    "weight_sum": 8.869431690771581,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve IBR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "LEP": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 751
+                  },
+                  "IBR": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.304582833231326,
+                    "LATE_BREAK_UP": 0.8946995656847004,
+                    "LATE_BREAK_DOWN": 1.3152916591050337,
+                    "DRIFT_UP": 1.2510266004580626,
+                    "ROUND_TRIP": 5.903959850982792,
+                    "QUIET_WOBBLE": 8.869431690771581,
+                    "DRIFT_DOWN": 1.810015215552825,
+                    "ONE_STEP_UP": 1.9810067558822027,
+                    "EARLY_SET_DOWN": 2.111962619252273,
+                    "GRIND_WOBBLE_UP": 0.22098066079242845,
+                    "EARLY_SET_UP": 1.3099950138709795,
+                    "GRIND_WOBBLE_DOWN": 0.13785670096914704,
+                    "SLEEPER": 2.2613137002238664
+                  },
+                  "position": 0.12424242424242424,
+                  "epoch": 1783898290.709091,
+                  "minutes_to_bell": 761.8215151508649,
+                  "open": true,
+                  "member_count": 256,
+                  "ess": 136.74537455005301,
+                  "weight_sum": 8.869431690771581,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1783943999.000001,
+                "q25": 57,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783944000,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-LEP-miss",
+          "label": "Last receipt before LEP missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "LEP",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+          "epoch": 1783943999.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "IBR is not yet directionally called; LEP is not yet directionally called.",
+              "WHY": "IBR trades at 44¢ against its 44¢ opening anchor; LEP trades at 57¢ against its 56¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "IBR carries 751 eligible past sides from first-price comparisons; LEP carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "IBR calls 44¢ by T−0hr 0min; LEP calls 57¢ by T−0hr 0min.",
+              "WHY": "IBR’s middle half spans 44–44¢; LEP’s middle half spans 57–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "IBR has book 43/44 and no standing bid; LEP has book 56/57 and no standing bid.",
+              "WHY": "IBR: The policy was waiting for a directional call; LEP: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "IBR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 44,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 44,
+              "X": 1783943999.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 376.7639661014991,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 150,
+                "leg": "IBR",
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 44; reserve LEP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446"
+                },
+                "Q": 44,
+                "X": 1783943999.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "stage_index": 75
+              },
+              "permission": {
+                "ordinal": 75,
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "id": "IBR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 44,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.8568594590318996,
+                      "LATE_BREAK_DOWN": 0.8085317114839826,
+                      "LATE_BREAK_UP": 1.4128384740427653,
+                      "DRIFT_DOWN": 1.4793282618655952,
+                      "DRIFT_UP": 1.5972585818672422,
+                      "QUIET_WOBBLE": 8.844061792677385,
+                      "ROUND_TRIP": 5.648168504612441,
+                      "ONE_STEP_DOWN": 2.0291825098758185,
+                      "EARLY_SET_DOWN": 2.1639979563599003,
+                      "EARLY_SET_UP": 0.6281073031328623,
+                      "SLEEPER": 4.091714108208463,
+                      "GRIND_WOBBLE_UP": 0.5205242815383673,
+                      "GRIND_WOBBLE_DOWN": 0.2915499220804986
+                    },
+                    "position": 0.18655244029075804,
+                    "epoch": 1783901542.9180686,
+                    "minutes_to_bell": 707.6180321892102,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 143.27147981460607,
+                    "weight_sum": 8.844061792677385,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 44; reserve LEP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "LEP": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 751
+                  },
+                  "IBR": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.8568594590318996,
+                    "LATE_BREAK_DOWN": 0.8085317114839826,
+                    "LATE_BREAK_UP": 1.4128384740427653,
+                    "DRIFT_DOWN": 1.4793282618655952,
+                    "DRIFT_UP": 1.5972585818672422,
+                    "QUIET_WOBBLE": 8.844061792677385,
+                    "ROUND_TRIP": 5.648168504612441,
+                    "ONE_STEP_DOWN": 2.0291825098758185,
+                    "EARLY_SET_DOWN": 2.1639979563599003,
+                    "EARLY_SET_UP": 0.6281073031328623,
+                    "SLEEPER": 4.091714108208463,
+                    "GRIND_WOBBLE_UP": 0.5205242815383673,
+                    "GRIND_WOBBLE_DOWN": 0.2915499220804986
+                  },
+                  "position": 0.18655244029075804,
+                  "epoch": 1783901542.9180686,
+                  "minutes_to_bell": 707.6180321892102,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 143.27147981460607,
+                  "weight_sum": 8.844061792677385,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 44,
+                "deadline_epoch": 1783943999.000001,
+                "q25": 44,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "LEP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 57,
+              "recorded_floor": 55,
+              "P": 57,
+              "Q": 57,
+              "X": 1783943999.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 376.7639661014991,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-4023"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 151,
+                "leg": "LEP",
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve IBR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTAMATCH-26JUL13LEPIBR-LEP.csv.gz#row-4023"
+                },
+                "Q": 57,
+                "X": 1783943999.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783891806,
+                "stage_index": 75
+              },
+              "permission": {
+                "ordinal": 75,
+                "epoch": 1783943999.000001,
+                "receipt": "KXWTAMATCH-26JUL13LEPIBR-IBR.csv.gz#row-6446",
+                "id": "LEP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 57,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.304582833231326,
+                      "LATE_BREAK_UP": 0.8946995656847004,
+                      "LATE_BREAK_DOWN": 1.3152916591050337,
+                      "DRIFT_UP": 1.2510266004580626,
+                      "ROUND_TRIP": 5.903959850982792,
+                      "QUIET_WOBBLE": 8.869431690771581,
+                      "DRIFT_DOWN": 1.810015215552825,
+                      "ONE_STEP_UP": 1.9810067558822027,
+                      "EARLY_SET_DOWN": 2.111962619252273,
+                      "GRIND_WOBBLE_UP": 0.22098066079242845,
+                      "EARLY_SET_UP": 1.3099950138709795,
+                      "GRIND_WOBBLE_DOWN": 0.13785670096914704,
+                      "SLEEPER": 2.2613137002238664
+                    },
+                    "position": 0.12424242424242424,
+                    "epoch": 1783898290.709091,
+                    "minutes_to_bell": 761.8215151508649,
+                    "open": true,
+                    "member_count": 256,
+                    "ess": 136.74537455005301,
+                    "weight_sum": 8.869431690771581,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve IBR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "LEP": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 751
+                  },
+                  "IBR": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 376.7639661014991,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.304582833231326,
+                    "LATE_BREAK_UP": 0.8946995656847004,
+                    "LATE_BREAK_DOWN": 1.3152916591050337,
+                    "DRIFT_UP": 1.2510266004580626,
+                    "ROUND_TRIP": 5.903959850982792,
+                    "QUIET_WOBBLE": 8.869431690771581,
+                    "DRIFT_DOWN": 1.810015215552825,
+                    "ONE_STEP_UP": 1.9810067558822027,
+                    "EARLY_SET_DOWN": 2.111962619252273,
+                    "GRIND_WOBBLE_UP": 0.22098066079242845,
+                    "EARLY_SET_UP": 1.3099950138709795,
+                    "GRIND_WOBBLE_DOWN": 0.13785670096914704,
+                    "SLEEPER": 2.2613137002238664
+                  },
+                  "position": 0.12424242424242424,
+                  "epoch": 1783898290.709091,
+                  "minutes_to_bell": 761.8215151508649,
+                  "open": true,
+                  "member_count": 256,
+                  "ess": 136.74537455005301,
+                  "weight_sum": 8.869431690771581,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1783943999.000001,
+                "q25": 57,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783944000,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was strengthening; its corrected full-window direction was below the filed directional threshold. LEP was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was not yet directionally called; its corrected full-window direction was below the filed directional threshold. LEP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "IBR": false,
+          "LEP": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL13LEPIBR",
+        "category": "WTA_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "IBR",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 44,
+            "close_epoch": 1783943982.2,
+            "floor_cents": 43,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "LEP",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 57,
+            "close_epoch": 1783943933.2,
+            "floor_cents": 55,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "5fbffb0c8f9799b4e16d461e89fbb09f488544a18ad6d887fe57b0e03ee6bb30",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

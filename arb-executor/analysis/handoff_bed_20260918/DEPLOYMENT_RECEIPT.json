@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "verified_at": "2026-09-18T15:25:12.452Z",
+  "flag": "W1_DIRECTION_HANDOFF=on",
+  "sources": {
+    "window1_v54_dual_belief_os.js": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+    "window1_v54_functionable_os.js": "584f4aab94708095ce94815172f1b99f3563ff20690f8730be7dd1b1b2810698",
+    "build_window1_v54_dual_belief.js": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5"
+  },
+  "deployment": {
+    "id": "dpl_CnxyDk9rZBQeSQ1zUjRckJaCUaCn",
+    "url": "https://omi-window1-watch-1x9jaqgy8-omi-groups-projects.vercel.app",
+    "alias": "https://omi-window1-watch.vercel.app",
+    "upload_root": "C:/Users/omigr/omi-w1-face/window1-watch/shell/.vercel/demo-upload-3d34e819f7d25816",
+    "receipt": {
+      "uploaded_bytes": 177741226,
+      "uncompressed_asset_bytes": 4770243962,
+      "files": 1265,
+      "route_count": 1261,
+      "policy": "Lossless gzip HTTP representation; original JSON bytes/hash preserved; static only."
+    }
+  },
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12GIUBAR",
+      "trace_sha256": "606b3b6e839f638020957653195e21ba8ece1d89f2cb99227f57af31803e08df",
+      "two_pass_digest": {
+        "sha256": "0ce0426015a9d9c6de7549bca009a43221dfed9f469ff107b1c57180b61406a0",
+        "bytes": 92700268,
+        "counts": {
+          "stage_reads": 239,
+          "rearm_attempts": 4712,
+          "fill_events": 0,
+          "floor_print_decision_instants": 14
+        }
+      },
+      "face_verification": "PASS",
+      "hosted_verification": "PASS",
+      "screenshot": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL12GIUBAR/hosted.png",
+      "report": {
+        "closes_sum": 98,
+        "D_cost": null,
+        "cost": null,
+        "D_close_delta": -3,
+        "close_delta": 0
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "trace_sha256": "a28a20873040e4caacf9206e88760462eb6392766d6dc7360f7d76c11edfac5d",
+      "two_pass_digest": {
+        "sha256": "110ed12287d7efc1661a714d25e966838cbf2e3b09bc74df2ba233c1eb75ef9f",
+        "bytes": 777601373,
+        "counts": {
+          "stage_reads": 1476,
+          "rearm_attempts": 46988,
+          "fill_events": 0,
+          "floor_print_decision_instants": 12
+        }
+      },
+      "face_verification": "PASS",
+      "hosted_verification": "PASS",
+      "screenshot": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14URSPAL/hosted.png",
+      "report": {
+        "closes_sum": 102,
+        "D_cost": null,
+        "cost": null,
+        "D_close_delta": -2,
+        "close_delta": 0
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+      "trace_sha256": "516911cbd6196d7a52b7c7950f76758a2ba833eca284996b65d22e7ec05ffa08",
+      "two_pass_digest": {
+        "sha256": "44a78f9d3413e656c3088b4ecdce5abf67d58680b3854cb2622a6bfe39301332",
+        "bytes": 62805139,
+        "counts": {
+          "stage_reads": 118,
+          "rearm_attempts": 2948,
+          "fill_events": 2,
+          "floor_print_decision_instants": 17
+        }
+      },
+      "face_verification": "PASS",
+      "hosted_verification": "PASS",
+      "screenshot": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/hosted.png",
+      "report": {
+        "closes_sum": 101,
+        "D_cost": 99,
+        "cost": 97,
+        "D_close_delta": 2,
+        "close_delta": 4
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DANPRA",
+      "trace_sha256": "214a537fb1720f2a9974d28bf078545c9e1cea9098b2baf1310a10c5b0d64f4b",
+      "two_pass_digest": {
+        "sha256": "755c096cdcd8ce60e3f622222c699f8577018e46b5d9c88975d25f4d5e8173ab",
+        "bytes": 27899852,
+        "counts": {
+          "stage_reads": 119,
+          "rearm_attempts": 0,
+          "fill_events": 0,
+          "floor_print_decision_instants": 20
+        }
+      },
+      "face_verification": "PASS",
+      "hosted_verification": "PASS",
+      "screenshot": "C:/tmp/handoff_bed_20260918/KXATPMATCH-26JUL18DANPRA/hosted.png",
+      "report": {
+        "closes_sum": 102,
+        "D_cost": null,
+        "cost": null,
+        "D_close_delta": 0,
+        "close_delta": 0
+      }
+    }
+  ],
+  "bundle_verification": {
+    "status": "PASS",
+    "games": 104,
+    "changed_assets": [
+      "data/index.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.face.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.grade.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.pressure.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.oracle.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL12GIUBAR.bid-details.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.face.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.grade.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.pressure.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.oracle.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14LAJSVA.bid-details.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.face.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.grade.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.pressure.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.oracle.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/bid_actions-0.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/bid_actions-256.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/supersessions-0.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details/supersessions-256.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.timeline/0.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.timeline/512.json.gz",
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.timeline/1024.json.gz",
+      "data/KXATPMATCH-26JUL18DANPRA.face.json.gz",
+      "data/KXATPMATCH-26JUL18DANPRA.grade.json.gz",
+      "data/KXATPMATCH-26JUL18DANPRA.pressure.json.gz",
+      "data/KXATPMATCH-26JUL18DANPRA.oracle.json.gz",
+      "data/KXATPMATCH-26JUL18DANPRA.bid-details.json.gz",
+      "data/grades/index.json.gz",
+      "data/scoreboard.json.gz",
+      "data/scoreboard-tune-100.json.gz"
+    ],
+    "removed_superseded_game_chunks": [
+      "data/KXATPCHALLENGERMATCH-26JUL14URSPAL.bid-details.json.gz"
+    ],
+    "ALT_and_all_other_game_assets_unchanged": true,
+    "interface_and_project_unchanged": true
+  },
+  "fill_witness_verification_sha256": "fb175ffbb6b77b8fc7289cc3c9f318a0bb0d481e681522b86a31ad9388e566e6",
+  "report_sha256": "68af88d5c1e1e944a4163868006b3539f8a2082a94ef19edbb07b0b2083f486e",
+  "preserved_previous_upload": "C:/Users/omigr/omi-w1-face/window1-watch/shell/.vercel/demo-upload-c3727febd5900bc1",
+  "scope": "Four flagged experimental replays, two full passes each; unchanged OS, functionable and builder hashes. No default installation, commit or push. No raw tapes, full stage/renewal streams, private credentials or engine code published. Existing ALT and all other games and interface unchanged.",
+  "comparison_caveats": [
+    "D uses archived native trace 2a6af0af / OS b745ce7a. Both are graded against corrected Window-1 closes.",
+    "DANPRA uses the installed corrected bell, 900 seconds later than the archived D bell; other three clocks have no delta.",
+    "Fills are replay-reachable, not queue-position guarantees. Held library print-witness block status is unknown.",
+    "Finalized 1-cent market grids have the previously disclosed historical-grid timing limitation."
+  ]
+}

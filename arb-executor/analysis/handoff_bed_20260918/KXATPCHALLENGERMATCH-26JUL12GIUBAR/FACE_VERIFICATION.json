@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "os": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+  "trace": "606b3b6e839f638020957653195e21ba8ece1d89f2cb99227f57af31803e08df",
+  "decision_receipts": 239,
+  "level_tables": 28,
+  "grade": "F",
+  "micro_grade": "N/A",
+  "close_result": {
+    "role": "RULER — realized W1 closes, not a forecast or OS input",
+    "legs": {
+      "BAR": {
+        "close_cents": 32,
+        "close_source_column": "legA_close_c",
+        "credited_fill_cents": null,
+        "close_delta_cents": 0
+      },
+      "GIU": {
+        "close_cents": 66,
+        "close_source_column": "legB_close_c",
+        "credited_fill_cents": null,
+        "close_delta_cents": 0
+      }
+    },
+    "pair_close_sum_cents": 98,
+    "pair_fill_sum_cents": null,
+    "pair_delta_cents": null,
+    "filled_leg_close_delta_cents": 0,
+    "line": "W1 closes 98¢ · pair incomplete · filled-leg close-delta 0¢",
+    "provenance": {
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "row_sha256": "1c02b3084496dfdd37a4425533bb6f43dc3f334c3a0f89dc1955c564bc7000a0"
+    }
+  },
+  "outcome": {
+    "legs": {
+      "BAR": {
+        "filled": false,
+        "cents": null,
+        "vs_floor_cents": null,
+        "fill_epoch": null,
+        "valid_span_fill": false,
+        "revalidation": null,
+        "reason": null
+      },
+      "GIU": {
+        "filled": false,
+        "cents": null,
+        "vs_floor_cents": null,
+        "fill_epoch": null,
+        "valid_span_fill": false,
+        "revalidation": null,
+        "reason": null
+      }
+    },
+    "pair_completed": false,
+    "pair_sum": null,
+    "captured_cents": 0,
+    "best_capturable_cents": 7,
+    "best_capturable_pair_sum_cents": 93,
+    "capture_ratio": 0,
+    "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+    "valid_pair_completed": false
+  },
+  "engine_unchanged_since_replay": true
+}

@@ -16,13 +16,19 @@ export function buildScoreboard(root=resolve(import.meta.dirname,'data'),options
   const source={face_sha256:sha(fb),grade_sha256:sha(gb),os_sha256:g.provenance.os_sha256,trace_sha256:g.provenance.trace_sha256,truth_commit:g.provenance.truth_commit??f.truth?.table_commit,corrections_commit:f.truth?.corrections_commit??null};inputs.push({event:entry.event,...source});
   const unavailable=f.availability?.status==='UNGRADABLE';
   const faultFile=resolve(root,'tune-expansion/faults',entry.event+'.json');
-  const fault=jsonFileExists(faultFile)?JSON.parse(readJsonBytes(faultFile)):null;
+  let fault=jsonFileExists(faultFile)?JSON.parse(readJsonBytes(faultFile)):null;
+  let historicalFault=null;
+  const filedHistorical=options.historicalFaults?.[entry.event];
+  if(fault&&filedHistorical&&fault.provenance.trace_sha256!==f.provenance.trace_sha256){
+   if(sha(readJsonBytes(faultFile))!==filedHistorical.artifact_sha256||['face_sha256','grade_sha256','trace_sha256','os_sha256'].some(k=>fault.provenance[k]!==filedHistorical[k]))throw Error('Historical fault source changed '+entry.event);
+   historicalFault={source:fault.provenance,header:fault.header,status:'HISTORICAL — different replay; not used for current credit or labels'};fault=null;
+  }
   if(fault&&(fault.event!==entry.event||fault.provenance.face_sha256!==sha(fb)||fault.provenance.grade_sha256!==sha(gb)))throw Error('Unbound fault audit '+entry.event);
   const o=g.OUTCOME, actions=g.HANDS?.actions, fills=fault?fault.credit.valid_fills:unavailable?null:Object.values(o.legs).filter(l=>l.valid_span_fill===true).length;
   const hasBid=Array.isArray(actions)?actions.some(a=>a.action==='PLACE_REST'||a.action==='REPRICE_REST'):null;
   const missing=f.legs.filter(l=>!o.legs[l]?.valid_span_fill).map(l=>{const last=actions?.filter(a=>a.leg===l).at(-1);return {side:l,disposition:'UNFILLED_IN_CORRECTED_SPAN',reason:o.legs[l]?.reason??'STORE SILENT — no filed miss cause',last_action:last?.action??null,last_action_tokens:last?.tokens??null,receipt:last?.receipt??null};});
   return {event:entry.event,game:f.legs.join(' / '),category:f.category,mode:'LAB',timestamp:g.timestamp,letter:g.display.letter,sections:g.display.sections,governing:g.display.governing,source,
-   fault_label:fault?.header??null,raw_captured_cents:o.captured_cents,safety_excluded:fault?.credit.safety_excluded??false,
+   fault_label:fault?.header??null,historical_fault:historicalFault,raw_captured_cents:o.captured_cents,safety_excluded:fault?.credit.safety_excluded??false,
    called_by_os:f.os.length>0,any_bid:hasBid,valid_fills:fills,side_count:f.legs.length,completed:fault?fault.credit.pair_completed:unavailable?null:o.valid_pair_completed===true,pair_sum:fault?fault.credit.pair_sum:o.pair_sum,captured_cents:fault?fault.credit.captured_cents:o.captured_cents,offered_cents:o.best_capturable_cents,capture_ratio:fault?(Number.isFinite(o.best_capturable_cents)&&o.best_capturable_cents>0&&Number.isFinite(fault.credit.captured_cents)?fault.credit.captured_cents/o.best_capturable_cents:null):o.capture_ratio,
    missing_sides:fault?fault.sides.map(s=>{const last=actions?.filter(a=>a.leg===s.leg).at(-1);return {side:s.leg,disposition:s.scope,reason:s.C.length?'Safety-flagged fill excluded':s.E?.reason??s.classes.map(c=>({A:'Bid below later positive-print path',B:'First eligible call >3 cents from recorded floor',D:'Thin recorded tape'})[c]??c).join(' + '),last_action:last?.action??null,last_action_tokens:last?.tokens??null,receipt:last?.receipt??null};}):missing,legs:o.legs,grade_url:`/data/${entry.event}.grade.json`,ruler_line:g.display.ruler_line,diagnostic_lines:g.display.diagnostic_hover_lines};
  });

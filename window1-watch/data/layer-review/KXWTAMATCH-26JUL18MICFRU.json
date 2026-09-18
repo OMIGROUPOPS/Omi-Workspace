@@ -1,0 +1,2204 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL18MICFRU",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "a7b338697bc576534766556ba0b25ce5b0db7d93134064976088b5f1a23ad5b7",
+    "stage_cache_sha256": "9e3c4ebcd0d9f9bbd574f8866ffde94b35351ea318b85650abcbdc5f9c3b20c5",
+    "mirror_projection_sha256": "51c6d80e54ed30576fb106ae0978b8caa718f29e9eb3241e5721b78eb0da6f3f",
+    "mirror_permissions_sha256": "82eebab7c8830666225fb8d1a3390c4d1c5233b813a5bf0ab26881d8e9d5ab49",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL18MICFRU",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "0879d9df1e484292a9ab6fd232ed5a3825da3ca7961e5e18c376c30236d19175",
+      "row_number": 561,
+      "row_csv": "26JUL18MICFRU,KXWTAMATCH-26JUL18MICFRU,WTA_MAIN,1784305222,1784305222,1784365500,1784376000.0,FRU,MIC,1784323124,69.5,72,1784326528.0,75,1784365433.5,2120.96,1618.44,MOVER,5.5,1784333845,75,1784351764.3,PRE_BELL_VALID,1784323124,30.5,25,1784352709.3,26,1784365433.5,2160.99,560.89,STILL,-4.5,1784333851,,,,1784323124,1784365500,,,1784371209.0,1784365500,MACHINE_RECEIPT,\"EXACT (35 receipts, zero spread)\",1784323124,1784365500,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784323124,
+      "span_end_epoch": 1784365500,
+      "bell_epoch": 1784365500,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784365500,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "FRU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 69.5,
+          "floor_cents": 72,
+          "floor_epoch": 1784326528,
+          "minutes_to_bell": 649.5333333333333,
+          "line": "FRU 72¢ @ 649.53m to bell",
+          "marker_label": "FRU FLOOR · RECORDED 72¢ @ 649.53m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 72¢ · 649m to bell",
+          "hover_note": "Recorded floor 72¢ printed here · 649m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "MIC": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 30.5,
+          "floor_cents": 25,
+          "floor_epoch": 1784352709.3,
+          "minutes_to_bell": 213.17833333412807,
+          "line": "MIC 25¢ @ 213.18m to bell",
+          "marker_label": "MIC FLOOR · RECORDED 25¢ @ 213.18m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 25¢ · 213m to bell",
+          "hover_note": "Recorded floor 25¢ printed here · 213m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "FRU",
+      "underdog_leg": "MIC",
+      "pair": {
+        "sum_cents": 97,
+        "discount_cents": 3,
+        "reason": null,
+        "line": "best capturable = 72 + 25 = 97¢",
+        "discount_line": "3¢ under par",
+        "compact_line": "best capturable 97¢ · 3¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL18MICFRU",
+        "event_id": "KXWTAMATCH-26JUL18MICFRU",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1784305222",
+        "w1_left_epoch": "1784305222",
+        "w1_right_epoch": "1784365500",
+        "scheduled_start_epoch": "1784376000.0",
+        "legA": "FRU",
+        "legB": "MIC",
+        "legA_formation_end_epoch": "1784323124",
+        "legA_open_postformation_c": "69.5",
+        "legA_floor_c": "72",
+        "legA_floor_epoch": "1784326528.0",
+        "legA_close_c": "75",
+        "legA_close_epoch": "1784365433.5",
+        "legA_contracts": "2120.96",
+        "legA_premium_usd": "1618.44",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "5.5",
+        "legA_us_first_post_epoch": "1784333845",
+        "legA_us_fill_c": "75",
+        "legA_us_fill_epoch": "1784351764.3",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784323124",
+        "legB_open_postformation_c": "30.5",
+        "legB_floor_c": "25",
+        "legB_floor_epoch": "1784352709.3",
+        "legB_close_c": "26",
+        "legB_close_epoch": "1784365433.5",
+        "legB_contracts": "2160.99",
+        "legB_premium_usd": "560.89",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-4.5",
+        "legB_us_first_post_epoch": "1784333851",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784323124",
+        "bell_machine_epoch": "1784365500",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784371209.0",
+        "bell_epoch": "1784365500",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (35 receipts, zero spread)",
+        "span_start_epoch": "1784323124",
+        "span_end_epoch": "1784365500",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL18MICFRU.jsonl",
+      "sha256": "b6a8459c55dcb12d9aa37b841d3d493003637be789c376c75e67a989f4630f25",
+      "raw_rows": 1504,
+      "accepted_rows": 61,
+      "start_epoch": 1784323124,
+      "end_epoch": 1784365500
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+  "first_both_directional_receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+  "first_callable_by_side": {
+    "FRU": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+    "MIC": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+          "epoch": 1784333927.000001,
+          "clock": "T−8hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is strengthening; MIC is weakening.",
+              "WHY": "FRU trades at 72¢ against its 69¢ opening anchor; MIC trades at 27¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 253 eligible past sides from first-price comparisons; MIC carries 305 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 70¢ by T−5hr 9min; MIC calls 26¢ by T−5hr 45min.",
+              "WHY": "FRU’s middle half spans 69–71¢; MIC’s middle half spans 24–27¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 73/75 and no standing bid; MIC has book 25/26 and no standing bid.",
+              "WHY": "FRU: Only the ask changed, so the existing book veto held the bid decision; MIC: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69.5,
+              "close": 75,
+              "recorded_floor": 72,
+              "P": 72,
+              "Q": 70,
+              "X": 1784346969,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 253,
+              "ess": 91.80352305202783,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 73,
+                "ask_cents": 75,
+                "last_trade_cents": 72,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-457"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 58,
+                "leg": "FRU",
+                "epoch": 1784333927.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 73,
+                  "ask_cents": 75,
+                  "last_trade_cents": 72,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-457"
+                },
+                "Q": 70,
+                "X": 1784346969,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 29
+              },
+              "permission": null,
+              "micro": {
+                "Q": 70,
+                "deadline_epoch": 1784346969,
+                "q25": 69,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 75,
+                "floor_witness": {
+                  "epoch": 1784337335.501,
+                  "price": 75,
+                  "size": 0.65,
+                  "receipt": "c92a5ed2-aad5-7f3a-4d78-8e0adacf1faf"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MIC": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 30,
+              "corrected_open": 30.5,
+              "close": 26,
+              "recorded_floor": 25,
+              "P": 27,
+              "Q": 26,
+              "X": 1784344787,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 305,
+              "ess": 121.15305272192397,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 26,
+                "last_trade_cents": 27,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 59,
+                "leg": "MIC",
+                "epoch": 1784333927.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 26,
+                  "last_trade_cents": 27,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522"
+                },
+                "Q": 26,
+                "X": 1784344787,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 29
+              },
+              "permission": null,
+              "micro": {
+                "Q": 26,
+                "deadline_epoch": 1784344787,
+                "q25": 24,
+                "q75": 27,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 25,
+                "floor_witness": {
+                  "epoch": 1784352709.253,
+                  "price": 25,
+                  "size": 10,
+                  "receipt": "a8d3f33c-90ab-68da-6b02-22b555ee8c63"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-FRU-fill",
+          "label": "Last receipt before FRU filled",
+          "arm": "D",
+          "focus_leg": "FRU",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784351100",
+          "epoch": 1784351100,
+          "clock": "T−4hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is strengthening; MIC is weakening.",
+              "WHY": "FRU trades at 77¢ against its 69¢ opening anchor; MIC trades at 26¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 279 eligible past sides from first-price comparisons; MIC carries 346 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 76¢ by T−2hr 9min; MIC calls 25¢ by T−3hr 17min.",
+              "WHY": "FRU’s middle half spans 74–77¢; MIC’s middle half spans 24–26¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 75/77 and a standing 76¢ bid; MIC has book 25/26 and no standing bid.",
+              "WHY": "FRU: The other commitment left too little room under the pair budget; MIC: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69.5,
+              "close": 75,
+              "recorded_floor": 72,
+              "P": 77,
+              "Q": 76,
+              "X": 1784357765.69337,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 279,
+              "ess": 100.15401596611797,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 75,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1780"
+              },
+              "bid": 76,
+              "filled": null,
+              "decision": {
+                "order": 70,
+                "leg": "FRU",
+                "epoch": 1784351100,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784351100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 76,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 75,
+                  "ask_cents": 77,
+                  "last_trade_cents": 77,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1780"
+                },
+                "Q": 76,
+                "X": 1784357765.69337,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "support": null,
+                "accountability_assumption": "3fd5f766f6ee0dc7d762f223e5cfe04221148b7a0ac3d746e3ca0b4adb1ce1da",
+                "stage_index": 35
+              },
+              "permission": null,
+              "micro": {
+                "Q": 76,
+                "deadline_epoch": 1784357765.69337,
+                "q25": 74,
+                "q75": 77,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 75,
+                "floor_witness": {
+                  "epoch": 1784351764.256,
+                  "price": 75,
+                  "size": 38,
+                  "receipt": "156cfd32-fdd3-56de-32b8-729eda0530d2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784351611.961,
+                  "price": 77,
+                  "size": 625,
+                  "receipt": "64fff884-4536-400d-e28d-db90b25f984e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "MIC": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 30,
+              "corrected_open": 30.5,
+              "close": 26,
+              "recorded_floor": 25,
+              "P": 26,
+              "Q": 25,
+              "X": 1784353704,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 346,
+              "ess": 131.21252134130089,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 26,
+                "last_trade_cents": 26,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-1398"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 71,
+                "leg": "MIC",
+                "epoch": 1784351100,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784351100",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 26,
+                  "last_trade_cents": 26,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-1398"
+                },
+                "Q": 25,
+                "X": 1784353704,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 35
+              },
+              "permission": null,
+              "micro": {
+                "Q": 25,
+                "deadline_epoch": 1784353704,
+                "q25": 24,
+                "q75": 26,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 25,
+                "floor_witness": {
+                  "epoch": 1784352709.253,
+                  "price": 25,
+                  "size": 10,
+                  "receipt": "a8d3f33c-90ab-68da-6b02-22b555ee8c63"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784352709.253,
+                  "price": 25,
+                  "size": 10,
+                  "receipt": "a8d3f33c-90ab-68da-6b02-22b555ee8c63"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784351764.256,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "FRU",
+              "epoch": 1784351764.256,
+              "cents": 76,
+              "receipt": "156cfd32-fdd3-56de-32b8-729eda0530d2",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784336700",
+              "order_lineage_start_epoch": 1784336700,
+              "current_price_receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1601",
+              "current_price_start_epoch": 1784348294.000001,
+              "order_lineage_age_minutes": 251.0709333340327,
+              "current_price_age_minutes": 57.83759998480479,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "FRU",
+                "epoch": 1784351764.256,
+                "cents": 76,
+                "receipt": "156cfd32-fdd3-56de-32b8-729eda0530d2",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784336700",
+                "order_lineage_start_epoch": 1784336700,
+                "current_price_receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1601",
+                "current_price_start_epoch": 1784348294.000001,
+                "order_lineage_age_minutes": 251.0709333340327,
+                "current_price_age_minutes": 57.83759998480479,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 70,
+              "leg": "FRU",
+              "epoch": 1784351100,
+              "receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784351100",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 76,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 75,
+                "ask_cents": 77,
+                "last_trade_cents": 77,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1780"
+              },
+              "Q": 76,
+              "X": 1784357765.69337,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784323124,
+              "support": null,
+              "accountability_assumption": "3fd5f766f6ee0dc7d762f223e5cfe04221148b7a0ac3d746e3ca0b4adb1ce1da",
+              "stage_index": 35
+            },
+            "license_receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1601",
+            "licensing_deadline_epoch": 1784356073.142259,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MIC-miss",
+          "label": "Last receipt before MIC missed at the bell",
+          "arm": "D",
+          "focus_leg": "MIC",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+          "epoch": 1784365493.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is strengthening; MIC is weakening.",
+              "WHY": "FRU trades at 75¢ against its 69¢ opening anchor; MIC trades at 26¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 300 eligible past sides from first-price comparisons; MIC carries 365 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 75¢ by T−0hr 0min; MIC calls 26¢ by T−0hr 0min.",
+              "WHY": "FRU’s middle half spans 75–75¢; MIC’s middle half spans 26–26¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 74/75 and a recorded purchase at 76¢; MIC has book 25/26 and no standing bid.",
+              "WHY": "FRU: This side was already bought, so no new bid was allowed; MIC: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69.5,
+              "close": 75,
+              "recorded_floor": 72,
+              "P": 75,
+              "Q": 75,
+              "X": 1784365493.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 103.79593510783862,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 74,
+                "ask_cents": 75,
+                "last_trade_cents": 75,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407"
+              },
+              "bid": null,
+              "filled": 76,
+              "decision": {
+                "order": 98,
+                "leg": "FRU",
+                "epoch": 1784365200,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784365200",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 75,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3255"
+                },
+                "Q": 76,
+                "X": 1784365200,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 56
+              },
+              "permission": null,
+              "micro": {
+                "Q": 75,
+                "deadline_epoch": 1784365493.000001,
+                "q25": 75,
+                "q75": 75,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MIC": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 30,
+              "corrected_open": 30.5,
+              "close": 26,
+              "recorded_floor": 25,
+              "P": 26,
+              "Q": 26,
+              "X": 1784365493.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 365,
+              "ess": 128.63851351774855,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 26,
+                "last_trade_cents": 26,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-3081"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 101,
+                "leg": "MIC",
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 26,
+                  "last_trade_cents": 26,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-3081"
+                },
+                "Q": 26,
+                "X": 1784365493.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 59
+              },
+              "permission": null,
+              "micro": {
+                "Q": 26,
+                "deadline_epoch": 1784365493.000001,
+                "q25": 26,
+                "q75": 26,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784365500,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "FRU: later floor 75¢ outside 69–71¢; no later band print met the deadline. MIC: later floor 25¢ inside 24–27¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "MIC: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "FRU": true,
+          "MIC": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "fills": [
+          {
+            "leg": "FRU",
+            "epoch": 1784351764.256,
+            "cents": 76,
+            "receipt": "156cfd32-fdd3-56de-32b8-729eda0530d2",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL18MICFRU|ATLAS_GATE|1784336700",
+            "order_lineage_start_epoch": 1784336700,
+            "current_price_receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-1601",
+            "current_price_start_epoch": 1784348294.000001,
+            "order_lineage_age_minutes": 251.0709333340327,
+            "current_price_age_minutes": 57.83759998480479,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL18MICFRU",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "FRU",
+            "filled": true,
+            "fill_cents": 76,
+            "fill_epoch": 1784351764.256,
+            "fill_receipt": "156cfd32-fdd3-56de-32b8-729eda0530d2",
+            "close_cents": 75,
+            "close_epoch": 1784365433.5,
+            "floor_cents": 72,
+            "offered_cents": 3,
+            "value_cents": -1,
+            "premium_cents": 1,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MIC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 26,
+            "close_epoch": 1784365433.5,
+            "floor_cents": 25,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0879d9df1e484292a9ab6fd232ed5a3825da3ca7961e5e18c376c30236d19175",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+          "epoch": 1784333927.000001,
+          "clock": "T−8hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is strengthening; MIC is weakening.",
+              "WHY": "FRU trades at 72¢ against its 69¢ opening anchor; MIC trades at 27¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 253 eligible past sides from first-price comparisons; MIC carries 305 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 70¢ by T−5hr 9min; MIC calls 26¢ by T−5hr 45min.",
+              "WHY": "FRU’s middle half spans 69–71¢; MIC’s middle half spans 24–27¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 73/75 and no standing bid; MIC has book 25/26 and no standing bid.",
+              "WHY": "FRU: Only the ask changed, so the existing book veto held the bid decision; MIC: The weakening side had not entered its predicted late-floor window. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69.5,
+              "close": 75,
+              "recorded_floor": 72,
+              "P": 72,
+              "Q": 70,
+              "X": 1784346969,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 253,
+              "ess": 91.80352305202783,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 73,
+                "ask_cents": 75,
+                "last_trade_cents": 72,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-457"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 58,
+                "leg": "FRU",
+                "epoch": 1784333927.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 72; reserve MIC max(late floor 26, 100 - climber close 72 = 28) = 28; views differ by -2c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 73,
+                  "ask_cents": 75,
+                  "last_trade_cents": 72,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-457"
+                },
+                "Q": 70,
+                "X": 1784346969,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "stage_index": 29
+              },
+              "permission": {
+                "ordinal": 29,
+                "epoch": 1784333927.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+                "id": "FRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 74,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 72,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.12825214735241997,
+                      "LATE_BREAK_DOWN": 0.17308782142154985,
+                      "DRIFT_UP": 0.6196464365166845,
+                      "ROUND_TRIP": 1.4733926912650426,
+                      "QUIET_WOBBLE": 2.152192683082597,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.9546691383951549,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07725427763146842,
+                      "EARLY_SET_UP": 1.203897056831104,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.16619923067492315
+                    },
+                    "position": 0.03313384090455335,
+                    "epoch": 1784324528.079642,
+                    "minutes_to_bell": 682.8653392990431,
+                    "open": true,
+                    "member_count": 64,
+                    "ess": 21.879798461997744,
+                    "weight_sum": 2.152192683082597,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 28,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": null,
+                    "discount": null,
+                    "components": {
+                      "faller_forecast_late_floor": 26,
+                      "climber_forecast_close": 72,
+                      "mirror_completion_cost": 28,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 72; reserve MIC max(late floor 26, 100 - climber close 72 = 28) = 28; views differ by -2c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 26,
+                    "climber_forecast_close": 72,
+                    "mirror_completion_cost": 28,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "FRU",
+                    "faller": "MIC",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  }
+                },
+                "forecasts": {
+                  "FRU": {
+                    "forecast": 72,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 91.80352305202783,
+                    "role": "CLIMBER",
+                    "current": 72,
+                    "member_count": 253
+                  },
+                  "MIC": {
+                    "forecast": 27,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 121.15305272192397,
+                    "role": "FALLER",
+                    "current": 27,
+                    "member_count": 305
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.12825214735241997,
+                    "LATE_BREAK_DOWN": 0.17308782142154985,
+                    "DRIFT_UP": 0.6196464365166845,
+                    "ROUND_TRIP": 1.4733926912650426,
+                    "QUIET_WOBBLE": 2.152192683082597,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.9546691383951549,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07725427763146842,
+                    "EARLY_SET_UP": 1.203897056831104,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.16619923067492315
+                  },
+                  "position": 0.03313384090455335,
+                  "epoch": 1784324528.079642,
+                  "minutes_to_bell": 682.8653392990431,
+                  "open": true,
+                  "member_count": 64,
+                  "ess": 21.879798461997744,
+                  "weight_sum": 2.152192683082597,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 70,
+                "deadline_epoch": 1784346969,
+                "q25": 69,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 75,
+                "floor_witness": {
+                  "epoch": 1784337335.501,
+                  "price": 75,
+                  "size": 0.65,
+                  "receipt": "c92a5ed2-aad5-7f3a-4d78-8e0adacf1faf"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "MIC": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 30,
+              "corrected_open": 30.5,
+              "close": 26,
+              "recorded_floor": 25,
+              "P": 27,
+              "Q": 26,
+              "X": 1784344787,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 305,
+              "ess": 121.15305272192397,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 26,
+                "last_trade_cents": 27,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 59,
+                "leg": "MIC",
+                "epoch": 1784333927.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 26; reserve FRU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 26,
+                  "last_trade_cents": 27,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522"
+                },
+                "Q": 26,
+                "X": 1784344787,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "stage_index": 29
+              },
+              "permission": {
+                "ordinal": 29,
+                "epoch": 1784333927.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-522",
+                "id": "MIC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 27,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.1675137702184041,
+                      "LATE_BREAK_UP": 0.08761996110782551,
+                      "DRIFT_DOWN": 1.225591281905714,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 1.7674335451508698,
+                      "ROUND_TRIP": 1.3179724344889798,
+                      "ONE_STEP_DOWN": 1.0426835187630092,
+                      "EARLY_SET_DOWN": 1.1663385401725956,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 0.5490276587733225,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.1504486845778134
+                    },
+                    "position": 0.2662057440185414,
+                    "epoch": 1784334404.7346084,
+                    "minutes_to_bell": 518.2544231931369,
+                    "open": false,
+                    "member_count": 85,
+                    "ess": 35.0473292151559,
+                    "weight_sum": 1.7674335451508698,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 26; reserve FRU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 26,
+                    "climber_forecast_close": 72,
+                    "mirror_completion_cost": 28,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "FRU",
+                    "faller": "MIC",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "FRU": {
+                    "forecast": 72,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 91.80352305202783,
+                    "role": "CLIMBER",
+                    "current": 72,
+                    "member_count": 253
+                  },
+                  "MIC": {
+                    "forecast": 27,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 121.15305272192397,
+                    "role": "FALLER",
+                    "current": 27,
+                    "member_count": 305
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.1675137702184041,
+                    "LATE_BREAK_UP": 0.08761996110782551,
+                    "DRIFT_DOWN": 1.225591281905714,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 1.7674335451508698,
+                    "ROUND_TRIP": 1.3179724344889798,
+                    "ONE_STEP_DOWN": 1.0426835187630092,
+                    "EARLY_SET_DOWN": 1.1663385401725956,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 0.5490276587733225,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.1504486845778134
+                  },
+                  "position": 0.2662057440185414,
+                  "epoch": 1784334404.7346084,
+                  "minutes_to_bell": 518.2544231931369,
+                  "open": false,
+                  "member_count": 85,
+                  "ess": 35.0473292151559,
+                  "weight_sum": 1.7674335451508698,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 26,
+                "deadline_epoch": 1784344787,
+                "q25": 24,
+                "q75": 27,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 25,
+                "floor_witness": {
+                  "epoch": 1784352709.253,
+                  "price": 25,
+                  "size": 10,
+                  "receipt": "a8d3f33c-90ab-68da-6b02-22b555ee8c63"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-FRU-miss",
+          "label": "Last receipt before FRU missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "FRU",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+          "epoch": 1784365493.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is strengthening; MIC is weakening.",
+              "WHY": "FRU trades at 75¢ against its 69¢ opening anchor; MIC trades at 26¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 300 eligible past sides from first-price comparisons; MIC carries 365 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 75¢ by T−0hr 0min; MIC calls 26¢ by T−0hr 0min.",
+              "WHY": "FRU’s middle half spans 75–75¢; MIC’s middle half spans 26–26¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 74/75 and no standing bid; MIC has book 25/26 and no standing bid.",
+              "WHY": "FRU: The counterpart reservation did not leave a permitted discount; MIC: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69.5,
+              "close": 75,
+              "recorded_floor": 72,
+              "P": 75,
+              "Q": 75,
+              "X": 1784365493.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 103.79593510783862,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 74,
+                "ask_cents": 75,
+                "last_trade_cents": 75,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "FRU",
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 75; reserve MIC max(late floor 26, 100 - climber close 75 = 25) = 26; views differ by 1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 74,
+                  "ask_cents": 75,
+                  "last_trade_cents": 75,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407"
+                },
+                "Q": 75,
+                "X": 1784365493.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "id": "FRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 74,
+                  "hand_level": 74,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 75,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.7146547721843927,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_UP": 0.8322332814508593,
+                      "ROUND_TRIP": 1.3021915567543143,
+                      "QUIET_WOBBLE": 2.4593603971604967,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 1.423121113242207,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07725427763146842,
+                      "EARLY_SET_UP": 1.3690641293035835,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.4696592335800098
+                    },
+                    "position": 0.05841255718466027,
+                    "epoch": 1784325599.2905233,
+                    "minutes_to_bell": 665.0118246118228,
+                    "open": true,
+                    "member_count": 75,
+                    "ess": 28.69969948029197,
+                    "weight_sum": 2.4593603971604967,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 26,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 26,
+                      "climber_forecast_close": 75,
+                      "mirror_completion_cost": 25,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 75; reserve MIC max(late floor 26, 100 - climber close 75 = 25) = 26; views differ by 1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 26,
+                    "climber_forecast_close": 75,
+                    "mirror_completion_cost": 25,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "FRU",
+                    "faller": "MIC",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 26,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 26,
+                    "ask": 26,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "FRU": {
+                    "forecast": 75,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.79593510783862,
+                    "role": "CLIMBER",
+                    "current": 75,
+                    "member_count": 300
+                  },
+                  "MIC": {
+                    "forecast": 26,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 128.63851351774855,
+                    "role": "FALLER",
+                    "current": 26,
+                    "member_count": 365
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.7146547721843927,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_UP": 0.8322332814508593,
+                    "ROUND_TRIP": 1.3021915567543143,
+                    "QUIET_WOBBLE": 2.4593603971604967,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 1.423121113242207,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07725427763146842,
+                    "EARLY_SET_UP": 1.3690641293035835,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.4696592335800098
+                  },
+                  "position": 0.05841255718466027,
+                  "epoch": 1784325599.2905233,
+                  "minutes_to_bell": 665.0118246118228,
+                  "open": true,
+                  "member_count": 75,
+                  "ess": 28.69969948029197,
+                  "weight_sum": 2.4593603971604967,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 75,
+                "deadline_epoch": 1784365493.000001,
+                "q25": 75,
+                "q75": 75,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MIC": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 30,
+              "corrected_open": 30.5,
+              "close": 26,
+              "recorded_floor": 25,
+              "P": 26,
+              "Q": 26,
+              "X": 1784365493.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 365,
+              "ess": 128.63851351774855,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 26,
+                "last_trade_cents": 26,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-3081"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 117,
+                "leg": "MIC",
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 26; reserve FRU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 26,
+                  "last_trade_cents": 26,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-3081"
+                },
+                "Q": 26,
+                "X": 1784365493.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "id": "MIC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 26,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 26,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.8402603428163204,
+                      "LATE_BREAK_UP": 0,
+                      "DRIFT_DOWN": 1.305743862818302,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 2.369554653881482,
+                      "ROUND_TRIP": 1.3119389064139126,
+                      "ONE_STEP_DOWN": 1.8872160064268693,
+                      "EARLY_SET_DOWN": 1.2847187552118806,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 1.9580669579274221,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.1504486845778134
+                    },
+                    "position": 0.5677543859649122,
+                    "epoch": 1784347183.1598597,
+                    "minutes_to_bell": 305.2806690057119,
+                    "open": true,
+                    "member_count": 88,
+                    "ess": 31.315838656351794,
+                    "weight_sum": 2.369554653881482,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 26; reserve FRU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 26,
+                    "climber_forecast_close": 75,
+                    "mirror_completion_cost": 25,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "FRU",
+                    "faller": "MIC",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "FRU": {
+                    "forecast": 75,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.79593510783862,
+                    "role": "CLIMBER",
+                    "current": 75,
+                    "member_count": 300
+                  },
+                  "MIC": {
+                    "forecast": 26,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 128.63851351774855,
+                    "role": "FALLER",
+                    "current": 26,
+                    "member_count": 365
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.8402603428163204,
+                    "LATE_BREAK_UP": 0,
+                    "DRIFT_DOWN": 1.305743862818302,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 2.369554653881482,
+                    "ROUND_TRIP": 1.3119389064139126,
+                    "ONE_STEP_DOWN": 1.8872160064268693,
+                    "EARLY_SET_DOWN": 1.2847187552118806,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 1.9580669579274221,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.1504486845778134
+                  },
+                  "position": 0.5677543859649122,
+                  "epoch": 1784347183.1598597,
+                  "minutes_to_bell": 305.2806690057119,
+                  "open": true,
+                  "member_count": 88,
+                  "ess": 31.315838656351794,
+                  "weight_sum": 2.369554653881482,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 26,
+                "deadline_epoch": 1784365493.000001,
+                "q25": 26,
+                "q75": 26,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784365500,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-MIC-miss",
+          "label": "Last receipt before MIC missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "MIC",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+          "epoch": 1784365493.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is strengthening; MIC is weakening.",
+              "WHY": "FRU trades at 75¢ against its 69¢ opening anchor; MIC trades at 26¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 300 eligible past sides from first-price comparisons; MIC carries 365 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 75¢ by T−0hr 0min; MIC calls 26¢ by T−0hr 0min.",
+              "WHY": "FRU’s middle half spans 75–75¢; MIC’s middle half spans 26–26¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 74/75 and no standing bid; MIC has book 25/26 and no standing bid.",
+              "WHY": "FRU: The counterpart reservation did not leave a permitted discount; MIC: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 69,
+              "corrected_open": 69.5,
+              "close": 75,
+              "recorded_floor": 72,
+              "P": 75,
+              "Q": 75,
+              "X": 1784365493.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 103.79593510783862,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 74,
+                "ask_cents": 75,
+                "last_trade_cents": 75,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 116,
+                "leg": "FRU",
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 75; reserve MIC max(late floor 26, 100 - climber close 75 = 25) = 26; views differ by 1c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 74,
+                  "ask_cents": 75,
+                  "last_trade_cents": 75,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407"
+                },
+                "Q": 75,
+                "X": 1784365493.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "id": "FRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 74,
+                  "hand_level": 74,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 75,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.7146547721843927,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_UP": 0.8322332814508593,
+                      "ROUND_TRIP": 1.3021915567543143,
+                      "QUIET_WOBBLE": 2.4593603971604967,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 1.423121113242207,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07725427763146842,
+                      "EARLY_SET_UP": 1.3690641293035835,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.4696592335800098
+                    },
+                    "position": 0.05841255718466027,
+                    "epoch": 1784325599.2905233,
+                    "minutes_to_bell": 665.0118246118228,
+                    "open": true,
+                    "member_count": 75,
+                    "ess": 28.69969948029197,
+                    "weight_sum": 2.4593603971604967,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 26,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 26,
+                      "climber_forecast_close": 75,
+                      "mirror_completion_cost": 25,
+                      "disagreement_cents": 1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "FALLER_FLOOR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 75; reserve MIC max(late floor 26, 100 - climber close 75 = 25) = 26; views differ by 1c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 26,
+                    "climber_forecast_close": 75,
+                    "mirror_completion_cost": 25,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "FRU",
+                    "faller": "MIC",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 26,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 26,
+                    "ask": 26,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "FRU": {
+                    "forecast": 75,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.79593510783862,
+                    "role": "CLIMBER",
+                    "current": 75,
+                    "member_count": 300
+                  },
+                  "MIC": {
+                    "forecast": 26,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 128.63851351774855,
+                    "role": "FALLER",
+                    "current": 26,
+                    "member_count": 365
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.7146547721843927,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_UP": 0.8322332814508593,
+                    "ROUND_TRIP": 1.3021915567543143,
+                    "QUIET_WOBBLE": 2.4593603971604967,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 1.423121113242207,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07725427763146842,
+                    "EARLY_SET_UP": 1.3690641293035835,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.4696592335800098
+                  },
+                  "position": 0.05841255718466027,
+                  "epoch": 1784325599.2905233,
+                  "minutes_to_bell": 665.0118246118228,
+                  "open": true,
+                  "member_count": 75,
+                  "ess": 28.69969948029197,
+                  "weight_sum": 2.4593603971604967,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 75,
+                "deadline_epoch": 1784365493.000001,
+                "q25": 75,
+                "q75": 75,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "MIC": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 30,
+              "corrected_open": 30.5,
+              "close": 26,
+              "recorded_floor": 25,
+              "P": 26,
+              "Q": 26,
+              "X": 1784365493.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 365,
+              "ess": 128.63851351774855,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 26,
+                "last_trade_cents": 26,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-3081"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 117,
+                "leg": "MIC",
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 26; reserve FRU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 26,
+                  "last_trade_cents": 26,
+                  "receipt": "KXWTAMATCH-26JUL18MICFRU-MIC.csv.gz#row-3081"
+                },
+                "Q": 26,
+                "X": 1784365493.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784323124,
+                "stage_index": 59
+              },
+              "permission": {
+                "ordinal": 58,
+                "epoch": 1784365493.000001,
+                "receipt": "KXWTAMATCH-26JUL18MICFRU-FRU.csv.gz#row-3407",
+                "id": "MIC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 26,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 26,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.8402603428163204,
+                      "LATE_BREAK_UP": 0,
+                      "DRIFT_DOWN": 1.305743862818302,
+                      "DRIFT_UP": 0,
+                      "QUIET_WOBBLE": 2.369554653881482,
+                      "ROUND_TRIP": 1.3119389064139126,
+                      "ONE_STEP_DOWN": 1.8872160064268693,
+                      "EARLY_SET_DOWN": 1.2847187552118806,
+                      "EARLY_SET_UP": 0,
+                      "SLEEPER": 1.9580669579274221,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.1504486845778134
+                    },
+                    "position": 0.5677543859649122,
+                    "epoch": 1784347183.1598597,
+                    "minutes_to_bell": 305.2806690057119,
+                    "open": true,
+                    "member_count": 88,
+                    "ess": 31.315838656351794,
+                    "weight_sum": 2.369554653881482,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 26; reserve FRU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 26,
+                    "climber_forecast_close": 75,
+                    "mirror_completion_cost": 25,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "FRU",
+                    "faller": "MIC",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "FRU": {
+                    "forecast": 75,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.79593510783862,
+                    "role": "CLIMBER",
+                    "current": 75,
+                    "member_count": 300
+                  },
+                  "MIC": {
+                    "forecast": 26,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 128.63851351774855,
+                    "role": "FALLER",
+                    "current": 26,
+                    "member_count": 365
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.8402603428163204,
+                    "LATE_BREAK_UP": 0,
+                    "DRIFT_DOWN": 1.305743862818302,
+                    "DRIFT_UP": 0,
+                    "QUIET_WOBBLE": 2.369554653881482,
+                    "ROUND_TRIP": 1.3119389064139126,
+                    "ONE_STEP_DOWN": 1.8872160064268693,
+                    "EARLY_SET_DOWN": 1.2847187552118806,
+                    "EARLY_SET_UP": 0,
+                    "SLEEPER": 1.9580669579274221,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.1504486845778134
+                  },
+                  "position": 0.5677543859649122,
+                  "epoch": 1784347183.1598597,
+                  "minutes_to_bell": 305.2806690057119,
+                  "open": true,
+                  "member_count": 88,
+                  "ess": 31.315838656351794,
+                  "weight_sum": 2.369554653881482,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 26,
+                "deadline_epoch": 1784365493.000001,
+                "q25": 26,
+                "q75": 26,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784365500,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "FRU: later floor 75¢ outside 69–71¢; no later band print met the deadline. MIC: later floor 25¢ inside 24–27¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "FRU: No strictly later accepted positive print. MIC: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "FRU": false,
+          "MIC": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 3,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL18MICFRU",
+        "category": "WTA_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "FRU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 75,
+            "close_epoch": 1784365433.5,
+            "floor_cents": 72,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "MIC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 26,
+            "close_epoch": 1784365433.5,
+            "floor_cents": 25,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0879d9df1e484292a9ab6fd232ed5a3825da3ca7961e5e18c376c30236d19175",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

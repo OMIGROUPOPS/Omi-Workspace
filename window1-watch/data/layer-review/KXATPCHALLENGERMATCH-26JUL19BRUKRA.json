@@ -1,0 +1,2611 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "ddea98a52a9357455d9567f0423709bd3a807221a64c61e36f48769fc58e97d2",
+    "stage_cache_sha256": "67ee8267343d96e29c29c9c6831e0e07f13bdfbd05ff549ee2766bd735d13547",
+    "mirror_projection_sha256": "057b1b10e5950248b2b2a039aa36ab057b6e2a708746a8c0981dca72e2a7ad6d",
+    "mirror_permissions_sha256": "de0f36bc022b39ee9dcdfbc1224031af927611f32e3de29f77385aaeb92caf40",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "0e589509c08542ed00bab83b0ab4544ac0441940d78b100a2d21df87d5d8141c",
+      "row_number": 603,
+      "row_csv": "26JUL19BRUKRA,KXATPCHALLENGERMATCH-26JUL19BRUKRA,ATP_CHALL,1784407280,1784407280,1784449800,1784460600.0,BRU,KRA,1784427615,66.0,57,1784431229.4,60,1784449136.0,2327.26,1353.47,MOVER,-6.0,1784431325,57,1784434571.8,PRE_BELL_VALID,1784427615,34.0,35,1784429677.2,42,1784449535.0,1675.18,692.69,MOVER,8.0,1784431327,41,1784436322.5,PRE_BELL_VALID,1784427615,1784449800,,,1784461842.0,1784449800,MACHINE_RECEIPT,\"EXACT (22 receipts, zero spread)\",1784427615,1784449800,OK,COMPLETE_AT_DELTA,2",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784427615,
+      "span_end_epoch": 1784449800,
+      "bell_epoch": 1784449800,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784449800,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BRU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 66,
+          "floor_cents": 57,
+          "floor_epoch": 1784431229.4,
+          "minutes_to_bell": 309.50999999841054,
+          "line": "BRU 57¢ @ 309.51m to bell",
+          "marker_label": "BRU FLOOR · RECORDED 57¢ @ 309.51m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 57¢ · 309m to bell",
+          "hover_note": "Recorded floor 57¢ printed here · 309m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "KRA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 34,
+          "floor_cents": 35,
+          "floor_epoch": 1784429677.2,
+          "minutes_to_bell": 335.37999999920527,
+          "line": "KRA 35¢ @ 335.38m to bell",
+          "marker_label": "KRA FLOOR · RECORDED 35¢ @ 335.38m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 35¢ · 335m to bell",
+          "hover_note": "Recorded floor 35¢ printed here · 335m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "BRU",
+      "underdog_leg": "KRA",
+      "pair": {
+        "sum_cents": 92,
+        "discount_cents": 8,
+        "reason": null,
+        "line": "best capturable = 57 + 35 = 92¢",
+        "discount_line": "8¢ under par",
+        "compact_line": "best capturable 92¢ · 8¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL19BRUKRA",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784407280",
+        "w1_left_epoch": "1784407280",
+        "w1_right_epoch": "1784449800",
+        "scheduled_start_epoch": "1784460600.0",
+        "legA": "BRU",
+        "legB": "KRA",
+        "legA_formation_end_epoch": "1784427615",
+        "legA_open_postformation_c": "66.0",
+        "legA_floor_c": "57",
+        "legA_floor_epoch": "1784431229.4",
+        "legA_close_c": "60",
+        "legA_close_epoch": "1784449136.0",
+        "legA_contracts": "2327.26",
+        "legA_premium_usd": "1353.47",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "-6.0",
+        "legA_us_first_post_epoch": "1784431325",
+        "legA_us_fill_c": "57",
+        "legA_us_fill_epoch": "1784434571.8",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784427615",
+        "legB_open_postformation_c": "34.0",
+        "legB_floor_c": "35",
+        "legB_floor_epoch": "1784429677.2",
+        "legB_close_c": "42",
+        "legB_close_epoch": "1784449535.0",
+        "legB_contracts": "1675.18",
+        "legB_premium_usd": "692.69",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "8.0",
+        "legB_us_first_post_epoch": "1784431327",
+        "legB_us_fill_c": "41",
+        "legB_us_fill_epoch": "1784436322.5",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784427615",
+        "bell_machine_epoch": "1784449800",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784461842.0",
+        "bell_epoch": "1784449800",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (22 receipts, zero spread)",
+        "span_start_epoch": "1784427615",
+        "span_end_epoch": "1784449800",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "2"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL19BRUKRA.jsonl",
+      "sha256": "7a298dc00fb6a017899c09be030af11d801457cd48ba290ad073f4c680f77362",
+      "raw_rows": 3807,
+      "accepted_rows": 79,
+      "start_epoch": 1784427615,
+      "end_epoch": 1784449800
+    }
+  },
+  "first_callable_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+  "first_both_directional_receipt": "76803341-ea7b-76ef-9324-1a88a27cfe68",
+  "first_callable_by_side": {
+    "BRU": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+    "KRA": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+          "epoch": 1784429694.000004,
+          "clock": "T−5hr 35min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BRU is strengthening; KRA is not yet directionally called.",
+              "WHY": "BRU trades at 69¢ against its 66¢ opening anchor; KRA trades at 35¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BRU carries 307 eligible past sides from first-price comparisons; KRA carries 1152 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BRU calls 67¢ by T−4hr 14min; KRA calls 34¢ by T−3hr 40min.",
+              "WHY": "BRU’s middle half spans 66–68¢; KRA’s middle half spans 33–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BRU has book 66/67 and no standing bid; KRA has book 34/39 and no standing bid.",
+              "WHY": "BRU: Only the ask changed, so the existing book veto held the bid decision; KRA: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BRU": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 60,
+              "recorded_floor": 57,
+              "P": 69,
+              "Q": 67,
+              "X": 1784434546,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 307,
+              "ess": 155.76572854193748,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 38,
+                "leg": "BRU",
+                "epoch": 1784429694.000004,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 69,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134"
+                },
+                "Q": 67,
+                "X": 1784434546,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784434546,
+                "q25": 66,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1784431229.415,
+                  "price": 57,
+                  "size": 74.68,
+                  "receipt": "81dc12a4-9ffa-4840-f06a-ce0e8df321b0"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "KRA": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 42,
+              "recorded_floor": 35,
+              "P": 35,
+              "Q": 34,
+              "X": 1784436573.979195,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1152,
+              "ess": 551.872276838687,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 34,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-234"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 39,
+                "leg": "KRA",
+                "epoch": 1784429694.000004,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-234"
+                },
+                "Q": 34,
+                "X": 1784436573.979195,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784436573.979195,
+                "q25": 33,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784431184.213,
+                  "price": 38,
+                  "size": 125,
+                  "receipt": "6a9a4d83-3a57-4a42-7f5d-d5e42580380f"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BRU-fill",
+          "label": "Last receipt before BRU filled",
+          "arm": "D",
+          "focus_leg": "BRU",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+          "epoch": 1784435400,
+          "clock": "T−4hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BRU is weakening; KRA is strengthening.",
+              "WHY": "BRU trades at 58¢ against its 66¢ opening anchor; KRA trades at 42¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BRU carries 266 eligible past sides from first-price comparisons; KRA carries 226 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BRU calls 57¢ by T−3hr 24min; KRA calls 40¢ by T−1hr 32min.",
+              "WHY": "BRU’s middle half spans 56–58¢; KRA’s middle half spans 39–42¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BRU has book 57/58 and a standing 57¢ bid; KRA has book 41/42 and a standing 40¢ bid.",
+              "WHY": "BRU: The current pool target was the permitted bid level; KRA: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BRU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 60,
+              "recorded_floor": 57,
+              "P": 58,
+              "Q": 57,
+              "X": 1784437559.819014,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 266,
+              "ess": 135.21124371308025,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+              },
+              "bid": 57,
+              "filled": null,
+              "decision": {
+                "order": 72,
+                "leg": "BRU",
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 57,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 58,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+                },
+                "Q": 57,
+                "X": 1784437559.819014,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "support": null,
+                "accountability_assumption": "75da1f8292e2c17bf44e161282bd48244edee4a7036c3b554f92525a35985192",
+                "stage_index": 36
+              },
+              "permission": null,
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1784437559.819014,
+                "q25": 56,
+                "q75": 58,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1784436379.353,
+                  "price": 57,
+                  "size": 1,
+                  "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784436248.295,
+                  "price": 58,
+                  "size": 16,
+                  "receipt": "d5102675-713f-724a-d31b-b4a38b95427a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "KRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 42,
+              "recorded_floor": 35,
+              "P": 42,
+              "Q": 40,
+              "X": 1784444287.517837,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 226,
+              "ess": 95.114862112886,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+              },
+              "bid": 40,
+              "filled": null,
+              "decision": {
+                "order": 73,
+                "leg": "KRA",
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 40,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+                },
+                "Q": 40,
+                "X": 1784444287.517837,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "support": null,
+                "accountability_assumption": "45c9078aab15e7d7c904f72515352ecfc7ee291dceeb6594eeba04bf6fe1dbbc",
+                "stage_index": 36
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784444287.517837,
+                "q25": 39,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 41,
+                "floor_witness": {
+                  "epoch": 1784436322.489,
+                  "price": 41,
+                  "size": 34.32,
+                  "receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784436071.668,
+                  "price": 42,
+                  "size": 34.32,
+                  "receipt": "cb987357-a242-762d-9f57-db40a58a6a39"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784436379.353,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "BRU",
+              "epoch": 1784436379.353,
+              "cents": 57,
+              "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+              "order_lineage_receipt": "81dc12a4-9ffa-4840-f06a-ce0e8df321b0",
+              "order_lineage_start_epoch": 1784431229.415,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "current_price_start_epoch": 1784435400,
+              "order_lineage_age_minutes": 85.832299999396,
+              "current_price_age_minutes": 16.322549998760223,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "BRU",
+                "epoch": 1784436379.353,
+                "cents": 57,
+                "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+                "order_lineage_receipt": "81dc12a4-9ffa-4840-f06a-ce0e8df321b0",
+                "order_lineage_start_epoch": 1784431229.415,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "current_price_start_epoch": 1784435400,
+                "order_lineage_age_minutes": 85.832299999396,
+                "current_price_age_minutes": 16.322549998760223,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 72,
+              "leg": "BRU",
+              "epoch": 1784435400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 57,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+              },
+              "Q": 57,
+              "X": 1784437559.819014,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784427615,
+              "support": null,
+              "accountability_assumption": "75da1f8292e2c17bf44e161282bd48244edee4a7036c3b554f92525a35985192",
+              "stage_index": 36
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "licensing_deadline_epoch": 1784437559.819014,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-KRA-miss",
+          "label": "Last receipt before KRA missed at the bell",
+          "arm": "D",
+          "focus_leg": "KRA",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-1436",
+          "epoch": 1784449799.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BRU is weakening; KRA is strengthening.",
+              "WHY": "BRU trades at 59¢ against its 66¢ opening anchor; KRA trades at 42¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BRU carries 454 eligible past sides from first-price comparisons; KRA carries 489 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BRU calls 59¢ by T−0hr 0min; KRA calls 42¢ by T−0hr 0min.",
+              "WHY": "BRU’s middle half spans 59–59¢; KRA’s middle half spans 42–42¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BRU has book 57/58 and a recorded purchase at 57¢; KRA has book 41/42 and a standing 41¢ bid.",
+              "WHY": "BRU: This side was already bought, so no new bid was allowed; KRA: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BRU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 60,
+              "recorded_floor": 57,
+              "P": 59,
+              "Q": 59,
+              "X": 1784449799.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 454,
+              "ess": 213.1077778305929,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 60,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-1215"
+              },
+              "bid": null,
+              "filled": 57,
+              "decision": {
+                "order": 92,
+                "leg": "BRU",
+                "epoch": 1784449500,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784449500",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-1191"
+                },
+                "Q": 59,
+                "X": 1784449500,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 49
+              },
+              "permission": null,
+              "micro": {
+                "Q": 59,
+                "deadline_epoch": 1784449799.000001,
+                "q25": 59,
+                "q75": 59,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "KRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 42,
+              "recorded_floor": 35,
+              "P": 42,
+              "Q": 42,
+              "X": 1784449799.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 489,
+              "ess": 249.99889096778816,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-1436"
+              },
+              "bid": 41,
+              "filled": null,
+              "decision": {
+                "order": 94,
+                "leg": "KRA",
+                "epoch": 1784449799.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-1436",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 41,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-1436"
+                },
+                "Q": 42,
+                "X": 1784449799.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "support": null,
+                "accountability_assumption": "3219b960e9e540a28906a82dcb168aef6742fc8b3aa0a0a10d266e6a5704f509",
+                "stage_index": 50
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784449799.000001,
+                "q25": 42,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784449800,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BRU was strengthening; its corrected full-window direction was weakening. KRA was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KRA: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BRU": true,
+          "KRA": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 8,
+        "fills": [
+          {
+            "leg": "BRU",
+            "epoch": 1784436379.353,
+            "cents": 57,
+            "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+            "order_lineage_receipt": "81dc12a4-9ffa-4840-f06a-ce0e8df321b0",
+            "order_lineage_start_epoch": 1784431229.415,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "current_price_start_epoch": 1784435400,
+            "order_lineage_age_minutes": 85.832299999396,
+            "current_price_age_minutes": 16.322549998760223,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BRU",
+            "filled": true,
+            "fill_cents": 57,
+            "fill_epoch": 1784436379.353,
+            "fill_receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+            "close_cents": 60,
+            "close_epoch": 1784449136,
+            "floor_cents": 57,
+            "offered_cents": 3,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "KRA",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 42,
+            "close_epoch": 1784449535,
+            "floor_cents": 35,
+            "offered_cents": 7,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 7,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0e589509c08542ed00bab83b0ab4544ac0441940d78b100a2d21df87d5d8141c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+          "epoch": 1784429694.000004,
+          "clock": "T−5hr 35min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BRU is strengthening; KRA is not yet directionally called.",
+              "WHY": "BRU trades at 69¢ against its 66¢ opening anchor; KRA trades at 35¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BRU carries 307 eligible past sides from first-price comparisons; KRA carries 1152 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BRU calls 67¢ by T−4hr 14min; KRA calls 34¢ by T−3hr 40min.",
+              "WHY": "BRU’s middle half spans 66–68¢; KRA’s middle half spans 33–35¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BRU has book 66/67 and no standing bid; KRA has book 34/39 and no standing bid.",
+              "WHY": "BRU: Only the ask changed, so the existing book veto held the bid decision; KRA: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BRU": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 60,
+              "recorded_floor": 57,
+              "P": 69,
+              "Q": 67,
+              "X": 1784434546,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 307,
+              "ess": 155.76572854193748,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 66,
+                "ask_cents": 67,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 38,
+                "leg": "BRU",
+                "epoch": 1784429694.000004,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 69; reserve KRA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 66,
+                  "ask_cents": 67,
+                  "last_trade_cents": 69,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134"
+                },
+                "Q": 67,
+                "X": 1784434546,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "stage_index": 19
+              },
+              "permission": {
+                "ordinal": 19,
+                "epoch": 1784429694.000004,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+                "id": "BRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 66,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 2.2796305260427103,
+                      "ROUND_TRIP": 2.4391776711196376,
+                      "LATE_BREAK_DOWN": 0.16906705297920482,
+                      "DRIFT_DOWN": 0.04076709015118831,
+                      "LATE_BREAK_UP": 0.2238499149418018,
+                      "QUIET_WOBBLE": 4.781834446422898,
+                      "DRIFT_UP": 1.4347943356474757,
+                      "GRIND_WOBBLE_UP": 0.17793159998905772,
+                      "ONE_STEP_DOWN": 0.011717699220109406,
+                      "EARLY_SET_UP": 2.107782146816185,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.492960937459505
+                    },
+                    "position": 0.025232621784345922,
+                    "epoch": 1784428174.7857144,
+                    "minutes_to_bell": 360.4202380935351,
+                    "open": true,
+                    "member_count": 102,
+                    "ess": 51.75479544616947,
+                    "weight_sum": 4.781834446422898,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 69; reserve KRA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BRU": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.76572854193748,
+                    "role": "CLIMBER",
+                    "current": 69,
+                    "member_count": 307
+                  },
+                  "KRA": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 551.872276838687,
+                    "role": "NOT_CALLABLE",
+                    "current": 35,
+                    "member_count": 1152
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 2.2796305260427103,
+                    "ROUND_TRIP": 2.4391776711196376,
+                    "LATE_BREAK_DOWN": 0.16906705297920482,
+                    "DRIFT_DOWN": 0.04076709015118831,
+                    "LATE_BREAK_UP": 0.2238499149418018,
+                    "QUIET_WOBBLE": 4.781834446422898,
+                    "DRIFT_UP": 1.4347943356474757,
+                    "GRIND_WOBBLE_UP": 0.17793159998905772,
+                    "ONE_STEP_DOWN": 0.011717699220109406,
+                    "EARLY_SET_UP": 2.107782146816185,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.492960937459505
+                  },
+                  "position": 0.025232621784345922,
+                  "epoch": 1784428174.7857144,
+                  "minutes_to_bell": 360.4202380935351,
+                  "open": true,
+                  "member_count": 102,
+                  "ess": 51.75479544616947,
+                  "weight_sum": 4.781834446422898,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784434546,
+                "q25": 66,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1784431229.415,
+                  "price": 57,
+                  "size": 74.68,
+                  "receipt": "81dc12a4-9ffa-4840-f06a-ce0e8df321b0"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "KRA": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 42,
+              "recorded_floor": 35,
+              "P": 35,
+              "Q": 34,
+              "X": 1784436573.979195,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1152,
+              "ess": 551.872276838687,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 34,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-234"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 39,
+                "leg": "KRA",
+                "epoch": 1784429694.000004,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 34; reserve BRU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 39,
+                  "last_trade_cents": 39,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-234"
+                },
+                "Q": 34,
+                "X": 1784436573.979195,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "stage_index": 19
+              },
+              "permission": {
+                "ordinal": 19,
+                "epoch": 1784429694.000004,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-134",
+                "id": "KRA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 35,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 3.2362837119340124,
+                      "ROUND_TRIP": 8.041640934597947,
+                      "LATE_BREAK_UP": 1.8153749063870286,
+                      "ONE_STEP_UP": 1.1291165910743386,
+                      "LATE_BREAK_DOWN": 1.546277133455885,
+                      "QUIET_WOBBLE": 34.41620496916108,
+                      "DRIFT_DOWN": 1.3586925153348783,
+                      "SLEEPER": 2.4621060139086306,
+                      "DRIFT_UP": 1.1355711627808798,
+                      "EARLY_SET_DOWN": 1.803109592223602,
+                      "GRIND_WOBBLE_UP": 0.23000769223265632,
+                      "EARLY_SET_UP": 0.7471105695767155,
+                      "GRIND_WOBBLE_DOWN": 0.06218648088612745
+                    },
+                    "position": 0.16618086696562032,
+                    "epoch": 1784431301.7225337,
+                    "minutes_to_bell": 308.3046244382858,
+                    "open": false,
+                    "member_count": 635,
+                    "ess": 325.2560608170857,
+                    "weight_sum": 34.41620496916108,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 34; reserve BRU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BRU": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.76572854193748,
+                    "role": "CLIMBER",
+                    "current": 69,
+                    "member_count": 307
+                  },
+                  "KRA": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 551.872276838687,
+                    "role": "NOT_CALLABLE",
+                    "current": 35,
+                    "member_count": 1152
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 3.2362837119340124,
+                    "ROUND_TRIP": 8.041640934597947,
+                    "LATE_BREAK_UP": 1.8153749063870286,
+                    "ONE_STEP_UP": 1.1291165910743386,
+                    "LATE_BREAK_DOWN": 1.546277133455885,
+                    "QUIET_WOBBLE": 34.41620496916108,
+                    "DRIFT_DOWN": 1.3586925153348783,
+                    "SLEEPER": 2.4621060139086306,
+                    "DRIFT_UP": 1.1355711627808798,
+                    "EARLY_SET_DOWN": 1.803109592223602,
+                    "GRIND_WOBBLE_UP": 0.23000769223265632,
+                    "EARLY_SET_UP": 0.7471105695767155,
+                    "GRIND_WOBBLE_DOWN": 0.06218648088612745
+                  },
+                  "position": 0.16618086696562032,
+                  "epoch": 1784431301.7225337,
+                  "minutes_to_bell": 308.3046244382858,
+                  "open": false,
+                  "member_count": 635,
+                  "ess": 325.2560608170857,
+                  "weight_sum": 34.41620496916108,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 34,
+                "deadline_epoch": 1784436573.979195,
+                "q25": 33,
+                "q75": 35,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784431184.213,
+                  "price": 38,
+                  "size": 125,
+                  "receipt": "6a9a4d83-3a57-4a42-7f5d-d5e42580380f"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BRU-fill",
+          "label": "Last receipt before BRU filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BRU",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+          "epoch": 1784435400,
+          "clock": "T−4hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BRU is weakening; KRA is strengthening.",
+              "WHY": "BRU trades at 58¢ against its 66¢ opening anchor; KRA trades at 42¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BRU carries 266 eligible past sides from first-price comparisons; KRA carries 226 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BRU calls 57¢ by T−3hr 24min; KRA calls 40¢ by T−1hr 32min.",
+              "WHY": "BRU’s middle half spans 56–58¢; KRA’s middle half spans 39–42¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BRU has book 57/58 and a standing 57¢ bid; KRA has book 41/42 and a standing 41¢ bid.",
+              "WHY": "BRU: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100; KRA: buying the strengthening side before it strengthens; predicted close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BRU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 60,
+              "recorded_floor": 57,
+              "P": 58,
+              "Q": 57,
+              "X": 1784437559.819014,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 266,
+              "ess": 135.21124371308025,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+              },
+              "bid": 57,
+              "filled": null,
+              "decision": {
+                "order": 72,
+                "leg": "BRU",
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 57,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 58,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+                },
+                "Q": 57,
+                "X": 1784437559.819014,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "stage_index": 36
+              },
+              "permission": {
+                "ordinal": 36,
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "id": "BRU",
+                "old": 56,
+                "proposed": 57,
+                "posted": 57,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 57,
+                  "hand_level": 57,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 59,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.04986805610600962,
+                      "ROUND_TRIP": 3.3866045032075247,
+                      "LATE_BREAK_DOWN": 0.5068094191084824,
+                      "DRIFT_DOWN": 1.124901604414652,
+                      "LATE_BREAK_UP": 0.48080247848834096,
+                      "QUIET_WOBBLE": 5.382252417194347,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "ONE_STEP_DOWN": 1.9843449599093255,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 0.8297266966404292,
+                      "GRIND_WOBBLE_DOWN": 0.06492834011417584,
+                      "SLEEPER": 0.265242247944108
+                    },
+                    "position": 0.31401273885350317,
+                    "epoch": 1784434581.3726115,
+                    "minutes_to_bell": 253.64378980795541,
+                    "open": true,
+                    "member_count": 88,
+                    "ess": 51.660745794983555,
+                    "weight_sum": 5.382252417194347,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 42,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 42,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 57,
+                    "climber_forecast_close": 42,
+                    "mirror_completion_cost": 58,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KRA",
+                    "faller": "BRU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BRU": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 135.21124371308025,
+                    "role": "FALLER",
+                    "current": 58,
+                    "member_count": 266
+                  },
+                  "KRA": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 95.114862112886,
+                    "role": "CLIMBER",
+                    "current": 42,
+                    "member_count": 226
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.04986805610600962,
+                    "ROUND_TRIP": 3.3866045032075247,
+                    "LATE_BREAK_DOWN": 0.5068094191084824,
+                    "DRIFT_DOWN": 1.124901604414652,
+                    "LATE_BREAK_UP": 0.48080247848834096,
+                    "QUIET_WOBBLE": 5.382252417194347,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 1.9843449599093255,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 0.8297266966404292,
+                    "GRIND_WOBBLE_DOWN": 0.06492834011417584,
+                    "SLEEPER": 0.265242247944108
+                  },
+                  "position": 0.31401273885350317,
+                  "epoch": 1784434581.3726115,
+                  "minutes_to_bell": 253.64378980795541,
+                  "open": true,
+                  "member_count": 88,
+                  "ess": 51.660745794983555,
+                  "weight_sum": 5.382252417194347,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1784437559.819014,
+                "q25": 56,
+                "q75": 58,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1784436379.353,
+                  "price": 57,
+                  "size": 1,
+                  "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784436248.295,
+                  "price": 58,
+                  "size": 16,
+                  "receipt": "d5102675-713f-724a-d31b-b4a38b95427a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "KRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 42,
+              "recorded_floor": 35,
+              "P": 42,
+              "Q": 40,
+              "X": 1784444287.517837,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 226,
+              "ess": 95.114862112886,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+              },
+              "bid": 41,
+              "filled": null,
+              "decision": {
+                "order": 73,
+                "leg": "KRA",
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 41,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+                },
+                "Q": 40,
+                "X": 1784444287.517837,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "stage_index": 36
+              },
+              "permission": {
+                "ordinal": 36,
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "id": "KRA",
+                "old": null,
+                "proposed": 41,
+                "posted": 41,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 41,
+                  "hand_level": 41,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.06189411900822811,
+                      "ROUND_TRIP": 2.5472261945486765,
+                      "LATE_BREAK_UP": 0.5136257795989992,
+                      "ONE_STEP_UP": 1.1189486688856347,
+                      "LATE_BREAK_DOWN": 0.24094264492500128,
+                      "QUIET_WOBBLE": 4.935662081388328,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.27180511459463014,
+                      "DRIFT_UP": 1.0368439234757225,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.16047897215532464,
+                      "EARLY_SET_UP": 0.7651497321434987,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.05815018315018315,
+                    "epoch": 1784428905.061813,
+                    "minutes_to_bell": 348.2489697813988,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 33.54565446639363,
+                    "weight_sum": 4.935662081388328,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 58,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 57,
+                      "climber_forecast_close": 42,
+                      "mirror_completion_cost": 58,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 57,
+                    "climber_forecast_close": 42,
+                    "mirror_completion_cost": 58,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KRA",
+                    "faller": "BRU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 59,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 59,
+                    "ask": 58,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BRU": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 135.21124371308025,
+                    "role": "FALLER",
+                    "current": 58,
+                    "member_count": 266
+                  },
+                  "KRA": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 95.114862112886,
+                    "role": "CLIMBER",
+                    "current": 42,
+                    "member_count": 226
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.06189411900822811,
+                    "ROUND_TRIP": 2.5472261945486765,
+                    "LATE_BREAK_UP": 0.5136257795989992,
+                    "ONE_STEP_UP": 1.1189486688856347,
+                    "LATE_BREAK_DOWN": 0.24094264492500128,
+                    "QUIET_WOBBLE": 4.935662081388328,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.27180511459463014,
+                    "DRIFT_UP": 1.0368439234757225,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.16047897215532464,
+                    "EARLY_SET_UP": 0.7651497321434987,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.05815018315018315,
+                  "epoch": 1784428905.061813,
+                  "minutes_to_bell": 348.2489697813988,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 33.54565446639363,
+                  "weight_sum": 4.935662081388328,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784444287.517837,
+                "q25": 39,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 41,
+                "floor_witness": {
+                  "epoch": 1784436322.489,
+                  "price": 41,
+                  "size": 34.32,
+                  "receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784436071.668,
+                  "price": 42,
+                  "size": 34.32,
+                  "receipt": "cb987357-a242-762d-9f57-db40a58a6a39"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784436379.353,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "BRU",
+              "epoch": 1784436379.353,
+              "cents": 57,
+              "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+              "order_lineage_receipt": "f7216a30-1158-6fca-b6a4-56ab010fb7ec",
+              "order_lineage_start_epoch": 1784434571.756,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "current_price_start_epoch": 1784435400,
+              "order_lineage_age_minutes": 30.12661666472753,
+              "current_price_age_minutes": 16.322549998760223,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "BRU",
+                "epoch": 1784436379.353,
+                "cents": 57,
+                "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+                "order_lineage_receipt": "f7216a30-1158-6fca-b6a4-56ab010fb7ec",
+                "order_lineage_start_epoch": 1784434571.756,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "current_price_start_epoch": 1784435400,
+                "order_lineage_age_minutes": 30.12661666472753,
+                "current_price_age_minutes": 16.322549998760223,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 36,
+              "epoch": 1784435400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "id": "BRU",
+              "old": 56,
+              "proposed": 57,
+              "posted": 57,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 57,
+                "hand_level": 57,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 59,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.04986805610600962,
+                    "ROUND_TRIP": 3.3866045032075247,
+                    "LATE_BREAK_DOWN": 0.5068094191084824,
+                    "DRIFT_DOWN": 1.124901604414652,
+                    "LATE_BREAK_UP": 0.48080247848834096,
+                    "QUIET_WOBBLE": 5.382252417194347,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 1.9843449599093255,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 0.8297266966404292,
+                    "GRIND_WOBBLE_DOWN": 0.06492834011417584,
+                    "SLEEPER": 0.265242247944108
+                  },
+                  "position": 0.31401273885350317,
+                  "epoch": 1784434581.3726115,
+                  "minutes_to_bell": 253.64378980795541,
+                  "open": true,
+                  "member_count": 88,
+                  "ess": 51.660745794983555,
+                  "weight_sum": 5.382252417194347,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 42,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 42,
+                  "ask": 42,
+                  "sum": 99,
+                  "discount": 1,
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 57,
+                  "climber_forecast_close": 42,
+                  "mirror_completion_cost": 58,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "KRA",
+                  "faller": "BRU",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "BRU": {
+                  "forecast": 59,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 135.21124371308025,
+                  "role": "FALLER",
+                  "current": 58,
+                  "member_count": 266
+                },
+                "KRA": {
+                  "forecast": 42,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 95.114862112886,
+                  "role": "CLIMBER",
+                  "current": 42,
+                  "member_count": 226
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_UP": 0.04986805610600962,
+                  "ROUND_TRIP": 3.3866045032075247,
+                  "LATE_BREAK_DOWN": 0.5068094191084824,
+                  "DRIFT_DOWN": 1.124901604414652,
+                  "LATE_BREAK_UP": 0.48080247848834096,
+                  "QUIET_WOBBLE": 5.382252417194347,
+                  "DRIFT_UP": 0,
+                  "GRIND_WOBBLE_UP": 0,
+                  "ONE_STEP_DOWN": 1.9843449599093255,
+                  "EARLY_SET_UP": 0,
+                  "EARLY_SET_DOWN": 0.8297266966404292,
+                  "GRIND_WOBBLE_DOWN": 0.06492834011417584,
+                  "SLEEPER": 0.265242247944108
+                },
+                "position": 0.31401273885350317,
+                "epoch": 1784434581.3726115,
+                "minutes_to_bell": 253.64378980795541,
+                "open": true,
+                "member_count": 88,
+                "ess": 51.660745794983555,
+                "weight_sum": 5.382252417194347,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 72,
+              "leg": "BRU",
+              "epoch": 1784435400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 57,
+                "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+              },
+              "Q": 57,
+              "X": 1784437559.819014,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784427615,
+              "stage_index": 36
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "licensing_deadline_epoch": 1784437559.819014,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-KRA-fill",
+          "label": "Last receipt before KRA filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KRA",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+          "epoch": 1784435400,
+          "clock": "T−4hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BRU is weakening; KRA is strengthening.",
+              "WHY": "BRU trades at 58¢ against its 66¢ opening anchor; KRA trades at 42¢ against its 34¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BRU carries 266 eligible past sides from first-price comparisons; KRA carries 226 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BRU calls 57¢ by T−3hr 24min; KRA calls 40¢ by T−1hr 32min.",
+              "WHY": "BRU’s middle half spans 56–58¢; KRA’s middle half spans 39–42¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BRU has book 57/58 and a standing 57¢ bid; KRA has book 41/42 and a standing 41¢ bid.",
+              "WHY": "BRU: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100; KRA: buying the strengthening side before it strengthens; predicted close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BRU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 66,
+              "corrected_open": 66,
+              "close": 60,
+              "recorded_floor": 57,
+              "P": 58,
+              "Q": 57,
+              "X": 1784437559.819014,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 266,
+              "ess": 135.21124371308025,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+              },
+              "bid": 57,
+              "filled": null,
+              "decision": {
+                "order": 72,
+                "leg": "BRU",
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 57,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 58,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-BRU.csv.gz#row-633"
+                },
+                "Q": 57,
+                "X": 1784437559.819014,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "stage_index": 36
+              },
+              "permission": {
+                "ordinal": 36,
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "id": "BRU",
+                "old": 56,
+                "proposed": 57,
+                "posted": 57,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 57,
+                  "hand_level": 57,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 59,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.04986805610600962,
+                      "ROUND_TRIP": 3.3866045032075247,
+                      "LATE_BREAK_DOWN": 0.5068094191084824,
+                      "DRIFT_DOWN": 1.124901604414652,
+                      "LATE_BREAK_UP": 0.48080247848834096,
+                      "QUIET_WOBBLE": 5.382252417194347,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "ONE_STEP_DOWN": 1.9843449599093255,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 0.8297266966404292,
+                      "GRIND_WOBBLE_DOWN": 0.06492834011417584,
+                      "SLEEPER": 0.265242247944108
+                    },
+                    "position": 0.31401273885350317,
+                    "epoch": 1784434581.3726115,
+                    "minutes_to_bell": 253.64378980795541,
+                    "open": true,
+                    "member_count": 88,
+                    "ess": 51.660745794983555,
+                    "weight_sum": 5.382252417194347,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 42,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 42,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; bid 57; reserve KRA max(close 42, ask 42) = 42; 57 + 42 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 57,
+                    "climber_forecast_close": 42,
+                    "mirror_completion_cost": 58,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KRA",
+                    "faller": "BRU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BRU": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 135.21124371308025,
+                    "role": "FALLER",
+                    "current": 58,
+                    "member_count": 266
+                  },
+                  "KRA": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 95.114862112886,
+                    "role": "CLIMBER",
+                    "current": 42,
+                    "member_count": 226
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.04986805610600962,
+                    "ROUND_TRIP": 3.3866045032075247,
+                    "LATE_BREAK_DOWN": 0.5068094191084824,
+                    "DRIFT_DOWN": 1.124901604414652,
+                    "LATE_BREAK_UP": 0.48080247848834096,
+                    "QUIET_WOBBLE": 5.382252417194347,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 1.9843449599093255,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 0.8297266966404292,
+                    "GRIND_WOBBLE_DOWN": 0.06492834011417584,
+                    "SLEEPER": 0.265242247944108
+                  },
+                  "position": 0.31401273885350317,
+                  "epoch": 1784434581.3726115,
+                  "minutes_to_bell": 253.64378980795541,
+                  "open": true,
+                  "member_count": 88,
+                  "ess": 51.660745794983555,
+                  "weight_sum": 5.382252417194347,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1784437559.819014,
+                "q25": 56,
+                "q75": 58,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1784436379.353,
+                  "price": 57,
+                  "size": 1,
+                  "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784436248.295,
+                  "price": 58,
+                  "size": 16,
+                  "receipt": "d5102675-713f-724a-d31b-b4a38b95427a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "KRA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 34,
+              "corrected_open": 34,
+              "close": 42,
+              "recorded_floor": 35,
+              "P": 42,
+              "Q": 40,
+              "X": 1784444287.517837,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 226,
+              "ess": 95.114862112886,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+              },
+              "bid": 41,
+              "filled": null,
+              "decision": {
+                "order": 73,
+                "leg": "KRA",
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 41,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+                },
+                "Q": 40,
+                "X": 1784444287.517837,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784427615,
+                "stage_index": 36
+              },
+              "permission": {
+                "ordinal": 36,
+                "epoch": 1784435400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "id": "KRA",
+                "old": null,
+                "proposed": 41,
+                "posted": 41,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 41,
+                  "hand_level": 41,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.06189411900822811,
+                      "ROUND_TRIP": 2.5472261945486765,
+                      "LATE_BREAK_UP": 0.5136257795989992,
+                      "ONE_STEP_UP": 1.1189486688856347,
+                      "LATE_BREAK_DOWN": 0.24094264492500128,
+                      "QUIET_WOBBLE": 4.935662081388328,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.27180511459463014,
+                      "DRIFT_UP": 1.0368439234757225,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.16047897215532464,
+                      "EARLY_SET_UP": 0.7651497321434987,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.05815018315018315,
+                    "epoch": 1784428905.061813,
+                    "minutes_to_bell": 348.2489697813988,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 33.54565446639363,
+                    "weight_sum": 4.935662081388328,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 58,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 57,
+                      "climber_forecast_close": 42,
+                      "mirror_completion_cost": 58,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 57,
+                    "climber_forecast_close": 42,
+                    "mirror_completion_cost": 58,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "KRA",
+                    "faller": "BRU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 59,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 59,
+                    "ask": 58,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BRU": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 135.21124371308025,
+                    "role": "FALLER",
+                    "current": 58,
+                    "member_count": 266
+                  },
+                  "KRA": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 95.114862112886,
+                    "role": "CLIMBER",
+                    "current": 42,
+                    "member_count": 226
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.06189411900822811,
+                    "ROUND_TRIP": 2.5472261945486765,
+                    "LATE_BREAK_UP": 0.5136257795989992,
+                    "ONE_STEP_UP": 1.1189486688856347,
+                    "LATE_BREAK_DOWN": 0.24094264492500128,
+                    "QUIET_WOBBLE": 4.935662081388328,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.27180511459463014,
+                    "DRIFT_UP": 1.0368439234757225,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.16047897215532464,
+                    "EARLY_SET_UP": 0.7651497321434987,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.05815018315018315,
+                  "epoch": 1784428905.061813,
+                  "minutes_to_bell": 348.2489697813988,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 33.54565446639363,
+                  "weight_sum": 4.935662081388328,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784444287.517837,
+                "q25": 39,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 41,
+                "floor_witness": {
+                  "epoch": 1784436322.489,
+                  "price": 41,
+                  "size": 34.32,
+                  "receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784436071.668,
+                  "price": 42,
+                  "size": 34.32,
+                  "receipt": "cb987357-a242-762d-9f57-db40a58a6a39"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784436322.489,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "KRA",
+              "epoch": 1784436322.489,
+              "cents": 41,
+              "receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "order_lineage_start_epoch": 1784435400,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "current_price_start_epoch": 1784435400,
+              "order_lineage_age_minutes": 15.3748166680336,
+              "current_price_age_minutes": 15.3748166680336,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "KRA",
+                "epoch": 1784436322.489,
+                "cents": 41,
+                "receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "order_lineage_start_epoch": 1784435400,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+                "current_price_start_epoch": 1784435400,
+                "order_lineage_age_minutes": 15.3748166680336,
+                "current_price_age_minutes": 15.3748166680336,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 36,
+              "epoch": 1784435400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "id": "KRA",
+              "old": null,
+              "proposed": 41,
+              "posted": 41,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 41,
+                "hand_level": 41,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 42,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.06189411900822811,
+                    "ROUND_TRIP": 2.5472261945486765,
+                    "LATE_BREAK_UP": 0.5136257795989992,
+                    "ONE_STEP_UP": 1.1189486688856347,
+                    "LATE_BREAK_DOWN": 0.24094264492500128,
+                    "QUIET_WOBBLE": 4.935662081388328,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.27180511459463014,
+                    "DRIFT_UP": 1.0368439234757225,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.16047897215532464,
+                    "EARLY_SET_UP": 0.7651497321434987,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.05815018315018315,
+                  "epoch": 1784428905.061813,
+                  "minutes_to_bell": 348.2489697813988,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 33.54565446639363,
+                  "weight_sum": 4.935662081388328,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 58,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 57,
+                    "climber_forecast_close": 42,
+                    "mirror_completion_cost": 58,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 57,
+                  "climber_forecast_close": 42,
+                  "mirror_completion_cost": 58,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "KRA",
+                  "faller": "BRU",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 59,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 59,
+                  "ask": 58,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "BRU": {
+                  "forecast": 59,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 135.21124371308025,
+                  "role": "FALLER",
+                  "current": 58,
+                  "member_count": 266
+                },
+                "KRA": {
+                  "forecast": 42,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 95.114862112886,
+                  "role": "CLIMBER",
+                  "current": 42,
+                  "member_count": 226
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_DOWN": 0.06189411900822811,
+                  "ROUND_TRIP": 2.5472261945486765,
+                  "LATE_BREAK_UP": 0.5136257795989992,
+                  "ONE_STEP_UP": 1.1189486688856347,
+                  "LATE_BREAK_DOWN": 0.24094264492500128,
+                  "QUIET_WOBBLE": 4.935662081388328,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 0.27180511459463014,
+                  "DRIFT_UP": 1.0368439234757225,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.16047897215532464,
+                  "EARLY_SET_UP": 0.7651497321434987,
+                  "GRIND_WOBBLE_DOWN": 0
+                },
+                "position": 0.05815018315018315,
+                "epoch": 1784428905.061813,
+                "minutes_to_bell": 348.2489697813988,
+                "open": true,
+                "member_count": 76,
+                "ess": 33.54565446639363,
+                "weight_sum": 4.935662081388328,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 73,
+              "leg": "KRA",
+              "epoch": 1784435400,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 41,
+                "reason": "buying the strengthening side before it strengthens; forecast close 42; bid 41; reserve BRU max(late floor 57, 100 - climber close 42 = 58) = 58; views differ by -1c (floor minus mirror); 41 + 58 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 41,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA-KRA.csv.gz#row-895"
+              },
+              "Q": 40,
+              "X": 1784444287.517837,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784427615,
+              "stage_index": 36
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "licensing_deadline_epoch": 1784444287.517837,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BRU was strengthening; its corrected full-window direction was weakening. KRA was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BRU": true,
+          "KRA": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 8,
+        "fills": [
+          {
+            "leg": "KRA",
+            "epoch": 1784436322.489,
+            "cents": 41,
+            "receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "order_lineage_start_epoch": 1784435400,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "current_price_start_epoch": 1784435400,
+            "order_lineage_age_minutes": 15.3748166680336,
+            "current_price_age_minutes": 15.3748166680336,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "BRU",
+            "epoch": 1784436379.353,
+            "cents": 57,
+            "receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+            "order_lineage_receipt": "f7216a30-1158-6fca-b6a4-56ab010fb7ec",
+            "order_lineage_start_epoch": 1784434571.756,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL19BRUKRA|ATLAS_GATE|1784435400",
+            "current_price_start_epoch": 1784435400,
+            "order_lineage_age_minutes": 30.12661666472753,
+            "current_price_age_minutes": 16.322549998760223,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+        "category": "ATP_CHALL",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "BRU",
+            "filled": true,
+            "fill_cents": 57,
+            "fill_epoch": 1784436379.353,
+            "fill_receipt": "6faf4022-aa70-5c06-e480-682fe0101a9c",
+            "close_cents": 60,
+            "close_epoch": 1784449136,
+            "floor_cents": 57,
+            "offered_cents": 3,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "KRA",
+            "filled": true,
+            "fill_cents": 41,
+            "fill_epoch": 1784436322.489,
+            "fill_receipt": "8bf2aa9f-f5e4-501d-c01b-e073a756beac",
+            "close_cents": 42,
+            "close_epoch": 1784449535,
+            "floor_cents": 35,
+            "offered_cents": 7,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0e589509c08542ed00bab83b0ab4544ac0441940d78b100a2d21df87d5d8141c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

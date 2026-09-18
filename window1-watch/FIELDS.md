@@ -1384,3 +1384,176 @@ https://vercel.com/docs/project-configuration/vercel-json
 `timeline.receipt_storage` and `timeline.marker_storage` may be `columns`:
 transpose the complete matrices back to rows before decoding their named
 columns. Every receipt, stored Q, card string and marker position is retained.
+
+### Three-layer WHAT / WHY / HOW review — Sep 16
+
+`build_layer_review.mjs` writes `data/layer-review/<event>.json`, `index.json`,
+`CONTRACT.json`, and `REPORT.json`/`.md`. RULER / HINDSIGHT REVIEW — NOT AN OS
+INPUT. Frozen 100 games, D and the recorded mirror-reserve bench; ALT/GAS is an
+extra named check outside every population denominator. No replay or engine
+change. LAB lazy-loads and SHA256-verifies each game against the review index.
+Selecting a review policy does not change the chart's replay; differing trace
+hashes are explicitly disclosed. Mirror-reserve is not installed.
+
+- `arms.{D,MIRROR_RESERVE}.reviews[].cells.{MACRO,MICRO,MICRO-MICRO}.{WHAT,WHY,HOW}`:
+  builder-written plain sentences from the selected source receipt. MACRO is
+  weighted possible pair futures; MICRO is own-window price and timing; the
+  present MICRO-MICRO records immediate book/permission checks, not a completed
+  predictive subsecond organ. Recorded prices are not predictions of future
+  direction. The native engine's `CONNECTED`/`RESOLVED` labels are not skill
+  certification. Untranslated reasons are explicitly missing, with raw data
+  retained in `legs.*.decision` or `permission`.
+- `first_callable_receipt`: first saved D receipt in source order where both
+  sides have RESOLVED finite Q/X before D bell, never chosen after seeing the
+  result. `first_callable_by_side` and `first_both_directional_receipt` retain
+  the distinct definitions; a role call is not silently equated to pool
+  callability. `reviews[].receipt/epoch/clock` identify the precise selection.
+- Terminal reviews use the last saved receipt strictly before each credited
+  fill, or D bell for a miss. Excluded attempts remain in `attempted_fills`;
+  unknown spans are not declared misses. Saved-stage cadence is disclosed.
+- `legs.*.open` is the replay's stored anchor used in the explanatory cell;
+  `corrected_open/close/recorded_floor` are corrected truth rulers. MACRO's
+  hindsight role uses corrected close minus corrected anchor and D's filed
+  `organ_contract.role_drift_cents` (no new cutoff). Both sides must have a
+  directional call matching that role. NOT_CALLABLE is not a directional pass.
+- `legs.*.micro`: Q/X/q25/q75 are stored forecasts; `remaining_floor_cents` and
+  its witness use strictly later, positive-size accepted prints, within the
+  corrected verified span intersected with D's clock. `passed` requires the
+  remaining floor inside q25–q75 AND a later positive print in that band by X.
+  `remaining_floor_reached_by_deadline` is also reported separately. Current
+  carried levels never substitute for future executable prints. No future
+  prints means unknown, not success. Close is never relabeled as a floor call.
+- `outcome_evidence`: credited fill, policy permission, actual close test,
+  licensing receipt and deadline diagnostic. MICRO-MICRO admission is strictly
+  below corrected close in the side's permitted policy window: D's saved rest
+  remains permitted under D until changed/fill/bell; mirror's latest recorded
+  permission must allow the same level, with its learned faller window where
+  applicable. Licensing X is diagnostic only; no new expiry rule is imposed.
+- `funnel.first_callable` and `last_before_outcomes`: separate fixed-checkpoint
+  both-side conjunctions, with PASS/FAIL/UNKNOWN and first non-pass layer, not
+  best-of-history grading or causal attribution. Fill-before-joint-call cases
+  are flagged. Reports include independent per-layer denominators, not just
+  survivors, per tour and all 100. Unknowns are never zero-filled.
+- `provenance` records D OS/trace, cache, mirror projection/permission, corrected
+  table/corrections/row and approved print-extract SHA256s. `CONTRACT.json`
+  records all scoring choices before generation, engine hash guards, missingness,
+  and explicit source-grain limits. Only selected witnesses—not raw print
+  streams—are included in the compact static review assets.
+
+### Flagged destination / entry handoff — display only
+
+- `os[].legs.*.sentence.handoff` and `.entry_license` are copied from the same
+  receipt's `layers.micro.context.beliefs`. Destination kind `W1_CLOSE` means
+  the riser's forecast close; `REMAINING_FLOOR` means a faller's forecast floor.
+  The existing direction reader is unchanged. An uncalled direction is waiting,
+  not a flat prediction. No price or permission is calculated in the browser.
+- `pressure.rows[].legs.*.display.handoff` has three stored display lines:
+  `destination_line`, `entry_line`, `reason_line`. The last preserves the OS's
+  `entry_license.written_reason` verbatim. Entry is displayed only when the
+  stored `allowed` is true. A licensed entry is not a claim of a fill or rest;
+  standing orders and executions retain their separate trace-backed display.
+- `grade_applicability` names sides with a stored close destination. The
+  floor-only MICRO comparison and aggregate letter are inapplicable, shown N/A;
+  an independently demonstrated non-MICRO failure (including safety or an
+  incomplete pair) remains F. The old calculation is preserved under
+  grade `floor_only_diagnostic`, with no replacement cutoff or close rubric.
+  Historical grades and trade/outcome numbers are retained unchanged.
+- The oracle remains a strictly-later positive-print FLOOR RULER, never an OS
+  input. A close destination's floor gap is null/inapplicable, not zero; its
+  floor path remains visible. No close forecast is silently graded as a floor.
+
+### Flagged handoff — paired discount entry amendment
+
+Historical contract below applies to aba89abf. The calibrated expected-discount
+entry amendment below supersedes its demanded-discount entry, not destinations.
+
+- `sentence.handoff.pair_discount` is written by the OS: `demanded_cents`
+  is the existing weighted median of **each intact earlier member pair's**
+  W1-close sum minus remaining-floor sum, at the query's time-to-bell. Both
+  member legs must match their query sides' direction. `layers` records the
+  existing FIRST / BASE weights, count, ESS, and discount quantiles; the existing
+  evidence floor governs selection. It is not the difference of marginal
+  medians. The inherited remaining-floor reader includes carried gate state;
+  historical opportunity is not a claim that both bids could execute.
+- `sentence.entry_license.pair_entry` records the faller's
+  `pair_destination_sum_cents` (riser **close** destination + faller **floor**
+  destination), `riser_cost_cents` / `riser_cost_basis` (actual fill, otherwise
+  still-licensed riser entry), `destination_band_upper_cents` (q75),
+  `discount_demanded_cents`, and `budget_limit_cents` (destination sum minus
+  riser cost minus demanded discount). Entry is the lesser of the band upper
+  edge and budget limit, subject to the unchanged window/deadline, maker-only,
+  book veto and actual-commitment under-par cap. Missing evidence means waiting.
+- `discount_to_destinations_cents` is destination sum minus the proposed pair
+  cost. It is **not** realized close-delta or a prediction of both W1 closes.
+  The OS writes every arithmetic component and the licensing reason; the LAB
+  copies them, with no browser price calculation. A withdrawn pre-fill riser
+  license also withdraws its dependent faller license. Changed pair arithmetic
+  is named `PAIR_ENTRY_ARITHMETIC_CHANGED` in accountability supersessions.
+- Grade `handoff_close_result` is a display-only realized-close ruler for flagged
+  replays: corrected W1 close per leg, valid credited fill, per-leg close-delta,
+  `pair_close_sum_cents`, `pair_fill_sum_cents`, and `pair_delta_cents`. Pair
+  delta is absent unless both legs have valid credited fills; one-sided value
+  is separately named `filled_leg_close_delta_cents`, never called pair capture.
+  The source is `RULER_COLUMNS.effective_truth.effective_row` with table,
+  correction commit and original row hash. `line` is builder-written, not
+  calculated by the browser. This adds no grade cutoff or engine input.
+
+### Flagged handoff — calibrated expected pair discount
+
+- `sentence.handoff.reach`: strictly-later positive-print reach through bell,
+  direction-matched selected FIRST/BASE marginal pool; no-hit members retain
+  their weight. `levels` stores raw and calibrated probabilities. Library
+  witnesses have native timestamps/positive sizes; no carried or same-time
+  witness. Their inherited block-status limitation is recorded, not erased.
+- Earlier-only weighted isotonic PAV is fitted separately by category, side,
+  receipt-time role, selected layer and atlas gate. Each prior called game has
+  total weight one over below-current legal cents. Self/same-day and later
+  resolved games are excluded. At receipts, use the latest gate already reached
+  within the span. No earlier model means waiting. Endpoint clipping is flagged.
+  Calibration hash, witness hash, training count/latest bell and applied gate
+  are stored with each reading. ALT/GAS outcomes never fit the calibration.
+- `entry_license.pair_entry.level_table[]`: legal candidates from q25 inclusive
+  to below current, with `raw_probability`, `probability`, `pair_discount_cents`
+  = pair destination sum − actual/ licensed riser cost − level, and
+  `expected_pair_discount_cents` = calibrated probability × that discount.
+  Maker/cap/positive-discount feasibility is recorded per row. Select the
+  maximum positive feasible expected discount; exact ties retain the standing
+  feasible price, then lower cent (filed reach-map ordering). The existing
+  window, deadline, veto, same-second rejection and pair cap remain unchanged.
+- `chosen_level_cents`, `chosen_probability`, `chosen_expected_discount_cents`
+  are forecasts and the optimization result, never proof of an executable fill.
+  Pre-fill counterpart cost is a licensed plan, not certain completion.
+  Every receipt renews permission and writes the numeric reason. Old demanded
+  discount is no longer a pricing input in this flagged variant.
+- `pressure.*.display.handoff.level_table` formats those stored fields (two
+  decimal places for display only). Three main lines stay separate; a short
+  builder-written reason describes the stored argmax. `raw_reason` preserves
+  the complete OS reason behind “Full licensing reason.” `reach_note` and
+  `reach_provenance` expose calibration provenance. No browser price, probability
+  or expectation calculation. Original full precision remains in stage data.
+
+### Verified multi-game experimental publication
+
+- `HANDOFF_REPLAY_INDEX` is a build-only list of explicit replay receipts. Each
+  replacement game must bind its face, grade and trace to the flagged OS and two
+  identical replay digests. It does not enable a new default OS or reader.
+- `scoreboard.rows[].historical_fault` preserves the provenance of an older
+  fault audit when an explicitly verified experimental replay replaces that
+  game. The old artifact is hash-checked against the prior published manifest;
+  it is not applied as fault credit or a header label to the new trace. Every
+  other game's face and fault data remains unchanged.
+
+### Handoff close-delta grade
+
+- `grade.close_delta_grade` is `NUMERIC_W1_CLOSE_DELTA`, a signed cents mark,
+  **not a newly invented letter cutoff or certification**. `score_cents` sums
+  corrected W1 close minus credited fill per leg. Unfilled contributes zero;
+  pair incomplete is explicit. Missing close stays missing. Existing safety
+  failures remain visible. The prior floor-only letter remains diagnostic and
+  is not applied to a riser's close destination.
+- `grade.handoff_close_result.legs.*` adds schedule `fee`, `net_direct_cents`,
+  `net_nondirect_cents`; totals use the same names. Entry fees only, one contract;
+  marking to W1 close is not an exit. Both account-rounding scenarios are shown,
+  not an assumed account type. Corrected close provenance is unchanged.
+
+- Clean-checkout demo builds default to the checked-in `data/handoff/PUBLISH_INDEX.json`; its receipts verify the five handoff replays, not the in-flight time-surface experiment. Repository-relative paths are resolved from the repository root. An explicit `HANDOFF_REPLAY_INDEX` still overrides this default.

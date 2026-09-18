@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "os": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+  "trace": "516911cbd6196d7a52b7c7950f76758a2ba833eca284996b65d22e7ec05ffa08",
+  "decision_receipts": 118,
+  "level_tables": 53,
+  "grade": "N/A",
+  "micro_grade": "N/A",
+  "close_result": {
+    "role": "RULER — realized W1 closes, not a forecast or OS input",
+    "legs": {
+      "LAJ": {
+        "close_cents": 53,
+        "close_source_column": "legA_close_c",
+        "credited_fill_cents": 52,
+        "close_delta_cents": 1
+      },
+      "SVA": {
+        "close_cents": 48,
+        "close_source_column": "legB_close_c",
+        "credited_fill_cents": 45,
+        "close_delta_cents": 3
+      }
+    },
+    "pair_close_sum_cents": 101,
+    "pair_fill_sum_cents": 97,
+    "pair_delta_cents": 4,
+    "filled_leg_close_delta_cents": 4,
+    "line": "W1 closes 53 + 48 = 101¢ · pair cost 97¢ · +4¢ vs closes",
+    "provenance": {
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "row_sha256": "1fc23f67385259fef95622a3020477439675566cdbb0332c18e6b7335852aec1"
+    }
+  },
+  "outcome": {
+    "legs": {
+      "LAJ": {
+        "filled": true,
+        "cents": 52,
+        "vs_floor_cents": 1,
+        "fill_epoch": 1784060123.219,
+        "valid_span_fill": true,
+        "revalidation": {
+          "ruler_bell_epoch": 1784078400,
+          "span_start_epoch": 1784007603,
+          "span_end_epoch": 1784078400,
+          "at_or_after_span_start": true,
+          "before_span_end": true,
+          "before_bell": true,
+          "correction_ids": []
+        },
+        "reason": null
+      },
+      "SVA": {
+        "filled": true,
+        "cents": 45,
+        "vs_floor_cents": 4,
+        "fill_epoch": 1784042394.35,
+        "valid_span_fill": true,
+        "revalidation": {
+          "ruler_bell_epoch": 1784078400,
+          "span_start_epoch": 1784007603,
+          "span_end_epoch": 1784078400,
+          "at_or_after_span_start": true,
+          "before_span_end": true,
+          "before_bell": true,
+          "correction_ids": []
+        },
+        "reason": null
+      }
+    },
+    "pair_completed": true,
+    "pair_sum": 97,
+    "captured_cents": 3,
+    "best_capturable_cents": 8,
+    "best_capturable_pair_sum_cents": 92,
+    "capture_ratio": 0.375,
+    "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+    "valid_pair_completed": true
+  },
+  "engine_unchanged_since_replay": true
+}

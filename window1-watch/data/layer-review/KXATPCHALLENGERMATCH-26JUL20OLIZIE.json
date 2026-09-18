@@ -1,0 +1,2429 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "ec5667cd69cd8ba1d3e3713e422b88d1049db3c78e560890205f87b1e03c25a8",
+    "stage_cache_sha256": "054b0b6be99d4bec8c97180270be897e9cf905820e07ab030888e1a24e5c086d",
+    "mirror_projection_sha256": "aa8aa76e3971d8384a448b414184f05b8b4983876c753ccdec784372727e1d9a",
+    "mirror_permissions_sha256": "7da7c70f8aee71c7038ee9fe35e108f3cafc0911f1b53ee9de0b366a85198c59",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "b847baab2cf85eb6ea9d6df4b838bb3bbb1a558ecbd5c8891ad7dff134b5ca5c",
+      "row_number": 761,
+      "row_csv": "26JUL20OLIZIE,KXATPCHALLENGERMATCH-26JUL20OLIZIE,ATP_CHALL,1784498091,1784498091,1784541660,1784551200.0,OLI,ZIE,1784499250,74.0,76,1784503606.1,86,1784541289.3,4664.5,3781.37,MOVER,12.0,1784522493,82,1784529303.0,PRE_BELL_VALID,1784498917,28.0,16,1784521973.3,19,1784541654.4,2509.45,458.58,MOVER,-9.0,1784522458,17,1784522933.9,PRE_BELL_VALID,1784499250,,,1784541660.0,1784546417.0,1784541660.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784499250,1784541660.0,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784499250,
+      "span_end_epoch": 1784541660,
+      "bell_epoch": 1784541660,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784541660,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "OLI": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 74,
+          "floor_cents": 76,
+          "floor_epoch": 1784503606.1,
+          "minutes_to_bell": 634.2316666682561,
+          "line": "OLI 76¢ @ 634.23m to bell",
+          "marker_label": "OLI FLOOR · RECORDED 76¢ @ 634.23m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 76¢ · 634m to bell",
+          "hover_note": "Recorded floor 76¢ printed here · 634m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "ZIE": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 28,
+          "floor_cents": 16,
+          "floor_epoch": 1784521973.3,
+          "minutes_to_bell": 328.1116666674614,
+          "line": "ZIE 16¢ @ 328.11m to bell",
+          "marker_label": "ZIE FLOOR · RECORDED 16¢ @ 328.11m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 16¢ · 328m to bell",
+          "hover_note": "Recorded floor 16¢ printed here · 328m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "OLI",
+      "underdog_leg": "ZIE",
+      "pair": {
+        "sum_cents": 92,
+        "discount_cents": 8,
+        "reason": null,
+        "line": "best capturable = 76 + 16 = 92¢",
+        "discount_line": "8¢ under par",
+        "compact_line": "best capturable 92¢ · 8¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL20OLIZIE",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784498091",
+        "w1_left_epoch": "1784498091",
+        "w1_right_epoch": "1784541660",
+        "scheduled_start_epoch": "1784551200.0",
+        "legA": "OLI",
+        "legB": "ZIE",
+        "legA_formation_end_epoch": "1784499250",
+        "legA_open_postformation_c": "74.0",
+        "legA_floor_c": "76",
+        "legA_floor_epoch": "1784503606.1",
+        "legA_close_c": "86",
+        "legA_close_epoch": "1784541289.3",
+        "legA_contracts": "4664.5",
+        "legA_premium_usd": "3781.37",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "12.0",
+        "legA_us_first_post_epoch": "1784522493",
+        "legA_us_fill_c": "82",
+        "legA_us_fill_epoch": "1784529303.0",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784498917",
+        "legB_open_postformation_c": "28.0",
+        "legB_floor_c": "16",
+        "legB_floor_epoch": "1784521973.3",
+        "legB_close_c": "19",
+        "legB_close_epoch": "1784541654.4",
+        "legB_contracts": "2509.45",
+        "legB_premium_usd": "458.58",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "-9.0",
+        "legB_us_first_post_epoch": "1784522458",
+        "legB_us_fill_c": "17",
+        "legB_us_fill_epoch": "1784522933.9",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784499250",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784541660.0",
+        "kalshi_close_time_epoch": "1784546417.0",
+        "bell_epoch": "1784541660.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784499250",
+        "span_end_epoch": "1784541660.0",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL20OLIZIE.jsonl",
+      "sha256": "9e55df40616ad4cafc26634ab862f26e40c28d6156fa46748c19a5e0a1f6a3c1",
+      "raw_rows": 625,
+      "accepted_rows": 140,
+      "start_epoch": 1784499250,
+      "end_epoch": 1784541660
+    }
+  },
+  "first_callable_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+  "first_both_directional_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+  "first_callable_by_side": {
+    "OLI": "7885e631-7be6-7def-ac91-7ec525534e76",
+    "ZIE": "7885e631-7be6-7def-ac91-7ec525534e76"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+          "epoch": 1784504931.8,
+          "clock": "T−10hr 12min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OLI is strengthening; ZIE is weakening.",
+              "WHY": "OLI trades at 76¢ against its 74¢ opening anchor; ZIE trades at 25¢ against its 28¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OLI carries 71 eligible past sides from first-price comparisons; ZIE carries 102 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OLI calls 73¢ by T−4hr 6min; ZIE calls 23¢ by T−4hr 8min.",
+              "WHY": "OLI’s middle half spans 73–74¢; ZIE’s middle half spans 22–24¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OLI has book 74/76 and a standing 73¢ bid; ZIE has book 23/25 and a standing 23¢ bid.",
+              "WHY": "OLI: The current pool target was the permitted bid level; ZIE: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "OLI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 86,
+              "recorded_floor": 76,
+              "P": 76,
+              "Q": 73,
+              "X": 1784526899,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 71,
+              "ess": 18.141092951728304,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 74,
+                "ask_cents": 76,
+                "last_trade_cents": 76,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-135"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 44,
+                "leg": "OLI",
+                "epoch": 1784504931.8,
+                "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 73,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 74,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-135"
+                },
+                "Q": 73,
+                "X": 1784526899,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784499250,
+                "support": null,
+                "accountability_assumption": "f5e612d425e7034f92a0f229335575177b5af9d16f52243cb6c85838e6d8bd01",
+                "stage_index": 22
+              },
+              "permission": null,
+              "micro": {
+                "Q": 73,
+                "deadline_epoch": 1784526899,
+                "q25": 73,
+                "q75": 74,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 77,
+                "floor_witness": {
+                  "epoch": 1784509727.314,
+                  "price": 77,
+                  "size": 34,
+                  "receipt": "9f3e71be-ffdc-783c-6f69-6ad27c2d7210"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ZIE": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 28,
+              "corrected_open": 28,
+              "close": 19,
+              "recorded_floor": 16,
+              "P": 25,
+              "Q": 23,
+              "X": 1784526752,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 102,
+              "ess": 26.722096235520855,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-146"
+              },
+              "bid": 23,
+              "filled": null,
+              "decision": {
+                "order": 45,
+                "leg": "ZIE",
+                "epoch": 1784504931.8,
+                "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 23,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-146"
+                },
+                "Q": 23,
+                "X": 1784526752,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784498917,
+                "support": null,
+                "accountability_assumption": "98595a0ac44547892c060423a1b927027c6954119579f525ee0c698d7bf66b95",
+                "stage_index": 22
+              },
+              "permission": null,
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1784526752,
+                "q25": 22,
+                "q75": 24,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 16,
+                "floor_witness": {
+                  "epoch": 1784521973.32,
+                  "price": 16,
+                  "size": 31,
+                  "receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784509727.472,
+                  "price": 23,
+                  "size": 32,
+                  "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-OLI-miss",
+          "label": "Last receipt before OLI missed at the bell",
+          "arm": "D",
+          "focus_leg": "OLI",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052",
+          "epoch": 1784541658.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OLI is strengthening; ZIE is weakening.",
+              "WHY": "OLI trades at 86¢ against its 74¢ opening anchor; ZIE trades at 19¢ against its 28¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OLI carries 696 eligible past sides from first-price comparisons; ZIE carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OLI calls 86¢ by T−0hr 0min; ZIE calls 19¢ by T−0hr 0min.",
+              "WHY": "OLI’s middle half spans 86–86¢; ZIE’s middle half spans 19–19¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OLI has book 81/85 and a standing 75¢ bid; ZIE has book 15/19 and a recorded purchase at 23¢.",
+              "WHY": "OLI: The desired bid could not be posted below the ask; ZIE: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "OLI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 86,
+              "recorded_floor": 76,
+              "P": 86,
+              "Q": 86,
+              "X": 1784541658.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 237.43710852767575,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 85,
+                "last_trade_cents": 86,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052"
+              },
+              "bid": 75,
+              "filled": null,
+              "decision": {
+                "order": 98,
+                "leg": "OLI",
+                "epoch": 1784541658.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 75,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 81,
+                  "ask_cents": 85,
+                  "last_trade_cents": 86,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052"
+                },
+                "Q": 86,
+                "X": 1784541658.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784499250,
+                "support": null,
+                "accountability_assumption": "c9d1754912428af1fbc5eb15731090bc39534fffa10fa4064ecdbb80afd29510",
+                "stage_index": 65
+              },
+              "permission": null,
+              "micro": {
+                "Q": 86,
+                "deadline_epoch": 1784541658.000001,
+                "q25": 86,
+                "q75": 86,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ZIE": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 28,
+              "corrected_open": 28,
+              "close": 19,
+              "recorded_floor": 16,
+              "P": 19,
+              "Q": 19,
+              "X": 1784541658.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 269.2094880724221,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 19,
+                "last_trade_cents": 19,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-1859"
+              },
+              "bid": null,
+              "filled": 23,
+              "decision": {
+                "order": 96,
+                "leg": "ZIE",
+                "epoch": 1784541360,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE|ATLAS_GATE|1784541360",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 14,
+                  "ask_cents": 18,
+                  "last_trade_cents": 18,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-1818"
+                },
+                "Q": 18,
+                "X": 1784541360,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784498917,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 62
+              },
+              "permission": null,
+              "micro": {
+                "Q": 19,
+                "deadline_epoch": 1784541658.000001,
+                "q25": 19,
+                "q75": 19,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784541660,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-ZIE-fill",
+          "label": "Last receipt before ZIE filled",
+          "arm": "D",
+          "focus_leg": "ZIE",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216",
+          "epoch": 1784508721.000001,
+          "clock": "T−9hr 9min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OLI is strengthening; ZIE is weakening.",
+              "WHY": "OLI trades at 76¢ against its 74¢ opening anchor; ZIE trades at 25¢ against its 28¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OLI carries 117 eligible past sides from first-price comparisons; ZIE carries 154 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OLI calls 74¢ by T−4hr 6min; ZIE calls 23¢ by T−3hr 5min.",
+              "WHY": "OLI’s middle half spans 73–76¢; ZIE’s middle half spans 22–25¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OLI has book 74/76 and a standing 74¢ bid; ZIE has book 24/26 and a standing 23¢ bid.",
+              "WHY": "OLI: The current pool target was the permitted bid level; ZIE: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "OLI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 86,
+              "recorded_floor": 76,
+              "P": 76,
+              "Q": 74,
+              "X": 1784526899,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 117,
+              "ess": 33.56505865974634,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 74,
+                "ask_cents": 76,
+                "last_trade_cents": 76,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216"
+              },
+              "bid": 74,
+              "filled": null,
+              "decision": {
+                "order": 46,
+                "leg": "OLI",
+                "epoch": 1784508721.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 74,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 74,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216"
+                },
+                "Q": 74,
+                "X": 1784526899,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784499250,
+                "support": null,
+                "accountability_assumption": "894fdba70d2f6d471c9e765123ddca04732ef10480a3e78ecb7061c7500256b6",
+                "stage_index": 23
+              },
+              "permission": null,
+              "micro": {
+                "Q": 74,
+                "deadline_epoch": 1784526899,
+                "q25": 73,
+                "q75": 76,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 77,
+                "floor_witness": {
+                  "epoch": 1784509727.314,
+                  "price": 77,
+                  "size": 34,
+                  "receipt": "9f3e71be-ffdc-783c-6f69-6ad27c2d7210"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ZIE": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 28,
+              "corrected_open": 28,
+              "close": 19,
+              "recorded_floor": 16,
+              "P": 25,
+              "Q": 23,
+              "X": 1784530555.461105,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 154,
+              "ess": 49.008419667139044,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 24,
+                "ask_cents": 26,
+                "last_trade_cents": 25,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-208"
+              },
+              "bid": 23,
+              "filled": null,
+              "decision": {
+                "order": 47,
+                "leg": "ZIE",
+                "epoch": 1784508721.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 23,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 24,
+                  "ask_cents": 26,
+                  "last_trade_cents": 25,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-208"
+                },
+                "Q": 23,
+                "X": 1784530555.461105,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784498917,
+                "support": null,
+                "accountability_assumption": "9597a5fd22574a708d1bd9891eb59f9266345a1bb6ad4dfc3af33cc820460992",
+                "stage_index": 23
+              },
+              "permission": null,
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1784530555.461105,
+                "q25": 22,
+                "q75": 25,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 16,
+                "floor_witness": {
+                  "epoch": 1784521973.32,
+                  "price": 16,
+                  "size": 31,
+                  "receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784509727.472,
+                  "price": 23,
+                  "size": 32,
+                  "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784509727.472,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "ZIE",
+              "epoch": 1784509727.472,
+              "cents": 23,
+              "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e",
+              "order_lineage_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+              "order_lineage_start_epoch": 1784504931.8,
+              "current_price_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+              "current_price_start_epoch": 1784504931.8,
+              "order_lineage_age_minutes": 79.92786666552226,
+              "current_price_age_minutes": 79.92786666552226,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "ZIE",
+                "epoch": 1784509727.472,
+                "cents": 23,
+                "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e",
+                "order_lineage_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "order_lineage_start_epoch": 1784504931.8,
+                "current_price_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "current_price_start_epoch": 1784504931.8,
+                "order_lineage_age_minutes": 79.92786666552226,
+                "current_price_age_minutes": 79.92786666552226,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 47,
+              "leg": "ZIE",
+              "epoch": 1784508721.000001,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-216",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 23,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 24,
+                "ask_cents": 26,
+                "last_trade_cents": 25,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-208"
+              },
+              "Q": 23,
+              "X": 1784530555.461105,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784498917,
+              "support": null,
+              "accountability_assumption": "9597a5fd22574a708d1bd9891eb59f9266345a1bb6ad4dfc3af33cc820460992",
+              "stage_index": 23
+            },
+            "license_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+            "licensing_deadline_epoch": 1784526752,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "OLI: later floor 77¢ outside 73–74¢; no later band print met the deadline. ZIE: later floor 16¢ outside 22–24¢; a later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "OLI: No strictly later accepted positive print. ZIE: later floor 16¢ outside 22–25¢; a later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "OLI": false,
+          "ZIE": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 8,
+        "fills": [
+          {
+            "leg": "ZIE",
+            "epoch": 1784509727.472,
+            "cents": 23,
+            "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e",
+            "order_lineage_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+            "order_lineage_start_epoch": 1784504931.8,
+            "current_price_receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+            "current_price_start_epoch": 1784504931.8,
+            "order_lineage_age_minutes": 79.92786666552226,
+            "current_price_age_minutes": 79.92786666552226,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "OLI",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 86,
+            "close_epoch": 1784541289.3,
+            "floor_cents": 76,
+            "offered_cents": 10,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 10,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "ZIE",
+            "filled": true,
+            "fill_cents": 23,
+            "fill_epoch": 1784509727.472,
+            "fill_receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e",
+            "close_cents": 19,
+            "close_epoch": 1784541654.4,
+            "floor_cents": 16,
+            "offered_cents": 3,
+            "value_cents": -4,
+            "premium_cents": 4,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "b847baab2cf85eb6ea9d6df4b838bb3bbb1a558ecbd5c8891ad7dff134b5ca5c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+          "epoch": 1784504931.8,
+          "clock": "T−10hr 12min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OLI is strengthening; ZIE is weakening.",
+              "WHY": "OLI trades at 76¢ against its 74¢ opening anchor; ZIE trades at 25¢ against its 28¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OLI carries 71 eligible past sides from first-price comparisons; ZIE carries 102 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OLI calls 73¢ by T−4hr 6min; ZIE calls 23¢ by T−4hr 8min.",
+              "WHY": "OLI’s middle half spans 73–74¢; ZIE’s middle half spans 22–24¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OLI has book 74/76 and a standing 75¢ bid; ZIE has book 23/25 and no standing bid.",
+              "WHY": "OLI: buying the strengthening side before it strengthens; predicted close 76; bid 75; reserve ZIE max(late floor 23, 100 - climber close 76 = 24) = 24; views differ by -1c (floor minus mirror); 75 + 24 = 99 < 100; ZIE: The weakening side had not entered its predicted late-floor window. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "OLI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 86,
+              "recorded_floor": 76,
+              "P": 76,
+              "Q": 73,
+              "X": 1784526899,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 71,
+              "ess": 18.141092951728304,
+              "family": "EARLY_SET_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 74,
+                "ask_cents": 76,
+                "last_trade_cents": 76,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-135"
+              },
+              "bid": 75,
+              "filled": null,
+              "decision": {
+                "order": 44,
+                "leg": "OLI",
+                "epoch": 1784504931.8,
+                "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 75,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 76; bid 75; reserve ZIE max(late floor 23, 100 - climber close 76 = 24) = 24; views differ by -1c (floor minus mirror); 75 + 24 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 74,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-135"
+                },
+                "Q": 73,
+                "X": 1784526899,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784499250,
+                "stage_index": 22
+              },
+              "permission": {
+                "ordinal": 22,
+                "epoch": 1784504931.8,
+                "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "id": "OLI",
+                "old": null,
+                "proposed": 75,
+                "posted": 75,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 75,
+                  "hand_level": 75,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 76,
+                  "window": {
+                    "family": "EARLY_SET_UP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.2903939335545066,
+                      "ROUND_TRIP": 1.1257447850837585,
+                      "LATE_BREAK_DOWN": 0.19049934717273354,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.03278490345825984,
+                      "QUIET_WOBBLE": 0.8896407933537487,
+                      "DRIFT_UP": 0.6485263238346168,
+                      "GRIND_WOBBLE_UP": 0,
+                      "ONE_STEP_DOWN": 0.027190335225335833,
+                      "EARLY_SET_UP": 1.2065502057004698,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.04204566879535679
+                    },
+                    "position": 0.031347612672913874,
+                    "epoch": 1784500579.4522533,
+                    "minutes_to_bell": 684.6757957776388,
+                    "open": true,
+                    "member_count": 12,
+                    "ess": 2.803859910689505,
+                    "weight_sum": 1.2065502057004698,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 24,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 23,
+                      "climber_forecast_close": 76,
+                      "mirror_completion_cost": 24,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 76; bid 75; reserve ZIE max(late floor 23, 100 - climber close 76 = 24) = 24; views differ by -1c (floor minus mirror); 75 + 24 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 23,
+                    "climber_forecast_close": 76,
+                    "mirror_completion_cost": 24,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "OLI",
+                    "faller": "ZIE",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 25,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 25,
+                    "ask": 25,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "OLI": {
+                    "forecast": 76,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 18.141092951728304,
+                    "role": "CLIMBER",
+                    "current": 76,
+                    "member_count": 71
+                  },
+                  "ZIE": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 26.722096235520855,
+                    "role": "FALLER",
+                    "current": 25,
+                    "member_count": 102
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_UP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.2903939335545066,
+                    "ROUND_TRIP": 1.1257447850837585,
+                    "LATE_BREAK_DOWN": 0.19049934717273354,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.03278490345825984,
+                    "QUIET_WOBBLE": 0.8896407933537487,
+                    "DRIFT_UP": 0.6485263238346168,
+                    "GRIND_WOBBLE_UP": 0,
+                    "ONE_STEP_DOWN": 0.027190335225335833,
+                    "EARLY_SET_UP": 1.2065502057004698,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.04204566879535679
+                  },
+                  "position": 0.031347612672913874,
+                  "epoch": 1784500579.4522533,
+                  "minutes_to_bell": 684.6757957776388,
+                  "open": true,
+                  "member_count": 12,
+                  "ess": 2.803859910689505,
+                  "weight_sum": 1.2065502057004698,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 73,
+                "deadline_epoch": 1784526899,
+                "q25": 73,
+                "q75": 74,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 77,
+                "floor_witness": {
+                  "epoch": 1784509727.314,
+                  "price": 77,
+                  "size": 34,
+                  "receipt": "9f3e71be-ffdc-783c-6f69-6ad27c2d7210"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ZIE": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 28,
+              "corrected_open": 28,
+              "close": 19,
+              "recorded_floor": 16,
+              "P": 25,
+              "Q": 23,
+              "X": 1784526752,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 102,
+              "ess": 26.722096235520855,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 25,
+                "last_trade_cents": 25,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-146"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 45,
+                "leg": "ZIE",
+                "epoch": 1784504931.8,
+                "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 23; reserve OLI max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 25,
+                  "last_trade_cents": 25,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-146"
+                },
+                "Q": 23,
+                "X": 1784526752,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784498917,
+                "stage_index": 22
+              },
+              "permission": {
+                "ordinal": 22,
+                "epoch": 1784504931.8,
+                "receipt": "7885e631-7be6-7def-ac91-7ec525534e76",
+                "id": "ZIE",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 25,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.4171524924968639,
+                      "ROUND_TRIP": 0.5965847086891776,
+                      "LATE_BREAK_UP": 0.656810596325695,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0,
+                      "QUIET_WOBBLE": 1.627346992449525,
+                      "DRIFT_DOWN": 0.23117692877894266,
+                      "SLEEPER": 0.04204566879535679,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 1.487460630624944,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.2063854047890536,
+                    "epoch": 1784507738.5313568,
+                    "minutes_to_bell": 565.357810719808,
+                    "open": false,
+                    "member_count": 26,
+                    "ess": 13.194473378348034,
+                    "weight_sum": 1.627346992449525,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 23; reserve OLI max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 23,
+                    "climber_forecast_close": 76,
+                    "mirror_completion_cost": 24,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "OLI",
+                    "faller": "ZIE",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "OLI": {
+                    "forecast": 76,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 18.141092951728304,
+                    "role": "CLIMBER",
+                    "current": 76,
+                    "member_count": 71
+                  },
+                  "ZIE": {
+                    "forecast": 25,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 26.722096235520855,
+                    "role": "FALLER",
+                    "current": 25,
+                    "member_count": 102
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.4171524924968639,
+                    "ROUND_TRIP": 0.5965847086891776,
+                    "LATE_BREAK_UP": 0.656810596325695,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0,
+                    "QUIET_WOBBLE": 1.627346992449525,
+                    "DRIFT_DOWN": 0.23117692877894266,
+                    "SLEEPER": 0.04204566879535679,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 1.487460630624944,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.2063854047890536,
+                  "epoch": 1784507738.5313568,
+                  "minutes_to_bell": 565.357810719808,
+                  "open": false,
+                  "member_count": 26,
+                  "ess": 13.194473378348034,
+                  "weight_sum": 1.627346992449525,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1784526752,
+                "q25": 22,
+                "q75": 24,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 16,
+                "floor_witness": {
+                  "epoch": 1784521973.32,
+                  "price": 16,
+                  "size": 31,
+                  "receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784509727.472,
+                  "price": 23,
+                  "size": 32,
+                  "receipt": "b5d30978-00a0-7bf6-1595-c0453b61e75e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-OLI-fill",
+          "label": "Last receipt before OLI filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "OLI",
+          "outcome": "fill",
+          "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+          "epoch": 1784521977.322,
+          "clock": "T−5hr 28min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OLI is strengthening; ZIE is weakening.",
+              "WHY": "OLI trades at 84¢ against its 74¢ opening anchor; ZIE trades at 16¢ against its 28¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OLI carries 311 eligible past sides from first-price comparisons; ZIE carries 377 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OLI calls 82¢ by T−4hr 6min; ZIE calls 15¢ by T−4hr 20min.",
+              "WHY": "OLI’s middle half spans 81–84¢; ZIE’s middle half spans 14–16¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OLI has book 83/84 and a standing 83¢ bid; ZIE has book 16/17 and a standing 15¢ bid.",
+              "WHY": "OLI: buying the strengthening side before it strengthens; predicted close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100; ZIE: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 15; bid 15; reserve OLI max(close 84, ask 84) = 84; 15 + 84 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "OLI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 86,
+              "recorded_floor": 76,
+              "P": 84,
+              "Q": 82,
+              "X": 1784526899,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 311,
+              "ess": 109.03594382453723,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-590"
+              },
+              "bid": 83,
+              "filled": null,
+              "decision": {
+                "order": 100,
+                "leg": "OLI",
+                "epoch": 1784521977.322,
+                "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 83,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-590"
+                },
+                "Q": 82,
+                "X": 1784526899,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784499250,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1784521977.322,
+                "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+                "id": "OLI",
+                "old": 83,
+                "proposed": 83,
+                "posted": 83,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 83,
+                  "hand_level": 83,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 84,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 2.121225573850314,
+                      "ROUND_TRIP": 2.4976683875226025,
+                      "LATE_BREAK_DOWN": 0.18316796907420457,
+                      "DRIFT_DOWN": 0.01740903330935867,
+                      "LATE_BREAK_UP": 0.2498387885949849,
+                      "QUIET_WOBBLE": 5.386384521541635,
+                      "DRIFT_UP": 1.7861357474260287,
+                      "GRIND_WOBBLE_UP": 0.188444809092572,
+                      "ONE_STEP_DOWN": 0.11818223688069496,
+                      "EARLY_SET_UP": 3.8304948307458835,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.21450653530507754
+                    },
+                    "position": 0.04229508196721311,
+                    "epoch": 1784501043.7344263,
+                    "minutes_to_bell": 676.9377595623334,
+                    "open": true,
+                    "member_count": 104,
+                    "ess": 41.28741972633508,
+                    "weight_sum": 5.386384521541635,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 16,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 15,
+                      "climber_forecast_close": 84,
+                      "mirror_completion_cost": 16,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 84,
+                    "mirror_completion_cost": 16,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "OLI",
+                    "faller": "ZIE",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 17,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 16,
+                    "ask": 17,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "OLI": {
+                    "forecast": 84,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.03594382453723,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 311
+                  },
+                  "ZIE": {
+                    "forecast": 16,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 140.2526701656062,
+                    "role": "FALLER",
+                    "current": 16,
+                    "member_count": 377
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 2.121225573850314,
+                    "ROUND_TRIP": 2.4976683875226025,
+                    "LATE_BREAK_DOWN": 0.18316796907420457,
+                    "DRIFT_DOWN": 0.01740903330935867,
+                    "LATE_BREAK_UP": 0.2498387885949849,
+                    "QUIET_WOBBLE": 5.386384521541635,
+                    "DRIFT_UP": 1.7861357474260287,
+                    "GRIND_WOBBLE_UP": 0.188444809092572,
+                    "ONE_STEP_DOWN": 0.11818223688069496,
+                    "EARLY_SET_UP": 3.8304948307458835,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.21450653530507754
+                  },
+                  "position": 0.04229508196721311,
+                  "epoch": 1784501043.7344263,
+                  "minutes_to_bell": 676.9377595623334,
+                  "open": true,
+                  "member_count": 104,
+                  "ess": 41.28741972633508,
+                  "weight_sum": 5.386384521541635,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 82,
+                "deadline_epoch": 1784526899,
+                "q25": 81,
+                "q75": 84,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 81,
+                "floor_witness": {
+                  "epoch": 1784531055.959,
+                  "price": 81,
+                  "size": 6.09,
+                  "receipt": "cc5a7892-0961-5fcc-415c-795db2fbfeea"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784521977.323,
+                  "price": 84,
+                  "size": 26,
+                  "receipt": "3aad0a58-e626-779f-462d-7ec134f3b735"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "ZIE": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 28,
+              "corrected_open": 28,
+              "close": 19,
+              "recorded_floor": 16,
+              "P": 16,
+              "Q": 15,
+              "X": 1784526047,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 377,
+              "ess": 140.2526701656062,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 16,
+                "ask_cents": 17,
+                "last_trade_cents": 16,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-555"
+              },
+              "bid": 15,
+              "filled": null,
+              "decision": {
+                "order": 101,
+                "leg": "ZIE",
+                "epoch": 1784521977.322,
+                "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 15,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; bid 15; reserve OLI max(close 84, ask 84) = 84; 15 + 84 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 16,
+                  "ask_cents": 17,
+                  "last_trade_cents": 16,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-555"
+                },
+                "Q": 15,
+                "X": 1784526047,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784498917,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1784521977.322,
+                "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+                "id": "ZIE",
+                "old": 15,
+                "proposed": 15,
+                "posted": 15,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 15,
+                  "hand_level": 15,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 16,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 3.1056097061328187,
+                      "ROUND_TRIP": 3.9998780759550123,
+                      "LATE_BREAK_UP": 0.5109662605297576,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 0.1712879121656781,
+                      "QUIET_WOBBLE": 9.072265061644572,
+                      "DRIFT_DOWN": 1.2517496049419685,
+                      "SLEEPER": 0.3580784589162517,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 2.3035587446438726,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.020776647719540575
+                    },
+                    "position": 0.21477272727272728,
+                    "epoch": 1784508097.0306818,
+                    "minutes_to_bell": 559.3828219691912,
+                    "open": true,
+                    "member_count": 146,
+                    "ess": 61.465431782594045,
+                    "weight_sum": 9.072265061644572,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 84,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 84,
+                    "ask": 84,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 15; bid 15; reserve OLI max(close 84, ask 84) = 84; 15 + 84 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 84,
+                    "mirror_completion_cost": 16,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "OLI",
+                    "faller": "ZIE",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "OLI": {
+                    "forecast": 84,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.03594382453723,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 311
+                  },
+                  "ZIE": {
+                    "forecast": 16,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 140.2526701656062,
+                    "role": "FALLER",
+                    "current": 16,
+                    "member_count": 377
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 3.1056097061328187,
+                    "ROUND_TRIP": 3.9998780759550123,
+                    "LATE_BREAK_UP": 0.5109662605297576,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 0.1712879121656781,
+                    "QUIET_WOBBLE": 9.072265061644572,
+                    "DRIFT_DOWN": 1.2517496049419685,
+                    "SLEEPER": 0.3580784589162517,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 2.3035587446438726,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.020776647719540575
+                  },
+                  "position": 0.21477272727272728,
+                  "epoch": 1784508097.0306818,
+                  "minutes_to_bell": 559.3828219691912,
+                  "open": true,
+                  "member_count": 146,
+                  "ess": 61.465431782594045,
+                  "weight_sum": 9.072265061644572,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 15,
+                "deadline_epoch": 1784526047,
+                "q25": 14,
+                "q75": 16,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 16,
+                "floor_witness": {
+                  "epoch": 1784540725.806,
+                  "price": 16,
+                  "size": 6,
+                  "receipt": "2cbcd48d-882a-5454-2279-1ad296c5d2e5"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784522457.576,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "OLI",
+              "epoch": 1784522457.576,
+              "cents": 83,
+              "receipt": "7b9dac0c-8e28-67f6-fb7d-28085dc66734",
+              "order_lineage_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+              "order_lineage_start_epoch": 1784521973.32,
+              "current_price_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+              "current_price_start_epoch": 1784521973.32,
+              "order_lineage_age_minutes": 8.070933334032695,
+              "current_price_age_minutes": 8.070933334032695,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "OLI",
+                "epoch": 1784522457.576,
+                "cents": 83,
+                "receipt": "7b9dac0c-8e28-67f6-fb7d-28085dc66734",
+                "order_lineage_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+                "order_lineage_start_epoch": 1784521973.32,
+                "current_price_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+                "current_price_start_epoch": 1784521973.32,
+                "order_lineage_age_minutes": 8.070933334032695,
+                "current_price_age_minutes": 8.070933334032695,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 50,
+              "epoch": 1784521977.322,
+              "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+              "id": "OLI",
+              "old": 83,
+              "proposed": 83,
+              "posted": 83,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 83,
+                "hand_level": 83,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 84,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 2.121225573850314,
+                    "ROUND_TRIP": 2.4976683875226025,
+                    "LATE_BREAK_DOWN": 0.18316796907420457,
+                    "DRIFT_DOWN": 0.01740903330935867,
+                    "LATE_BREAK_UP": 0.2498387885949849,
+                    "QUIET_WOBBLE": 5.386384521541635,
+                    "DRIFT_UP": 1.7861357474260287,
+                    "GRIND_WOBBLE_UP": 0.188444809092572,
+                    "ONE_STEP_DOWN": 0.11818223688069496,
+                    "EARLY_SET_UP": 3.8304948307458835,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.21450653530507754
+                  },
+                  "position": 0.04229508196721311,
+                  "epoch": 1784501043.7344263,
+                  "minutes_to_bell": 676.9377595623334,
+                  "open": true,
+                  "member_count": 104,
+                  "ess": 41.28741972633508,
+                  "weight_sum": 5.386384521541635,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 16,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 84,
+                    "mirror_completion_cost": 16,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 15,
+                  "climber_forecast_close": 84,
+                  "mirror_completion_cost": 16,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "OLI",
+                  "faller": "ZIE",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 17,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 16,
+                  "ask": 17,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "OLI": {
+                  "forecast": 84,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 109.03594382453723,
+                  "role": "CLIMBER",
+                  "current": 84,
+                  "member_count": 311
+                },
+                "ZIE": {
+                  "forecast": 16,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 140.2526701656062,
+                  "role": "FALLER",
+                  "current": 16,
+                  "member_count": 377
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_UP": 2.121225573850314,
+                  "ROUND_TRIP": 2.4976683875226025,
+                  "LATE_BREAK_DOWN": 0.18316796907420457,
+                  "DRIFT_DOWN": 0.01740903330935867,
+                  "LATE_BREAK_UP": 0.2498387885949849,
+                  "QUIET_WOBBLE": 5.386384521541635,
+                  "DRIFT_UP": 1.7861357474260287,
+                  "GRIND_WOBBLE_UP": 0.188444809092572,
+                  "ONE_STEP_DOWN": 0.11818223688069496,
+                  "EARLY_SET_UP": 3.8304948307458835,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "SLEEPER": 0.21450653530507754
+                },
+                "position": 0.04229508196721311,
+                "epoch": 1784501043.7344263,
+                "minutes_to_bell": 676.9377595623334,
+                "open": true,
+                "member_count": 104,
+                "ess": 41.28741972633508,
+                "weight_sum": 5.386384521541635,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 100,
+              "leg": "OLI",
+              "epoch": 1784521977.322,
+              "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 83,
+                "reason": "buying the strengthening side before it strengthens; forecast close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 83,
+                "ask_cents": 84,
+                "last_trade_cents": 84,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-590"
+              },
+              "Q": 82,
+              "X": 1784526899,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784499250,
+              "stage_index": 50
+            },
+            "license_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+            "licensing_deadline_epoch": 1784526899,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-ZIE-miss",
+          "label": "Last receipt before ZIE missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "ZIE",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052",
+          "epoch": 1784541658.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OLI is strengthening; ZIE is weakening.",
+              "WHY": "OLI trades at 86¢ against its 74¢ opening anchor; ZIE trades at 19¢ against its 28¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OLI carries 696 eligible past sides from first-price comparisons; ZIE carries 700 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OLI calls 86¢ by T−0hr 0min; ZIE calls 19¢ by T−0hr 0min.",
+              "WHY": "OLI’s middle half spans 86–86¢; ZIE’s middle half spans 19–19¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OLI has book 81/85 and a recorded purchase at 83¢; ZIE has book 15/19 and no standing bid.",
+              "WHY": "OLI: buying the strengthening side before it strengthens; predicted close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100; ZIE: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "OLI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 74,
+              "corrected_open": 74,
+              "close": 86,
+              "recorded_floor": 76,
+              "P": 86,
+              "Q": 86,
+              "X": 1784541658.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 237.43710852767575,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 81,
+                "ask_cents": 85,
+                "last_trade_cents": 86,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052"
+              },
+              "bid": null,
+              "filled": 83,
+              "decision": {
+                "order": 100,
+                "leg": "OLI",
+                "epoch": 1784521977.322,
+                "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 83,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 83,
+                  "ask_cents": 84,
+                  "last_trade_cents": 84,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-590"
+                },
+                "Q": 82,
+                "X": 1784526899,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784499250,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 50,
+                "epoch": 1784521977.322,
+                "receipt": "fb373d13-4748-46ce-2344-1fb3486ac295",
+                "id": "OLI",
+                "old": 83,
+                "proposed": 83,
+                "posted": 83,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 83,
+                  "hand_level": 83,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 84,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 2.121225573850314,
+                      "ROUND_TRIP": 2.4976683875226025,
+                      "LATE_BREAK_DOWN": 0.18316796907420457,
+                      "DRIFT_DOWN": 0.01740903330935867,
+                      "LATE_BREAK_UP": 0.2498387885949849,
+                      "QUIET_WOBBLE": 5.386384521541635,
+                      "DRIFT_UP": 1.7861357474260287,
+                      "GRIND_WOBBLE_UP": 0.188444809092572,
+                      "ONE_STEP_DOWN": 0.11818223688069496,
+                      "EARLY_SET_UP": 3.8304948307458835,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.21450653530507754
+                    },
+                    "position": 0.04229508196721311,
+                    "epoch": 1784501043.7344263,
+                    "minutes_to_bell": 676.9377595623334,
+                    "open": true,
+                    "member_count": 104,
+                    "ess": 41.28741972633508,
+                    "weight_sum": 5.386384521541635,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 16,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 15,
+                      "climber_forecast_close": 84,
+                      "mirror_completion_cost": 16,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 84; bid 83; reserve ZIE max(late floor 15, 100 - climber close 84 = 16) = 16; views differ by -1c (floor minus mirror); 83 + 16 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 15,
+                    "climber_forecast_close": 84,
+                    "mirror_completion_cost": 16,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "OLI",
+                    "faller": "ZIE",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 17,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 16,
+                    "ask": 17,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "OLI": {
+                    "forecast": 84,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 109.03594382453723,
+                    "role": "CLIMBER",
+                    "current": 84,
+                    "member_count": 311
+                  },
+                  "ZIE": {
+                    "forecast": 16,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 140.2526701656062,
+                    "role": "FALLER",
+                    "current": 16,
+                    "member_count": 377
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 2.121225573850314,
+                    "ROUND_TRIP": 2.4976683875226025,
+                    "LATE_BREAK_DOWN": 0.18316796907420457,
+                    "DRIFT_DOWN": 0.01740903330935867,
+                    "LATE_BREAK_UP": 0.2498387885949849,
+                    "QUIET_WOBBLE": 5.386384521541635,
+                    "DRIFT_UP": 1.7861357474260287,
+                    "GRIND_WOBBLE_UP": 0.188444809092572,
+                    "ONE_STEP_DOWN": 0.11818223688069496,
+                    "EARLY_SET_UP": 3.8304948307458835,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.21450653530507754
+                  },
+                  "position": 0.04229508196721311,
+                  "epoch": 1784501043.7344263,
+                  "minutes_to_bell": 676.9377595623334,
+                  "open": true,
+                  "member_count": 104,
+                  "ess": 41.28741972633508,
+                  "weight_sum": 5.386384521541635,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 86,
+                "deadline_epoch": 1784541658.000001,
+                "q25": 86,
+                "q75": 86,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ZIE": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 28,
+              "corrected_open": 28,
+              "close": 19,
+              "recorded_floor": 16,
+              "P": 19,
+              "Q": 19,
+              "X": 1784541658.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 700,
+              "ess": 269.2094880724221,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 15,
+                "ask_cents": 19,
+                "last_trade_cents": 19,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-1859"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 115,
+                "leg": "ZIE",
+                "epoch": 1784541658.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 19; reserve OLI max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 15,
+                  "ask_cents": 19,
+                  "last_trade_cents": 19,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-ZIE.csv.gz#row-1859"
+                },
+                "Q": 19,
+                "X": 1784541658.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784498917,
+                "stage_index": 65
+              },
+              "permission": {
+                "ordinal": 64,
+                "epoch": 1784541658.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL20OLIZIE-OLI.csv.gz#row-6052",
+                "id": "ZIE",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 19,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 19,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.258938362260221,
+                      "ROUND_TRIP": 4.8821786479187,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_UP": 0,
+                      "LATE_BREAK_DOWN": 1.580735876903965,
+                      "QUIET_WOBBLE": 16.407742593763913,
+                      "DRIFT_DOWN": 1.656843524082239,
+                      "SLEEPER": 2.8803007786407218,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 2.7500724378787114,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.03937040632135208
+                    },
+                    "position": 0.4273968253968254,
+                    "epoch": 1784517185.222508,
+                    "minutes_to_bell": 407.9129582007726,
+                    "open": true,
+                    "member_count": 293,
+                    "ess": 117.61726167408364,
+                    "weight_sum": 16.407742593763913,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 19; reserve OLI max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 19,
+                    "climber_forecast_close": 86,
+                    "mirror_completion_cost": 14,
+                    "disagreement_cents": 5,
+                    "absolute_disagreement_cents": 5,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "OLI",
+                    "faller": "ZIE",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "OLI": {
+                    "forecast": 86,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 237.43710852767575,
+                    "role": "CLIMBER",
+                    "current": 86,
+                    "member_count": 696
+                  },
+                  "ZIE": {
+                    "forecast": 19,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 269.2094880724221,
+                    "role": "FALLER",
+                    "current": 19,
+                    "member_count": 700
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.258938362260221,
+                    "ROUND_TRIP": 4.8821786479187,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_UP": 0,
+                    "LATE_BREAK_DOWN": 1.580735876903965,
+                    "QUIET_WOBBLE": 16.407742593763913,
+                    "DRIFT_DOWN": 1.656843524082239,
+                    "SLEEPER": 2.8803007786407218,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 2.7500724378787114,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.03937040632135208
+                  },
+                  "position": 0.4273968253968254,
+                  "epoch": 1784517185.222508,
+                  "minutes_to_bell": 407.9129582007726,
+                  "open": true,
+                  "member_count": 293,
+                  "ess": 117.61726167408364,
+                  "weight_sum": 16.407742593763913,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 19,
+                "deadline_epoch": 1784541658.000001,
+                "q25": 19,
+                "q75": 19,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784541660,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "OLI: later floor 77¢ outside 73–74¢; no later band print met the deadline. ZIE: later floor 16¢ outside 22–24¢; a later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "ZIE: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "OLI": true,
+          "ZIE": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 8,
+        "fills": [
+          {
+            "leg": "OLI",
+            "epoch": 1784522457.576,
+            "cents": 83,
+            "receipt": "7b9dac0c-8e28-67f6-fb7d-28085dc66734",
+            "order_lineage_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+            "order_lineage_start_epoch": 1784521973.32,
+            "current_price_receipt": "54d5b380-03a8-62c6-d06f-3cf643fe2779",
+            "current_price_start_epoch": 1784521973.32,
+            "order_lineage_age_minutes": 8.070933334032695,
+            "current_price_age_minutes": 8.070933334032695,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "OLI",
+            "filled": true,
+            "fill_cents": 83,
+            "fill_epoch": 1784522457.576,
+            "fill_receipt": "7b9dac0c-8e28-67f6-fb7d-28085dc66734",
+            "close_cents": 86,
+            "close_epoch": 1784541289.3,
+            "floor_cents": 76,
+            "offered_cents": 10,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "ZIE",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 19,
+            "close_epoch": 1784541654.4,
+            "floor_cents": 16,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "b847baab2cf85eb6ea9d6df4b838bb3bbb1a558ecbd5c8891ad7dff134b5ca5c",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "event": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+  "flag": "W1_DIRECTION_HANDOFF=on",
+  "amendment": {
+    "status": "FROZEN_BEFORE_FIT",
+    "scope": "Four bed games on unchanged ee2b7f18; ATP_MAIN and ATP_CHALL calibration strictly from earlier library games. No bed/tune outcomes or tutoring. Same ALT/GAS calibration/entry definitions.",
+    "pool": "Installed first-price weights, direction-matched member outcomes, FIRST then BASE; unchanged side/role, category, walk-forward and same-day exclusions",
+    "target": "At least one strictly later cutter-accepted positive-size print at or below translated L and strictly before member bell. No-hit member keeps its weight. No carried price or zero-size print counts.",
+    "witness_limitation": "Held cutter witness source has unknown block status, inherited and disclosed; this experiment does not claim verified non-block reach or known queue priority.",
+    "calibration": "Filed weighted isotonic PAV, category/side/receipt-time role/selected layer/atlas gate separately. One total weight per earlier called library game over all legal integer-cent levels below its current. Train only on games whose bell precedes the query formation, excluding self and event-name same day. No named/tune outcomes. No earlier rows means no permission.",
+    "application": "Piecewise-linear interpolation and explicit endpoint clipping as filed. At a receipt use the latest atlas gate already reached within the query span, never a future gate. Raw probabilities are recomputed at the actual receipt. No curve before the first available gate.",
+    "validation": "Walk-forward held-out library predictions, raw and calibrated probabilities versus realized reach by absolute L, depth below current and gate; raw-only versus common calibration coverage separate. Report Brier and endpoint clipping. No tuning from these results.",
+    "decision": "Legal market increments from band q25 inclusive to below current, maker-only and actual pair cap. Maximize calibrated P(reach before bell) times (riser close destination + faller floor destination - actual filled or licensed riser cost - L). Positive discount and positive expected discount required. Exact objective ties retain the standing feasible level, then lower cent, inheriting filed reach-map order.",
+    "unchanged": "Destinations, role call, learned faller window, fresh deadline requirement, riser entry, post-only, veto, actual commitment cap, same-second rejection, fill law and replay clock. Default flag off. No automatic installation.",
+    "acceptance": "Synthetic strict-witness, isotonic and argmax tests; source/temporal checks; actual OS replay twice; flag-off digest identical; face source equality and hosted verification. No result numbers prescribed."
+  },
+  "started": "2026-09-18T14:08:37.708Z",
+  "finished": "2026-09-18T14:16:21.558Z",
+  "sources": {
+    "window1_v54_dual_belief_os.js": {
+      "path": "C:/Users/omigr/omi-w1-face/arb-executor/analysis/window1_v54_dual_belief_os.js",
+      "sha256": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+      "bytes": 51123,
+      "rows": null
+    },
+    "window1_v54_functionable_os.js": {
+      "path": "C:/Users/omigr/omi-w1-face/arb-executor/analysis/window1_v54_functionable_os.js",
+      "sha256": "584f4aab94708095ce94815172f1b99f3563ff20690f8730be7dd1b1b2810698",
+      "bytes": 52256,
+      "rows": null
+    },
+    "build_window1_v54_dual_belief.js": {
+      "path": "C:/Users/omigr/omi-w1-face/arb-executor/analysis/build_window1_v54_dual_belief.js",
+      "sha256": "337a3fcbbddbb4dfc28df10213a1ce092cc7ed05885285754f96a1ebd62572f5",
+      "bytes": 183137,
+      "rows": null
+    }
+  },
+  "meta": {
+    "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+    "event_date": "26JUL14",
+    "category": "ATP_CHALL",
+    "discovery_epoch": 1784007323,
+    "bell_epoch": 1784078400,
+    "span_end_epoch": 1784078400,
+    "bell_source": "MACHINE_RECEIPT",
+    "bell_source_used": "MACHINE_RECEIPT",
+    "bell_alignment": {
+      "original_bell_epoch": 1784078400,
+      "corrected_ruler_bell_epoch": 1784078400,
+      "used_bell_epoch": 1784078400,
+      "delta_seconds": 0,
+      "applied": false,
+      "source": "c0056976:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.json",
+      "corrections_source": "15955e44faebf24a17c8c99eba6b8fb98a98a294:.claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_CORRECTIONS.jsonl"
+    },
+    "leg_ids": [
+      "LAJ",
+      "SVA"
+    ],
+    "anchors_cents": {
+      "LAJ": 59,
+      "SVA": 41
+    },
+    "formation_end_epochs": {
+      "LAJ": 1784007603,
+      "SVA": 1784007603
+    },
+    "truth_closes_cents": {
+      "LAJ": 53,
+      "SVA": 48
+    },
+    "truth_fill_stamps": {
+      "LAJ": "PRE_BELL_VALID",
+      "SVA": "PRE_BELL_VALID"
+    },
+    "correction_receipt": null
+  },
+  "trace": {
+    "path": "C:\\tmp\\handoff_bed_20260918\\KXATPCHALLENGERMATCH-26JUL14LAJSVA\\on/REPAIR_FOUR_GAME_TRACE.jsonl.gz",
+    "sha256": "516911cbd6196d7a52b7c7950f76758a2ba833eca284996b65d22e7ec05ffa08",
+    "bytes": 1726779,
+    "rows": null
+  },
+  "execution": {
+    "run_source": "V54_BOOK_VETO_ONLY_20260826",
+    "gradeable": true,
+    "completed": true,
+    "combined_entry_cents": 97,
+    "delta_vs_100_cents": 3,
+    "legs": {
+      "LAJ": {
+        "credited": true,
+        "entry_cents": 52,
+        "standing_target_cents": null,
+        "fill_receipt": "7fb0df36-2082-795a-5cb6-f311235289d1",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+          "captured_at_receipt": "7fb0df36-2082-795a-5cb6-f311235289d1",
+          "row_refs": [
+            "7fb0df36-2082-795a-5cb6-f311235289d1"
+          ],
+          "context": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+            "leg_id": "LAJ",
+            "entry_cents": 52,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 51,
+            "fill_timestamp_epoch": 1784060123.219,
+            "prior_standing_target_cents": 52,
+            "standing_license_basis": "SVA bought 45¢ → 52¢; LAJ → 49¢ floor; pair destination sum 101¢; 45¢ reaches 0.7840932714067167% for 11¢ = 0.08625025985473883¢; 46¢ reaches 0.7840932714067167% for 10¢ = 0.07840932714067167¢; 47¢ reaches 0.7840932714067167% for 9¢ = 0.0705683944266045¢; 48¢ reaches 3.382528361270064% for 8¢ = 0.2706022689016051¢; 49¢ reaches 5.0327151243388935% for 7¢ = 0.35229005870372254¢; 50¢ reaches 9.389414158344604% for 6¢ = 0.5633648495006762¢; 51¢ reaches 16.665446899568025% for 5¢ = 0.8332723449784012¢; 52¢ reaches 28.579208182351294% for 4¢ = 1.1431683272940518¢; 53¢ reaches 51.53096271474117% for 3¢ = 1.5459288814422352¢ (NOT_MAKER_POSTABLE); entering 52¢ maximizes expected pair discount; pair cost 97¢; maker-only in the learned window, under par.",
+            "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-051c8d6be2846ea1a6ed0cc3f7092f3d25a91350eb5ba0efe8109d0cc1be1f35"
+        },
+        "fill_timestamp_epoch": 1784060123.219,
+        "standing_license_basis": null,
+        "standing_license_receipt": null,
+        "standing_captured_rest_level_cents": null,
+        "standing_captured_rest_license_receipt": null
+      },
+      "SVA": {
+        "credited": true,
+        "entry_cents": 45,
+        "standing_target_cents": null,
+        "fill_receipt": "013d5fa3-3749-40b6-f180-fc6b42c0e326",
+        "fill_event_receipt": {
+          "schema": "CITATION_RECEIPT_V1",
+          "kind": "QUERY_RECEIPT",
+          "citation_type": "FILL_EVENT",
+          "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+          "captured_at_receipt": "013d5fa3-3749-40b6-f180-fc6b42c0e326",
+          "row_refs": [
+            "013d5fa3-3749-40b6-f180-fc6b42c0e326"
+          ],
+          "context": {
+            "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+            "leg_id": "SVA",
+            "entry_cents": 45,
+            "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+            "triggering_print_price_cents": 45,
+            "fill_timestamp_epoch": 1784042394.35,
+            "prior_standing_target_cents": 45,
+            "standing_license_basis": "SVA: destination 47¢ from 58 past risers; entering at 45¢ because maker entry is below the forecast close; LAJ reserved at 48¢; pair 93¢, under par.",
+            "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3727",
+            "print_at_or_below_rest": true,
+            "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+          },
+          "receipt_id": "CR-257ac249edc3d44e8420509bd49f69b587fd15086b496e8d62686d359d8ab580"
+        },
+        "fill_timestamp_epoch": 1784042394.35,
+        "standing_license_basis": null,
+        "standing_license_receipt": null,
+        "standing_captured_rest_level_cents": null,
+        "standing_captured_rest_license_receipt": null
+      }
+    }
+  },
+  "fills": [
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|SVA",
+      "captured_at_receipt": "013d5fa3-3749-40b6-f180-fc6b42c0e326",
+      "row_refs": [
+        "013d5fa3-3749-40b6-f180-fc6b42c0e326"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "SVA",
+        "entry_cents": 45,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 45,
+        "fill_timestamp_epoch": 1784042394.35,
+        "prior_standing_target_cents": 45,
+        "standing_license_basis": "SVA: destination 47¢ from 58 past risers; entering at 45¢ because maker entry is below the forecast close; LAJ reserved at 48¢; pair 93¢, under par.",
+        "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.csv.gz#row-3727",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-257ac249edc3d44e8420509bd49f69b587fd15086b496e8d62686d359d8ab580"
+    },
+    {
+      "schema": "CITATION_RECEIPT_V1",
+      "kind": "QUERY_RECEIPT",
+      "citation_type": "FILL_EVENT",
+      "source_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA|LAJ",
+      "captured_at_receipt": "7fb0df36-2082-795a-5cb6-f311235289d1",
+      "row_refs": [
+        "7fb0df36-2082-795a-5cb6-f311235289d1"
+      ],
+      "context": {
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14LAJSVA",
+        "leg_id": "LAJ",
+        "entry_cents": 52,
+        "execution_price_basis": "STANDING_REST_LIMIT_CENTS",
+        "triggering_print_price_cents": 51,
+        "fill_timestamp_epoch": 1784060123.219,
+        "prior_standing_target_cents": 52,
+        "standing_license_basis": "SVA bought 45¢ → 52¢; LAJ → 49¢ floor; pair destination sum 101¢; 45¢ reaches 0.7840932714067167% for 11¢ = 0.08625025985473883¢; 46¢ reaches 0.7840932714067167% for 10¢ = 0.07840932714067167¢; 47¢ reaches 0.7840932714067167% for 9¢ = 0.0705683944266045¢; 48¢ reaches 3.382528361270064% for 8¢ = 0.2706022689016051¢; 49¢ reaches 5.0327151243388935% for 7¢ = 0.35229005870372254¢; 50¢ reaches 9.389414158344604% for 6¢ = 0.5633648495006762¢; 51¢ reaches 16.665446899568025% for 5¢ = 0.8332723449784012¢; 52¢ reaches 28.579208182351294% for 4¢ = 1.1431683272940518¢; 53¢ reaches 51.53096271474117% for 3¢ = 1.5459288814422352¢ (NOT_MAKER_POSTABLE); entering 52¢ maximizes expected pair discount; pair cost 97¢; maker-only in the learned window, under par.",
+        "standing_license_receipt": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.csv.gz#row-7979",
+        "print_at_or_below_rest": true,
+        "transition": "OPEN_REST_TO_CREDITED_HALF_PAIR"
+      },
+      "receipt_id": "CR-051c8d6be2846ea1a6ed0cc3f7092f3d25a91350eb5ba0efe8109d0cc1be1f35"
+    }
+  ],
+  "determinism_x2": true,
+  "digest": {
+    "sha256": "44a78f9d3413e656c3088b4ecdce5abf67d58680b3854cb2622a6bfe39301332",
+    "bytes": 62805139,
+    "counts": {
+      "stage_reads": 118,
+      "rearm_attempts": 2948,
+      "fill_events": 2,
+      "floor_print_decision_instants": 17
+    }
+  },
+  "market_increment_records": [
+    {
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ",
+      "path": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/KXATPCHALLENGERMATCH-26JUL14LAJSVA-LAJ.grid.json",
+      "sha256": "fd76e663c452b9178f1fc1147b23abf03fde9e7bb9e8789bcfce994c515854cf"
+    },
+    {
+      "ticker": "KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA",
+      "path": "C:/tmp/handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/KXATPCHALLENGERMATCH-26JUL14LAJSVA-SVA.grid.json",
+      "sha256": "1bef85f62635022fd2335306315f0c3907f00ab92e7afd9a7924dfd264a59769"
+    }
+  ],
+  "calibration": {
+    "path": "C:\\tmp\\handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/CALIBRATION_RECEIPT.json",
+    "sha256": "1935a4527b914c161bfb557ee43081263d1c8c9f7a36933ace63deab0cbcd780",
+    "bytes": 5940,
+    "rows": null
+  },
+  "calibration_models": {
+    "path": "C:\\tmp\\handoff_bed_20260918/KXATPCHALLENGERMATCH-26JUL14LAJSVA/CALIBRATION_MODELS.json",
+    "sha256": "1365bb6a6732fde3981b9e58eb7272c8fd16a511c4d90f3d4dd754480dbbb5ac",
+    "bytes": 12477408,
+    "rows": null
+  },
+  "witness": {
+    "witness_sha256": "7c01d2899a9c830f4e1042b5c1619e57e8271e183422a4b4c483da6da9187904",
+    "library_sha256": "c823d1725cf4af8b561eabaae48fc540379fa774571cc3fdea49e5ffcd052461",
+    "witness_limitation": "Cutter-accepted positive-size prints; inherited source has unknown block status, as disclosed in the filed reach-map run. No carried price, zero-size, same-time or at/after-bell witness."
+  },
+  "scope": "Bed-game actual OS replay through unchanged ee2b7f18, calibrated expected pair discount flagged on. No default installation.",
+  "D": {
+    "source": "Archived D native-tick face; b745ce7a levels/execution prior to accountability-only patch",
+    "os": "b745ce7ac0f4101e6c26058b4fc8d1f1b8ae64854097952ba527453f545cc231",
+    "trace": "2a6af0af3f3c4602fed97782f7f736a2dff48f2c78eb9496101b25b564885439",
+    "grade_sha256": "9f89dadc780ab9eae56576cf69f0a7945fa88a101f9fdfa3d3ee714ced09bc8b",
+    "face_sha256": "f0de50ed03d5e8017b13910c118f6997abf38973d0381fd2c32319afb7755b97"
+  }
+}

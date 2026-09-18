@@ -1,0 +1,2161 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL19GAOFRU",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "14822771e4b791f2903d9a36e64ea62a65c08c307187d6bd76fca502c7b18331",
+    "stage_cache_sha256": "df4f093b02ea8b26bec56d48337266e02906ba0f8a2c88a61a83704fb2426e4d",
+    "mirror_projection_sha256": "1076c8767043e34e2a90cd9bf5ba81bbb76f29c6e22273284b8fb71a0bb3d157",
+    "mirror_permissions_sha256": "f01acb80d7c98cb0316d70924d00ae3e4478b5dd74445eb51b84b7517e0e112c",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "175dc9dbaeacf9855688094a24486be38b2d4b08e6c68864dd65c24351999805",
+      "row_number": 621,
+      "row_csv": "26JUL19GAOFRU,KXWTAMATCH-26JUL19GAOFRU,WTA_MAIN,1784374107,1784374107,1784451600,1784458800.0,FRU,GAO,1784379742,49.5,49,1784381170.4,49,1784451483.1,1540.18,757.41,STILL,-0.5,1784410290,,,,1784379742,53.0,50,1784410218.0,53,1784451407.8,3130.87,1638.0,STILL,0.0,1784410290,51,1784420119.1,PRE_BELL_VALID,1784379742,1784451600,1784470372.0,,1784467507.0,1784451600,MACHINE_RECEIPT,\"EXACT (10 receipts, zero spread)\",1784379742,1784451600,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784379742,
+      "span_end_epoch": 1784451600,
+      "bell_epoch": 1784451600,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1784451600,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "FRU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 49.5,
+          "floor_cents": 49,
+          "floor_epoch": 1784381170.4,
+          "minutes_to_bell": 1173.8266666650773,
+          "line": "FRU 49¢ @ 1173.83m to bell",
+          "marker_label": "FRU FLOOR · RECORDED 49¢ @ 1173.83m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 49¢ · 1173m to bell",
+          "hover_note": "Recorded floor 49¢ printed here · 1173m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "GAO": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 53,
+          "floor_cents": 50,
+          "floor_epoch": 1784410218,
+          "minutes_to_bell": 689.7,
+          "line": "GAO 50¢ @ 689.70m to bell",
+          "marker_label": "GAO FLOOR · RECORDED 50¢ @ 689.70m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 50¢ · 689m to bell",
+          "hover_note": "Recorded floor 50¢ printed here · 689m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "GAO",
+      "underdog_leg": "FRU",
+      "pair": {
+        "sum_cents": 99,
+        "discount_cents": 1,
+        "reason": null,
+        "line": "best capturable = 50 + 49 = 99¢",
+        "discount_line": "1¢ under par",
+        "compact_line": "best capturable 99¢ · 1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL19GAOFRU",
+        "event_id": "KXWTAMATCH-26JUL19GAOFRU",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1784374107",
+        "w1_left_epoch": "1784374107",
+        "w1_right_epoch": "1784451600",
+        "scheduled_start_epoch": "1784458800.0",
+        "legA": "FRU",
+        "legB": "GAO",
+        "legA_formation_end_epoch": "1784379742",
+        "legA_open_postformation_c": "49.5",
+        "legA_floor_c": "49",
+        "legA_floor_epoch": "1784381170.4",
+        "legA_close_c": "49",
+        "legA_close_epoch": "1784451483.1",
+        "legA_contracts": "1540.18",
+        "legA_premium_usd": "757.41",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-0.5",
+        "legA_us_first_post_epoch": "1784410290",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784379742",
+        "legB_open_postformation_c": "53.0",
+        "legB_floor_c": "50",
+        "legB_floor_epoch": "1784410218.0",
+        "legB_close_c": "53",
+        "legB_close_epoch": "1784451407.8",
+        "legB_contracts": "3130.87",
+        "legB_premium_usd": "1638.0",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "0.0",
+        "legB_us_first_post_epoch": "1784410290",
+        "legB_us_fill_c": "51",
+        "legB_us_fill_epoch": "1784420119.1",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784379742",
+        "bell_machine_epoch": "1784451600",
+        "bell_observed_inplay_epoch": "1784470372.0",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1784467507.0",
+        "bell_epoch": "1784451600",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (10 receipts, zero spread)",
+        "span_start_epoch": "1784379742",
+        "span_end_epoch": "1784451600",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL19GAOFRU.jsonl",
+      "sha256": "74f459595d2087be3d778b89e45496c3a5426f1114d3217d6992681942e9f216",
+      "raw_rows": 6542,
+      "accepted_rows": 109,
+      "start_epoch": 1784379742,
+      "end_epoch": 1784451600
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "FRU": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+    "GAO": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+          "epoch": 1784384355.000004,
+          "clock": "T−18hr 41min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is not yet directionally called; GAO is strengthening.",
+              "WHY": "FRU trades at 50¢ against its 49¢ opening anchor; GAO trades at 56¢ against its 53¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 417 eligible past sides from first-price comparisons; GAO carries 143 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 48¢ by T−10hr 29min; GAO calls 54¢ by T−14hr 0min.",
+              "WHY": "FRU’s middle half spans 46–49¢; GAO’s middle half spans 53–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 43/48 and no standing bid; GAO has book 49/56 and a standing 54¢ bid.",
+              "WHY": "FRU: The desired bid could not be posted below the ask; GAO: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 49,
+              "corrected_open": 49.5,
+              "close": 49,
+              "recorded_floor": 49,
+              "P": 50,
+              "Q": 48,
+              "X": 1784413870.777417,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 417,
+              "ess": 148.86119120637258,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 48,
+                "last_trade_cents": 50,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-551"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 114,
+                "leg": "FRU",
+                "epoch": 1784384355.000004,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 48,
+                  "last_trade_cents": 50,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-551"
+                },
+                "Q": 48,
+                "X": 1784413870.777417,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 57
+              },
+              "permission": null,
+              "micro": {
+                "Q": 48,
+                "deadline_epoch": 1784413870.777417,
+                "q25": 46,
+                "q75": 49,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 49,
+                "floor_witness": {
+                  "epoch": 1784416542.337,
+                  "price": 49,
+                  "size": 4.55,
+                  "receipt": "fcc44696-8d62-7af3-2ed2-02223fa055d2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAO": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 53,
+              "corrected_open": 53,
+              "close": 53,
+              "recorded_floor": 50,
+              "P": 56,
+              "Q": 54,
+              "X": 1784401218,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 143,
+              "ess": 51.12111363116568,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 49,
+                "ask_cents": 56,
+                "last_trade_cents": 56,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199"
+              },
+              "bid": 54,
+              "filled": null,
+              "decision": {
+                "order": 115,
+                "leg": "GAO",
+                "epoch": 1784384355.000004,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 54,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 49,
+                  "ask_cents": 56,
+                  "last_trade_cents": 56,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199"
+                },
+                "Q": 54,
+                "X": 1784401218,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "support": null,
+                "accountability_assumption": "34ebc8f1b99bb4f352c603ab5f1dec7346fcec0e783e955c697f9b70884943fa",
+                "stage_index": 57
+              },
+              "permission": null,
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1784401218,
+                "q25": 53,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 50,
+                "floor_witness": {
+                  "epoch": 1784410217.959,
+                  "price": 50,
+                  "size": 7.44,
+                  "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784390514.967,
+                  "price": 53,
+                  "size": 290.33,
+                  "receipt": "4c6c1c80-8fc8-45ba-bf5b-f534e7d0290a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-FRU-miss",
+          "label": "Last receipt before FRU missed at the bell",
+          "arm": "D",
+          "focus_leg": "FRU",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+          "epoch": 1784451599.000006,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is not yet directionally called; GAO is not yet directionally called.",
+              "WHY": "FRU trades at 49¢ against its 49¢ opening anchor; GAO trades at 53¢ against its 53¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 751 eligible past sides from first-price comparisons; GAO carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 49¢ by T−0hr 0min; GAO calls 53¢ by T−0hr 0min.",
+              "WHY": "FRU’s middle half spans 49–49¢; GAO’s middle half spans 53–53¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 48/49 and a standing 48¢ bid; GAO has book 52/53 and a recorded purchase at 50¢.",
+              "WHY": "FRU: The desired bid could not be posted below the ask; GAO: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 49,
+              "corrected_open": 49.5,
+              "close": 49,
+              "recorded_floor": 49,
+              "P": 49,
+              "Q": 49,
+              "X": 1784451599.000006,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 309.39439833794455,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 48,
+                "ask_cents": 49,
+                "last_trade_cents": 49,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-5682"
+              },
+              "bid": 48,
+              "filled": null,
+              "decision": {
+                "order": 200,
+                "leg": "FRU",
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 48,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 48,
+                  "ask_cents": 49,
+                  "last_trade_cents": 49,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-5682"
+                },
+                "Q": 49,
+                "X": 1784451599.000006,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "support": null,
+                "accountability_assumption": "4bfeb661ae69832d3a283961c07059a48abea04a97c9732697a955447b68fce0",
+                "stage_index": 119
+              },
+              "permission": null,
+              "micro": {
+                "Q": 49,
+                "deadline_epoch": 1784451599.000006,
+                "q25": 49,
+                "q75": 49,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GAO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 53,
+              "corrected_open": 53,
+              "close": 53,
+              "recorded_floor": 50,
+              "P": 53,
+              "Q": 53,
+              "X": 1784451599.000006,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 309.39439833794455,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 53,
+                "last_trade_cents": 53,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807"
+              },
+              "bid": null,
+              "filled": 50,
+              "decision": {
+                "order": 198,
+                "leg": "GAO",
+                "epoch": 1784451300,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU|ATLAS_GATE|1784451300",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 53,
+                  "last_trade_cents": 53,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11636"
+                },
+                "Q": 53,
+                "X": 1784451300,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 117
+              },
+              "permission": null,
+              "micro": {
+                "Q": 53,
+                "deadline_epoch": 1784451599.000006,
+                "q25": 53,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784451600,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GAO-fill",
+          "label": "Last receipt before GAO filled",
+          "arm": "D",
+          "focus_leg": "GAO",
+          "outcome": "fill",
+          "receipt": "dae77452-090b-6451-b942-fd49f019da1c",
+          "epoch": 1784410074.5,
+          "clock": "T−11hr 32min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is not yet directionally called; GAO is not yet directionally called.",
+              "WHY": "FRU trades at 50¢ against its 49¢ opening anchor; GAO trades at 52¢ against its 53¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 610 eligible past sides from first-price comparisons; GAO carries 610 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 48¢ by T−7hr 4min; GAO calls 50¢ by T−7hr 24min.",
+              "WHY": "FRU’s middle half spans 47–49¢; GAO’s middle half spans 49–52¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 48/50 and a standing 48¢ bid; GAO has book 50/52 and a standing 50¢ bid.",
+              "WHY": "FRU: The current pool target was the permitted bid level; GAO: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 49,
+              "corrected_open": 49.5,
+              "close": 49,
+              "recorded_floor": 49,
+              "P": 50,
+              "Q": 48,
+              "X": 1784426172,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 610,
+              "ess": 238.51500369444665,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 48,
+                "ask_cents": 50,
+                "last_trade_cents": 50,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-1657"
+              },
+              "bid": 48,
+              "filled": null,
+              "decision": {
+                "order": 140,
+                "leg": "FRU",
+                "epoch": 1784410074.5,
+                "receipt": "dae77452-090b-6451-b942-fd49f019da1c",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 48,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 48,
+                  "ask_cents": 50,
+                  "last_trade_cents": 50,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-1657"
+                },
+                "Q": 48,
+                "X": 1784426172,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "support": null,
+                "accountability_assumption": "43ce433ed7b2ce4803e999c783c144331156db5dc060d7bd8b7983ab6ee5386e",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 48,
+                "deadline_epoch": 1784426172,
+                "q25": 47,
+                "q75": 49,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 49,
+                "floor_witness": {
+                  "epoch": 1784416542.337,
+                  "price": 49,
+                  "size": 4.55,
+                  "receipt": "fcc44696-8d62-7af3-2ed2-02223fa055d2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784416542.337,
+                  "price": 49,
+                  "size": 4.55,
+                  "receipt": "fcc44696-8d62-7af3-2ed2-02223fa055d2"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "GAO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 53,
+              "corrected_open": 53,
+              "close": 53,
+              "recorded_floor": 50,
+              "P": 52,
+              "Q": 50,
+              "X": 1784424979.04431,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 610,
+              "ess": 238.51500369444665,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 50,
+                "ask_cents": 52,
+                "last_trade_cents": 52,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-1258"
+              },
+              "bid": 50,
+              "filled": null,
+              "decision": {
+                "order": 141,
+                "leg": "GAO",
+                "epoch": 1784410074.5,
+                "receipt": "dae77452-090b-6451-b942-fd49f019da1c",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 50,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 50,
+                  "ask_cents": 52,
+                  "last_trade_cents": 52,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-1258"
+                },
+                "Q": 50,
+                "X": 1784424979.04431,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "support": null,
+                "accountability_assumption": "9c26131edad781404da55049ebf4d8f317bc4e01fa95de2661280d0995ddc956",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 50,
+                "deadline_epoch": 1784424979.04431,
+                "q25": 49,
+                "q75": 52,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 50,
+                "floor_witness": {
+                  "epoch": 1784410217.959,
+                  "price": 50,
+                  "size": 7.44,
+                  "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784410217.959,
+                  "price": 50,
+                  "size": 7.44,
+                  "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784410217.959,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GAO",
+              "epoch": 1784410217.959,
+              "cents": 50,
+              "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8",
+              "order_lineage_receipt": "4c6c1c80-8fc8-45ba-bf5b-f534e7d0290a",
+              "order_lineage_start_epoch": 1784390514.967,
+              "current_price_receipt": "ab11bda6-47db-7291-45b7-6be7aab21e04",
+              "current_price_start_epoch": 1784408050.87,
+              "order_lineage_age_minutes": 328.3832000017166,
+              "current_price_age_minutes": 36.11815000375112,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GAO",
+                "epoch": 1784410217.959,
+                "cents": 50,
+                "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8",
+                "order_lineage_receipt": "4c6c1c80-8fc8-45ba-bf5b-f534e7d0290a",
+                "order_lineage_start_epoch": 1784390514.967,
+                "current_price_receipt": "ab11bda6-47db-7291-45b7-6be7aab21e04",
+                "current_price_start_epoch": 1784408050.87,
+                "order_lineage_age_minutes": 328.3832000017166,
+                "current_price_age_minutes": 36.11815000375112,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 141,
+              "leg": "GAO",
+              "epoch": 1784410074.5,
+              "receipt": "dae77452-090b-6451-b942-fd49f019da1c",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 50,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 50,
+                "ask_cents": 52,
+                "last_trade_cents": 52,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-1258"
+              },
+              "Q": 50,
+              "X": 1784424979.04431,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784379742,
+              "support": null,
+              "accountability_assumption": "9c26131edad781404da55049ebf4d8f317bc4e01fa95de2661280d0995ddc956",
+              "stage_index": 70
+            },
+            "license_receipt": "ab11bda6-47db-7291-45b7-6be7aab21e04",
+            "licensing_deadline_epoch": 1784424463,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "FRU": false,
+          "GAO": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [
+          {
+            "leg": "GAO",
+            "epoch": 1784410217.959,
+            "cents": 50,
+            "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8",
+            "order_lineage_receipt": "4c6c1c80-8fc8-45ba-bf5b-f534e7d0290a",
+            "order_lineage_start_epoch": 1784390514.967,
+            "current_price_receipt": "ab11bda6-47db-7291-45b7-6be7aab21e04",
+            "current_price_start_epoch": 1784408050.87,
+            "order_lineage_age_minutes": 328.3832000017166,
+            "current_price_age_minutes": 36.11815000375112,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL19GAOFRU",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "FRU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 49,
+            "close_epoch": 1784451483.1,
+            "floor_cents": 49,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GAO",
+            "filled": true,
+            "fill_cents": 50,
+            "fill_epoch": 1784410217.959,
+            "fill_receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8",
+            "close_cents": 53,
+            "close_epoch": 1784451407.8,
+            "floor_cents": 50,
+            "offered_cents": 3,
+            "value_cents": 3,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "175dc9dbaeacf9855688094a24486be38b2d4b08e6c68864dd65c24351999805",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+          "epoch": 1784384355.000004,
+          "clock": "T−18hr 41min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is not yet directionally called; GAO is strengthening.",
+              "WHY": "FRU trades at 50¢ against its 49¢ opening anchor; GAO trades at 56¢ against its 53¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 417 eligible past sides from first-price comparisons; GAO carries 143 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 48¢ by T−10hr 29min; GAO calls 54¢ by T−14hr 0min.",
+              "WHY": "FRU’s middle half spans 46–49¢; GAO’s middle half spans 53–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 43/48 and no standing bid; GAO has book 49/56 and no standing bid.",
+              "WHY": "FRU: The policy was waiting for a directional call; GAO: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 49,
+              "corrected_open": 49.5,
+              "close": 49,
+              "recorded_floor": 49,
+              "P": 50,
+              "Q": 48,
+              "X": 1784413870.777417,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 417,
+              "ess": 148.86119120637258,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 48,
+                "last_trade_cents": 50,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-551"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 114,
+                "leg": "FRU",
+                "epoch": 1784384355.000004,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 48; reserve GAO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 48,
+                  "last_trade_cents": 50,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-551"
+                },
+                "Q": 48,
+                "X": 1784413870.777417,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "stage_index": 57
+              },
+              "permission": {
+                "ordinal": 57,
+                "epoch": 1784384355.000004,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+                "id": "FRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 50,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.3425377439664662,
+                      "LATE_BREAK_DOWN": 0.20622432959586964,
+                      "LATE_BREAK_UP": 0.4515345504818855,
+                      "DRIFT_DOWN": 0.7864519380345986,
+                      "DRIFT_UP": 0.9381116538259745,
+                      "QUIET_WOBBLE": 5.199424864498612,
+                      "ROUND_TRIP": 3.2905858918546613,
+                      "ONE_STEP_DOWN": 1.0340349635074377,
+                      "EARLY_SET_DOWN": 1.1843507545018264,
+                      "EARLY_SET_UP": 0.42294802397333775,
+                      "SLEEPER": 0.7960685149080481,
+                      "GRIND_WOBBLE_UP": 0.42804260411255624,
+                      "GRIND_WOBBLE_DOWN": 0.2246510857985145
+                    },
+                    "position": 0.18655244029075804,
+                    "epoch": 1784393147.2852545,
+                    "minutes_to_bell": 974.2119124253591,
+                    "open": false,
+                    "member_count": 157,
+                    "ess": 43.23147694384659,
+                    "weight_sum": 5.199424864498612,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 48; reserve GAO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GAO": {
+                    "forecast": 56,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 51.12111363116568,
+                    "role": "CLIMBER",
+                    "current": 56,
+                    "member_count": 143
+                  },
+                  "FRU": {
+                    "forecast": 50,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.86119120637258,
+                    "role": "NOT_CALLABLE",
+                    "current": 50,
+                    "member_count": 417
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.3425377439664662,
+                    "LATE_BREAK_DOWN": 0.20622432959586964,
+                    "LATE_BREAK_UP": 0.4515345504818855,
+                    "DRIFT_DOWN": 0.7864519380345986,
+                    "DRIFT_UP": 0.9381116538259745,
+                    "QUIET_WOBBLE": 5.199424864498612,
+                    "ROUND_TRIP": 3.2905858918546613,
+                    "ONE_STEP_DOWN": 1.0340349635074377,
+                    "EARLY_SET_DOWN": 1.1843507545018264,
+                    "EARLY_SET_UP": 0.42294802397333775,
+                    "SLEEPER": 0.7960685149080481,
+                    "GRIND_WOBBLE_UP": 0.42804260411255624,
+                    "GRIND_WOBBLE_DOWN": 0.2246510857985145
+                  },
+                  "position": 0.18655244029075804,
+                  "epoch": 1784393147.2852545,
+                  "minutes_to_bell": 974.2119124253591,
+                  "open": false,
+                  "member_count": 157,
+                  "ess": 43.23147694384659,
+                  "weight_sum": 5.199424864498612,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 48,
+                "deadline_epoch": 1784413870.777417,
+                "q25": 46,
+                "q75": 49,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 49,
+                "floor_witness": {
+                  "epoch": 1784416542.337,
+                  "price": 49,
+                  "size": 4.55,
+                  "receipt": "fcc44696-8d62-7af3-2ed2-02223fa055d2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAO": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 53,
+              "corrected_open": 53,
+              "close": 53,
+              "recorded_floor": 50,
+              "P": 56,
+              "Q": 54,
+              "X": 1784401218,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 143,
+              "ess": 51.12111363116568,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 49,
+                "ask_cents": 56,
+                "last_trade_cents": 56,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 115,
+                "leg": "GAO",
+                "epoch": 1784384355.000004,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 56; reserve FRU max(close 50, ask 48) = 50"
+                },
+                "book": {
+                  "bid_cents": 49,
+                  "ask_cents": 56,
+                  "last_trade_cents": 56,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199"
+                },
+                "Q": 54,
+                "X": 1784401218,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "stage_index": 57
+              },
+              "permission": {
+                "ordinal": 57,
+                "epoch": 1784384355.000004,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-199",
+                "id": "GAO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 55,
+                  "hand_level": 55,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 56,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 0.03662814993700265,
+                      "LATE_BREAK_DOWN": 0.16375493092507104,
+                      "DRIFT_UP": 0.708901800101555,
+                      "ROUND_TRIP": 0.9440262053666795,
+                      "QUIET_WOBBLE": 0.8150327288628182,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 0.6978040347837252,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.14852119371992642,
+                      "EARLY_SET_UP": 0.5555544211021672,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.1597685468521157
+                    },
+                    "position": 0.026184738955823295,
+                    "epoch": 1784381623.5829718,
+                    "minutes_to_bell": 1166.2736171364784,
+                    "open": true,
+                    "member_count": 40,
+                    "ess": 19.324214780921395,
+                    "weight_sum": 0.9440262053666795,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 50,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 50,
+                    "ask": 48,
+                    "sum": 105,
+                    "discount": -5,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 56; reserve FRU max(close 50, ask 48) = 50",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GAO": {
+                    "forecast": 56,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 51.12111363116568,
+                    "role": "CLIMBER",
+                    "current": 56,
+                    "member_count": 143
+                  },
+                  "FRU": {
+                    "forecast": 50,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.86119120637258,
+                    "role": "NOT_CALLABLE",
+                    "current": 50,
+                    "member_count": 417
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 0.03662814993700265,
+                    "LATE_BREAK_DOWN": 0.16375493092507104,
+                    "DRIFT_UP": 0.708901800101555,
+                    "ROUND_TRIP": 0.9440262053666795,
+                    "QUIET_WOBBLE": 0.8150327288628182,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 0.6978040347837252,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.14852119371992642,
+                    "EARLY_SET_UP": 0.5555544211021672,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.1597685468521157
+                  },
+                  "position": 0.026184738955823295,
+                  "epoch": 1784381623.5829718,
+                  "minutes_to_bell": 1166.2736171364784,
+                  "open": true,
+                  "member_count": 40,
+                  "ess": 19.324214780921395,
+                  "weight_sum": 0.9440262053666795,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1784401218,
+                "q25": 53,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 50,
+                "floor_witness": {
+                  "epoch": 1784410217.959,
+                  "price": 50,
+                  "size": 7.44,
+                  "receipt": "f43c6ab9-6983-51cd-7d8e-e0364628e1e8"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784390514.967,
+                  "price": 53,
+                  "size": 290.33,
+                  "receipt": "4c6c1c80-8fc8-45ba-bf5b-f534e7d0290a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-FRU-miss",
+          "label": "Last receipt before FRU missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "FRU",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+          "epoch": 1784451599.000006,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is not yet directionally called; GAO is not yet directionally called.",
+              "WHY": "FRU trades at 49¢ against its 49¢ opening anchor; GAO trades at 53¢ against its 53¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 751 eligible past sides from first-price comparisons; GAO carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 49¢ by T−0hr 0min; GAO calls 53¢ by T−0hr 0min.",
+              "WHY": "FRU’s middle half spans 49–49¢; GAO’s middle half spans 53–53¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 48/49 and no standing bid; GAO has book 52/53 and no standing bid.",
+              "WHY": "FRU: The policy was waiting for a directional call; GAO: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 49,
+              "corrected_open": 49.5,
+              "close": 49,
+              "recorded_floor": 49,
+              "P": 49,
+              "Q": 49,
+              "X": 1784451599.000006,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 309.39439833794455,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 48,
+                "ask_cents": 49,
+                "last_trade_cents": 49,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-5682"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 238,
+                "leg": "FRU",
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 49; reserve GAO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 48,
+                  "ask_cents": 49,
+                  "last_trade_cents": 49,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-5682"
+                },
+                "Q": 49,
+                "X": 1784451599.000006,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "stage_index": 119
+              },
+              "permission": {
+                "ordinal": 119,
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "id": "FRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 49,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.7107041196853765,
+                      "LATE_BREAK_DOWN": 0.9511973443741,
+                      "LATE_BREAK_UP": 1.3847569766473398,
+                      "DRIFT_DOWN": 1.5876837094995462,
+                      "DRIFT_UP": 1.7807335845064194,
+                      "QUIET_WOBBLE": 9.813514197919096,
+                      "ROUND_TRIP": 5.817929785983939,
+                      "ONE_STEP_DOWN": 2.013331027478236,
+                      "EARLY_SET_DOWN": 2.1528103391527194,
+                      "EARLY_SET_UP": 1.200479473853114,
+                      "SLEEPER": 4.294497902618107,
+                      "GRIND_WOBBLE_UP": 0.4853242926218995,
+                      "GRIND_WOBBLE_DOWN": 0.3314135655416389
+                    },
+                    "position": 0.19224591890468667,
+                    "epoch": 1784393556.4072406,
+                    "minutes_to_bell": 967.39321265618,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 97.13176676261358,
+                    "weight_sum": 9.813514197919096,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 49; reserve GAO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GAO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 53,
+                    "member_count": 751
+                  },
+                  "FRU": {
+                    "forecast": 49,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 49,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.7107041196853765,
+                    "LATE_BREAK_DOWN": 0.9511973443741,
+                    "LATE_BREAK_UP": 1.3847569766473398,
+                    "DRIFT_DOWN": 1.5876837094995462,
+                    "DRIFT_UP": 1.7807335845064194,
+                    "QUIET_WOBBLE": 9.813514197919096,
+                    "ROUND_TRIP": 5.817929785983939,
+                    "ONE_STEP_DOWN": 2.013331027478236,
+                    "EARLY_SET_DOWN": 2.1528103391527194,
+                    "EARLY_SET_UP": 1.200479473853114,
+                    "SLEEPER": 4.294497902618107,
+                    "GRIND_WOBBLE_UP": 0.4853242926218995,
+                    "GRIND_WOBBLE_DOWN": 0.3314135655416389
+                  },
+                  "position": 0.19224591890468667,
+                  "epoch": 1784393556.4072406,
+                  "minutes_to_bell": 967.39321265618,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 97.13176676261358,
+                  "weight_sum": 9.813514197919096,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 49,
+                "deadline_epoch": 1784451599.000006,
+                "q25": 49,
+                "q75": 49,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GAO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 53,
+              "corrected_open": 53,
+              "close": 53,
+              "recorded_floor": 50,
+              "P": 53,
+              "Q": 53,
+              "X": 1784451599.000006,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 309.39439833794455,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 53,
+                "last_trade_cents": 53,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 239,
+                "leg": "GAO",
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 53; reserve FRU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 53,
+                  "last_trade_cents": 53,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807"
+                },
+                "Q": 53,
+                "X": 1784451599.000006,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "stage_index": 119
+              },
+              "permission": {
+                "ordinal": 119,
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "id": "GAO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.19693188975477,
+                      "LATE_BREAK_UP": 0.8919322578355777,
+                      "LATE_BREAK_DOWN": 1.304452617877484,
+                      "DRIFT_UP": 1.4979019277974341,
+                      "ROUND_TRIP": 7.0801264624265405,
+                      "QUIET_WOBBLE": 9.30422249643503,
+                      "DRIFT_DOWN": 1.8412967603539334,
+                      "ONE_STEP_UP": 1.8762825239192076,
+                      "EARLY_SET_DOWN": 2.355599053211705,
+                      "GRIND_WOBBLE_UP": 0.17220352491493654,
+                      "EARLY_SET_UP": 1.1847032684227885,
+                      "GRIND_WOBBLE_DOWN": 0.17412868290828445,
+                      "SLEEPER": 2.644594854023841
+                    },
+                    "position": 0.10992290740203754,
+                    "epoch": 1784387640.84028,
+                    "minutes_to_bell": 1065.9859953324,
+                    "open": true,
+                    "member_count": 256,
+                    "ess": 109.42707243390198,
+                    "weight_sum": 9.30422249643503,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 53; reserve FRU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GAO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 53,
+                    "member_count": 751
+                  },
+                  "FRU": {
+                    "forecast": 49,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 49,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.19693188975477,
+                    "LATE_BREAK_UP": 0.8919322578355777,
+                    "LATE_BREAK_DOWN": 1.304452617877484,
+                    "DRIFT_UP": 1.4979019277974341,
+                    "ROUND_TRIP": 7.0801264624265405,
+                    "QUIET_WOBBLE": 9.30422249643503,
+                    "DRIFT_DOWN": 1.8412967603539334,
+                    "ONE_STEP_UP": 1.8762825239192076,
+                    "EARLY_SET_DOWN": 2.355599053211705,
+                    "GRIND_WOBBLE_UP": 0.17220352491493654,
+                    "EARLY_SET_UP": 1.1847032684227885,
+                    "GRIND_WOBBLE_DOWN": 0.17412868290828445,
+                    "SLEEPER": 2.644594854023841
+                  },
+                  "position": 0.10992290740203754,
+                  "epoch": 1784387640.84028,
+                  "minutes_to_bell": 1065.9859953324,
+                  "open": true,
+                  "member_count": 256,
+                  "ess": 109.42707243390198,
+                  "weight_sum": 9.30422249643503,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 53,
+                "deadline_epoch": 1784451599.000006,
+                "q25": 53,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784451600,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GAO-miss",
+          "label": "Last receipt before GAO missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "GAO",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+          "epoch": 1784451599.000006,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "FRU is not yet directionally called; GAO is not yet directionally called.",
+              "WHY": "FRU trades at 49¢ against its 49¢ opening anchor; GAO trades at 53¢ against its 53¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "FRU carries 751 eligible past sides from first-price comparisons; GAO carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "FRU calls 49¢ by T−0hr 0min; GAO calls 53¢ by T−0hr 0min.",
+              "WHY": "FRU’s middle half spans 49–49¢; GAO’s middle half spans 53–53¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "FRU has book 48/49 and no standing bid; GAO has book 52/53 and no standing bid.",
+              "WHY": "FRU: The policy was waiting for a directional call; GAO: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "FRU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 49,
+              "corrected_open": 49.5,
+              "close": 49,
+              "recorded_floor": 49,
+              "P": 49,
+              "Q": 49,
+              "X": 1784451599.000006,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 309.39439833794455,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 48,
+                "ask_cents": 49,
+                "last_trade_cents": 49,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-5682"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 238,
+                "leg": "FRU",
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 49; reserve GAO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 48,
+                  "ask_cents": 49,
+                  "last_trade_cents": 49,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-FRU.csv.gz#row-5682"
+                },
+                "Q": 49,
+                "X": 1784451599.000006,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "stage_index": 119
+              },
+              "permission": {
+                "ordinal": 119,
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "id": "FRU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 49,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.7107041196853765,
+                      "LATE_BREAK_DOWN": 0.9511973443741,
+                      "LATE_BREAK_UP": 1.3847569766473398,
+                      "DRIFT_DOWN": 1.5876837094995462,
+                      "DRIFT_UP": 1.7807335845064194,
+                      "QUIET_WOBBLE": 9.813514197919096,
+                      "ROUND_TRIP": 5.817929785983939,
+                      "ONE_STEP_DOWN": 2.013331027478236,
+                      "EARLY_SET_DOWN": 2.1528103391527194,
+                      "EARLY_SET_UP": 1.200479473853114,
+                      "SLEEPER": 4.294497902618107,
+                      "GRIND_WOBBLE_UP": 0.4853242926218995,
+                      "GRIND_WOBBLE_DOWN": 0.3314135655416389
+                    },
+                    "position": 0.19224591890468667,
+                    "epoch": 1784393556.4072406,
+                    "minutes_to_bell": 967.39321265618,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 97.13176676261358,
+                    "weight_sum": 9.813514197919096,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 49; reserve GAO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GAO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 53,
+                    "member_count": 751
+                  },
+                  "FRU": {
+                    "forecast": 49,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 49,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.7107041196853765,
+                    "LATE_BREAK_DOWN": 0.9511973443741,
+                    "LATE_BREAK_UP": 1.3847569766473398,
+                    "DRIFT_DOWN": 1.5876837094995462,
+                    "DRIFT_UP": 1.7807335845064194,
+                    "QUIET_WOBBLE": 9.813514197919096,
+                    "ROUND_TRIP": 5.817929785983939,
+                    "ONE_STEP_DOWN": 2.013331027478236,
+                    "EARLY_SET_DOWN": 2.1528103391527194,
+                    "EARLY_SET_UP": 1.200479473853114,
+                    "SLEEPER": 4.294497902618107,
+                    "GRIND_WOBBLE_UP": 0.4853242926218995,
+                    "GRIND_WOBBLE_DOWN": 0.3314135655416389
+                  },
+                  "position": 0.19224591890468667,
+                  "epoch": 1784393556.4072406,
+                  "minutes_to_bell": 967.39321265618,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 97.13176676261358,
+                  "weight_sum": 9.813514197919096,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 49,
+                "deadline_epoch": 1784451599.000006,
+                "q25": 49,
+                "q75": 49,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GAO": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 53,
+              "corrected_open": 53,
+              "close": 53,
+              "recorded_floor": 50,
+              "P": 53,
+              "Q": 53,
+              "X": 1784451599.000006,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 309.39439833794455,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 53,
+                "last_trade_cents": 53,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 239,
+                "leg": "GAO",
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 53; reserve FRU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 53,
+                  "last_trade_cents": 53,
+                  "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807"
+                },
+                "Q": 53,
+                "X": 1784451599.000006,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784379742,
+                "stage_index": 119
+              },
+              "permission": {
+                "ordinal": 119,
+                "epoch": 1784451599.000006,
+                "receipt": "KXWTAMATCH-26JUL19GAOFRU-GAO.csv.gz#row-11807",
+                "id": "GAO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.19693188975477,
+                      "LATE_BREAK_UP": 0.8919322578355777,
+                      "LATE_BREAK_DOWN": 1.304452617877484,
+                      "DRIFT_UP": 1.4979019277974341,
+                      "ROUND_TRIP": 7.0801264624265405,
+                      "QUIET_WOBBLE": 9.30422249643503,
+                      "DRIFT_DOWN": 1.8412967603539334,
+                      "ONE_STEP_UP": 1.8762825239192076,
+                      "EARLY_SET_DOWN": 2.355599053211705,
+                      "GRIND_WOBBLE_UP": 0.17220352491493654,
+                      "EARLY_SET_UP": 1.1847032684227885,
+                      "GRIND_WOBBLE_DOWN": 0.17412868290828445,
+                      "SLEEPER": 2.644594854023841
+                    },
+                    "position": 0.10992290740203754,
+                    "epoch": 1784387640.84028,
+                    "minutes_to_bell": 1065.9859953324,
+                    "open": true,
+                    "member_count": 256,
+                    "ess": 109.42707243390198,
+                    "weight_sum": 9.30422249643503,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 53; reserve FRU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GAO": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 53,
+                    "member_count": 751
+                  },
+                  "FRU": {
+                    "forecast": 49,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 309.39439833794455,
+                    "role": "NOT_CALLABLE",
+                    "current": 49,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.19693188975477,
+                    "LATE_BREAK_UP": 0.8919322578355777,
+                    "LATE_BREAK_DOWN": 1.304452617877484,
+                    "DRIFT_UP": 1.4979019277974341,
+                    "ROUND_TRIP": 7.0801264624265405,
+                    "QUIET_WOBBLE": 9.30422249643503,
+                    "DRIFT_DOWN": 1.8412967603539334,
+                    "ONE_STEP_UP": 1.8762825239192076,
+                    "EARLY_SET_DOWN": 2.355599053211705,
+                    "GRIND_WOBBLE_UP": 0.17220352491493654,
+                    "EARLY_SET_UP": 1.1847032684227885,
+                    "GRIND_WOBBLE_DOWN": 0.17412868290828445,
+                    "SLEEPER": 2.644594854023841
+                  },
+                  "position": 0.10992290740203754,
+                  "epoch": 1784387640.84028,
+                  "minutes_to_bell": 1065.9859953324,
+                  "open": true,
+                  "member_count": 256,
+                  "ess": 109.42707243390198,
+                  "weight_sum": 9.30422249643503,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 53,
+                "deadline_epoch": 1784451599.000006,
+                "q25": 53,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784451600,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "FRU": false,
+          "GAO": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL19GAOFRU",
+        "category": "WTA_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "FRU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 49,
+            "close_epoch": 1784451483.1,
+            "floor_cents": 49,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GAO",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 53,
+            "close_epoch": 1784451407.8,
+            "floor_cents": 50,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "175dc9dbaeacf9855688094a24486be38b2d4b08e6c68864dd65c24351999805",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

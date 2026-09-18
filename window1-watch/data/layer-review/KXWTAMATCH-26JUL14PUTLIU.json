@@ -1,0 +1,2500 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL14PUTLIU",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "a0746750ae682ea9263c8d45db6b2560f303c0bdf20710b840f135f167c64e8e",
+    "stage_cache_sha256": "d639f5d039571f9d6159df16fa40a201283243804591df8674b783a30254761a",
+    "mirror_projection_sha256": "ac687e31367090981e592a45cc35ab334272cabcdc6313cade4abd9cef16ff6f",
+    "mirror_permissions_sha256": "a75207599fc2267272b494cfeb84502146ee5d10d94ee613e02ab747f39ed02e",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL14PUTLIU",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "f5d3d4e9c3cd2ff7cee6e0b56500549262be6d7704d8e65bcf84959b96b02566",
+      "row_number": 344,
+      "row_csv": "26JUL14PUTLIU,KXWTAMATCH-26JUL14PUTLIU,WTA_MAIN,1783964177,1783964177,1784025038.325,1784034600.0,LIU,PUT,1783964519,42.0,38,1784006545.7,39,1784024736.2,8898.48,3543.01,STILL,-3.0,1783979342,44,1783995838.5,PRE_BELL_VALID,1783964519,58.0,55,1783990430.0,62,1784024875.7,77131.87,46586.42,STILL,4.0,1783979342,55,1783990430.0,PRE_BELL_VALID,1783964519,,,1784026320.0,1784035209.0,1784026320.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783964519,1784025038.325,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783964519,
+      "span_end_epoch": 1784025038.325,
+      "bell_epoch": 1784026320,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784026320,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "LIU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 42,
+          "floor_cents": 38,
+          "floor_epoch": 1784006545.7,
+          "minutes_to_bell": 329.57166666587193,
+          "line": "LIU 38¢ @ 329.57m to bell",
+          "marker_label": "LIU FLOOR · RECORDED 38¢ @ 329.57m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 38¢ · 329m to bell",
+          "hover_note": "Recorded floor 38¢ printed here · 329m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "PUT": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 58,
+          "floor_cents": 55,
+          "floor_epoch": 1783990430,
+          "minutes_to_bell": 598.1666666666666,
+          "line": "PUT 55¢ @ 598.17m to bell",
+          "marker_label": "PUT FLOOR · RECORDED 55¢ @ 598.17m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 55¢ · 598m to bell",
+          "hover_note": "Recorded floor 55¢ printed here · 598m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "PUT",
+      "underdog_leg": "LIU",
+      "pair": {
+        "sum_cents": 93,
+        "discount_cents": 7,
+        "reason": null,
+        "line": "best capturable = 55 + 38 = 93¢",
+        "discount_line": "7¢ under par",
+        "compact_line": "best capturable 93¢ · 7¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL14PUTLIU",
+        "event_id": "KXWTAMATCH-26JUL14PUTLIU",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1783964177",
+        "w1_left_epoch": "1783964177",
+        "w1_right_epoch": "1784025038.325",
+        "scheduled_start_epoch": "1784034600.0",
+        "legA": "LIU",
+        "legB": "PUT",
+        "legA_formation_end_epoch": "1783964519",
+        "legA_open_postformation_c": "42.0",
+        "legA_floor_c": "38",
+        "legA_floor_epoch": "1784006545.7",
+        "legA_close_c": "39",
+        "legA_close_epoch": "1784024736.2",
+        "legA_contracts": "8898.48",
+        "legA_premium_usd": "3543.01",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-3.0",
+        "legA_us_first_post_epoch": "1783979342",
+        "legA_us_fill_c": "44",
+        "legA_us_fill_epoch": "1783995838.5",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1783964519",
+        "legB_open_postformation_c": "58.0",
+        "legB_floor_c": "55",
+        "legB_floor_epoch": "1783990430.0",
+        "legB_close_c": "62",
+        "legB_close_epoch": "1784024875.7",
+        "legB_contracts": "77131.87",
+        "legB_premium_usd": "46586.42",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "4.0",
+        "legB_us_first_post_epoch": "1783979342",
+        "legB_us_fill_c": "55",
+        "legB_us_fill_epoch": "1783990430.0",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783964519",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784026320.0",
+        "kalshi_close_time_epoch": "1784035209.0",
+        "bell_epoch": "1784026320.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783964519",
+        "span_end_epoch": "1784025038.325",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL14PUTLIU.jsonl",
+      "sha256": "a63bd995f16e5923178b1d8327a057494ec4fb15e789dd0631831c2830afd61b",
+      "raw_rows": 4526,
+      "accepted_rows": 707,
+      "start_epoch": 1783964519,
+      "end_epoch": 1784025038.325
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+  "first_both_directional_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+  "first_callable_by_side": {
+    "LIU": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+    "PUT": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+          "epoch": 1783978259.000007,
+          "clock": "T−13hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "LIU is not yet directionally called; PUT is not yet directionally called.",
+              "WHY": "LIU trades at 42¢ against its 42¢ opening anchor; PUT trades at 58¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "LIU carries 570 eligible past sides from first-price comparisons; PUT carries 570 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "LIU calls 40¢ by T−7hr 54min; PUT calls 56¢ by T−8hr 35min.",
+              "WHY": "LIU’s middle half spans 38–41¢; PUT’s middle half spans 54–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "LIU has book 43/44 and a standing 40¢ bid; PUT has book 56/57 and a standing 56¢ bid.",
+              "WHY": "LIU: The current pool target was the permitted bid level; PUT: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "LIU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 42,
+              "corrected_open": 42,
+              "close": 39,
+              "recorded_floor": 38,
+              "P": 42,
+              "Q": 40,
+              "X": 1783996576.325,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 570,
+              "ess": 210.0081532277309,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 42,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597"
+              },
+              "bid": 40,
+              "filled": null,
+              "decision": {
+                "order": 38,
+                "leg": "LIU",
+                "epoch": 1783978259.000007,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 40,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 42,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597"
+                },
+                "Q": 40,
+                "X": 1783996576.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "support": null,
+                "accountability_assumption": "a692668312439ea78e0b561b504a6ad3043f615c7233f724a18fabda5f607aa1",
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1783996576.325,
+                "q25": 38,
+                "q75": 41,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784006545.679,
+                  "price": 38,
+                  "size": 2.96,
+                  "receipt": "dd701b0e-538e-485d-c884-3051a8da1e1e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PUT": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 58,
+              "corrected_open": 58,
+              "close": 62,
+              "recorded_floor": 55,
+              "P": 58,
+              "Q": 56,
+              "X": 1783994137.2117062,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 570,
+              "ess": 210.0081532277309,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 58,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-544"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 39,
+                "leg": "PUT",
+                "epoch": 1783978259.000007,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 56,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 58,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-544"
+                },
+                "Q": 56,
+                "X": 1783994137.2117062,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "support": null,
+                "accountability_assumption": "d76f4e8754a28e11dbaf2a4da70ab94272906f43ba48b1b84bf581e45fe77f15",
+                "stage_index": 19
+              },
+              "permission": null,
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1783994137.2117062,
+                "q25": 54,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 55,
+                "floor_witness": {
+                  "epoch": 1783990430.018,
+                  "price": 55,
+                  "size": 1,
+                  "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783979336.783,
+                  "price": 57,
+                  "size": 52,
+                  "receipt": "ba2cb334-8af2-6968-4e24-dea082ff059f"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-LIU-fill",
+          "label": "Last receipt before LIU filled",
+          "arm": "D",
+          "focus_leg": "LIU",
+          "outcome": "fill",
+          "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-2502",
+          "epoch": 1784001041.000005,
+          "clock": "T−6hr 40min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "LIU is not yet directionally called; PUT is strengthening.",
+              "WHY": "LIU trades at 42¢ against its 42¢ opening anchor; PUT trades at 60¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "LIU carries 695 eligible past sides from first-price comparisons; PUT carries 267 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "LIU calls 41¢ by T−4hr 23min; PUT calls 59¢ by T−4hr 29min.",
+              "WHY": "LIU’s middle half spans 39–42¢; PUT’s middle half spans 57–60¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "LIU has book 40/41 and a standing 41¢ bid; PUT has book 59/59 and a recorded purchase at 55¢.",
+              "WHY": "LIU: The desired bid could not be posted below the ask; PUT: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "LIU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 42,
+              "corrected_open": 42,
+              "close": 39,
+              "recorded_floor": 38,
+              "P": 42,
+              "Q": 41,
+              "X": 1784009255.325,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 695,
+              "ess": 277.7956026936201,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 41,
+                "last_trade_cents": 42,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-2473"
+              },
+              "bid": 41,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "LIU",
+                "epoch": 1784001041.000005,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-2502",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 41,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 41,
+                  "last_trade_cents": 42,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-2473"
+                },
+                "Q": 41,
+                "X": 1784009255.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "support": null,
+                "accountability_assumption": "f8b784305a4fd1d062803bba9984052ff8102407158b30448bb5e02c60b50e34",
+                "stage_index": 37
+              },
+              "permission": null,
+              "micro": {
+                "Q": 41,
+                "deadline_epoch": 1784009255.325,
+                "q25": 39,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784006545.679,
+                  "price": 38,
+                  "size": 2.96,
+                  "receipt": "dd701b0e-538e-485d-c884-3051a8da1e1e"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784001041.421,
+                  "price": 41,
+                  "size": 0.01,
+                  "receipt": "3aa28ee1-fe1e-42f0-cde8-d302fdb6e7db"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PUT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58,
+              "close": 62,
+              "recorded_floor": 55,
+              "P": 60,
+              "Q": 59,
+              "X": 1784008911.195516,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 267,
+              "ess": 89.7379945479127,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 59,
+                "ask_cents": 59,
+                "last_trade_cents": 60,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-2502"
+              },
+              "bid": null,
+              "filled": 55,
+              "decision": {
+                "order": 62,
+                "leg": "PUT",
+                "epoch": 1783996238.325,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU|ATLAS_GATE|1783996238.325",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 55,
+                  "ask_cents": 56,
+                  "last_trade_cents": 56,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1679"
+                },
+                "Q": 54,
+                "X": 1784006031.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 32
+              },
+              "permission": null,
+              "micro": {
+                "Q": 59,
+                "deadline_epoch": 1784008911.195516,
+                "q25": 57,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784001062.093,
+                  "price": 60,
+                  "size": 40.53,
+                  "receipt": "263957b6-5b5e-41cf-02be-f3e9320ce149"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784001062.093,
+                  "price": 60,
+                  "size": 40.53,
+                  "receipt": "263957b6-5b5e-41cf-02be-f3e9320ce149"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784001041.421,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "LIU",
+              "epoch": 1784001041.421,
+              "cents": 41,
+              "receipt": "3aa28ee1-fe1e-42f0-cde8-d302fdb6e7db",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+              "order_lineage_start_epoch": 1783978259.000007,
+              "current_price_receipt": "fe252ba6-ddac-572d-cc5c-61aa4396ab29",
+              "current_price_start_epoch": 1783998159.356,
+              "order_lineage_age_minutes": 379.7070165514946,
+              "current_price_age_minutes": 48.03441666762034,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "LIU",
+                "epoch": 1784001041.421,
+                "cents": 41,
+                "receipt": "3aa28ee1-fe1e-42f0-cde8-d302fdb6e7db",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "order_lineage_start_epoch": 1783978259.000007,
+                "current_price_receipt": "fe252ba6-ddac-572d-cc5c-61aa4396ab29",
+                "current_price_start_epoch": 1783998159.356,
+                "order_lineage_age_minutes": 379.7070165514946,
+                "current_price_age_minutes": 48.03441666762034,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 67,
+              "leg": "LIU",
+              "epoch": 1784001041.000005,
+              "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-2502",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 41,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 40,
+                "ask_cents": 41,
+                "last_trade_cents": 42,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-2473"
+              },
+              "Q": 41,
+              "X": 1784009255.325,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783964519,
+              "support": null,
+              "accountability_assumption": "f8b784305a4fd1d062803bba9984052ff8102407158b30448bb5e02c60b50e34",
+              "stage_index": 37
+            },
+            "license_receipt": "fe252ba6-ddac-572d-cc5c-61aa4396ab29",
+            "licensing_deadline_epoch": 1784008153.325,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PUT-fill",
+          "label": "Last receipt before PUT filled",
+          "arm": "D",
+          "focus_leg": "PUT",
+          "outcome": "fill",
+          "receipt": "cae3ab74-80ce-4c94-225a-40c7cc57a88a",
+          "epoch": 1783989954.8,
+          "clock": "T−9hr 45min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "LIU is strengthening; PUT is weakening.",
+              "WHY": "LIU trades at 45¢ against its 42¢ opening anchor; PUT trades at 56¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "LIU carries 136 eligible past sides from first-price comparisons; PUT carries 189 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "LIU calls 43¢ by T−3hr 24min; PUT calls 55¢ by T−6hr 41min.",
+              "WHY": "LIU’s middle half spans 40–44¢; PUT’s middle half spans 53–56¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "LIU has book 44/45 and a standing 43¢ bid; PUT has book 55/56 and a standing 55¢ bid.",
+              "WHY": "LIU: The current pool target was the permitted bid level; PUT: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "LIU": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 42,
+              "corrected_open": 42,
+              "close": 39,
+              "recorded_floor": 38,
+              "P": 45,
+              "Q": 43,
+              "X": 1784012786.325,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 136,
+              "ess": 56.86862894074737,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 44,
+                "ask_cents": 45,
+                "last_trade_cents": 45,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-1133"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 56,
+                "leg": "LIU",
+                "epoch": 1783989954.8,
+                "receipt": "cae3ab74-80ce-4c94-225a-40c7cc57a88a",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 43,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 44,
+                  "ask_cents": 45,
+                  "last_trade_cents": 45,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-1133"
+                },
+                "Q": 43,
+                "X": 1784012786.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "support": null,
+                "accountability_assumption": "b8264940aa7741e1745085ad6e1ec635f974b5165899d724709c40cf253dee29",
+                "stage_index": 28
+              },
+              "permission": null,
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1784012786.325,
+                "q25": 40,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784006545.679,
+                  "price": 38,
+                  "size": 2.96,
+                  "receipt": "dd701b0e-538e-485d-c884-3051a8da1e1e"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783995838.482,
+                  "price": 44,
+                  "size": 7,
+                  "receipt": "eceda8b7-b01f-48bf-f371-3a02e2bda2c4"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PUT": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 58,
+              "corrected_open": 58,
+              "close": 62,
+              "recorded_floor": 55,
+              "P": 56,
+              "Q": 55,
+              "X": 1784000960.387691,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 189,
+              "ess": 85.5566630986772,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 55,
+                "ask_cents": 56,
+                "last_trade_cents": 56,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1090"
+              },
+              "bid": 55,
+              "filled": null,
+              "decision": {
+                "order": 57,
+                "leg": "PUT",
+                "epoch": 1783989954.8,
+                "receipt": "cae3ab74-80ce-4c94-225a-40c7cc57a88a",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 55,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 55,
+                  "ask_cents": 56,
+                  "last_trade_cents": 56,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1090"
+                },
+                "Q": 55,
+                "X": 1784000960.387691,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "support": null,
+                "accountability_assumption": "159841873b0bcec9da9553ad410ac0ea72d2cdc2515f86ff914e6e1895631c13",
+                "stage_index": 28
+              },
+              "permission": null,
+              "micro": {
+                "Q": 55,
+                "deadline_epoch": 1784000960.387691,
+                "q25": 53,
+                "q75": 56,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 55,
+                "floor_witness": {
+                  "epoch": 1783990430.018,
+                  "price": 55,
+                  "size": 1,
+                  "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783990430.018,
+                  "price": 55,
+                  "size": 1,
+                  "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783990430.018,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "PUT",
+              "epoch": 1783990430.018,
+              "cents": 55,
+              "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+              "order_lineage_start_epoch": 1783978259.000007,
+              "current_price_receipt": "93cfb66f-b65a-54b0-3de2-62c8f057e502",
+              "current_price_start_epoch": 1783989640.831,
+              "order_lineage_age_minutes": 202.8502998828888,
+              "current_price_age_minutes": 13.153116663297018,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "PUT",
+                "epoch": 1783990430.018,
+                "cents": 55,
+                "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "order_lineage_start_epoch": 1783978259.000007,
+                "current_price_receipt": "93cfb66f-b65a-54b0-3de2-62c8f057e502",
+                "current_price_start_epoch": 1783989640.831,
+                "order_lineage_age_minutes": 202.8502998828888,
+                "current_price_age_minutes": 13.153116663297018,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 57,
+              "leg": "PUT",
+              "epoch": 1783989954.8,
+              "receipt": "cae3ab74-80ce-4c94-225a-40c7cc57a88a",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 55,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 55,
+                "ask_cents": 56,
+                "last_trade_cents": 56,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1090"
+              },
+              "Q": 55,
+              "X": 1784000960.387691,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783964519,
+              "support": null,
+              "accountability_assumption": "159841873b0bcec9da9553ad410ac0ea72d2cdc2515f86ff914e6e1895631c13",
+              "stage_index": 28
+            },
+            "license_receipt": "93cfb66f-b65a-54b0-3de2-62c8f057e502",
+            "licensing_deadline_epoch": 1784000940.325,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was not yet directionally called; its corrected full-window direction was weakening. PUT was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was not yet directionally called; its corrected full-window direction was weakening. PUT was weakening; its corrected full-window direction was strengthening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "LIU": true,
+          "PUT": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 96,
+        "captured_cents": 4,
+        "best_capturable_cents": 7,
+        "fills": [
+          {
+            "leg": "PUT",
+            "epoch": 1783990430.018,
+            "cents": 55,
+            "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+            "order_lineage_start_epoch": 1783978259.000007,
+            "current_price_receipt": "93cfb66f-b65a-54b0-3de2-62c8f057e502",
+            "current_price_start_epoch": 1783989640.831,
+            "order_lineage_age_minutes": 202.8502998828888,
+            "current_price_age_minutes": 13.153116663297018,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "LIU",
+            "epoch": 1784001041.421,
+            "cents": 41,
+            "receipt": "3aa28ee1-fe1e-42f0-cde8-d302fdb6e7db",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+            "order_lineage_start_epoch": 1783978259.000007,
+            "current_price_receipt": "fe252ba6-ddac-572d-cc5c-61aa4396ab29",
+            "current_price_start_epoch": 1783998159.356,
+            "order_lineage_age_minutes": 379.7070165514946,
+            "current_price_age_minutes": 48.03441666762034,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL14PUTLIU",
+        "category": "WTA_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "LIU",
+            "filled": true,
+            "fill_cents": 41,
+            "fill_epoch": 1784001041.421,
+            "fill_receipt": "3aa28ee1-fe1e-42f0-cde8-d302fdb6e7db",
+            "close_cents": 39,
+            "close_epoch": 1784024736.2,
+            "floor_cents": 38,
+            "offered_cents": 1,
+            "value_cents": -2,
+            "premium_cents": 2,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PUT",
+            "filled": true,
+            "fill_cents": 55,
+            "fill_epoch": 1783990430.018,
+            "fill_receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390",
+            "close_cents": 62,
+            "close_epoch": 1784024875.7,
+            "floor_cents": 55,
+            "offered_cents": 7,
+            "value_cents": 7,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "f5d3d4e9c3cd2ff7cee6e0b56500549262be6d7704d8e65bcf84959b96b02566",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+          "epoch": 1783978259.000007,
+          "clock": "T−13hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "LIU is not yet directionally called; PUT is not yet directionally called.",
+              "WHY": "LIU trades at 42¢ against its 42¢ opening anchor; PUT trades at 58¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "LIU carries 570 eligible past sides from first-price comparisons; PUT carries 570 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "LIU calls 40¢ by T−7hr 54min; PUT calls 56¢ by T−8hr 35min.",
+              "WHY": "LIU’s middle half spans 38–41¢; PUT’s middle half spans 54–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "LIU has book 43/44 and no standing bid; PUT has book 56/57 and no standing bid.",
+              "WHY": "LIU: The policy was waiting for a directional call; PUT: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "LIU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 42,
+              "corrected_open": 42,
+              "close": 39,
+              "recorded_floor": 38,
+              "P": 42,
+              "Q": 40,
+              "X": 1783996576.325,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 570,
+              "ess": 210.0081532277309,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 42,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 38,
+                "leg": "LIU",
+                "epoch": 1783978259.000007,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 40; reserve PUT max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 42,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597"
+                },
+                "Q": 40,
+                "X": 1783996576.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "stage_index": 19
+              },
+              "permission": {
+                "ordinal": 19,
+                "epoch": 1783978259.000007,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "id": "LIU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.9617423708618057,
+                      "LATE_BREAK_DOWN": 0.8428201405222393,
+                      "LATE_BREAK_UP": 1.3346817658881238,
+                      "DRIFT_DOWN": 1.4557036431136594,
+                      "DRIFT_UP": 1.4158005870864463,
+                      "QUIET_WOBBLE": 8.045611689425062,
+                      "ROUND_TRIP": 6.7298563493304515,
+                      "ONE_STEP_DOWN": 1.4829330480829335,
+                      "EARLY_SET_DOWN": 2.034282139283213,
+                      "EARLY_SET_UP": 0.687265711944736,
+                      "SLEEPER": 2.00056239514812,
+                      "GRIND_WOBBLE_UP": 0.41952748615414764,
+                      "GRIND_WOBBLE_DOWN": 0.1435086632336318
+                    },
+                    "position": 0.13589970501474927,
+                    "epoch": 1783972743.5584152,
+                    "minutes_to_bell": 871.57944308122,
+                    "open": true,
+                    "member_count": 205,
+                    "ess": 75.09383651969183,
+                    "weight_sum": 8.045611689425062,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 40; reserve PUT max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PUT": {
+                    "forecast": 58,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 210.0081532277309,
+                    "role": "NOT_CALLABLE",
+                    "current": 58,
+                    "member_count": 570
+                  },
+                  "LIU": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 210.0081532277309,
+                    "role": "NOT_CALLABLE",
+                    "current": 42,
+                    "member_count": 570
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.9617423708618057,
+                    "LATE_BREAK_DOWN": 0.8428201405222393,
+                    "LATE_BREAK_UP": 1.3346817658881238,
+                    "DRIFT_DOWN": 1.4557036431136594,
+                    "DRIFT_UP": 1.4158005870864463,
+                    "QUIET_WOBBLE": 8.045611689425062,
+                    "ROUND_TRIP": 6.7298563493304515,
+                    "ONE_STEP_DOWN": 1.4829330480829335,
+                    "EARLY_SET_DOWN": 2.034282139283213,
+                    "EARLY_SET_UP": 0.687265711944736,
+                    "SLEEPER": 2.00056239514812,
+                    "GRIND_WOBBLE_UP": 0.41952748615414764,
+                    "GRIND_WOBBLE_DOWN": 0.1435086632336318
+                  },
+                  "position": 0.13589970501474927,
+                  "epoch": 1783972743.5584152,
+                  "minutes_to_bell": 871.57944308122,
+                  "open": true,
+                  "member_count": 205,
+                  "ess": 75.09383651969183,
+                  "weight_sum": 8.045611689425062,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1783996576.325,
+                "q25": 38,
+                "q75": 41,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784006545.679,
+                  "price": 38,
+                  "size": 2.96,
+                  "receipt": "dd701b0e-538e-485d-c884-3051a8da1e1e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PUT": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 58,
+              "corrected_open": 58,
+              "close": 62,
+              "recorded_floor": 55,
+              "P": 58,
+              "Q": 56,
+              "X": 1783994137.2117062,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 570,
+              "ess": 210.0081532277309,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 58,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-544"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 39,
+                "leg": "PUT",
+                "epoch": 1783978259.000007,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 56; reserve LIU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 58,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-544"
+                },
+                "Q": 56,
+                "X": 1783994137.2117062,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "stage_index": 19
+              },
+              "permission": {
+                "ordinal": 19,
+                "epoch": 1783978259.000007,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-597",
+                "id": "PUT",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 58,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.043791288567982,
+                      "LATE_BREAK_UP": 1.3085489758401658,
+                      "LATE_BREAK_DOWN": 1.1503544112486366,
+                      "DRIFT_UP": 1.3821796303423046,
+                      "ROUND_TRIP": 7.470607954606503,
+                      "QUIET_WOBBLE": 7.533993915355614,
+                      "DRIFT_DOWN": 1.5440350952495456,
+                      "ONE_STEP_UP": 1.2071691369875455,
+                      "EARLY_SET_DOWN": 2.0440920347606704,
+                      "GRIND_WOBBLE_UP": 0.2226085572644685,
+                      "EARLY_SET_UP": 1.3835893566993367,
+                      "GRIND_WOBBLE_DOWN": 0.16919703992275398,
+                      "SLEEPER": 1.0941285932290472
+                    },
+                    "position": 0.11074778427088235,
+                    "epoch": 1783971221.3811493,
+                    "minutes_to_bell": 896.9490641792615,
+                    "open": true,
+                    "member_count": 192,
+                    "ess": 76.90488899060543,
+                    "weight_sum": 7.533993915355614,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 56; reserve LIU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PUT": {
+                    "forecast": 58,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 210.0081532277309,
+                    "role": "NOT_CALLABLE",
+                    "current": 58,
+                    "member_count": 570
+                  },
+                  "LIU": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 210.0081532277309,
+                    "role": "NOT_CALLABLE",
+                    "current": 42,
+                    "member_count": 570
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.043791288567982,
+                    "LATE_BREAK_UP": 1.3085489758401658,
+                    "LATE_BREAK_DOWN": 1.1503544112486366,
+                    "DRIFT_UP": 1.3821796303423046,
+                    "ROUND_TRIP": 7.470607954606503,
+                    "QUIET_WOBBLE": 7.533993915355614,
+                    "DRIFT_DOWN": 1.5440350952495456,
+                    "ONE_STEP_UP": 1.2071691369875455,
+                    "EARLY_SET_DOWN": 2.0440920347606704,
+                    "GRIND_WOBBLE_UP": 0.2226085572644685,
+                    "EARLY_SET_UP": 1.3835893566993367,
+                    "GRIND_WOBBLE_DOWN": 0.16919703992275398,
+                    "SLEEPER": 1.0941285932290472
+                  },
+                  "position": 0.11074778427088235,
+                  "epoch": 1783971221.3811493,
+                  "minutes_to_bell": 896.9490641792615,
+                  "open": true,
+                  "member_count": 192,
+                  "ess": 76.90488899060543,
+                  "weight_sum": 7.533993915355614,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1783994137.2117062,
+                "q25": 54,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 55,
+                "floor_witness": {
+                  "epoch": 1783990430.018,
+                  "price": 55,
+                  "size": 1,
+                  "receipt": "94f9a041-4ab3-4e4f-29a9-938d954dd390"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783979336.783,
+                  "price": 57,
+                  "size": 52,
+                  "receipt": "ba2cb334-8af2-6968-4e24-dea082ff059f"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-LIU-fill",
+          "label": "Last receipt before LIU filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "LIU",
+          "outcome": "fill",
+          "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+          "epoch": 1783993909.762,
+          "clock": "T−8hr 39min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "LIU is strengthening; PUT is weakening.",
+              "WHY": "LIU trades at 45¢ against its 42¢ opening anchor; PUT trades at 55¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "LIU carries 136 eligible past sides from first-price comparisons; PUT carries 191 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "LIU calls 43¢ by T−3hr 24min; PUT calls 54¢ by T−6hr 42min.",
+              "WHY": "LIU’s middle half spans 40–45¢; PUT’s middle half spans 52–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "LIU has book 44/45 and a standing 44¢ bid; PUT has book 55/56 and a standing 54¢ bid.",
+              "WHY": "LIU: buying the strengthening side before it strengthens; predicted close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100; PUT: buying the weakening side in round trip's learned late-floor window; predicted floor 54; bid 54; reserve LIU max(close 45, ask 45) = 45; 54 + 45 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "LIU": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 42,
+              "corrected_open": 42,
+              "close": 39,
+              "recorded_floor": 38,
+              "P": 45,
+              "Q": 43,
+              "X": 1784012786.325,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 136,
+              "ess": 57.867975455751896,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 44,
+                "ask_cents": 45,
+                "last_trade_cents": 45,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-1174"
+              },
+              "bid": 44,
+              "filled": null,
+              "decision": {
+                "order": 62,
+                "leg": "LIU",
+                "epoch": 1783993909.762,
+                "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 44,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 44,
+                  "ask_cents": 45,
+                  "last_trade_cents": 45,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-1174"
+                },
+                "Q": 43,
+                "X": 1784012786.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "stage_index": 31
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1783993909.762,
+                "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+                "id": "LIU",
+                "old": 44,
+                "proposed": 44,
+                "posted": 44,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 44,
+                  "hand_level": 44,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 45,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.9483448539698789,
+                      "LATE_BREAK_DOWN": 0.2699038573984893,
+                      "LATE_BREAK_UP": 0.07140688974225261,
+                      "DRIFT_DOWN": 0,
+                      "DRIFT_UP": 1.769733865376104,
+                      "QUIET_WOBBLE": 1.7704722421785917,
+                      "ROUND_TRIP": 2.3808055954689147,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "EARLY_SET_UP": 0.687265711944736,
+                      "SLEEPER": 0.6436490098729639,
+                      "GRIND_WOBBLE_UP": 0.41952748615414764,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.08526828110161444,
+                    "epoch": 1783969679.3788161,
+                    "minutes_to_bell": 922.6491030653318,
+                    "open": true,
+                    "member_count": 31,
+                    "ess": 13.765710565231679,
+                    "weight_sum": 2.3808055954689147,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 55,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 54,
+                      "climber_forecast_close": 45,
+                      "mirror_completion_cost": 55,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 54,
+                    "climber_forecast_close": 45,
+                    "mirror_completion_cost": 55,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "LIU",
+                    "faller": "PUT",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 56,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 55,
+                    "ask": 56,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PUT": {
+                    "forecast": 55,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 87.07154543376761,
+                    "role": "FALLER",
+                    "current": 55,
+                    "member_count": 191
+                  },
+                  "LIU": {
+                    "forecast": 45,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 57.867975455751896,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 136
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.9483448539698789,
+                    "LATE_BREAK_DOWN": 0.2699038573984893,
+                    "LATE_BREAK_UP": 0.07140688974225261,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 1.769733865376104,
+                    "QUIET_WOBBLE": 1.7704722421785917,
+                    "ROUND_TRIP": 2.3808055954689147,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.687265711944736,
+                    "SLEEPER": 0.6436490098729639,
+                    "GRIND_WOBBLE_UP": 0.41952748615414764,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.08526828110161444,
+                  "epoch": 1783969679.3788161,
+                  "minutes_to_bell": 922.6491030653318,
+                  "open": true,
+                  "member_count": 31,
+                  "ess": 13.765710565231679,
+                  "weight_sum": 2.3808055954689147,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1784012786.325,
+                "q25": 40,
+                "q75": 45,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 38,
+                "floor_witness": {
+                  "epoch": 1784006545.679,
+                  "price": 38,
+                  "size": 2.96,
+                  "receipt": "dd701b0e-538e-485d-c884-3051a8da1e1e"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783995838.482,
+                  "price": 44,
+                  "size": 7,
+                  "receipt": "eceda8b7-b01f-48bf-f371-3a02e2bda2c4"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PUT": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 58,
+              "corrected_open": 58,
+              "close": 62,
+              "recorded_floor": 55,
+              "P": 55,
+              "Q": 54,
+              "X": 1784000940.325,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 191,
+              "ess": 87.07154543376761,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 55,
+                "ask_cents": 56,
+                "last_trade_cents": 56,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1171"
+              },
+              "bid": 54,
+              "filled": null,
+              "decision": {
+                "order": 63,
+                "leg": "PUT",
+                "epoch": 1783993909.762,
+                "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 54,
+                  "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 54; bid 54; reserve LIU max(close 45, ask 45) = 45; 54 + 45 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 55,
+                  "ask_cents": 56,
+                  "last_trade_cents": 56,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-1171"
+                },
+                "Q": 54,
+                "X": 1784000940.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "stage_index": 31
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1783993909.762,
+                "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+                "id": "PUT",
+                "old": 54,
+                "proposed": 54,
+                "posted": 54,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 54,
+                  "hand_level": 54,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 55,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.6951539159343618,
+                      "LATE_BREAK_UP": 0.08994859351148111,
+                      "LATE_BREAK_DOWN": 0.14486830277309476,
+                      "DRIFT_UP": 0,
+                      "ROUND_TRIP": 2.80147044246479,
+                      "QUIET_WOBBLE": 1.7672992992748129,
+                      "DRIFT_DOWN": 1.5257594006340462,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_DOWN": 2.3114027009131557,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.16919703992275398,
+                      "SLEEPER": 0.5166264813859196
+                    },
+                    "position": 0.2597129506008011,
+                    "epoch": 1783980236.6524642,
+                    "minutes_to_bell": 746.6945422649384,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 15.469195517275887,
+                    "weight_sum": 2.80147044246479,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 45,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 45,
+                    "ask": 45,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 54; bid 54; reserve LIU max(close 45, ask 45) = 45; 54 + 45 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 54,
+                    "climber_forecast_close": 45,
+                    "mirror_completion_cost": 55,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "LIU",
+                    "faller": "PUT",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PUT": {
+                    "forecast": 55,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 87.07154543376761,
+                    "role": "FALLER",
+                    "current": 55,
+                    "member_count": 191
+                  },
+                  "LIU": {
+                    "forecast": 45,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 57.867975455751896,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 136
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.6951539159343618,
+                    "LATE_BREAK_UP": 0.08994859351148111,
+                    "LATE_BREAK_DOWN": 0.14486830277309476,
+                    "DRIFT_UP": 0,
+                    "ROUND_TRIP": 2.80147044246479,
+                    "QUIET_WOBBLE": 1.7672992992748129,
+                    "DRIFT_DOWN": 1.5257594006340462,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_DOWN": 2.3114027009131557,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.16919703992275398,
+                    "SLEEPER": 0.5166264813859196
+                  },
+                  "position": 0.2597129506008011,
+                  "epoch": 1783980236.6524642,
+                  "minutes_to_bell": 746.6945422649384,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 15.469195517275887,
+                  "weight_sum": 2.80147044246479,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1784000940.325,
+                "q25": 52,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 56,
+                "floor_witness": {
+                  "epoch": 1783993998.768,
+                  "price": 56,
+                  "size": 346.47,
+                  "receipt": "a19846f8-2126-7fd8-2887-773baae4cc76"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783995838.482,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "LIU",
+              "epoch": 1783995838.482,
+              "cents": 44,
+              "receipt": "eceda8b7-b01f-48bf-f371-3a02e2bda2c4",
+              "order_lineage_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+              "order_lineage_start_epoch": 1783986794.377,
+              "current_price_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+              "current_price_start_epoch": 1783986794.377,
+              "order_lineage_age_minutes": 150.73508333365123,
+              "current_price_age_minutes": 150.73508333365123,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "LIU",
+                "epoch": 1783995838.482,
+                "cents": 44,
+                "receipt": "eceda8b7-b01f-48bf-f371-3a02e2bda2c4",
+                "order_lineage_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+                "order_lineage_start_epoch": 1783986794.377,
+                "current_price_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+                "current_price_start_epoch": 1783986794.377,
+                "order_lineage_age_minutes": 150.73508333365123,
+                "current_price_age_minutes": 150.73508333365123,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 31,
+              "epoch": 1783993909.762,
+              "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+              "id": "LIU",
+              "old": 44,
+              "proposed": 44,
+              "posted": 44,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 44,
+                "hand_level": 44,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 45,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.9483448539698789,
+                    "LATE_BREAK_DOWN": 0.2699038573984893,
+                    "LATE_BREAK_UP": 0.07140688974225261,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 1.769733865376104,
+                    "QUIET_WOBBLE": 1.7704722421785917,
+                    "ROUND_TRIP": 2.3808055954689147,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.687265711944736,
+                    "SLEEPER": 0.6436490098729639,
+                    "GRIND_WOBBLE_UP": 0.41952748615414764,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.08526828110161444,
+                  "epoch": 1783969679.3788161,
+                  "minutes_to_bell": 922.6491030653318,
+                  "open": true,
+                  "member_count": 31,
+                  "ess": 13.765710565231679,
+                  "weight_sum": 2.3808055954689147,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 55,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 54,
+                    "climber_forecast_close": 45,
+                    "mirror_completion_cost": 55,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 54,
+                  "climber_forecast_close": 45,
+                  "mirror_completion_cost": 55,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "LIU",
+                  "faller": "PUT",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 56,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 55,
+                  "ask": 56,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "PUT": {
+                  "forecast": 55,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 87.07154543376761,
+                  "role": "FALLER",
+                  "current": 55,
+                  "member_count": 191
+                },
+                "LIU": {
+                  "forecast": 45,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 57.867975455751896,
+                  "role": "CLIMBER",
+                  "current": 45,
+                  "member_count": 136
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "ONE_STEP_UP": 0.9483448539698789,
+                  "LATE_BREAK_DOWN": 0.2699038573984893,
+                  "LATE_BREAK_UP": 0.07140688974225261,
+                  "DRIFT_DOWN": 0,
+                  "DRIFT_UP": 1.769733865376104,
+                  "QUIET_WOBBLE": 1.7704722421785917,
+                  "ROUND_TRIP": 2.3808055954689147,
+                  "ONE_STEP_DOWN": 0,
+                  "EARLY_SET_DOWN": 0,
+                  "EARLY_SET_UP": 0.687265711944736,
+                  "SLEEPER": 0.6436490098729639,
+                  "GRIND_WOBBLE_UP": 0.41952748615414764,
+                  "GRIND_WOBBLE_DOWN": 0
+                },
+                "position": 0.08526828110161444,
+                "epoch": 1783969679.3788161,
+                "minutes_to_bell": 922.6491030653318,
+                "open": true,
+                "member_count": 31,
+                "ess": 13.765710565231679,
+                "weight_sum": 2.3808055954689147,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 62,
+              "leg": "LIU",
+              "epoch": 1783993909.762,
+              "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 44,
+                "reason": "buying the strengthening side before it strengthens; forecast close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 44,
+                "ask_cents": 45,
+                "last_trade_cents": 45,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-1174"
+              },
+              "Q": 43,
+              "X": 1784012786.325,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783964519,
+              "stage_index": 31
+            },
+            "license_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+            "licensing_deadline_epoch": 1784015186.23349,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PUT-miss",
+          "label": "Last receipt before PUT missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "PUT",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-11892",
+          "epoch": 1784025038.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "LIU is weakening; PUT is strengthening.",
+              "WHY": "LIU trades at 39¢ against its 42¢ opening anchor; PUT trades at 62¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "LIU carries 365 eligible past sides from first-price comparisons; PUT carries 300 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "LIU calls 39¢ by T−0hr 0min; PUT calls 62¢ by T−0hr 0min.",
+              "WHY": "LIU’s middle half spans 39–39¢; PUT’s middle half spans 62–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "LIU has book 38/39 and a recorded purchase at 44¢; PUT has book 61/62 and no standing bid.",
+              "WHY": "LIU: buying the strengthening side before it strengthens; predicted close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100; PUT: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "LIU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 42,
+              "corrected_open": 42,
+              "close": 39,
+              "recorded_floor": 38,
+              "P": 39,
+              "Q": 39,
+              "X": 1784025038.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 365,
+              "ess": 143.15056989624256,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 39,
+                "last_trade_cents": 39,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-13639"
+              },
+              "bid": null,
+              "filled": 44,
+              "decision": {
+                "order": 62,
+                "leg": "LIU",
+                "epoch": 1783993909.762,
+                "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 44,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 44,
+                  "ask_cents": 45,
+                  "last_trade_cents": 45,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-LIU.csv.gz#row-1174"
+                },
+                "Q": 43,
+                "X": 1784012786.325,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "stage_index": 31
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1783993909.762,
+                "receipt": "7ff26f76-9ef3-5c0f-2e6c-ec42d0859510",
+                "id": "LIU",
+                "old": 44,
+                "proposed": 44,
+                "posted": 44,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 44,
+                  "hand_level": 44,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 45,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.9483448539698789,
+                      "LATE_BREAK_DOWN": 0.2699038573984893,
+                      "LATE_BREAK_UP": 0.07140688974225261,
+                      "DRIFT_DOWN": 0,
+                      "DRIFT_UP": 1.769733865376104,
+                      "QUIET_WOBBLE": 1.7704722421785917,
+                      "ROUND_TRIP": 2.3808055954689147,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "EARLY_SET_UP": 0.687265711944736,
+                      "SLEEPER": 0.6436490098729639,
+                      "GRIND_WOBBLE_UP": 0.41952748615414764,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.08526828110161444,
+                    "epoch": 1783969679.3788161,
+                    "minutes_to_bell": 922.6491030653318,
+                    "open": true,
+                    "member_count": 31,
+                    "ess": 13.765710565231679,
+                    "weight_sum": 2.3808055954689147,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 55,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 54,
+                      "climber_forecast_close": 45,
+                      "mirror_completion_cost": 55,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 45; bid 44; reserve PUT max(late floor 54, 100 - climber close 45 = 55) = 55; views differ by -1c (floor minus mirror); 44 + 55 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 54,
+                    "climber_forecast_close": 45,
+                    "mirror_completion_cost": 55,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "LIU",
+                    "faller": "PUT",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 56,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 55,
+                    "ask": 56,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PUT": {
+                    "forecast": 55,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 87.07154543376761,
+                    "role": "FALLER",
+                    "current": 55,
+                    "member_count": 191
+                  },
+                  "LIU": {
+                    "forecast": 45,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 57.867975455751896,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 136
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.9483448539698789,
+                    "LATE_BREAK_DOWN": 0.2699038573984893,
+                    "LATE_BREAK_UP": 0.07140688974225261,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 1.769733865376104,
+                    "QUIET_WOBBLE": 1.7704722421785917,
+                    "ROUND_TRIP": 2.3808055954689147,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.687265711944736,
+                    "SLEEPER": 0.6436490098729639,
+                    "GRIND_WOBBLE_UP": 0.41952748615414764,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.08526828110161444,
+                  "epoch": 1783969679.3788161,
+                  "minutes_to_bell": 922.6491030653318,
+                  "open": true,
+                  "member_count": 31,
+                  "ess": 13.765710565231679,
+                  "weight_sum": 2.3808055954689147,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784025038.000001,
+                "q25": 39,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "PUT": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58,
+              "close": 62,
+              "recorded_floor": 55,
+              "P": 62,
+              "Q": 62,
+              "X": 1784025038.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 300,
+              "ess": 102.41421750075921,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-11892"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 132,
+                "leg": "PUT",
+                "epoch": 1784025038.000001,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-11892",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 62; reserve LIU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-11892"
+                },
+                "Q": 62,
+                "X": 1784025038.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783964519,
+                "stage_index": 101
+              },
+              "permission": {
+                "ordinal": 100,
+                "epoch": 1784025038.000001,
+                "receipt": "KXWTAMATCH-26JUL14PUTLIU-PUT.csv.gz#row-11892",
+                "id": "PUT",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "role": "CLIMBER",
+                  "intended": 61,
+                  "hand_level": null,
+                  "hand_mode": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0,
+                      "LATE_BREAK_UP": 1.5185088834364497,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_UP": 1.6887276170744512,
+                      "ROUND_TRIP": 3.031235572814089,
+                      "QUIET_WOBBLE": 3.2570802673155668,
+                      "DRIFT_DOWN": 0,
+                      "ONE_STEP_UP": 2.956102622324559,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.2226085572644685,
+                      "EARLY_SET_UP": 1.6964875525832512,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.5295245168934767
+                    },
+                    "position": 0.10887822180627849,
+                    "epoch": 1783971108.236491,
+                    "minutes_to_bell": 898.8348084847132,
+                    "open": true,
+                    "member_count": 76,
+                    "ess": 34.28529019835439,
+                    "weight_sum": 3.2570802673155668,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE; buying the strengthening side before it strengthens; forecast close 62; reserve LIU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 39,
+                    "climber_forecast_close": 62,
+                    "mirror_completion_cost": 38,
+                    "disagreement_cents": 1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "PUT",
+                    "faller": "LIU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PUT": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 102.41421750075921,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 300
+                  },
+                  "LIU": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 143.15056989624256,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 365
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0,
+                    "LATE_BREAK_UP": 1.5185088834364497,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_UP": 1.6887276170744512,
+                    "ROUND_TRIP": 3.031235572814089,
+                    "QUIET_WOBBLE": 3.2570802673155668,
+                    "DRIFT_DOWN": 0,
+                    "ONE_STEP_UP": 2.956102622324559,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.2226085572644685,
+                    "EARLY_SET_UP": 1.6964875525832512,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.5295245168934767
+                  },
+                  "position": 0.10887822180627849,
+                  "epoch": 1783971108.236491,
+                  "minutes_to_bell": 898.8348084847132,
+                  "open": true,
+                  "member_count": 76,
+                  "ess": 34.28529019835439,
+                  "weight_sum": 3.2570802673155668,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784025038.000001,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784025038.325,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was not yet directionally called; its corrected full-window direction was weakening. PUT was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "LIU": true,
+          "PUT": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 7,
+        "fills": [
+          {
+            "leg": "LIU",
+            "epoch": 1783995838.482,
+            "cents": 44,
+            "receipt": "eceda8b7-b01f-48bf-f371-3a02e2bda2c4",
+            "order_lineage_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+            "order_lineage_start_epoch": 1783986794.377,
+            "current_price_receipt": "b6e18dcc-8404-674a-cd92-98e2deb82410",
+            "current_price_start_epoch": 1783986794.377,
+            "order_lineage_age_minutes": 150.73508333365123,
+            "current_price_age_minutes": 150.73508333365123,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL14PUTLIU",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "LIU",
+            "filled": true,
+            "fill_cents": 44,
+            "fill_epoch": 1783995838.482,
+            "fill_receipt": "eceda8b7-b01f-48bf-f371-3a02e2bda2c4",
+            "close_cents": 39,
+            "close_epoch": 1784024736.2,
+            "floor_cents": 38,
+            "offered_cents": 1,
+            "value_cents": -5,
+            "premium_cents": 5,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PUT",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 62,
+            "close_epoch": 1784024875.7,
+            "floor_cents": 55,
+            "offered_cents": 7,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 7,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "f5d3d4e9c3cd2ff7cee6e0b56500549262be6d7704d8e65bcf84959b96b02566",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

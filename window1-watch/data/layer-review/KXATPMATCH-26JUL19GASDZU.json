@@ -1,0 +1,2600 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL19GASDZU",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "28c4d2c011a3a7626353f0be0dd406e2ef1365d2eef345e3f25cdb5f54b2b3f7",
+    "stage_cache_sha256": "fe7e714f4426e8395a2a2e8405ef7cc4d35a4d939feacf264c623726589c66e8",
+    "mirror_projection_sha256": "fd5c69b7d3b102e0cd0bb02bc013a542bd6d0e3e35f99599c33ca80c62397488",
+    "mirror_permissions_sha256": "3293fd1b93aec8abe4e0cc1385eaa6beb1bd74e3789e59c664355fae0eae8a81",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL19GASDZU",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "534e3c81ee7cd10be9c9de812d718ed9f562a96d02188c68e92780b93567ab4d",
+      "row_number": 622,
+      "row_csv": "26JUL19GASDZU,KXATPMATCH-26JUL19GASDZU,ATP_MAIN,1784389131,1784389131,1784472120,1784469600.0,DZU,GAS,1784414220,56.0,52,1784471996.8,52,1784471996.8,542.71,304.85,STILL,-4.0,1784458906,53,1784470406.1,PRE_BELL_VALID,1784414220,44.0,44,1784433735.4,46,1784471700.3,2568.36,1178.32,STILL,2.0,1784458904,46,1784471700.3,PRE_BELL_VALID,1784414220,,,1784638440.0,1784643603.0,1784638440.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784414220,1784472120,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784414220,
+      "span_end_epoch": 1784472120,
+      "bell_epoch": 1784638440,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784638440,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "DZU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 56,
+          "floor_cents": 52,
+          "floor_epoch": 1784471996.8,
+          "minutes_to_bell": 2774.053333334128,
+          "line": "DZU 52¢ @ 2774.05m to bell",
+          "marker_label": "DZU FLOOR · RECORDED 52¢ @ 2774.05m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 52¢ · 2774m to bell",
+          "hover_note": "Recorded floor 52¢ printed here · 2774m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "GAS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 44,
+          "floor_cents": 44,
+          "floor_epoch": 1784433735.4,
+          "minutes_to_bell": 3411.743333331744,
+          "line": "GAS 44¢ @ 3411.74m to bell",
+          "marker_label": "GAS FLOOR · RECORDED 44¢ @ 3411.74m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 44¢ · 3411m to bell",
+          "hover_note": "Recorded floor 44¢ printed here · 3411m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "DZU",
+      "underdog_leg": "GAS",
+      "pair": {
+        "sum_cents": 96,
+        "discount_cents": 4,
+        "reason": null,
+        "line": "best capturable = 52 + 44 = 96¢",
+        "discount_line": "4¢ under par",
+        "compact_line": "best capturable 96¢ · 4¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL19GASDZU",
+        "event_id": "KXATPMATCH-26JUL19GASDZU",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1784389131",
+        "w1_left_epoch": "1784389131",
+        "w1_right_epoch": "1784472120",
+        "scheduled_start_epoch": "1784469600.0",
+        "legA": "DZU",
+        "legB": "GAS",
+        "legA_formation_end_epoch": "1784414220",
+        "legA_open_postformation_c": "56.0",
+        "legA_floor_c": "52",
+        "legA_floor_epoch": "1784471996.8",
+        "legA_close_c": "52",
+        "legA_close_epoch": "1784471996.8",
+        "legA_contracts": "542.71",
+        "legA_premium_usd": "304.85",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-4.0",
+        "legA_us_first_post_epoch": "1784458906",
+        "legA_us_fill_c": "53",
+        "legA_us_fill_epoch": "1784470406.1",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784414220",
+        "legB_open_postformation_c": "44.0",
+        "legB_floor_c": "44",
+        "legB_floor_epoch": "1784433735.4",
+        "legB_close_c": "46",
+        "legB_close_epoch": "1784471700.3",
+        "legB_contracts": "2568.36",
+        "legB_premium_usd": "1178.32",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "2.0",
+        "legB_us_first_post_epoch": "1784458904",
+        "legB_us_fill_c": "46",
+        "legB_us_fill_epoch": "1784471700.3",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784414220",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784638440.0",
+        "kalshi_close_time_epoch": "1784643603.0",
+        "bell_epoch": "1784638440.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784414220",
+        "span_end_epoch": "1784472120",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL19GASDZU.jsonl",
+      "sha256": "65134851e219053cb73415f982be0aa352d9079c0b1c2815273214c55bca3963",
+      "raw_rows": 2655,
+      "accepted_rows": 45,
+      "start_epoch": 1784414220,
+      "end_epoch": 1784472120
+    }
+  },
+  "first_callable_receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+  "first_both_directional_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+  "first_callable_by_side": {
+    "DZU": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+    "GAS": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+          "epoch": 1784418981.861,
+          "clock": "T−14hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is strengthening; GAS is not yet directionally called.",
+              "WHY": "DZU trades at 58¢ against its 56¢ opening anchor; GAS trades at 45¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 202 eligible past sides from first-price comparisons; GAS carries 559 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 56¢ by T−12hr 4min; GAS calls 42¢ by T−6hr 25min.",
+              "WHY": "DZU’s middle half spans 55–57¢; GAS’s middle half spans 40–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 54/58 and a standing 56¢ bid; GAS has book 41/45 and a standing 42¢ bid.",
+              "WHY": "DZU: The current pool target was the permitted bid level; GAS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 52,
+              "recorded_floor": 52,
+              "P": 58,
+              "Q": 56,
+              "X": 1784428659,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 202,
+              "ess": 85.07064871579644,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 54,
+                "ask_cents": 58,
+                "last_trade_cents": 60,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-238"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "DZU",
+                "epoch": 1784418981.861,
+                "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 56,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 54,
+                  "ask_cents": 58,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-238"
+                },
+                "Q": 56,
+                "X": 1784428659,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "support": null,
+                "accountability_assumption": "d5ea5f89c534b7e8dda9ed458198748343da331b236b58b5aadfdf2dae1a75d0",
+                "stage_index": 37
+              },
+              "permission": null,
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1784428659,
+                "q25": 55,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784471996.824,
+                  "price": 52,
+                  "size": 35.88,
+                  "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784428460.046,
+                  "price": 57,
+                  "size": 8,
+                  "receipt": "a1a579e2-459c-4d52-6278-dac5b6b8c974"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 46,
+              "recorded_floor": 44,
+              "P": 45,
+              "Q": 42,
+              "X": 1784449033,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 559,
+              "ess": 221.45752103115228,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 45,
+                "last_trade_cents": 45,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-247"
+              },
+              "bid": 42,
+              "filled": null,
+              "decision": {
+                "order": 75,
+                "leg": "GAS",
+                "epoch": 1784418981.861,
+                "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 42,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 45,
+                  "last_trade_cents": 45,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-247"
+                },
+                "Q": 42,
+                "X": 1784449033,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "support": null,
+                "accountability_assumption": "7e18094117d5ddb39c42bb5c72b208ad5b615f42f8429029e140c41a293bc931",
+                "stage_index": 37
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784449033,
+                "q25": 40,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 44,
+                "floor_witness": {
+                  "epoch": 1784433735.408,
+                  "price": 44,
+                  "size": 2,
+                  "receipt": "2afab0bf-91d4-57f7-1d7f-ed3503ab20f2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784433735.408,
+                  "price": 44,
+                  "size": 2,
+                  "receipt": "2afab0bf-91d4-57f7-1d7f-ed3503ab20f2"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DZU-fill",
+          "label": "Last receipt before DZU filled",
+          "arm": "D",
+          "focus_leg": "DZU",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942",
+          "epoch": 1784458759.000006,
+          "clock": "T−3hr 43min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is not yet directionally called; GAS is not yet directionally called.",
+              "WHY": "DZU trades at 57¢ against its 56¢ opening anchor; GAS trades at 45¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 716 eligible past sides from first-price comparisons; GAS carries 716 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 56¢ by T−2hr 28min; GAS calls 44¢ by T−2hr 19min.",
+              "WHY": "DZU’s middle half spans 54–57¢; GAS’s middle half spans 42–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 53/55 and a standing 56¢ bid; GAS has book 46/47 and a standing 43¢ bid.",
+              "WHY": "DZU: Only the ask changed, so the existing book veto held the bid decision; GAS: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 52,
+              "recorded_floor": 52,
+              "P": 57,
+              "Q": 56,
+              "X": 1784463263.248275,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 716,
+              "ess": 298.5557610931754,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 53,
+                "ask_cents": 55,
+                "last_trade_cents": 57,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 118,
+                "leg": "DZU",
+                "epoch": 1784458759.000006,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 56,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 53,
+                  "ask_cents": 55,
+                  "last_trade_cents": 57,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942"
+                },
+                "Q": 56,
+                "X": 1784463263.248275,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "support": null,
+                "accountability_assumption": "07a23e55f19e5c12e5b5f83412fa47e9e7f2880b9f2ce0e9f102486b4989a4e1",
+                "stage_index": 59
+              },
+              "permission": null,
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1784463263.248275,
+                "q25": 54,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784471996.824,
+                  "price": 52,
+                  "size": 35.88,
+                  "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784458903.92,
+                  "price": 55,
+                  "size": 38,
+                  "receipt": "a9f6c5e2-ed59-7bd6-fbaa-d6efe7c681ae"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 46,
+              "recorded_floor": 44,
+              "P": 45,
+              "Q": 44,
+              "X": 1784463802,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 716,
+              "ess": 298.5557610931754,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 47,
+                "last_trade_cents": 45,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-629"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 119,
+                "leg": "GAS",
+                "epoch": 1784458759.000006,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 43,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 47,
+                  "last_trade_cents": 45,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-629"
+                },
+                "Q": 44,
+                "X": 1784463802,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "support": null,
+                "accountability_assumption": "ea9ea863c55798f04bf6d2d3d2b27d53e7348b00acc8c086f952d5552cf301f2",
+                "stage_index": 59
+              },
+              "permission": null,
+              "micro": {
+                "Q": 44,
+                "deadline_epoch": 1784463802,
+                "q25": 42,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784471700.258,
+                  "price": 46,
+                  "size": 6.41,
+                  "receipt": "af46024b-de0c-6530-8ef7-f2156f6b8571"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784458903.92,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DZU",
+              "epoch": 1784458903.92,
+              "cents": 56,
+              "receipt": "a9f6c5e2-ed59-7bd6-fbaa-d6efe7c681ae",
+              "order_lineage_receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+              "order_lineage_start_epoch": 1784418981.861,
+              "current_price_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784443320",
+              "current_price_start_epoch": 1784443320,
+              "order_lineage_age_minutes": 665.3676500002543,
+              "current_price_age_minutes": 259.73200000127156,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DZU",
+                "epoch": 1784458903.92,
+                "cents": 56,
+                "receipt": "a9f6c5e2-ed59-7bd6-fbaa-d6efe7c681ae",
+                "order_lineage_receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "order_lineage_start_epoch": 1784418981.861,
+                "current_price_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784443320",
+                "current_price_start_epoch": 1784443320,
+                "order_lineage_age_minutes": 665.3676500002543,
+                "current_price_age_minutes": 259.73200000127156,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 118,
+              "leg": "DZU",
+              "epoch": 1784458759.000006,
+              "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 56,
+                "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+              },
+              "book": {
+                "bid_cents": 53,
+                "ask_cents": 55,
+                "last_trade_cents": 57,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-942"
+              },
+              "Q": 56,
+              "X": 1784463263.248275,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784414220,
+              "support": null,
+              "accountability_assumption": "07a23e55f19e5c12e5b5f83412fa47e9e7f2880b9f2ce0e9f102486b4989a4e1",
+              "stage_index": 59
+            },
+            "license_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784443320",
+            "licensing_deadline_epoch": 1784450409,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GAS-miss",
+          "label": "Last receipt before GAS missed at the bell",
+          "arm": "D",
+          "focus_leg": "GAS",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1662",
+          "epoch": 1784472118.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is weakening; GAS is strengthening.",
+              "WHY": "DZU trades at 52¢ against its 56¢ opening anchor; GAS trades at 46¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 230 eligible past sides from first-price comparisons; GAS carries 183 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 52¢ by T−0hr 0min; GAS calls 46¢ by T−0hr 0min.",
+              "WHY": "DZU’s middle half spans 52–52¢; GAS’s middle half spans 46–46¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 52/54 and a recorded purchase at 56¢; GAS has book 46/48 and a standing 43¢ bid.",
+              "WHY": "DZU: This side was already bought, so no new bid was allowed; GAS: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 52,
+              "recorded_floor": 52,
+              "P": 52,
+              "Q": 52,
+              "X": 1784472118.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 230,
+              "ess": 96.29308752869062,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 54,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1282"
+              },
+              "bid": null,
+              "filled": 56,
+              "decision": {
+                "order": 144,
+                "leg": "DZU",
+                "epoch": 1784471820,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 54,
+                  "last_trade_cents": 54,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1276"
+                },
+                "Q": 53,
+                "X": 1784471820,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 78
+              },
+              "permission": null,
+              "micro": {
+                "Q": 52,
+                "deadline_epoch": 1784472118.000002,
+                "q25": 52,
+                "q75": 52,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "GAS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 46,
+              "recorded_floor": 44,
+              "P": 46,
+              "Q": 46,
+              "X": 1784472118.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 183,
+              "ess": 70.53796419240302,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 48,
+                "last_trade_cents": 46,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1662"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 148,
+                "leg": "GAS",
+                "epoch": 1784472118.000002,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1662",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 43,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 48,
+                  "last_trade_cents": 46,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1662"
+                },
+                "Q": 46,
+                "X": 1784472118.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "support": null,
+                "accountability_assumption": "461882138dc8f9cd1b0487137299be57dbac064e071e24b32a83a2542d35ce66",
+                "stage_index": 82
+              },
+              "permission": null,
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784472118.000002,
+                "q25": 46,
+                "q75": 46,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784472120,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was strengthening; its corrected full-window direction was weakening. GAS was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DZU": true,
+          "GAS": false
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "DZU",
+            "epoch": 1784458903.92,
+            "cents": 56,
+            "receipt": "a9f6c5e2-ed59-7bd6-fbaa-d6efe7c681ae",
+            "order_lineage_receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+            "order_lineage_start_epoch": 1784418981.861,
+            "current_price_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784443320",
+            "current_price_start_epoch": 1784443320,
+            "order_lineage_age_minutes": 665.3676500002543,
+            "current_price_age_minutes": 259.73200000127156,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL19GASDZU",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "DZU",
+            "filled": true,
+            "fill_cents": 56,
+            "fill_epoch": 1784458903.92,
+            "fill_receipt": "a9f6c5e2-ed59-7bd6-fbaa-d6efe7c681ae",
+            "close_cents": 52,
+            "close_epoch": 1784471996.8,
+            "floor_cents": 52,
+            "offered_cents": 0,
+            "value_cents": -4,
+            "premium_cents": 4,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GAS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 46,
+            "close_epoch": 1784471700.3,
+            "floor_cents": 44,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "534e3c81ee7cd10be9c9de812d718ed9f562a96d02188c68e92780b93567ab4d",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+          "epoch": 1784418981.861,
+          "clock": "T−14hr 46min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is strengthening; GAS is not yet directionally called.",
+              "WHY": "DZU trades at 58¢ against its 56¢ opening anchor; GAS trades at 45¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 202 eligible past sides from first-price comparisons; GAS carries 559 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 56¢ by T−12hr 4min; GAS calls 42¢ by T−6hr 25min.",
+              "WHY": "DZU’s middle half spans 55–57¢; GAS’s middle half spans 40–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 54/58 and no standing bid; GAS has book 41/45 and no standing bid.",
+              "WHY": "DZU: The counterpart reservation did not leave a permitted discount; GAS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "CLIMBER",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 52,
+              "recorded_floor": 52,
+              "P": 58,
+              "Q": 56,
+              "X": 1784428659,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 202,
+              "ess": 85.07064871579644,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 54,
+                "ask_cents": 58,
+                "last_trade_cents": 60,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-238"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "DZU",
+                "epoch": 1784418981.861,
+                "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 59; reserve GAS max(close 45, ask 45) = 45"
+                },
+                "book": {
+                  "bid_cents": 54,
+                  "ask_cents": 58,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-238"
+                },
+                "Q": 56,
+                "X": 1784428659,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "stage_index": 37
+              },
+              "permission": {
+                "ordinal": 37,
+                "epoch": 1784418981.861,
+                "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "id": "DZU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 57,
+                  "hand_level": 57,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 59,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.21536806266690006,
+                      "ROUND_TRIP": 2.18373887335356,
+                      "DRIFT_UP": 1.8065683362319853,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 0.8444807680888542,
+                      "LATE_BREAK_DOWN": 0.07714270147393183,
+                      "ONE_STEP_UP": 1.3819603088328236,
+                      "EARLY_SET_UP": 1.822711366061907,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.4124616680394691,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.22045163020724778
+                    },
+                    "position": 0.0402431730725872,
+                    "epoch": 1784416550.079721,
+                    "minutes_to_bell": 926.1653379837672,
+                    "open": true,
+                    "member_count": 46,
+                    "ess": 18.55219566683746,
+                    "weight_sum": 2.18373887335356,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 45,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 45,
+                    "ask": 45,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 59; reserve GAS max(close 45, ask 45) = 45",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.07064871579644,
+                    "role": "CLIMBER",
+                    "current": 58,
+                    "member_count": 202
+                  },
+                  "GAS": {
+                    "forecast": 45,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 221.45752103115228,
+                    "role": "NOT_CALLABLE",
+                    "current": 45,
+                    "member_count": 559
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.21536806266690006,
+                    "ROUND_TRIP": 2.18373887335356,
+                    "DRIFT_UP": 1.8065683362319853,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.8444807680888542,
+                    "LATE_BREAK_DOWN": 0.07714270147393183,
+                    "ONE_STEP_UP": 1.3819603088328236,
+                    "EARLY_SET_UP": 1.822711366061907,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.4124616680394691,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.22045163020724778
+                  },
+                  "position": 0.0402431730725872,
+                  "epoch": 1784416550.079721,
+                  "minutes_to_bell": 926.1653379837672,
+                  "open": true,
+                  "member_count": 46,
+                  "ess": 18.55219566683746,
+                  "weight_sum": 2.18373887335356,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1784428659,
+                "q25": 55,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784471996.824,
+                  "price": 52,
+                  "size": 35.88,
+                  "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784428460.046,
+                  "price": 57,
+                  "size": 8,
+                  "receipt": "a1a579e2-459c-4d52-6278-dac5b6b8c974"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 46,
+              "recorded_floor": 44,
+              "P": 45,
+              "Q": 42,
+              "X": 1784449033,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 559,
+              "ess": 221.45752103115228,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 41,
+                "ask_cents": 45,
+                "last_trade_cents": 45,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-247"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 75,
+                "leg": "GAS",
+                "epoch": 1784418981.861,
+                "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 42; reserve DZU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 41,
+                  "ask_cents": 45,
+                  "last_trade_cents": 45,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-247"
+                },
+                "Q": 42,
+                "X": 1784449033,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "stage_index": 37
+              },
+              "permission": {
+                "ordinal": 37,
+                "epoch": 1784418981.861,
+                "receipt": "dc6c2e4a-5fc4-5733-1aa4-941c8a6c168e",
+                "id": "GAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 45,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.5477592719748307,
+                      "ROUND_TRIP": 7.753502778844696,
+                      "ONE_STEP_UP": 1.0767845654249697,
+                      "DRIFT_DOWN": 1.8165888556591905,
+                      "EARLY_SET_DOWN": 3.8606105025447923,
+                      "QUIET_WOBBLE": 4.491958594879068,
+                      "LATE_BREAK_UP": 0.5466473754432711,
+                      "ONE_STEP_DOWN": 1.945967275389928,
+                      "GRIND_WOBBLE_UP": 0.12965516544370398,
+                      "DRIFT_UP": 0.9595216957823729,
+                      "GRIND_WOBBLE_DOWN": 0.5252457665622473,
+                      "SLEEPER": 1.479050690421962,
+                      "EARLY_SET_UP": 1.439747614222561
+                    },
+                    "position": 0.1310207336523126,
+                    "epoch": 1784421806.1004784,
+                    "minutes_to_bell": 838.564992026488,
+                    "open": false,
+                    "member_count": 153,
+                    "ess": 69.43121079295469,
+                    "weight_sum": 7.753502778844696,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 42; reserve DZU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.07064871579644,
+                    "role": "CLIMBER",
+                    "current": 58,
+                    "member_count": 202
+                  },
+                  "GAS": {
+                    "forecast": 45,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 221.45752103115228,
+                    "role": "NOT_CALLABLE",
+                    "current": 45,
+                    "member_count": 559
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.5477592719748307,
+                    "ROUND_TRIP": 7.753502778844696,
+                    "ONE_STEP_UP": 1.0767845654249697,
+                    "DRIFT_DOWN": 1.8165888556591905,
+                    "EARLY_SET_DOWN": 3.8606105025447923,
+                    "QUIET_WOBBLE": 4.491958594879068,
+                    "LATE_BREAK_UP": 0.5466473754432711,
+                    "ONE_STEP_DOWN": 1.945967275389928,
+                    "GRIND_WOBBLE_UP": 0.12965516544370398,
+                    "DRIFT_UP": 0.9595216957823729,
+                    "GRIND_WOBBLE_DOWN": 0.5252457665622473,
+                    "SLEEPER": 1.479050690421962,
+                    "EARLY_SET_UP": 1.439747614222561
+                  },
+                  "position": 0.1310207336523126,
+                  "epoch": 1784421806.1004784,
+                  "minutes_to_bell": 838.564992026488,
+                  "open": false,
+                  "member_count": 153,
+                  "ess": 69.43121079295469,
+                  "weight_sum": 7.753502778844696,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784449033,
+                "q25": 40,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 44,
+                "floor_witness": {
+                  "epoch": 1784433735.408,
+                  "price": 44,
+                  "size": 2,
+                  "receipt": "2afab0bf-91d4-57f7-1d7f-ed3503ab20f2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784433735.408,
+                  "price": 44,
+                  "size": 2,
+                  "receipt": "2afab0bf-91d4-57f7-1d7f-ed3503ab20f2"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DZU-fill",
+          "label": "Last receipt before DZU filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "DZU",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+          "epoch": 1784471820,
+          "clock": "T−0hr 5min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is weakening; GAS is strengthening.",
+              "WHY": "DZU trades at 53¢ against its 56¢ opening anchor; GAS trades at 46¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 228 eligible past sides from first-price comparisons; GAS carries 179 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 53¢ by T−0hr 5min; GAS calls 46¢ by T−0hr 5min.",
+              "WHY": "DZU’s middle half spans 52–53¢; GAS’s middle half spans 45–46¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 52/54 and a standing 53¢ bid; GAS has book 46/48 and a recorded purchase at 46¢.",
+              "WHY": "DZU: buying the weakening side in one step down's learned late-floor window; predicted floor 53; bid 53; GAS filled 46; 53 + 46 = 99 < 100; GAS: buying the strengthening side before it strengthens; predicted close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 52,
+              "recorded_floor": 52,
+              "P": 53,
+              "Q": 53,
+              "X": 1784471820,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 228,
+              "ess": 94.29093983632843,
+              "family": "ONE_STEP_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 52,
+                "ask_cents": 54,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1276"
+              },
+              "bid": 53,
+              "filled": null,
+              "decision": {
+                "order": 156,
+                "leg": "DZU",
+                "epoch": 1784471820,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 53,
+                  "reason": "buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 53; bid 53; GAS filled 46; 53 + 46 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 52,
+                  "ask_cents": 54,
+                  "last_trade_cents": 54,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1276"
+                },
+                "Q": 53,
+                "X": 1784471820,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "stage_index": 78
+              },
+              "permission": {
+                "ordinal": 78,
+                "epoch": 1784471820,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+                "id": "DZU",
+                "old": 52,
+                "proposed": 53,
+                "posted": 53,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 53,
+                  "hand_level": 53,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "ONE_STEP_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.025321049447457084,
+                      "ROUND_TRIP": 2.5652930509571283,
+                      "DRIFT_UP": 0.009021116254719564,
+                      "ONE_STEP_DOWN": 3.073010468437308,
+                      "QUIET_WOBBLE": 1.809859263769987,
+                      "LATE_BREAK_DOWN": 1.222895992847716,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 1.7150950377179384,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.12842159369255923,
+                      "DRIFT_DOWN": 1.115634652736154,
+                      "SLEEPER": 0.595034011354684
+                    },
+                    "position": 0.5769204031977755,
+                    "epoch": 1784447623.6913452,
+                    "minutes_to_bell": 408.2718109130859,
+                    "open": true,
+                    "member_count": 37,
+                    "ess": 12.702325705873209,
+                    "weight_sum": 3.073010468437308,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 46,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 99,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 53; bid 53; GAS filled 46; 53 + 46 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 53,
+                    "climber_forecast_close": 46,
+                    "mirror_completion_cost": 54,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "GAS",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 94.29093983632843,
+                    "role": "FALLER",
+                    "current": 53,
+                    "member_count": 228
+                  },
+                  "GAS": {
+                    "forecast": 46,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 68.57647717211343,
+                    "role": "CLIMBER",
+                    "current": 46,
+                    "member_count": 179
+                  }
+                },
+                "window": {
+                  "family": "ONE_STEP_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.025321049447457084,
+                    "ROUND_TRIP": 2.5652930509571283,
+                    "DRIFT_UP": 0.009021116254719564,
+                    "ONE_STEP_DOWN": 3.073010468437308,
+                    "QUIET_WOBBLE": 1.809859263769987,
+                    "LATE_BREAK_DOWN": 1.222895992847716,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 1.7150950377179384,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.12842159369255923,
+                    "DRIFT_DOWN": 1.115634652736154,
+                    "SLEEPER": 0.595034011354684
+                  },
+                  "position": 0.5769204031977755,
+                  "epoch": 1784447623.6913452,
+                  "minutes_to_bell": 408.2718109130859,
+                  "open": true,
+                  "member_count": 37,
+                  "ess": 12.702325705873209,
+                  "weight_sum": 3.073010468437308,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 53,
+                "deadline_epoch": 1784471820,
+                "q25": 52,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784471996.824,
+                  "price": 52,
+                  "size": 35.88,
+                  "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 46,
+              "recorded_floor": 44,
+              "P": 46,
+              "Q": 46,
+              "X": 1784471820,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 179,
+              "ess": 68.57647717211343,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 48,
+                "last_trade_cents": 46,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1493"
+              },
+              "bid": null,
+              "filled": 46,
+              "decision": {
+                "order": 155,
+                "leg": "GAS",
+                "epoch": 1784471220,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 46,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 47,
+                  "last_trade_cents": 47,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1154"
+                },
+                "Q": 46,
+                "X": 1784471249.717366,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "stage_index": 77
+              },
+              "permission": {
+                "ordinal": 77,
+                "epoch": 1784471220,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+                "id": "GAS",
+                "old": 46,
+                "proposed": 46,
+                "posted": 46,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 46,
+                  "hand_level": 46,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 47,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.05769942126144053,
+                      "ROUND_TRIP": 2.1725554242410743,
+                      "ONE_STEP_UP": 1.1944719493442701,
+                      "DRIFT_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "QUIET_WOBBLE": 1.4365643224457458,
+                      "LATE_BREAK_UP": 0.7243884869881647,
+                      "ONE_STEP_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.1977396203461999,
+                      "DRIFT_UP": 1.4625696471288103,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.904978408659378,
+                      "EARLY_SET_UP": 1.5548436073815255
+                    },
+                    "position": 0.038881647427490534,
+                    "epoch": 1784416471.247386,
+                    "minutes_to_bell": 927.4792102336884,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 23.655124921994148,
+                    "weight_sum": 2.1725554242410743,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 53,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 52,
+                      "climber_forecast_close": 47,
+                      "mirror_completion_cost": 53,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 52,
+                    "climber_forecast_close": 47,
+                    "mirror_completion_cost": 53,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "GAS",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 54,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 53,
+                    "ask": 54,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 86.86260476539753,
+                    "role": "FALLER",
+                    "current": 53,
+                    "member_count": 211
+                  },
+                  "GAS": {
+                    "forecast": 47,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 64.76441152544383,
+                    "role": "CLIMBER",
+                    "current": 47,
+                    "member_count": 172
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.05769942126144053,
+                    "ROUND_TRIP": 2.1725554242410743,
+                    "ONE_STEP_UP": 1.1944719493442701,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 1.4365643224457458,
+                    "LATE_BREAK_UP": 0.7243884869881647,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.1977396203461999,
+                    "DRIFT_UP": 1.4625696471288103,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.904978408659378,
+                    "EARLY_SET_UP": 1.5548436073815255
+                  },
+                  "position": 0.038881647427490534,
+                  "epoch": 1784416471.247386,
+                  "minutes_to_bell": 927.4792102336884,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 23.655124921994148,
+                  "weight_sum": 2.1725554242410743,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784471820,
+                "q25": 45,
+                "q75": 46,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784471996.824,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "DZU",
+              "epoch": 1784471996.824,
+              "cents": 53,
+              "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed",
+              "order_lineage_receipt": "ba3695a7-544d-45c5-42d8-bd5ba7189414",
+              "order_lineage_start_epoch": 1784470406.057,
+              "current_price_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+              "current_price_start_epoch": 1784471820,
+              "order_lineage_age_minutes": 26.512783332665762,
+              "current_price_age_minutes": 2.9470666646957397,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "DZU",
+                "epoch": 1784471996.824,
+                "cents": 53,
+                "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed",
+                "order_lineage_receipt": "ba3695a7-544d-45c5-42d8-bd5ba7189414",
+                "order_lineage_start_epoch": 1784470406.057,
+                "current_price_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+                "current_price_start_epoch": 1784471820,
+                "order_lineage_age_minutes": 26.512783332665762,
+                "current_price_age_minutes": 2.9470666646957397,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 78,
+              "epoch": 1784471820,
+              "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+              "id": "DZU",
+              "old": 52,
+              "proposed": 53,
+              "posted": 53,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 53,
+                "hand_level": 53,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 53,
+                "window": {
+                  "family": "ONE_STEP_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.025321049447457084,
+                    "ROUND_TRIP": 2.5652930509571283,
+                    "DRIFT_UP": 0.009021116254719564,
+                    "ONE_STEP_DOWN": 3.073010468437308,
+                    "QUIET_WOBBLE": 1.809859263769987,
+                    "LATE_BREAK_DOWN": 1.222895992847716,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 1.7150950377179384,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.12842159369255923,
+                    "DRIFT_DOWN": 1.115634652736154,
+                    "SLEEPER": 0.595034011354684
+                  },
+                  "position": 0.5769204031977755,
+                  "epoch": 1784447623.6913452,
+                  "minutes_to_bell": 408.2718109130859,
+                  "open": true,
+                  "member_count": 37,
+                  "ess": 12.702325705873209,
+                  "weight_sum": 3.073010468437308,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 46,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 99,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 53; bid 53; GAS filled 46; 53 + 46 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 53,
+                  "climber_forecast_close": 46,
+                  "mirror_completion_cost": 54,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "GAS",
+                  "faller": "DZU",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "DZU": {
+                  "forecast": 53,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 94.29093983632843,
+                  "role": "FALLER",
+                  "current": 53,
+                  "member_count": 228
+                },
+                "GAS": {
+                  "forecast": 46,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 68.57647717211343,
+                  "role": "CLIMBER",
+                  "current": 46,
+                  "member_count": 179
+                }
+              },
+              "window": {
+                "family": "ONE_STEP_DOWN",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.025321049447457084,
+                  "ROUND_TRIP": 2.5652930509571283,
+                  "DRIFT_UP": 0.009021116254719564,
+                  "ONE_STEP_DOWN": 3.073010468437308,
+                  "QUIET_WOBBLE": 1.809859263769987,
+                  "LATE_BREAK_DOWN": 1.222895992847716,
+                  "ONE_STEP_UP": 0,
+                  "EARLY_SET_UP": 0,
+                  "EARLY_SET_DOWN": 1.7150950377179384,
+                  "GRIND_WOBBLE_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 0.12842159369255923,
+                  "DRIFT_DOWN": 1.115634652736154,
+                  "SLEEPER": 0.595034011354684
+                },
+                "position": 0.5769204031977755,
+                "epoch": 1784447623.6913452,
+                "minutes_to_bell": 408.2718109130859,
+                "open": true,
+                "member_count": 37,
+                "ess": 12.702325705873209,
+                "weight_sum": 3.073010468437308,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 156,
+              "leg": "DZU",
+              "epoch": 1784471820,
+              "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 53,
+                "reason": "buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 53; bid 53; GAS filled 46; 53 + 46 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 52,
+                "ask_cents": 54,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1276"
+              },
+              "Q": 53,
+              "X": 1784471820,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784414220,
+              "stage_index": 78
+            },
+            "license_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+            "licensing_deadline_epoch": 1784471820,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-GAS-fill",
+          "label": "Last receipt before GAS filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "GAS",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+          "epoch": 1784471220,
+          "clock": "T−0hr 15min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DZU is weakening; GAS is strengthening.",
+              "WHY": "DZU trades at 53¢ against its 56¢ opening anchor; GAS trades at 47¢ against its 44¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DZU carries 211 eligible past sides from first-price comparisons; GAS carries 172 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DZU calls 52¢ by T−0hr 14min; GAS calls 46¢ by T−0hr 15min.",
+              "WHY": "DZU’s middle half spans 52–53¢; GAS’s middle half spans 46–47¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DZU has book 53/54 and a standing 52¢ bid; GAS has book 46/47 and a standing 46¢ bid.",
+              "WHY": "DZU: buying the weakening side in one step down's learned late-floor window; predicted floor 52; bid 52; reserve GAS max(close 47, ask 47) = 47; 52 + 47 = 99 < 100; GAS: buying the strengthening side before it strengthens; predicted close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DZU": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 56,
+              "corrected_open": 56,
+              "close": 52,
+              "recorded_floor": 52,
+              "P": 53,
+              "Q": 52,
+              "X": 1784471275.008544,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 211,
+              "ess": 86.86260476539753,
+              "family": "ONE_STEP_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 53,
+                "ask_cents": 54,
+                "last_trade_cents": 54,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1131"
+              },
+              "bid": 52,
+              "filled": null,
+              "decision": {
+                "order": 154,
+                "leg": "DZU",
+                "epoch": 1784471220,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 52,
+                  "reason": "buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 52; bid 52; reserve GAS max(close 47, ask 47) = 47; 52 + 47 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 53,
+                  "ask_cents": 54,
+                  "last_trade_cents": 54,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-DZU.csv.gz#row-1131"
+                },
+                "Q": 52,
+                "X": 1784471275.008544,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "stage_index": 77
+              },
+              "permission": {
+                "ordinal": 77,
+                "epoch": 1784471220,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+                "id": "DZU",
+                "old": 52,
+                "proposed": 52,
+                "posted": 52,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 52,
+                  "hand_level": 52,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 53,
+                  "window": {
+                    "family": "ONE_STEP_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.13494390972217224,
+                      "ROUND_TRIP": 2.534618128000609,
+                      "DRIFT_UP": 0,
+                      "ONE_STEP_DOWN": 3.073010468437308,
+                      "QUIET_WOBBLE": 1.42726994514038,
+                      "LATE_BREAK_DOWN": 0.872537927510459,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 1.7150950377179384,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.12842159369255923,
+                      "DRIFT_DOWN": 1.115634652736154,
+                      "SLEEPER": 0.5810034917062644
+                    },
+                    "position": 0.5769204031977755,
+                    "epoch": 1784447623.6913452,
+                    "minutes_to_bell": 408.2718109130859,
+                    "open": true,
+                    "member_count": 37,
+                    "ess": 12.702325705873209,
+                    "weight_sum": 3.073010468437308,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 47,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 47,
+                    "ask": 47,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in ONE_STEP_DOWN's learned late-floor window; forecast floor 52; bid 52; reserve GAS max(close 47, ask 47) = 47; 52 + 47 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 52,
+                    "climber_forecast_close": 47,
+                    "mirror_completion_cost": 53,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "GAS",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 86.86260476539753,
+                    "role": "FALLER",
+                    "current": 53,
+                    "member_count": 211
+                  },
+                  "GAS": {
+                    "forecast": 47,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 64.76441152544383,
+                    "role": "CLIMBER",
+                    "current": 47,
+                    "member_count": 172
+                  }
+                },
+                "window": {
+                  "family": "ONE_STEP_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.13494390972217224,
+                    "ROUND_TRIP": 2.534618128000609,
+                    "DRIFT_UP": 0,
+                    "ONE_STEP_DOWN": 3.073010468437308,
+                    "QUIET_WOBBLE": 1.42726994514038,
+                    "LATE_BREAK_DOWN": 0.872537927510459,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 1.7150950377179384,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.12842159369255923,
+                    "DRIFT_DOWN": 1.115634652736154,
+                    "SLEEPER": 0.5810034917062644
+                  },
+                  "position": 0.5769204031977755,
+                  "epoch": 1784447623.6913452,
+                  "minutes_to_bell": 408.2718109130859,
+                  "open": true,
+                  "member_count": 37,
+                  "ess": 12.702325705873209,
+                  "weight_sum": 3.073010468437308,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 52,
+                "deadline_epoch": 1784471275.008544,
+                "q25": 52,
+                "q75": 53,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 52,
+                "floor_witness": {
+                  "epoch": 1784471996.824,
+                  "price": 52,
+                  "size": 35.88,
+                  "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "GAS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 44,
+              "corrected_open": 44,
+              "close": 46,
+              "recorded_floor": 44,
+              "P": 47,
+              "Q": 46,
+              "X": 1784471249.717366,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 172,
+              "ess": 64.76441152544383,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 46,
+                "ask_cents": 47,
+                "last_trade_cents": 47,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1154"
+              },
+              "bid": 46,
+              "filled": null,
+              "decision": {
+                "order": 155,
+                "leg": "GAS",
+                "epoch": 1784471220,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 46,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 46,
+                  "ask_cents": 47,
+                  "last_trade_cents": 47,
+                  "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1154"
+                },
+                "Q": 46,
+                "X": 1784471249.717366,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784414220,
+                "stage_index": 77
+              },
+              "permission": {
+                "ordinal": 77,
+                "epoch": 1784471220,
+                "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+                "id": "GAS",
+                "old": 46,
+                "proposed": 46,
+                "posted": 46,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 46,
+                  "hand_level": 46,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 47,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.05769942126144053,
+                      "ROUND_TRIP": 2.1725554242410743,
+                      "ONE_STEP_UP": 1.1944719493442701,
+                      "DRIFT_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "QUIET_WOBBLE": 1.4365643224457458,
+                      "LATE_BREAK_UP": 0.7243884869881647,
+                      "ONE_STEP_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.1977396203461999,
+                      "DRIFT_UP": 1.4625696471288103,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.904978408659378,
+                      "EARLY_SET_UP": 1.5548436073815255
+                    },
+                    "position": 0.038881647427490534,
+                    "epoch": 1784416471.247386,
+                    "minutes_to_bell": 927.4792102336884,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 23.655124921994148,
+                    "weight_sum": 2.1725554242410743,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 53,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 52,
+                      "climber_forecast_close": 47,
+                      "mirror_completion_cost": 53,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 52,
+                    "climber_forecast_close": 47,
+                    "mirror_completion_cost": 53,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "GAS",
+                    "faller": "DZU",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 54,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 53,
+                    "ask": 54,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "DZU": {
+                    "forecast": 53,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 86.86260476539753,
+                    "role": "FALLER",
+                    "current": 53,
+                    "member_count": 211
+                  },
+                  "GAS": {
+                    "forecast": 47,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 64.76441152544383,
+                    "role": "CLIMBER",
+                    "current": 47,
+                    "member_count": 172
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.05769942126144053,
+                    "ROUND_TRIP": 2.1725554242410743,
+                    "ONE_STEP_UP": 1.1944719493442701,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 1.4365643224457458,
+                    "LATE_BREAK_UP": 0.7243884869881647,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.1977396203461999,
+                    "DRIFT_UP": 1.4625696471288103,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.904978408659378,
+                    "EARLY_SET_UP": 1.5548436073815255
+                  },
+                  "position": 0.038881647427490534,
+                  "epoch": 1784416471.247386,
+                  "minutes_to_bell": 927.4792102336884,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 23.655124921994148,
+                  "weight_sum": 2.1725554242410743,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 46,
+                "deadline_epoch": 1784471249.717366,
+                "q25": 46,
+                "q75": 47,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 46,
+                "floor_witness": {
+                  "epoch": 1784471700.258,
+                  "price": 46,
+                  "size": 6.41,
+                  "receipt": "af46024b-de0c-6530-8ef7-f2156f6b8571"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784471700.258,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "GAS",
+              "epoch": 1784471700.258,
+              "cents": 46,
+              "receipt": "af46024b-de0c-6530-8ef7-f2156f6b8571",
+              "order_lineage_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+              "order_lineage_start_epoch": 1784469638.948,
+              "current_price_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+              "current_price_start_epoch": 1784469638.948,
+              "order_lineage_age_minutes": 34.35516666571299,
+              "current_price_age_minutes": 34.35516666571299,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "GAS",
+                "epoch": 1784471700.258,
+                "cents": 46,
+                "receipt": "af46024b-de0c-6530-8ef7-f2156f6b8571",
+                "order_lineage_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+                "order_lineage_start_epoch": 1784469638.948,
+                "current_price_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+                "current_price_start_epoch": 1784469638.948,
+                "order_lineage_age_minutes": 34.35516666571299,
+                "current_price_age_minutes": 34.35516666571299,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 77,
+              "epoch": 1784471220,
+              "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+              "id": "GAS",
+              "old": 46,
+              "proposed": 46,
+              "posted": 46,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 46,
+                "hand_level": 46,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 47,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.05769942126144053,
+                    "ROUND_TRIP": 2.1725554242410743,
+                    "ONE_STEP_UP": 1.1944719493442701,
+                    "DRIFT_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "QUIET_WOBBLE": 1.4365643224457458,
+                    "LATE_BREAK_UP": 0.7243884869881647,
+                    "ONE_STEP_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.1977396203461999,
+                    "DRIFT_UP": 1.4625696471288103,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.904978408659378,
+                    "EARLY_SET_UP": 1.5548436073815255
+                  },
+                  "position": 0.038881647427490534,
+                  "epoch": 1784416471.247386,
+                  "minutes_to_bell": 927.4792102336884,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 23.655124921994148,
+                  "weight_sum": 2.1725554242410743,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 53,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 52,
+                    "climber_forecast_close": 47,
+                    "mirror_completion_cost": 53,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 52,
+                  "climber_forecast_close": 47,
+                  "mirror_completion_cost": 53,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "GAS",
+                  "faller": "DZU",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 54,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 53,
+                  "ask": 54,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "DZU": {
+                  "forecast": 53,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 86.86260476539753,
+                  "role": "FALLER",
+                  "current": 53,
+                  "member_count": 211
+                },
+                "GAS": {
+                  "forecast": 47,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 64.76441152544383,
+                  "role": "CLIMBER",
+                  "current": 47,
+                  "member_count": 172
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_DOWN": 0.05769942126144053,
+                  "ROUND_TRIP": 2.1725554242410743,
+                  "ONE_STEP_UP": 1.1944719493442701,
+                  "DRIFT_DOWN": 0,
+                  "EARLY_SET_DOWN": 0,
+                  "QUIET_WOBBLE": 1.4365643224457458,
+                  "LATE_BREAK_UP": 0.7243884869881647,
+                  "ONE_STEP_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.1977396203461999,
+                  "DRIFT_UP": 1.4625696471288103,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "SLEEPER": 0.904978408659378,
+                  "EARLY_SET_UP": 1.5548436073815255
+                },
+                "position": 0.038881647427490534,
+                "epoch": 1784416471.247386,
+                "minutes_to_bell": 927.4792102336884,
+                "open": true,
+                "member_count": 47,
+                "ess": 23.655124921994148,
+                "weight_sum": 2.1725554242410743,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 155,
+              "leg": "GAS",
+              "epoch": 1784471220,
+              "receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471220",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 46,
+                "reason": "buying the strengthening side before it strengthens; forecast close 47; bid 46; reserve DZU max(late floor 52, 100 - climber close 47 = 53) = 53; views differ by -1c (floor minus mirror); 46 + 53 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 46,
+                "ask_cents": 47,
+                "last_trade_cents": 47,
+                "receipt": "KXATPMATCH-26JUL19GASDZU-GAS.csv.gz#row-1154"
+              },
+              "Q": 46,
+              "X": 1784471249.717366,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784414220,
+              "stage_index": 77
+            },
+            "license_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+            "licensing_deadline_epoch": 1784470043.988872,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was strengthening; its corrected full-window direction was weakening. GAS was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DZU: later floor 52¢ inside 52–53¢; no later band print met the deadline. GAS: later floor 46¢ inside 46–47¢; no later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DZU": true,
+          "GAS": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "GAS",
+            "epoch": 1784471700.258,
+            "cents": 46,
+            "receipt": "af46024b-de0c-6530-8ef7-f2156f6b8571",
+            "order_lineage_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+            "order_lineage_start_epoch": 1784469638.948,
+            "current_price_receipt": "44807d1b-c0ff-69ec-764b-7fc7181f7ce7",
+            "current_price_start_epoch": 1784469638.948,
+            "order_lineage_age_minutes": 34.35516666571299,
+            "current_price_age_minutes": 34.35516666571299,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "DZU",
+            "epoch": 1784471996.824,
+            "cents": 53,
+            "receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed",
+            "order_lineage_receipt": "ba3695a7-544d-45c5-42d8-bd5ba7189414",
+            "order_lineage_start_epoch": 1784470406.057,
+            "current_price_receipt": "KXATPMATCH-26JUL19GASDZU|ATLAS_GATE|1784471820",
+            "current_price_start_epoch": 1784471820,
+            "order_lineage_age_minutes": 26.512783332665762,
+            "current_price_age_minutes": 2.9470666646957397,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL19GASDZU",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "DZU",
+            "filled": true,
+            "fill_cents": 53,
+            "fill_epoch": 1784471996.824,
+            "fill_receipt": "65f1c7dc-db33-7b6c-c437-c0cebc3b3eed",
+            "close_cents": 52,
+            "close_epoch": 1784471996.8,
+            "floor_cents": 52,
+            "offered_cents": 0,
+            "value_cents": -1,
+            "premium_cents": 1,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "GAS",
+            "filled": true,
+            "fill_cents": 46,
+            "fill_epoch": 1784471700.258,
+            "fill_receipt": "af46024b-de0c-6530-8ef7-f2156f6b8571",
+            "close_cents": 46,
+            "close_epoch": 1784471700.3,
+            "floor_cents": 44,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "534e3c81ee7cd10be9c9de812d718ed9f562a96d02188c68e92780b93567ab4d",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

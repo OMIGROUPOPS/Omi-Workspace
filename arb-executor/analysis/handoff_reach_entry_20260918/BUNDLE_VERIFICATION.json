@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "games": 104,
+  "changed_assets": [
+    "data/index.json.gz",
+    "data/KXATPMATCH-26JUL12ALTGAS.face.json.gz",
+    "data/KXATPMATCH-26JUL12ALTGAS.grade.json.gz",
+    "data/KXATPMATCH-26JUL12ALTGAS.pressure.json.gz",
+    "data/KXATPMATCH-26JUL12ALTGAS.oracle.json.gz",
+    "data/KXATPMATCH-26JUL12ALTGAS.bid-details.json.gz",
+    "data/grades/index.json.gz",
+    "data/scoreboard.json.gz",
+    "data/scoreboard-tune-100.json.gz"
+  ],
+  "other_game_assets_unchanged": true
+}

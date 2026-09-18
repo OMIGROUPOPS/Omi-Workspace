@@ -1,0 +1,2723 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL12KOPPRI",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "be04ec34ff8a4ab82636a61b11ea65a6da22b3780673a05de103bafa6b8af5a0",
+    "stage_cache_sha256": "c5e574c9f932db05328a67261c490efab2db6c4e0353313f049e83f7740fd1f1",
+    "mirror_projection_sha256": "3c5a1d42926f4417dae7f4a33e8a3ce12caf97c6c8a20fc4abb489589ec32dcc",
+    "mirror_permissions_sha256": "d495671a0289391ff1571cf457d67ba4539b48bfba4594c17bee99ab1a57e50d",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL12KOPPRI",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "a5597e6eaebf9994a3b018cbb58185501bb64930262972ea03755133f8bfb398",
+      "row_number": 79,
+      "row_csv": "26JUL12KOPPRI,KXATPMATCH-26JUL12KOPPRI,ATP_MAIN,1783794934,1783794934,1783970100,1783879200.0,KOP,PRI,1783847475,38.0,24,1783966640.3,28,1783970096.2,67778.69,18133.15,MOVER,-10.0,1783862825,29,1783915412.7,PRE_BELL_VALID,1783847475,61.5,64,1783848383.6,74,1783970090.5,68559.47,50651.84,MOVER,12.5,1783862825,70,1783919867.0,PRE_BELL_VALID,1783847475,1783970100,,,1783975213.0,1783970100,MACHINE_RECEIPT,\"EXACT (29 receipts, zero spread)\",1783847475,1783970100,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783847475,
+      "span_end_epoch": 1783970100,
+      "bell_epoch": 1783970100,
+      "bell_source": "MACHINE_RECEIPT",
+      "table_bell_epoch": 1783970100,
+      "table_bell_source": "MACHINE_RECEIPT",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "KOP": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 38,
+          "floor_cents": 24,
+          "floor_epoch": 1783966640.3,
+          "minutes_to_bell": 57.6616666674614,
+          "line": "KOP 24¢ @ 57.66m to bell",
+          "marker_label": "KOP FLOOR · RECORDED 24¢ @ 57.66m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 24¢ · 57m to bell",
+          "hover_note": "Recorded floor 24¢ printed here · 57m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "PRI": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 61.5,
+          "floor_cents": 64,
+          "floor_epoch": 1783848383.6,
+          "minutes_to_bell": 2028.6066666682561,
+          "line": "PRI 64¢ @ 2028.61m to bell",
+          "marker_label": "PRI FLOOR · RECORDED 64¢ @ 2028.61m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 64¢ · 2028m to bell",
+          "hover_note": "Recorded floor 64¢ printed here · 2028m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "PRI",
+      "underdog_leg": "KOP",
+      "pair": {
+        "sum_cents": 88,
+        "discount_cents": 12,
+        "reason": null,
+        "line": "best capturable = 64 + 24 = 88¢",
+        "discount_line": "12¢ under par",
+        "compact_line": "best capturable 88¢ · 12¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12KOPPRI",
+        "event_id": "KXATPMATCH-26JUL12KOPPRI",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1783794934",
+        "w1_left_epoch": "1783794934",
+        "w1_right_epoch": "1783970100",
+        "scheduled_start_epoch": "1783879200.0",
+        "legA": "KOP",
+        "legB": "PRI",
+        "legA_formation_end_epoch": "1783847475",
+        "legA_open_postformation_c": "38.0",
+        "legA_floor_c": "24",
+        "legA_floor_epoch": "1783966640.3",
+        "legA_close_c": "28",
+        "legA_close_epoch": "1783970096.2",
+        "legA_contracts": "67778.69",
+        "legA_premium_usd": "18133.15",
+        "legA_journey": "MOVER",
+        "legA_net_travel_c": "-10.0",
+        "legA_us_first_post_epoch": "1783862825",
+        "legA_us_fill_c": "29",
+        "legA_us_fill_epoch": "1783915412.7",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1783847475",
+        "legB_open_postformation_c": "61.5",
+        "legB_floor_c": "64",
+        "legB_floor_epoch": "1783848383.6",
+        "legB_close_c": "74",
+        "legB_close_epoch": "1783970090.5",
+        "legB_contracts": "68559.47",
+        "legB_premium_usd": "50651.84",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "12.5",
+        "legB_us_first_post_epoch": "1783862825",
+        "legB_us_fill_c": "70",
+        "legB_us_fill_epoch": "1783919867.0",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1783847475",
+        "bell_machine_epoch": "1783970100",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "",
+        "kalshi_close_time_epoch": "1783975213.0",
+        "bell_epoch": "1783970100",
+        "bell_source": "MACHINE_RECEIPT",
+        "bell_precision": "EXACT (29 receipts, zero spread)",
+        "span_start_epoch": "1783847475",
+        "span_end_epoch": "1783970100",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12KOPPRI.jsonl",
+      "sha256": "f1ee536bf28d2dd0e38ceb9d1cb8dc9626ca12787d8afe1003745a5ad3e7527c",
+      "raw_rows": 4199,
+      "accepted_rows": 1123,
+      "start_epoch": 1783847475,
+      "end_epoch": 1783970100
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+  "first_both_directional_receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+  "first_callable_by_side": {
+    "KOP": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+    "PRI": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+          "epoch": 1783862825.000001,
+          "clock": "T−29hr 48min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOP is weakening; PRI is strengthening.",
+              "WHY": "KOP trades at 34¢ against its 38¢ opening anchor; PRI trades at 64¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOP carries 139 eligible past sides from first-price comparisons; PRI carries 107 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOP calls 32¢ by T−18hr 22min; PRI calls 61¢ by T−15hr 58min.",
+              "WHY": "KOP’s middle half spans 29–33¢; PRI’s middle half spans 59–63¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOP has book 32/34 and a standing 32¢ bid; PRI has book 67/68 and a standing 61¢ bid.",
+              "WHY": "KOP: The current pool target was the permitted bid level; PRI: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KOP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 38,
+              "corrected_open": 38,
+              "close": 28,
+              "recorded_floor": 24,
+              "P": 34,
+              "Q": 32,
+              "X": 1783904009,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 139,
+              "ess": 82.17163752316155,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 34,
+                "last_trade_cents": 42,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-2791"
+              },
+              "bid": 32,
+              "filled": null,
+              "decision": {
+                "order": 208,
+                "leg": "KOP",
+                "epoch": 1783862825.000001,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 32,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 34,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-2791"
+                },
+                "Q": 32,
+                "X": 1783904009,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "support": null,
+                "accountability_assumption": "ad6768d6e834717bcb739fd6eba0005470e289072f9d80935abbbd50535c7d71",
+                "stage_index": 104
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1783904009,
+                "q25": 29,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1783966640.285,
+                  "price": 24,
+                  "size": 767,
+                  "receipt": "089dbc55-5787-6293-23cc-cfd622daa1a7"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783878927.385,
+                  "price": 33,
+                  "size": 1,
+                  "receipt": "d8b12b8a-6e04-7e17-e819-ad8f6ec4f647"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 61,
+              "corrected_open": 61.5,
+              "close": 74,
+              "recorded_floor": 64,
+              "P": 64,
+              "Q": 61,
+              "X": 1783912621.958869,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 107,
+              "ess": 61.453957183020556,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 64,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782"
+              },
+              "bid": 61,
+              "filled": null,
+              "decision": {
+                "order": 209,
+                "leg": "PRI",
+                "epoch": 1783862825.000001,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 61,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 68,
+                  "last_trade_cents": 64,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782"
+                },
+                "Q": 61,
+                "X": 1783912621.958869,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "support": null,
+                "accountability_assumption": "293965abaa8266d8c6a60943ff05aea919ffd6b22791695ca735ff53a81af149",
+                "stage_index": 104
+              },
+              "permission": null,
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1783912621.958869,
+                "q25": 59,
+                "q75": 63,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 68,
+                "floor_witness": {
+                  "epoch": 1783868088.201,
+                  "price": 68,
+                  "size": 2,
+                  "receipt": "3e2f3899-30da-7b15-6a94-96fce857293a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KOP-fill",
+          "label": "Last receipt before KOP filled",
+          "arm": "D",
+          "focus_leg": "KOP",
+          "outcome": "fill",
+          "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+          "epoch": 1783919867.034,
+          "clock": "T−13hr 57min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOP is weakening; PRI is strengthening.",
+              "WHY": "KOP trades at 30¢ against its 38¢ opening anchor; PRI trades at 70¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOP carries 274 eligible past sides from first-price comparisons; PRI carries 210 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOP calls 28¢ by T−6hr 14min; PRI calls 69¢ by T−12hr 4min.",
+              "WHY": "KOP’s middle half spans 26–29¢; PRI’s middle half spans 67–70¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOP has book 29/30 and a standing 28¢ bid; PRI has book 70/71 and a recorded purchase at 70¢.",
+              "WHY": "KOP: The current pool target was the permitted bid level; PRI: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KOP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 38,
+              "corrected_open": 38,
+              "close": 28,
+              "recorded_floor": 24,
+              "P": 30,
+              "Q": 28,
+              "X": 1783947676,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 274,
+              "ess": 101.77118440628585,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 30,
+                "last_trade_cents": 30,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4906"
+              },
+              "bid": 28,
+              "filled": null,
+              "decision": {
+                "order": 264,
+                "leg": "KOP",
+                "epoch": 1783919867.034,
+                "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "trigger": "FILL_HANDOFF_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 28,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 30,
+                  "last_trade_cents": 30,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4906"
+                },
+                "Q": 28,
+                "X": 1783947676,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "support": null,
+                "accountability_assumption": "0900f7ee8e6b3502e953bd926e8e5fe997861c7202f7f44cb18d2cdd18f8179f",
+                "stage_index": 132
+              },
+              "permission": null,
+              "micro": {
+                "Q": 28,
+                "deadline_epoch": 1783947676,
+                "q25": 26,
+                "q75": 29,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1783966640.285,
+                  "price": 24,
+                  "size": 767,
+                  "receipt": "089dbc55-5787-6293-23cc-cfd622daa1a7"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783921942.972,
+                  "price": 28,
+                  "size": 320,
+                  "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 61,
+              "corrected_open": 61.5,
+              "close": 74,
+              "recorded_floor": 64,
+              "P": 70,
+              "Q": 69,
+              "X": 1783926673.92335,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 210,
+              "ess": 81.51329513677527,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 70,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12691"
+              },
+              "bid": null,
+              "filled": 70,
+              "decision": {
+                "order": 263,
+                "leg": "PRI",
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 70,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 70,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+                },
+                "Q": 70,
+                "X": 1783924077.344043,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "support": null,
+                "accountability_assumption": "27720b1343d5b1e69f78927cf4ea75dc0b3ed867262eafa32d297f88f9bddaea",
+                "stage_index": 131
+              },
+              "permission": null,
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1783926673.92335,
+                "q25": 67,
+                "q75": 70,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1783925321.094,
+                  "price": 70,
+                  "size": 83.82,
+                  "receipt": "ba955c79-8110-5ee4-8ede-fafb4212b652"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783925321.094,
+                  "price": 70,
+                  "size": 83.82,
+                  "receipt": "ba955c79-8110-5ee4-8ede-fafb4212b652"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783921942.972,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "KOP",
+              "epoch": 1783921942.972,
+              "cents": 28,
+              "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+              "order_lineage_receipt": "d42104c2-1fa4-626b-6cf0-8472538e9713",
+              "order_lineage_start_epoch": 1783891565.214,
+              "current_price_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "current_price_start_epoch": 1783919867.034,
+              "order_lineage_age_minutes": 506.2959666649501,
+              "current_price_age_minutes": 34.59896666606267,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "KOP",
+                "epoch": 1783921942.972,
+                "cents": 28,
+                "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+                "order_lineage_receipt": "d42104c2-1fa4-626b-6cf0-8472538e9713",
+                "order_lineage_start_epoch": 1783891565.214,
+                "current_price_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "current_price_start_epoch": 1783919867.034,
+                "order_lineage_age_minutes": 506.2959666649501,
+                "current_price_age_minutes": 34.59896666606267,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 264,
+              "leg": "KOP",
+              "epoch": 1783919867.034,
+              "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "trigger": "FILL_HANDOFF_DECISION_INSTANT",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 28,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 29,
+                "ask_cents": 30,
+                "last_trade_cents": 30,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4906"
+              },
+              "Q": 28,
+              "X": 1783947676,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783847475,
+              "support": null,
+              "accountability_assumption": "0900f7ee8e6b3502e953bd926e8e5fe997861c7202f7f44cb18d2cdd18f8179f",
+              "stage_index": 132
+            },
+            "license_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "licensing_deadline_epoch": 1783947676,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PRI-fill",
+          "label": "Last receipt before PRI filled",
+          "arm": "D",
+          "focus_leg": "PRI",
+          "outcome": "fill",
+          "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+          "epoch": 1783915412.687,
+          "clock": "T−15hr 11min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOP is weakening; PRI is strengthening.",
+              "WHY": "KOP trades at 29¢ against its 38¢ opening anchor; PRI trades at 71¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOP carries 259 eligible past sides from first-price comparisons; PRI carries 199 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOP calls 27¢ by T−7hr 11min; PRI calls 70¢ by T−12hr 47min.",
+              "WHY": "KOP’s middle half spans 25–28¢; PRI’s middle half spans 68–71¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOP has book 29/30 and a standing 27¢ bid; PRI has book 70/71 and a standing 70¢ bid.",
+              "WHY": "KOP: The current pool target was the permitted bid level; PRI: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KOP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 38,
+              "corrected_open": 38,
+              "close": 28,
+              "recorded_floor": 24,
+              "P": 29,
+              "Q": 27,
+              "X": 1783944234,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 259,
+              "ess": 106.74828563089397,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 30,
+                "last_trade_cents": 30,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4750"
+              },
+              "bid": 27,
+              "filled": null,
+              "decision": {
+                "order": 262,
+                "leg": "KOP",
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 27,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 30,
+                  "last_trade_cents": 30,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4750"
+                },
+                "Q": 27,
+                "X": 1783944234,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "support": null,
+                "accountability_assumption": "e3e4122fb88c2d2af12768932d43d0ea0ea282add1c21cd3259b544115923a74",
+                "stage_index": 131
+              },
+              "permission": null,
+              "micro": {
+                "Q": 27,
+                "deadline_epoch": 1783944234,
+                "q25": 25,
+                "q75": 28,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1783966640.285,
+                  "price": 24,
+                  "size": 767,
+                  "receipt": "089dbc55-5787-6293-23cc-cfd622daa1a7"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783921942.972,
+                  "price": 28,
+                  "size": 320,
+                  "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 61,
+              "corrected_open": 61.5,
+              "close": 74,
+              "recorded_floor": 64,
+              "P": 71,
+              "Q": 70,
+              "X": 1783924077.344043,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 199,
+              "ess": 76.65259293925307,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 70,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+              },
+              "bid": 70,
+              "filled": null,
+              "decision": {
+                "order": 263,
+                "leg": "PRI",
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 70,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 70,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+                },
+                "Q": 70,
+                "X": 1783924077.344043,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "support": null,
+                "accountability_assumption": "27720b1343d5b1e69f78927cf4ea75dc0b3ed867262eafa32d297f88f9bddaea",
+                "stage_index": 131
+              },
+              "permission": null,
+              "micro": {
+                "Q": 70,
+                "deadline_epoch": 1783924077.344043,
+                "q25": 68,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1783919867.034,
+                  "price": 70,
+                  "size": 9,
+                  "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783915495.017,
+                  "price": 71,
+                  "size": 6,
+                  "receipt": "3bfd4656-f33e-69f5-c306-f5a4ed5ac43a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783919867.034,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "PRI",
+              "epoch": 1783919867.034,
+              "cents": 70,
+              "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+              "order_lineage_start_epoch": 1783862825.000001,
+              "current_price_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+              "current_price_start_epoch": 1783915412.687,
+              "order_lineage_age_minutes": 950.700566649437,
+              "current_price_age_minutes": 74.23911666472753,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "PRI",
+                "epoch": 1783919867.034,
+                "cents": 70,
+                "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "order_lineage_start_epoch": 1783862825.000001,
+                "current_price_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "current_price_start_epoch": 1783915412.687,
+                "order_lineage_age_minutes": 950.700566649437,
+                "current_price_age_minutes": 74.23911666472753,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 263,
+              "leg": "PRI",
+              "epoch": 1783915412.687,
+              "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 70,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 70,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+              },
+              "Q": 70,
+              "X": 1783924077.344043,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783847475,
+              "support": null,
+              "accountability_assumption": "27720b1343d5b1e69f78927cf4ea75dc0b3ed867262eafa32d297f88f9bddaea",
+              "stage_index": 131
+            },
+            "license_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+            "licensing_deadline_epoch": 1783924077.344043,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 29–33¢; a later band print met the deadline. PRI: later floor 68¢ outside 59–63¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 26–29¢; a later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KOP": true,
+          "PRI": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 12,
+        "fills": [
+          {
+            "leg": "PRI",
+            "epoch": 1783919867.034,
+            "cents": 70,
+            "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+            "order_lineage_start_epoch": 1783862825.000001,
+            "current_price_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+            "current_price_start_epoch": 1783915412.687,
+            "order_lineage_age_minutes": 950.700566649437,
+            "current_price_age_minutes": 74.23911666472753,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "KOP",
+            "epoch": 1783921942.972,
+            "cents": 28,
+            "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+            "order_lineage_receipt": "d42104c2-1fa4-626b-6cf0-8472538e9713",
+            "order_lineage_start_epoch": 1783891565.214,
+            "current_price_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "current_price_start_epoch": 1783919867.034,
+            "order_lineage_age_minutes": 506.2959666649501,
+            "current_price_age_minutes": 34.59896666606267,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12KOPPRI",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "KOP",
+            "filled": true,
+            "fill_cents": 28,
+            "fill_epoch": 1783921942.972,
+            "fill_receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+            "close_cents": 28,
+            "close_epoch": 1783970096.2,
+            "floor_cents": 24,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PRI",
+            "filled": true,
+            "fill_cents": 70,
+            "fill_epoch": 1783919867.034,
+            "fill_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "close_cents": 74,
+            "close_epoch": 1783970090.5,
+            "floor_cents": 64,
+            "offered_cents": 10,
+            "value_cents": 4,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "a5597e6eaebf9994a3b018cbb58185501bb64930262972ea03755133f8bfb398",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+          "epoch": 1783862825.000001,
+          "clock": "T−29hr 48min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOP is weakening; PRI is strengthening.",
+              "WHY": "KOP trades at 34¢ against its 38¢ opening anchor; PRI trades at 64¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOP carries 139 eligible past sides from first-price comparisons; PRI carries 107 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOP calls 32¢ by T−18hr 22min; PRI calls 61¢ by T−15hr 58min.",
+              "WHY": "KOP’s middle half spans 29–33¢; PRI’s middle half spans 59–63¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOP has book 32/34 and no standing bid; PRI has book 67/68 and no standing bid.",
+              "WHY": "KOP: The weakening side had not entered its predicted late-floor window; PRI: The available bid was not below the predicted closing price. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KOP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 38,
+              "corrected_open": 38,
+              "close": 28,
+              "recorded_floor": 24,
+              "P": 34,
+              "Q": 32,
+              "X": 1783904009,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 139,
+              "ess": 82.17163752316155,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 34,
+                "last_trade_cents": 42,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-2791"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 208,
+                "leg": "KOP",
+                "epoch": 1783862825.000001,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 32; reserve PRI max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 34,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-2791"
+                },
+                "Q": 32,
+                "X": 1783904009,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "stage_index": 104
+              },
+              "permission": {
+                "ordinal": 104,
+                "epoch": 1783862825.000001,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "id": "KOP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.061575503867921946,
+                      "ROUND_TRIP": 1.7464082088286896,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 1.2219564286576514,
+                      "EARLY_SET_DOWN": 1.3840978790918403,
+                      "QUIET_WOBBLE": 0.7510646949239735,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_DOWN": 1.0311096953102545,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0.024194939238967178,
+                      "GRIND_WOBBLE_DOWN": 0.39051093304402695,
+                      "SLEEPER": 0.0314812344679064,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.15089263420724094,
+                    "epoch": 1783865978.2092698,
+                    "minutes_to_bell": 1735.3631788372993,
+                    "open": false,
+                    "member_count": 27,
+                    "ess": 17.16343390223763,
+                    "weight_sum": 1.7464082088286896,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 32; reserve PRI max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 32,
+                    "climber_forecast_close": 64,
+                    "mirror_completion_cost": 36,
+                    "disagreement_cents": -4,
+                    "absolute_disagreement_cents": 4,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRI",
+                    "faller": "KOP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PRI": {
+                    "forecast": 64,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 61.453957183020556,
+                    "role": "CLIMBER",
+                    "current": 64,
+                    "member_count": 107
+                  },
+                  "KOP": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 82.17163752316155,
+                    "role": "FALLER",
+                    "current": 34,
+                    "member_count": 139
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.061575503867921946,
+                    "ROUND_TRIP": 1.7464082088286896,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 1.2219564286576514,
+                    "EARLY_SET_DOWN": 1.3840978790918403,
+                    "QUIET_WOBBLE": 0.7510646949239735,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_DOWN": 1.0311096953102545,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0.024194939238967178,
+                    "GRIND_WOBBLE_DOWN": 0.39051093304402695,
+                    "SLEEPER": 0.0314812344679064,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.15089263420724094,
+                  "epoch": 1783865978.2092698,
+                  "minutes_to_bell": 1735.3631788372993,
+                  "open": false,
+                  "member_count": 27,
+                  "ess": 17.16343390223763,
+                  "weight_sum": 1.7464082088286896,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1783904009,
+                "q25": 29,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1783966640.285,
+                  "price": 24,
+                  "size": 767,
+                  "receipt": "089dbc55-5787-6293-23cc-cfd622daa1a7"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783878927.385,
+                  "price": 33,
+                  "size": 1,
+                  "receipt": "d8b12b8a-6e04-7e17-e819-ad8f6ec4f647"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 61,
+              "corrected_open": 61.5,
+              "close": 74,
+              "recorded_floor": 64,
+              "P": 64,
+              "Q": 61,
+              "X": 1783912621.958869,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 107,
+              "ess": 61.453957183020556,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 64,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 209,
+                "leg": "PRI",
+                "epoch": 1783862825.000001,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 64; reserve KOP max(late floor 32, 100 - climber close 64 = 36) = 36; views differ by -4c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 68,
+                  "last_trade_cents": 64,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782"
+                },
+                "Q": 61,
+                "X": 1783912621.958869,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "stage_index": 104
+              },
+              "permission": {
+                "ordinal": 104,
+                "epoch": 1783862825.000001,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-11782",
+                "id": "PRI",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 67,
+                  "hand_level": 67,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 64,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.11550568738336478,
+                      "ROUND_TRIP": 1.7640855820144812,
+                      "DRIFT_UP": 1.0483099293631157,
+                      "ONE_STEP_DOWN": 0.21200493772017473,
+                      "QUIET_WOBBLE": 0.6381955068845908,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 0.33848589217962766,
+                      "EARLY_SET_UP": 0.9560550213299079,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.13263289074472473,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.0314812344679064
+                    },
+                    "position": 0.1060391363022942,
+                    "epoch": 1783860478.049089,
+                    "minutes_to_bell": 1827.0325151840846,
+                    "open": true,
+                    "member_count": 32,
+                    "ess": 17.633091367008635,
+                    "weight_sum": 1.7640855820144812,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 36,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 103,
+                    "discount": -3,
+                    "components": {
+                      "faller_forecast_late_floor": 32,
+                      "climber_forecast_close": 64,
+                      "mirror_completion_cost": 36,
+                      "disagreement_cents": -4,
+                      "absolute_disagreement_cents": 4,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 64; reserve KOP max(late floor 32, 100 - climber close 64 = 36) = 36; views differ by -4c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 32,
+                    "climber_forecast_close": 64,
+                    "mirror_completion_cost": 36,
+                    "disagreement_cents": -4,
+                    "absolute_disagreement_cents": 4,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRI",
+                    "faller": "KOP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 34,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 34,
+                    "ask": 34,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PRI": {
+                    "forecast": 64,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 61.453957183020556,
+                    "role": "CLIMBER",
+                    "current": 64,
+                    "member_count": 107
+                  },
+                  "KOP": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 82.17163752316155,
+                    "role": "FALLER",
+                    "current": 34,
+                    "member_count": 139
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.11550568738336478,
+                    "ROUND_TRIP": 1.7640855820144812,
+                    "DRIFT_UP": 1.0483099293631157,
+                    "ONE_STEP_DOWN": 0.21200493772017473,
+                    "QUIET_WOBBLE": 0.6381955068845908,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 0.33848589217962766,
+                    "EARLY_SET_UP": 0.9560550213299079,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.13263289074472473,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.0314812344679064
+                  },
+                  "position": 0.1060391363022942,
+                  "epoch": 1783860478.049089,
+                  "minutes_to_bell": 1827.0325151840846,
+                  "open": true,
+                  "member_count": 32,
+                  "ess": 17.633091367008635,
+                  "weight_sum": 1.7640855820144812,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1783912621.958869,
+                "q25": 59,
+                "q75": 63,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 68,
+                "floor_witness": {
+                  "epoch": 1783868088.201,
+                  "price": 68,
+                  "size": 2,
+                  "receipt": "3e2f3899-30da-7b15-6a94-96fce857293a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KOP-fill",
+          "label": "Last receipt before KOP filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KOP",
+          "outcome": "fill",
+          "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+          "epoch": 1783919867.034,
+          "clock": "T−13hr 57min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOP is weakening; PRI is strengthening.",
+              "WHY": "KOP trades at 30¢ against its 38¢ opening anchor; PRI trades at 70¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOP carries 274 eligible past sides from first-price comparisons; PRI carries 210 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOP calls 28¢ by T−6hr 14min; PRI calls 69¢ by T−12hr 4min.",
+              "WHY": "KOP’s middle half spans 26–29¢; PRI’s middle half spans 67–70¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOP has book 29/30 and a standing 28¢ bid; PRI has book 70/71 and a recorded purchase at 70¢.",
+              "WHY": "KOP: buying the weakening side in early set down's learned late-floor window; predicted floor 28; bid 28; PRI filled 70; 28 + 70 = 98 < 100; PRI: buying the strengthening side before it strengthens; predicted close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KOP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 38,
+              "corrected_open": 38,
+              "close": 28,
+              "recorded_floor": 24,
+              "P": 30,
+              "Q": 28,
+              "X": 1783947676,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 274,
+              "ess": 101.77118440628585,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 30,
+                "last_trade_cents": 30,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4906"
+              },
+              "bid": 28,
+              "filled": null,
+              "decision": {
+                "order": 264,
+                "leg": "KOP",
+                "epoch": 1783919867.034,
+                "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "trigger": "FILL_HANDOFF_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 28,
+                  "reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 28; bid 28; PRI filled 70; 28 + 70 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 30,
+                  "last_trade_cents": 30,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4906"
+                },
+                "Q": 28,
+                "X": 1783947676,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "stage_index": 132
+              },
+              "permission": {
+                "ordinal": 132,
+                "epoch": 1783919867.034,
+                "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "id": "KOP",
+                "old": 27,
+                "proposed": 28,
+                "posted": 28,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 28,
+                  "hand_level": 28,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 29,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.2894346739869946,
+                      "ROUND_TRIP": 3.031857469407919,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 2.1302499008156603,
+                      "EARLY_SET_DOWN": 4.463910512303166,
+                      "QUIET_WOBBLE": 1.4880941949935258,
+                      "LATE_BREAK_UP": 0.1728033505662725,
+                      "ONE_STEP_DOWN": 2.266023107246729,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.5590667111167654,
+                      "SLEEPER": 1.893847674862887,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.07715546961173211,
+                    "epoch": 1783856936.1894612,
+                    "minutes_to_bell": 1886.0635089794794,
+                    "open": true,
+                    "member_count": 68,
+                    "ess": 18.429300113897895,
+                    "weight_sum": 4.463910512303166,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 70,
+                    "basis": "ACTUAL_OTHER_FILL",
+                    "sum": 98,
+                    "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                  },
+                  "written_reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 28; bid 28; PRI filled 70; 28 + 70 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 28,
+                    "climber_forecast_close": 71,
+                    "mirror_completion_cost": 29,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRI",
+                    "faller": "KOP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PRI": {
+                    "forecast": 71,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 81.51329513677527,
+                    "role": "CLIMBER",
+                    "current": 70,
+                    "member_count": 210
+                  },
+                  "KOP": {
+                    "forecast": 29,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 101.77118440628585,
+                    "role": "FALLER",
+                    "current": 30,
+                    "member_count": 274
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.2894346739869946,
+                    "ROUND_TRIP": 3.031857469407919,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.1302499008156603,
+                    "EARLY_SET_DOWN": 4.463910512303166,
+                    "QUIET_WOBBLE": 1.4880941949935258,
+                    "LATE_BREAK_UP": 0.1728033505662725,
+                    "ONE_STEP_DOWN": 2.266023107246729,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.5590667111167654,
+                    "SLEEPER": 1.893847674862887,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.07715546961173211,
+                  "epoch": 1783856936.1894612,
+                  "minutes_to_bell": 1886.0635089794794,
+                  "open": true,
+                  "member_count": 68,
+                  "ess": 18.429300113897895,
+                  "weight_sum": 4.463910512303166,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 28,
+                "deadline_epoch": 1783947676,
+                "q25": 26,
+                "q75": 29,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1783966640.285,
+                  "price": 24,
+                  "size": 767,
+                  "receipt": "089dbc55-5787-6293-23cc-cfd622daa1a7"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783921942.972,
+                  "price": 28,
+                  "size": 320,
+                  "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 61,
+              "corrected_open": 61.5,
+              "close": 74,
+              "recorded_floor": 64,
+              "P": 70,
+              "Q": 69,
+              "X": 1783926673.92335,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 210,
+              "ess": 81.51329513677527,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 70,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12691"
+              },
+              "bid": null,
+              "filled": 70,
+              "decision": {
+                "order": 263,
+                "leg": "PRI",
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 70,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 70,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+                },
+                "Q": 70,
+                "X": 1783924077.344043,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "stage_index": 131
+              },
+              "permission": {
+                "ordinal": 131,
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "id": "PRI",
+                "old": 70,
+                "proposed": 70,
+                "posted": 70,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 70,
+                  "hand_level": 70,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 72,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.21241299548225556,
+                      "ROUND_TRIP": 2.5464334381005886,
+                      "DRIFT_UP": 2.4243705344034856,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2.1602618721370805,
+                      "LATE_BREAK_DOWN": 0.18395862009273078,
+                      "ONE_STEP_UP": 1.6994370892308146,
+                      "EARLY_SET_UP": 1.7778443428474202,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.22128208734647023,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.3132445200888909
+                    },
+                    "position": 0.0402431730725872,
+                    "epoch": 1783852409.819098,
+                    "minutes_to_bell": 1961.503015033404,
+                    "open": true,
+                    "member_count": 46,
+                    "ess": 27.21410680233313,
+                    "weight_sum": 2.5464334381005886,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 28,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 27,
+                      "climber_forecast_close": 72,
+                      "mirror_completion_cost": 28,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 27,
+                    "climber_forecast_close": 72,
+                    "mirror_completion_cost": 28,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRI",
+                    "faller": "KOP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 30,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 29,
+                    "ask": 30,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PRI": {
+                    "forecast": 72,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 76.65259293925307,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 199
+                  },
+                  "KOP": {
+                    "forecast": 29,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.74828563089397,
+                    "role": "FALLER",
+                    "current": 29,
+                    "member_count": 259
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.21241299548225556,
+                    "ROUND_TRIP": 2.5464334381005886,
+                    "DRIFT_UP": 2.4243705344034856,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.1602618721370805,
+                    "LATE_BREAK_DOWN": 0.18395862009273078,
+                    "ONE_STEP_UP": 1.6994370892308146,
+                    "EARLY_SET_UP": 1.7778443428474202,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.22128208734647023,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.3132445200888909
+                  },
+                  "position": 0.0402431730725872,
+                  "epoch": 1783852409.819098,
+                  "minutes_to_bell": 1961.503015033404,
+                  "open": true,
+                  "member_count": 46,
+                  "ess": 27.21410680233313,
+                  "weight_sum": 2.5464334381005886,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1783926673.92335,
+                "q25": 67,
+                "q75": 70,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1783925321.094,
+                  "price": 70,
+                  "size": 83.82,
+                  "receipt": "ba955c79-8110-5ee4-8ede-fafb4212b652"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783925321.094,
+                  "price": 70,
+                  "size": 83.82,
+                  "receipt": "ba955c79-8110-5ee4-8ede-fafb4212b652"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783921942.972,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "KOP",
+              "epoch": 1783921942.972,
+              "cents": 28,
+              "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+              "order_lineage_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+              "order_lineage_start_epoch": 1783915412.687,
+              "current_price_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "current_price_start_epoch": 1783919867.034,
+              "order_lineage_age_minutes": 108.8380833307902,
+              "current_price_age_minutes": 34.59896666606267,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "KOP",
+                "epoch": 1783921942.972,
+                "cents": 28,
+                "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+                "order_lineage_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "order_lineage_start_epoch": 1783915412.687,
+                "current_price_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "current_price_start_epoch": 1783919867.034,
+                "order_lineage_age_minutes": 108.8380833307902,
+                "current_price_age_minutes": 34.59896666606267,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 132,
+              "epoch": 1783919867.034,
+              "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "id": "KOP",
+              "old": 27,
+              "proposed": 28,
+              "posted": 28,
+              "permission": {
+                "allowed": true,
+                "reason": "FALLER_LATE_WINDOW",
+                "role": "FALLER",
+                "intended": 28,
+                "hand_level": 28,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 29,
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.2894346739869946,
+                    "ROUND_TRIP": 3.031857469407919,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.1302499008156603,
+                    "EARLY_SET_DOWN": 4.463910512303166,
+                    "QUIET_WOBBLE": 1.4880941949935258,
+                    "LATE_BREAK_UP": 0.1728033505662725,
+                    "ONE_STEP_DOWN": 2.266023107246729,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.5590667111167654,
+                    "SLEEPER": 1.893847674862887,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.07715546961173211,
+                  "epoch": 1783856936.1894612,
+                  "minutes_to_bell": 1886.0635089794794,
+                  "open": true,
+                  "member_count": 68,
+                  "ess": 18.429300113897895,
+                  "weight_sum": 4.463910512303166,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 70,
+                  "basis": "ACTUAL_OTHER_FILL",
+                  "sum": 98,
+                  "reason": "ACTUAL_FILL_PAIR_BUDGET"
+                },
+                "written_reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 28; bid 28; PRI filled 70; 28 + 70 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 28,
+                  "climber_forecast_close": 71,
+                  "mirror_completion_cost": 29,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "PRI",
+                  "faller": "KOP",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": false,
+                  "actual_counterpart_fill_replaces_reserve": true,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                }
+              },
+              "forecasts": {
+                "PRI": {
+                  "forecast": 71,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 81.51329513677527,
+                  "role": "CLIMBER",
+                  "current": 70,
+                  "member_count": 210
+                },
+                "KOP": {
+                  "forecast": 29,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 101.77118440628585,
+                  "role": "FALLER",
+                  "current": 30,
+                  "member_count": 274
+                }
+              },
+              "window": {
+                "family": "EARLY_SET_DOWN",
+                "family_mass": {
+                  "LATE_BREAK_DOWN": 0.2894346739869946,
+                  "ROUND_TRIP": 3.031857469407919,
+                  "ONE_STEP_UP": 0,
+                  "DRIFT_DOWN": 2.1302499008156603,
+                  "EARLY_SET_DOWN": 4.463910512303166,
+                  "QUIET_WOBBLE": 1.4880941949935258,
+                  "LATE_BREAK_UP": 0.1728033505662725,
+                  "ONE_STEP_DOWN": 2.266023107246729,
+                  "GRIND_WOBBLE_UP": 0,
+                  "DRIFT_UP": 0,
+                  "GRIND_WOBBLE_DOWN": 0.5590667111167654,
+                  "SLEEPER": 1.893847674862887,
+                  "EARLY_SET_UP": 0
+                },
+                "position": 0.07715546961173211,
+                "epoch": 1783856936.1894612,
+                "minutes_to_bell": 1886.0635089794794,
+                "open": true,
+                "member_count": 68,
+                "ess": 18.429300113897895,
+                "weight_sum": 4.463910512303166,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 264,
+              "leg": "KOP",
+              "epoch": 1783919867.034,
+              "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "trigger": "FILL_HANDOFF_DECISION_INSTANT",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 28,
+                "reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 28; bid 28; PRI filled 70; 28 + 70 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 29,
+                "ask_cents": 30,
+                "last_trade_cents": 30,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4906"
+              },
+              "Q": 28,
+              "X": 1783947676,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783847475,
+              "stage_index": 132
+            },
+            "license_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "licensing_deadline_epoch": 1783947676,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-PRI-fill",
+          "label": "Last receipt before PRI filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "PRI",
+          "outcome": "fill",
+          "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+          "epoch": 1783915412.687,
+          "clock": "T−15hr 11min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOP is weakening; PRI is strengthening.",
+              "WHY": "KOP trades at 29¢ against its 38¢ opening anchor; PRI trades at 71¢ against its 61¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOP carries 259 eligible past sides from first-price comparisons; PRI carries 199 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOP calls 27¢ by T−7hr 11min; PRI calls 70¢ by T−12hr 47min.",
+              "WHY": "KOP’s middle half spans 25–28¢; PRI’s middle half spans 68–71¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOP has book 29/30 and a standing 27¢ bid; PRI has book 70/71 and a standing 70¢ bid.",
+              "WHY": "KOP: buying the weakening side in early set down's learned late-floor window; predicted floor 27; bid 27; reserve PRI max(close 72, ask 71) = 72; 27 + 72 = 99 < 100; PRI: buying the strengthening side before it strengthens; predicted close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KOP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 38,
+              "corrected_open": 38,
+              "close": 28,
+              "recorded_floor": 24,
+              "P": 29,
+              "Q": 27,
+              "X": 1783944234,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 259,
+              "ess": 106.74828563089397,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 29,
+                "ask_cents": 30,
+                "last_trade_cents": 30,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4750"
+              },
+              "bid": 27,
+              "filled": null,
+              "decision": {
+                "order": 262,
+                "leg": "KOP",
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 27,
+                  "reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 27; bid 27; reserve PRI max(close 72, ask 71) = 72; 27 + 72 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 29,
+                  "ask_cents": 30,
+                  "last_trade_cents": 30,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-KOP.csv.gz#row-4750"
+                },
+                "Q": 27,
+                "X": 1783944234,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "stage_index": 131
+              },
+              "permission": {
+                "ordinal": 131,
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "id": "KOP",
+                "old": null,
+                "proposed": 27,
+                "posted": 27,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 27,
+                  "hand_level": 27,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 29,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.2708666789159007,
+                      "ROUND_TRIP": 2.9657296008463274,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 2.0427707858382713,
+                      "EARLY_SET_DOWN": 4.463910512303166,
+                      "QUIET_WOBBLE": 1.1378920914819588,
+                      "LATE_BREAK_UP": 0.1728033505662725,
+                      "ONE_STEP_DOWN": 1.892402835274247,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.5590667111167654,
+                      "SLEEPER": 0.9341212598110136,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.07715546961173211,
+                    "epoch": 1783856936.1894612,
+                    "minutes_to_bell": 1886.0635089794794,
+                    "open": true,
+                    "member_count": 68,
+                    "ess": 18.429300113897895,
+                    "weight_sum": 4.463910512303166,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 72,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 72,
+                    "ask": 71,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 27; bid 27; reserve PRI max(close 72, ask 71) = 72; 27 + 72 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 27,
+                    "climber_forecast_close": 72,
+                    "mirror_completion_cost": 28,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRI",
+                    "faller": "KOP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "PRI": {
+                    "forecast": 72,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 76.65259293925307,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 199
+                  },
+                  "KOP": {
+                    "forecast": 29,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.74828563089397,
+                    "role": "FALLER",
+                    "current": 29,
+                    "member_count": 259
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.2708666789159007,
+                    "ROUND_TRIP": 2.9657296008463274,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.0427707858382713,
+                    "EARLY_SET_DOWN": 4.463910512303166,
+                    "QUIET_WOBBLE": 1.1378920914819588,
+                    "LATE_BREAK_UP": 0.1728033505662725,
+                    "ONE_STEP_DOWN": 1.892402835274247,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.5590667111167654,
+                    "SLEEPER": 0.9341212598110136,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.07715546961173211,
+                  "epoch": 1783856936.1894612,
+                  "minutes_to_bell": 1886.0635089794794,
+                  "open": true,
+                  "member_count": 68,
+                  "ess": 18.429300113897895,
+                  "weight_sum": 4.463910512303166,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 27,
+                "deadline_epoch": 1783944234,
+                "q25": 25,
+                "q75": 28,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1783966640.285,
+                  "price": 24,
+                  "size": 767,
+                  "receipt": "089dbc55-5787-6293-23cc-cfd622daa1a7"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783921942.972,
+                  "price": 28,
+                  "size": 320,
+                  "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "PRI": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 61,
+              "corrected_open": 61.5,
+              "close": 74,
+              "recorded_floor": 64,
+              "P": 71,
+              "Q": 70,
+              "X": 1783924077.344043,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 199,
+              "ess": 76.65259293925307,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 70,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+              },
+              "bid": 70,
+              "filled": null,
+              "decision": {
+                "order": 263,
+                "leg": "PRI",
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 70,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 70,
+                  "ask_cents": 71,
+                  "last_trade_cents": 71,
+                  "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+                },
+                "Q": 70,
+                "X": 1783924077.344043,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783847475,
+                "stage_index": 131
+              },
+              "permission": {
+                "ordinal": 131,
+                "epoch": 1783915412.687,
+                "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+                "id": "PRI",
+                "old": 70,
+                "proposed": 70,
+                "posted": 70,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 70,
+                  "hand_level": 70,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 72,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.21241299548225556,
+                      "ROUND_TRIP": 2.5464334381005886,
+                      "DRIFT_UP": 2.4243705344034856,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2.1602618721370805,
+                      "LATE_BREAK_DOWN": 0.18395862009273078,
+                      "ONE_STEP_UP": 1.6994370892308146,
+                      "EARLY_SET_UP": 1.7778443428474202,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.22128208734647023,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.3132445200888909
+                    },
+                    "position": 0.0402431730725872,
+                    "epoch": 1783852409.819098,
+                    "minutes_to_bell": 1961.503015033404,
+                    "open": true,
+                    "member_count": 46,
+                    "ess": 27.21410680233313,
+                    "weight_sum": 2.5464334381005886,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 28,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 27,
+                      "climber_forecast_close": 72,
+                      "mirror_completion_cost": 28,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 27,
+                    "climber_forecast_close": 72,
+                    "mirror_completion_cost": 28,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "PRI",
+                    "faller": "KOP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 30,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 29,
+                    "ask": 30,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "PRI": {
+                    "forecast": 72,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 76.65259293925307,
+                    "role": "CLIMBER",
+                    "current": 71,
+                    "member_count": 199
+                  },
+                  "KOP": {
+                    "forecast": 29,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 106.74828563089397,
+                    "role": "FALLER",
+                    "current": 29,
+                    "member_count": 259
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.21241299548225556,
+                    "ROUND_TRIP": 2.5464334381005886,
+                    "DRIFT_UP": 2.4243705344034856,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.1602618721370805,
+                    "LATE_BREAK_DOWN": 0.18395862009273078,
+                    "ONE_STEP_UP": 1.6994370892308146,
+                    "EARLY_SET_UP": 1.7778443428474202,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.22128208734647023,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.3132445200888909
+                  },
+                  "position": 0.0402431730725872,
+                  "epoch": 1783852409.819098,
+                  "minutes_to_bell": 1961.503015033404,
+                  "open": true,
+                  "member_count": 46,
+                  "ess": 27.21410680233313,
+                  "weight_sum": 2.5464334381005886,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 70,
+                "deadline_epoch": 1783924077.344043,
+                "q25": 68,
+                "q75": 71,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 70,
+                "floor_witness": {
+                  "epoch": 1783919867.034,
+                  "price": 70,
+                  "size": 9,
+                  "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783915495.017,
+                  "price": 71,
+                  "size": 6,
+                  "receipt": "3bfd4656-f33e-69f5-c306-f5a4ed5ac43a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783919867.034,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "PRI",
+              "epoch": 1783919867.034,
+              "cents": 70,
+              "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+              "order_lineage_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+              "order_lineage_start_epoch": 1783897133.213,
+              "current_price_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+              "current_price_start_epoch": 1783897133.213,
+              "order_lineage_age_minutes": 378.89701666434604,
+              "current_price_age_minutes": 378.89701666434604,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "PRI",
+                "epoch": 1783919867.034,
+                "cents": 70,
+                "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+                "order_lineage_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+                "order_lineage_start_epoch": 1783897133.213,
+                "current_price_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+                "current_price_start_epoch": 1783897133.213,
+                "order_lineage_age_minutes": 378.89701666434604,
+                "current_price_age_minutes": 378.89701666434604,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 131,
+              "epoch": 1783915412.687,
+              "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+              "id": "PRI",
+              "old": 70,
+              "proposed": 70,
+              "posted": 70,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 70,
+                "hand_level": 70,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 72,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.21241299548225556,
+                    "ROUND_TRIP": 2.5464334381005886,
+                    "DRIFT_UP": 2.4243705344034856,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.1602618721370805,
+                    "LATE_BREAK_DOWN": 0.18395862009273078,
+                    "ONE_STEP_UP": 1.6994370892308146,
+                    "EARLY_SET_UP": 1.7778443428474202,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.22128208734647023,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.3132445200888909
+                  },
+                  "position": 0.0402431730725872,
+                  "epoch": 1783852409.819098,
+                  "minutes_to_bell": 1961.503015033404,
+                  "open": true,
+                  "member_count": 46,
+                  "ess": 27.21410680233313,
+                  "weight_sum": 2.5464334381005886,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 28,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 98,
+                  "discount": 2,
+                  "components": {
+                    "faller_forecast_late_floor": 27,
+                    "climber_forecast_close": 72,
+                    "mirror_completion_cost": 28,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 27,
+                  "climber_forecast_close": 72,
+                  "mirror_completion_cost": 28,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "PRI",
+                  "faller": "KOP",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 30,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 29,
+                  "ask": 30,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "PRI": {
+                  "forecast": 72,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 76.65259293925307,
+                  "role": "CLIMBER",
+                  "current": 71,
+                  "member_count": 199
+                },
+                "KOP": {
+                  "forecast": 29,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 106.74828563089397,
+                  "role": "FALLER",
+                  "current": 29,
+                  "member_count": 259
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.21241299548225556,
+                  "ROUND_TRIP": 2.5464334381005886,
+                  "DRIFT_UP": 2.4243705344034856,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 2.1602618721370805,
+                  "LATE_BREAK_DOWN": 0.18395862009273078,
+                  "ONE_STEP_UP": 1.6994370892308146,
+                  "EARLY_SET_UP": 1.7778443428474202,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.22128208734647023,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 0.3132445200888909
+                },
+                "position": 0.0402431730725872,
+                "epoch": 1783852409.819098,
+                "minutes_to_bell": 1961.503015033404,
+                "open": true,
+                "member_count": 46,
+                "ess": 27.21410680233313,
+                "weight_sum": 2.5464334381005886,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 263,
+              "leg": "PRI",
+              "epoch": 1783915412.687,
+              "receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 70,
+                "reason": "buying the strengthening side before it strengthens; forecast close 72; bid 70; reserve KOP max(late floor 27, 100 - climber close 72 = 28) = 28; views differ by -1c (floor minus mirror); 70 + 28 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 70,
+                "ask_cents": 71,
+                "last_trade_cents": 71,
+                "receipt": "KXATPMATCH-26JUL12KOPPRI-PRI.csv.gz#row-12577"
+              },
+              "Q": 70,
+              "X": 1783924077.344043,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783847475,
+              "stage_index": 131
+            },
+            "license_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+            "licensing_deadline_epoch": 1783920435,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 29–33¢; a later band print met the deadline. PRI: later floor 68¢ outside 59–63¢; no later band print met the deadline."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 26–29¢; a later band print met the deadline."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KOP": true,
+          "PRI": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 98,
+        "captured_cents": 2,
+        "best_capturable_cents": 12,
+        "fills": [
+          {
+            "leg": "PRI",
+            "epoch": 1783919867.034,
+            "cents": 70,
+            "receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "order_lineage_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+            "order_lineage_start_epoch": 1783897133.213,
+            "current_price_receipt": "ce9fa002-edd5-7da4-43ce-fe3a44887454",
+            "current_price_start_epoch": 1783897133.213,
+            "order_lineage_age_minutes": 378.89701666434604,
+            "current_price_age_minutes": 378.89701666434604,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "KOP",
+            "epoch": 1783921942.972,
+            "cents": 28,
+            "receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+            "order_lineage_receipt": "2b9b8fe9-cde3-7881-4d8c-a5c955c8c92e",
+            "order_lineage_start_epoch": 1783915412.687,
+            "current_price_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "current_price_start_epoch": 1783919867.034,
+            "order_lineage_age_minutes": 108.8380833307902,
+            "current_price_age_minutes": 34.59896666606267,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12KOPPRI",
+        "category": "ATP_MAIN",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "KOP",
+            "filled": true,
+            "fill_cents": 28,
+            "fill_epoch": 1783921942.972,
+            "fill_receipt": "46b98d64-298f-5e97-8cd1-1a1d2d602c2a",
+            "close_cents": 28,
+            "close_epoch": 1783970096.2,
+            "floor_cents": 24,
+            "offered_cents": 4,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "PRI",
+            "filled": true,
+            "fill_cents": 70,
+            "fill_epoch": 1783919867.034,
+            "fill_receipt": "411139c2-ca9c-7288-f0b7-1aa35edbe31a",
+            "close_cents": 74,
+            "close_epoch": 1783970090.5,
+            "floor_cents": 64,
+            "offered_cents": 10,
+            "value_cents": 4,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "a5597e6eaebf9994a3b018cbb58185501bb64930262972ea03755133f8bfb398",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

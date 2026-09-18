@@ -1,0 +1,2325 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL12OFNTIR",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "e5e8c05934865be5cdd24b488daf3274ebb9dbf2b36f04300fa8669580e55741",
+    "stage_cache_sha256": "3e463a4119f64b701b4763e41948219578558744c33a1fa045d78fc6056c3bf1",
+    "mirror_projection_sha256": "49cd7b4750ad74743a83bcd7b7f76ba538a8d284e76b76e437fe788914f15a8f",
+    "mirror_permissions_sha256": "904b2ca6de2fe311085c1ce844a0bde51866cba5eb8c1fc683a6eec859f52c0a",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL12OFNTIR",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "61f753892a132fff58090595cdd70d222b3cce21f5ed798c62c2fa6ac524e570",
+      "row_number": 107,
+      "row_csv": "26JUL12OFNTIR,KXATPMATCH-26JUL12OFNTIR,ATP_MAIN,1783777733,1783777733,1783911087.213,1783854000.0,OFN,TIR,1783790237,45.0,43,1783851684.1,43,1783853740.0,244.43,107.5,STILL,-2.0,1783814906,,,,1783790237,55.0,51,1783792225.0,61,1783911081.9,7582.26,4579.54,MOVER,6.0,1783815057,,,,1783790237,,,1784020140.0,1784025900.0,1784020140.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1783790237,1783911087.213,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1783790237,
+      "span_end_epoch": 1783911087.213,
+      "bell_epoch": 1784020140,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784020140,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "OFN": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 45,
+          "floor_cents": 43,
+          "floor_epoch": 1783851684.1,
+          "minutes_to_bell": 2807.5983333349227,
+          "line": "OFN 43¢ @ 2807.60m to bell",
+          "marker_label": "OFN FLOOR · RECORDED 43¢ @ 2807.60m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 43¢ · 2807m to bell",
+          "hover_note": "Recorded floor 43¢ printed here · 2807m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "TIR": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 55,
+          "floor_cents": 51,
+          "floor_epoch": 1783792225,
+          "minutes_to_bell": 3798.5833333333335,
+          "line": "TIR 51¢ @ 3798.58m to bell",
+          "marker_label": "TIR FLOOR · RECORDED 51¢ @ 3798.58m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 51¢ · 3798m to bell",
+          "hover_note": "Recorded floor 51¢ printed here · 3798m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "TIR",
+      "underdog_leg": "OFN",
+      "pair": {
+        "sum_cents": 94,
+        "discount_cents": 6,
+        "reason": null,
+        "line": "best capturable = 51 + 43 = 94¢",
+        "discount_line": "6¢ under par",
+        "compact_line": "best capturable 94¢ · 6¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL12OFNTIR",
+        "event_id": "KXATPMATCH-26JUL12OFNTIR",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1783777733",
+        "w1_left_epoch": "1783777733",
+        "w1_right_epoch": "1783911087.213",
+        "scheduled_start_epoch": "1783854000.0",
+        "legA": "OFN",
+        "legB": "TIR",
+        "legA_formation_end_epoch": "1783790237",
+        "legA_open_postformation_c": "45.0",
+        "legA_floor_c": "43",
+        "legA_floor_epoch": "1783851684.1",
+        "legA_close_c": "43",
+        "legA_close_epoch": "1783853740.0",
+        "legA_contracts": "244.43",
+        "legA_premium_usd": "107.5",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-2.0",
+        "legA_us_first_post_epoch": "1783814906",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1783790237",
+        "legB_open_postformation_c": "55.0",
+        "legB_floor_c": "51",
+        "legB_floor_epoch": "1783792225.0",
+        "legB_close_c": "61",
+        "legB_close_epoch": "1783911081.9",
+        "legB_contracts": "7582.26",
+        "legB_premium_usd": "4579.54",
+        "legB_journey": "MOVER",
+        "legB_net_travel_c": "6.0",
+        "legB_us_first_post_epoch": "1783815057",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1783790237",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784020140.0",
+        "kalshi_close_time_epoch": "1784025900.0",
+        "bell_epoch": "1784020140.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1783790237",
+        "span_end_epoch": "1783911087.213",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL12OFNTIR.jsonl",
+      "sha256": "e7b5781262f27bd6d8071f57c3ddc4b9c67b32325f6c7bc499b8e05d40ae1410",
+      "raw_rows": 1402,
+      "accepted_rows": 24,
+      "start_epoch": 1783790237,
+      "end_epoch": 1783911087.213
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+  "first_both_directional_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+  "first_callable_by_side": {
+    "OFN": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+    "TIR": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+          "epoch": 1783820925.000001,
+          "clock": "T−25hr 3min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OFN is not yet directionally called; TIR is not yet directionally called.",
+              "WHY": "OFN trades at 44¢ against its 45¢ opening anchor; TIR trades at 56¢ against its 55¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OFN carries 341 eligible past sides from first-price comparisons; TIR carries 341 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OFN calls 42¢ by T−13hr 2min; TIR calls 54¢ by T−16hr 29min.",
+              "WHY": "OFN’s middle half spans 40–43¢; TIR’s middle half spans 52–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OFN has book 42/44 and a standing 42¢ bid; TIR has book 56/58 and a standing 54¢ bid.",
+              "WHY": "OFN: The current pool target was the permitted bid level; TIR: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "OFN": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 45,
+              "corrected_open": 45,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 42,
+              "X": 1783864169.213,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 341,
+              "ess": 139.7688772054294,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 42,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676"
+              },
+              "bid": 42,
+              "filled": null,
+              "decision": {
+                "order": 112,
+                "leg": "OFN",
+                "epoch": 1783820925.000001,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 42,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 42,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676"
+                },
+                "Q": 42,
+                "X": 1783864169.213,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "support": null,
+                "accountability_assumption": "acff7b1a7bdf64a2d1115ee596979739280d0002564d34639772ece2080fa971",
+                "stage_index": 56
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1783864169.213,
+                "q25": 40,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1783851684.065,
+                  "price": 43,
+                  "size": 4,
+                  "receipt": "4f599c90-926a-6527-0c91-1c94567c5123"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783851684.065,
+                  "price": 43,
+                  "size": 4,
+                  "receipt": "4f599c90-926a-6527-0c91-1c94567c5123"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "TIR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 55,
+              "corrected_open": 55,
+              "close": 61,
+              "recorded_floor": 51,
+              "P": 56,
+              "Q": 54,
+              "X": 1783851767.51261,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 341,
+              "ess": 139.7688772054294,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 58,
+                "last_trade_cents": 56,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1307"
+              },
+              "bid": 54,
+              "filled": null,
+              "decision": {
+                "order": 113,
+                "leg": "TIR",
+                "epoch": 1783820925.000001,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 54,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 58,
+                  "last_trade_cents": 56,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1307"
+                },
+                "Q": 54,
+                "X": 1783851767.51261,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "support": null,
+                "accountability_assumption": "9bbf225d2f2ec546603d1fcec8e0b0f30a81c2941dd297c965a26001dbe3c81c",
+                "stage_index": 56
+              },
+              "permission": null,
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1783851767.51261,
+                "q25": 52,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1783860603.43,
+                  "price": 57,
+                  "size": 150,
+                  "receipt": "4af4d507-a476-78c8-6866-63d90760345a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-OFN-miss",
+          "label": "Last receipt before OFN missed at the bell",
+          "arm": "D",
+          "focus_leg": "OFN",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+          "epoch": 1783911087.000003,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OFN is weakening; TIR is strengthening.",
+              "WHY": "OFN trades at 43¢ against its 45¢ opening anchor; TIR trades at 60¢ against its 55¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OFN carries 381 eligible past sides from first-price comparisons; TIR carries 345 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OFN calls 43¢ by T−0hr 0min; TIR calls 60¢ by T−0hr 0min.",
+              "WHY": "OFN’s middle half spans 43–43¢; TIR’s middle half spans 60–60¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OFN has book 39/41 and a standing 41¢ bid; TIR has book 61/59 and a standing 56¢ bid.",
+              "WHY": "OFN: The desired bid could not be posted below the ask; TIR: The book was locked; a new bid was not allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "OFN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 45,
+              "corrected_open": 45,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 43,
+              "Q": 43,
+              "X": 1783911087.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 381,
+              "ess": 140.8293437875287,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 43,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609"
+              },
+              "bid": 41,
+              "filled": null,
+              "decision": {
+                "order": 164,
+                "leg": "OFN",
+                "epoch": 1783911087.000003,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 41,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 43,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609"
+                },
+                "Q": 43,
+                "X": 1783911087.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "support": null,
+                "accountability_assumption": "6578f65665e219197d09d7cbef977e63b2acae6b4e6f3c2751b298e63a3481a1",
+                "stage_index": 83
+              },
+              "permission": null,
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1783911087.000003,
+                "q25": 43,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "TIR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 55,
+              "corrected_open": 55,
+              "close": 61,
+              "recorded_floor": 51,
+              "P": 60,
+              "Q": 60,
+              "X": 1783911087.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 123.71077551991296,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 59,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2106"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 165,
+                "leg": "TIR",
+                "epoch": 1783911087.000003,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 56,
+                  "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 59,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2106"
+                },
+                "Q": 60,
+                "X": 1783911087.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "support": null,
+                "accountability_assumption": "19bf74e19d39b9c0e7d4d4bf642b03782d4ff29fa6585283d4719e034a6279ab",
+                "stage_index": 83
+              },
+              "permission": null,
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1783911087.000003,
+                "q25": 60,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783911087.213,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-TIR-miss",
+          "label": "Last receipt before TIR missed at the bell",
+          "arm": "D",
+          "focus_leg": "TIR",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+          "epoch": 1783911087.000003,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OFN is weakening; TIR is strengthening.",
+              "WHY": "OFN trades at 43¢ against its 45¢ opening anchor; TIR trades at 60¢ against its 55¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OFN carries 381 eligible past sides from first-price comparisons; TIR carries 345 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OFN calls 43¢ by T−0hr 0min; TIR calls 60¢ by T−0hr 0min.",
+              "WHY": "OFN’s middle half spans 43–43¢; TIR’s middle half spans 60–60¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OFN has book 39/41 and a standing 41¢ bid; TIR has book 61/59 and a standing 56¢ bid.",
+              "WHY": "OFN: The desired bid could not be posted below the ask; TIR: The book was locked; a new bid was not allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "OFN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 45,
+              "corrected_open": 45,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 43,
+              "Q": 43,
+              "X": 1783911087.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 381,
+              "ess": 140.8293437875287,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 43,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609"
+              },
+              "bid": 41,
+              "filled": null,
+              "decision": {
+                "order": 164,
+                "leg": "OFN",
+                "epoch": 1783911087.000003,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 41,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 43,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609"
+                },
+                "Q": 43,
+                "X": 1783911087.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "support": null,
+                "accountability_assumption": "6578f65665e219197d09d7cbef977e63b2acae6b4e6f3c2751b298e63a3481a1",
+                "stage_index": 83
+              },
+              "permission": null,
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1783911087.000003,
+                "q25": 43,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "TIR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 55,
+              "corrected_open": 55,
+              "close": 61,
+              "recorded_floor": 51,
+              "P": 60,
+              "Q": 60,
+              "X": 1783911087.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 123.71077551991296,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 59,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2106"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 165,
+                "leg": "TIR",
+                "epoch": 1783911087.000003,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 56,
+                  "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+                },
+                "book": {
+                  "bid_cents": 61,
+                  "ask_cents": 59,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2106"
+                },
+                "Q": 60,
+                "X": 1783911087.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "support": null,
+                "accountability_assumption": "19bf74e19d39b9c0e7d4d4bf642b03782d4ff29fa6585283d4719e034a6279ab",
+                "stage_index": 83
+              },
+              "permission": null,
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1783911087.000003,
+                "q25": 60,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783911087.213,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "OFN was not yet directionally called; its corrected full-window direction was weakening. TIR was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "OFN: No strictly later accepted positive print. TIR: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "OFN": false,
+          "TIR": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 6,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12OFNTIR",
+        "category": "ATP_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "OFN",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 43,
+            "close_epoch": 1783853740,
+            "floor_cents": 43,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "TIR",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 61,
+            "close_epoch": 1783911081.9,
+            "floor_cents": 51,
+            "offered_cents": 10,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 10,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "61f753892a132fff58090595cdd70d222b3cce21f5ed798c62c2fa6ac524e570",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+          "epoch": 1783820925.000001,
+          "clock": "T−25hr 3min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OFN is not yet directionally called; TIR is not yet directionally called.",
+              "WHY": "OFN trades at 44¢ against its 45¢ opening anchor; TIR trades at 56¢ against its 55¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OFN carries 341 eligible past sides from first-price comparisons; TIR carries 341 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OFN calls 42¢ by T−13hr 2min; TIR calls 54¢ by T−16hr 29min.",
+              "WHY": "OFN’s middle half spans 40–43¢; TIR’s middle half spans 52–55¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OFN has book 42/44 and no standing bid; TIR has book 56/58 and no standing bid.",
+              "WHY": "OFN: The policy was waiting for a directional call; TIR: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "OFN": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 45,
+              "corrected_open": 45,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 42,
+              "X": 1783864169.213,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 341,
+              "ess": 139.7688772054294,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 42,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 112,
+                "leg": "OFN",
+                "epoch": 1783820925.000001,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 42; reserve TIR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 42,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676"
+                },
+                "Q": 42,
+                "X": 1783864169.213,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "stage_index": 56
+              },
+              "permission": {
+                "ordinal": 56,
+                "epoch": 1783820925.000001,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+                "id": "OFN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 44,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.37041933705978863,
+                      "ROUND_TRIP": 6.064464232217201,
+                      "ONE_STEP_UP": 0.46851308355801724,
+                      "DRIFT_DOWN": 0.9041373040454884,
+                      "EARLY_SET_DOWN": 1.8090166020366585,
+                      "QUIET_WOBBLE": 3.6755647911206863,
+                      "LATE_BREAK_UP": 0.23974620619935427,
+                      "ONE_STEP_DOWN": 1.319964212331722,
+                      "GRIND_WOBBLE_UP": 0.28329765960620445,
+                      "DRIFT_UP": 1.1937509823744334,
+                      "GRIND_WOBBLE_DOWN": 0.48888350757103843,
+                      "SLEEPER": 0.24121518913951637,
+                      "EARLY_SET_UP": 0.27152323498605
+                    },
+                    "position": 0.08270819500391784,
+                    "epoch": 1783800232.302983,
+                    "minutes_to_bell": 1847.5818336168925,
+                    "open": true,
+                    "member_count": 105,
+                    "ess": 47.325144479803456,
+                    "weight_sum": 6.064464232217201,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 42; reserve TIR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "TIR": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.7688772054294,
+                    "role": "NOT_CALLABLE",
+                    "current": 56,
+                    "member_count": 341
+                  },
+                  "OFN": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.7688772054294,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 341
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.37041933705978863,
+                    "ROUND_TRIP": 6.064464232217201,
+                    "ONE_STEP_UP": 0.46851308355801724,
+                    "DRIFT_DOWN": 0.9041373040454884,
+                    "EARLY_SET_DOWN": 1.8090166020366585,
+                    "QUIET_WOBBLE": 3.6755647911206863,
+                    "LATE_BREAK_UP": 0.23974620619935427,
+                    "ONE_STEP_DOWN": 1.319964212331722,
+                    "GRIND_WOBBLE_UP": 0.28329765960620445,
+                    "DRIFT_UP": 1.1937509823744334,
+                    "GRIND_WOBBLE_DOWN": 0.48888350757103843,
+                    "SLEEPER": 0.24121518913951637,
+                    "EARLY_SET_UP": 0.27152323498605
+                  },
+                  "position": 0.08270819500391784,
+                  "epoch": 1783800232.302983,
+                  "minutes_to_bell": 1847.5818336168925,
+                  "open": true,
+                  "member_count": 105,
+                  "ess": 47.325144479803456,
+                  "weight_sum": 6.064464232217201,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1783864169.213,
+                "q25": 40,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1783851684.065,
+                  "price": 43,
+                  "size": 4,
+                  "receipt": "4f599c90-926a-6527-0c91-1c94567c5123"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783851684.065,
+                  "price": 43,
+                  "size": 4,
+                  "receipt": "4f599c90-926a-6527-0c91-1c94567c5123"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "TIR": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 55,
+              "corrected_open": 55,
+              "close": 61,
+              "recorded_floor": 51,
+              "P": 56,
+              "Q": 54,
+              "X": 1783851767.51261,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 341,
+              "ess": 139.7688772054294,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 58,
+                "last_trade_cents": 56,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1307"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 113,
+                "leg": "TIR",
+                "epoch": 1783820925.000001,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 54; reserve OFN max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 58,
+                  "last_trade_cents": 56,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1307"
+                },
+                "Q": 54,
+                "X": 1783851767.51261,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "stage_index": 56
+              },
+              "permission": {
+                "ordinal": 56,
+                "epoch": 1783820925.000001,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-676",
+                "id": "TIR",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 57,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.4683888773858348,
+                      "ROUND_TRIP": 7.141200114806393,
+                      "DRIFT_UP": 0.7443962989969158,
+                      "ONE_STEP_DOWN": 0.8081147618772916,
+                      "QUIET_WOBBLE": 3.543221593129143,
+                      "LATE_BREAK_DOWN": 0.041220936009569595,
+                      "ONE_STEP_UP": 0.9445864653359901,
+                      "EARLY_SET_UP": 1.0978821497580211,
+                      "EARLY_SET_DOWN": 1.0441605217896444,
+                      "GRIND_WOBBLE_UP": 0.2912281753375978,
+                      "GRIND_WOBBLE_DOWN": 0.23250148568266613,
+                      "DRIFT_DOWN": 0.7646197113806952,
+                      "SLEEPER": 0.20897525075639417
+                    },
+                    "position": 0.1060391363022942,
+                    "epoch": 1783803051.8522084,
+                    "minutes_to_bell": 1800.5893465280533,
+                    "open": true,
+                    "member_count": 124,
+                    "ess": 57.41644661853326,
+                    "weight_sum": 7.141200114806393,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 54; reserve OFN max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "TIR": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.7688772054294,
+                    "role": "NOT_CALLABLE",
+                    "current": 56,
+                    "member_count": 341
+                  },
+                  "OFN": {
+                    "forecast": 44,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 139.7688772054294,
+                    "role": "NOT_CALLABLE",
+                    "current": 44,
+                    "member_count": 341
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.4683888773858348,
+                    "ROUND_TRIP": 7.141200114806393,
+                    "DRIFT_UP": 0.7443962989969158,
+                    "ONE_STEP_DOWN": 0.8081147618772916,
+                    "QUIET_WOBBLE": 3.543221593129143,
+                    "LATE_BREAK_DOWN": 0.041220936009569595,
+                    "ONE_STEP_UP": 0.9445864653359901,
+                    "EARLY_SET_UP": 1.0978821497580211,
+                    "EARLY_SET_DOWN": 1.0441605217896444,
+                    "GRIND_WOBBLE_UP": 0.2912281753375978,
+                    "GRIND_WOBBLE_DOWN": 0.23250148568266613,
+                    "DRIFT_DOWN": 0.7646197113806952,
+                    "SLEEPER": 0.20897525075639417
+                  },
+                  "position": 0.1060391363022942,
+                  "epoch": 1783803051.8522084,
+                  "minutes_to_bell": 1800.5893465280533,
+                  "open": true,
+                  "member_count": 124,
+                  "ess": 57.41644661853326,
+                  "weight_sum": 7.141200114806393,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 54,
+                "deadline_epoch": 1783851767.51261,
+                "q25": 52,
+                "q75": 55,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1783860603.43,
+                  "price": 57,
+                  "size": 150,
+                  "receipt": "4af4d507-a476-78c8-6866-63d90760345a"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-OFN-miss",
+          "label": "Last receipt before OFN missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "OFN",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+          "epoch": 1783911087.000003,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OFN is weakening; TIR is strengthening.",
+              "WHY": "OFN trades at 43¢ against its 45¢ opening anchor; TIR trades at 60¢ against its 55¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OFN carries 381 eligible past sides from first-price comparisons; TIR carries 345 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OFN calls 43¢ by T−0hr 0min; TIR calls 60¢ by T−0hr 0min.",
+              "WHY": "OFN’s middle half spans 43–43¢; TIR’s middle half spans 60–60¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OFN has book 39/41 and no standing bid; TIR has book 61/59 and a recorded purchase at 57¢.",
+              "WHY": "OFN: The desired bid could not be posted below the ask; TIR: buying the strengthening side before it strengthens; predicted close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "OFN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 45,
+              "corrected_open": 45,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 43,
+              "Q": 43,
+              "X": 1783911087.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 381,
+              "ess": 140.8293437875287,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 43,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 145,
+                "leg": "OFN",
+                "epoch": 1783911087.000003,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 43; reserve TIR max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 43,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609"
+                },
+                "Q": 43,
+                "X": 1783911087.000003,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "stage_index": 83
+              },
+              "permission": {
+                "ordinal": 82,
+                "epoch": 1783911087.000003,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-1609",
+                "id": "OFN",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 43,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 43,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.7995277541125101,
+                      "ROUND_TRIP": 5.20306225659152,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 2.4495938879816355,
+                      "EARLY_SET_DOWN": 4.402447890899579,
+                      "QUIET_WOBBLE": 3.5858359863039015,
+                      "LATE_BREAK_UP": 0,
+                      "ONE_STEP_DOWN": 3.4655262162023406,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.7810341114909843,
+                      "SLEEPER": 1.6546389384874907,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.47215189873417723,
+                    "epoch": 1783847296.6575303,
+                    "minutes_to_bell": 1063.175924495856,
+                    "open": true,
+                    "member_count": 62,
+                    "ess": 21.394977092657633,
+                    "weight_sum": 5.20306225659152,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 43; reserve TIR max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 43,
+                    "climber_forecast_close": 60,
+                    "mirror_completion_cost": 40,
+                    "disagreement_cents": 3,
+                    "absolute_disagreement_cents": 3,
+                    "dominant": "FALLER_FLOOR",
+                    "climber": "TIR",
+                    "faller": "OFN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "TIR": {
+                    "forecast": 60,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 123.71077551991296,
+                    "role": "CLIMBER",
+                    "current": 60,
+                    "member_count": 345
+                  },
+                  "OFN": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 140.8293437875287,
+                    "role": "FALLER",
+                    "current": 43,
+                    "member_count": 381
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.7995277541125101,
+                    "ROUND_TRIP": 5.20306225659152,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.4495938879816355,
+                    "EARLY_SET_DOWN": 4.402447890899579,
+                    "QUIET_WOBBLE": 3.5858359863039015,
+                    "LATE_BREAK_UP": 0,
+                    "ONE_STEP_DOWN": 3.4655262162023406,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.7810341114909843,
+                    "SLEEPER": 1.6546389384874907,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.47215189873417723,
+                  "epoch": 1783847296.6575303,
+                  "minutes_to_bell": 1063.175924495856,
+                  "open": true,
+                  "member_count": 62,
+                  "ess": 21.394977092657633,
+                  "weight_sum": 5.20306225659152,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1783911087.000003,
+                "q25": 43,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "TIR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 55,
+              "corrected_open": 55,
+              "close": 61,
+              "recorded_floor": 51,
+              "P": 60,
+              "Q": 60,
+              "X": 1783911087.000003,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 123.71077551991296,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 61,
+                "ask_cents": 59,
+                "last_trade_cents": 61,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-2106"
+              },
+              "bid": null,
+              "filled": 57,
+              "decision": {
+                "order": 125,
+                "leg": "TIR",
+                "epoch": 1783851686.000002,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 57,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 58,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374"
+                },
+                "Q": 56,
+                "X": 1783866300.879797,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "stage_index": 62
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1783851686.000002,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "id": "TIR",
+                "old": null,
+                "proposed": 57,
+                "posted": 57,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 57,
+                  "hand_level": 57,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 59,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.18053321264852246,
+                      "ROUND_TRIP": 3.208775944063922,
+                      "DRIFT_UP": 1.9069526342669232,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 0.6659686544919601,
+                      "LATE_BREAK_DOWN": 0.07332529878928931,
+                      "ONE_STEP_UP": 1.5003895244473209,
+                      "EARLY_SET_UP": 1.8674198226006635,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.3853943964646629,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.284357868443518
+                    },
+                    "position": 0.1060391363022942,
+                    "epoch": 1783803051.8522084,
+                    "minutes_to_bell": 1800.5893465280533,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 24.098505608535515,
+                    "weight_sum": 3.208775944063922,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 41,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 40,
+                      "climber_forecast_close": 59,
+                      "mirror_completion_cost": 41,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 40,
+                    "climber_forecast_close": 59,
+                    "mirror_completion_cost": 41,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "TIR",
+                    "faller": "OFN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 43,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 43,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "TIR": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 84.37560914691848,
+                    "role": "CLIMBER",
+                    "current": 58,
+                    "member_count": 189
+                  },
+                  "OFN": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.47884218830448,
+                    "role": "FALLER",
+                    "current": 43,
+                    "member_count": 243
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.18053321264852246,
+                    "ROUND_TRIP": 3.208775944063922,
+                    "DRIFT_UP": 1.9069526342669232,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.6659686544919601,
+                    "LATE_BREAK_DOWN": 0.07332529878928931,
+                    "ONE_STEP_UP": 1.5003895244473209,
+                    "EARLY_SET_UP": 1.8674198226006635,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.3853943964646629,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.284357868443518
+                  },
+                  "position": 0.1060391363022942,
+                  "epoch": 1783803051.8522084,
+                  "minutes_to_bell": 1800.5893465280533,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 24.098505608535515,
+                  "weight_sum": 3.208775944063922,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1783911087.000003,
+                "q25": 60,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783911087.213,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-TIR-fill",
+          "label": "Last receipt before TIR filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "TIR",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+          "epoch": 1783851686.000002,
+          "clock": "T−16hr 30min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "OFN is weakening; TIR is strengthening.",
+              "WHY": "OFN trades at 43¢ against its 45¢ opening anchor; TIR trades at 58¢ against its 55¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "OFN carries 243 eligible past sides from first-price comparisons; TIR carries 189 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "OFN calls 40¢ by T−4hr 58min; TIR calls 56¢ by T−12hr 26min.",
+              "WHY": "OFN’s middle half spans 39–42¢; TIR’s middle half spans 55–57¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "OFN has book 42/43 and a standing 40¢ bid; TIR has book 57/58 and a standing 57¢ bid.",
+              "WHY": "OFN: buying the weakening side in round trip's learned late-floor window; predicted floor 40; bid 40; reserve TIR max(close 59, ask 58) = 59; 40 + 59 = 99 < 100; TIR: buying the strengthening side before it strengthens; predicted close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "OFN": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 45,
+              "corrected_open": 45,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 43,
+              "Q": 40,
+              "X": 1783893224.213,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 243,
+              "ess": 85.47884218830448,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 42,
+                "ask_cents": 43,
+                "last_trade_cents": 43,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-863"
+              },
+              "bid": 40,
+              "filled": null,
+              "decision": {
+                "order": 124,
+                "leg": "OFN",
+                "epoch": 1783851686.000002,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 40,
+                  "reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 40; bid 40; reserve TIR max(close 59, ask 58) = 59; 40 + 59 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 42,
+                  "ask_cents": 43,
+                  "last_trade_cents": 43,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-OFN.csv.gz#row-863"
+                },
+                "Q": 40,
+                "X": 1783893224.213,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "stage_index": 62
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1783851686.000002,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "id": "OFN",
+                "old": null,
+                "proposed": 40,
+                "posted": 40,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 40,
+                  "hand_level": 40,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.12594529208070393,
+                      "ROUND_TRIP": 3.8052337107836025,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 2.010062604265947,
+                      "EARLY_SET_DOWN": 3.119220924897025,
+                      "QUIET_WOBBLE": 1.272318397699128,
+                      "LATE_BREAK_UP": 0.08852895365586198,
+                      "ONE_STEP_DOWN": 1.97292002358531,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.6741894253656852,
+                      "SLEEPER": 0.44644618466248503,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.19045962471009908,
+                    "epoch": 1783813254.086214,
+                    "minutes_to_bell": 1630.552113099893,
+                    "open": true,
+                    "member_count": 52,
+                    "ess": 14.01752953904757,
+                    "weight_sum": 3.8052337107836025,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 59,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 59,
+                    "ask": 58,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 40; bid 40; reserve TIR max(close 59, ask 58) = 59; 40 + 59 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 40,
+                    "climber_forecast_close": 59,
+                    "mirror_completion_cost": 41,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "TIR",
+                    "faller": "OFN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "TIR": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 84.37560914691848,
+                    "role": "CLIMBER",
+                    "current": 58,
+                    "member_count": 189
+                  },
+                  "OFN": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.47884218830448,
+                    "role": "FALLER",
+                    "current": 43,
+                    "member_count": 243
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.12594529208070393,
+                    "ROUND_TRIP": 3.8052337107836025,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 2.010062604265947,
+                    "EARLY_SET_DOWN": 3.119220924897025,
+                    "QUIET_WOBBLE": 1.272318397699128,
+                    "LATE_BREAK_UP": 0.08852895365586198,
+                    "ONE_STEP_DOWN": 1.97292002358531,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.6741894253656852,
+                    "SLEEPER": 0.44644618466248503,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.19045962471009908,
+                  "epoch": 1783813254.086214,
+                  "minutes_to_bell": 1630.552113099893,
+                  "open": true,
+                  "member_count": 52,
+                  "ess": 14.01752953904757,
+                  "weight_sum": 3.8052337107836025,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1783893224.213,
+                "q25": 39,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1783853740.03,
+                  "price": 43,
+                  "size": 1,
+                  "receipt": "89398ff2-e46e-7bb7-45ea-74cddb1ff253"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "TIR": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 55,
+              "corrected_open": 55,
+              "close": 61,
+              "recorded_floor": 51,
+              "P": 58,
+              "Q": 56,
+              "X": 1783866300.879797,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 189,
+              "ess": 84.37560914691848,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374"
+              },
+              "bid": 57,
+              "filled": null,
+              "decision": {
+                "order": 125,
+                "leg": "TIR",
+                "epoch": 1783851686.000002,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 57,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100"
+                },
+                "book": {
+                  "bid_cents": 57,
+                  "ask_cents": 58,
+                  "last_trade_cents": 58,
+                  "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374"
+                },
+                "Q": 56,
+                "X": 1783866300.879797,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1783790237,
+                "stage_index": 62
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1783851686.000002,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "id": "TIR",
+                "old": null,
+                "proposed": 57,
+                "posted": 57,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 57,
+                  "hand_level": 57,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 59,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.18053321264852246,
+                      "ROUND_TRIP": 3.208775944063922,
+                      "DRIFT_UP": 1.9069526342669232,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 0.6659686544919601,
+                      "LATE_BREAK_DOWN": 0.07332529878928931,
+                      "ONE_STEP_UP": 1.5003895244473209,
+                      "EARLY_SET_UP": 1.8674198226006635,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.3853943964646629,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.284357868443518
+                    },
+                    "position": 0.1060391363022942,
+                    "epoch": 1783803051.8522084,
+                    "minutes_to_bell": 1800.5893465280533,
+                    "open": true,
+                    "member_count": 47,
+                    "ess": 24.098505608535515,
+                    "weight_sum": 3.208775944063922,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 41,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 98,
+                    "discount": 2,
+                    "components": {
+                      "faller_forecast_late_floor": 40,
+                      "climber_forecast_close": 59,
+                      "mirror_completion_cost": 41,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 40,
+                    "climber_forecast_close": 59,
+                    "mirror_completion_cost": 41,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "TIR",
+                    "faller": "OFN",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 43,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 43,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "TIR": {
+                    "forecast": 59,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 84.37560914691848,
+                    "role": "CLIMBER",
+                    "current": 58,
+                    "member_count": 189
+                  },
+                  "OFN": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.47884218830448,
+                    "role": "FALLER",
+                    "current": 43,
+                    "member_count": 243
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.18053321264852246,
+                    "ROUND_TRIP": 3.208775944063922,
+                    "DRIFT_UP": 1.9069526342669232,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.6659686544919601,
+                    "LATE_BREAK_DOWN": 0.07332529878928931,
+                    "ONE_STEP_UP": 1.5003895244473209,
+                    "EARLY_SET_UP": 1.8674198226006635,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.3853943964646629,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.284357868443518
+                  },
+                  "position": 0.1060391363022942,
+                  "epoch": 1783803051.8522084,
+                  "minutes_to_bell": 1800.5893465280533,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 24.098505608535515,
+                  "weight_sum": 3.208775944063922,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1783866300.879797,
+                "q25": 55,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1783860603.43,
+                  "price": 57,
+                  "size": 150,
+                  "receipt": "4af4d507-a476-78c8-6866-63d90760345a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1783860603.43,
+                  "price": 57,
+                  "size": 150,
+                  "receipt": "4af4d507-a476-78c8-6866-63d90760345a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1783860603.43,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "TIR",
+              "epoch": 1783860603.43,
+              "cents": 57,
+              "receipt": "4af4d507-a476-78c8-6866-63d90760345a",
+              "order_lineage_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+              "order_lineage_start_epoch": 1783851686.000002,
+              "current_price_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+              "current_price_start_epoch": 1783851686.000002,
+              "order_lineage_age_minutes": 148.6238333026568,
+              "current_price_age_minutes": 148.6238333026568,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "TIR",
+                "epoch": 1783860603.43,
+                "cents": 57,
+                "receipt": "4af4d507-a476-78c8-6866-63d90760345a",
+                "order_lineage_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "order_lineage_start_epoch": 1783851686.000002,
+                "current_price_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+                "current_price_start_epoch": 1783851686.000002,
+                "order_lineage_age_minutes": 148.6238333026568,
+                "current_price_age_minutes": 148.6238333026568,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 62,
+              "epoch": 1783851686.000002,
+              "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+              "id": "TIR",
+              "old": null,
+              "proposed": 57,
+              "posted": 57,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 57,
+                "hand_level": 57,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 59,
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.18053321264852246,
+                    "ROUND_TRIP": 3.208775944063922,
+                    "DRIFT_UP": 1.9069526342669232,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 0.6659686544919601,
+                    "LATE_BREAK_DOWN": 0.07332529878928931,
+                    "ONE_STEP_UP": 1.5003895244473209,
+                    "EARLY_SET_UP": 1.8674198226006635,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.3853943964646629,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.284357868443518
+                  },
+                  "position": 0.1060391363022942,
+                  "epoch": 1783803051.8522084,
+                  "minutes_to_bell": 1800.5893465280533,
+                  "open": true,
+                  "member_count": 47,
+                  "ess": 24.098505608535515,
+                  "weight_sum": 3.208775944063922,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 41,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 98,
+                  "discount": 2,
+                  "components": {
+                    "faller_forecast_late_floor": 40,
+                    "climber_forecast_close": 59,
+                    "mirror_completion_cost": 41,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 40,
+                  "climber_forecast_close": 59,
+                  "mirror_completion_cost": 41,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "TIR",
+                  "faller": "OFN",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 43,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 42,
+                  "ask": 43,
+                  "sum": 100,
+                  "discount": 0,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "TIR": {
+                  "forecast": 59,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 84.37560914691848,
+                  "role": "CLIMBER",
+                  "current": 58,
+                  "member_count": 189
+                },
+                "OFN": {
+                  "forecast": 42,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 85.47884218830448,
+                  "role": "FALLER",
+                  "current": 43,
+                  "member_count": 243
+                }
+              },
+              "window": {
+                "family": "ROUND_TRIP",
+                "family_mass": {
+                  "LATE_BREAK_UP": 0.18053321264852246,
+                  "ROUND_TRIP": 3.208775944063922,
+                  "DRIFT_UP": 1.9069526342669232,
+                  "ONE_STEP_DOWN": 0,
+                  "QUIET_WOBBLE": 0.6659686544919601,
+                  "LATE_BREAK_DOWN": 0.07332529878928931,
+                  "ONE_STEP_UP": 1.5003895244473209,
+                  "EARLY_SET_UP": 1.8674198226006635,
+                  "EARLY_SET_DOWN": 0,
+                  "GRIND_WOBBLE_UP": 0.3853943964646629,
+                  "GRIND_WOBBLE_DOWN": 0,
+                  "DRIFT_DOWN": 0,
+                  "SLEEPER": 0.284357868443518
+                },
+                "position": 0.1060391363022942,
+                "epoch": 1783803051.8522084,
+                "minutes_to_bell": 1800.5893465280533,
+                "open": true,
+                "member_count": 47,
+                "ess": 24.098505608535515,
+                "weight_sum": 3.208775944063922,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 125,
+              "leg": "TIR",
+              "epoch": 1783851686.000002,
+              "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "PLACE_REST",
+                "target_cents": 57,
+                "reason": "buying the strengthening side before it strengthens; forecast close 59; bid 57; reserve OFN max(late floor 40, 100 - climber close 59 = 41) = 41; views differ by -1c (floor minus mirror); 57 + 41 = 98 < 100"
+              },
+              "book": {
+                "bid_cents": 57,
+                "ask_cents": 58,
+                "last_trade_cents": 58,
+                "receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374"
+              },
+              "Q": 56,
+              "X": 1783866300.879797,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1783790237,
+              "stage_index": 62
+            },
+            "license_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+            "licensing_deadline_epoch": 1783866300.879797,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "OFN was not yet directionally called; its corrected full-window direction was weakening. TIR was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "OFN: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "OFN": false,
+          "TIR": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 6,
+        "fills": [
+          {
+            "leg": "TIR",
+            "epoch": 1783860603.43,
+            "cents": 57,
+            "receipt": "4af4d507-a476-78c8-6866-63d90760345a",
+            "order_lineage_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+            "order_lineage_start_epoch": 1783851686.000002,
+            "current_price_receipt": "KXATPMATCH-26JUL12OFNTIR-TIR.csv.gz#row-1374",
+            "current_price_start_epoch": 1783851686.000002,
+            "order_lineage_age_minutes": 148.6238333026568,
+            "current_price_age_minutes": 148.6238333026568,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL12OFNTIR",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "OFN",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 43,
+            "close_epoch": 1783853740,
+            "floor_cents": 43,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "TIR",
+            "filled": true,
+            "fill_cents": 57,
+            "fill_epoch": 1783860603.43,
+            "fill_receipt": "4af4d507-a476-78c8-6866-63d90760345a",
+            "close_cents": 61,
+            "close_epoch": 1783911081.9,
+            "floor_cents": 51,
+            "offered_cents": 10,
+            "value_cents": 4,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 4,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "61f753892a132fff58090595cdd70d222b3cce21f5ed798c62c2fa6ac524e570",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

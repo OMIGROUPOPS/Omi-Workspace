@@ -16,6 +16,7 @@ import { readPinnedTruth, attachRecordedTruth } from "./recorded_truth.mjs";
 import { chartSource, attachChartActions } from "./chart_actions.mjs";
 import { attachOraclePath } from "./oracle_path.mjs";
 import { readGradePrints } from "./grade_prints.mjs";
+import { handoffApplicability } from "./handoff_display.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const dataPath = path.join(here, "data", "altgas.json");
@@ -222,7 +223,7 @@ async function loadRawFromTrace(file, event, custodyTapeDir) {
         statuses: Object.fromEntries(Object.entries(row.layers ?? {}).map(([key, value]) => [key, value?.context?.status ?? null])),
         macro: { survivor_shapes: row?.layers?.macro?.context?.survivor_shapes ?? null,
           pool_cascade: row?.layers?.macro?.context?.pool_cascade ?? null },
-        micro: { beliefs: Object.fromEntries(Object.entries(row?.layers?.micro?.context?.beliefs ?? {}).map(([leg, b]) => [leg, Object.fromEntries(["status", "belief_price_cents", "predicted_cents", "phase_projection_telemetry_cents", "q_author", "x_author", "plain_sentence", "family", "deadline", "predicted_minutes_to_bell"].map(k => [k, b[k] ?? null]))])) },
+        micro: { beliefs: Object.fromEntries(Object.entries(row?.layers?.micro?.context?.beliefs ?? {}).map(([leg, b]) => [leg, Object.fromEntries(["status", "belief_price_cents", "predicted_cents", "phase_projection_telemetry_cents", "q_author", "x_author", "plain_sentence", "family", "deadline", "predicted_minutes_to_bell", "handoff", "entry_license"].filter(k => !['handoff','entry_license'].includes(k) || b[k]).map(k => [k, b[k] ?? null]))])) },
         derivations: Array.isArray(row.derivations) ? row.derivations.map(slimDerivation) : [],
       });
     } else {
@@ -339,6 +340,8 @@ function stageLeg(stage, leg) {
     candidate_level_q75_cents: band.candidate_level_q75_cents,
     candidate_level_q90_cents: band.candidate_level_q90_cents,
     sentence: belief ? {
+      ...(belief.handoff ? {handoff:belief.handoff} : {}),
+      ...(belief.entry_license ? {entry_license:belief.entry_license} : {}),
       status: belief.status ?? null,
       P: belief.belief_price_cents ?? null,
       Q: belief.predicted_cents ?? null,
@@ -434,6 +437,8 @@ const face = {
   tape,
   os: osRows,
 };
+const gradeApplicability = handoffApplicability(face);
+if (gradeApplicability) face.grade_applicability = gradeApplicability;
 // Keep the original no-argument exporter contract for rerun_altgas.ps1 and its
 // legacy page. Tune-test is the explicit trace-backed path, with full inspectors.
 const rulers = readGradeRulers(path.resolve(here, ".."), eventId, face);

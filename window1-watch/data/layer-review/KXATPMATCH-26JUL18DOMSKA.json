@@ -1,0 +1,2161 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL18DOMSKA",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "ae48a5b98805579acaa0611eb44d754a5c70b6e4220a88ed1a3dc8618104ddb5",
+    "stage_cache_sha256": "26bb4208e407cd4fe3ddf698c232c064bc8a4f3858a5b622e5d45fdc338b629e",
+    "mirror_projection_sha256": "1eb3dab81dd6d3eb9572e2fbf30a23292f9f355b67c45c683559b90679222ee6",
+    "mirror_permissions_sha256": "4b644fa231d06e732336514dabbfc4dc3f440693c716cb52a03552d75008ff6c",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL18DOMSKA",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "8e5e90abd12ce43e306b099e42f973fd86bd7bf1f84c12f2d129a33a29540cd2",
+      "row_number": 544,
+      "row_csv": "26JUL18DOMSKA,KXATPMATCH-26JUL18DOMSKA,ATP_MAIN,1784316994,1784316994,1784385180,1784383200.0,DOM,SKA,1784332751,22.0,20,1784341983.7,23,1784385040.1,1384.08,304.63,STILL,1.0,1784375149,,,,1784332751,78.0,79,1784375147.1,80,1784385091.3,295.34,236.18,STILL,2.0,1784375153,,,,1784332751,,,1784385600.0,1784396423.0,1784385600.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784332751,1784385180,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784332751,
+      "span_end_epoch": 1784385180,
+      "bell_epoch": 1784385600,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784385600,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "DOM": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 22,
+          "floor_cents": 20,
+          "floor_epoch": 1784341983.7,
+          "minutes_to_bell": 726.9383333325386,
+          "line": "DOM 20¢ @ 726.94m to bell",
+          "marker_label": "DOM FLOOR · RECORDED 20¢ @ 726.94m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 20¢ · 726m to bell",
+          "hover_note": "Recorded floor 20¢ printed here · 726m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "SKA": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 78,
+          "floor_cents": 79,
+          "floor_epoch": 1784375147.1,
+          "minutes_to_bell": 174.21500000158946,
+          "line": "SKA 79¢ @ 174.22m to bell",
+          "marker_label": "SKA FLOOR · RECORDED 79¢ @ 174.22m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 79¢ · 174m to bell",
+          "hover_note": "Recorded floor 79¢ printed here · 174m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "SKA",
+      "underdog_leg": "DOM",
+      "pair": {
+        "sum_cents": 99,
+        "discount_cents": 1,
+        "reason": null,
+        "line": "best capturable = 79 + 20 = 99¢",
+        "discount_line": "1¢ under par",
+        "compact_line": "best capturable 99¢ · 1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL18DOMSKA",
+        "event_id": "KXATPMATCH-26JUL18DOMSKA",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1784316994",
+        "w1_left_epoch": "1784316994",
+        "w1_right_epoch": "1784385180",
+        "scheduled_start_epoch": "1784383200.0",
+        "legA": "DOM",
+        "legB": "SKA",
+        "legA_formation_end_epoch": "1784332751",
+        "legA_open_postformation_c": "22.0",
+        "legA_floor_c": "20",
+        "legA_floor_epoch": "1784341983.7",
+        "legA_close_c": "23",
+        "legA_close_epoch": "1784385040.1",
+        "legA_contracts": "1384.08",
+        "legA_premium_usd": "304.63",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "1.0",
+        "legA_us_first_post_epoch": "1784375149",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784332751",
+        "legB_open_postformation_c": "78.0",
+        "legB_floor_c": "79",
+        "legB_floor_epoch": "1784375147.1",
+        "legB_close_c": "80",
+        "legB_close_epoch": "1784385091.3",
+        "legB_contracts": "295.34",
+        "legB_premium_usd": "236.18",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "2.0",
+        "legB_us_first_post_epoch": "1784375153",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784332751",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784385600.0",
+        "kalshi_close_time_epoch": "1784396423.0",
+        "bell_epoch": "1784385600.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784332751",
+        "span_end_epoch": "1784385180",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL18DOMSKA.jsonl",
+      "sha256": "757e256411da89dec3e7705e47e759d34c105a1d339c00e3bf3929aa322b0f25",
+      "raw_rows": 8144,
+      "accepted_rows": 38,
+      "start_epoch": 1784332751,
+      "end_epoch": 1784385180
+    }
+  },
+  "first_callable_receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+  "first_both_directional_receipt": "cd5259f2-fbbc-7f5a-6c5c-462291263e7a",
+  "first_callable_by_side": {
+    "DOM": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+    "SKA": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+          "epoch": 1784338242.000001,
+          "clock": "T−13hr 2min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DOM is not yet directionally called; SKA is strengthening.",
+              "WHY": "DOM trades at 22¢ against its 22¢ opening anchor; SKA trades at 81¢ against its 78¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DOM carries 594 eligible past sides from first-price comparisons; SKA carries 219 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DOM calls 20¢ by T−5hr 25min; SKA calls 80¢ by T−11hr 24min.",
+              "WHY": "DOM’s middle half spans 18–21¢; SKA’s middle half spans 79–81¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DOM has book 19/21 and no standing bid; SKA has book 78/81 and no standing bid.",
+              "WHY": "DOM: Only the ask changed, so the existing book veto held the bid decision; SKA: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 22,
+              "corrected_open": 22,
+              "close": 23,
+              "recorded_floor": 20,
+              "P": 22,
+              "Q": 20,
+              "X": 1784365689.109115,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 594,
+              "ess": 155.41597852982304,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 19,
+                "ask_cents": 21,
+                "last_trade_cents": 22,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 62,
+                "leg": "DOM",
+                "epoch": 1784338242.000001,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 19,
+                  "ask_cents": 21,
+                  "last_trade_cents": 22,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371"
+                },
+                "Q": 20,
+                "X": 1784365689.109115,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 31
+              },
+              "permission": null,
+              "micro": {
+                "Q": 20,
+                "deadline_epoch": 1784365689.109115,
+                "q25": 18,
+                "q75": 21,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 20,
+                "floor_witness": {
+                  "epoch": 1784341983.711,
+                  "price": 20,
+                  "size": 136.36,
+                  "receipt": "cd5259f2-fbbc-7f5a-6c5c-462291263e7a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784341983.711,
+                  "price": 20,
+                  "size": 136.36,
+                  "receipt": "cd5259f2-fbbc-7f5a-6c5c-462291263e7a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SKA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 78,
+              "corrected_open": 78,
+              "close": 80,
+              "recorded_floor": 79,
+              "P": 81,
+              "Q": 80,
+              "X": 1784344160.358048,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 219,
+              "ess": 54.56403018890363,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 78,
+                "ask_cents": 81,
+                "last_trade_cents": 81,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-294"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 63,
+                "leg": "SKA",
+                "epoch": 1784338242.000001,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 78,
+                  "ask_cents": 81,
+                  "last_trade_cents": 81,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-294"
+                },
+                "Q": 80,
+                "X": 1784344160.358048,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 31
+              },
+              "permission": null,
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1784344160.358048,
+                "q25": 79,
+                "q75": 81,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 79,
+                "floor_witness": {
+                  "epoch": 1784375147.074,
+                  "price": 79,
+                  "size": 1.24,
+                  "receipt": "76fb3bbf-01d7-6f54-09b4-52ac303a1cdb"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DOM-miss",
+          "label": "Last receipt before DOM missed at the bell",
+          "arm": "D",
+          "focus_leg": "DOM",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+          "epoch": 1784385179.00002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DOM is not yet directionally called; SKA is strengthening.",
+              "WHY": "DOM trades at 23¢ against its 22¢ opening anchor; SKA trades at 80¢ against its 78¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DOM carries 734 eligible past sides from first-price comparisons; SKA carries 345 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DOM calls 23¢ by T−0hr 0min; SKA calls 80¢ by T−0hr 0min.",
+              "WHY": "DOM’s middle half spans 23–23¢; SKA’s middle half spans 80–80¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DOM has book 20/22 and a standing 19¢ bid; SKA has book 78/80 and a recorded purchase at 80¢.",
+              "WHY": "DOM: The desired bid could not be posted below the ask; SKA: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 22,
+              "corrected_open": 22,
+              "close": 23,
+              "recorded_floor": 20,
+              "P": 23,
+              "Q": 23,
+              "X": 1784385179.00002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 734,
+              "ess": 214.04199472098932,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 20,
+                "ask_cents": 22,
+                "last_trade_cents": 23,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168"
+              },
+              "bid": 19,
+              "filled": null,
+              "decision": {
+                "order": 129,
+                "leg": "DOM",
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 19,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 20,
+                  "ask_cents": 22,
+                  "last_trade_cents": 23,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168"
+                },
+                "Q": 23,
+                "X": 1784385179.00002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "support": null,
+                "accountability_assumption": "f84c0765d34004c648ee1cfba83057e369c3b81586699a856fb0294147992f81",
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1784385179.00002,
+                "q25": 23,
+                "q75": 23,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SKA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 78,
+              "corrected_open": 78,
+              "close": 80,
+              "recorded_floor": 79,
+              "P": 80,
+              "Q": 80,
+              "X": 1784385179.00002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 103.22846708328184,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 78,
+                "ask_cents": 80,
+                "last_trade_cents": 80,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-15634"
+              },
+              "bid": null,
+              "filled": 80,
+              "decision": {
+                "order": 127,
+                "leg": "SKA",
+                "epoch": 1784384880,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA|ATLAS_GATE|1784384880",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 78,
+                  "ask_cents": 79,
+                  "last_trade_cents": 80,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-11969"
+                },
+                "Q": 80,
+                "X": 1784384880,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 68
+              },
+              "permission": null,
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1784385179.00002,
+                "q25": 80,
+                "q75": 80,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784385180,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SKA-fill",
+          "label": "Last receipt before SKA filled",
+          "arm": "D",
+          "focus_leg": "SKA",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-1492",
+          "epoch": 1784362494.000004,
+          "clock": "T−6hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DOM is weakening; SKA is strengthening.",
+              "WHY": "DOM trades at 20¢ against its 22¢ opening anchor; SKA trades at 81¢ against its 78¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DOM carries 347 eligible past sides from first-price comparisons; SKA carries 304 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DOM calls 18¢ by T−4hr 7min; SKA calls 80¢ by T−5hr 21min.",
+              "WHY": "DOM’s middle half spans 17–19¢; SKA’s middle half spans 79–81¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DOM has book 20/21 and a standing 18¢ bid; SKA has book 78/80 and a standing 80¢ bid.",
+              "WHY": "DOM: The current pool target was the permitted bid level; SKA: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "DOM": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 22,
+              "corrected_open": 22,
+              "close": 23,
+              "recorded_floor": 20,
+              "P": 20,
+              "Q": 18,
+              "X": 1784370380,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 347,
+              "ess": 100.76960255111155,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 20,
+                "ask_cents": 21,
+                "last_trade_cents": 20,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-1492"
+              },
+              "bid": 18,
+              "filled": null,
+              "decision": {
+                "order": 98,
+                "leg": "DOM",
+                "epoch": 1784362494.000004,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-1492",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 18,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 20,
+                  "ask_cents": 21,
+                  "last_trade_cents": 20,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-1492"
+                },
+                "Q": 18,
+                "X": 1784370380,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "support": null,
+                "accountability_assumption": "b0622a37dda57131a4c5049b00564b98f4f76b6bd3eb6fb404996c1a137debbb",
+                "stage_index": 49
+              },
+              "permission": null,
+              "micro": {
+                "Q": 18,
+                "deadline_epoch": 1784370380,
+                "q25": 17,
+                "q75": 19,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 22,
+                "floor_witness": {
+                  "epoch": 1784376494.177,
+                  "price": 22,
+                  "size": 13.55,
+                  "receipt": "19228bc3-2c91-5fd3-0573-d799ba75459c"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "SKA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 78,
+              "corrected_open": 78,
+              "close": 80,
+              "recorded_floor": 79,
+              "P": 81,
+              "Q": 80,
+              "X": 1784365927,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 304,
+              "ess": 86.42211591974912,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 78,
+                "ask_cents": 80,
+                "last_trade_cents": 81,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-1445"
+              },
+              "bid": 80,
+              "filled": null,
+              "decision": {
+                "order": 99,
+                "leg": "SKA",
+                "epoch": 1784362494.000004,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-1492",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 80,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 78,
+                  "ask_cents": 80,
+                  "last_trade_cents": 81,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-1445"
+                },
+                "Q": 80,
+                "X": 1784365927,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "support": null,
+                "accountability_assumption": "54bb97466cbcb04a2f30354e94715a894df88bb995069dc17b8fd626a2be7978",
+                "stage_index": 49
+              },
+              "permission": null,
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1784365927,
+                "q25": 79,
+                "q75": 81,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 79,
+                "floor_witness": {
+                  "epoch": 1784375147.074,
+                  "price": 79,
+                  "size": 1.24,
+                  "receipt": "76fb3bbf-01d7-6f54-09b4-52ac303a1cdb"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784362494.161,
+                  "price": 80,
+                  "size": 1,
+                  "receipt": "4c12debb-5405-4764-021b-7ca79c638bf9"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784362494.161,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "SKA",
+              "epoch": 1784362494.161,
+              "cents": 80,
+              "receipt": "4c12debb-5405-4764-021b-7ca79c638bf9",
+              "order_lineage_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+              "order_lineage_start_epoch": 1784338531.000001,
+              "current_price_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+              "current_price_start_epoch": 1784338531.000001,
+              "order_lineage_age_minutes": 399.38601665099463,
+              "current_price_age_minutes": 399.38601665099463,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "SKA",
+                "epoch": 1784362494.161,
+                "cents": 80,
+                "receipt": "4c12debb-5405-4764-021b-7ca79c638bf9",
+                "order_lineage_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+                "order_lineage_start_epoch": 1784338531.000001,
+                "current_price_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+                "current_price_start_epoch": 1784338531.000001,
+                "order_lineage_age_minutes": 399.38601665099463,
+                "current_price_age_minutes": 399.38601665099463,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 99,
+              "leg": "SKA",
+              "epoch": 1784362494.000004,
+              "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-1492",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 80,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 78,
+                "ask_cents": 80,
+                "last_trade_cents": 81,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-1445"
+              },
+              "Q": 80,
+              "X": 1784365927,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784332751,
+              "support": null,
+              "accountability_assumption": "54bb97466cbcb04a2f30354e94715a894df88bb995069dc17b8fd626a2be7978",
+              "stage_index": 49
+            },
+            "license_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+            "licensing_deadline_epoch": 1784344160.358048,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DOM": false,
+          "SKA": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [
+          {
+            "leg": "SKA",
+            "epoch": 1784362494.161,
+            "cents": 80,
+            "receipt": "4c12debb-5405-4764-021b-7ca79c638bf9",
+            "order_lineage_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+            "order_lineage_start_epoch": 1784338531.000001,
+            "current_price_receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-506",
+            "current_price_start_epoch": 1784338531.000001,
+            "order_lineage_age_minutes": 399.38601665099463,
+            "current_price_age_minutes": 399.38601665099463,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL18DOMSKA",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "DOM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 23,
+            "close_epoch": 1784385040.1,
+            "floor_cents": 20,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SKA",
+            "filled": true,
+            "fill_cents": 80,
+            "fill_epoch": 1784362494.161,
+            "fill_receipt": "4c12debb-5405-4764-021b-7ca79c638bf9",
+            "close_cents": 80,
+            "close_epoch": 1784385091.3,
+            "floor_cents": 79,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "8e5e90abd12ce43e306b099e42f973fd86bd7bf1f84c12f2d129a33a29540cd2",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+          "epoch": 1784338242.000001,
+          "clock": "T−13hr 2min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DOM is not yet directionally called; SKA is strengthening.",
+              "WHY": "DOM trades at 22¢ against its 22¢ opening anchor; SKA trades at 81¢ against its 78¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DOM carries 594 eligible past sides from first-price comparisons; SKA carries 219 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DOM calls 20¢ by T−5hr 25min; SKA calls 80¢ by T−11hr 24min.",
+              "WHY": "DOM’s middle half spans 18–21¢; SKA’s middle half spans 79–81¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DOM has book 19/21 and no standing bid; SKA has book 78/81 and no standing bid.",
+              "WHY": "DOM: The policy was waiting for a directional call; SKA: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 22,
+              "corrected_open": 22,
+              "close": 23,
+              "recorded_floor": 20,
+              "P": 22,
+              "Q": 20,
+              "X": 1784365689.109115,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 594,
+              "ess": 155.41597852982304,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 19,
+                "ask_cents": 21,
+                "last_trade_cents": 22,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 62,
+                "leg": "DOM",
+                "epoch": 1784338242.000001,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 20; reserve SKA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 19,
+                  "ask_cents": 21,
+                  "last_trade_cents": 22,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371"
+                },
+                "Q": 20,
+                "X": 1784365689.109115,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "stage_index": 31
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1784338242.000001,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+                "id": "DOM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 22,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.8293005944740307,
+                      "ROUND_TRIP": 4.6965562603490465,
+                      "ONE_STEP_UP": 0.4068303394035388,
+                      "DRIFT_DOWN": 1.3772080679786123,
+                      "EARLY_SET_DOWN": 1.5275175315907328,
+                      "QUIET_WOBBLE": 5.191493129630957,
+                      "LATE_BREAK_UP": 0.5193255789399915,
+                      "ONE_STEP_DOWN": 1.273762424500235,
+                      "GRIND_WOBBLE_UP": 0.03692087326133932,
+                      "DRIFT_UP": 0.25884532767345747,
+                      "GRIND_WOBBLE_DOWN": 0.39043994771624135,
+                      "SLEEPER": 2.0437411040821014,
+                      "EARLY_SET_UP": 0.5176743579267507
+                    },
+                    "position": 0.04522950648488392,
+                    "epoch": 1784335122.3377955,
+                    "minutes_to_bell": 834.2943700750669,
+                    "open": true,
+                    "member_count": 142,
+                    "ess": 42.945438607694314,
+                    "weight_sum": 5.191493129630957,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 20; reserve SKA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SKA": {
+                    "forecast": 82,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.56403018890363,
+                    "role": "CLIMBER",
+                    "current": 81,
+                    "member_count": 219
+                  },
+                  "DOM": {
+                    "forecast": 22,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.41597852982304,
+                    "role": "NOT_CALLABLE",
+                    "current": 22,
+                    "member_count": 594
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.8293005944740307,
+                    "ROUND_TRIP": 4.6965562603490465,
+                    "ONE_STEP_UP": 0.4068303394035388,
+                    "DRIFT_DOWN": 1.3772080679786123,
+                    "EARLY_SET_DOWN": 1.5275175315907328,
+                    "QUIET_WOBBLE": 5.191493129630957,
+                    "LATE_BREAK_UP": 0.5193255789399915,
+                    "ONE_STEP_DOWN": 1.273762424500235,
+                    "GRIND_WOBBLE_UP": 0.03692087326133932,
+                    "DRIFT_UP": 0.25884532767345747,
+                    "GRIND_WOBBLE_DOWN": 0.39043994771624135,
+                    "SLEEPER": 2.0437411040821014,
+                    "EARLY_SET_UP": 0.5176743579267507
+                  },
+                  "position": 0.04522950648488392,
+                  "epoch": 1784335122.3377955,
+                  "minutes_to_bell": 834.2943700750669,
+                  "open": true,
+                  "member_count": 142,
+                  "ess": 42.945438607694314,
+                  "weight_sum": 5.191493129630957,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 20,
+                "deadline_epoch": 1784365689.109115,
+                "q25": 18,
+                "q75": 21,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 20,
+                "floor_witness": {
+                  "epoch": 1784341983.711,
+                  "price": 20,
+                  "size": 136.36,
+                  "receipt": "cd5259f2-fbbc-7f5a-6c5c-462291263e7a"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784341983.711,
+                  "price": 20,
+                  "size": 136.36,
+                  "receipt": "cd5259f2-fbbc-7f5a-6c5c-462291263e7a"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "SKA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 78,
+              "corrected_open": 78,
+              "close": 80,
+              "recorded_floor": 79,
+              "P": 81,
+              "Q": 80,
+              "X": 1784344160.358048,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 219,
+              "ess": 54.56403018890363,
+              "family": "DRIFT_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 78,
+                "ask_cents": 81,
+                "last_trade_cents": 81,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-294"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 63,
+                "leg": "SKA",
+                "epoch": 1784338242.000001,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 82; reserve DOM max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 78,
+                  "ask_cents": 81,
+                  "last_trade_cents": 81,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-294"
+                },
+                "Q": 80,
+                "X": 1784344160.358048,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "stage_index": 31
+              },
+              "permission": {
+                "ordinal": 31,
+                "epoch": 1784338242.000001,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-371",
+                "id": "SKA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 80,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 82,
+                  "window": {
+                    "family": "DRIFT_UP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.6354675222763747,
+                      "ROUND_TRIP": 1.1950337676227936,
+                      "DRIFT_UP": 1.5919787299425852,
+                      "ONE_STEP_DOWN": 0.015639318717242667,
+                      "QUIET_WOBBLE": 0.8562053644936417,
+                      "LATE_BREAK_DOWN": 0.011685767664984161,
+                      "ONE_STEP_UP": 0.7249825329278069,
+                      "EARLY_SET_UP": 1.1009866757663507,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.07440044812067825,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 0.6059368150935786
+                    },
+                    "position": 0.0015112631879098946,
+                    "epoch": 1784332830.2340176,
+                    "minutes_to_bell": 872.4960997064908,
+                    "open": true,
+                    "member_count": 43,
+                    "ess": 11.273289057933008,
+                    "weight_sum": 1.5919787299425852,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 82; reserve DOM max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SKA": {
+                    "forecast": 82,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 54.56403018890363,
+                    "role": "CLIMBER",
+                    "current": 81,
+                    "member_count": 219
+                  },
+                  "DOM": {
+                    "forecast": 22,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.41597852982304,
+                    "role": "NOT_CALLABLE",
+                    "current": 22,
+                    "member_count": 594
+                  }
+                },
+                "window": {
+                  "family": "DRIFT_UP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.6354675222763747,
+                    "ROUND_TRIP": 1.1950337676227936,
+                    "DRIFT_UP": 1.5919787299425852,
+                    "ONE_STEP_DOWN": 0.015639318717242667,
+                    "QUIET_WOBBLE": 0.8562053644936417,
+                    "LATE_BREAK_DOWN": 0.011685767664984161,
+                    "ONE_STEP_UP": 0.7249825329278069,
+                    "EARLY_SET_UP": 1.1009866757663507,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.07440044812067825,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 0.6059368150935786
+                  },
+                  "position": 0.0015112631879098946,
+                  "epoch": 1784332830.2340176,
+                  "minutes_to_bell": 872.4960997064908,
+                  "open": true,
+                  "member_count": 43,
+                  "ess": 11.273289057933008,
+                  "weight_sum": 1.5919787299425852,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1784344160.358048,
+                "q25": 79,
+                "q75": 81,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 79,
+                "floor_witness": {
+                  "epoch": 1784375147.074,
+                  "price": 79,
+                  "size": 1.24,
+                  "receipt": "76fb3bbf-01d7-6f54-09b4-52ac303a1cdb"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-DOM-miss",
+          "label": "Last receipt before DOM missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "DOM",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+          "epoch": 1784385179.00002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DOM is not yet directionally called; SKA is strengthening.",
+              "WHY": "DOM trades at 23¢ against its 22¢ opening anchor; SKA trades at 80¢ against its 78¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DOM carries 734 eligible past sides from first-price comparisons; SKA carries 345 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DOM calls 23¢ by T−0hr 0min; SKA calls 80¢ by T−0hr 0min.",
+              "WHY": "DOM’s middle half spans 23–23¢; SKA’s middle half spans 80–80¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DOM has book 20/22 and no standing bid; SKA has book 78/80 and no standing bid.",
+              "WHY": "DOM: The policy was waiting for a directional call; SKA: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 22,
+              "corrected_open": 22,
+              "close": 23,
+              "recorded_floor": 20,
+              "P": 23,
+              "Q": 23,
+              "X": 1784385179.00002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 734,
+              "ess": 214.04199472098932,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 20,
+                "ask_cents": 22,
+                "last_trade_cents": 23,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 140,
+                "leg": "DOM",
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 23; reserve SKA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 20,
+                  "ask_cents": 22,
+                  "last_trade_cents": 23,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168"
+                },
+                "Q": 23,
+                "X": 1784385179.00002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 70,
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "id": "DOM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 23,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.8753957526483561,
+                      "ROUND_TRIP": 5.441156825825267,
+                      "ONE_STEP_UP": 0.5064593228947644,
+                      "DRIFT_DOWN": 1.53275542166649,
+                      "EARLY_SET_DOWN": 1.7277421247602425,
+                      "QUIET_WOBBLE": 6.563759375687564,
+                      "LATE_BREAK_UP": 0.7265748689452659,
+                      "ONE_STEP_DOWN": 1.7514963512142459,
+                      "GRIND_WOBBLE_UP": 0.05173125554248636,
+                      "DRIFT_UP": 0.4053657972502504,
+                      "GRIND_WOBBLE_DOWN": 0.4082427457273785,
+                      "SLEEPER": 5.021646371756766,
+                      "EARLY_SET_UP": 0.5395562352323218
+                    },
+                    "position": 0.057074166442682386,
+                    "epoch": 1784335743.3414724,
+                    "minutes_to_bell": 823.9443087935448,
+                    "open": true,
+                    "member_count": 172,
+                    "ess": 58.63142735115133,
+                    "weight_sum": 6.563759375687564,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 23; reserve SKA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SKA": {
+                    "forecast": 80,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.22846708328184,
+                    "role": "CLIMBER",
+                    "current": 80,
+                    "member_count": 345
+                  },
+                  "DOM": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 214.04199472098932,
+                    "role": "NOT_CALLABLE",
+                    "current": 23,
+                    "member_count": 734
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.8753957526483561,
+                    "ROUND_TRIP": 5.441156825825267,
+                    "ONE_STEP_UP": 0.5064593228947644,
+                    "DRIFT_DOWN": 1.53275542166649,
+                    "EARLY_SET_DOWN": 1.7277421247602425,
+                    "QUIET_WOBBLE": 6.563759375687564,
+                    "LATE_BREAK_UP": 0.7265748689452659,
+                    "ONE_STEP_DOWN": 1.7514963512142459,
+                    "GRIND_WOBBLE_UP": 0.05173125554248636,
+                    "DRIFT_UP": 0.4053657972502504,
+                    "GRIND_WOBBLE_DOWN": 0.4082427457273785,
+                    "SLEEPER": 5.021646371756766,
+                    "EARLY_SET_UP": 0.5395562352323218
+                  },
+                  "position": 0.057074166442682386,
+                  "epoch": 1784335743.3414724,
+                  "minutes_to_bell": 823.9443087935448,
+                  "open": true,
+                  "member_count": 172,
+                  "ess": 58.63142735115133,
+                  "weight_sum": 6.563759375687564,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1784385179.00002,
+                "q25": 23,
+                "q75": 23,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SKA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 78,
+              "corrected_open": 78,
+              "close": 80,
+              "recorded_floor": 79,
+              "P": 80,
+              "Q": 80,
+              "X": 1784385179.00002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 103.22846708328184,
+              "family": "SLEEPER",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 78,
+                "ask_cents": 80,
+                "last_trade_cents": 80,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-15634"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 141,
+                "leg": "SKA",
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 80; reserve DOM max(close 23, ask 22) = 23"
+                },
+                "book": {
+                  "bid_cents": 78,
+                  "ask_cents": 80,
+                  "last_trade_cents": 80,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-15634"
+                },
+                "Q": 80,
+                "X": 1784385179.00002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 70,
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "id": "SKA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 79,
+                  "hand_level": 79,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 80,
+                  "window": {
+                    "family": "SLEEPER",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 1.168739447241819,
+                      "ROUND_TRIP": 1.6621167265417864,
+                      "DRIFT_UP": 1.8495047669382028,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2.315198027298482,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 1.0516635389493763,
+                      "EARLY_SET_UP": 1.3791594638822882,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.09834162147283186,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 2.4659915301815762
+                    },
+                    "position": 0.006785109983079526,
+                    "epoch": 1784333106.7365313,
+                    "minutes_to_bell": 867.8877244790395,
+                    "open": true,
+                    "member_count": 29,
+                    "ess": 11.311477177877356,
+                    "weight_sum": 2.4659915301815762,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 23,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 23,
+                    "ask": 22,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 80; reserve DOM max(close 23, ask 22) = 23",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SKA": {
+                    "forecast": 80,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.22846708328184,
+                    "role": "CLIMBER",
+                    "current": 80,
+                    "member_count": 345
+                  },
+                  "DOM": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 214.04199472098932,
+                    "role": "NOT_CALLABLE",
+                    "current": 23,
+                    "member_count": 734
+                  }
+                },
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 1.168739447241819,
+                    "ROUND_TRIP": 1.6621167265417864,
+                    "DRIFT_UP": 1.8495047669382028,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.315198027298482,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 1.0516635389493763,
+                    "EARLY_SET_UP": 1.3791594638822882,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.09834162147283186,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 2.4659915301815762
+                  },
+                  "position": 0.006785109983079526,
+                  "epoch": 1784333106.7365313,
+                  "minutes_to_bell": 867.8877244790395,
+                  "open": true,
+                  "member_count": 29,
+                  "ess": 11.311477177877356,
+                  "weight_sum": 2.4659915301815762,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1784385179.00002,
+                "q25": 80,
+                "q75": 80,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784385180,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-SKA-miss",
+          "label": "Last receipt before SKA missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "SKA",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+          "epoch": 1784385179.00002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "DOM is not yet directionally called; SKA is strengthening.",
+              "WHY": "DOM trades at 23¢ against its 22¢ opening anchor; SKA trades at 80¢ against its 78¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "DOM carries 734 eligible past sides from first-price comparisons; SKA carries 345 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "DOM calls 23¢ by T−0hr 0min; SKA calls 80¢ by T−0hr 0min.",
+              "WHY": "DOM’s middle half spans 23–23¢; SKA’s middle half spans 80–80¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "DOM has book 20/22 and no standing bid; SKA has book 78/80 and no standing bid.",
+              "WHY": "DOM: The policy was waiting for a directional call; SKA: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "DOM": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 22,
+              "corrected_open": 22,
+              "close": 23,
+              "recorded_floor": 20,
+              "P": 23,
+              "Q": 23,
+              "X": 1784385179.00002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 734,
+              "ess": 214.04199472098932,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 20,
+                "ask_cents": 22,
+                "last_trade_cents": 23,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 140,
+                "leg": "DOM",
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 23; reserve SKA max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 20,
+                  "ask_cents": 22,
+                  "last_trade_cents": 23,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168"
+                },
+                "Q": 23,
+                "X": 1784385179.00002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 70,
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "id": "DOM",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 23,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.8753957526483561,
+                      "ROUND_TRIP": 5.441156825825267,
+                      "ONE_STEP_UP": 0.5064593228947644,
+                      "DRIFT_DOWN": 1.53275542166649,
+                      "EARLY_SET_DOWN": 1.7277421247602425,
+                      "QUIET_WOBBLE": 6.563759375687564,
+                      "LATE_BREAK_UP": 0.7265748689452659,
+                      "ONE_STEP_DOWN": 1.7514963512142459,
+                      "GRIND_WOBBLE_UP": 0.05173125554248636,
+                      "DRIFT_UP": 0.4053657972502504,
+                      "GRIND_WOBBLE_DOWN": 0.4082427457273785,
+                      "SLEEPER": 5.021646371756766,
+                      "EARLY_SET_UP": 0.5395562352323218
+                    },
+                    "position": 0.057074166442682386,
+                    "epoch": 1784335743.3414724,
+                    "minutes_to_bell": 823.9443087935448,
+                    "open": true,
+                    "member_count": 172,
+                    "ess": 58.63142735115133,
+                    "weight_sum": 6.563759375687564,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 23; reserve SKA max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SKA": {
+                    "forecast": 80,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.22846708328184,
+                    "role": "CLIMBER",
+                    "current": 80,
+                    "member_count": 345
+                  },
+                  "DOM": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 214.04199472098932,
+                    "role": "NOT_CALLABLE",
+                    "current": 23,
+                    "member_count": 734
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.8753957526483561,
+                    "ROUND_TRIP": 5.441156825825267,
+                    "ONE_STEP_UP": 0.5064593228947644,
+                    "DRIFT_DOWN": 1.53275542166649,
+                    "EARLY_SET_DOWN": 1.7277421247602425,
+                    "QUIET_WOBBLE": 6.563759375687564,
+                    "LATE_BREAK_UP": 0.7265748689452659,
+                    "ONE_STEP_DOWN": 1.7514963512142459,
+                    "GRIND_WOBBLE_UP": 0.05173125554248636,
+                    "DRIFT_UP": 0.4053657972502504,
+                    "GRIND_WOBBLE_DOWN": 0.4082427457273785,
+                    "SLEEPER": 5.021646371756766,
+                    "EARLY_SET_UP": 0.5395562352323218
+                  },
+                  "position": 0.057074166442682386,
+                  "epoch": 1784335743.3414724,
+                  "minutes_to_bell": 823.9443087935448,
+                  "open": true,
+                  "member_count": 172,
+                  "ess": 58.63142735115133,
+                  "weight_sum": 6.563759375687564,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 23,
+                "deadline_epoch": 1784385179.00002,
+                "q25": 23,
+                "q75": 23,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "SKA": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 78,
+              "corrected_open": 78,
+              "close": 80,
+              "recorded_floor": 79,
+              "P": 80,
+              "Q": 80,
+              "X": 1784385179.00002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 345,
+              "ess": 103.22846708328184,
+              "family": "SLEEPER",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 78,
+                "ask_cents": 80,
+                "last_trade_cents": 80,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-15634"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 141,
+                "leg": "SKA",
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 80; reserve DOM max(close 23, ask 22) = 23"
+                },
+                "book": {
+                  "bid_cents": 78,
+                  "ask_cents": 80,
+                  "last_trade_cents": 80,
+                  "receipt": "KXATPMATCH-26JUL18DOMSKA-SKA.csv.gz#row-15634"
+                },
+                "Q": 80,
+                "X": 1784385179.00002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332751,
+                "stage_index": 70
+              },
+              "permission": {
+                "ordinal": 70,
+                "epoch": 1784385179.00002,
+                "receipt": "KXATPMATCH-26JUL18DOMSKA-DOM.csv.gz#row-13168",
+                "id": "SKA",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 79,
+                  "hand_level": 79,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 80,
+                  "window": {
+                    "family": "SLEEPER",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 1.168739447241819,
+                      "ROUND_TRIP": 1.6621167265417864,
+                      "DRIFT_UP": 1.8495047669382028,
+                      "ONE_STEP_DOWN": 0,
+                      "QUIET_WOBBLE": 2.315198027298482,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 1.0516635389493763,
+                      "EARLY_SET_UP": 1.3791594638822882,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.09834162147283186,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 2.4659915301815762
+                    },
+                    "position": 0.006785109983079526,
+                    "epoch": 1784333106.7365313,
+                    "minutes_to_bell": 867.8877244790395,
+                    "open": true,
+                    "member_count": 29,
+                    "ess": 11.311477177877356,
+                    "weight_sum": 2.4659915301815762,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 23,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 23,
+                    "ask": 22,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 80; reserve DOM max(close 23, ask 22) = 23",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "SKA": {
+                    "forecast": 80,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 103.22846708328184,
+                    "role": "CLIMBER",
+                    "current": 80,
+                    "member_count": 345
+                  },
+                  "DOM": {
+                    "forecast": 23,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 214.04199472098932,
+                    "role": "NOT_CALLABLE",
+                    "current": 23,
+                    "member_count": 734
+                  }
+                },
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 1.168739447241819,
+                    "ROUND_TRIP": 1.6621167265417864,
+                    "DRIFT_UP": 1.8495047669382028,
+                    "ONE_STEP_DOWN": 0,
+                    "QUIET_WOBBLE": 2.315198027298482,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 1.0516635389493763,
+                    "EARLY_SET_UP": 1.3791594638822882,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.09834162147283186,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 2.4659915301815762
+                  },
+                  "position": 0.006785109983079526,
+                  "epoch": 1784333106.7365313,
+                  "minutes_to_bell": 867.8877244790395,
+                  "open": true,
+                  "member_count": 29,
+                  "ess": 11.311477177877356,
+                  "weight_sum": 2.4659915301815762,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 80,
+                "deadline_epoch": 1784385179.00002,
+                "q25": 80,
+                "q75": 80,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784385180,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "DOM": false,
+          "SKA": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL18DOMSKA",
+        "category": "ATP_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "DOM",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 23,
+            "close_epoch": 1784385040.1,
+            "floor_cents": 20,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "SKA",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 80,
+            "close_epoch": 1784385091.3,
+            "floor_cents": 79,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "8e5e90abd12ce43e306b099e42f973fd86bd7bf1f84c12f2d129a33a29540cd2",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

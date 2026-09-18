@@ -1,0 +1,2225 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+  "category": "WTA_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "aea9f06ad80c9062e1611cebe478bda126fee7feba082a2fc59505e0fb3df247",
+    "stage_cache_sha256": "f3f2671276e6432bfe8eb508a867d5834376cfe7b89f7ebc6c5891f1411ea26d",
+    "mirror_projection_sha256": "c7be48957be53837ecc6b1d52dea391c0c552660b538a56597283c30571e4f97",
+    "mirror_permissions_sha256": "655684d7f1c61fb194c007bd54818ca6badfc331ee8cf05ecf12a38e6c416ae5",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "067fa9e099899cabf505049b51f5cbe057fdc1c0e2b4f6792b62e42f3d340667",
+      "row_number": 372,
+      "row_csv": "26JUL15ANDRIS,KXWTACHALLENGERMATCH-26JUL15ANDRIS,WTA_CHALL,1784071474,1784071474,1784116875.678,1784124600.0,AND,RIS,1784071474,56.5,56,1784080055.4,57,1784116854.8,3387.84,1925.51,STILL,0.5,,,,,1784071474,43.0,43,1784114895.0,43,1784116093.4,552.58,245.17,STILL,0.0,,,,,1784071474,,,1784117160.0,1784125204.0,1784117160.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784071474,1784116875.678,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784071474,
+      "span_end_epoch": 1784116875.678,
+      "bell_epoch": 1784117160,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784117160,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "AND": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 56.5,
+          "floor_cents": 56,
+          "floor_epoch": 1784080055.4,
+          "minutes_to_bell": 618.4099999984105,
+          "line": "AND 56¢ @ 618.41m to bell",
+          "marker_label": "AND FLOOR · RECORDED 56¢ @ 618.41m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 56¢ · 618m to bell",
+          "hover_note": "Recorded floor 56¢ printed here · 618m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "RIS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 43,
+          "floor_cents": 43,
+          "floor_epoch": 1784114895,
+          "minutes_to_bell": 37.75,
+          "line": "RIS 43¢ @ 37.75m to bell",
+          "marker_label": "RIS FLOOR · RECORDED 43¢ @ 37.75m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 43¢ · 37m to bell",
+          "hover_note": "Recorded floor 43¢ printed here · 37m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "AND",
+      "underdog_leg": "RIS",
+      "pair": {
+        "sum_cents": 99,
+        "discount_cents": 1,
+        "reason": null,
+        "line": "best capturable = 56 + 43 = 99¢",
+        "discount_line": "1¢ under par",
+        "compact_line": "best capturable 99¢ · 1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL15ANDRIS",
+        "event_id": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+        "category": "WTA_CHALL",
+        "recorder_open_epoch": "1784071474",
+        "w1_left_epoch": "1784071474",
+        "w1_right_epoch": "1784116875.678",
+        "scheduled_start_epoch": "1784124600.0",
+        "legA": "AND",
+        "legB": "RIS",
+        "legA_formation_end_epoch": "1784071474",
+        "legA_open_postformation_c": "56.5",
+        "legA_floor_c": "56",
+        "legA_floor_epoch": "1784080055.4",
+        "legA_close_c": "57",
+        "legA_close_epoch": "1784116854.8",
+        "legA_contracts": "3387.84",
+        "legA_premium_usd": "1925.51",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "0.5",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784071474",
+        "legB_open_postformation_c": "43.0",
+        "legB_floor_c": "43",
+        "legB_floor_epoch": "1784114895.0",
+        "legB_close_c": "43",
+        "legB_close_epoch": "1784116093.4",
+        "legB_contracts": "552.58",
+        "legB_premium_usd": "245.17",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "0.0",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784071474",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784117160.0",
+        "kalshi_close_time_epoch": "1784125204.0",
+        "bell_epoch": "1784117160.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784071474",
+        "span_end_epoch": "1784116875.678",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTACHALLENGERMATCH-26JUL15ANDRIS.jsonl",
+      "sha256": "59373925c40586574b6a575cf09a3716dbe195b3850d9d9e8bea99abf8352ae5",
+      "raw_rows": 5352,
+      "accepted_rows": 53,
+      "start_epoch": 1784071474,
+      "end_epoch": 1784116875.678
+    }
+  },
+  "first_callable_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "AND": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-625",
+    "RIS": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+          "epoch": 1784083150.000001,
+          "clock": "T−9hr 22min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AND is not yet directionally called; RIS is strengthening.",
+              "WHY": "AND trades at 57¢ against its 56¢ opening anchor; RIS trades at 45¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AND carries 72 eligible past sides from first-price comparisons; RIS carries 10 eligible past sides from the base comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AND calls 55¢ by T−5hr 21min; RIS calls 40¢ by T−0hr 52min.",
+              "WHY": "AND’s middle half spans 54–56¢; RIS’s middle half spans 24–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AND has book 56/57 and a standing 55¢ bid; RIS has book 43/44 and a standing 40¢ bid.",
+              "WHY": "AND: The current pool target was the permitted bid level; RIS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "AND": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56.5,
+              "close": 57,
+              "recorded_floor": 56,
+              "P": 57,
+              "Q": 55,
+              "X": 1784097628.678,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 72,
+              "ess": 33.302132695908725,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668"
+              },
+              "bid": 55,
+              "filled": null,
+              "decision": {
+                "order": 26,
+                "leg": "AND",
+                "epoch": 1784083150.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 55,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668"
+                },
+                "Q": 55,
+                "X": 1784097628.678,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "support": null,
+                "accountability_assumption": "290b5b59c84741f096b712cf5ae0c15f096299b11e75e50500710d0e4704f48d",
+                "stage_index": 13
+              },
+              "permission": null,
+              "micro": {
+                "Q": 55,
+                "deadline_epoch": 1784097628.678,
+                "q25": 54,
+                "q75": 56,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 56,
+                "floor_witness": {
+                  "epoch": 1784086143.515,
+                  "price": 56,
+                  "size": 10,
+                  "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784086143.515,
+                  "price": 56,
+                  "size": 10,
+                  "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "RIS": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 45,
+              "Q": 40,
+              "X": 1784113773.678,
+              "layer": "BASE",
+              "members": 10,
+              "ess": 10,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 45,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-519"
+              },
+              "bid": 40,
+              "filled": null,
+              "decision": {
+                "order": 27,
+                "leg": "RIS",
+                "epoch": 1784083150.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 40,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 45,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-519"
+                },
+                "Q": 40,
+                "X": 1784113773.678,
+                "status": "RESOLVED",
+                "author": "POOL_BASE",
+                "formation_end": 1784071474,
+                "support": null,
+                "accountability_assumption": "91b9beb6844cbf7b5f984c61c9666227939e2ed450b7d3b29dc959f6a7f4c0d3",
+                "stage_index": 13
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784113773.678,
+                "q25": 24,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1784114894.993,
+                  "price": 43,
+                  "size": 39,
+                  "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784083676.728,
+                  "price": 44,
+                  "size": 43.73,
+                  "receipt": "866c49fb-ac5d-7a1c-17cb-b7565d0a142a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-AND-fill",
+          "label": "Last receipt before AND filled",
+          "arm": "D",
+          "focus_leg": "AND",
+          "outcome": "fill",
+          "receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+          "epoch": 1784086136.835,
+          "clock": "T−8hr 32min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AND is not yet directionally called; RIS is not yet directionally called.",
+              "WHY": "AND trades at 57¢ against its 56¢ opening anchor; RIS trades at 44¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AND carries 108 eligible past sides from first-price comparisons; RIS carries 108 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AND calls 56¢ by T−5hr 28min; RIS calls 43¢ by T−3hr 44min.",
+              "WHY": "AND’s middle half spans 54–57¢; RIS’s middle half spans 41–43¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AND has book 56/57 and a standing 56¢ bid; RIS has book 43/44 and a standing 43¢ bid.",
+              "WHY": "AND: The current pool target was the permitted bid level; RIS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "AND": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56.5,
+              "close": 57,
+              "recorded_floor": 56,
+              "P": 57,
+              "Q": 56,
+              "X": 1784097222.678,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 108,
+              "ess": 44.62305675731747,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-818"
+              },
+              "bid": 56,
+              "filled": null,
+              "decision": {
+                "order": 30,
+                "leg": "AND",
+                "epoch": 1784086136.835,
+                "receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 56,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-818"
+                },
+                "Q": 56,
+                "X": 1784097222.678,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "support": null,
+                "accountability_assumption": "594c14cf84d1b344b31c8db57ff6333f936d4b57b6f96e243adcc403ac43acb6",
+                "stage_index": 15
+              },
+              "permission": null,
+              "micro": {
+                "Q": 56,
+                "deadline_epoch": 1784097222.678,
+                "q25": 54,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 56,
+                "floor_witness": {
+                  "epoch": 1784086143.515,
+                  "price": 56,
+                  "size": 10,
+                  "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784086143.515,
+                  "price": 56,
+                  "size": 10,
+                  "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "RIS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 43,
+              "X": 1784103416.678,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 108,
+              "ess": 44.62305675731747,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-627"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 31,
+                "leg": "RIS",
+                "epoch": 1784086136.835,
+                "receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "REPRICE_REST",
+                  "target_cents": 43,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-627"
+                },
+                "Q": 43,
+                "X": 1784103416.678,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "support": null,
+                "accountability_assumption": "519da6d96b0ec6e47ec8dbb59824ae9cf24ba3b535fcc9ad48fda02fc02f4a4f",
+                "stage_index": 15
+              },
+              "permission": null,
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1784103416.678,
+                "q25": 41,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1784114894.993,
+                  "price": 43,
+                  "size": 39,
+                  "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784086143.515,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "AND",
+              "epoch": 1784086143.515,
+              "cents": 56,
+              "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd",
+              "order_lineage_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-625",
+              "order_lineage_start_epoch": 1784082162.000001,
+              "current_price_receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+              "current_price_start_epoch": 1784086136.835,
+              "order_lineage_age_minutes": 66.35858331918716,
+              "current_price_age_minutes": 0.11133333444595336,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "AND",
+                "epoch": 1784086143.515,
+                "cents": 56,
+                "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd",
+                "order_lineage_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-625",
+                "order_lineage_start_epoch": 1784082162.000001,
+                "current_price_receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+                "current_price_start_epoch": 1784086136.835,
+                "order_lineage_age_minutes": 66.35858331918716,
+                "current_price_age_minutes": 0.11133333444595336,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 30,
+              "leg": "AND",
+              "epoch": 1784086136.835,
+              "receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "REPRICE_REST",
+                "target_cents": 56,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-818"
+              },
+              "Q": 56,
+              "X": 1784097222.678,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784071474,
+              "support": null,
+              "accountability_assumption": "594c14cf84d1b344b31c8db57ff6333f936d4b57b6f96e243adcc403ac43acb6",
+              "stage_index": 15
+            },
+            "license_receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+            "licensing_deadline_epoch": 1784097222.678,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RIS-fill",
+          "label": "Last receipt before RIS filled",
+          "arm": "D",
+          "focus_leg": "RIS",
+          "outcome": "fill",
+          "receipt": "2fdcb039-6275-7f4b-0717-0de2c433687f",
+          "epoch": 1784114661.874,
+          "clock": "T−0hr 37min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AND is not yet directionally called; RIS is not yet directionally called.",
+              "WHY": "AND trades at 57¢ against its 56¢ opening anchor; RIS trades at 44¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AND carries 407 eligible past sides from first-price comparisons; RIS carries 407 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AND calls 57¢ by T−0hr 37min; RIS calls 44¢ by T−0hr 37min.",
+              "WHY": "AND’s middle half spans 56–57¢; RIS’s middle half spans 43–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AND has book 56/57 and a recorded purchase at 56¢; RIS has book 43/44 and a standing 43¢ bid.",
+              "WHY": "AND: This side was already bought, so no new bid was allowed; RIS: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "AND": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56.5,
+              "close": 57,
+              "recorded_floor": 56,
+              "P": 57,
+              "Q": 57,
+              "X": 1784114661.874,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 407,
+              "ess": 135.707911795304,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-2792"
+              },
+              "bid": null,
+              "filled": 56,
+              "decision": {
+                "order": 70,
+                "leg": "AND",
+                "epoch": 1784113275.678,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS|ATLAS_GATE|1784113275.678",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-2698"
+                },
+                "Q": 57,
+                "X": 1784113275.678,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 48
+              },
+              "permission": null,
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1784114661.874,
+                "q25": 56,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 57,
+                "floor_witness": {
+                  "epoch": 1784114675.42,
+                  "price": 57,
+                  "size": 33,
+                  "receipt": "1c0f92fe-bb31-6a1f-053e-2c936f342523"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "RIS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 44,
+              "Q": 44,
+              "X": 1784114661.874,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 407,
+              "ess": 135.707911795304,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1601"
+              },
+              "bid": 43,
+              "filled": null,
+              "decision": {
+                "order": 74,
+                "leg": "RIS",
+                "epoch": 1784114661.874,
+                "receipt": "2fdcb039-6275-7f4b-0717-0de2c433687f",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 43,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 44,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1601"
+                },
+                "Q": 44,
+                "X": 1784114661.874,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "support": null,
+                "accountability_assumption": "9d3c76d03d26386191fdeeac6ad6c7c211c116c21812c13b6ade669853a9944e",
+                "stage_index": 51
+              },
+              "permission": null,
+              "micro": {
+                "Q": 44,
+                "deadline_epoch": 1784114661.874,
+                "q25": 43,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1784114894.993,
+                  "price": 43,
+                  "size": 39,
+                  "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784114894.993,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "RIS",
+              "epoch": 1784114894.993,
+              "cents": 43,
+              "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2",
+              "order_lineage_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+              "order_lineage_start_epoch": 1784083150.000001,
+              "current_price_receipt": "32b7d1e2-2dbe-47cc-9011-08079f063cb9",
+              "current_price_start_epoch": 1784100491.457,
+              "order_lineage_age_minutes": 529.0832166512807,
+              "current_price_age_minutes": 240.05893333355587,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "RIS",
+                "epoch": 1784114894.993,
+                "cents": 43,
+                "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2",
+                "order_lineage_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "order_lineage_start_epoch": 1784083150.000001,
+                "current_price_receipt": "32b7d1e2-2dbe-47cc-9011-08079f063cb9",
+                "current_price_start_epoch": 1784100491.457,
+                "order_lineage_age_minutes": 529.0832166512807,
+                "current_price_age_minutes": 240.05893333355587,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 74,
+              "leg": "RIS",
+              "epoch": 1784114661.874,
+              "receipt": "2fdcb039-6275-7f4b-0717-0de2c433687f",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 43,
+                "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+              },
+              "book": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 44,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1601"
+              },
+              "Q": 44,
+              "X": 1784114661.874,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784071474,
+              "support": null,
+              "accountability_assumption": "9d3c76d03d26386191fdeeac6ad6c7c211c116c21812c13b6ade669853a9944e",
+              "stage_index": 51
+            },
+            "license_receipt": "32b7d1e2-2dbe-47cc-9011-08079f063cb9",
+            "licensing_deadline_epoch": 1784106655.678,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "AND": true,
+          "RIS": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 1,
+        "fills": [
+          {
+            "leg": "AND",
+            "epoch": 1784086143.515,
+            "cents": 56,
+            "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd",
+            "order_lineage_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-625",
+            "order_lineage_start_epoch": 1784082162.000001,
+            "current_price_receipt": "6fd197d0-4a51-4f4c-4dd9-95b522a13a2e",
+            "current_price_start_epoch": 1784086136.835,
+            "order_lineage_age_minutes": 66.35858331918716,
+            "current_price_age_minutes": 0.11133333444595336,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "RIS",
+            "epoch": 1784114894.993,
+            "cents": 43,
+            "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2",
+            "order_lineage_receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+            "order_lineage_start_epoch": 1784083150.000001,
+            "current_price_receipt": "32b7d1e2-2dbe-47cc-9011-08079f063cb9",
+            "current_price_start_epoch": 1784100491.457,
+            "order_lineage_age_minutes": 529.0832166512807,
+            "current_price_age_minutes": 240.05893333355587,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+        "category": "WTA_CHALL",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "AND",
+            "filled": true,
+            "fill_cents": 56,
+            "fill_epoch": 1784086143.515,
+            "fill_receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd",
+            "close_cents": 57,
+            "close_epoch": 1784116854.8,
+            "floor_cents": 56,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RIS",
+            "filled": true,
+            "fill_cents": 43,
+            "fill_epoch": 1784114894.993,
+            "fill_receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2",
+            "close_cents": 43,
+            "close_epoch": 1784116093.4,
+            "floor_cents": 43,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "067fa9e099899cabf505049b51f5cbe057fdc1c0e2b4f6792b62e42f3d340667",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+          "epoch": 1784083150.000001,
+          "clock": "T−9hr 22min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AND is not yet directionally called; RIS is strengthening.",
+              "WHY": "AND trades at 57¢ against its 56¢ opening anchor; RIS trades at 45¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AND carries 72 eligible past sides from first-price comparisons; RIS carries 10 eligible past sides from the base comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AND calls 55¢ by T−5hr 21min; RIS calls 40¢ by T−0hr 52min.",
+              "WHY": "AND’s middle half spans 54–56¢; RIS’s middle half spans 24–44¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AND has book 56/57 and no standing bid; RIS has book 43/44 and no standing bid.",
+              "WHY": "AND: The policy was waiting for a directional call; RIS: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "AND": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56.5,
+              "close": 57,
+              "recorded_floor": 56,
+              "P": 57,
+              "Q": 55,
+              "X": 1784097628.678,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 72,
+              "ess": 33.302132695908725,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 26,
+                "leg": "AND",
+                "epoch": 1784083150.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 55; reserve RIS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668"
+                },
+                "Q": 55,
+                "X": 1784097628.678,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "stage_index": 13
+              },
+              "permission": {
+                "ordinal": 13,
+                "epoch": 1784083150.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "id": "AND",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 57,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.2834269221554113,
+                      "ROUND_TRIP": 0.5292883254542258,
+                      "LATE_BREAK_UP": 0.04184455882901668,
+                      "DRIFT_UP": 0.04174775352865588,
+                      "DRIFT_DOWN": 0.1455019283541577,
+                      "ONE_STEP_UP": 0.41002622245601245,
+                      "ONE_STEP_DOWN": 0.3009702911296998,
+                      "QUIET_WOBBLE": 2.1801738252548413,
+                      "SLEEPER": 0,
+                      "EARLY_SET_UP": 0.02295566867231109,
+                      "EARLY_SET_DOWN": 0.024170468454875527
+                    },
+                    "position": 0.05482815057283143,
+                    "epoch": 1784073963.2900376,
+                    "minutes_to_bell": 715.2064660390218,
+                    "open": true,
+                    "member_count": 33,
+                    "ess": 20.208741113067816,
+                    "weight_sum": 2.1801738252548413,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 55; reserve RIS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AND": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 33.302132695908725,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 72
+                  },
+                  "RIS": {
+                    "forecast": 48,
+                    "layer": "BASE",
+                    "ess": 10,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 10
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.2834269221554113,
+                    "ROUND_TRIP": 0.5292883254542258,
+                    "LATE_BREAK_UP": 0.04184455882901668,
+                    "DRIFT_UP": 0.04174775352865588,
+                    "DRIFT_DOWN": 0.1455019283541577,
+                    "ONE_STEP_UP": 0.41002622245601245,
+                    "ONE_STEP_DOWN": 0.3009702911296998,
+                    "QUIET_WOBBLE": 2.1801738252548413,
+                    "SLEEPER": 0,
+                    "EARLY_SET_UP": 0.02295566867231109,
+                    "EARLY_SET_DOWN": 0.024170468454875527
+                  },
+                  "position": 0.05482815057283143,
+                  "epoch": 1784073963.2900376,
+                  "minutes_to_bell": 715.2064660390218,
+                  "open": true,
+                  "member_count": 33,
+                  "ess": 20.208741113067816,
+                  "weight_sum": 2.1801738252548413,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 55,
+                "deadline_epoch": 1784097628.678,
+                "q25": 54,
+                "q75": 56,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 56,
+                "floor_witness": {
+                  "epoch": 1784086143.515,
+                  "price": 56,
+                  "size": 10,
+                  "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784086143.515,
+                  "price": 56,
+                  "size": 10,
+                  "receipt": "66aa88b8-b28a-72d2-fa04-305dcab740dd"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "RIS": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 45,
+              "Q": 40,
+              "X": 1784113773.678,
+              "layer": "BASE",
+              "members": 10,
+              "ess": 10,
+              "family": "DRIFT_UP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 45,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-519"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 27,
+                "leg": "RIS",
+                "epoch": 1784083150.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 48; reserve AND max(close 57, ask 57) = 57"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 45,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-519"
+                },
+                "Q": 40,
+                "X": 1784113773.678,
+                "status": "RESOLVED",
+                "author": "POOL_BASE",
+                "formation_end": 1784071474,
+                "stage_index": 13
+              },
+              "permission": {
+                "ordinal": 13,
+                "epoch": 1784083150.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-668",
+                "id": "RIS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 43,
+                  "hand_level": 43,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 48,
+                  "window": {
+                    "family": "DRIFT_UP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 1,
+                      "LATE_BREAK_DOWN": 1,
+                      "DRIFT_UP": 3,
+                      "ONE_STEP_DOWN": 0,
+                      "ROUND_TRIP": 2,
+                      "ONE_STEP_UP": 2,
+                      "EARLY_SET_UP": 1,
+                      "QUIET_WOBBLE": 0,
+                      "SLEEPER": 0,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "DRIFT_DOWN": 0
+                    },
+                    "position": 0.028776499002705,
+                    "epoch": 1784072780.5013416,
+                    "minutes_to_bell": 734.9196109731992,
+                    "open": true,
+                    "member_count": 3,
+                    "ess": 3,
+                    "weight_sum": 3,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 57,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 57,
+                    "ask": 57,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 48; reserve AND max(close 57, ask 57) = 57",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AND": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 33.302132695908725,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 72
+                  },
+                  "RIS": {
+                    "forecast": 48,
+                    "layer": "BASE",
+                    "ess": 10,
+                    "role": "CLIMBER",
+                    "current": 45,
+                    "member_count": 10
+                  }
+                },
+                "window": {
+                  "family": "DRIFT_UP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 1,
+                    "LATE_BREAK_DOWN": 1,
+                    "DRIFT_UP": 3,
+                    "ONE_STEP_DOWN": 0,
+                    "ROUND_TRIP": 2,
+                    "ONE_STEP_UP": 2,
+                    "EARLY_SET_UP": 1,
+                    "QUIET_WOBBLE": 0,
+                    "SLEEPER": 0,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "DRIFT_DOWN": 0
+                  },
+                  "position": 0.028776499002705,
+                  "epoch": 1784072780.5013416,
+                  "minutes_to_bell": 734.9196109731992,
+                  "open": true,
+                  "member_count": 3,
+                  "ess": 3,
+                  "weight_sum": 3,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784113773.678,
+                "q25": 24,
+                "q75": 44,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 43,
+                "floor_witness": {
+                  "epoch": 1784114894.993,
+                  "price": 43,
+                  "size": 39,
+                  "receipt": "96f353c9-87f8-45f7-c21d-b1a1bfcf4ac2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784083676.728,
+                  "price": 44,
+                  "size": 43.73,
+                  "receipt": "866c49fb-ac5d-7a1c-17cb-b7565d0a142a"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-AND-miss",
+          "label": "Last receipt before AND missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "AND",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+          "epoch": 1784116859.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AND is not yet directionally called; RIS is not yet directionally called.",
+              "WHY": "AND trades at 57¢ against its 56¢ opening anchor; RIS trades at 43¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AND carries 448 eligible past sides from first-price comparisons; RIS carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AND calls 57¢ by T−0hr 0min; RIS calls 43¢ by T−0hr 0min.",
+              "WHY": "AND’s middle half spans 57–57¢; RIS’s middle half spans 43–43¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AND has book 56/57 and no standing bid; RIS has book 43/44 and no standing bid.",
+              "WHY": "AND: The policy was waiting for a directional call; RIS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "AND": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56.5,
+              "close": 57,
+              "recorded_floor": 56,
+              "P": 57,
+              "Q": 57,
+              "X": 1784116859.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 148.33676963368427,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 124,
+                "leg": "AND",
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve RIS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131"
+                },
+                "Q": 57,
+                "X": 1784116859.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "stage_index": 63
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "id": "AND",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 57,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.9816416890554243,
+                      "ROUND_TRIP": 3.376288620106885,
+                      "LATE_BREAK_UP": 0.5743914683650864,
+                      "DRIFT_UP": 0.06519609568412231,
+                      "DRIFT_DOWN": 0.384324313746173,
+                      "ONE_STEP_UP": 1.3140754930057528,
+                      "ONE_STEP_DOWN": 1.142387900227094,
+                      "QUIET_WOBBLE": 17.71293807811048,
+                      "SLEEPER": 1.2062353651226125,
+                      "EARLY_SET_UP": 0.25645961016804436,
+                      "EARLY_SET_DOWN": 0.29876947278643673
+                    },
+                    "position": 0.16055850898014473,
+                    "epoch": 1784078763.6257248,
+                    "minutes_to_bell": 635.2008712530136,
+                    "open": true,
+                    "member_count": 288,
+                    "ess": 92.97942059980541,
+                    "weight_sum": 17.71293807811048,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve RIS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AND": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 448
+                  },
+                  "RIS": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 43,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.9816416890554243,
+                    "ROUND_TRIP": 3.376288620106885,
+                    "LATE_BREAK_UP": 0.5743914683650864,
+                    "DRIFT_UP": 0.06519609568412231,
+                    "DRIFT_DOWN": 0.384324313746173,
+                    "ONE_STEP_UP": 1.3140754930057528,
+                    "ONE_STEP_DOWN": 1.142387900227094,
+                    "QUIET_WOBBLE": 17.71293807811048,
+                    "SLEEPER": 1.2062353651226125,
+                    "EARLY_SET_UP": 0.25645961016804436,
+                    "EARLY_SET_DOWN": 0.29876947278643673
+                  },
+                  "position": 0.16055850898014473,
+                  "epoch": 1784078763.6257248,
+                  "minutes_to_bell": 635.2008712530136,
+                  "open": true,
+                  "member_count": 288,
+                  "ess": 92.97942059980541,
+                  "weight_sum": 17.71293807811048,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1784116859.000001,
+                "q25": 57,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RIS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 43,
+              "Q": 43,
+              "X": 1784116859.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 148.33676963368427,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 43,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1853"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 125,
+                "leg": "RIS",
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 43; reserve AND max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 43,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1853"
+                },
+                "Q": 43,
+                "X": 1784116859.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "stage_index": 63
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "id": "RIS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 43,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.9534676513670035,
+                      "LATE_BREAK_DOWN": 0.8221080186425138,
+                      "DRIFT_UP": 0.22502890503123618,
+                      "ONE_STEP_DOWN": 1.2788166221702215,
+                      "ROUND_TRIP": 1.9556855681093521,
+                      "ONE_STEP_UP": 0.27708058584261674,
+                      "EARLY_SET_UP": 0.0369239086437194,
+                      "QUIET_WOBBLE": 18.19777262849106,
+                      "SLEEPER": 2.0088592285748694,
+                      "GRIND_WOBBLE_UP": 0.10467478094070455,
+                      "EARLY_SET_DOWN": 0.6477505382395936,
+                      "DRIFT_DOWN": 0.8045396703252315
+                    },
+                    "position": 0.20694773494434307,
+                    "epoch": 1784080869.7744248,
+                    "minutes_to_bell": 600.0983929196993,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 87.84229218490576,
+                    "weight_sum": 18.19777262849106,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 43; reserve AND max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AND": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 448
+                  },
+                  "RIS": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 43,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.9534676513670035,
+                    "LATE_BREAK_DOWN": 0.8221080186425138,
+                    "DRIFT_UP": 0.22502890503123618,
+                    "ONE_STEP_DOWN": 1.2788166221702215,
+                    "ROUND_TRIP": 1.9556855681093521,
+                    "ONE_STEP_UP": 0.27708058584261674,
+                    "EARLY_SET_UP": 0.0369239086437194,
+                    "QUIET_WOBBLE": 18.19777262849106,
+                    "SLEEPER": 2.0088592285748694,
+                    "GRIND_WOBBLE_UP": 0.10467478094070455,
+                    "EARLY_SET_DOWN": 0.6477505382395936,
+                    "DRIFT_DOWN": 0.8045396703252315
+                  },
+                  "position": 0.20694773494434307,
+                  "epoch": 1784080869.7744248,
+                  "minutes_to_bell": 600.0983929196993,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 87.84229218490576,
+                  "weight_sum": 18.19777262849106,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1784116859.000001,
+                "q25": 43,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784116875.678,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-RIS-miss",
+          "label": "Last receipt before RIS missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "RIS",
+          "outcome": "miss",
+          "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+          "epoch": 1784116859.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "AND is not yet directionally called; RIS is not yet directionally called.",
+              "WHY": "AND trades at 57¢ against its 56¢ opening anchor; RIS trades at 43¢ against its 43¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "AND carries 448 eligible past sides from first-price comparisons; RIS carries 448 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "AND calls 57¢ by T−0hr 0min; RIS calls 43¢ by T−0hr 0min.",
+              "WHY": "AND’s middle half spans 57–57¢; RIS’s middle half spans 43–43¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "AND has book 56/57 and no standing bid; RIS has book 43/44 and no standing bid.",
+              "WHY": "AND: The policy was waiting for a directional call; RIS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "AND": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 56,
+              "corrected_open": 56.5,
+              "close": 57,
+              "recorded_floor": 56,
+              "P": 57,
+              "Q": 57,
+              "X": 1784116859.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 148.33676963368427,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 56,
+                "ask_cents": 57,
+                "last_trade_cents": 57,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 124,
+                "leg": "AND",
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve RIS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 56,
+                  "ask_cents": 57,
+                  "last_trade_cents": 57,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131"
+                },
+                "Q": 57,
+                "X": 1784116859.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "stage_index": 63
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "id": "AND",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 57,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.9816416890554243,
+                      "ROUND_TRIP": 3.376288620106885,
+                      "LATE_BREAK_UP": 0.5743914683650864,
+                      "DRIFT_UP": 0.06519609568412231,
+                      "DRIFT_DOWN": 0.384324313746173,
+                      "ONE_STEP_UP": 1.3140754930057528,
+                      "ONE_STEP_DOWN": 1.142387900227094,
+                      "QUIET_WOBBLE": 17.71293807811048,
+                      "SLEEPER": 1.2062353651226125,
+                      "EARLY_SET_UP": 0.25645961016804436,
+                      "EARLY_SET_DOWN": 0.29876947278643673
+                    },
+                    "position": 0.16055850898014473,
+                    "epoch": 1784078763.6257248,
+                    "minutes_to_bell": 635.2008712530136,
+                    "open": true,
+                    "member_count": 288,
+                    "ess": 92.97942059980541,
+                    "weight_sum": 17.71293807811048,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 57; reserve RIS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AND": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 448
+                  },
+                  "RIS": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 43,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.9816416890554243,
+                    "ROUND_TRIP": 3.376288620106885,
+                    "LATE_BREAK_UP": 0.5743914683650864,
+                    "DRIFT_UP": 0.06519609568412231,
+                    "DRIFT_DOWN": 0.384324313746173,
+                    "ONE_STEP_UP": 1.3140754930057528,
+                    "ONE_STEP_DOWN": 1.142387900227094,
+                    "QUIET_WOBBLE": 17.71293807811048,
+                    "SLEEPER": 1.2062353651226125,
+                    "EARLY_SET_UP": 0.25645961016804436,
+                    "EARLY_SET_DOWN": 0.29876947278643673
+                  },
+                  "position": 0.16055850898014473,
+                  "epoch": 1784078763.6257248,
+                  "minutes_to_bell": 635.2008712530136,
+                  "open": true,
+                  "member_count": 288,
+                  "ess": 92.97942059980541,
+                  "weight_sum": 17.71293807811048,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 57,
+                "deadline_epoch": 1784116859.000001,
+                "q25": 57,
+                "q75": 57,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "RIS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 43,
+              "corrected_open": 43,
+              "close": 43,
+              "recorded_floor": 43,
+              "P": 43,
+              "Q": 43,
+              "X": 1784116859.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 448,
+              "ess": 148.33676963368427,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 43,
+                "ask_cents": 44,
+                "last_trade_cents": 43,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1853"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 125,
+                "leg": "RIS",
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 43; reserve AND max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 43,
+                  "ask_cents": 44,
+                  "last_trade_cents": 43,
+                  "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-RIS.csv.gz#row-1853"
+                },
+                "Q": 43,
+                "X": 1784116859.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784071474,
+                "stage_index": 63
+              },
+              "permission": {
+                "ordinal": 62,
+                "epoch": 1784116859.000001,
+                "receipt": "KXWTACHALLENGERMATCH-26JUL15ANDRIS-AND.csv.gz#row-3131",
+                "id": "RIS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 43,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.9534676513670035,
+                      "LATE_BREAK_DOWN": 0.8221080186425138,
+                      "DRIFT_UP": 0.22502890503123618,
+                      "ONE_STEP_DOWN": 1.2788166221702215,
+                      "ROUND_TRIP": 1.9556855681093521,
+                      "ONE_STEP_UP": 0.27708058584261674,
+                      "EARLY_SET_UP": 0.0369239086437194,
+                      "QUIET_WOBBLE": 18.19777262849106,
+                      "SLEEPER": 2.0088592285748694,
+                      "GRIND_WOBBLE_UP": 0.10467478094070455,
+                      "EARLY_SET_DOWN": 0.6477505382395936,
+                      "DRIFT_DOWN": 0.8045396703252315
+                    },
+                    "position": 0.20694773494434307,
+                    "epoch": 1784080869.7744248,
+                    "minutes_to_bell": 600.0983929196993,
+                    "open": true,
+                    "member_count": 284,
+                    "ess": 87.84229218490576,
+                    "weight_sum": 18.19777262849106,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 43; reserve AND max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "AND": {
+                    "forecast": 57,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 57,
+                    "member_count": 448
+                  },
+                  "RIS": {
+                    "forecast": 43,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 148.33676963368427,
+                    "role": "NOT_CALLABLE",
+                    "current": 43,
+                    "member_count": 448
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.9534676513670035,
+                    "LATE_BREAK_DOWN": 0.8221080186425138,
+                    "DRIFT_UP": 0.22502890503123618,
+                    "ONE_STEP_DOWN": 1.2788166221702215,
+                    "ROUND_TRIP": 1.9556855681093521,
+                    "ONE_STEP_UP": 0.27708058584261674,
+                    "EARLY_SET_UP": 0.0369239086437194,
+                    "QUIET_WOBBLE": 18.19777262849106,
+                    "SLEEPER": 2.0088592285748694,
+                    "GRIND_WOBBLE_UP": 0.10467478094070455,
+                    "EARLY_SET_DOWN": 0.6477505382395936,
+                    "DRIFT_DOWN": 0.8045396703252315
+                  },
+                  "position": 0.20694773494434307,
+                  "epoch": 1784080869.7744248,
+                  "minutes_to_bell": 600.0983929196993,
+                  "open": true,
+                  "member_count": 284,
+                  "ess": 87.84229218490576,
+                  "weight_sum": 18.19777262849106,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 43,
+                "deadline_epoch": 1784116859.000001,
+                "q25": 43,
+                "q75": 43,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784116875.678,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "AND": false,
+          "RIS": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+        "category": "WTA_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "AND",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 57,
+            "close_epoch": 1784116854.8,
+            "floor_cents": 56,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "RIS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 43,
+            "close_epoch": 1784116093.4,
+            "floor_cents": 43,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "067fa9e099899cabf505049b51f5cbe057fdc1c0e2b4f6792b62e42f3d340667",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

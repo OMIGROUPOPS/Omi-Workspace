@@ -213,6 +213,7 @@ export async function appendHistory(
   };
   index.grades.push(entry);
   if (!index.axis.letters.includes("NOT OFFERED")) index.axis.letters.push("NOT OFFERED");
+  if (grade.applicability && !index.axis.letters.includes("N/A")) index.axis.letters.push("N/A");
   for (const id of new Set(index.grades.map((g) => g.event))) {
     const rows = index.grades
       .filter((g) => g.event === id)
@@ -349,6 +350,13 @@ export async function build(event, printInput) {
     grading_commit: git("rev-parse", "HEAD").toString().trim(),
   };
   const grade = gradeFace(effectiveFace, decisions, named, bench, rubric, provenance, printInput);
+  if (face.grade_applicability) {
+    const {labelHandoffGrade,handoffCloseResult,labelCloseDeltaGrade} = await import('./handoff_display.mjs');
+    labelHandoffGrade(grade, face.grade_applicability);
+    grade.handoff_close_result = handoffCloseResult(grade, rulers);
+    labelCloseDeltaGrade(grade);
+  }
+
   grade.RULER_COLUMNS = rulers;
   grade.receipt = receipt;
   await writeJson(path.join(dataRoot, "GRADE_RECEIPT.json"), receipt);

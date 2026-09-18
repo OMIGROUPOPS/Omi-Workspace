@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "New amendment relative to aba89abf backups, not unrelated worktree edits",
+  "files": {
+    "window1_v54_dual_belief_os.js": {
+      "new_numeric_literals": [],
+      "new_named_target_literals": []
+    },
+    "window1_v54_functionable_os.js": {
+      "new_numeric_literals": [],
+      "new_named_target_literals": []
+    }
+  }
+}

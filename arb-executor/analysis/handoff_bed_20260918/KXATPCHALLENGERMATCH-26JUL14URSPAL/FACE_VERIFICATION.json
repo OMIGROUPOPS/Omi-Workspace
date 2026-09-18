@@ -1,0 +1,67 @@
+{
+  "status": "PASS",
+  "os": "ee2b7f18627f5f99d3e3ecc5994546922b3c61faa12a2d81dc3d820f88163b6b",
+  "trace": "a28a20873040e4caacf9206e88760462eb6392766d6dc7360f7d76c11edfac5d",
+  "decision_receipts": 1476,
+  "level_tables": 60,
+  "grade": "F",
+  "micro_grade": "N/A",
+  "close_result": {
+    "role": "RULER — realized W1 closes, not a forecast or OS input",
+    "legs": {
+      "PAL": {
+        "close_cents": 41,
+        "close_source_column": "legA_close_c",
+        "credited_fill_cents": null,
+        "close_delta_cents": 0
+      },
+      "URS": {
+        "close_cents": 61,
+        "close_source_column": "legB_close_c",
+        "credited_fill_cents": null,
+        "close_delta_cents": 0
+      }
+    },
+    "pair_close_sum_cents": 102,
+    "pair_fill_sum_cents": null,
+    "pair_delta_cents": null,
+    "filled_leg_close_delta_cents": 0,
+    "line": "W1 closes 102¢ · pair incomplete · filled-leg close-delta 0¢",
+    "provenance": {
+      "truth_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "row_sha256": "b68855b99823a597a79bce4f667d6a1540b24799154da2593fe72ebe8f651313"
+    }
+  },
+  "outcome": {
+    "legs": {
+      "PAL": {
+        "filled": false,
+        "cents": null,
+        "vs_floor_cents": null,
+        "fill_epoch": null,
+        "valid_span_fill": false,
+        "revalidation": null,
+        "reason": null
+      },
+      "URS": {
+        "filled": false,
+        "cents": null,
+        "vs_floor_cents": null,
+        "fill_epoch": null,
+        "valid_span_fill": false,
+        "revalidation": null,
+        "reason": null
+      }
+    },
+    "pair_completed": false,
+    "pair_sum": null,
+    "captured_cents": 0,
+    "best_capturable_cents": 4,
+    "best_capturable_pair_sum_cents": 96,
+    "capture_ratio": 0,
+    "definition": "Verified-span under-par completed-pair discount only; partial pair captures zero cents. Same-second conduct is graded separately.",
+    "valid_pair_completed": false
+  },
+  "engine_unchanged_since_replay": true
+}

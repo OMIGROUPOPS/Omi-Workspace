@@ -17,7 +17,18 @@ assert.equal(selection.selected.length,100);
 const selected=new Set(selection.selected.map(r=>r.event_id)),oldIndex=json(resolve(baseline,'data/index.json')),localIndex=json(resolve(source,'index.json'));
 const rerunReceipt=resolve(source,'unsupported-rests/RECEIPT.json');
 const rerun=existsSync(rerunReceipt)?json(rerunReceipt):null;
-const current=new Set([...selected,...(rerun?['KXATPMATCH-26JUL12ALTGAS']:[])]);
+// Explicit, verified replays may replace only their own LAB asset bundles.
+// Other games stay on the pinned 100-game source; no blanket OS-hash bypass.
+const repository=resolve(shell,'../..'),publicationPath=p=>resolve(repository,p);
+const filedHandoffIndex=resolve(source,'handoff/PUBLISH_INDEX.json');
+const handoffIndex=process.env.HANDOFF_REPLAY_INDEX?json(resolve(process.env.HANDOFF_REPLAY_INDEX)):existsSync(filedHandoffIndex)?json(filedHandoffIndex):null;
+const handoffPaths=handoffIndex?handoffIndex.receipts:process.env.HANDOFF_REPLAY_RECEIPT?[process.env.HANDOFF_REPLAY_RECEIPT]:[];
+const priorPublished=handoffIndex?.prior_manifest?json(publicationPath(handoffIndex.prior_manifest.path.replace(/\.gz$/,''))):null;
+if(priorPublished)assert.equal(sha(readFileSync(publicationPath(handoffIndex.prior_manifest.path))),handoffIndex.prior_manifest.sha256);
+const handoffs=new Map();
+for(const file of handoffPaths){const receiptPath=publicationPath(file),r=json(receiptPath);assert.equal(r.flag,'W1_DIRECTION_HANDOFF=on');assert.equal(r.determinism_x2,true);assert.equal(r.digest.sha256,json(resolve(dirname(receiptPath),'PASS_2.json')).digest.sha256);assert(!handoffs.has(r.event));handoffs.set(r.event,r);}
+const current=new Set([...selected,...(rerun?['KXATPMATCH-26JUL12ALTGAS']:[]),...handoffs.keys()]);
+const historicalFaults={};
 if(rerun){assert.equal(rerun.selection_sha256,sha(selectionBytes));assert.equal(rerun.verification.status,'PASS');}
 assert.equal(oldIndex.games.length,5,'Previously published baseline must remain the reviewed five');
 const baselineManifest=json(resolve(baseline,'demo-assets.json'));
@@ -27,7 +38,13 @@ assert.equal(games.length,104);assert.equal(new Set(games.map(g=>g.event)).size,
 const entries=[],allowed=new Set();
 function within(root,name){const p=resolve(root,name);assert(p.startsWith(root+sep),'Unsafe asset path');return p;}
 function put(name,bytes){
- const zipped=name.endsWith('.json'),storedName=name+(zipped?'.gz':''),encoded=zipped?gzipSync(bytes,{level:9}):bytes;
+ const zipped=name.endsWith('.json'),storedName=name+(zipped?'.gz':'');
+ const reusable=priorPublished?.assets.find(a=>a.path===storedName&&a.sha256_uncompressed===sha(bytes));
+ let encoded;
+ if(zipped&&reusable&&existsSync(within(dirname(publicationPath(handoffIndex.prior_manifest.path)),reusable.path))){
+  encoded=readFileSync(within(dirname(publicationPath(handoffIndex.prior_manifest.path)),reusable.path));
+  assert.equal(sha(encoded),reusable.sha256,'Prior compressed asset changed: '+name);
+ }else encoded=zipped?gzipSync(bytes,{level:9}):bytes;
  if(zipped)assert.equal(sha(gunzipSync(encoded)),sha(bytes));
  const p=within(target,storedName);mkdirSync(dirname(p),{recursive:true});writeFileSync(p,encoded);
  allowed.add(storedName.replaceAll('\\','/'));
@@ -42,21 +59,40 @@ for(const game of games){
  const root=current.has(game.event)?source:resolve(baseline,'data');
  const faceBytes=readJsonBytes(within(root,game.event+'.face.json')),face=JSON.parse(faceBytes),gradeBytes=readJsonBytes(within(root,game.event+'.grade.json')),grade=JSON.parse(gradeBytes);
  assert.equal(grade.event,game.event);assert.equal(grade.provenance.face_sha256,sha(faceBytes));assert.equal(grade.provenance.os_sha256,face.provenance.os_sha256);assert.equal(grade.provenance.trace_sha256,face.provenance.trace_sha256);
- if(current.has(game.event))assert.equal(face.provenance.os_sha256,(rerun?.inputs??selection.inputs)['window1_v54_dual_belief_os.js']);
+ const handoff=handoffs.get(game.event);
+ if(handoff){assert(current.has(game.event));assert.equal(face.provenance.os_sha256,handoff.sources['window1_v54_dual_belief_os.js'].sha256);assert.equal(face.provenance.trace_sha256,handoff.trace.sha256);assert.equal(grade.applicability?.status,face.grade_applicability?.status);}
+ else if(current.has(game.event))assert.equal(face.provenance.os_sha256,(rerun?.inputs??selection.inputs)['window1_v54_dual_belief_os.js']);
  put(`data/${game.event}.face.json`,faceBytes);put(`data/${game.event}.grade.json`,gradeBytes);
  const pressurePath=within(root,game.event+'.pressure.json');
  if(jsonFileExists(pressurePath)){const bytes=readJsonBytes(pressurePath),p=JSON.parse(bytes);assert.equal(p.provenance.face_sha256,sha(faceBytes));assert.equal(p.provenance.trace_sha256,face.provenance.trace_sha256);put(`data/${game.event}.pressure.json`,bytes);}
  if(face.oracle?.detail_url){assert.equal(face.oracle.detail_url,`/data/${game.event}.oracle.json`);const p=within(root,game.event+'.oracle.json'),bytes=existsSync(p+'.gz')?gunzipSync(readFileSync(p+'.gz')):readFileSync(p);assert.equal(sha(bytes),face.oracle.sha256_uncompressed);put(`data/${game.event}.oracle.json`,bytes);}
  if(face.bid_card_details)for(const d of face.bid_card_details.chunks??[face.bid_card_details]){const name=face.bid_card_details.chunks?`${game.event}.bid-details/${d.group}-${d.first}.json`:game.event+'.bid-details.json';assert.equal(d.detail_url,`/data/${name}`);const bytes=gunzipSync(readFileSync(within(root,name+'.gz')));assert.equal(sha(bytes),d.sha256_uncompressed);const detail=JSON.parse(bytes);assert.equal(detail.event,game.event);assert.equal(detail.os_sha256,face.provenance.os_sha256);assert.equal(detail.trace_sha256,face.provenance.trace_sha256);put('data/'+name,bytes);}
  if(face.timeline)for(const d of face.timeline.chunks){const name=`${game.event}.timeline/${d.first}.json`;assert.equal(d.url,`/data/${name}`);const bytes=gunzipSync(readFileSync(within(root,name+'.gz')));assert.equal(sha(bytes),d.sha256_uncompressed);const c=JSON.parse(bytes);assert.equal(c.event,game.event);assert.equal(c.os_sha256,face.provenance.os_sha256);assert.equal(c.trace_sha256,face.provenance.trace_sha256);put('data/'+name,bytes);}
- if(selected.has(game.event)){const p=within(source,`tune-expansion/faults/${game.event}.json`),bytes=readFileSync(p),fault=JSON.parse(bytes);assert.equal(fault.provenance.face_sha256,sha(faceBytes));assert.equal(fault.provenance.grade_sha256,sha(gradeBytes));put(`data/tune-expansion/faults/${game.event}.json`,bytes);}
+ if(selected.has(game.event)){const p=within(source,`tune-expansion/faults/${game.event}.json`),bytes=readFileSync(p),fault=JSON.parse(bytes);
+  if(handoff&&fault.provenance.trace_sha256!==face.provenance.trace_sha256){assert.equal(sha(bytes),priorPublished?.assets.find(a=>a.json_path===`data/tune-expansion/faults/${game.event}.json`)?.sha256_uncompressed);historicalFaults[game.event]={...fault.provenance,artifact_sha256:sha(bytes)};}
+  else{assert.equal(fault.provenance.face_sha256,sha(faceBytes));assert.equal(fault.provenance.grade_sha256,sha(gradeBytes));}
+  put(`data/tune-expansion/faults/${game.event}.json`,bytes);}
 }
 put('data/tune-expansion/faults/index.json',readFileSync(resolve(source,'tune-expansion/faults/index.json')));
+// Compact hindsight review only. Never ship the private source traces or prints.
+const reviewIndexPath=resolve(source,'layer-review/index.json');
+if(existsSync(reviewIndexPath)){
+ const reviewIndex=json(reviewIndexPath),published=new Set(games.map(g=>g.event));
+ assert.equal(reviewIndex.schema,'NINE_CELL_REVIEW_INDEX_V1');
+ assert.equal(sha(readFileSync(resolve(source,'layer-review/CONTRACT.json'))),reviewIndex.contract_sha256);
+ for(const name of ['index.json','CONTRACT.json','REPORT.json'])put('data/layer-review/'+name,readFileSync(resolve(source,'layer-review',name)));
+ for(const game of reviewIndex.games){
+  assert(published.has(game.event),'Review game is outside publication allowlist');
+  assert.equal(game.url,`/data/layer-review/${game.event}.json`);
+  const bytes=readFileSync(resolve(source,'layer-review',game.event+'.json'));assert.equal(sha(bytes),game.sha256);
+  put('data/layer-review/'+game.event+'.json',bytes);
+ }
+}
 const localHistory=json(resolve(source,'grades/index.json')),oldHistory=json(resolve(baseline,'data/grades/index.json'));
 const history={...localHistory,grades:[...oldHistory.grades.filter(g=>!current.has(g.event)),...localHistory.grades.filter(g=>current.has(g.event))],views:Object.fromEntries(games.map(g=>[g.event,(current.has(g.event)?localHistory:oldHistory).views?.[g.event]]))};
 put('data/grades/index.json',encode(history));
-put('data/scoreboard.json',Buffer.from(buildScoreboard(resolve(target,'data'),{emit:false}).payload));
-put('data/scoreboard-tune-100.json',Buffer.from(buildScoreboard(resolve(target,'data'),{emit:false,events:[...selected],scope:`${rerun?.verification.label?rerun.verification.label+'; ':''}Frozen 100-game draw; safety-flagged fills excluded from credit; overlapping fault labels`,determinism:rerun?.verification.determinism_sample}).payload));
+put('data/scoreboard.json',Buffer.from(buildScoreboard(resolve(target,'data'),{emit:false,historicalFaults}).payload));
+put('data/scoreboard-tune-100.json',Buffer.from(buildScoreboard(resolve(target,'data'),{emit:false,historicalFaults,events:[...selected],scope:`${rerun?.verification.label?rerun.verification.label+'; ':''}Frozen 100-game draw; latest explicitly verified experiments replace their own rows; mismatched historical fault audits do not grade a new replay`,determinism:rerun?.verification.determinism_sample}).payload));
 put('favicon.svg',readFileSync(resolve(shell,'public/favicon.svg')));
 function files(root){if(!existsSync(root))return [];return readdirSync(root,{withFileTypes:true}).flatMap(e=>{assert(!e.isSymbolicLink());const p=resolve(root,e.name);return e.isDirectory()?files(p):[p];});}
 for(const p of files(target)){const name=relative(target,p).replaceAll('\\','/');assert(name==='demo-assets.json'||allowed.has(name),'Non-allowlisted stale asset: '+name);}

@@ -1,0 +1,2176 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "a305781f33efbcadc0d72a30481c4578aa6395fd5c0b417f65d4f109f26135a3",
+    "stage_cache_sha256": "a0819adbe824191c2f33c105f6fab2b6142a9d8bf3616dddc7188432caa61d38",
+    "mirror_projection_sha256": "283ffebfeb94e0a971d54c6ce434442568c21f58bb4c16955a0e6179a7d2c3ea",
+    "mirror_permissions_sha256": "00c3242a8215b2f570934e12b331235334a87890e052c8ad01d3d6ef4ec2444c",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "0df1b2c84355d76808579973ee26c76b4092529989851bb3108ebacab9dcd354",
+      "row_number": 369,
+      "row_csv": "26JUL14ZHOKOZ,KXATPCHALLENGERMATCH-26JUL14ZHOKOZ,ATP_CHALL,1784002927,1784002927,1784050140,1784056200.0,KOZ,ZHO,1784003311,41.0,37,1784027808.9,42,1784049883.4,1239.62,494.91,STILL,1.0,1784027812,,,,1784003311,59.0,59,1784046144.4,61,1784050002.0,99.44,61.31,STILL,2.0,1784027812,59,1784046144.4,PRE_BELL_VALID,1784003311,,,1784050500.0,1784059209.0,1784050500.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784003311,1784050140,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784003311,
+      "span_end_epoch": 1784050140,
+      "bell_epoch": 1784050500,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784050500,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "KOZ": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 41,
+          "floor_cents": 37,
+          "floor_epoch": 1784027808.9,
+          "minutes_to_bell": 378.18499999841055,
+          "line": "KOZ 37¢ @ 378.18m to bell",
+          "marker_label": "KOZ FLOOR · RECORDED 37¢ @ 378.18m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 37¢ · 378m to bell",
+          "hover_note": "Recorded floor 37¢ printed here · 378m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "ZHO": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 59,
+          "floor_cents": 59,
+          "floor_epoch": 1784046144.4,
+          "minutes_to_bell": 72.59333333174388,
+          "line": "ZHO 59¢ @ 72.59m to bell",
+          "marker_label": "ZHO FLOOR · RECORDED 59¢ @ 72.59m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 59¢ · 72m to bell",
+          "hover_note": "Recorded floor 59¢ printed here · 72m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "ZHO",
+      "underdog_leg": "KOZ",
+      "pair": {
+        "sum_cents": 96,
+        "discount_cents": 4,
+        "reason": null,
+        "line": "best capturable = 59 + 37 = 96¢",
+        "discount_line": "4¢ under par",
+        "compact_line": "best capturable 96¢ · 4¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL14ZHOKOZ",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784002927",
+        "w1_left_epoch": "1784002927",
+        "w1_right_epoch": "1784050140",
+        "scheduled_start_epoch": "1784056200.0",
+        "legA": "KOZ",
+        "legB": "ZHO",
+        "legA_formation_end_epoch": "1784003311",
+        "legA_open_postformation_c": "41.0",
+        "legA_floor_c": "37",
+        "legA_floor_epoch": "1784027808.9",
+        "legA_close_c": "42",
+        "legA_close_epoch": "1784049883.4",
+        "legA_contracts": "1239.62",
+        "legA_premium_usd": "494.91",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "1.0",
+        "legA_us_first_post_epoch": "1784027812",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784003311",
+        "legB_open_postformation_c": "59.0",
+        "legB_floor_c": "59",
+        "legB_floor_epoch": "1784046144.4",
+        "legB_close_c": "61",
+        "legB_close_epoch": "1784050002.0",
+        "legB_contracts": "99.44",
+        "legB_premium_usd": "61.31",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "2.0",
+        "legB_us_first_post_epoch": "1784027812",
+        "legB_us_fill_c": "59",
+        "legB_us_fill_epoch": "1784046144.4",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784003311",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784050500.0",
+        "kalshi_close_time_epoch": "1784059209.0",
+        "bell_epoch": "1784050500.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784003311",
+        "span_end_epoch": "1784050140",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL14ZHOKOZ.jsonl",
+      "sha256": "aa218fc030c5915b270500d5cb91d46245867432e27c2d50b4658fb7e1f8d160",
+      "raw_rows": 8585,
+      "accepted_rows": 21,
+      "start_epoch": 1784003311,
+      "end_epoch": 1784050140
+    }
+  },
+  "first_callable_receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+  "first_both_directional_receipt": "31bf7f53-bfe7-4a90-70f2-886b62da0cc4",
+  "first_callable_by_side": {
+    "KOZ": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+    "ZHO": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+          "epoch": 1784016288.000001,
+          "clock": "T−9hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOZ is not yet directionally called; ZHO is strengthening.",
+              "WHY": "KOZ trades at 41¢ against its 41¢ opening anchor; ZHO trades at 63¢ against its 59¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOZ carries 478 eligible past sides from first-price comparisons; ZHO carries 110 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOZ calls 39¢ by T−5hr 36min; ZHO calls 61¢ by T−4hr 41min.",
+              "WHY": "KOZ’s middle half spans 37–40¢; ZHO’s middle half spans 59–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOZ has book 37/41 and a standing 39¢ bid; ZHO has book 58/60 and no standing bid.",
+              "WHY": "KOZ: The current pool target was the permitted bid level; ZHO: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KOZ": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 41,
+              "Q": 39,
+              "X": 1784029959.387971,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 478,
+              "ess": 205.92601156713633,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 37,
+                "ask_cents": 41,
+                "last_trade_cents": 41,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597"
+              },
+              "bid": 39,
+              "filled": null,
+              "decision": {
+                "order": 92,
+                "leg": "KOZ",
+                "epoch": 1784016288.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 39,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 37,
+                  "ask_cents": 41,
+                  "last_trade_cents": 41,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597"
+                },
+                "Q": 39,
+                "X": 1784029959.387971,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "support": null,
+                "accountability_assumption": "5e3d2a5a4ae36ddcef8893f7ec58ce0c2cf6749a12bec98c6e60cbcdf9baa14f",
+                "stage_index": 46
+              },
+              "permission": null,
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784029959.387971,
+                "q25": 37,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784027808.869,
+                  "price": 37,
+                  "size": 19.4,
+                  "receipt": "31bf7f53-bfe7-4a90-70f2-886b62da0cc4"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784027808.869,
+                  "price": 37,
+                  "size": 19.4,
+                  "receipt": "31bf7f53-bfe7-4a90-70f2-886b62da0cc4"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "ZHO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 59,
+              "P": 63,
+              "Q": 61,
+              "X": 1784033272.683123,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 110,
+              "ess": 32.244367317824015,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 60,
+                "last_trade_cents": 63,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-479"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 93,
+                "leg": "ZHO",
+                "epoch": 1784016288.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 58,
+                  "ask_cents": 60,
+                  "last_trade_cents": 63,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-479"
+                },
+                "Q": 61,
+                "X": 1784033272.683123,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 46
+              },
+              "permission": null,
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784033272.683123,
+                "q25": 59,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 59,
+                "floor_witness": {
+                  "epoch": 1784046144.371,
+                  "price": 59,
+                  "size": 2.13,
+                  "receipt": "a91a6e17-96e8-5347-c45f-c3b70e4eed4e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784027764.479,
+                  "price": 62,
+                  "size": 45,
+                  "receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KOZ-miss",
+          "label": "Last receipt before KOZ missed at the bell",
+          "arm": "D",
+          "focus_leg": "KOZ",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+          "epoch": 1784050137.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOZ is not yet directionally called; ZHO is strengthening.",
+              "WHY": "KOZ trades at 42¢ against its 41¢ opening anchor; ZHO trades at 61¢ against its 59¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOZ carries 1947 eligible past sides from first-price comparisons; ZHO carries 696 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOZ calls 42¢ by T−0hr 0min; ZHO calls 61¢ by T−0hr 0min.",
+              "WHY": "KOZ’s middle half spans 42–42¢; ZHO’s middle half spans 61–61¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOZ has book 40/42 and a standing 36¢ bid; ZHO has book 58/61 and a recorded purchase at 60¢.",
+              "WHY": "KOZ: The desired bid could not be posted below the ask; ZHO: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KOZ": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 42,
+              "Q": 42,
+              "X": 1784050137.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 881.3549555004313,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921"
+              },
+              "bid": 36,
+              "filled": null,
+              "decision": {
+                "order": 138,
+                "leg": "KOZ",
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 36,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921"
+                },
+                "Q": 42,
+                "X": 1784050137.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "support": null,
+                "accountability_assumption": "62fd87669fc8216c517f7915baa26260299ea8ac87c7508f7476e2766d6c11e2",
+                "stage_index": 71
+              },
+              "permission": null,
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784050137.000001,
+                "q25": 42,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ZHO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 59,
+              "P": 61,
+              "Q": 61,
+              "X": 1784050137.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 285.90121490263584,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-4098"
+              },
+              "bid": null,
+              "filled": 60,
+              "decision": {
+                "order": 137,
+                "leg": "ZHO",
+                "epoch": 1784049840,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ|ATLAS_GATE|1784049840",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 59,
+                  "ask_cents": 61,
+                  "last_trade_cents": 59,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-4058"
+                },
+                "Q": 61,
+                "X": 1784049840,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 70
+              },
+              "permission": null,
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784050137.000001,
+                "q25": 61,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784050140,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-ZHO-fill",
+          "label": "Last receipt before ZHO filled",
+          "arm": "D",
+          "focus_leg": "ZHO",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673",
+          "epoch": 1784046115.000001,
+          "clock": "T−1hr 7min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOZ is not yet directionally called; ZHO is strengthening.",
+              "WHY": "KOZ trades at 40¢ against its 41¢ opening anchor; ZHO trades at 62¢ against its 59¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOZ carries 1782 eligible past sides from first-price comparisons; ZHO carries 575 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOZ calls 40¢ by T−1hr 7min; ZHO calls 61¢ by T−0hr 56min.",
+              "WHY": "KOZ’s middle half spans 38–40¢; ZHO’s middle half spans 60–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOZ has book 39/41 and a standing 36¢ bid; ZHO has book 60/61 and a standing 60¢ bid.",
+              "WHY": "KOZ: The other commitment left too little room under the pair budget; ZHO: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "KOZ": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 40,
+              "Q": 40,
+              "X": 1784046115.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1782,
+              "ess": 813.2432482845596,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 37,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4453"
+              },
+              "bid": 36,
+              "filled": null,
+              "decision": {
+                "order": 124,
+                "leg": "KOZ",
+                "epoch": 1784046115.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 36,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 37,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4453"
+                },
+                "Q": 40,
+                "X": 1784046115.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "support": null,
+                "accountability_assumption": "ee8553db552365e36c28966b33e1cd20a83d3e96c878fd386674424face01028",
+                "stage_index": 62
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784046115.000001,
+                "q25": 38,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 41,
+                "floor_witness": {
+                  "epoch": 1784047375.375,
+                  "price": 41,
+                  "size": 11.71,
+                  "receipt": "8f8d0661-cce0-79a5-f85c-0d5059fc9da8"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "ZHO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 59,
+              "P": 62,
+              "Q": 61,
+              "X": 1784046791.188739,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 575,
+              "ess": 225.318923668384,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673"
+              },
+              "bid": 60,
+              "filled": null,
+              "decision": {
+                "order": 125,
+                "leg": "ZHO",
+                "epoch": 1784046115.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 60,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 61,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673"
+                },
+                "Q": 61,
+                "X": 1784046791.188739,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "support": null,
+                "accountability_assumption": "d2e2dd8341036a160ceaf3eef64d219dddfd8c8465f243dad553f915a609d5c8",
+                "stage_index": 62
+              },
+              "permission": null,
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784046791.188739,
+                "q25": 60,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 59,
+                "floor_witness": {
+                  "epoch": 1784046144.371,
+                  "price": 59,
+                  "size": 2.13,
+                  "receipt": "a91a6e17-96e8-5347-c45f-c3b70e4eed4e"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784046144.371,
+                  "price": 60,
+                  "size": 5,
+                  "receipt": "0e2d152a-7ccf-5e71-fa0f-caca2d7c0314"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784046144.371,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "ZHO",
+              "epoch": 1784046144.371,
+              "cents": 60,
+              "receipt": "0e2d152a-7ccf-5e71-fa0f-caca2d7c0314",
+              "order_lineage_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+              "order_lineage_start_epoch": 1784027764.479,
+              "current_price_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+              "current_price_start_epoch": 1784027764.479,
+              "order_lineage_age_minutes": 306.33153333266574,
+              "current_price_age_minutes": 306.33153333266574,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "ZHO",
+                "epoch": 1784046144.371,
+                "cents": 60,
+                "receipt": "0e2d152a-7ccf-5e71-fa0f-caca2d7c0314",
+                "order_lineage_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+                "order_lineage_start_epoch": 1784027764.479,
+                "current_price_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+                "current_price_start_epoch": 1784027764.479,
+                "order_lineage_age_minutes": 306.33153333266574,
+                "current_price_age_minutes": 306.33153333266574,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 125,
+              "leg": "ZHO",
+              "epoch": 1784046115.000001,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 60,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-3673"
+              },
+              "Q": 61,
+              "X": 1784046791.188739,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784003311,
+              "support": null,
+              "accountability_assumption": "d2e2dd8341036a160ceaf3eef64d219dddfd8c8465f243dad553f915a609d5c8",
+              "stage_index": 62
+            },
+            "license_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+            "licensing_deadline_epoch": 1784037279.604624,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KOZ": false,
+          "ZHO": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "fills": [
+          {
+            "leg": "ZHO",
+            "epoch": 1784046144.371,
+            "cents": 60,
+            "receipt": "0e2d152a-7ccf-5e71-fa0f-caca2d7c0314",
+            "order_lineage_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+            "order_lineage_start_epoch": 1784027764.479,
+            "current_price_receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180",
+            "current_price_start_epoch": 1784027764.479,
+            "order_lineage_age_minutes": 306.33153333266574,
+            "current_price_age_minutes": 306.33153333266574,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "KOZ",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 42,
+            "close_epoch": 1784049883.4,
+            "floor_cents": 37,
+            "offered_cents": 5,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 5,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "ZHO",
+            "filled": true,
+            "fill_cents": 60,
+            "fill_epoch": 1784046144.371,
+            "fill_receipt": "0e2d152a-7ccf-5e71-fa0f-caca2d7c0314",
+            "close_cents": 61,
+            "close_epoch": 1784050002,
+            "floor_cents": 59,
+            "offered_cents": 2,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 1,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0df1b2c84355d76808579973ee26c76b4092529989851bb3108ebacab9dcd354",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+          "epoch": 1784016288.000001,
+          "clock": "T−9hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOZ is not yet directionally called; ZHO is strengthening.",
+              "WHY": "KOZ trades at 41¢ against its 41¢ opening anchor; ZHO trades at 63¢ against its 59¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOZ carries 478 eligible past sides from first-price comparisons; ZHO carries 110 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOZ calls 39¢ by T−5hr 36min; ZHO calls 61¢ by T−4hr 41min.",
+              "WHY": "KOZ’s middle half spans 37–40¢; ZHO’s middle half spans 59–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOZ has book 37/41 and no standing bid; ZHO has book 58/60 and no standing bid.",
+              "WHY": "KOZ: The policy was waiting for a directional call; ZHO: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KOZ": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 41,
+              "Q": 39,
+              "X": 1784029959.387971,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 478,
+              "ess": 205.92601156713633,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 37,
+                "ask_cents": 41,
+                "last_trade_cents": 41,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 92,
+                "leg": "KOZ",
+                "epoch": 1784016288.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 39; reserve ZHO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 37,
+                  "ask_cents": 41,
+                  "last_trade_cents": 41,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597"
+                },
+                "Q": 39,
+                "X": 1784029959.387971,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "stage_index": 46
+              },
+              "permission": {
+                "ordinal": 46,
+                "epoch": 1784016288.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+                "id": "KOZ",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 41,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.5142293538420586,
+                      "ROUND_TRIP": 8.444587936718738,
+                      "LATE_BREAK_UP": 1.057572556428846,
+                      "ONE_STEP_UP": 1.0742011826974869,
+                      "LATE_BREAK_DOWN": 0.48503762392803407,
+                      "QUIET_WOBBLE": 17.349214648502556,
+                      "DRIFT_DOWN": 0.9373284228517966,
+                      "SLEEPER": 0.1944358850054824,
+                      "DRIFT_UP": 0.7164955227250638,
+                      "EARLY_SET_DOWN": 2.1189757423139115,
+                      "GRIND_WOBBLE_UP": 0.21771801684906733,
+                      "EARLY_SET_UP": 0.45686568957335666,
+                      "GRIND_WOBBLE_DOWN": 0.056183393387305956
+                    },
+                    "position": 0.10231216034806359,
+                    "epoch": 1784008102.176157,
+                    "minutes_to_bell": 700.630397383372,
+                    "open": true,
+                    "member_count": 213,
+                    "ess": 88.5293426441621,
+                    "weight_sum": 17.349214648502556,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 39; reserve ZHO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ZHO": {
+                    "forecast": 63,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 32.244367317824015,
+                    "role": "CLIMBER",
+                    "current": 63,
+                    "member_count": 110
+                  },
+                  "KOZ": {
+                    "forecast": 41,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 205.92601156713633,
+                    "role": "NOT_CALLABLE",
+                    "current": 41,
+                    "member_count": 478
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.5142293538420586,
+                    "ROUND_TRIP": 8.444587936718738,
+                    "LATE_BREAK_UP": 1.057572556428846,
+                    "ONE_STEP_UP": 1.0742011826974869,
+                    "LATE_BREAK_DOWN": 0.48503762392803407,
+                    "QUIET_WOBBLE": 17.349214648502556,
+                    "DRIFT_DOWN": 0.9373284228517966,
+                    "SLEEPER": 0.1944358850054824,
+                    "DRIFT_UP": 0.7164955227250638,
+                    "EARLY_SET_DOWN": 2.1189757423139115,
+                    "GRIND_WOBBLE_UP": 0.21771801684906733,
+                    "EARLY_SET_UP": 0.45686568957335666,
+                    "GRIND_WOBBLE_DOWN": 0.056183393387305956
+                  },
+                  "position": 0.10231216034806359,
+                  "epoch": 1784008102.176157,
+                  "minutes_to_bell": 700.630397383372,
+                  "open": true,
+                  "member_count": 213,
+                  "ess": 88.5293426441621,
+                  "weight_sum": 17.349214648502556,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784029959.387971,
+                "q25": 37,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 37,
+                "floor_witness": {
+                  "epoch": 1784027808.869,
+                  "price": 37,
+                  "size": 19.4,
+                  "receipt": "31bf7f53-bfe7-4a90-70f2-886b62da0cc4"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784027808.869,
+                  "price": 37,
+                  "size": 19.4,
+                  "receipt": "31bf7f53-bfe7-4a90-70f2-886b62da0cc4"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "ZHO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 59,
+              "P": 63,
+              "Q": 61,
+              "X": 1784033272.683123,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 110,
+              "ess": 32.244367317824015,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 60,
+                "last_trade_cents": 63,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-479"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 93,
+                "leg": "ZHO",
+                "epoch": 1784016288.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 63; reserve KOZ max(close 41, ask 41) = 41"
+                },
+                "book": {
+                  "bid_cents": 58,
+                  "ask_cents": 60,
+                  "last_trade_cents": 63,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-479"
+                },
+                "Q": 61,
+                "X": 1784033272.683123,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "stage_index": 46
+              },
+              "permission": {
+                "ordinal": 46,
+                "epoch": 1784016288.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-597",
+                "id": "ZHO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 59,
+                  "hand_level": 59,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 63,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.8402941590914956,
+                      "ROUND_TRIP": 3.3571452938185935,
+                      "LATE_BREAK_DOWN": 0.03336931833269706,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.1313038190591316,
+                      "QUIET_WOBBLE": 1.5044815286421893,
+                      "DRIFT_UP": 0.7686425992835026,
+                      "GRIND_WOBBLE_UP": 0.06362892676546017,
+                      "ONE_STEP_DOWN": 0.12737265738729095,
+                      "EARLY_SET_UP": 1.042058074208689,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.00982005329583426
+                    },
+                    "position": 0.14650959860383944,
+                    "epoch": 1784010171.897993,
+                    "minutes_to_bell": 666.1350334485372,
+                    "open": true,
+                    "member_count": 39,
+                    "ess": 8.642556369919475,
+                    "weight_sum": 3.3571452938185935,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 41,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 41,
+                    "ask": 41,
+                    "sum": 100,
+                    "discount": 0,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 63; reserve KOZ max(close 41, ask 41) = 41",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ZHO": {
+                    "forecast": 63,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 32.244367317824015,
+                    "role": "CLIMBER",
+                    "current": 63,
+                    "member_count": 110
+                  },
+                  "KOZ": {
+                    "forecast": 41,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 205.92601156713633,
+                    "role": "NOT_CALLABLE",
+                    "current": 41,
+                    "member_count": 478
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.8402941590914956,
+                    "ROUND_TRIP": 3.3571452938185935,
+                    "LATE_BREAK_DOWN": 0.03336931833269706,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.1313038190591316,
+                    "QUIET_WOBBLE": 1.5044815286421893,
+                    "DRIFT_UP": 0.7686425992835026,
+                    "GRIND_WOBBLE_UP": 0.06362892676546017,
+                    "ONE_STEP_DOWN": 0.12737265738729095,
+                    "EARLY_SET_UP": 1.042058074208689,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.00982005329583426
+                  },
+                  "position": 0.14650959860383944,
+                  "epoch": 1784010171.897993,
+                  "minutes_to_bell": 666.1350334485372,
+                  "open": true,
+                  "member_count": 39,
+                  "ess": 8.642556369919475,
+                  "weight_sum": 3.3571452938185935,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784033272.683123,
+                "q25": 59,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 59,
+                "floor_witness": {
+                  "epoch": 1784046144.371,
+                  "price": 59,
+                  "size": 2.13,
+                  "receipt": "a91a6e17-96e8-5347-c45f-c3b70e4eed4e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784027764.479,
+                  "price": 62,
+                  "size": 45,
+                  "receipt": "0a0433c4-7187-4cfb-ba3e-ff57770e1180"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-KOZ-miss",
+          "label": "Last receipt before KOZ missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "KOZ",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+          "epoch": 1784050137.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOZ is not yet directionally called; ZHO is strengthening.",
+              "WHY": "KOZ trades at 42¢ against its 41¢ opening anchor; ZHO trades at 61¢ against its 59¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOZ carries 1947 eligible past sides from first-price comparisons; ZHO carries 696 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOZ calls 42¢ by T−0hr 0min; ZHO calls 61¢ by T−0hr 0min.",
+              "WHY": "KOZ’s middle half spans 42–42¢; ZHO’s middle half spans 61–61¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOZ has book 40/42 and no standing bid; ZHO has book 58/61 and no standing bid.",
+              "WHY": "KOZ: The policy was waiting for a directional call; ZHO: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KOZ": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 42,
+              "Q": 42,
+              "X": 1784050137.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 881.3549555004313,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 142,
+                "leg": "KOZ",
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 42; reserve ZHO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921"
+                },
+                "Q": 42,
+                "X": 1784050137.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "stage_index": 71
+              },
+              "permission": {
+                "ordinal": 71,
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "id": "KOZ",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.990881793185893,
+                      "ROUND_TRIP": 16.411140066480268,
+                      "LATE_BREAK_UP": 4.657445308574891,
+                      "ONE_STEP_UP": 2.9358654748039417,
+                      "LATE_BREAK_DOWN": 3.162408303239806,
+                      "QUIET_WOBBLE": 69.44587529375528,
+                      "DRIFT_DOWN": 2.671597344655321,
+                      "SLEEPER": 11.534739625878785,
+                      "DRIFT_UP": 2.6465222288671697,
+                      "EARLY_SET_DOWN": 3.939203964890706,
+                      "GRIND_WOBBLE_UP": 0.6086134993411534,
+                      "EARLY_SET_UP": 1.6769078367559211,
+                      "GRIND_WOBBLE_DOWN": 0.13799764520924665
+                    },
+                    "position": 0.16170966901598197,
+                    "epoch": 1784010883.7020903,
+                    "minutes_to_bell": 654.2716318289439,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 457.3528145531198,
+                    "weight_sum": 69.44587529375528,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 42; reserve ZHO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ZHO": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 285.90121490263584,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 696
+                  },
+                  "KOZ": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 881.3549555004313,
+                    "role": "NOT_CALLABLE",
+                    "current": 42,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.990881793185893,
+                    "ROUND_TRIP": 16.411140066480268,
+                    "LATE_BREAK_UP": 4.657445308574891,
+                    "ONE_STEP_UP": 2.9358654748039417,
+                    "LATE_BREAK_DOWN": 3.162408303239806,
+                    "QUIET_WOBBLE": 69.44587529375528,
+                    "DRIFT_DOWN": 2.671597344655321,
+                    "SLEEPER": 11.534739625878785,
+                    "DRIFT_UP": 2.6465222288671697,
+                    "EARLY_SET_DOWN": 3.939203964890706,
+                    "GRIND_WOBBLE_UP": 0.6086134993411534,
+                    "EARLY_SET_UP": 1.6769078367559211,
+                    "GRIND_WOBBLE_DOWN": 0.13799764520924665
+                  },
+                  "position": 0.16170966901598197,
+                  "epoch": 1784010883.7020903,
+                  "minutes_to_bell": 654.2716318289439,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 457.3528145531198,
+                  "weight_sum": 69.44587529375528,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784050137.000001,
+                "q25": 42,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ZHO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 59,
+              "P": 61,
+              "Q": 61,
+              "X": 1784050137.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 285.90121490263584,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-4098"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 143,
+                "leg": "ZHO",
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 61; reserve KOZ max(close 42, ask 42) = 42"
+                },
+                "book": {
+                  "bid_cents": 58,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-4098"
+                },
+                "Q": 61,
+                "X": 1784050137.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "stage_index": 71
+              },
+              "permission": {
+                "ordinal": 71,
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "id": "ZHO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 60,
+                  "hand_level": 60,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 61,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 6.58760589562719,
+                      "ROUND_TRIP": 9.41097367531052,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 3.5526054876320505,
+                      "QUIET_WOBBLE": 20.70683187864227,
+                      "DRIFT_UP": 2.7739872643228796,
+                      "GRIND_WOBBLE_UP": 0.42391737360074716,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 3.935377667783048,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.1612616217428335
+                    },
+                    "position": 0.04521754039759551,
+                    "epoch": 1784005428.4921992,
+                    "minutes_to_bell": 745.1917966802915,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 119.10069049527146,
+                    "weight_sum": 20.70683187864227,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 42,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 42,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 61; reserve KOZ max(close 42, ask 42) = 42",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ZHO": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 285.90121490263584,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 696
+                  },
+                  "KOZ": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 881.3549555004313,
+                    "role": "NOT_CALLABLE",
+                    "current": 42,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 6.58760589562719,
+                    "ROUND_TRIP": 9.41097367531052,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 3.5526054876320505,
+                    "QUIET_WOBBLE": 20.70683187864227,
+                    "DRIFT_UP": 2.7739872643228796,
+                    "GRIND_WOBBLE_UP": 0.42391737360074716,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 3.935377667783048,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.1612616217428335
+                  },
+                  "position": 0.04521754039759551,
+                  "epoch": 1784005428.4921992,
+                  "minutes_to_bell": 745.1917966802915,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 119.10069049527146,
+                  "weight_sum": 20.70683187864227,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784050137.000001,
+                "q25": 61,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784050140,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-ZHO-miss",
+          "label": "Last receipt before ZHO missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "ZHO",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+          "epoch": 1784050137.000001,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "KOZ is not yet directionally called; ZHO is strengthening.",
+              "WHY": "KOZ trades at 42¢ against its 41¢ opening anchor; ZHO trades at 61¢ against its 59¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "KOZ carries 1947 eligible past sides from first-price comparisons; ZHO carries 696 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "KOZ calls 42¢ by T−0hr 0min; ZHO calls 61¢ by T−0hr 0min.",
+              "WHY": "KOZ’s middle half spans 42–42¢; ZHO’s middle half spans 61–61¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "KOZ has book 40/42 and no standing bid; ZHO has book 58/61 and no standing bid.",
+              "WHY": "KOZ: The policy was waiting for a directional call; ZHO: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "KOZ": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 42,
+              "recorded_floor": 37,
+              "P": 42,
+              "Q": 42,
+              "X": 1784050137.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 881.3549555004313,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 40,
+                "ask_cents": 42,
+                "last_trade_cents": 42,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 142,
+                "leg": "KOZ",
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 42; reserve ZHO max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 40,
+                  "ask_cents": 42,
+                  "last_trade_cents": 42,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921"
+                },
+                "Q": 42,
+                "X": 1784050137.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "stage_index": 71
+              },
+              "permission": {
+                "ordinal": 71,
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "id": "KOZ",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 42,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.990881793185893,
+                      "ROUND_TRIP": 16.411140066480268,
+                      "LATE_BREAK_UP": 4.657445308574891,
+                      "ONE_STEP_UP": 2.9358654748039417,
+                      "LATE_BREAK_DOWN": 3.162408303239806,
+                      "QUIET_WOBBLE": 69.44587529375528,
+                      "DRIFT_DOWN": 2.671597344655321,
+                      "SLEEPER": 11.534739625878785,
+                      "DRIFT_UP": 2.6465222288671697,
+                      "EARLY_SET_DOWN": 3.939203964890706,
+                      "GRIND_WOBBLE_UP": 0.6086134993411534,
+                      "EARLY_SET_UP": 1.6769078367559211,
+                      "GRIND_WOBBLE_DOWN": 0.13799764520924665
+                    },
+                    "position": 0.16170966901598197,
+                    "epoch": 1784010883.7020903,
+                    "minutes_to_bell": 654.2716318289439,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 457.3528145531198,
+                    "weight_sum": 69.44587529375528,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 42; reserve ZHO max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ZHO": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 285.90121490263584,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 696
+                  },
+                  "KOZ": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 881.3549555004313,
+                    "role": "NOT_CALLABLE",
+                    "current": 42,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.990881793185893,
+                    "ROUND_TRIP": 16.411140066480268,
+                    "LATE_BREAK_UP": 4.657445308574891,
+                    "ONE_STEP_UP": 2.9358654748039417,
+                    "LATE_BREAK_DOWN": 3.162408303239806,
+                    "QUIET_WOBBLE": 69.44587529375528,
+                    "DRIFT_DOWN": 2.671597344655321,
+                    "SLEEPER": 11.534739625878785,
+                    "DRIFT_UP": 2.6465222288671697,
+                    "EARLY_SET_DOWN": 3.939203964890706,
+                    "GRIND_WOBBLE_UP": 0.6086134993411534,
+                    "EARLY_SET_UP": 1.6769078367559211,
+                    "GRIND_WOBBLE_DOWN": 0.13799764520924665
+                  },
+                  "position": 0.16170966901598197,
+                  "epoch": 1784010883.7020903,
+                  "minutes_to_bell": 654.2716318289439,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 457.3528145531198,
+                  "weight_sum": 69.44587529375528,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 42,
+                "deadline_epoch": 1784050137.000001,
+                "q25": 42,
+                "q75": 42,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "ZHO": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 59,
+              "corrected_open": 59,
+              "close": 61,
+              "recorded_floor": 59,
+              "P": 61,
+              "Q": 61,
+              "X": 1784050137.000001,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 285.90121490263584,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 58,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-4098"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 143,
+                "leg": "ZHO",
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 61; reserve KOZ max(close 42, ask 42) = 42"
+                },
+                "book": {
+                  "bid_cents": 58,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-ZHO.csv.gz#row-4098"
+                },
+                "Q": 61,
+                "X": 1784050137.000001,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784003311,
+                "stage_index": 71
+              },
+              "permission": {
+                "ordinal": 71,
+                "epoch": 1784050137.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ-KOZ.csv.gz#row-4921",
+                "id": "ZHO",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 60,
+                  "hand_level": 60,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 61,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 6.58760589562719,
+                      "ROUND_TRIP": 9.41097367531052,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 3.5526054876320505,
+                      "QUIET_WOBBLE": 20.70683187864227,
+                      "DRIFT_UP": 2.7739872643228796,
+                      "GRIND_WOBBLE_UP": 0.42391737360074716,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 3.935377667783048,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.1612616217428335
+                    },
+                    "position": 0.04521754039759551,
+                    "epoch": 1784005428.4921992,
+                    "minutes_to_bell": 745.1917966802915,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 119.10069049527146,
+                    "weight_sum": 20.70683187864227,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 42,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 42,
+                    "ask": 42,
+                    "sum": 102,
+                    "discount": -2,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 61; reserve KOZ max(close 42, ask 42) = 42",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "ZHO": {
+                    "forecast": 61,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 285.90121490263584,
+                    "role": "CLIMBER",
+                    "current": 61,
+                    "member_count": 696
+                  },
+                  "KOZ": {
+                    "forecast": 42,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 881.3549555004313,
+                    "role": "NOT_CALLABLE",
+                    "current": 42,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 6.58760589562719,
+                    "ROUND_TRIP": 9.41097367531052,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 3.5526054876320505,
+                    "QUIET_WOBBLE": 20.70683187864227,
+                    "DRIFT_UP": 2.7739872643228796,
+                    "GRIND_WOBBLE_UP": 0.42391737360074716,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 3.935377667783048,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.1612616217428335
+                  },
+                  "position": 0.04521754039759551,
+                  "epoch": 1784005428.4921992,
+                  "minutes_to_bell": 745.1917966802915,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 119.10069049527146,
+                  "weight_sum": 20.70683187864227,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 61,
+                "deadline_epoch": 1784050137.000001,
+                "q25": 61,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784050140,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "PASS",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "KOZ": false,
+          "ZHO": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 4,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "KOZ",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 42,
+            "close_epoch": 1784049883.4,
+            "floor_cents": 37,
+            "offered_cents": 5,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 5,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "ZHO",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 61,
+            "close_epoch": 1784050002,
+            "floor_cents": 59,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "0df1b2c84355d76808579973ee26c76b4092529989851bb3108ebacab9dcd354",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

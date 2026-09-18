@@ -1,0 +1,145 @@
+{
+  "retrieved_at": "2026-09-17T02:39:26.591Z",
+  "as_of_local_date": "2026-09-16",
+  "sources": [
+    {
+      "url": "https://kalshi.com/docs/kalshi-fee-schedule.pdf",
+      "local_download_error": "Error: 429 https://kalshi.com/docs/kalshi-fee-schedule.pdf",
+      "verified_via": "Web PDF reader, 12 pages, effective July 7 2026, pages 1/5/10 and fee table pages 3/4",
+      "retrieved_at": "2026-09-17T02:39:26.591Z"
+    },
+    {
+      "url": "https://docs.kalshi.com/getting_started/fee_rounding",
+      "file": "fee_rounding.html",
+      "sha256": "a357600d543c3ad2d20732c3a1bc2aca60ebb5642b4442cbe86d3d39ec38b69e",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 246546
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXATPMATCH",
+      "file": "KXATPMATCH.json",
+      "sha256": "4a97fd0a1e4c0a5cde18416e1848728c8715cf8321771593c3ddfc1efdba40ea",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 2079
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXATPMATCH&show_historical=true",
+      "file": "KXATPMATCH.history.json",
+      "sha256": "4bb6814e785beaaa1b0cddf68ea25ee65978609d5931c420c3d8211c6c5e4630",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 198
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXATPCHALLENGERMATCH",
+      "file": "KXATPCHALLENGERMATCH.json",
+      "sha256": "6ba719d6b84f73b2d6d978946bf8924d7dfc3cd8061b16ceb1055e3d4d92edd8",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 1857
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXATPCHALLENGERMATCH&show_historical=true",
+      "file": "KXATPCHALLENGERMATCH.history.json",
+      "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 28
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXWTAMATCH",
+      "file": "KXWTAMATCH.json",
+      "sha256": "2c38867ceec14fe1fe1229cc201751e2b929d611f11fb834acf636c7e5c2670a",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 1856
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXWTAMATCH&show_historical=true",
+      "file": "KXWTAMATCH.history.json",
+      "sha256": "091e5c3950908996521c37b2171578cdb136b9d6828bece6de2eae4f862390e4",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 198
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXWTACHALLENGERMATCH",
+      "file": "KXWTACHALLENGERMATCH.json",
+      "sha256": "92e82cba6609b97ed18104af2440f8bc47606ac0d495b2fe547abc88db69798f",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 1494
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXWTACHALLENGERMATCH&show_historical=true",
+      "file": "KXWTACHALLENGERMATCH.history.json",
+      "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 28
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXITFMATCH",
+      "file": "KXITFMATCH.json",
+      "sha256": "08999099a2b361f973ea7278cb1977caac03508072e58e0f4dd57ed314f1f669",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 1984
+    },
+    {
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/fee_changes?series_ticker=KXITFMATCH&show_historical=true",
+      "file": "KXITFMATCH.history.json",
+      "sha256": "6780c8eb7edbb5e1ca3b15166f17cef054befacb2cc8f4bc479c54074a9a2c18",
+      "retrieved_at": "2026-09-17T02:39:26.591Z",
+      "bytes": 28
+    }
+  ],
+  "series": [
+    {
+      "ticker": "KXATPMATCH",
+      "fee_type": "quadratic_with_maker_fees",
+      "fee_multiplier": 1,
+      "last_updated_ts": "2026-09-16T19:21:16.470302Z",
+      "history": [
+        {
+          "fee_multiplier": 1,
+          "fee_type": "quadratic_with_maker_fees",
+          "id": "7c0c04b4-98bc-4de7-aa58-88bef099b8fa",
+          "scheduled_ts": "2025-11-15T08:00:00Z",
+          "series_ticker": "KXATPMATCH"
+        }
+      ]
+    },
+    {
+      "ticker": "KXATPCHALLENGERMATCH",
+      "fee_type": "quadratic",
+      "fee_multiplier": 1,
+      "last_updated_ts": "2026-09-16T19:21:16.428405Z",
+      "history": []
+    },
+    {
+      "ticker": "KXWTAMATCH",
+      "fee_type": "quadratic_with_maker_fees",
+      "fee_multiplier": 1,
+      "last_updated_ts": "2026-09-16T19:21:16.919489Z",
+      "history": [
+        {
+          "fee_multiplier": 1,
+          "fee_type": "quadratic_with_maker_fees",
+          "id": "ae48f939-cb32-44fd-b355-e4f577d4da3b",
+          "scheduled_ts": "2025-11-15T08:00:00Z",
+          "series_ticker": "KXWTAMATCH"
+        }
+      ]
+    },
+    {
+      "ticker": "KXWTACHALLENGERMATCH",
+      "fee_type": "quadratic",
+      "fee_multiplier": 1,
+      "last_updated_ts": "2026-09-16T19:21:16.134458Z",
+      "history": []
+    },
+    {
+      "ticker": "KXITFMATCH",
+      "fee_type": "quadratic",
+      "fee_multiplier": 1,
+      "last_updated_ts": "2026-09-16T19:21:16.417555Z",
+      "history": []
+    }
+  ],
+  "july": "The served PDF is effective July 7, 2026. It covers these July 12-16 games. Main-tour maker-fee changes are dated November 15, 2025; no subsequent tennis changes returned. Challenger and ITF schedules have no returned changes and use PDF defaults. The exact rounding implementation on July 1-6 is not independently archived here.",
+  "rounding": "Official API fee-rounding documentation distinguishes direct-member 0.01-cent balance precision and non-direct-member 1-cent precision. One-contract integer-cent fills: charge formula rounded up to that precision. Reports supply both scenarios; no account rebate, membership or FCM charge is inferred.",
+  "ruler": "Gross corrected W1 close minus entry is preserved. Add entry fee and fee-adjusted marked-to-W1-close value. Marking to close is not an executed exit: no exit fee or liquidity is invented."
+}

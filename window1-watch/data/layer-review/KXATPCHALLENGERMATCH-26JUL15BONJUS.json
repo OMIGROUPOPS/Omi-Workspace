@@ -1,0 +1,2269 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "207b2b59c33cab95bee27fdcf552bac86fcd479f200bfc38d1d8708e7eb06794",
+    "stage_cache_sha256": "7963b5bfa34ce7a4697ec0b77b4f28c82afc26dc0d3308a2037da8c9dee4de70",
+    "mirror_projection_sha256": "4bde5b4c9d2bcb7fd21a7df55f920ed09b0a5cfdcecb0d1b1c346c5500d66820",
+    "mirror_permissions_sha256": "93977d55d77373fc0ca98d07bd2096824a5f969c1fdc8a4e80f8ede3dfdc5b05",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "67f12f033d67bce9979769108ced8a05e4ac007f6a6526cbe89dc02278729190",
+      "row_number": 376,
+      "row_csv": "26JUL15BONJUS,KXATPCHALLENGERMATCH-26JUL15BONJUS,ATP_CHALL,1784063548,1784063548,1784106239.626,1784116800.0,BON,JUS,1784063548,41.0,39,1784079973.6,40,1784106143.4,2031.0,806.56,STILL,-1.0,1784079974,39,1784086164.6,PRE_BELL_VALID,1784063548,58.5,59,1784072757.0,62,1784105790.3,7842.67,4784.0,STILL,3.5,1784079984,60,1784102005.4,PRE_BELL_VALID,1784063548,,,1784106660.0,1784114687.0,1784106660.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784063548,1784106239.626,OK,COMPLETE_AT_DELTA,1",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784063548,
+      "span_end_epoch": 1784106239.626,
+      "bell_epoch": 1784106660,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784106660,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BON": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 41,
+          "floor_cents": 39,
+          "floor_epoch": 1784079973.6,
+          "minutes_to_bell": 444.77333333492277,
+          "line": "BON 39¢ @ 444.77m to bell",
+          "marker_label": "BON FLOOR · RECORDED 39¢ @ 444.77m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 39¢ · 444m to bell",
+          "hover_note": "Recorded floor 39¢ printed here · 444m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "JUS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 58.5,
+          "floor_cents": 59,
+          "floor_epoch": 1784072757,
+          "minutes_to_bell": 565.05,
+          "line": "JUS 59¢ @ 565.05m to bell",
+          "marker_label": "JUS FLOOR · RECORDED 59¢ @ 565.05m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 59¢ · 565m to bell",
+          "hover_note": "Recorded floor 59¢ printed here · 565m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "JUS",
+      "underdog_leg": "BON",
+      "pair": {
+        "sum_cents": 98,
+        "discount_cents": 2,
+        "reason": null,
+        "line": "best capturable = 59 + 39 = 98¢",
+        "discount_line": "2¢ under par",
+        "compact_line": "best capturable 98¢ · 2¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL15BONJUS",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784063548",
+        "w1_left_epoch": "1784063548",
+        "w1_right_epoch": "1784106239.626",
+        "scheduled_start_epoch": "1784116800.0",
+        "legA": "BON",
+        "legB": "JUS",
+        "legA_formation_end_epoch": "1784063548",
+        "legA_open_postformation_c": "41.0",
+        "legA_floor_c": "39",
+        "legA_floor_epoch": "1784079973.6",
+        "legA_close_c": "40",
+        "legA_close_epoch": "1784106143.4",
+        "legA_contracts": "2031.0",
+        "legA_premium_usd": "806.56",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-1.0",
+        "legA_us_first_post_epoch": "1784079974",
+        "legA_us_fill_c": "39",
+        "legA_us_fill_epoch": "1784086164.6",
+        "legA_us_fill_stamp": "PRE_BELL_VALID",
+        "legB_formation_end_epoch": "1784063548",
+        "legB_open_postformation_c": "58.5",
+        "legB_floor_c": "59",
+        "legB_floor_epoch": "1784072757.0",
+        "legB_close_c": "62",
+        "legB_close_epoch": "1784105790.3",
+        "legB_contracts": "7842.67",
+        "legB_premium_usd": "4784.0",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "3.5",
+        "legB_us_first_post_epoch": "1784079984",
+        "legB_us_fill_c": "60",
+        "legB_us_fill_epoch": "1784102005.4",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784063548",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784106660.0",
+        "kalshi_close_time_epoch": "1784114687.0",
+        "bell_epoch": "1784106660.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784063548",
+        "span_end_epoch": "1784106239.626",
+        "verified_span": "OK",
+        "pair_state": "COMPLETE_AT_DELTA",
+        "locked_delta_valid_fills_c": "1"
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL15BONJUS.jsonl",
+      "sha256": "25e8d524329718b9da0adf25cbf88876c124fa8beabef05d315826b2c160797b",
+      "raw_rows": 4903,
+      "accepted_rows": 110,
+      "start_epoch": 1784063548,
+      "end_epoch": 1784106239.626
+    }
+  },
+  "first_callable_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+  "first_both_directional_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+  "first_callable_by_side": {
+    "BON": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+    "JUS": "f8075ac8-4380-4dd3-c150-519f4d7e056f"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+          "epoch": 1784079973.644,
+          "clock": "T−7hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BON is weakening; JUS is strengthening.",
+              "WHY": "BON trades at 39¢ against its 41¢ opening anchor; JUS trades at 60¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BON carries 265 eligible past sides from first-price comparisons; JUS carries 207 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BON calls 38¢ by T−4hr 45min; JUS calls 59¢ by T−5hr 1min.",
+              "WHY": "BON’s middle half spans 37–39¢; JUS’s middle half spans 56–60¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BON has book 39/41 and a standing 38¢ bid; JUS has book 59/61 and a standing 59¢ bid.",
+              "WHY": "BON: The current pool target was the permitted bid level; JUS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BON": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 39,
+              "P": 39,
+              "Q": 38,
+              "X": 1784089135.380421,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 265,
+              "ess": 85.79767173689832,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 41,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1249"
+              },
+              "bid": 38,
+              "filled": null,
+              "decision": {
+                "order": 42,
+                "leg": "BON",
+                "epoch": 1784079973.644,
+                "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 38,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 41,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1249"
+                },
+                "Q": 38,
+                "X": 1784089135.380421,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "support": null,
+                "accountability_assumption": "cbb1c46ccd3a1d8ed5e7030e7c9473235f4bde0423331f318788e7ed4385713f",
+                "stage_index": 21
+              },
+              "permission": null,
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784089135.380421,
+                "q25": 37,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 39,
+                "floor_witness": {
+                  "epoch": 1784086164.574,
+                  "price": 39,
+                  "size": 39.89,
+                  "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784086164.574,
+                  "price": 39,
+                  "size": 39.89,
+                  "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "JUS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58.5,
+              "close": 62,
+              "recorded_floor": 59,
+              "P": 60,
+              "Q": 59,
+              "X": 1784088185.626,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 207,
+              "ess": 74.12766233127626,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 59,
+                "ask_cents": 61,
+                "last_trade_cents": 60,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-1412"
+              },
+              "bid": 59,
+              "filled": null,
+              "decision": {
+                "order": 43,
+                "leg": "JUS",
+                "epoch": 1784079973.644,
+                "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 59,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 59,
+                  "ask_cents": 61,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-1412"
+                },
+                "Q": 59,
+                "X": 1784088185.626,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "support": null,
+                "accountability_assumption": "d7a63dbae8ac9fc6b1cdd4101006a4bea3fbb8fddae2ab44a2d710dd642d2885",
+                "stage_index": 21
+              },
+              "permission": null,
+              "micro": {
+                "Q": 59,
+                "deadline_epoch": 1784088185.626,
+                "q25": 56,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784102005.406,
+                  "price": 60,
+                  "size": 346,
+                  "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BON-fill",
+          "label": "Last receipt before BON filled",
+          "arm": "D",
+          "focus_leg": "BON",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620",
+          "epoch": 1784085146.000006,
+          "clock": "T−5hr 52min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BON is not yet directionally called; JUS is strengthening.",
+              "WHY": "BON trades at 40¢ against its 41¢ opening anchor; JUS trades at 61¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BON carries 1115 eligible past sides from first-price comparisons; JUS carries 294 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BON calls 39¢ by T−3hr 43min; JUS calls 60¢ by T−4hr 8min.",
+              "WHY": "BON’s middle half spans 37–40¢; JUS’s middle half spans 58–61¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BON has book 39/41 and a standing 39¢ bid; JUS has book 59/61 and a standing 60¢ bid.",
+              "WHY": "BON: The current pool target was the permitted bid level; JUS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 39,
+              "P": 40,
+              "Q": 39,
+              "X": 1784092830.626,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1115,
+              "ess": 403.9489352075118,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 40,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620"
+              },
+              "bid": 39,
+              "filled": null,
+              "decision": {
+                "order": 52,
+                "leg": "BON",
+                "epoch": 1784085146.000006,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 39,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620"
+                },
+                "Q": 39,
+                "X": 1784092830.626,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "support": null,
+                "accountability_assumption": "26ca84e33be010bdefcb9dfd9b0d1a77e032e9e8addc8ebf88c454edd4974c1e",
+                "stage_index": 26
+              },
+              "permission": null,
+              "micro": {
+                "Q": 39,
+                "deadline_epoch": 1784092830.626,
+                "q25": 37,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 39,
+                "floor_witness": {
+                  "epoch": 1784086164.574,
+                  "price": 39,
+                  "size": 39.89,
+                  "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784086164.574,
+                  "price": 39,
+                  "size": 39.89,
+                  "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "JUS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58.5,
+              "close": 62,
+              "recorded_floor": 59,
+              "P": 61,
+              "Q": 60,
+              "X": 1784091364.110189,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 294,
+              "ess": 120.45100873297051,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 59,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-1531"
+              },
+              "bid": 60,
+              "filled": null,
+              "decision": {
+                "order": 53,
+                "leg": "JUS",
+                "epoch": 1784085146.000006,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 60,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 59,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-1531"
+                },
+                "Q": 60,
+                "X": 1784091364.110189,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "support": null,
+                "accountability_assumption": "e433210faf37ce9a31dea88cd741f31d9433cb25f7a247d365497c4c6256cf88",
+                "stage_index": 26
+              },
+              "permission": null,
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1784091364.110189,
+                "q25": 58,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784102005.406,
+                  "price": 60,
+                  "size": 346,
+                  "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784085449.92,
+                  "price": 61,
+                  "size": 10,
+                  "receipt": "6a6cb41b-aa52-44fc-ab9d-b34b5d2dc8f6"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": true,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "PASS",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784086164.574,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "BON",
+              "epoch": 1784086164.574,
+              "cents": 39,
+              "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e",
+              "order_lineage_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+              "order_lineage_start_epoch": 1784079973.644,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+              "current_price_start_epoch": 1784084639.626,
+              "order_lineage_age_minutes": 103.18216666380565,
+              "current_price_age_minutes": 25.41579999923706,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "BON",
+                "epoch": 1784086164.574,
+                "cents": 39,
+                "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e",
+                "order_lineage_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "order_lineage_start_epoch": 1784079973.644,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+                "current_price_start_epoch": 1784084639.626,
+                "order_lineage_age_minutes": 103.18216666380565,
+                "current_price_age_minutes": 25.41579999923706,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 52,
+              "leg": "BON",
+              "epoch": 1784085146.000006,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 39,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 40,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1620"
+              },
+              "Q": 39,
+              "X": 1784092830.626,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784063548,
+              "support": null,
+              "accountability_assumption": "26ca84e33be010bdefcb9dfd9b0d1a77e032e9e8addc8ebf88c454edd4974c1e",
+              "stage_index": 26
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+            "licensing_deadline_epoch": 1784092643.626,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-JUS-fill",
+          "label": "Last receipt before JUS filled",
+          "arm": "D",
+          "focus_leg": "JUS",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784100839.626",
+          "epoch": 1784100839.626,
+          "clock": "T−1hr 30min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BON is not yet directionally called; JUS is strengthening.",
+              "WHY": "BON trades at 40¢ against its 41¢ opening anchor; JUS trades at 61¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BON carries 1741 eligible past sides from first-price comparisons; JUS carries 566 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BON calls 40¢ by T−1hr 30min; JUS calls 60¢ by T−1hr 12min.",
+              "WHY": "BON’s middle half spans 38–40¢; JUS’s middle half spans 59–61¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BON has book 39/40 and a recorded purchase at 39¢; JUS has book 60/61 and a standing 60¢ bid.",
+              "WHY": "BON: This side was already bought, so no new bid was allowed; JUS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 39,
+              "P": 40,
+              "Q": 40,
+              "X": 1784100839.626,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1741,
+              "ess": 604.2907358370795,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 40,
+                "last_trade_cents": 40,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-2661"
+              },
+              "bid": null,
+              "filled": 39,
+              "decision": {
+                "order": 66,
+                "leg": "BON",
+                "epoch": 1784100839.626,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784100839.626",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 40,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-2661"
+                },
+                "Q": 40,
+                "X": 1784100839.626,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 36
+              },
+              "permission": null,
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784100839.626,
+                "q25": 38,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 39,
+                "floor_witness": {
+                  "epoch": 1784104485.086,
+                  "price": 39,
+                  "size": 24,
+                  "receipt": "f96b6a52-6467-4e11-2f85-dd8de5f89067"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "JUS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58.5,
+              "close": 62,
+              "recorded_floor": 59,
+              "P": 61,
+              "Q": 60,
+              "X": 1784101941.626,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 566,
+              "ess": 219.67270297168926,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2381"
+              },
+              "bid": 60,
+              "filled": null,
+              "decision": {
+                "order": 67,
+                "leg": "JUS",
+                "epoch": 1784100839.626,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784100839.626",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 60,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 61,
+                  "last_trade_cents": 61,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2381"
+                },
+                "Q": 60,
+                "X": 1784101941.626,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "support": null,
+                "accountability_assumption": "d34fc923386c2653e190342cc4da37c0914d0f6ce93d694e0f103601514502aa",
+                "stage_index": 36
+              },
+              "permission": null,
+              "micro": {
+                "Q": 60,
+                "deadline_epoch": 1784101941.626,
+                "q25": 59,
+                "q75": 61,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784102005.406,
+                  "price": 60,
+                  "size": 346,
+                  "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784102005.406,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "JUS",
+              "epoch": 1784102005.406,
+              "cents": 60,
+              "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2",
+              "order_lineage_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+              "order_lineage_start_epoch": 1784079973.644,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+              "current_price_start_epoch": 1784084639.626,
+              "order_lineage_age_minutes": 367.19603333075844,
+              "current_price_age_minutes": 289.4296666661898,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "JUS",
+                "epoch": 1784102005.406,
+                "cents": 60,
+                "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2",
+                "order_lineage_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "order_lineage_start_epoch": 1784079973.644,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+                "current_price_start_epoch": 1784084639.626,
+                "order_lineage_age_minutes": 367.19603333075844,
+                "current_price_age_minutes": 289.4296666661898,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": true,
+            "permitted_policy_window": true,
+            "passed": true,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 67,
+              "leg": "JUS",
+              "epoch": 1784100839.626,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784100839.626",
+              "trigger": "ATLAS_GATE",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 60,
+                "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+              },
+              "book": {
+                "bid_cents": 60,
+                "ask_cents": 61,
+                "last_trade_cents": 61,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2381"
+              },
+              "Q": 60,
+              "X": 1784101941.626,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784063548,
+              "support": null,
+              "accountability_assumption": "d34fc923386c2653e190342cc4da37c0914d0f6ce93d694e0f103601514502aa",
+              "stage_index": 36
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+            "licensing_deadline_epoch": 1784092083.58195,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "PASS",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BON": true,
+          "JUS": true
+        },
+        "valid_fills": 2,
+        "pair_completed": true,
+        "pair_sum": 99,
+        "captured_cents": 1,
+        "best_capturable_cents": 2,
+        "fills": [
+          {
+            "leg": "BON",
+            "epoch": 1784086164.574,
+            "cents": 39,
+            "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e",
+            "order_lineage_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+            "order_lineage_start_epoch": 1784079973.644,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+            "current_price_start_epoch": 1784084639.626,
+            "order_lineage_age_minutes": 103.18216666380565,
+            "current_price_age_minutes": 25.41579999923706,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          },
+          {
+            "leg": "JUS",
+            "epoch": 1784102005.406,
+            "cents": 60,
+            "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2",
+            "order_lineage_receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+            "order_lineage_start_epoch": 1784079973.644,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS|ATLAS_GATE|1784084639.626",
+            "current_price_start_epoch": 1784084639.626,
+            "order_lineage_age_minutes": 367.19603333075844,
+            "current_price_age_minutes": 289.4296666661898,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+        "category": "ATP_CHALL",
+        "group": "completed",
+        "legs": [
+          {
+            "id": "BON",
+            "filled": true,
+            "fill_cents": 39,
+            "fill_epoch": 1784086164.574,
+            "fill_receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e",
+            "close_cents": 40,
+            "close_epoch": 1784106143.4,
+            "floor_cents": 39,
+            "offered_cents": 1,
+            "value_cents": 1,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "JUS",
+            "filled": true,
+            "fill_cents": 60,
+            "fill_epoch": 1784102005.406,
+            "fill_receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2",
+            "close_cents": 62,
+            "close_epoch": 1784105790.3,
+            "floor_cents": 59,
+            "offered_cents": 3,
+            "value_cents": 2,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "67f12f033d67bce9979769108ced8a05e4ac007f6a6526cbe89dc02278729190",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+          "epoch": 1784079973.644,
+          "clock": "T−7hr 18min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BON is weakening; JUS is strengthening.",
+              "WHY": "BON trades at 39¢ against its 41¢ opening anchor; JUS trades at 60¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BON carries 265 eligible past sides from first-price comparisons; JUS carries 207 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BON calls 38¢ by T−4hr 45min; JUS calls 59¢ by T−5hr 1min.",
+              "WHY": "BON’s middle half spans 37–39¢; JUS’s middle half spans 56–60¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BON has book 39/41 and a standing 38¢ bid; JUS has book 59/61 and no standing bid.",
+              "WHY": "BON: buying the weakening side in quiet wobble's learned late-floor window; predicted floor 38; bid 38; reserve JUS max(close 60, ask 61) = 61; 38 + 61 = 99 < 100; JUS: The available bid was not below the predicted closing price. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BON": {
+              "role": "FALLER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 39,
+              "P": 39,
+              "Q": 38,
+              "X": 1784089135.380421,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 265,
+              "ess": 85.79767173689832,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 39,
+                "ask_cents": 41,
+                "last_trade_cents": 41,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1249"
+              },
+              "bid": 38,
+              "filled": null,
+              "decision": {
+                "order": 42,
+                "leg": "BON",
+                "epoch": 1784079973.644,
+                "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 38,
+                  "reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 38; bid 38; reserve JUS max(close 60, ask 61) = 61; 38 + 61 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 39,
+                  "ask_cents": 41,
+                  "last_trade_cents": 41,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-1249"
+                },
+                "Q": 38,
+                "X": 1784089135.380421,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784079973.644,
+                "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "id": "BON",
+                "old": null,
+                "proposed": 38,
+                "posted": 38,
+                "permission": {
+                  "allowed": true,
+                  "reason": "FALLER_LATE_WINDOW",
+                  "role": "FALLER",
+                  "intended": 38,
+                  "hand_level": 38,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 39,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.6067081932391964,
+                      "ROUND_TRIP": 3.427138843082904,
+                      "LATE_BREAK_UP": 0.3089256268244277,
+                      "ONE_STEP_UP": 0.7790369133203782,
+                      "LATE_BREAK_DOWN": 0,
+                      "QUIET_WOBBLE": 8.3352026480825,
+                      "DRIFT_DOWN": 1.5001138289762275,
+                      "SLEEPER": 0.4673030680533967,
+                      "DRIFT_UP": 0,
+                      "EARLY_SET_DOWN": 3.0339734486434065,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.05299111743549147
+                    },
+                    "position": 0.2559070096949249,
+                    "epoch": 1784074473.0863488,
+                    "minutes_to_bell": 529.4423275192579,
+                    "open": true,
+                    "member_count": 97,
+                    "ess": 28.958774620003222,
+                    "weight_sum": 8.3352026480825,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 61,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 60,
+                    "ask": 61,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 38; bid 38; reserve JUS max(close 60, ask 61) = 61; 38 + 61 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 38,
+                    "climber_forecast_close": 60,
+                    "mirror_completion_cost": 40,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "JUS",
+                    "faller": "BON",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "JUS": {
+                    "forecast": 60,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 74.12766233127626,
+                    "role": "CLIMBER",
+                    "current": 60,
+                    "member_count": 207
+                  },
+                  "BON": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.79767173689832,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 265
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.6067081932391964,
+                    "ROUND_TRIP": 3.427138843082904,
+                    "LATE_BREAK_UP": 0.3089256268244277,
+                    "ONE_STEP_UP": 0.7790369133203782,
+                    "LATE_BREAK_DOWN": 0,
+                    "QUIET_WOBBLE": 8.3352026480825,
+                    "DRIFT_DOWN": 1.5001138289762275,
+                    "SLEEPER": 0.4673030680533967,
+                    "DRIFT_UP": 0,
+                    "EARLY_SET_DOWN": 3.0339734486434065,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.05299111743549147
+                  },
+                  "position": 0.2559070096949249,
+                  "epoch": 1784074473.0863488,
+                  "minutes_to_bell": 529.4423275192579,
+                  "open": true,
+                  "member_count": 97,
+                  "ess": 28.958774620003222,
+                  "weight_sum": 8.3352026480825,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 38,
+                "deadline_epoch": 1784089135.380421,
+                "q25": 37,
+                "q75": 39,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 39,
+                "floor_witness": {
+                  "epoch": 1784086164.574,
+                  "price": 39,
+                  "size": 39.89,
+                  "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784086164.574,
+                  "price": 39,
+                  "size": 39.89,
+                  "receipt": "08664dda-33f5-6b62-50d1-fa98d087f30e"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "JUS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58.5,
+              "close": 62,
+              "recorded_floor": 59,
+              "P": 60,
+              "Q": 59,
+              "X": 1784088185.626,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 207,
+              "ess": 74.12766233127626,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 59,
+                "ask_cents": 61,
+                "last_trade_cents": 60,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-1412"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 43,
+                "leg": "JUS",
+                "epoch": 1784079973.644,
+                "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 60; reserve BON max(late floor 38, 100 - climber close 60 = 40) = 40; views differ by -2c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 59,
+                  "ask_cents": 61,
+                  "last_trade_cents": 60,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-1412"
+                },
+                "Q": 59,
+                "X": 1784088185.626,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784079973.644,
+                "receipt": "f8075ac8-4380-4dd3-c150-519f4d7e056f",
+                "id": "JUS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NOT_BELOW_FORECAST_CLOSE",
+                  "role": "CLIMBER",
+                  "intended": 60,
+                  "hand_level": 60,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 60,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.443072762003604,
+                      "ROUND_TRIP": 3.7736380869074937,
+                      "LATE_BREAK_DOWN": 0.012778574676337614,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 0.3417564176442867,
+                      "QUIET_WOBBLE": 4.4837887977707735,
+                      "DRIFT_UP": 1.8602419338899219,
+                      "GRIND_WOBBLE_UP": 0.09797542893070312,
+                      "ONE_STEP_DOWN": 0.17313644021967212,
+                      "EARLY_SET_UP": 2.4146746465420645,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 0.07268428039692983
+                    },
+                    "position": 0.019903579301631915,
+                    "epoch": 1784064397.7161636,
+                    "minutes_to_bell": 697.3651639382044,
+                    "open": true,
+                    "member_count": 66,
+                    "ess": 24.181665238898606,
+                    "weight_sum": 4.4837887977707735,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 40,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 100,
+                    "discount": 0,
+                    "components": {
+                      "faller_forecast_late_floor": 38,
+                      "climber_forecast_close": 60,
+                      "mirror_completion_cost": 40,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NOT_BELOW_FORECAST_CLOSE; buying the strengthening side before it strengthens; forecast close 60; reserve BON max(late floor 38, 100 - climber close 60 = 40) = 40; views differ by -2c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 38,
+                    "climber_forecast_close": 60,
+                    "mirror_completion_cost": 40,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "JUS",
+                    "faller": "BON",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 41,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 39,
+                    "ask": 41,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "JUS": {
+                    "forecast": 60,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 74.12766233127626,
+                    "role": "CLIMBER",
+                    "current": 60,
+                    "member_count": 207
+                  },
+                  "BON": {
+                    "forecast": 39,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 85.79767173689832,
+                    "role": "FALLER",
+                    "current": 39,
+                    "member_count": 265
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.443072762003604,
+                    "ROUND_TRIP": 3.7736380869074937,
+                    "LATE_BREAK_DOWN": 0.012778574676337614,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 0.3417564176442867,
+                    "QUIET_WOBBLE": 4.4837887977707735,
+                    "DRIFT_UP": 1.8602419338899219,
+                    "GRIND_WOBBLE_UP": 0.09797542893070312,
+                    "ONE_STEP_DOWN": 0.17313644021967212,
+                    "EARLY_SET_UP": 2.4146746465420645,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 0.07268428039692983
+                  },
+                  "position": 0.019903579301631915,
+                  "epoch": 1784064397.7161636,
+                  "minutes_to_bell": 697.3651639382044,
+                  "open": true,
+                  "member_count": 66,
+                  "ess": 24.181665238898606,
+                  "weight_sum": 4.4837887977707735,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 59,
+                "deadline_epoch": 1784088185.626,
+                "q25": 56,
+                "q75": 60,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 60,
+                "floor_witness": {
+                  "epoch": 1784102005.406,
+                  "price": 60,
+                  "size": 346,
+                  "receipt": "20153339-df3b-6e75-fd2d-1725cfada2a2"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BON-miss",
+          "label": "Last receipt before BON missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BON",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+          "epoch": 1784106231.000021,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BON is not yet directionally called; JUS is strengthening.",
+              "WHY": "BON trades at 40¢ against its 41¢ opening anchor; JUS trades at 62¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BON carries 1947 eligible past sides from first-price comparisons; JUS carries 696 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BON calls 40¢ by T−0hr 0min; JUS calls 62¢ by T−0hr 0min.",
+              "WHY": "BON’s middle half spans 40–40¢; JUS’s middle half spans 62–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BON has book 38/40 and no standing bid; JUS has book 60/62 and no standing bid.",
+              "WHY": "BON: The policy was waiting for a directional call; JUS: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 39,
+              "P": 40,
+              "Q": 40,
+              "X": 1784106231.000021,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 664.4144011401578,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 40,
+                "last_trade_cents": 40,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 98,
+                "leg": "BON",
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 40; reserve JUS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 40,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245"
+                },
+                "Q": 40,
+                "X": 1784106231.000021,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 49,
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "id": "BON",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 40,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 6.883150752743252,
+                      "ROUND_TRIP": 16.25382605184889,
+                      "LATE_BREAK_UP": 5.08353486197129,
+                      "ONE_STEP_UP": 2.987411547111802,
+                      "LATE_BREAK_DOWN": 4.082090569092598,
+                      "QUIET_WOBBLE": 80.35806464977212,
+                      "DRIFT_DOWN": 3.573815095498132,
+                      "SLEEPER": 13.491547355588184,
+                      "DRIFT_UP": 3.8042320335136424,
+                      "EARLY_SET_DOWN": 3.7085565967839655,
+                      "GRIND_WOBBLE_UP": 1.2690856630635785,
+                      "EARLY_SET_UP": 2.2182744808545474,
+                      "GRIND_WOBBLE_DOWN": 0.1950065201682203
+                    },
+                    "position": 0.14603658536585365,
+                    "epoch": 1784069782.5392847,
+                    "minutes_to_bell": 607.6181119203568,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 357.46948494628936,
+                    "weight_sum": 80.35806464977212,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 40; reserve JUS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "JUS": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 247.2259725165493,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 696
+                  },
+                  "BON": {
+                    "forecast": 40,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 664.4144011401578,
+                    "role": "NOT_CALLABLE",
+                    "current": 40,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 6.883150752743252,
+                    "ROUND_TRIP": 16.25382605184889,
+                    "LATE_BREAK_UP": 5.08353486197129,
+                    "ONE_STEP_UP": 2.987411547111802,
+                    "LATE_BREAK_DOWN": 4.082090569092598,
+                    "QUIET_WOBBLE": 80.35806464977212,
+                    "DRIFT_DOWN": 3.573815095498132,
+                    "SLEEPER": 13.491547355588184,
+                    "DRIFT_UP": 3.8042320335136424,
+                    "EARLY_SET_DOWN": 3.7085565967839655,
+                    "GRIND_WOBBLE_UP": 1.2690856630635785,
+                    "EARLY_SET_UP": 2.2182744808545474,
+                    "GRIND_WOBBLE_DOWN": 0.1950065201682203
+                  },
+                  "position": 0.14603658536585365,
+                  "epoch": 1784069782.5392847,
+                  "minutes_to_bell": 607.6181119203568,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 357.46948494628936,
+                  "weight_sum": 80.35806464977212,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784106231.000021,
+                "q25": 40,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "JUS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58.5,
+              "close": 62,
+              "recorded_floor": 59,
+              "P": 62,
+              "Q": 62,
+              "X": 1784106231.000021,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 247.2259725165493,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2943"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 99,
+                "leg": "JUS",
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 62; reserve BON max(close 40, ask 40) = 40"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2943"
+                },
+                "Q": 62,
+                "X": 1784106231.000021,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 49,
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "id": "JUS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 61,
+                  "hand_level": 61,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 5.970822860379672,
+                      "ROUND_TRIP": 10.54861828357809,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 4.639605231441918,
+                      "QUIET_WOBBLE": 21.992741587717653,
+                      "DRIFT_UP": 3.4350781025184234,
+                      "GRIND_WOBBLE_UP": 0.6302552381614243,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 3.7872138345699073,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.4298764848414607
+                    },
+                    "position": 0.03880407124681934,
+                    "epoch": 1784065204.608897,
+                    "minutes_to_bell": 683.9169517159462,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 108.34166058242705,
+                    "weight_sum": 21.992741587717653,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 40,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 40,
+                    "ask": 40,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 62; reserve BON max(close 40, ask 40) = 40",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "JUS": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 247.2259725165493,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 696
+                  },
+                  "BON": {
+                    "forecast": 40,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 664.4144011401578,
+                    "role": "NOT_CALLABLE",
+                    "current": 40,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 5.970822860379672,
+                    "ROUND_TRIP": 10.54861828357809,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 4.639605231441918,
+                    "QUIET_WOBBLE": 21.992741587717653,
+                    "DRIFT_UP": 3.4350781025184234,
+                    "GRIND_WOBBLE_UP": 0.6302552381614243,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 3.7872138345699073,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.4298764848414607
+                  },
+                  "position": 0.03880407124681934,
+                  "epoch": 1784065204.608897,
+                  "minutes_to_bell": 683.9169517159462,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 108.34166058242705,
+                  "weight_sum": 21.992741587717653,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784106231.000021,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784106239.626,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-JUS-miss",
+          "label": "Last receipt before JUS missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "JUS",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+          "epoch": 1784106231.000021,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BON is not yet directionally called; JUS is strengthening.",
+              "WHY": "BON trades at 40¢ against its 41¢ opening anchor; JUS trades at 62¢ against its 58¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BON carries 1947 eligible past sides from first-price comparisons; JUS carries 696 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BON calls 40¢ by T−0hr 0min; JUS calls 62¢ by T−0hr 0min.",
+              "WHY": "BON’s middle half spans 40–40¢; JUS’s middle half spans 62–62¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BON has book 38/40 and no standing bid; JUS has book 60/62 and no standing bid.",
+              "WHY": "BON: The policy was waiting for a directional call; JUS: The counterpart reservation did not leave a permitted discount. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BON": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 41,
+              "corrected_open": 41,
+              "close": 40,
+              "recorded_floor": 39,
+              "P": 40,
+              "Q": 40,
+              "X": 1784106231.000021,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1947,
+              "ess": 664.4144011401578,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 38,
+                "ask_cents": 40,
+                "last_trade_cents": 40,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 98,
+                "leg": "BON",
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 40; reserve JUS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 38,
+                  "ask_cents": 40,
+                  "last_trade_cents": 40,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245"
+                },
+                "Q": 40,
+                "X": 1784106231.000021,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 49,
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "id": "BON",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 40,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 6.883150752743252,
+                      "ROUND_TRIP": 16.25382605184889,
+                      "LATE_BREAK_UP": 5.08353486197129,
+                      "ONE_STEP_UP": 2.987411547111802,
+                      "LATE_BREAK_DOWN": 4.082090569092598,
+                      "QUIET_WOBBLE": 80.35806464977212,
+                      "DRIFT_DOWN": 3.573815095498132,
+                      "SLEEPER": 13.491547355588184,
+                      "DRIFT_UP": 3.8042320335136424,
+                      "EARLY_SET_DOWN": 3.7085565967839655,
+                      "GRIND_WOBBLE_UP": 1.2690856630635785,
+                      "EARLY_SET_UP": 2.2182744808545474,
+                      "GRIND_WOBBLE_DOWN": 0.1950065201682203
+                    },
+                    "position": 0.14603658536585365,
+                    "epoch": 1784069782.5392847,
+                    "minutes_to_bell": 607.6181119203568,
+                    "open": true,
+                    "member_count": 1065,
+                    "ess": 357.46948494628936,
+                    "weight_sum": 80.35806464977212,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 40; reserve JUS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "JUS": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 247.2259725165493,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 696
+                  },
+                  "BON": {
+                    "forecast": 40,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 664.4144011401578,
+                    "role": "NOT_CALLABLE",
+                    "current": 40,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 6.883150752743252,
+                    "ROUND_TRIP": 16.25382605184889,
+                    "LATE_BREAK_UP": 5.08353486197129,
+                    "ONE_STEP_UP": 2.987411547111802,
+                    "LATE_BREAK_DOWN": 4.082090569092598,
+                    "QUIET_WOBBLE": 80.35806464977212,
+                    "DRIFT_DOWN": 3.573815095498132,
+                    "SLEEPER": 13.491547355588184,
+                    "DRIFT_UP": 3.8042320335136424,
+                    "EARLY_SET_DOWN": 3.7085565967839655,
+                    "GRIND_WOBBLE_UP": 1.2690856630635785,
+                    "EARLY_SET_UP": 2.2182744808545474,
+                    "GRIND_WOBBLE_DOWN": 0.1950065201682203
+                  },
+                  "position": 0.14603658536585365,
+                  "epoch": 1784069782.5392847,
+                  "minutes_to_bell": 607.6181119203568,
+                  "open": true,
+                  "member_count": 1065,
+                  "ess": 357.46948494628936,
+                  "weight_sum": 80.35806464977212,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 40,
+                "deadline_epoch": 1784106231.000021,
+                "q25": 40,
+                "q75": 40,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "JUS": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 58,
+              "corrected_open": 58.5,
+              "close": 62,
+              "recorded_floor": 59,
+              "P": 62,
+              "Q": 62,
+              "X": 1784106231.000021,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 696,
+              "ess": 247.2259725165493,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 60,
+                "ask_cents": 62,
+                "last_trade_cents": 62,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2943"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 99,
+                "leg": "JUS",
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 62; reserve BON max(close 40, ask 40) = 40"
+                },
+                "book": {
+                  "bid_cents": 60,
+                  "ask_cents": 62,
+                  "last_trade_cents": 62,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-JUS.csv.gz#row-2943"
+                },
+                "Q": 62,
+                "X": 1784106231.000021,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784063548,
+                "stage_index": 50
+              },
+              "permission": {
+                "ordinal": 49,
+                "epoch": 1784106231.000021,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL15BONJUS-BON.csv.gz#row-3245",
+                "id": "JUS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "NO_RESERVED_DISCOUNT",
+                  "role": "CLIMBER",
+                  "intended": 61,
+                  "hand_level": 61,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 62,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 5.970822860379672,
+                      "ROUND_TRIP": 10.54861828357809,
+                      "LATE_BREAK_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "LATE_BREAK_UP": 4.639605231441918,
+                      "QUIET_WOBBLE": 21.992741587717653,
+                      "DRIFT_UP": 3.4350781025184234,
+                      "GRIND_WOBBLE_UP": 0.6302552381614243,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_UP": 3.7872138345699073,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "SLEEPER": 1.4298764848414607
+                    },
+                    "position": 0.03880407124681934,
+                    "epoch": 1784065204.608897,
+                    "minutes_to_bell": 683.9169517159462,
+                    "open": true,
+                    "member_count": 305,
+                    "ess": 108.34166058242705,
+                    "weight_sum": 21.992741587717653,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 40,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 40,
+                    "ask": 40,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "no bid: NO_RESERVED_DISCOUNT; buying the strengthening side before it strengthens; forecast close 62; reserve BON max(close 40, ask 40) = 40",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "JUS": {
+                    "forecast": 62,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 247.2259725165493,
+                    "role": "CLIMBER",
+                    "current": 62,
+                    "member_count": 696
+                  },
+                  "BON": {
+                    "forecast": 40,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 664.4144011401578,
+                    "role": "NOT_CALLABLE",
+                    "current": 40,
+                    "member_count": 1947
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 5.970822860379672,
+                    "ROUND_TRIP": 10.54861828357809,
+                    "LATE_BREAK_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "LATE_BREAK_UP": 4.639605231441918,
+                    "QUIET_WOBBLE": 21.992741587717653,
+                    "DRIFT_UP": 3.4350781025184234,
+                    "GRIND_WOBBLE_UP": 0.6302552381614243,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_UP": 3.7872138345699073,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "SLEEPER": 1.4298764848414607
+                  },
+                  "position": 0.03880407124681934,
+                  "epoch": 1784065204.608897,
+                  "minutes_to_bell": 683.9169517159462,
+                  "open": true,
+                  "member_count": 305,
+                  "ess": 108.34166058242705,
+                  "weight_sum": 21.992741587717653,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 62,
+                "deadline_epoch": 1784106231.000021,
+                "q25": 62,
+                "q75": 62,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784106239.626,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BON": false,
+          "JUS": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 2,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BON",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 40,
+            "close_epoch": 1784106143.4,
+            "floor_cents": 39,
+            "offered_cents": 1,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 1,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "JUS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 62,
+            "close_epoch": 1784105790.3,
+            "floor_cents": 59,
+            "offered_cents": 3,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 3,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "67f12f033d67bce9979769108ced8a05e4ac007f6a6526cbe89dc02278729190",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

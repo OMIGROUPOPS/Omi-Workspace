@@ -1,0 +1,2136 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+  "category": "ATP_CHALL",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "e2cd51e4adb0ce13334e291b670f0a015f9e269c2c1691fe6c3297dcd186bb32",
+    "stage_cache_sha256": "1602cdf16f146b38e2fa9f1afbbc4e04b86618c5cc03557ab54dc6df3587745f",
+    "mirror_projection_sha256": "38719d118bb971d1ecad074dc8cffae2831ade63e04c49ef2c3610e5d0ced9f5",
+    "mirror_permissions_sha256": "8985e8d86483a02ecea439aec8937f7eb43176686e65170924935d27b26fd254",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "ad6195c2ba4b5d5dc730ed2521b36f6e397eb58ad6dd8bdf437c0608b9941f56",
+      "row_number": 439,
+      "row_csv": "26JUL16BICCAS,KXATPCHALLENGERMATCH-26JUL16BICCAS,ATP_CHALL,1784168068,1784168068,1784210700,1784221200.0,BIC,CAS,1784168068,32.0,31,1784173096.1,33,1784210158.9,852.07,265.05,STILL,1.0,,,,,1784168068,68.5,68,1784177572.3,68,1784210479.0,1942.42,1327.45,STILL,-0.5,,,,,1784168068,,,1784210820.0,1784228693.0,1784210820.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784168068,1784210700,OK,NEITHER_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784168068,
+      "span_end_epoch": 1784210700,
+      "bell_epoch": 1784210820,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784210820,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BIC": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 32,
+          "floor_cents": 31,
+          "floor_epoch": 1784173096.1,
+          "minutes_to_bell": 628.7316666682561,
+          "line": "BIC 31¢ @ 628.73m to bell",
+          "marker_label": "BIC FLOOR · RECORDED 31¢ @ 628.73m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 31¢ · 628m to bell",
+          "hover_note": "Recorded floor 31¢ printed here · 628m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "CAS": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 68.5,
+          "floor_cents": 68,
+          "floor_epoch": 1784177572.3,
+          "minutes_to_bell": 554.1283333341281,
+          "line": "CAS 68¢ @ 554.13m to bell",
+          "marker_label": "CAS FLOOR · RECORDED 68¢ @ 554.13m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 68¢ · 554m to bell",
+          "hover_note": "Recorded floor 68¢ printed here · 554m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "CAS",
+      "underdog_leg": "BIC",
+      "pair": {
+        "sum_cents": 99,
+        "discount_cents": 1,
+        "reason": null,
+        "line": "best capturable = 68 + 31 = 99¢",
+        "discount_line": "1¢ under par",
+        "compact_line": "best capturable 99¢ · 1¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL16BICCAS",
+        "event_id": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+        "category": "ATP_CHALL",
+        "recorder_open_epoch": "1784168068",
+        "w1_left_epoch": "1784168068",
+        "w1_right_epoch": "1784210700",
+        "scheduled_start_epoch": "1784221200.0",
+        "legA": "BIC",
+        "legB": "CAS",
+        "legA_formation_end_epoch": "1784168068",
+        "legA_open_postformation_c": "32.0",
+        "legA_floor_c": "31",
+        "legA_floor_epoch": "1784173096.1",
+        "legA_close_c": "33",
+        "legA_close_epoch": "1784210158.9",
+        "legA_contracts": "852.07",
+        "legA_premium_usd": "265.05",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "1.0",
+        "legA_us_first_post_epoch": "",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784168068",
+        "legB_open_postformation_c": "68.5",
+        "legB_floor_c": "68",
+        "legB_floor_epoch": "1784177572.3",
+        "legB_close_c": "68",
+        "legB_close_epoch": "1784210479.0",
+        "legB_contracts": "1942.42",
+        "legB_premium_usd": "1327.45",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-0.5",
+        "legB_us_first_post_epoch": "",
+        "legB_us_fill_c": "",
+        "legB_us_fill_epoch": "",
+        "legB_us_fill_stamp": "",
+        "formation_end_game": "1784168068",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784210820.0",
+        "kalshi_close_time_epoch": "1784228693.0",
+        "bell_epoch": "1784210820.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784168068",
+        "span_end_epoch": "1784210700",
+        "verified_span": "OK",
+        "pair_state": "NEITHER_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPCHALLENGERMATCH-26JUL16BICCAS.jsonl",
+      "sha256": "d3f90511186f91538008cad1584fdd3baec2464c2cf2f204ddb36d39af09e835",
+      "raw_rows": 10251,
+      "accepted_rows": 45,
+      "start_epoch": 1784168068,
+      "end_epoch": 1784210700
+    }
+  },
+  "first_callable_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+  "first_both_directional_receipt": null,
+  "first_callable_by_side": {
+    "BIC": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+    "CAS": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+          "epoch": 1784178815.000001,
+          "clock": "T−8hr 51min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIC is not yet directionally called; CAS is not yet directionally called.",
+              "WHY": "BIC trades at 31¢ against its 32¢ opening anchor; CAS trades at 68¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIC carries 568 eligible past sides from first-price comparisons; CAS carries 568 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIC calls 29¢ by T−4hr 22min; CAS calls 67¢ by T−6hr 41min.",
+              "WHY": "BIC’s middle half spans 28–30¢; CAS’s middle half spans 65–68¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIC has book 30/31 and a standing 29¢ bid; CAS has book 68/70 and a standing 67¢ bid.",
+              "WHY": "BIC: The current pool target was the permitted bid level; CAS: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 33,
+              "recorded_floor": 31,
+              "P": 31,
+              "Q": 29,
+              "X": 1784194972,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 568,
+              "ess": 257.1951943556695,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 30,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233"
+              },
+              "bid": 29,
+              "filled": null,
+              "decision": {
+                "order": 48,
+                "leg": "BIC",
+                "epoch": 1784178815.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 29,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 30,
+                  "ask_cents": 31,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233"
+                },
+                "Q": 29,
+                "X": 1784194972,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "support": null,
+                "accountability_assumption": "1fbe867f19411f4f4a1a78eabdee02bdc0ae5bfba1193fc0461fa8282abf59ff",
+                "stage_index": 24
+              },
+              "permission": null,
+              "micro": {
+                "Q": 29,
+                "deadline_epoch": 1784194972,
+                "q25": 28,
+                "q75": 30,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 31,
+                "floor_witness": {
+                  "epoch": 1784179428.151,
+                  "price": 31,
+                  "size": 76.92,
+                  "receipt": "2df633bb-b309-7cbb-1e27-854b70d5d213"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "CAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68.5,
+              "close": 68,
+              "recorded_floor": 68,
+              "P": 68,
+              "Q": 67,
+              "X": 1784186660,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 568,
+              "ess": 257.1951943556695,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 70,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-1483"
+              },
+              "bid": 67,
+              "filled": null,
+              "decision": {
+                "order": 49,
+                "leg": "CAS",
+                "epoch": 1784178815.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 67,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 70,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-1483"
+                },
+                "Q": 67,
+                "X": 1784186660,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "support": null,
+                "accountability_assumption": "32967e7fb1523b5aafb40b09d85f646f75d7a80d60c48caab7b365363fbe35dd",
+                "stage_index": 24
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784186660,
+                "q25": 65,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 68,
+                "floor_witness": {
+                  "epoch": 1784206554.615,
+                  "price": 68,
+                  "size": 16,
+                  "receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BIC-miss",
+          "label": "Last receipt before BIC missed at the bell",
+          "arm": "D",
+          "focus_leg": "BIC",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+          "epoch": 1784210654.000002,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIC is not yet directionally called; CAS is not yet directionally called.",
+              "WHY": "BIC trades at 33¢ against its 32¢ opening anchor; CAS trades at 68¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIC carries 1942 eligible past sides from first-price comparisons; CAS carries 1942 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIC calls 33¢ by T−0hr 1min; CAS calls 68¢ by T−0hr 1min.",
+              "WHY": "BIC’s middle half spans 33–33¢; CAS’s middle half spans 68–68¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIC has book 32/34 and a standing 30¢ bid; CAS has book 67/68 and a recorded purchase at 68¢.",
+              "WHY": "BIC: The other commitment left too little room under the pair budget; CAS: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 33,
+              "recorded_floor": 31,
+              "P": 33,
+              "Q": 33,
+              "X": 1784210654.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1942,
+              "ess": 900.1642238591974,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 34,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10865"
+              },
+              "bid": 30,
+              "filled": null,
+              "decision": {
+                "order": 98,
+                "leg": "BIC",
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 30,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 34,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10865"
+                },
+                "Q": 33,
+                "X": 1784210654.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "support": null,
+                "accountability_assumption": "879d47b3cc30a2da3a40862e7f246f9ff1fdb7fe733e0388385799793f3eebb3",
+                "stage_index": 58
+              },
+              "permission": null,
+              "micro": {
+                "Q": 33,
+                "deadline_epoch": 1784210654.000002,
+                "q25": 33,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "CAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68.5,
+              "close": 68,
+              "recorded_floor": 68,
+              "P": 68,
+              "Q": 68,
+              "X": 1784210654.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1942,
+              "ess": 900.1642238591974,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461"
+              },
+              "bid": null,
+              "filled": 68,
+              "decision": {
+                "order": 95,
+                "leg": "CAS",
+                "epoch": 1784210400,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS|ATLAS_GATE|1784210400",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 68,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19443"
+                },
+                "Q": 68,
+                "X": 1784210400,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 54
+              },
+              "permission": null,
+              "micro": {
+                "Q": 68,
+                "deadline_epoch": 1784210654.000002,
+                "q25": 68,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784210700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-CAS-fill",
+          "label": "Last receipt before CAS filled",
+          "arm": "D",
+          "focus_leg": "CAS",
+          "outcome": "fill",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105",
+          "epoch": 1784206554.000008,
+          "clock": "T−1hr 9min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIC is not yet directionally called; CAS is not yet directionally called.",
+              "WHY": "BIC trades at 32¢ against its 32¢ opening anchor; CAS trades at 69¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIC carries 1777 eligible past sides from first-price comparisons; CAS carries 1777 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIC calls 32¢ by T−1hr 9min; CAS calls 69¢ by T−1hr 9min.",
+              "WHY": "BIC’s middle half spans 30–32¢; CAS’s middle half spans 67–69¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIC has book 32/33 and a standing 30¢ bid; CAS has book 67/68 and a standing 68¢ bid.",
+              "WHY": "BIC: The other commitment left too little room under the pair budget; CAS: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BIC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 33,
+              "recorded_floor": 31,
+              "P": 32,
+              "Q": 32,
+              "X": 1784206554.000008,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1777,
+              "ess": 823.3334465222864,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 33,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10333"
+              },
+              "bid": 30,
+              "filled": null,
+              "decision": {
+                "order": 72,
+                "leg": "BIC",
+                "epoch": 1784206554.000008,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 30,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 33,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10333"
+                },
+                "Q": 32,
+                "X": 1784206554.000008,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "support": null,
+                "accountability_assumption": "34e57a8e849c4588d7ba6c46bb0eedde2a5466bd694791cb9edb9a018ce4e3d5",
+                "stage_index": 36
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784206554.000008,
+                "q25": 30,
+                "q75": 32,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 33,
+                "floor_witness": {
+                  "epoch": 1784207023.657,
+                  "price": 33,
+                  "size": 20,
+                  "receipt": "7cd7548a-7278-6a76-d443-839e8c3844b1"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "CAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68.5,
+              "close": 68,
+              "recorded_floor": 68,
+              "P": 69,
+              "Q": 69,
+              "X": 1784206554.000008,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1777,
+              "ess": 823.3334465222864,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105"
+              },
+              "bid": 68,
+              "filled": null,
+              "decision": {
+                "order": 73,
+                "leg": "CAS",
+                "epoch": 1784206554.000008,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 68,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 68,
+                  "last_trade_cents": 69,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105"
+                },
+                "Q": 69,
+                "X": 1784206554.000008,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "support": null,
+                "accountability_assumption": "559a64775b2470e7051e8f79bc499f0e24d2d1dddc4537f870dd606feef4b1e7",
+                "stage_index": 36
+              },
+              "permission": null,
+              "micro": {
+                "Q": 69,
+                "deadline_epoch": 1784206554.000008,
+                "q25": 67,
+                "q75": 69,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 68,
+                "floor_witness": {
+                  "epoch": 1784206554.615,
+                  "price": 68,
+                  "size": 16,
+                  "receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784206554.615,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "CAS",
+              "epoch": 1784206554.615,
+              "cents": 68,
+              "receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3",
+              "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+              "order_lineage_start_epoch": 1784178815.000001,
+              "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS|ATLAS_GATE|1784196300",
+              "current_price_start_epoch": 1784196300,
+              "order_lineage_age_minutes": 462.326916650931,
+              "current_price_age_minutes": 170.91025000015895,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "CAS",
+                "epoch": 1784206554.615,
+                "cents": 68,
+                "receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3",
+                "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "order_lineage_start_epoch": 1784178815.000001,
+                "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS|ATLAS_GATE|1784196300",
+                "current_price_start_epoch": 1784196300,
+                "order_lineage_age_minutes": 462.326916650931,
+                "current_price_age_minutes": 170.91025000015895,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 73,
+              "leg": "CAS",
+              "epoch": 1784206554.000008,
+              "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 68,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 69,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19105"
+              },
+              "Q": 69,
+              "X": 1784206554.000008,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784168068,
+              "support": null,
+              "accountability_assumption": "559a64775b2470e7051e8f79bc499f0e24d2d1dddc4537f870dd606feef4b1e7",
+              "stage_index": 36
+            },
+            "license_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS|ATLAS_GATE|1784196300",
+            "licensing_deadline_epoch": 1784199790,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BIC": false,
+          "CAS": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [
+          {
+            "leg": "CAS",
+            "epoch": 1784206554.615,
+            "cents": 68,
+            "receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3",
+            "order_lineage_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+            "order_lineage_start_epoch": 1784178815.000001,
+            "current_price_receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS|ATLAS_GATE|1784196300",
+            "current_price_start_epoch": 1784196300,
+            "order_lineage_age_minutes": 462.326916650931,
+            "current_price_age_minutes": 170.91025000015895,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+        "category": "ATP_CHALL",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BIC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 33,
+            "close_epoch": 1784210158.9,
+            "floor_cents": 31,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "CAS",
+            "filled": true,
+            "fill_cents": 68,
+            "fill_epoch": 1784206554.615,
+            "fill_receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3",
+            "close_cents": 68,
+            "close_epoch": 1784210479,
+            "floor_cents": 68,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": 0,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "ad6195c2ba4b5d5dc730ed2521b36f6e397eb58ad6dd8bdf437c0608b9941f56",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+          "epoch": 1784178815.000001,
+          "clock": "T−8hr 51min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIC is not yet directionally called; CAS is not yet directionally called.",
+              "WHY": "BIC trades at 31¢ against its 32¢ opening anchor; CAS trades at 68¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIC carries 568 eligible past sides from first-price comparisons; CAS carries 568 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIC calls 29¢ by T−4hr 22min; CAS calls 67¢ by T−6hr 41min.",
+              "WHY": "BIC’s middle half spans 28–30¢; CAS’s middle half spans 65–68¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIC has book 30/31 and no standing bid; CAS has book 68/70 and no standing bid.",
+              "WHY": "BIC: The policy was waiting for a directional call; CAS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 33,
+              "recorded_floor": 31,
+              "P": 31,
+              "Q": 29,
+              "X": 1784194972,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 568,
+              "ess": 257.1951943556695,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 30,
+                "ask_cents": 31,
+                "last_trade_cents": 31,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 48,
+                "leg": "BIC",
+                "epoch": 1784178815.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 29; reserve CAS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 30,
+                  "ask_cents": 31,
+                  "last_trade_cents": 31,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233"
+                },
+                "Q": 29,
+                "X": 1784194972,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "stage_index": 24
+              },
+              "permission": {
+                "ordinal": 24,
+                "epoch": 1784178815.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "id": "BIC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 31,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 1.4871414840936783,
+                      "ROUND_TRIP": 6.922762865854837,
+                      "LATE_BREAK_UP": 0.7294453655392596,
+                      "ONE_STEP_UP": 1.0114042442949012,
+                      "LATE_BREAK_DOWN": 0.7672777819957614,
+                      "QUIET_WOBBLE": 19.03223106018971,
+                      "DRIFT_DOWN": 0.7292348277174276,
+                      "SLEEPER": 0.42659798249020264,
+                      "DRIFT_UP": 0.6080800002895218,
+                      "EARLY_SET_DOWN": 1.6577749515004983,
+                      "GRIND_WOBBLE_UP": 0.27820535485425063,
+                      "EARLY_SET_UP": 0.41879865248930975,
+                      "GRIND_WOBBLE_DOWN": 0.028526064485696653
+                    },
+                    "position": 0.15711603881215197,
+                    "epoch": 1784174766.1709666,
+                    "minutes_to_bell": 598.8971505562464,
+                    "open": true,
+                    "member_count": 267,
+                    "ess": 131.315395041205,
+                    "weight_sum": 19.03223106018971,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 29; reserve CAS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 257.1951943556695,
+                    "role": "NOT_CALLABLE",
+                    "current": 68,
+                    "member_count": 568
+                  },
+                  "BIC": {
+                    "forecast": 31,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 257.1951943556695,
+                    "role": "NOT_CALLABLE",
+                    "current": 31,
+                    "member_count": 568
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 1.4871414840936783,
+                    "ROUND_TRIP": 6.922762865854837,
+                    "LATE_BREAK_UP": 0.7294453655392596,
+                    "ONE_STEP_UP": 1.0114042442949012,
+                    "LATE_BREAK_DOWN": 0.7672777819957614,
+                    "QUIET_WOBBLE": 19.03223106018971,
+                    "DRIFT_DOWN": 0.7292348277174276,
+                    "SLEEPER": 0.42659798249020264,
+                    "DRIFT_UP": 0.6080800002895218,
+                    "EARLY_SET_DOWN": 1.6577749515004983,
+                    "GRIND_WOBBLE_UP": 0.27820535485425063,
+                    "EARLY_SET_UP": 0.41879865248930975,
+                    "GRIND_WOBBLE_DOWN": 0.028526064485696653
+                  },
+                  "position": 0.15711603881215197,
+                  "epoch": 1784174766.1709666,
+                  "minutes_to_bell": 598.8971505562464,
+                  "open": true,
+                  "member_count": 267,
+                  "ess": 131.315395041205,
+                  "weight_sum": 19.03223106018971,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 29,
+                "deadline_epoch": 1784194972,
+                "q25": 28,
+                "q75": 30,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 31,
+                "floor_witness": {
+                  "epoch": 1784179428.151,
+                  "price": 31,
+                  "size": 76.92,
+                  "receipt": "2df633bb-b309-7cbb-1e27-854b70d5d213"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "CAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68.5,
+              "close": 68,
+              "recorded_floor": 68,
+              "P": 68,
+              "Q": 67,
+              "X": 1784186660,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 568,
+              "ess": 257.1951943556695,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 68,
+                "ask_cents": 70,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-1483"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 49,
+                "leg": "CAS",
+                "epoch": 1784178815.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve BIC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 68,
+                  "ask_cents": 70,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-1483"
+                },
+                "Q": 67,
+                "X": 1784186660,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "stage_index": 24
+              },
+              "permission": {
+                "ordinal": 24,
+                "epoch": 1784178815.000001,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-1233",
+                "id": "CAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 1.296476348577311,
+                      "ROUND_TRIP": 9.322006308448216,
+                      "LATE_BREAK_DOWN": 0.8426833766309909,
+                      "DRIFT_DOWN": 0.38097694226564316,
+                      "LATE_BREAK_UP": 0.6925950069889233,
+                      "QUIET_WOBBLE": 17.136270861495042,
+                      "DRIFT_UP": 1.197282862276904,
+                      "GRIND_WOBBLE_UP": 0.030406018301817658,
+                      "ONE_STEP_DOWN": 0.5688713922424479,
+                      "EARLY_SET_UP": 1.495449904495519,
+                      "EARLY_SET_DOWN": 0.9083624857065151,
+                      "GRIND_WOBBLE_DOWN": 0.15532392074317986,
+                      "SLEEPER": 0.07077520762253357
+                    },
+                    "position": 0.04033333333333333,
+                    "epoch": 1784169787.4906666,
+                    "minutes_to_bell": 681.8751555562019,
+                    "open": true,
+                    "member_count": 252,
+                    "ess": 122.10232608712745,
+                    "weight_sum": 17.136270861495042,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 67; reserve BIC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAS": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 257.1951943556695,
+                    "role": "NOT_CALLABLE",
+                    "current": 68,
+                    "member_count": 568
+                  },
+                  "BIC": {
+                    "forecast": 31,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 257.1951943556695,
+                    "role": "NOT_CALLABLE",
+                    "current": 31,
+                    "member_count": 568
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 1.296476348577311,
+                    "ROUND_TRIP": 9.322006308448216,
+                    "LATE_BREAK_DOWN": 0.8426833766309909,
+                    "DRIFT_DOWN": 0.38097694226564316,
+                    "LATE_BREAK_UP": 0.6925950069889233,
+                    "QUIET_WOBBLE": 17.136270861495042,
+                    "DRIFT_UP": 1.197282862276904,
+                    "GRIND_WOBBLE_UP": 0.030406018301817658,
+                    "ONE_STEP_DOWN": 0.5688713922424479,
+                    "EARLY_SET_UP": 1.495449904495519,
+                    "EARLY_SET_DOWN": 0.9083624857065151,
+                    "GRIND_WOBBLE_DOWN": 0.15532392074317986,
+                    "SLEEPER": 0.07077520762253357
+                  },
+                  "position": 0.04033333333333333,
+                  "epoch": 1784169787.4906666,
+                  "minutes_to_bell": 681.8751555562019,
+                  "open": true,
+                  "member_count": 252,
+                  "ess": 122.10232608712745,
+                  "weight_sum": 17.136270861495042,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784186660,
+                "q25": 65,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 68,
+                "floor_witness": {
+                  "epoch": 1784206554.615,
+                  "price": 68,
+                  "size": 16,
+                  "receipt": "daa7e200-46f3-502f-0be1-85ed41fe2bd3"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BIC-miss",
+          "label": "Last receipt before BIC missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BIC",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+          "epoch": 1784210654.000002,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIC is not yet directionally called; CAS is not yet directionally called.",
+              "WHY": "BIC trades at 33¢ against its 32¢ opening anchor; CAS trades at 68¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIC carries 1942 eligible past sides from first-price comparisons; CAS carries 1942 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIC calls 33¢ by T−0hr 1min; CAS calls 68¢ by T−0hr 1min.",
+              "WHY": "BIC’s middle half spans 33–33¢; CAS’s middle half spans 68–68¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIC has book 32/34 and no standing bid; CAS has book 67/68 and no standing bid.",
+              "WHY": "BIC: The policy was waiting for a directional call; CAS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 33,
+              "recorded_floor": 31,
+              "P": 33,
+              "Q": 33,
+              "X": 1784210654.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1942,
+              "ess": 900.1642238591974,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 34,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10865"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 114,
+                "leg": "BIC",
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 33; reserve CAS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 34,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10865"
+                },
+                "Q": 33,
+                "X": 1784210654.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 57,
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "id": "BIC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 33,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.1984287233511886,
+                      "ROUND_TRIP": 12.933923055934724,
+                      "LATE_BREAK_UP": 3.5102804023983873,
+                      "ONE_STEP_UP": 2.4925908861746873,
+                      "LATE_BREAK_DOWN": 3.0506768631688743,
+                      "QUIET_WOBBLE": 62.83512740530431,
+                      "DRIFT_DOWN": 1.869992535204657,
+                      "SLEEPER": 10.74109502269722,
+                      "DRIFT_UP": 2.89103800285706,
+                      "EARLY_SET_DOWN": 2.8392639995466147,
+                      "GRIND_WOBBLE_UP": 0.35966456962807725,
+                      "EARLY_SET_UP": 1.0333407926858713,
+                      "GRIND_WOBBLE_DOWN": 0.05989316159120248
+                    },
+                    "position": 0.18593330011523168,
+                    "epoch": 1784175994.7084506,
+                    "minutes_to_bell": 578.4215258240699,
+                    "open": true,
+                    "member_count": 1062,
+                    "ess": 490.65903269915754,
+                    "weight_sum": 62.83512740530431,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 33; reserve CAS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAS": {
+                    "forecast": 68,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 68,
+                    "member_count": 1942
+                  },
+                  "BIC": {
+                    "forecast": 33,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 33,
+                    "member_count": 1942
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.1984287233511886,
+                    "ROUND_TRIP": 12.933923055934724,
+                    "LATE_BREAK_UP": 3.5102804023983873,
+                    "ONE_STEP_UP": 2.4925908861746873,
+                    "LATE_BREAK_DOWN": 3.0506768631688743,
+                    "QUIET_WOBBLE": 62.83512740530431,
+                    "DRIFT_DOWN": 1.869992535204657,
+                    "SLEEPER": 10.74109502269722,
+                    "DRIFT_UP": 2.89103800285706,
+                    "EARLY_SET_DOWN": 2.8392639995466147,
+                    "GRIND_WOBBLE_UP": 0.35966456962807725,
+                    "EARLY_SET_UP": 1.0333407926858713,
+                    "GRIND_WOBBLE_DOWN": 0.05989316159120248
+                  },
+                  "position": 0.18593330011523168,
+                  "epoch": 1784175994.7084506,
+                  "minutes_to_bell": 578.4215258240699,
+                  "open": true,
+                  "member_count": 1062,
+                  "ess": 490.65903269915754,
+                  "weight_sum": 62.83512740530431,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 33,
+                "deadline_epoch": 1784210654.000002,
+                "q25": 33,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "CAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68.5,
+              "close": 68,
+              "recorded_floor": 68,
+              "P": 68,
+              "Q": 68,
+              "X": 1784210654.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1942,
+              "ess": 900.1642238591974,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 115,
+                "leg": "CAS",
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 68; reserve BIC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 68,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461"
+                },
+                "Q": 68,
+                "X": 1784210654.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 57,
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "id": "CAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 68,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 5.243066823033403,
+                      "ROUND_TRIP": 17.975130317087675,
+                      "LATE_BREAK_DOWN": 3.6378565824775446,
+                      "DRIFT_DOWN": 1.3636079170697177,
+                      "LATE_BREAK_UP": 2.6671961786794127,
+                      "QUIET_WOBBLE": 61.832246384444716,
+                      "DRIFT_UP": 2.9898281022277944,
+                      "GRIND_WOBBLE_UP": 0.3424701113984024,
+                      "ONE_STEP_DOWN": 3.340431674558098,
+                      "EARLY_SET_UP": 3.7000022371924937,
+                      "EARLY_SET_DOWN": 1.642892139340235,
+                      "GRIND_WOBBLE_DOWN": 0.15532392074317986,
+                      "SLEEPER": 4.925263032290206
+                    },
+                    "position": 0.11526610644257704,
+                    "epoch": 1784172982.0246499,
+                    "minutes_to_bell": 628.6329225023587,
+                    "open": true,
+                    "member_count": 1076,
+                    "ess": 538.3694637402482,
+                    "weight_sum": 61.832246384444716,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 68; reserve BIC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAS": {
+                    "forecast": 68,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 68,
+                    "member_count": 1942
+                  },
+                  "BIC": {
+                    "forecast": 33,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 33,
+                    "member_count": 1942
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 5.243066823033403,
+                    "ROUND_TRIP": 17.975130317087675,
+                    "LATE_BREAK_DOWN": 3.6378565824775446,
+                    "DRIFT_DOWN": 1.3636079170697177,
+                    "LATE_BREAK_UP": 2.6671961786794127,
+                    "QUIET_WOBBLE": 61.832246384444716,
+                    "DRIFT_UP": 2.9898281022277944,
+                    "GRIND_WOBBLE_UP": 0.3424701113984024,
+                    "ONE_STEP_DOWN": 3.340431674558098,
+                    "EARLY_SET_UP": 3.7000022371924937,
+                    "EARLY_SET_DOWN": 1.642892139340235,
+                    "GRIND_WOBBLE_DOWN": 0.15532392074317986,
+                    "SLEEPER": 4.925263032290206
+                  },
+                  "position": 0.11526610644257704,
+                  "epoch": 1784172982.0246499,
+                  "minutes_to_bell": 628.6329225023587,
+                  "open": true,
+                  "member_count": 1076,
+                  "ess": 538.3694637402482,
+                  "weight_sum": 61.832246384444716,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 68,
+                "deadline_epoch": 1784210654.000002,
+                "q25": 68,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784210700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-CAS-miss",
+          "label": "Last receipt before CAS missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "CAS",
+          "outcome": "miss",
+          "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+          "epoch": 1784210654.000002,
+          "clock": "T−0hr 1min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BIC is not yet directionally called; CAS is not yet directionally called.",
+              "WHY": "BIC trades at 33¢ against its 32¢ opening anchor; CAS trades at 68¢ against its 68¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BIC carries 1942 eligible past sides from first-price comparisons; CAS carries 1942 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BIC calls 33¢ by T−0hr 1min; CAS calls 68¢ by T−0hr 1min.",
+              "WHY": "BIC’s middle half spans 33–33¢; CAS’s middle half spans 68–68¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BIC has book 32/34 and no standing bid; CAS has book 67/68 and no standing bid.",
+              "WHY": "BIC: The policy was waiting for a directional call; CAS: The policy was waiting for a directional call. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BIC": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 32,
+              "corrected_open": 32,
+              "close": 33,
+              "recorded_floor": 31,
+              "P": 33,
+              "Q": 33,
+              "X": 1784210654.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1942,
+              "ess": 900.1642238591974,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 32,
+                "ask_cents": 34,
+                "last_trade_cents": 33,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10865"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 114,
+                "leg": "BIC",
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 33; reserve CAS max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 32,
+                  "ask_cents": 34,
+                  "last_trade_cents": 33,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-BIC.csv.gz#row-10865"
+                },
+                "Q": 33,
+                "X": 1784210654.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 57,
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "id": "BIC",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 33,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 5.1984287233511886,
+                      "ROUND_TRIP": 12.933923055934724,
+                      "LATE_BREAK_UP": 3.5102804023983873,
+                      "ONE_STEP_UP": 2.4925908861746873,
+                      "LATE_BREAK_DOWN": 3.0506768631688743,
+                      "QUIET_WOBBLE": 62.83512740530431,
+                      "DRIFT_DOWN": 1.869992535204657,
+                      "SLEEPER": 10.74109502269722,
+                      "DRIFT_UP": 2.89103800285706,
+                      "EARLY_SET_DOWN": 2.8392639995466147,
+                      "GRIND_WOBBLE_UP": 0.35966456962807725,
+                      "EARLY_SET_UP": 1.0333407926858713,
+                      "GRIND_WOBBLE_DOWN": 0.05989316159120248
+                    },
+                    "position": 0.18593330011523168,
+                    "epoch": 1784175994.7084506,
+                    "minutes_to_bell": 578.4215258240699,
+                    "open": true,
+                    "member_count": 1062,
+                    "ess": 490.65903269915754,
+                    "weight_sum": 62.83512740530431,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 33; reserve CAS max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAS": {
+                    "forecast": 68,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 68,
+                    "member_count": 1942
+                  },
+                  "BIC": {
+                    "forecast": 33,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 33,
+                    "member_count": 1942
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 5.1984287233511886,
+                    "ROUND_TRIP": 12.933923055934724,
+                    "LATE_BREAK_UP": 3.5102804023983873,
+                    "ONE_STEP_UP": 2.4925908861746873,
+                    "LATE_BREAK_DOWN": 3.0506768631688743,
+                    "QUIET_WOBBLE": 62.83512740530431,
+                    "DRIFT_DOWN": 1.869992535204657,
+                    "SLEEPER": 10.74109502269722,
+                    "DRIFT_UP": 2.89103800285706,
+                    "EARLY_SET_DOWN": 2.8392639995466147,
+                    "GRIND_WOBBLE_UP": 0.35966456962807725,
+                    "EARLY_SET_UP": 1.0333407926858713,
+                    "GRIND_WOBBLE_DOWN": 0.05989316159120248
+                  },
+                  "position": 0.18593330011523168,
+                  "epoch": 1784175994.7084506,
+                  "minutes_to_bell": 578.4215258240699,
+                  "open": true,
+                  "member_count": 1062,
+                  "ess": 490.65903269915754,
+                  "weight_sum": 62.83512740530431,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 33,
+                "deadline_epoch": 1784210654.000002,
+                "q25": 33,
+                "q75": 33,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "CAS": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 68,
+              "corrected_open": 68.5,
+              "close": 68,
+              "recorded_floor": 68,
+              "P": 68,
+              "Q": 68,
+              "X": 1784210654.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 1942,
+              "ess": 900.1642238591974,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 67,
+                "ask_cents": 68,
+                "last_trade_cents": 68,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 115,
+                "leg": "CAS",
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 68; reserve BIC max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 67,
+                  "ask_cents": 68,
+                  "last_trade_cents": 68,
+                  "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461"
+                },
+                "Q": 68,
+                "X": 1784210654.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784168068,
+                "stage_index": 58
+              },
+              "permission": {
+                "ordinal": 57,
+                "epoch": 1784210654.000002,
+                "receipt": "KXATPCHALLENGERMATCH-26JUL16BICCAS-CAS.csv.gz#row-19461",
+                "id": "CAS",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ROLE_NOT_CALLABLE",
+                  "role": "NOT_CALLABLE",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 68,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 5.243066823033403,
+                      "ROUND_TRIP": 17.975130317087675,
+                      "LATE_BREAK_DOWN": 3.6378565824775446,
+                      "DRIFT_DOWN": 1.3636079170697177,
+                      "LATE_BREAK_UP": 2.6671961786794127,
+                      "QUIET_WOBBLE": 61.832246384444716,
+                      "DRIFT_UP": 2.9898281022277944,
+                      "GRIND_WOBBLE_UP": 0.3424701113984024,
+                      "ONE_STEP_DOWN": 3.340431674558098,
+                      "EARLY_SET_UP": 3.7000022371924937,
+                      "EARLY_SET_DOWN": 1.642892139340235,
+                      "GRIND_WOBBLE_DOWN": 0.15532392074317986,
+                      "SLEEPER": 4.925263032290206
+                    },
+                    "position": 0.11526610644257704,
+                    "epoch": 1784172982.0246499,
+                    "minutes_to_bell": 628.6329225023587,
+                    "open": true,
+                    "member_count": 1076,
+                    "ess": 538.3694637402482,
+                    "weight_sum": 61.832246384444716,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ROLE_NOT_CALLABLE; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 68; reserve BIC max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "CAS": {
+                    "forecast": 68,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 68,
+                    "member_count": 1942
+                  },
+                  "BIC": {
+                    "forecast": 33,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 900.1642238591974,
+                    "role": "NOT_CALLABLE",
+                    "current": 33,
+                    "member_count": 1942
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 5.243066823033403,
+                    "ROUND_TRIP": 17.975130317087675,
+                    "LATE_BREAK_DOWN": 3.6378565824775446,
+                    "DRIFT_DOWN": 1.3636079170697177,
+                    "LATE_BREAK_UP": 2.6671961786794127,
+                    "QUIET_WOBBLE": 61.832246384444716,
+                    "DRIFT_UP": 2.9898281022277944,
+                    "GRIND_WOBBLE_UP": 0.3424701113984024,
+                    "ONE_STEP_DOWN": 3.340431674558098,
+                    "EARLY_SET_UP": 3.7000022371924937,
+                    "EARLY_SET_DOWN": 1.642892139340235,
+                    "GRIND_WOBBLE_DOWN": 0.15532392074317986,
+                    "SLEEPER": 4.925263032290206
+                  },
+                  "position": 0.11526610644257704,
+                  "epoch": 1784172982.0246499,
+                  "minutes_to_bell": 628.6329225023587,
+                  "open": true,
+                  "member_count": 1076,
+                  "ess": 538.3694637402482,
+                  "weight_sum": 61.832246384444716,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 68,
+                "deadline_epoch": 1784210654.000002,
+                "q25": 68,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784210700,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BIC": false,
+          "CAS": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 1,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+        "category": "ATP_CHALL",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "BIC",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 33,
+            "close_epoch": 1784210158.9,
+            "floor_cents": 31,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "CAS",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 68,
+            "close_epoch": 1784210479,
+            "floor_cents": 68,
+            "offered_cents": 0,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 0,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "ad6195c2ba4b5d5dc730ed2521b36f6e397eb58ad6dd8bdf437c0608b9941f56",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

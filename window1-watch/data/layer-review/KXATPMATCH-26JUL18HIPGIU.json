@@ -1,0 +1,2188 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXATPMATCH-26JUL18HIPGIU",
+  "category": "ATP_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "e2ac35b2016ef012d77f145f8a8134b76955ea4470e6dcdd93aab1c7d0a5cc7a",
+    "stage_cache_sha256": "fb288d23b299f3dd31ac87a91d30a050b85e31884b3f788964b9afedacd60a35",
+    "mirror_projection_sha256": "23874fa67fd1adfba59c179ba0115ddb8368ad87cbee5e438a00925e27164c39",
+    "mirror_permissions_sha256": "40340309492d37d174a61b8e87530cf7ecc84a909fa17809dc4acaae5f2d693e",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXATPMATCH-26JUL18HIPGIU",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "d41550c6f9f1ee3ed969a83d201ae1e1325a5dd8544458acabb9dd495b2b6b4e",
+      "row_number": 550,
+      "row_csv": "26JUL18HIPGIU,KXATPMATCH-26JUL18HIPGIU,ATP_MAIN,1784320063,1784320063,1784365320,1784377800.0,GIU,HIP,1784332142,71.5,69,1784332298.2,76,1784363426.5,297.36,223.48,STILL,4.5,1784336717,,,,1784332142,26.0,22,1784332321.0,24,1784365273.3,2145.61,555.74,STILL,-2.0,1784336718,27,1784349534.7,PRE_BELL_VALID,1784332142,,,1784367720.0,1784372690.0,1784367720.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784332142,1784365320,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784332142,
+      "span_end_epoch": 1784365320,
+      "bell_epoch": 1784367720,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784367720,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "GIU": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 71.5,
+          "floor_cents": 69,
+          "floor_epoch": 1784332298.2,
+          "minutes_to_bell": 590.3633333325386,
+          "line": "GIU 69¢ @ 590.36m to bell",
+          "marker_label": "GIU FLOOR · RECORDED 69¢ @ 590.36m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 69¢ · 590m to bell",
+          "hover_note": "Recorded floor 69¢ printed here · 590m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "HIP": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 26,
+          "floor_cents": 22,
+          "floor_epoch": 1784332321,
+          "minutes_to_bell": 589.9833333333333,
+          "line": "HIP 22¢ @ 589.98m to bell",
+          "marker_label": "HIP FLOOR · RECORDED 22¢ @ 589.98m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 22¢ · 589m to bell",
+          "hover_note": "Recorded floor 22¢ printed here · 589m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "GIU",
+      "underdog_leg": "HIP",
+      "pair": {
+        "sum_cents": 91,
+        "discount_cents": 9,
+        "reason": null,
+        "line": "best capturable = 69 + 22 = 91¢",
+        "discount_line": "9¢ under par",
+        "compact_line": "best capturable 91¢ · 9¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL18HIPGIU",
+        "event_id": "KXATPMATCH-26JUL18HIPGIU",
+        "category": "ATP_MAIN",
+        "recorder_open_epoch": "1784320063",
+        "w1_left_epoch": "1784320063",
+        "w1_right_epoch": "1784365320",
+        "scheduled_start_epoch": "1784377800.0",
+        "legA": "GIU",
+        "legB": "HIP",
+        "legA_formation_end_epoch": "1784332142",
+        "legA_open_postformation_c": "71.5",
+        "legA_floor_c": "69",
+        "legA_floor_epoch": "1784332298.2",
+        "legA_close_c": "76",
+        "legA_close_epoch": "1784363426.5",
+        "legA_contracts": "297.36",
+        "legA_premium_usd": "223.48",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "4.5",
+        "legA_us_first_post_epoch": "1784336717",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784332142",
+        "legB_open_postformation_c": "26.0",
+        "legB_floor_c": "22",
+        "legB_floor_epoch": "1784332321.0",
+        "legB_close_c": "24",
+        "legB_close_epoch": "1784365273.3",
+        "legB_contracts": "2145.61",
+        "legB_premium_usd": "555.74",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-2.0",
+        "legB_us_first_post_epoch": "1784336718",
+        "legB_us_fill_c": "27",
+        "legB_us_fill_epoch": "1784349534.7",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784332142",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784367720.0",
+        "kalshi_close_time_epoch": "1784372690.0",
+        "bell_epoch": "1784367720.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784332142",
+        "span_end_epoch": "1784365320",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXATPMATCH-26JUL18HIPGIU.jsonl",
+      "sha256": "9e4e0f41fb88f2cad565c7f7e8cbb85c7d4607f817cc36c15320c3510c9ca13d",
+      "raw_rows": 1175,
+      "accepted_rows": 60,
+      "start_epoch": 1784332142,
+      "end_epoch": 1784365320
+    }
+  },
+  "first_callable_receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+  "first_both_directional_receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+  "first_callable_by_side": {
+    "GIU": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+    "HIP": "6e29efd6-7001-4047-31d4-a5565ad0b4bf"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+          "epoch": 1784332320.951,
+          "clock": "T−9hr 10min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GIU is weakening; HIP is weakening.",
+              "WHY": "GIU trades at 69¢ against its 71¢ opening anchor; HIP trades at 22¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GIU carries 190 eligible past sides from first-price comparisons; HIP carries 319 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GIU calls 67¢ by T−6hr 45min; HIP calls 20¢ by T−5hr 8min.",
+              "WHY": "GIU’s middle half spans 66–68¢; HIP’s middle half spans 19–21¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GIU has book 69/77 and a standing 67¢ bid; HIP has book 21/28 and a standing 20¢ bid.",
+              "WHY": "GIU: The current pool target was the permitted bid level; HIP: The current pool target was the permitted bid level. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "GIU": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 71,
+              "corrected_open": 71.5,
+              "close": 76,
+              "recorded_floor": 69,
+              "P": 69,
+              "Q": 67,
+              "X": 1784341049.208283,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 190,
+              "ess": 89.98080355504118,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 77,
+                "last_trade_cents": null,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-62"
+              },
+              "bid": 67,
+              "filled": null,
+              "decision": {
+                "order": 42,
+                "leg": "GIU",
+                "epoch": 1784332320.951,
+                "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 67,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 77,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-62"
+                },
+                "Q": 67,
+                "X": 1784341049.208283,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "support": null,
+                "accountability_assumption": "05dc5c4146fea85ea9d25e46b0c60689aed2f1374eb92037e89a3db837c023c0",
+                "stage_index": 21
+              },
+              "permission": null,
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784341049.208283,
+                "q25": 66,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 74,
+                "floor_witness": {
+                  "epoch": 1784343103.081,
+                  "price": 74,
+                  "size": 0.53,
+                  "receipt": "f82f8c8e-ef42-734a-a229-be0dfb5ef039"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "HIP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 24,
+              "recorded_floor": 22,
+              "P": 22,
+              "Q": 20,
+              "X": 1784346858,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 319,
+              "ess": 126.67590378884293,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 21,
+                "ask_cents": 28,
+                "last_trade_cents": 93,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-74"
+              },
+              "bid": 20,
+              "filled": null,
+              "decision": {
+                "order": 43,
+                "leg": "HIP",
+                "epoch": 1784332320.951,
+                "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "PLACE_REST",
+                  "target_cents": 20,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 21,
+                  "ask_cents": 28,
+                  "last_trade_cents": 93,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-74"
+                },
+                "Q": 20,
+                "X": 1784346858,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "support": null,
+                "accountability_assumption": "dfbd433bcfcf686a35a641a4a02e89328ad4c6f0eaefa041472bfdfd1bd519d7",
+                "stage_index": 21
+              },
+              "permission": null,
+              "micro": {
+                "Q": 20,
+                "deadline_epoch": 1784346858,
+                "q25": 19,
+                "q75": 21,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 22,
+                "floor_witness": {
+                  "epoch": 1784332618.481,
+                  "price": 22,
+                  "size": 12.06,
+                  "receipt": "bd259d78-e473-6f19-53d7-7461b83e5dbe"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-GIU-miss",
+          "label": "Last receipt before GIU missed at the bell",
+          "arm": "D",
+          "focus_leg": "GIU",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+          "epoch": 1784365295.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GIU is strengthening; HIP is weakening.",
+              "WHY": "GIU trades at 76¢ against its 71¢ opening anchor; HIP trades at 24¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GIU carries 350 eligible past sides from first-price comparisons; HIP carries 384 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GIU calls 76¢ by T−0hr 0min; HIP calls 24¢ by T−0hr 0min.",
+              "WHY": "GIU’s middle half spans 76–76¢; HIP’s middle half spans 24–24¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GIU has book 75/76 and a standing 73¢ bid; HIP has book 23/24 and a recorded purchase at 26¢.",
+              "WHY": "GIU: The desired bid could not be posted below the ask; HIP: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "GIU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71.5,
+              "close": 76,
+              "recorded_floor": 69,
+              "P": 76,
+              "Q": 76,
+              "X": 1784365295.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 350,
+              "ess": 155.99958992083248,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 75,
+                "ask_cents": 76,
+                "last_trade_cents": 76,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 81,
+                "leg": "GIU",
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 73,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 75,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170"
+                },
+                "Q": 76,
+                "X": 1784365295.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "support": null,
+                "accountability_assumption": "108ea0a2951890aa55c37d1e1b49620d0ad14071ab81eb6557c63cd42428080b",
+                "stage_index": 43
+              },
+              "permission": null,
+              "micro": {
+                "Q": 76,
+                "deadline_epoch": 1784365295.000002,
+                "q25": 76,
+                "q75": 76,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "HIP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 24,
+              "recorded_floor": 22,
+              "P": 24,
+              "Q": 24,
+              "X": 1784365295.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 384,
+              "ess": 163.03972216367796,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 24,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-1687"
+              },
+              "bid": null,
+              "filled": 26,
+              "decision": {
+                "order": 79,
+                "leg": "HIP",
+                "epoch": 1784365020,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU|ATLAS_GATE|1784365020",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 24,
+                  "last_trade_cents": 24,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-1656"
+                },
+                "Q": 24,
+                "X": 1784365020,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 40
+              },
+              "permission": null,
+              "micro": {
+                "Q": 24,
+                "deadline_epoch": 1784365295.000002,
+                "q25": 24,
+                "q75": 24,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784365320,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-HIP-fill",
+          "label": "Last receipt before HIP filled",
+          "arm": "D",
+          "focus_leg": "HIP",
+          "outcome": "fill",
+          "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-766",
+          "epoch": 1784352456.000001,
+          "clock": "T−3hr 34min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GIU is strengthening; HIP is not yet directionally called.",
+              "WHY": "GIU trades at 75¢ against its 71¢ opening anchor; HIP trades at 27¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GIU carries 321 eligible past sides from first-price comparisons; HIP carries 717 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GIU calls 74¢ by T−2hr 52min; HIP calls 26¢ by T−2hr 43min.",
+              "WHY": "GIU’s middle half spans 73–75¢; HIP’s middle half spans 25–27¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GIU has book 73/75 and a standing 73¢ bid; HIP has book 26/27 and a standing 26¢ bid.",
+              "WHY": "GIU: The other commitment left too little room under the pair budget; HIP: The other commitment left too little room under the pair budget. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "GIU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71.5,
+              "close": 76,
+              "recorded_floor": 69,
+              "P": 75,
+              "Q": 74,
+              "X": 1784355015.392997,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 321,
+              "ess": 130.93058607543566,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 73,
+                "ask_cents": 75,
+                "last_trade_cents": 75,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-766"
+              },
+              "bid": 73,
+              "filled": null,
+              "decision": {
+                "order": 62,
+                "leg": "GIU",
+                "epoch": 1784352456.000001,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-766",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 73,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 73,
+                  "ask_cents": 75,
+                  "last_trade_cents": 75,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-766"
+                },
+                "Q": 74,
+                "X": 1784355015.392997,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "support": null,
+                "accountability_assumption": "58d8a89411d90f69f3c8b98a5a99969c59849b889769291a3d8cbf526ec2d737",
+                "stage_index": 31
+              },
+              "permission": null,
+              "micro": {
+                "Q": 74,
+                "deadline_epoch": 1784355015.392997,
+                "q25": 73,
+                "q75": 75,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 75,
+                "floor_witness": {
+                  "epoch": 1784353428.297,
+                  "price": 75,
+                  "size": 1.31,
+                  "receipt": "63957b90-f380-6c59-91bd-54aa4fa1ba86"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784353428.297,
+                  "price": 75,
+                  "size": 1.31,
+                  "receipt": "63957b90-f380-6c59-91bd-54aa4fa1ba86"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "HIP": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "FALLER",
+              "role_right": false,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 24,
+              "recorded_floor": 22,
+              "P": 27,
+              "Q": 26,
+              "X": 1784355512,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 717,
+              "ess": 311.76971794867785,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 26,
+                "ask_cents": 27,
+                "last_trade_cents": 27,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-681"
+              },
+              "bid": 26,
+              "filled": null,
+              "decision": {
+                "order": 63,
+                "leg": "HIP",
+                "epoch": 1784352456.000001,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-766",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 26,
+                  "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+                },
+                "book": {
+                  "bid_cents": 26,
+                  "ask_cents": 27,
+                  "last_trade_cents": 27,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-681"
+                },
+                "Q": 26,
+                "X": 1784355512,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "support": null,
+                "accountability_assumption": "69b3f83ddedcb13bd79531519c04a88368776183363c89bd45f411ee004031cb",
+                "stage_index": 31
+              },
+              "permission": null,
+              "micro": {
+                "Q": 26,
+                "deadline_epoch": 1784355512,
+                "q25": 25,
+                "q75": 27,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 24,
+                "floor_witness": {
+                  "epoch": 1784362678.289,
+                  "price": 24,
+                  "size": 76.88,
+                  "receipt": "b46b0d22-d90d-58fd-97b6-49ea521f149e"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784352776.776,
+                  "price": 26,
+                  "size": 67,
+                  "receipt": "c9735ed9-6de0-69fd-ef36-3c4934bed949"
+                },
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784352776.776,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "HIP",
+              "epoch": 1784352776.776,
+              "cents": 26,
+              "receipt": "c9735ed9-6de0-69fd-ef36-3c4934bed949",
+              "order_lineage_receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+              "order_lineage_start_epoch": 1784332320.951,
+              "current_price_receipt": "KXATPMATCH-26JUL18HIPGIU|ATLAS_GATE|1784336520",
+              "current_price_start_epoch": 1784336520,
+              "order_lineage_age_minutes": 340.9304166674614,
+              "current_price_age_minutes": 270.9462666670481,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "HIP",
+                "epoch": 1784352776.776,
+                "cents": 26,
+                "receipt": "c9735ed9-6de0-69fd-ef36-3c4934bed949",
+                "order_lineage_receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "order_lineage_start_epoch": 1784332320.951,
+                "current_price_receipt": "KXATPMATCH-26JUL18HIPGIU|ATLAS_GATE|1784336520",
+                "current_price_start_epoch": 1784336520,
+                "order_lineage_age_minutes": 340.9304166674614,
+                "current_price_age_minutes": 270.9462666670481,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 63,
+              "leg": "HIP",
+              "epoch": 1784352456.000001,
+              "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-766",
+              "trigger": "TURNING_POINT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 26,
+                "reason": "PAIR_CONSERVATION_SKIP_NEW_REST_HOLD_AND_CONTINUE"
+              },
+              "book": {
+                "bid_cents": 26,
+                "ask_cents": 27,
+                "last_trade_cents": 27,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-681"
+              },
+              "Q": 26,
+              "X": 1784355512,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784332142,
+              "support": null,
+              "accountability_assumption": "69b3f83ddedcb13bd79531519c04a88368776183363c89bd45f411ee004031cb",
+              "stage_index": 31
+            },
+            "license_receipt": "KXATPMATCH-26JUL18HIPGIU|ATLAS_GATE|1784336520",
+            "licensing_deadline_epoch": 1784349882,
+            "fill_by_licensing_deadline": false,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GIU was weakening; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HIP was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "GIU": false,
+          "HIP": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 9,
+        "fills": [
+          {
+            "leg": "HIP",
+            "epoch": 1784352776.776,
+            "cents": 26,
+            "receipt": "c9735ed9-6de0-69fd-ef36-3c4934bed949",
+            "order_lineage_receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+            "order_lineage_start_epoch": 1784332320.951,
+            "current_price_receipt": "KXATPMATCH-26JUL18HIPGIU|ATLAS_GATE|1784336520",
+            "current_price_start_epoch": 1784336520,
+            "order_lineage_age_minutes": 340.9304166674614,
+            "current_price_age_minutes": 270.9462666670481,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL18HIPGIU",
+        "category": "ATP_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "GIU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 76,
+            "close_epoch": 1784363426.5,
+            "floor_cents": 69,
+            "offered_cents": 7,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 7,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "HIP",
+            "filled": true,
+            "fill_cents": 26,
+            "fill_epoch": 1784352776.776,
+            "fill_receipt": "c9735ed9-6de0-69fd-ef36-3c4934bed949",
+            "close_cents": 24,
+            "close_epoch": 1784365273.3,
+            "floor_cents": 22,
+            "offered_cents": 2,
+            "value_cents": -2,
+            "premium_cents": 2,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -2,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d41550c6f9f1ee3ed969a83d201ae1e1325a5dd8544458acabb9dd495b2b6b4e",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+          "epoch": 1784332320.951,
+          "clock": "T−9hr 10min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GIU is weakening; HIP is weakening.",
+              "WHY": "GIU trades at 69¢ against its 71¢ opening anchor; HIP trades at 22¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GIU carries 190 eligible past sides from first-price comparisons; HIP carries 319 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GIU calls 67¢ by T−6hr 45min; HIP calls 20¢ by T−5hr 8min.",
+              "WHY": "GIU’s middle half spans 66–68¢; HIP’s middle half spans 19–21¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GIU has book 69/77 and no standing bid; HIP has book 21/28 and no standing bid.",
+              "WHY": "GIU: The weakening side had not entered its predicted late-floor window; HIP: The weakening side had not entered its predicted late-floor window. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "GIU": {
+              "role": "FALLER",
+              "realized_role": "CLIMBER",
+              "role_right": false,
+              "open": 71,
+              "corrected_open": 71.5,
+              "close": 76,
+              "recorded_floor": 69,
+              "P": 69,
+              "Q": 67,
+              "X": 1784341049.208283,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 190,
+              "ess": 89.98080355504118,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 69,
+                "ask_cents": 77,
+                "last_trade_cents": null,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-62"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 42,
+                "leg": "GIU",
+                "epoch": 1784332320.951,
+                "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 67; reserve HIP max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 69,
+                  "ask_cents": 77,
+                  "last_trade_cents": null,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-62"
+                },
+                "Q": 67,
+                "X": 1784341049.208283,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784332320.951,
+                "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "id": "GIU",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 69,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.1396928599686112,
+                      "ROUND_TRIP": 1.5417305289902932,
+                      "DRIFT_UP": 0,
+                      "ONE_STEP_DOWN": 0.5216667444783755,
+                      "QUIET_WOBBLE": 0.5426408562335293,
+                      "LATE_BREAK_DOWN": 0.1592077812539545,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "EARLY_SET_DOWN": 0.8806958519746559,
+                      "GRIND_WOBBLE_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.052630260393701875,
+                      "DRIFT_DOWN": 0.2655468393995142,
+                      "SLEEPER": 0.3945104933442576
+                    },
+                    "position": 0.062049020185518805,
+                    "epoch": 1784334200.6623917,
+                    "minutes_to_bell": 518.6556268056233,
+                    "open": false,
+                    "member_count": 66,
+                    "ess": 32.653745965165584,
+                    "weight_sum": 1.5417305289902932,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 67; reserve HIP max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GIU": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 89.98080355504118,
+                    "role": "FALLER",
+                    "current": 69,
+                    "member_count": 190
+                  },
+                  "HIP": {
+                    "forecast": 22,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 126.67590378884293,
+                    "role": "FALLER",
+                    "current": 22,
+                    "member_count": 319
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.1396928599686112,
+                    "ROUND_TRIP": 1.5417305289902932,
+                    "DRIFT_UP": 0,
+                    "ONE_STEP_DOWN": 0.5216667444783755,
+                    "QUIET_WOBBLE": 0.5426408562335293,
+                    "LATE_BREAK_DOWN": 0.1592077812539545,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "EARLY_SET_DOWN": 0.8806958519746559,
+                    "GRIND_WOBBLE_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.052630260393701875,
+                    "DRIFT_DOWN": 0.2655468393995142,
+                    "SLEEPER": 0.3945104933442576
+                  },
+                  "position": 0.062049020185518805,
+                  "epoch": 1784334200.6623917,
+                  "minutes_to_bell": 518.6556268056233,
+                  "open": false,
+                  "member_count": 66,
+                  "ess": 32.653745965165584,
+                  "weight_sum": 1.5417305289902932,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 67,
+                "deadline_epoch": 1784341049.208283,
+                "q25": 66,
+                "q75": 68,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 74,
+                "floor_witness": {
+                  "epoch": 1784343103.081,
+                  "price": 74,
+                  "size": 0.53,
+                  "receipt": "f82f8c8e-ef42-734a-a229-be0dfb5ef039"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": false,
+                "passed": false,
+                "missing_reason": null
+              }
+            },
+            "HIP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 24,
+              "recorded_floor": 22,
+              "P": 22,
+              "Q": 20,
+              "X": 1784346858,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 319,
+              "ess": 126.67590378884293,
+              "family": "EARLY_SET_DOWN",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 21,
+                "ask_cents": 28,
+                "last_trade_cents": 93,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-74"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 43,
+                "leg": "HIP",
+                "epoch": 1784332320.951,
+                "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 20; reserve GIU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 21,
+                  "ask_cents": 28,
+                  "last_trade_cents": 93,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-74"
+                },
+                "Q": 20,
+                "X": 1784346858,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "stage_index": 21
+              },
+              "permission": {
+                "ordinal": 21,
+                "epoch": 1784332320.951,
+                "receipt": "6e29efd6-7001-4047-31d4-a5565ad0b4bf",
+                "id": "HIP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 22,
+                  "window": {
+                    "family": "EARLY_SET_DOWN",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.2316436954390504,
+                      "ROUND_TRIP": 1.5103727031372862,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 1.144796668155953,
+                      "EARLY_SET_DOWN": 1.931134702828011,
+                      "QUIET_WOBBLE": 0.7534691010193019,
+                      "LATE_BREAK_UP": 0.03352077931794124,
+                      "ONE_STEP_DOWN": 1.2593870156227192,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.22419983396015908,
+                      "SLEEPER": 1.8830372457307594,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.35554032744194775,
+                    "epoch": 1784343938.116984,
+                    "minutes_to_bell": 356.3647169351578,
+                    "open": false,
+                    "member_count": 70,
+                    "ess": 31.236254085131314,
+                    "weight_sum": 1.931134702828011,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in EARLY_SET_DOWN's learned late-floor window; forecast floor 20; reserve GIU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GIU": {
+                    "forecast": 69,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 89.98080355504118,
+                    "role": "FALLER",
+                    "current": 69,
+                    "member_count": 190
+                  },
+                  "HIP": {
+                    "forecast": 22,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 126.67590378884293,
+                    "role": "FALLER",
+                    "current": 22,
+                    "member_count": 319
+                  }
+                },
+                "window": {
+                  "family": "EARLY_SET_DOWN",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.2316436954390504,
+                    "ROUND_TRIP": 1.5103727031372862,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 1.144796668155953,
+                    "EARLY_SET_DOWN": 1.931134702828011,
+                    "QUIET_WOBBLE": 0.7534691010193019,
+                    "LATE_BREAK_UP": 0.03352077931794124,
+                    "ONE_STEP_DOWN": 1.2593870156227192,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.22419983396015908,
+                    "SLEEPER": 1.8830372457307594,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.35554032744194775,
+                  "epoch": 1784343938.116984,
+                  "minutes_to_bell": 356.3647169351578,
+                  "open": false,
+                  "member_count": 70,
+                  "ess": 31.236254085131314,
+                  "weight_sum": 1.931134702828011,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 20,
+                "deadline_epoch": 1784346858,
+                "q25": 19,
+                "q75": 21,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 22,
+                "floor_witness": {
+                  "epoch": 1784332618.481,
+                  "price": 22,
+                  "size": 12.06,
+                  "receipt": "bd259d78-e473-6f19-53d7-7461b83e5dbe"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": false,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-GIU-miss",
+          "label": "Last receipt before GIU missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "GIU",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+          "epoch": 1784365295.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GIU is strengthening; HIP is weakening.",
+              "WHY": "GIU trades at 76¢ against its 71¢ opening anchor; HIP trades at 24¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GIU carries 350 eligible past sides from first-price comparisons; HIP carries 384 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GIU calls 76¢ by T−0hr 0min; HIP calls 24¢ by T−0hr 0min.",
+              "WHY": "GIU’s middle half spans 76–76¢; HIP’s middle half spans 24–24¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GIU has book 75/76 and a standing 75¢ bid; HIP has book 23/24 and no standing bid.",
+              "WHY": "GIU: buying the strengthening side before it strengthens; predicted close 76; bid 75; reserve HIP max(late floor 24, 100 - climber close 76 = 24) = 24; views differ by 0c (floor minus mirror); 75 + 24 = 99 < 100; HIP: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "GIU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71.5,
+              "close": 76,
+              "recorded_floor": 69,
+              "P": 76,
+              "Q": 76,
+              "X": 1784365295.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 350,
+              "ess": 155.99958992083248,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 75,
+                "ask_cents": 76,
+                "last_trade_cents": 76,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170"
+              },
+              "bid": 75,
+              "filled": null,
+              "decision": {
+                "order": 84,
+                "leg": "GIU",
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 75,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 76; bid 75; reserve HIP max(late floor 24, 100 - climber close 76 = 24) = 24; views differ by 0c (floor minus mirror); 75 + 24 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 75,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170"
+                },
+                "Q": 76,
+                "X": 1784365295.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "id": "GIU",
+                "old": 75,
+                "proposed": 75,
+                "posted": 75,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 75,
+                  "hand_level": 75,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 76,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.7329700551371556,
+                      "ROUND_TRIP": 1.9508998339402561,
+                      "DRIFT_UP": 1.5218651301775066,
+                      "ONE_STEP_DOWN": 0.06876196554610971,
+                      "QUIET_WOBBLE": 2.227630751035008,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 0.8645195222978299,
+                      "EARLY_SET_UP": 1.6787038709829243,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.1083958149952455,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.396418521000241
+                    },
+                    "position": 0.010393812607603463,
+                    "epoch": 1784332486.8459146,
+                    "minutes_to_bell": 547.2192347566287,
+                    "open": true,
+                    "member_count": 71,
+                    "ess": 32.268421100505094,
+                    "weight_sum": 2.227630751035008,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 24,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 24,
+                      "climber_forecast_close": 76,
+                      "mirror_completion_cost": 24,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 76; bid 75; reserve HIP max(late floor 24, 100 - climber close 76 = 24) = 24; views differ by 0c (floor minus mirror); 75 + 24 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 24,
+                    "climber_forecast_close": 76,
+                    "mirror_completion_cost": 24,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "GIU",
+                    "faller": "HIP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": 24,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 24,
+                    "ask": 24,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "GIU": {
+                    "forecast": 76,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.99958992083248,
+                    "role": "CLIMBER",
+                    "current": 76,
+                    "member_count": 350
+                  },
+                  "HIP": {
+                    "forecast": 24,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 163.03972216367796,
+                    "role": "FALLER",
+                    "current": 24,
+                    "member_count": 384
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.7329700551371556,
+                    "ROUND_TRIP": 1.9508998339402561,
+                    "DRIFT_UP": 1.5218651301775066,
+                    "ONE_STEP_DOWN": 0.06876196554610971,
+                    "QUIET_WOBBLE": 2.227630751035008,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 0.8645195222978299,
+                    "EARLY_SET_UP": 1.6787038709829243,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.1083958149952455,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.396418521000241
+                  },
+                  "position": 0.010393812607603463,
+                  "epoch": 1784332486.8459146,
+                  "minutes_to_bell": 547.2192347566287,
+                  "open": true,
+                  "member_count": 71,
+                  "ess": 32.268421100505094,
+                  "weight_sum": 2.227630751035008,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 76,
+                "deadline_epoch": 1784365295.000002,
+                "q25": 76,
+                "q75": 76,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "HIP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 24,
+              "recorded_floor": 22,
+              "P": 24,
+              "Q": 24,
+              "X": 1784365295.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 384,
+              "ess": 163.03972216367796,
+              "family": "SLEEPER",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 24,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-1687"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 85,
+                "leg": "HIP",
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in SLEEPER's learned late-floor window; forecast floor 24; reserve GIU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 24,
+                  "last_trade_cents": 24,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-1687"
+                },
+                "Q": 24,
+                "X": 1784365295.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "id": "HIP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 24,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 24,
+                  "window": {
+                    "family": "SLEEPER",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.48431000133779123,
+                      "ROUND_TRIP": 1.5169155189437509,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 1.2911814876007301,
+                      "EARLY_SET_DOWN": 2.0835708038225857,
+                      "QUIET_WOBBLE": 1.60404884075334,
+                      "LATE_BREAK_UP": 0.06876196554610971,
+                      "ONE_STEP_DOWN": 1.4931180977048186,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.23421836999652884,
+                      "SLEEPER": 2.8842198402446155,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.25638579756226815,
+                    "epoch": 1784340648.3679914,
+                    "minutes_to_bell": 411.19386680920917,
+                    "open": true,
+                    "member_count": 43,
+                    "ess": 22.823698210115264,
+                    "weight_sum": 2.8842198402446155,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in SLEEPER's learned late-floor window; forecast floor 24; reserve GIU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 24,
+                    "climber_forecast_close": 76,
+                    "mirror_completion_cost": 24,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "GIU",
+                    "faller": "HIP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GIU": {
+                    "forecast": 76,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.99958992083248,
+                    "role": "CLIMBER",
+                    "current": 76,
+                    "member_count": 350
+                  },
+                  "HIP": {
+                    "forecast": 24,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 163.03972216367796,
+                    "role": "FALLER",
+                    "current": 24,
+                    "member_count": 384
+                  }
+                },
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.48431000133779123,
+                    "ROUND_TRIP": 1.5169155189437509,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 1.2911814876007301,
+                    "EARLY_SET_DOWN": 2.0835708038225857,
+                    "QUIET_WOBBLE": 1.60404884075334,
+                    "LATE_BREAK_UP": 0.06876196554610971,
+                    "ONE_STEP_DOWN": 1.4931180977048186,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.23421836999652884,
+                    "SLEEPER": 2.8842198402446155,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.25638579756226815,
+                  "epoch": 1784340648.3679914,
+                  "minutes_to_bell": 411.19386680920917,
+                  "open": true,
+                  "member_count": 43,
+                  "ess": 22.823698210115264,
+                  "weight_sum": 2.8842198402446155,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 24,
+                "deadline_epoch": 1784365295.000002,
+                "q25": 24,
+                "q75": 24,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784365320,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-HIP-miss",
+          "label": "Last receipt before HIP missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "HIP",
+          "outcome": "miss",
+          "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+          "epoch": 1784365295.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "GIU is strengthening; HIP is weakening.",
+              "WHY": "GIU trades at 76¢ against its 71¢ opening anchor; HIP trades at 24¢ against its 26¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "GIU carries 350 eligible past sides from first-price comparisons; HIP carries 384 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "GIU calls 76¢ by T−0hr 0min; HIP calls 24¢ by T−0hr 0min.",
+              "WHY": "GIU’s middle half spans 76–76¢; HIP’s middle half spans 24–24¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "GIU has book 75/76 and a standing 75¢ bid; HIP has book 23/24 and no standing bid.",
+              "WHY": "GIU: buying the strengthening side before it strengthens; predicted close 76; bid 75; reserve HIP max(late floor 24, 100 - climber close 76 = 24) = 24; views differ by 0c (floor minus mirror); 75 + 24 = 99 < 100; HIP: The desired bid could not be posted below the ask. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "GIU": {
+              "role": "CLIMBER",
+              "realized_role": "CLIMBER",
+              "role_right": true,
+              "open": 71,
+              "corrected_open": 71.5,
+              "close": 76,
+              "recorded_floor": 69,
+              "P": 76,
+              "Q": 76,
+              "X": 1784365295.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 350,
+              "ess": 155.99958992083248,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 75,
+                "ask_cents": 76,
+                "last_trade_cents": 76,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170"
+              },
+              "bid": 75,
+              "filled": null,
+              "decision": {
+                "order": 84,
+                "leg": "GIU",
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 75,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 76; bid 75; reserve HIP max(late floor 24, 100 - climber close 76 = 24) = 24; views differ by 0c (floor minus mirror); 75 + 24 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 75,
+                  "ask_cents": 76,
+                  "last_trade_cents": 76,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170"
+                },
+                "Q": 76,
+                "X": 1784365295.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "id": "GIU",
+                "old": 75,
+                "proposed": 75,
+                "posted": 75,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 75,
+                  "hand_level": 75,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 76,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "LATE_BREAK_UP": 0.7329700551371556,
+                      "ROUND_TRIP": 1.9508998339402561,
+                      "DRIFT_UP": 1.5218651301775066,
+                      "ONE_STEP_DOWN": 0.06876196554610971,
+                      "QUIET_WOBBLE": 2.227630751035008,
+                      "LATE_BREAK_DOWN": 0,
+                      "ONE_STEP_UP": 0.8645195222978299,
+                      "EARLY_SET_UP": 1.6787038709829243,
+                      "EARLY_SET_DOWN": 0,
+                      "GRIND_WOBBLE_UP": 0.1083958149952455,
+                      "GRIND_WOBBLE_DOWN": 0,
+                      "DRIFT_DOWN": 0,
+                      "SLEEPER": 1.396418521000241
+                    },
+                    "position": 0.010393812607603463,
+                    "epoch": 1784332486.8459146,
+                    "minutes_to_bell": 547.2192347566287,
+                    "open": true,
+                    "member_count": 71,
+                    "ess": 32.268421100505094,
+                    "weight_sum": 2.227630751035008,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 24,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 24,
+                      "climber_forecast_close": 76,
+                      "mirror_completion_cost": 24,
+                      "disagreement_cents": 0,
+                      "absolute_disagreement_cents": 0,
+                      "dominant": "EQUAL"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 76; bid 75; reserve HIP max(late floor 24, 100 - climber close 76 = 24) = 24; views differ by 0c (floor minus mirror); 75 + 24 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 24,
+                    "climber_forecast_close": 76,
+                    "mirror_completion_cost": 24,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "GIU",
+                    "faller": "HIP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": 24,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 24,
+                    "ask": 24,
+                    "sum": 99,
+                    "discount": 1,
+                    "reason": "RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "GIU": {
+                    "forecast": 76,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.99958992083248,
+                    "role": "CLIMBER",
+                    "current": 76,
+                    "member_count": 350
+                  },
+                  "HIP": {
+                    "forecast": 24,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 163.03972216367796,
+                    "role": "FALLER",
+                    "current": 24,
+                    "member_count": 384
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "LATE_BREAK_UP": 0.7329700551371556,
+                    "ROUND_TRIP": 1.9508998339402561,
+                    "DRIFT_UP": 1.5218651301775066,
+                    "ONE_STEP_DOWN": 0.06876196554610971,
+                    "QUIET_WOBBLE": 2.227630751035008,
+                    "LATE_BREAK_DOWN": 0,
+                    "ONE_STEP_UP": 0.8645195222978299,
+                    "EARLY_SET_UP": 1.6787038709829243,
+                    "EARLY_SET_DOWN": 0,
+                    "GRIND_WOBBLE_UP": 0.1083958149952455,
+                    "GRIND_WOBBLE_DOWN": 0,
+                    "DRIFT_DOWN": 0,
+                    "SLEEPER": 1.396418521000241
+                  },
+                  "position": 0.010393812607603463,
+                  "epoch": 1784332486.8459146,
+                  "minutes_to_bell": 547.2192347566287,
+                  "open": true,
+                  "member_count": 71,
+                  "ess": 32.268421100505094,
+                  "weight_sum": 2.227630751035008,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 76,
+                "deadline_epoch": 1784365295.000002,
+                "q25": 76,
+                "q75": 76,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "HIP": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 26,
+              "corrected_open": 26,
+              "close": 24,
+              "recorded_floor": 22,
+              "P": 24,
+              "Q": 24,
+              "X": 1784365295.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 384,
+              "ess": 163.03972216367796,
+              "family": "SLEEPER",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 23,
+                "ask_cents": 24,
+                "last_trade_cents": 24,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-1687"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 85,
+                "leg": "HIP",
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in SLEEPER's learned late-floor window; forecast floor 24; reserve GIU max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 23,
+                  "ask_cents": 24,
+                  "last_trade_cents": 24,
+                  "receipt": "KXATPMATCH-26JUL18HIPGIU-HIP.csv.gz#row-1687"
+                },
+                "Q": 24,
+                "X": 1784365295.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784332142,
+                "stage_index": 43
+              },
+              "permission": {
+                "ordinal": 42,
+                "epoch": 1784365295.000002,
+                "receipt": "KXATPMATCH-26JUL18HIPGIU-GIU.csv.gz#row-2170",
+                "id": "HIP",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 24,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 24,
+                  "window": {
+                    "family": "SLEEPER",
+                    "family_mass": {
+                      "LATE_BREAK_DOWN": 0.48431000133779123,
+                      "ROUND_TRIP": 1.5169155189437509,
+                      "ONE_STEP_UP": 0,
+                      "DRIFT_DOWN": 1.2911814876007301,
+                      "EARLY_SET_DOWN": 2.0835708038225857,
+                      "QUIET_WOBBLE": 1.60404884075334,
+                      "LATE_BREAK_UP": 0.06876196554610971,
+                      "ONE_STEP_DOWN": 1.4931180977048186,
+                      "GRIND_WOBBLE_UP": 0,
+                      "DRIFT_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.23421836999652884,
+                      "SLEEPER": 2.8842198402446155,
+                      "EARLY_SET_UP": 0
+                    },
+                    "position": 0.25638579756226815,
+                    "epoch": 1784340648.3679914,
+                    "minutes_to_bell": 411.19386680920917,
+                    "open": true,
+                    "member_count": 43,
+                    "ess": 22.823698210115264,
+                    "weight_sum": 2.8842198402446155,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in SLEEPER's learned late-floor window; forecast floor 24; reserve GIU max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 24,
+                    "climber_forecast_close": 76,
+                    "mirror_completion_cost": 24,
+                    "disagreement_cents": 0,
+                    "absolute_disagreement_cents": 0,
+                    "dominant": "EQUAL",
+                    "climber": "GIU",
+                    "faller": "HIP",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "GIU": {
+                    "forecast": 76,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 155.99958992083248,
+                    "role": "CLIMBER",
+                    "current": 76,
+                    "member_count": 350
+                  },
+                  "HIP": {
+                    "forecast": 24,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 163.03972216367796,
+                    "role": "FALLER",
+                    "current": 24,
+                    "member_count": 384
+                  }
+                },
+                "window": {
+                  "family": "SLEEPER",
+                  "family_mass": {
+                    "LATE_BREAK_DOWN": 0.48431000133779123,
+                    "ROUND_TRIP": 1.5169155189437509,
+                    "ONE_STEP_UP": 0,
+                    "DRIFT_DOWN": 1.2911814876007301,
+                    "EARLY_SET_DOWN": 2.0835708038225857,
+                    "QUIET_WOBBLE": 1.60404884075334,
+                    "LATE_BREAK_UP": 0.06876196554610971,
+                    "ONE_STEP_DOWN": 1.4931180977048186,
+                    "GRIND_WOBBLE_UP": 0,
+                    "DRIFT_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.23421836999652884,
+                    "SLEEPER": 2.8842198402446155,
+                    "EARLY_SET_UP": 0
+                  },
+                  "position": 0.25638579756226815,
+                  "epoch": 1784340648.3679914,
+                  "minutes_to_bell": 411.19386680920917,
+                  "open": true,
+                  "member_count": 43,
+                  "ess": 22.823698210115264,
+                  "weight_sum": 2.8842198402446155,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 24,
+                "deadline_epoch": 1784365295.000002,
+                "q25": 24,
+                "q75": 24,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "PASS",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784365320,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GIU was weakening; its corrected full-window direction was strengthening."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "PASS",
+          "MICRO": "UNKNOWN",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "GIU: No strictly later accepted positive print. HIP: No strictly later accepted positive print."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "GIU": false,
+          "HIP": false
+        },
+        "valid_fills": 0,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 9,
+        "fills": [],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXATPMATCH-26JUL18HIPGIU",
+        "category": "ATP_MAIN",
+        "group": "unfilled",
+        "legs": [
+          {
+            "id": "GIU",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 76,
+            "close_epoch": 1784363426.5,
+            "floor_cents": 69,
+            "offered_cents": 7,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 7,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "HIP",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 24,
+            "close_epoch": 1784365273.3,
+            "floor_cents": 22,
+            "offered_cents": 2,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 2,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": 0,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "d41550c6f9f1ee3ed969a83d201ae1e1325a5dd8544458acabb9dd495b2b6b4e",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

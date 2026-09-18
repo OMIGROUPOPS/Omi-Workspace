@@ -1,0 +1,2439 @@
+{
+  "schema": "NINE_CELL_GAME_REVIEW_V1",
+  "event": "KXWTAMATCH-26JUL17UDVBAD",
+  "category": "WTA_MAIN",
+  "named_only": false,
+  "definition_contract_url": "/data/layer-review/CONTRACT.json",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "provenance": {
+    "D_os_sha256": "70b68856cb4f0329048f9ae951e01c19c7d7465e3cc0ee183e325ce6c1fb0346",
+    "D_trace_sha256": "b22013815c23ac1543c47302bebf8ffeced502548f8097026c6608f836d65d3f",
+    "stage_cache_sha256": "b32dd63aa4708a177f8c414e0e9701d6cc1ea12be94802a8bb54d43c86eebb13",
+    "mirror_projection_sha256": "cb7044a43e7407b241166bda7e8a10b135e26841999f2b69b6b91bb54777d2cd",
+    "mirror_permissions_sha256": "8aba40fea25e55c9e4a2e9cf746734d3f2c870061c8adbeb7edb0330a58165d4",
+    "truth": {
+      "role": "RULER — NOT AN OS INPUT",
+      "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+      "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+      "table_path": ".claude/window1_second_seat/v11_non_action_mechanism_audit_20260803/W1_GROUND_TRUTH_TABLE.csv",
+      "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+      "row_sha256": "2a14aacef09cb438c19e6a518bc5210e4b430d2b04e2b7f6b3be85688b4972f5",
+      "row_number": 516,
+      "row_csv": "26JUL17UDVBAD,KXWTAMATCH-26JUL17UDVBAD,WTA_MAIN,1784231952,1784231952,1784297460,1784309400.0,BAD,UDV,1784233886,76.0,66,1784234484.7,72,1784297417.0,10958.41,7598.49,STILL,-4.0,1784235773,,,,1784234455,30.0,26,1784246669.0,29,1784297333.3,36734.19,10927.29,STILL,-1.0,1784235765,33,1784235832.2,PRE_BELL_VALID,1784234455,,,1784301960.0,1784310615.0,1784301960.0,TAPE_INFERENCE,\"inferred, last resort: +-30min (89% validation)\",1784234455,1784297460,OK,PARTIAL_FOR_REASON,",
+      "verified_span": "OK",
+      "status": "OK",
+      "reason": null,
+      "span_start_epoch": 1784234455,
+      "span_end_epoch": 1784297460,
+      "bell_epoch": 1784301960,
+      "bell_source": "TAPE_INFERENCE",
+      "table_bell_epoch": 1784301960,
+      "table_bell_source": "TAPE_INFERENCE",
+      "table_bell_delta_seconds": 0,
+      "legs": {
+        "BAD": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legA_floor_c",
+            "floor_epoch": "legA_floor_epoch",
+            "anchor_cents": "legA_open_postformation_c"
+          },
+          "anchor_cents": 76,
+          "floor_cents": 66,
+          "floor_epoch": 1784234484.7,
+          "minutes_to_bell": 1124.5883333325387,
+          "line": "BAD 66¢ @ 1124.59m to bell",
+          "marker_label": "BAD FLOOR · RECORDED 66¢ @ 1124.59m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 66¢ · 1124m to bell",
+          "hover_note": "Recorded floor 66¢ printed here · 1124m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        },
+        "UDV": {
+          "status": "OK",
+          "reason": null,
+          "source_columns": {
+            "floor_cents": "legB_floor_c",
+            "floor_epoch": "legB_floor_epoch",
+            "anchor_cents": "legB_open_postformation_c"
+          },
+          "anchor_cents": 30,
+          "floor_cents": 26,
+          "floor_epoch": 1784246669,
+          "minutes_to_bell": 921.5166666666667,
+          "line": "UDV 26¢ @ 921.52m to bell",
+          "marker_label": "UDV FLOOR · RECORDED 26¢ @ 921.52m to bell — RULER — NOT AN OS INPUT",
+          "chart_label": "recorded floor 26¢ · 921m to bell",
+          "hover_note": "Recorded floor 26¢ printed here · 921m to bell · from the truth table (not an OS input)",
+          "markers": {}
+        }
+      },
+      "favorite_leg": "BAD",
+      "underdog_leg": "UDV",
+      "pair": {
+        "sum_cents": 92,
+        "discount_cents": 8,
+        "reason": null,
+        "line": "best capturable = 66 + 26 = 92¢",
+        "discount_line": "8¢ under par",
+        "compact_line": "best capturable 92¢ · 8¢ under par"
+      },
+      "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+      "applied_corrections": [],
+      "effective_row": {
+        "code": "26JUL17UDVBAD",
+        "event_id": "KXWTAMATCH-26JUL17UDVBAD",
+        "category": "WTA_MAIN",
+        "recorder_open_epoch": "1784231952",
+        "w1_left_epoch": "1784231952",
+        "w1_right_epoch": "1784297460",
+        "scheduled_start_epoch": "1784309400.0",
+        "legA": "BAD",
+        "legB": "UDV",
+        "legA_formation_end_epoch": "1784233886",
+        "legA_open_postformation_c": "76.0",
+        "legA_floor_c": "66",
+        "legA_floor_epoch": "1784234484.7",
+        "legA_close_c": "72",
+        "legA_close_epoch": "1784297417.0",
+        "legA_contracts": "10958.41",
+        "legA_premium_usd": "7598.49",
+        "legA_journey": "STILL",
+        "legA_net_travel_c": "-4.0",
+        "legA_us_first_post_epoch": "1784235773",
+        "legA_us_fill_c": "",
+        "legA_us_fill_epoch": "",
+        "legA_us_fill_stamp": "",
+        "legB_formation_end_epoch": "1784234455",
+        "legB_open_postformation_c": "30.0",
+        "legB_floor_c": "26",
+        "legB_floor_epoch": "1784246669.0",
+        "legB_close_c": "29",
+        "legB_close_epoch": "1784297333.3",
+        "legB_contracts": "36734.19",
+        "legB_premium_usd": "10927.29",
+        "legB_journey": "STILL",
+        "legB_net_travel_c": "-1.0",
+        "legB_us_first_post_epoch": "1784235765",
+        "legB_us_fill_c": "33",
+        "legB_us_fill_epoch": "1784235832.2",
+        "legB_us_fill_stamp": "PRE_BELL_VALID",
+        "formation_end_game": "1784234455",
+        "bell_machine_epoch": "",
+        "bell_observed_inplay_epoch": "",
+        "bell_tape_signature_epoch": "1784301960.0",
+        "kalshi_close_time_epoch": "1784310615.0",
+        "bell_epoch": "1784301960.0",
+        "bell_source": "TAPE_INFERENCE",
+        "bell_precision": "inferred, last resort: +-30min (89% validation)",
+        "span_start_epoch": "1784234455",
+        "span_end_epoch": "1784297460",
+        "verified_span": "OK",
+        "pair_state": "PARTIAL_FOR_REASON",
+        "locked_delta_valid_fills_c": ""
+      },
+      "row_csv_role": "Original pinned row, before correction overlays"
+    },
+    "prints": {
+      "path": "C:\\tmp\\tune_expansion_20260914\\selected_prints\\KXWTAMATCH-26JUL17UDVBAD.jsonl",
+      "sha256": "de3c54a6cb89825dba9330f9f578628fa81ae0d7b1f1ecaee0f43bf5f481549c",
+      "raw_rows": 11117,
+      "accepted_rows": 348,
+      "start_epoch": 1784234455,
+      "end_epoch": 1784297460
+    }
+  },
+  "first_callable_receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+  "first_both_directional_receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+  "first_callable_by_side": {
+    "BAD": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+    "UDV": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39"
+  },
+  "arms": {
+    "D": {
+      "label": "D · original policy",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "D",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+          "epoch": 1784234495.000002,
+          "clock": "T−17hr 29min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAD is weakening; UDV is strengthening.",
+              "WHY": "BAD trades at 66¢ against its 76¢ opening anchor; UDV trades at 34¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAD carries 122 eligible past sides from first-price comparisons; UDV carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAD calls 64¢ by T−12hr 43min; UDV calls 32¢ by T−9hr 37min.",
+              "WHY": "BAD’s middle half spans 63–66¢; UDV’s middle half spans 30–34¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAD has book 65/66 and no standing bid; UDV has book 25/34 and no standing bid.",
+              "WHY": "BAD: Only the ask changed, so the existing book veto held the bid decision; UDV: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAD": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 76,
+              "corrected_open": 76,
+              "close": 72,
+              "recorded_floor": 66,
+              "P": 66,
+              "Q": 64,
+              "X": 1784251693,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 122,
+              "ess": 28.660385674228625,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": null,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 40,
+                "leg": "BAD",
+                "epoch": 1784234495.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": null,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39"
+                },
+                "Q": 64,
+                "X": 1784251693,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784233886,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 20
+              },
+              "permission": null,
+              "micro": {
+                "Q": 64,
+                "deadline_epoch": 1784251693,
+                "q25": 63,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784234542.378,
+                  "price": 66,
+                  "size": 17.09,
+                  "receipt": "84a8320b-1f6e-40fe-d14c-481a25ad12d9"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784234542.378,
+                  "price": 66,
+                  "size": 17.09,
+                  "receipt": "84a8320b-1f6e-40fe-d14c-481a25ad12d9"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UDV": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 29,
+              "recorded_floor": 26,
+              "P": 34,
+              "Q": 32,
+              "X": 1784262849,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 42.47188174429189,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 34,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-97"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 41,
+                "leg": "UDV",
+                "epoch": 1784234495.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 34,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-97"
+                },
+                "Q": 32,
+                "X": 1784262849,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784234455,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 20
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784262849,
+                "q25": 30,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 26,
+                "floor_witness": {
+                  "epoch": 1784246669.043,
+                  "price": 26,
+                  "size": 0.03,
+                  "receipt": "9ec5d10f-006b-6fd2-58f3-2a53dfd42dbf"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784234832.628,
+                  "price": 34,
+                  "size": 2000,
+                  "receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAD-miss",
+          "label": "Last receipt before BAD missed at the bell",
+          "arm": "D",
+          "focus_leg": "BAD",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181",
+          "epoch": 1784297456.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAD is weakening; UDV is not yet directionally called.",
+              "WHY": "BAD trades at 72¢ against its 76¢ opening anchor; UDV trades at 29¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAD carries 259 eligible past sides from first-price comparisons; UDV carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAD calls 72¢ by T−0hr 0min; UDV calls 29¢ by T−0hr 0min.",
+              "WHY": "BAD’s middle half spans 72–72¢; UDV’s middle half spans 29–29¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAD has book 71/72 and a standing 64¢ bid; UDV has book 28/29 and a recorded purchase at 32¢.",
+              "WHY": "BAD: The desired bid could not be posted below the ask; UDV: This side was already bought, so no new bid was allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAD": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 76,
+              "corrected_open": 76,
+              "close": 72,
+              "recorded_floor": 66,
+              "P": 72,
+              "Q": 72,
+              "X": 1784297456.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 259,
+              "ess": 87.90090163710995,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 71,
+                "ask_cents": 72,
+                "last_trade_cents": 72,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181"
+              },
+              "bid": 64,
+              "filled": null,
+              "decision": {
+                "order": 142,
+                "leg": "BAD",
+                "epoch": 1784297456.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 64,
+                  "reason": "POST_ONLY_BLOCKED_NEW_TARGET_HOLD_EXISTING_POSTABLE_REST"
+                },
+                "book": {
+                  "bid_cents": 71,
+                  "ask_cents": 72,
+                  "last_trade_cents": 72,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181"
+                },
+                "Q": 72,
+                "X": 1784297456.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784233886,
+                "support": null,
+                "accountability_assumption": "03ac1468d29d1d0f4a448749f56a4789707e9581451b19e57579f7e200821642",
+                "stage_index": 82
+              },
+              "permission": null,
+              "micro": {
+                "Q": 72,
+                "deadline_epoch": 1784297456.000002,
+                "q25": 72,
+                "q75": 72,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "UDV": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 29,
+              "recorded_floor": 26,
+              "P": 29,
+              "Q": 29,
+              "X": 1784297456.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 247.5212266853155,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 28,
+                "ask_cents": 29,
+                "last_trade_cents": 29,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-4961"
+              },
+              "bid": null,
+              "filled": 32,
+              "decision": {
+                "order": 140,
+                "leg": "UDV",
+                "epoch": 1784297160,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD|ATLAS_GATE|1784297160",
+                "trigger": "ATLAS_GATE",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "CREDITED_LEG_READ_ONLY"
+                },
+                "book": {
+                  "bid_cents": 28,
+                  "ask_cents": 29,
+                  "last_trade_cents": 29,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-4861"
+                },
+                "Q": 29,
+                "X": 1784297160,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784234455,
+                "support": null,
+                "accountability_assumption": null,
+                "stage_index": 79
+              },
+              "permission": null,
+              "micro": {
+                "Q": 29,
+                "deadline_epoch": 1784297456.000002,
+                "q25": 29,
+                "q75": 29,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784297460,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-UDV-fill",
+          "label": "Last receipt before UDV filled",
+          "arm": "D",
+          "focus_leg": "UDV",
+          "outcome": "fill",
+          "receipt": "c56045a9-b7ce-462e-4383-dfeaab0009b9",
+          "epoch": 1784235723.019,
+          "clock": "T−17hr 9min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAD is weakening; UDV is strengthening.",
+              "WHY": "BAD trades at 66¢ against its 76¢ opening anchor; UDV trades at 34¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAD carries 125 eligible past sides from first-price comparisons; UDV carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAD calls 64¢ by T−12hr 43min; UDV calls 32¢ by T−9hr 33min.",
+              "WHY": "BAD’s middle half spans 63–66¢; UDV’s middle half spans 30–34¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAD has book 65/66 and a standing 64¢ bid; UDV has book 34/31 and a standing 32¢ bid.",
+              "WHY": "BAD: The current pool target was the permitted bid level; UDV: The book was locked; a new bid was not allowed. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "D applies its saved book and pair-budget checks and watches later positive prints; no independent subsecond arrival prediction is written."
+            }
+          },
+          "legs": {
+            "BAD": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 76,
+              "corrected_open": 76,
+              "close": 72,
+              "recorded_floor": 66,
+              "P": 66,
+              "Q": 64,
+              "X": 1784251693,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 125,
+              "ess": 29.72268265238959,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-320"
+              },
+              "bid": 64,
+              "filled": null,
+              "decision": {
+                "order": 98,
+                "leg": "BAD",
+                "epoch": 1784235723.019,
+                "receipt": "c56045a9-b7ce-462e-4383-dfeaab0009b9",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 64,
+                  "reason": "PRICING_AUTHORITY_TARGET_EXECUTED"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-320"
+                },
+                "Q": 64,
+                "X": 1784251693,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784233886,
+                "support": null,
+                "accountability_assumption": "be72cdb5dc452f480b4dc1fb46b3b4b03309a9327a3e08c8e78055454a9b5f9f",
+                "stage_index": 49
+              },
+              "permission": null,
+              "micro": {
+                "Q": 64,
+                "deadline_epoch": 1784251693,
+                "q25": 63,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784235782.082,
+                  "price": 66,
+                  "size": 418.05,
+                  "receipt": "bb83798f-0d62-70fa-b670-7f8adc5226cd"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784235782.082,
+                  "price": 66,
+                  "size": 418.05,
+                  "receipt": "bb83798f-0d62-70fa-b670-7f8adc5226cd"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UDV": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 29,
+              "recorded_floor": 26,
+              "P": 34,
+              "Q": 32,
+              "X": 1784263061,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 42.63570510973011,
+              "family": null,
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 34,
+                "ask_cents": 31,
+                "last_trade_cents": 34,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-363"
+              },
+              "bid": 32,
+              "filled": null,
+              "decision": {
+                "order": 99,
+                "leg": "UDV",
+                "epoch": 1784235723.019,
+                "receipt": "c56045a9-b7ce-462e-4383-dfeaab0009b9",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 32,
+                  "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 31,
+                  "last_trade_cents": 34,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-363"
+                },
+                "Q": 32,
+                "X": 1784263061,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784234455,
+                "support": null,
+                "accountability_assumption": "0fe6b79323e008f3c7be3c261c38d1b7c0949271ee255914359719d707edfd95",
+                "stage_index": 49
+              },
+              "permission": null,
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784263061,
+                "q25": 30,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 26,
+                "floor_witness": {
+                  "epoch": 1784246669.043,
+                  "price": 26,
+                  "size": 0.03,
+                  "receipt": "9ec5d10f-006b-6fd2-58f3-2a53dfd42dbf"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784235762.549,
+                  "price": 31,
+                  "size": 2,
+                  "receipt": "50714d09-922e-7364-db91-bbcbd2f058eb"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784235762.549,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "UDV",
+              "epoch": 1784235762.549,
+              "cents": 32,
+              "receipt": "50714d09-922e-7364-db91-bbcbd2f058eb",
+              "order_lineage_receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-98",
+              "order_lineage_start_epoch": 1784234505.000001,
+              "current_price_receipt": "0c8d85f9-0652-5386-4531-74aba24a7bfd",
+              "current_price_start_epoch": 1784235547.89,
+              "order_lineage_age_minutes": 20.959149984518685,
+              "current_price_age_minutes": 3.577649998664856,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "UDV",
+                "epoch": 1784235762.549,
+                "cents": 32,
+                "receipt": "50714d09-922e-7364-db91-bbcbd2f058eb",
+                "order_lineage_receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-98",
+                "order_lineage_start_epoch": 1784234505.000001,
+                "current_price_receipt": "0c8d85f9-0652-5386-4531-74aba24a7bfd",
+                "current_price_start_epoch": 1784235547.89,
+                "order_lineage_age_minutes": 20.959149984518685,
+                "current_price_age_minutes": 3.577649998664856,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "D permits its saved standing level until changed, filled, or its bell; no new deadline expiry is imposed.",
+            "last_permission": null,
+            "last_decision_before_fill": {
+              "order": 99,
+              "leg": "UDV",
+              "epoch": 1784235723.019,
+              "receipt": "c56045a9-b7ce-462e-4383-dfeaab0009b9",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 32,
+                "reason": "LOCKED_BOOK_PLACEMENT_ONLY_EXISTING_REST_HELD"
+              },
+              "book": {
+                "bid_cents": 34,
+                "ask_cents": 31,
+                "last_trade_cents": 34,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-363"
+              },
+              "Q": 32,
+              "X": 1784263061,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784234455,
+              "support": null,
+              "accountability_assumption": "0fe6b79323e008f3c7be3c261c38d1b7c0949271ee255914359719d707edfd95",
+              "stage_index": 49
+            },
+            "license_receipt": "0c8d85f9-0652-5386-4531-74aba24a7bfd",
+            "licensing_deadline_epoch": 1784263061,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BAD": false,
+          "UDV": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 8,
+        "fills": [
+          {
+            "leg": "UDV",
+            "epoch": 1784235762.549,
+            "cents": 32,
+            "receipt": "50714d09-922e-7364-db91-bbcbd2f058eb",
+            "order_lineage_receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-98",
+            "order_lineage_start_epoch": 1784234505.000001,
+            "current_price_receipt": "0c8d85f9-0652-5386-4531-74aba24a7bfd",
+            "current_price_start_epoch": 1784235547.89,
+            "order_lineage_age_minutes": 20.959149984518685,
+            "current_price_age_minutes": 3.577649998664856,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL17UDVBAD",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BAD",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 72,
+            "close_epoch": 1784297417,
+            "floor_cents": 66,
+            "offered_cents": 6,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 6,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "UDV",
+            "filled": true,
+            "fill_cents": 32,
+            "fill_epoch": 1784235762.549,
+            "fill_receipt": "50714d09-922e-7364-db91-bbcbd2f058eb",
+            "close_cents": 29,
+            "close_epoch": 1784297333.3,
+            "floor_cents": 26,
+            "offered_cents": 3,
+            "value_cents": -3,
+            "premium_cents": 3,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -3,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "2a14aacef09cb438c19e6a518bc5210e4b430d2b04e2b7f6b3be85688b4972f5",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    },
+    "MIRROR_RESERVE": {
+      "label": "Mirror-reserve · bench only, not installed",
+      "reviews": [
+        {
+          "key": "first-callable",
+          "label": "First callable receipt for both sides",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": null,
+          "outcome": null,
+          "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+          "epoch": 1784234495.000002,
+          "clock": "T−17hr 29min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAD is weakening; UDV is strengthening.",
+              "WHY": "BAD trades at 66¢ against its 76¢ opening anchor; UDV trades at 34¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAD carries 122 eligible past sides from first-price comparisons; UDV carries 90 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAD calls 64¢ by T−12hr 43min; UDV calls 32¢ by T−9hr 37min.",
+              "WHY": "BAD’s middle half spans 63–66¢; UDV’s middle half spans 30–34¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAD has book 65/66 and no standing bid; UDV has book 25/34 and no standing bid.",
+              "WHY": "BAD: The weakening side had not entered its predicted late-floor window; UDV: Only the ask changed, so the existing book veto held the bid decision. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAD": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 76,
+              "corrected_open": 76,
+              "close": 72,
+              "recorded_floor": 66,
+              "P": 66,
+              "Q": 64,
+              "X": 1784251693,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 122,
+              "ess": 28.660385674228625,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": null,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 40,
+                "leg": "BAD",
+                "epoch": 1784234495.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 64; reserve UDV max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": null,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39"
+                },
+                "Q": 64,
+                "X": 1784251693,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784233886,
+                "stage_index": 20
+              },
+              "permission": {
+                "ordinal": 20,
+                "epoch": 1784234495.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+                "id": "BAD",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.9766377957239778,
+                      "LATE_BREAK_UP": 0,
+                      "LATE_BREAK_DOWN": 0.12267550194182535,
+                      "DRIFT_UP": 0,
+                      "ROUND_TRIP": 2.3654688278789218,
+                      "QUIET_WOBBLE": 0.9993552385056104,
+                      "DRIFT_DOWN": 0.61328264481698,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_DOWN": 1.2701736565737245,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.0951644060114749,
+                      "SLEEPER": 0.08267404312110237
+                    },
+                    "position": 0.021329438124404916,
+                    "epoch": 1784235241.9976993,
+                    "minutes_to_bell": 1036.9667050123214,
+                    "open": false,
+                    "member_count": 35,
+                    "ess": 5.2379951048204285,
+                    "weight_sum": 2.3654688278789218,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 64; reserve UDV max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 64,
+                    "climber_forecast_close": 34,
+                    "mirror_completion_cost": 66,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UDV",
+                    "faller": "BAD",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAD": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.660385674228625,
+                    "role": "FALLER",
+                    "current": 66,
+                    "member_count": 122
+                  },
+                  "UDV": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 42.47188174429189,
+                    "role": "CLIMBER",
+                    "current": 34,
+                    "member_count": 90
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.9766377957239778,
+                    "LATE_BREAK_UP": 0,
+                    "LATE_BREAK_DOWN": 0.12267550194182535,
+                    "DRIFT_UP": 0,
+                    "ROUND_TRIP": 2.3654688278789218,
+                    "QUIET_WOBBLE": 0.9993552385056104,
+                    "DRIFT_DOWN": 0.61328264481698,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_DOWN": 1.2701736565737245,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.0951644060114749,
+                    "SLEEPER": 0.08267404312110237
+                  },
+                  "position": 0.021329438124404916,
+                  "epoch": 1784235241.9976993,
+                  "minutes_to_bell": 1036.9667050123214,
+                  "open": false,
+                  "member_count": 35,
+                  "ess": 5.2379951048204285,
+                  "weight_sum": 2.3654688278789218,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 64,
+                "deadline_epoch": 1784251693,
+                "q25": 63,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784234542.378,
+                  "price": 66,
+                  "size": 17.09,
+                  "receipt": "84a8320b-1f6e-40fe-d14c-481a25ad12d9"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784234542.378,
+                  "price": 66,
+                  "size": 17.09,
+                  "receipt": "84a8320b-1f6e-40fe-d14c-481a25ad12d9"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UDV": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 29,
+              "recorded_floor": 26,
+              "P": 34,
+              "Q": 32,
+              "X": 1784262849,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 90,
+              "ess": 42.47188174429189,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 25,
+                "ask_cents": 34,
+                "last_trade_cents": 90,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-97"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 41,
+                "leg": "UDV",
+                "epoch": 1784234495.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 34; reserve BAD max(late floor 64, 100 - climber close 34 = 66) = 66; views differ by -2c (floor minus mirror)"
+                },
+                "book": {
+                  "bid_cents": 25,
+                  "ask_cents": 34,
+                  "last_trade_cents": 90,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-97"
+                },
+                "Q": 32,
+                "X": 1784262849,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784234455,
+                "stage_index": 20
+              },
+              "permission": {
+                "ordinal": 20,
+                "epoch": 1784234495.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-39",
+                "id": "UDV",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "role": "CLIMBER",
+                  "intended": 33,
+                  "hand_level": null,
+                  "hand_mode": "ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 34,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.3756737989536504,
+                      "LATE_BREAK_DOWN": 0.04842949130120005,
+                      "LATE_BREAK_UP": 0.2273307564377416,
+                      "DRIFT_DOWN": 0,
+                      "DRIFT_UP": 0.9605436200583706,
+                      "QUIET_WOBBLE": 0.9561467241796283,
+                      "ROUND_TRIP": 1.1907522235822763,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "EARLY_SET_UP": 0.6362962223500606,
+                      "SLEEPER": 0.02879489140017957,
+                      "GRIND_WOBBLE_UP": 0.08298596735504893,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.016510842769324373,
+                    "epoch": 1784235495.2656486,
+                    "minutes_to_bell": 1032.745572523276,
+                    "open": false,
+                    "member_count": 20,
+                    "ess": 9.538220060334476,
+                    "weight_sum": 1.1907522235822763,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": false,
+                    "reserve": 66,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": null,
+                    "discount": null,
+                    "components": {
+                      "faller_forecast_late_floor": 64,
+                      "climber_forecast_close": 34,
+                      "mirror_completion_cost": 66,
+                      "disagreement_cents": -2,
+                      "absolute_disagreement_cents": 2,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: ASK_ONLY_TICK_VETO_HOLD_STANDING_LAWFUL_REST; buying the strengthening side before it strengthens; forecast close 34; reserve BAD max(late floor 64, 100 - climber close 34 = 66) = 66; views differ by -2c (floor minus mirror)",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 64,
+                    "climber_forecast_close": 34,
+                    "mirror_completion_cost": 66,
+                    "disagreement_cents": -2,
+                    "absolute_disagreement_cents": 2,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UDV",
+                    "faller": "BAD",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  }
+                },
+                "forecasts": {
+                  "BAD": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.660385674228625,
+                    "role": "FALLER",
+                    "current": 66,
+                    "member_count": 122
+                  },
+                  "UDV": {
+                    "forecast": 34,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 42.47188174429189,
+                    "role": "CLIMBER",
+                    "current": 34,
+                    "member_count": 90
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.3756737989536504,
+                    "LATE_BREAK_DOWN": 0.04842949130120005,
+                    "LATE_BREAK_UP": 0.2273307564377416,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 0.9605436200583706,
+                    "QUIET_WOBBLE": 0.9561467241796283,
+                    "ROUND_TRIP": 1.1907522235822763,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.6362962223500606,
+                    "SLEEPER": 0.02879489140017957,
+                    "GRIND_WOBBLE_UP": 0.08298596735504893,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.016510842769324373,
+                  "epoch": 1784235495.2656486,
+                  "minutes_to_bell": 1032.745572523276,
+                  "open": false,
+                  "member_count": 20,
+                  "ess": 9.538220060334476,
+                  "weight_sum": 1.1907522235822763,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784262849,
+                "q25": 30,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 26,
+                "floor_witness": {
+                  "epoch": 1784246669.043,
+                  "price": 26,
+                  "size": 0.03,
+                  "receipt": "9ec5d10f-006b-6fd2-58f3-2a53dfd42dbf"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784234832.628,
+                  "price": 34,
+                  "size": 2000,
+                  "receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs."
+        },
+        {
+          "key": "before-BAD-miss",
+          "label": "Last receipt before BAD missed at the bell",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "BAD",
+          "outcome": "miss",
+          "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181",
+          "epoch": 1784297456.000002,
+          "clock": "T−0hr 0min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAD is weakening; UDV is not yet directionally called.",
+              "WHY": "BAD trades at 72¢ against its 76¢ opening anchor; UDV trades at 29¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAD carries 259 eligible past sides from first-price comparisons; UDV carries 751 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAD calls 72¢ by T−0hr 0min; UDV calls 29¢ by T−0hr 0min.",
+              "WHY": "BAD’s middle half spans 72–72¢; UDV’s middle half spans 29–29¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAD has book 71/72 and no standing bid; UDV has book 28/29 and a recorded purchase at 34¢.",
+              "WHY": "BAD: The desired bid could not be posted below the ask; UDV: buying the strengthening side before it strengthens; predicted close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAD": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 76,
+              "corrected_open": 76,
+              "close": 72,
+              "recorded_floor": 66,
+              "P": 72,
+              "Q": 72,
+              "X": 1784297456.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 259,
+              "ess": 87.90090163710995,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 71,
+                "ask_cents": 72,
+                "last_trade_cents": 72,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 110,
+                "leg": "BAD",
+                "epoch": 1784297456.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181",
+                "trigger": "TURNING_POINT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 72; reserve UDV max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 71,
+                  "ask_cents": 72,
+                  "last_trade_cents": 72,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181"
+                },
+                "Q": 72,
+                "X": 1784297456.000002,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784233886,
+                "stage_index": 82
+              },
+              "permission": {
+                "ordinal": 81,
+                "epoch": 1784297456.000002,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-4181",
+                "id": "BAD",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "role": "FALLER",
+                  "intended": 72,
+                  "hand_level": null,
+                  "hand_mode": "POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST",
+                  "forecast_close": 72,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 2.405574606621306,
+                      "LATE_BREAK_UP": 0,
+                      "LATE_BREAK_DOWN": 1.7462562992322634,
+                      "DRIFT_UP": 0,
+                      "ROUND_TRIP": 2.8869676458056284,
+                      "QUIET_WOBBLE": 4.480246842251188,
+                      "DRIFT_DOWN": 1.3886871210625027,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_DOWN": 2.594057288764313,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.20383210993886608,
+                      "SLEEPER": 0.6190150207391252
+                    },
+                    "position": 0.7845771144278607,
+                    "epoch": 1784283764.7054727,
+                    "minutes_to_bell": 228.2549087882042,
+                    "open": true,
+                    "member_count": 50,
+                    "ess": 14.280675703359565,
+                    "weight_sum": 4.480246842251188,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: POST_ONLY_BLOCKED_NO_EXISTING_POSTABLE_REST; buying the weakening side in QUIET_WOBBLE's learned late-floor window; forecast floor 72; reserve UDV max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": null,
+                    "climber_forecast_close": null,
+                    "mirror_completion_cost": null,
+                    "disagreement_cents": null,
+                    "absolute_disagreement_cents": null,
+                    "dominant": null,
+                    "climber": null,
+                    "faller": null,
+                    "available": false,
+                    "status": "NO_OPPOSITE_CALLED_ROLES",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": true,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAD": {
+                    "forecast": 72,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 87.90090163710995,
+                    "role": "FALLER",
+                    "current": 72,
+                    "member_count": 259
+                  },
+                  "UDV": {
+                    "forecast": 29,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 247.5212266853155,
+                    "role": "NOT_CALLABLE",
+                    "current": 29,
+                    "member_count": 751
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 2.405574606621306,
+                    "LATE_BREAK_UP": 0,
+                    "LATE_BREAK_DOWN": 1.7462562992322634,
+                    "DRIFT_UP": 0,
+                    "ROUND_TRIP": 2.8869676458056284,
+                    "QUIET_WOBBLE": 4.480246842251188,
+                    "DRIFT_DOWN": 1.3886871210625027,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_DOWN": 2.594057288764313,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.20383210993886608,
+                    "SLEEPER": 0.6190150207391252
+                  },
+                  "position": 0.7845771144278607,
+                  "epoch": 1784283764.7054727,
+                  "minutes_to_bell": 228.2549087882042,
+                  "open": true,
+                  "member_count": 50,
+                  "ess": 14.280675703359565,
+                  "weight_sum": 4.480246842251188,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 72,
+                "deadline_epoch": 1784297456.000002,
+                "q25": 72,
+                "q75": 72,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            },
+            "UDV": {
+              "role": "NOT_CALLABLE",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 29,
+              "recorded_floor": 26,
+              "P": 29,
+              "Q": 29,
+              "X": 1784297456.000002,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 751,
+              "ess": 247.5212266853155,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 28,
+                "ask_cents": 29,
+                "last_trade_cents": 29,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-4961"
+              },
+              "bid": null,
+              "filled": 34,
+              "decision": {
+                "order": 57,
+                "leg": "UDV",
+                "epoch": 1784234817.904,
+                "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 34,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 35,
+                  "last_trade_cents": 35,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-152"
+                },
+                "Q": 32,
+                "X": 1784262107.689459,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784234455,
+                "stage_index": 28
+              },
+              "permission": {
+                "ordinal": 28,
+                "epoch": 1784234817.904,
+                "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+                "id": "UDV",
+                "old": 34,
+                "proposed": 34,
+                "posted": 34,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 34,
+                  "hand_level": 34,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 35,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.3756737989536504,
+                      "LATE_BREAK_DOWN": 0.04842949130120005,
+                      "LATE_BREAK_UP": 0.2273307564377416,
+                      "DRIFT_DOWN": 0,
+                      "DRIFT_UP": 0.9605436200583706,
+                      "QUIET_WOBBLE": 1.31353302649912,
+                      "ROUND_TRIP": 1.1373338473977097,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "EARLY_SET_UP": 0.6362962223500606,
+                      "SLEEPER": 0.08267404312110237,
+                      "GRIND_WOBBLE_UP": 0.08298596735504893,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.06095973357553739,
+                    "epoch": 1784238295.768014,
+                    "minutes_to_bell": 986.070533100764,
+                    "open": false,
+                    "member_count": 23,
+                    "ess": 8.15414029918164,
+                    "weight_sum": 1.31353302649912,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 65,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 64,
+                      "climber_forecast_close": 35,
+                      "mirror_completion_cost": 65,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 64,
+                    "climber_forecast_close": 35,
+                    "mirror_completion_cost": 65,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UDV",
+                    "faller": "BAD",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 67,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 67,
+                    "ask": 66,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BAD": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.929816519953846,
+                    "role": "FALLER",
+                    "current": 66,
+                    "member_count": 124
+                  },
+                  "UDV": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 40.120179530560144,
+                    "role": "CLIMBER",
+                    "current": 35,
+                    "member_count": 92
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.3756737989536504,
+                    "LATE_BREAK_DOWN": 0.04842949130120005,
+                    "LATE_BREAK_UP": 0.2273307564377416,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 0.9605436200583706,
+                    "QUIET_WOBBLE": 1.31353302649912,
+                    "ROUND_TRIP": 1.1373338473977097,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.6362962223500606,
+                    "SLEEPER": 0.08267404312110237,
+                    "GRIND_WOBBLE_UP": 0.08298596735504893,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.06095973357553739,
+                  "epoch": 1784238295.768014,
+                  "minutes_to_bell": 986.070533100764,
+                  "open": false,
+                  "member_count": 23,
+                  "ess": 8.15414029918164,
+                  "weight_sum": 1.31353302649912,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 29,
+                "deadline_epoch": 1784297456.000002,
+                "q25": 29,
+                "q75": 29,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": null,
+                "floor_witness": null,
+                "floor_inside_band": null,
+                "later_band_print_by_deadline": null,
+                "band_witness": null,
+                "remaining_floor_reached_by_deadline": null,
+                "passed": null,
+                "missing_reason": "No strictly later accepted positive print"
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "UNKNOWN",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784297460,
+          "outcome_evidence": {
+            "credited": false,
+            "fill": null,
+            "attempted_fills": [],
+            "below_close": false,
+            "permitted_policy_window": false,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": null,
+            "last_decision_before_fill": null,
+            "license_receipt": null,
+            "licensing_deadline_epoch": null,
+            "fill_by_licensing_deadline": null,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        },
+        {
+          "key": "before-UDV-fill",
+          "label": "Last receipt before UDV filled",
+          "arm": "MIRROR_RESERVE",
+          "focus_leg": "UDV",
+          "outcome": "fill",
+          "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+          "epoch": 1784234817.904,
+          "clock": "T−17hr 24min",
+          "cells": {
+            "MACRO": {
+              "WHAT": "BAD is weakening; UDV is strengthening.",
+              "WHY": "BAD trades at 66¢ against its 76¢ opening anchor; UDV trades at 35¢ against its 30¢ opening anchor; these are observed directions, not proof of the next move.",
+              "HOW": "BAD carries 124 eligible past sides from first-price comparisons; UDV carries 92 eligible past sides from first-price comparisons, passing weighted possible futures to MICRO."
+            },
+            "MICRO": {
+              "WHAT": "BAD calls 64¢ by T−12hr 43min; UDV calls 32¢ by T−9hr 49min.",
+              "WHY": "BAD’s middle half spans 63–66¢; UDV’s middle half spans 31–34¢; the call is the weighted middle of translated member futures, not a closing-price forecast.",
+              "HOW": "The machine applies each comparison’s remaining decline to this side’s current price and separately takes the middle floor time; that arithmetic does not prove a joint arrival promise."
+            },
+            "MICRO-MICRO": {
+              "WHAT": "BAD has book 65/66 and no standing bid; UDV has book 34/35 and a standing 34¢ bid.",
+              "WHY": "BAD: The weakening side had not entered its predicted late-floor window; UDV: buying the strengthening side before it strengthens; predicted close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100. These are permission reasons, not a subsecond prediction that the bid will be reached.",
+              "HOW": "Mirror-reserve adds its recorded role, late-window and reservation permission to D’s checks and watches later positive prints; it remains an uninstalled policy test, not a new arrival predictor."
+            }
+          },
+          "legs": {
+            "BAD": {
+              "role": "FALLER",
+              "realized_role": "FALLER",
+              "role_right": true,
+              "open": 76,
+              "corrected_open": 76,
+              "close": 72,
+              "recorded_floor": 66,
+              "P": 66,
+              "Q": 64,
+              "X": 1784251693,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 124,
+              "ess": 28.929816519953846,
+              "family": "ROUND_TRIP",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 65,
+                "ask_cents": 66,
+                "last_trade_cents": 66,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-103"
+              },
+              "bid": null,
+              "filled": null,
+              "decision": {
+                "order": 56,
+                "leg": "BAD",
+                "epoch": 1784234817.904,
+                "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": null,
+                  "reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 64; reserve UDV max(close unknown, ask unknown) = unknown"
+                },
+                "book": {
+                  "bid_cents": 65,
+                  "ask_cents": 66,
+                  "last_trade_cents": 66,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-BAD.csv.gz#row-103"
+                },
+                "Q": 64,
+                "X": 1784251693,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784233886,
+                "stage_index": 28
+              },
+              "permission": {
+                "ordinal": 28,
+                "epoch": 1784234817.904,
+                "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+                "id": "BAD",
+                "old": null,
+                "proposed": null,
+                "posted": null,
+                "permission": {
+                  "allowed": false,
+                  "reason": "FALLER_WAITING_FOR_FAMILY_WINDOW",
+                  "role": "FALLER",
+                  "intended": null,
+                  "hand_level": null,
+                  "hand_mode": "INSUFFICIENT_AUTHORITY_HOLD_STANDING_LAWFUL_REST",
+                  "forecast_close": 67,
+                  "window": {
+                    "family": "ROUND_TRIP",
+                    "family_mass": {
+                      "ONE_STEP_DOWN": 0.9766377957239778,
+                      "LATE_BREAK_UP": 0,
+                      "LATE_BREAK_DOWN": 0.12267550194182535,
+                      "DRIFT_UP": 0,
+                      "ROUND_TRIP": 2.373117836664783,
+                      "QUIET_WOBBLE": 1.0237441199715696,
+                      "DRIFT_DOWN": 0.61328264481698,
+                      "ONE_STEP_UP": 0,
+                      "EARLY_SET_DOWN": 1.2701736565737245,
+                      "GRIND_WOBBLE_UP": 0,
+                      "EARLY_SET_UP": 0,
+                      "GRIND_WOBBLE_DOWN": 0.0951644060114749,
+                      "SLEEPER": 0.08267404312110237
+                    },
+                    "position": 0.021329438124404916,
+                    "epoch": 1784235241.9976993,
+                    "minutes_to_bell": 1036.9667050123214,
+                    "open": false,
+                    "member_count": 36,
+                    "ess": 5.271645029325131,
+                    "weight_sum": 2.373117836664783,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": null,
+                    "reason": "NO_BID"
+                  },
+                  "written_reason": "no bid: FALLER_WAITING_FOR_FAMILY_WINDOW; buying the weakening side in ROUND_TRIP's learned late-floor window; forecast floor 64; reserve UDV max(close unknown, ask unknown) = unknown",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 64,
+                    "climber_forecast_close": 35,
+                    "mirror_completion_cost": 65,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UDV",
+                    "faller": "BAD",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": false,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  }
+                },
+                "forecasts": {
+                  "BAD": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.929816519953846,
+                    "role": "FALLER",
+                    "current": 66,
+                    "member_count": 124
+                  },
+                  "UDV": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 40.120179530560144,
+                    "role": "CLIMBER",
+                    "current": 35,
+                    "member_count": 92
+                  }
+                },
+                "window": {
+                  "family": "ROUND_TRIP",
+                  "family_mass": {
+                    "ONE_STEP_DOWN": 0.9766377957239778,
+                    "LATE_BREAK_UP": 0,
+                    "LATE_BREAK_DOWN": 0.12267550194182535,
+                    "DRIFT_UP": 0,
+                    "ROUND_TRIP": 2.373117836664783,
+                    "QUIET_WOBBLE": 1.0237441199715696,
+                    "DRIFT_DOWN": 0.61328264481698,
+                    "ONE_STEP_UP": 0,
+                    "EARLY_SET_DOWN": 1.2701736565737245,
+                    "GRIND_WOBBLE_UP": 0,
+                    "EARLY_SET_UP": 0,
+                    "GRIND_WOBBLE_DOWN": 0.0951644060114749,
+                    "SLEEPER": 0.08267404312110237
+                  },
+                  "position": 0.021329438124404916,
+                  "epoch": 1784235241.9976993,
+                  "minutes_to_bell": 1036.9667050123214,
+                  "open": false,
+                  "member_count": 36,
+                  "ess": 5.271645029325131,
+                  "weight_sum": 2.373117836664783,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 64,
+                "deadline_epoch": 1784251693,
+                "q25": 63,
+                "q75": 66,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 66,
+                "floor_witness": {
+                  "epoch": 1784234850.419,
+                  "price": 66,
+                  "size": 295.98,
+                  "receipt": "0c4cd8e9-da2e-4376-f95c-4d8caf50c125"
+                },
+                "floor_inside_band": true,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784234850.419,
+                  "price": 66,
+                  "size": 295.98,
+                  "receipt": "0c4cd8e9-da2e-4376-f95c-4d8caf50c125"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": true,
+                "missing_reason": null
+              }
+            },
+            "UDV": {
+              "role": "CLIMBER",
+              "realized_role": "NOT_CALLABLE",
+              "role_right": false,
+              "open": 30,
+              "corrected_open": 30,
+              "close": 29,
+              "recorded_floor": 26,
+              "P": 35,
+              "Q": 32,
+              "X": 1784262107.689459,
+              "layer": "FIRST-TICK-ONLY",
+              "members": 92,
+              "ess": 40.120179530560144,
+              "family": "QUIET_WOBBLE",
+              "family_basis": "Unchanged D family reconstructed in the filed mirror permission; absent means not recorded here, not another prediction.",
+              "books": {
+                "bid_cents": 34,
+                "ask_cents": 35,
+                "last_trade_cents": 35,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-152"
+              },
+              "bid": 34,
+              "filled": null,
+              "decision": {
+                "order": 57,
+                "leg": "UDV",
+                "epoch": 1784234817.904,
+                "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+                "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+                "action": {
+                  "action": "HOLD_REST",
+                  "target_cents": 34,
+                  "reason": "buying the strengthening side before it strengthens; forecast close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100"
+                },
+                "book": {
+                  "bid_cents": 34,
+                  "ask_cents": 35,
+                  "last_trade_cents": 35,
+                  "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-152"
+                },
+                "Q": 32,
+                "X": 1784262107.689459,
+                "status": "RESOLVED",
+                "author": "POOL_FIRST-TICK-ONLY",
+                "formation_end": 1784234455,
+                "stage_index": 28
+              },
+              "permission": {
+                "ordinal": 28,
+                "epoch": 1784234817.904,
+                "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+                "id": "UDV",
+                "old": 34,
+                "proposed": 34,
+                "posted": 34,
+                "permission": {
+                  "allowed": true,
+                  "reason": "CLIMBER_NEAR_TOUCH",
+                  "role": "CLIMBER",
+                  "intended": 34,
+                  "hand_level": 34,
+                  "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                  "forecast_close": 35,
+                  "window": {
+                    "family": "QUIET_WOBBLE",
+                    "family_mass": {
+                      "ONE_STEP_UP": 0.3756737989536504,
+                      "LATE_BREAK_DOWN": 0.04842949130120005,
+                      "LATE_BREAK_UP": 0.2273307564377416,
+                      "DRIFT_DOWN": 0,
+                      "DRIFT_UP": 0.9605436200583706,
+                      "QUIET_WOBBLE": 1.31353302649912,
+                      "ROUND_TRIP": 1.1373338473977097,
+                      "ONE_STEP_DOWN": 0,
+                      "EARLY_SET_DOWN": 0,
+                      "EARLY_SET_UP": 0.6362962223500606,
+                      "SLEEPER": 0.08267404312110237,
+                      "GRIND_WOBBLE_UP": 0.08298596735504893,
+                      "GRIND_WOBBLE_DOWN": 0
+                    },
+                    "position": 0.06095973357553739,
+                    "epoch": 1784238295.768014,
+                    "minutes_to_bell": 986.070533100764,
+                    "open": false,
+                    "member_count": 23,
+                    "ess": 8.15414029918164,
+                    "weight_sum": 1.31353302649912,
+                    "missing_position_weight": 0
+                  },
+                  "reservation": {
+                    "allowed": true,
+                    "reserve": 65,
+                    "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                    "sum": 99,
+                    "discount": 1,
+                    "components": {
+                      "faller_forecast_late_floor": 64,
+                      "climber_forecast_close": 35,
+                      "mirror_completion_cost": 65,
+                      "disagreement_cents": -1,
+                      "absolute_disagreement_cents": 1,
+                      "dominant": "CLIMBER_CLOSE_MIRROR"
+                    },
+                    "reason": "RESERVED_DISCOUNT"
+                  },
+                  "written_reason": "buying the strengthening side before it strengthens; forecast close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100",
+                  "reservation_components": {
+                    "faller_forecast_late_floor": 64,
+                    "climber_forecast_close": 35,
+                    "mirror_completion_cost": 65,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR",
+                    "climber": "UDV",
+                    "faller": "BAD",
+                    "available": true,
+                    "status": "OBSERVED",
+                    "used_for_this_bid": true,
+                    "actual_counterpart_fill_replaces_reserve": false,
+                    "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                  },
+                  "previous_reservation": {
+                    "allowed": false,
+                    "reserve": 67,
+                    "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                    "forecast": 67,
+                    "ask": 66,
+                    "sum": 101,
+                    "discount": -1,
+                    "reason": "NO_RESERVED_DISCOUNT"
+                  }
+                },
+                "forecasts": {
+                  "BAD": {
+                    "forecast": 67,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 28.929816519953846,
+                    "role": "FALLER",
+                    "current": 66,
+                    "member_count": 124
+                  },
+                  "UDV": {
+                    "forecast": 35,
+                    "layer": "FIRST-TICK-ONLY",
+                    "ess": 40.120179530560144,
+                    "role": "CLIMBER",
+                    "current": 35,
+                    "member_count": 92
+                  }
+                },
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.3756737989536504,
+                    "LATE_BREAK_DOWN": 0.04842949130120005,
+                    "LATE_BREAK_UP": 0.2273307564377416,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 0.9605436200583706,
+                    "QUIET_WOBBLE": 1.31353302649912,
+                    "ROUND_TRIP": 1.1373338473977097,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.6362962223500606,
+                    "SLEEPER": 0.08267404312110237,
+                    "GRIND_WOBBLE_UP": 0.08298596735504893,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.06095973357553739,
+                  "epoch": 1784238295.768014,
+                  "minutes_to_bell": 986.070533100764,
+                  "open": false,
+                  "member_count": 23,
+                  "ess": 8.15414029918164,
+                  "weight_sum": 1.31353302649912,
+                  "missing_position_weight": 0
+                }
+              },
+              "micro": {
+                "Q": 32,
+                "deadline_epoch": 1784262107.689459,
+                "q25": 31,
+                "q75": 34,
+                "target": "Strictly later positive-print floor, corrected verified span intersected with D clock",
+                "remaining_floor_cents": 26,
+                "floor_witness": {
+                  "epoch": 1784246669.043,
+                  "price": 26,
+                  "size": 0.03,
+                  "receipt": "9ec5d10f-006b-6fd2-58f3-2a53dfd42dbf"
+                },
+                "floor_inside_band": false,
+                "later_band_print_by_deadline": true,
+                "band_witness": {
+                  "epoch": 1784234832.628,
+                  "price": 34,
+                  "size": 2000,
+                  "receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78"
+                },
+                "remaining_floor_reached_by_deadline": true,
+                "passed": false,
+                "missing_reason": null
+              }
+            }
+          },
+          "macro_status": "FAIL",
+          "micro_status": "FAIL",
+          "evidence_note": "Cells contain only the selected saved receipt and already recorded state; scores and corrected rulers below are hindsight, not OS inputs.",
+          "outcome_epoch": 1784234832.628,
+          "outcome_evidence": {
+            "credited": true,
+            "fill": {
+              "leg": "UDV",
+              "epoch": 1784234832.628,
+              "cents": 34,
+              "receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78",
+              "order_lineage_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+              "order_lineage_start_epoch": 1784234563.823,
+              "current_price_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+              "current_price_start_epoch": 1784234563.823,
+              "order_lineage_age_minutes": 4.480083334445953,
+              "current_price_age_minutes": 4.480083334445953,
+              "same_second_fill": false,
+              "valid_span_fill": true
+            },
+            "attempted_fills": [
+              {
+                "leg": "UDV",
+                "epoch": 1784234832.628,
+                "cents": 34,
+                "receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78",
+                "order_lineage_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+                "order_lineage_start_epoch": 1784234563.823,
+                "current_price_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+                "current_price_start_epoch": 1784234563.823,
+                "order_lineage_age_minutes": 4.480083334445953,
+                "current_price_age_minutes": 4.480083334445953,
+                "same_second_fill": false,
+                "valid_span_fill": true
+              }
+            ],
+            "below_close": false,
+            "permitted_policy_window": true,
+            "passed": false,
+            "policy_window_basis": "Last saved permission must allow the same standing bid; climber permission or the called faller’s learned late window remains active, before D bell.",
+            "last_permission": {
+              "ordinal": 28,
+              "epoch": 1784234817.904,
+              "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+              "id": "UDV",
+              "old": 34,
+              "proposed": 34,
+              "posted": 34,
+              "permission": {
+                "allowed": true,
+                "reason": "CLIMBER_NEAR_TOUCH",
+                "role": "CLIMBER",
+                "intended": 34,
+                "hand_level": 34,
+                "hand_mode": "PRICING_AUTHORITY_TARGET_EXECUTED",
+                "forecast_close": 35,
+                "window": {
+                  "family": "QUIET_WOBBLE",
+                  "family_mass": {
+                    "ONE_STEP_UP": 0.3756737989536504,
+                    "LATE_BREAK_DOWN": 0.04842949130120005,
+                    "LATE_BREAK_UP": 0.2273307564377416,
+                    "DRIFT_DOWN": 0,
+                    "DRIFT_UP": 0.9605436200583706,
+                    "QUIET_WOBBLE": 1.31353302649912,
+                    "ROUND_TRIP": 1.1373338473977097,
+                    "ONE_STEP_DOWN": 0,
+                    "EARLY_SET_DOWN": 0,
+                    "EARLY_SET_UP": 0.6362962223500606,
+                    "SLEEPER": 0.08267404312110237,
+                    "GRIND_WOBBLE_UP": 0.08298596735504893,
+                    "GRIND_WOBBLE_DOWN": 0
+                  },
+                  "position": 0.06095973357553739,
+                  "epoch": 1784238295.768014,
+                  "minutes_to_bell": 986.070533100764,
+                  "open": false,
+                  "member_count": 23,
+                  "ess": 8.15414029918164,
+                  "weight_sum": 1.31353302649912,
+                  "missing_position_weight": 0
+                },
+                "reservation": {
+                  "allowed": true,
+                  "reserve": 65,
+                  "basis": "MAX_FALLER_LATE_FLOOR_CLIMBER_CLOSE_MIRROR",
+                  "sum": 99,
+                  "discount": 1,
+                  "components": {
+                    "faller_forecast_late_floor": 64,
+                    "climber_forecast_close": 35,
+                    "mirror_completion_cost": 65,
+                    "disagreement_cents": -1,
+                    "absolute_disagreement_cents": 1,
+                    "dominant": "CLIMBER_CLOSE_MIRROR"
+                  },
+                  "reason": "RESERVED_DISCOUNT"
+                },
+                "written_reason": "buying the strengthening side before it strengthens; forecast close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100",
+                "reservation_components": {
+                  "faller_forecast_late_floor": 64,
+                  "climber_forecast_close": 35,
+                  "mirror_completion_cost": 65,
+                  "disagreement_cents": -1,
+                  "absolute_disagreement_cents": 1,
+                  "dominant": "CLIMBER_CLOSE_MIRROR",
+                  "climber": "UDV",
+                  "faller": "BAD",
+                  "available": true,
+                  "status": "OBSERVED",
+                  "used_for_this_bid": true,
+                  "actual_counterpart_fill_replaces_reserve": false,
+                  "coherence_behavior": "UNCHANGED_D_TELEMETRY_NO_NEW_VETO"
+                },
+                "previous_reservation": {
+                  "allowed": false,
+                  "reserve": 67,
+                  "basis": "MAX_POOL_CLOSE_FORECAST_OTHER_ASK",
+                  "forecast": 67,
+                  "ask": 66,
+                  "sum": 101,
+                  "discount": -1,
+                  "reason": "NO_RESERVED_DISCOUNT"
+                }
+              },
+              "forecasts": {
+                "BAD": {
+                  "forecast": 67,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 28.929816519953846,
+                  "role": "FALLER",
+                  "current": 66,
+                  "member_count": 124
+                },
+                "UDV": {
+                  "forecast": 35,
+                  "layer": "FIRST-TICK-ONLY",
+                  "ess": 40.120179530560144,
+                  "role": "CLIMBER",
+                  "current": 35,
+                  "member_count": 92
+                }
+              },
+              "window": {
+                "family": "QUIET_WOBBLE",
+                "family_mass": {
+                  "ONE_STEP_UP": 0.3756737989536504,
+                  "LATE_BREAK_DOWN": 0.04842949130120005,
+                  "LATE_BREAK_UP": 0.2273307564377416,
+                  "DRIFT_DOWN": 0,
+                  "DRIFT_UP": 0.9605436200583706,
+                  "QUIET_WOBBLE": 1.31353302649912,
+                  "ROUND_TRIP": 1.1373338473977097,
+                  "ONE_STEP_DOWN": 0,
+                  "EARLY_SET_DOWN": 0,
+                  "EARLY_SET_UP": 0.6362962223500606,
+                  "SLEEPER": 0.08267404312110237,
+                  "GRIND_WOBBLE_UP": 0.08298596735504893,
+                  "GRIND_WOBBLE_DOWN": 0
+                },
+                "position": 0.06095973357553739,
+                "epoch": 1784238295.768014,
+                "minutes_to_bell": 986.070533100764,
+                "open": false,
+                "member_count": 23,
+                "ess": 8.15414029918164,
+                "weight_sum": 1.31353302649912,
+                "missing_position_weight": 0
+              }
+            },
+            "last_decision_before_fill": {
+              "order": 57,
+              "leg": "UDV",
+              "epoch": 1784234817.904,
+              "receipt": "12192e98-c082-6632-be5b-81bb915c5665",
+              "trigger": "FLOOR_PRINT_DECISION_INSTANT",
+              "action": {
+                "action": "HOLD_REST",
+                "target_cents": 34,
+                "reason": "buying the strengthening side before it strengthens; forecast close 35; bid 34; reserve BAD max(late floor 64, 100 - climber close 35 = 65) = 65; views differ by -1c (floor minus mirror); 34 + 65 = 99 < 100"
+              },
+              "book": {
+                "bid_cents": 34,
+                "ask_cents": 35,
+                "last_trade_cents": 35,
+                "receipt": "KXWTAMATCH-26JUL17UDVBAD-UDV.csv.gz#row-152"
+              },
+              "Q": 32,
+              "X": 1784262107.689459,
+              "status": "RESOLVED",
+              "author": "POOL_FIRST-TICK-ONLY",
+              "formation_end": 1784234455,
+              "stage_index": 28
+            },
+            "license_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+            "licensing_deadline_epoch": 1784262849,
+            "fill_by_licensing_deadline": true,
+            "deadline_note": "Diagnostic only; the operator chose the side’s permitted policy window for funnel admission."
+          }
+        }
+      ],
+      "funnel": {
+        "first_callable": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "last_before_outcomes": {
+          "MACRO": "FAIL",
+          "MICRO": "FAIL",
+          "MICRO-MICRO": "FAIL",
+          "exit": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "qualification": "Separate fixed checkpoints, never the best receipt selected afterward; last-before-outcomes uses each side’s last saved receipt strictly before its own fill or bell miss."
+      },
+      "fills_before_first_pair_callable": [],
+      "credit": {
+        "known_span": true,
+        "legs": {
+          "BAD": false,
+          "UDV": true
+        },
+        "valid_fills": 1,
+        "pair_completed": false,
+        "pair_sum": null,
+        "captured_cents": 0,
+        "best_capturable_cents": 8,
+        "fills": [
+          {
+            "leg": "UDV",
+            "epoch": 1784234832.628,
+            "cents": 34,
+            "receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78",
+            "order_lineage_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+            "order_lineage_start_epoch": 1784234563.823,
+            "current_price_receipt": "f3e60c3b-a590-468d-727b-d704c81cccdf",
+            "current_price_start_epoch": 1784234563.823,
+            "order_lineage_age_minutes": 4.480083334445953,
+            "current_price_age_minutes": 4.480083334445953,
+            "same_second_fill": false,
+            "valid_span_fill": true
+          }
+        ],
+        "safety_violations": []
+      },
+      "close_delta": {
+        "event": "KXWTAMATCH-26JUL17UDVBAD",
+        "category": "WTA_MAIN",
+        "group": "one_sided",
+        "legs": [
+          {
+            "id": "BAD",
+            "filled": false,
+            "fill_cents": null,
+            "fill_epoch": null,
+            "fill_receipt": null,
+            "close_cents": 72,
+            "close_epoch": 1784297417,
+            "floor_cents": 66,
+            "offered_cents": 6,
+            "value_cents": 0,
+            "premium_cents": null,
+            "missed_cents": 6,
+            "close_column": "legA_close_c",
+            "floor_column": "legA_floor_c"
+          },
+          {
+            "id": "UDV",
+            "filled": true,
+            "fill_cents": 34,
+            "fill_epoch": 1784234832.628,
+            "fill_receipt": "39765677-abc1-66e6-2366-ddd57b4c5d78",
+            "close_cents": 29,
+            "close_epoch": 1784297333.3,
+            "floor_cents": 26,
+            "offered_cents": 3,
+            "value_cents": -5,
+            "premium_cents": 5,
+            "missed_cents": null,
+            "close_column": "legB_close_c",
+            "floor_column": "legB_floor_c"
+          }
+        ],
+        "value_cents": -5,
+        "truth": {
+          "table_commit": "c0056976c446afcb4d9603796a2e06c068ee94d6",
+          "table_sha256": "f940e3a941d2088d58215ad8bd9c22afe6ee003af342f2ffb9c6dcdb6ef55bfa",
+          "row_sha256": "2a14aacef09cb438c19e6a518bc5210e4b430d2b04e2b7f6b3be85688b4972f5",
+          "corrections_commit": "15955e44faebf24a17c8c99eba6b8fb98a98a294",
+          "applied_corrections": [],
+          "status": "OK",
+          "reason": null
+        },
+        "safety_violations": [],
+        "named_only": false
+      }
+    }
+  }
+}

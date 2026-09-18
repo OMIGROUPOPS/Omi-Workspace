@@ -1,0 +1,4044 @@
+{
+  "schema": "NINE_CELL_REVIEW_INDEX_V1",
+  "contract_sha256": "04ce86eb8ca5c2201faacd738b935f092e8e493fc15710c50511f8755fa5f4e8",
+  "summary": {
+    "D": {
+      "ALL": {
+        "first_callable": {
+          "games": 100,
+          "MACRO": 25,
+          "MICRO": 1,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MICRO:FAIL": 24,
+            "MACRO:FAIL": 68,
+            "MACRO:UNKNOWN": 7,
+            "ALL_THREE:PASS": 1
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 25,
+              "FAIL": 68,
+              "UNKNOWN": 7
+            },
+            "MICRO": {
+              "PASS": 12,
+              "FAIL": 81,
+              "UNKNOWN": 7
+            },
+            "MICRO-MICRO": {
+              "PASS": 9,
+              "FAIL": 86,
+              "UNKNOWN": 5
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 100,
+          "MACRO": 35,
+          "MICRO": 5,
+          "MICRO-MICRO": 3,
+          "exits": {
+            "MICRO:FAIL": 21,
+            "MACRO:FAIL": 58,
+            "MICRO:UNKNOWN": 9,
+            "MACRO:UNKNOWN": 7,
+            "ALL_THREE:PASS": 3,
+            "MICRO-MICRO:FAIL": 2
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 35,
+              "FAIL": 58,
+              "UNKNOWN": 7
+            },
+            "MICRO": {
+              "PASS": 9,
+              "FAIL": 58,
+              "UNKNOWN": 33
+            },
+            "MICRO-MICRO": {
+              "PASS": 9,
+              "FAIL": 86,
+              "UNKNOWN": 5
+            }
+          }
+        }
+      },
+      "ATP_CHALL": {
+        "first_callable": {
+          "games": 46,
+          "MACRO": 15,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MICRO:FAIL": 15,
+            "MACRO:FAIL": 27,
+            "MACRO:UNKNOWN": 4
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 15,
+              "FAIL": 27,
+              "UNKNOWN": 4
+            },
+            "MICRO": {
+              "PASS": 6,
+              "FAIL": 36,
+              "UNKNOWN": 4
+            },
+            "MICRO-MICRO": {
+              "PASS": 4,
+              "FAIL": 40,
+              "UNKNOWN": 2
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 46,
+          "MACRO": 18,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MICRO:FAIL": 12,
+            "MACRO:FAIL": 24,
+            "MICRO:UNKNOWN": 6,
+            "MACRO:UNKNOWN": 4
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 18,
+              "FAIL": 24,
+              "UNKNOWN": 4
+            },
+            "MICRO": {
+              "PASS": 3,
+              "FAIL": 27,
+              "UNKNOWN": 16
+            },
+            "MICRO-MICRO": {
+              "PASS": 4,
+              "FAIL": 40,
+              "UNKNOWN": 2
+            }
+          }
+        }
+      },
+      "ATP_MAIN": {
+        "first_callable": {
+          "games": 18,
+          "MACRO": 4,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MICRO:FAIL": 4,
+            "MACRO:FAIL": 14
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 4,
+              "FAIL": 14,
+              "UNKNOWN": 0
+            },
+            "MICRO": {
+              "PASS": 1,
+              "FAIL": 17,
+              "UNKNOWN": 0
+            },
+            "MICRO-MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 0
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 18,
+          "MACRO": 7,
+          "MICRO": 1,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MICRO:FAIL": 4,
+            "MACRO:FAIL": 11,
+            "MICRO:UNKNOWN": 2,
+            "ALL_THREE:PASS": 1
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 7,
+              "FAIL": 11,
+              "UNKNOWN": 0
+            },
+            "MICRO": {
+              "PASS": 1,
+              "FAIL": 13,
+              "UNKNOWN": 4
+            },
+            "MICRO-MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 0
+            }
+          }
+        }
+      },
+      "WTA_CHALL": {
+        "first_callable": {
+          "games": 17,
+          "MACRO": 0,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MACRO:FAIL": 15,
+            "MACRO:UNKNOWN": 2
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 0,
+              "FAIL": 15,
+              "UNKNOWN": 2
+            },
+            "MICRO": {
+              "PASS": 3,
+              "FAIL": 12,
+              "UNKNOWN": 2
+            },
+            "MICRO-MICRO": {
+              "PASS": 1,
+              "FAIL": 14,
+              "UNKNOWN": 2
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 17,
+          "MACRO": 1,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MACRO:FAIL": 14,
+            "MICRO:FAIL": 1,
+            "MACRO:UNKNOWN": 2
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 1,
+              "FAIL": 14,
+              "UNKNOWN": 2
+            },
+            "MICRO": {
+              "PASS": 1,
+              "FAIL": 9,
+              "UNKNOWN": 7
+            },
+            "MICRO-MICRO": {
+              "PASS": 1,
+              "FAIL": 14,
+              "UNKNOWN": 2
+            }
+          }
+        }
+      },
+      "WTA_MAIN": {
+        "first_callable": {
+          "games": 19,
+          "MACRO": 6,
+          "MICRO": 1,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MACRO:FAIL": 12,
+            "ALL_THREE:PASS": 1,
+            "MACRO:UNKNOWN": 1,
+            "MICRO:FAIL": 5
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 6,
+              "FAIL": 12,
+              "UNKNOWN": 1
+            },
+            "MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 1
+            },
+            "MICRO-MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 1
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 19,
+          "MACRO": 9,
+          "MICRO": 4,
+          "MICRO-MICRO": 2,
+          "exits": {
+            "MACRO:FAIL": 9,
+            "ALL_THREE:PASS": 2,
+            "MACRO:UNKNOWN": 1,
+            "MICRO:FAIL": 4,
+            "MICRO-MICRO:FAIL": 2,
+            "MICRO:UNKNOWN": 1
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 9,
+              "FAIL": 9,
+              "UNKNOWN": 1
+            },
+            "MICRO": {
+              "PASS": 4,
+              "FAIL": 9,
+              "UNKNOWN": 6
+            },
+            "MICRO-MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 1
+            }
+          }
+        }
+      }
+    },
+    "MIRROR_RESERVE": {
+      "ALL": {
+        "first_callable": {
+          "games": 100,
+          "MACRO": 25,
+          "MICRO": 1,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MICRO:FAIL": 24,
+            "MACRO:FAIL": 68,
+            "MACRO:UNKNOWN": 7,
+            "ALL_THREE:PASS": 1
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 25,
+              "FAIL": 68,
+              "UNKNOWN": 7
+            },
+            "MICRO": {
+              "PASS": 12,
+              "FAIL": 81,
+              "UNKNOWN": 7
+            },
+            "MICRO-MICRO": {
+              "PASS": 6,
+              "FAIL": 89,
+              "UNKNOWN": 5
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 100,
+          "MACRO": 49,
+          "MICRO": 6,
+          "MICRO-MICRO": 5,
+          "exits": {
+            "MICRO:UNKNOWN": 33,
+            "MACRO:FAIL": 44,
+            "MICRO-MICRO:FAIL": 1,
+            "MACRO:UNKNOWN": 7,
+            "MICRO:FAIL": 10,
+            "ALL_THREE:PASS": 5
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 49,
+              "FAIL": 44,
+              "UNKNOWN": 7
+            },
+            "MICRO": {
+              "PASS": 6,
+              "FAIL": 16,
+              "UNKNOWN": 78
+            },
+            "MICRO-MICRO": {
+              "PASS": 6,
+              "FAIL": 89,
+              "UNKNOWN": 5
+            }
+          }
+        }
+      },
+      "ATP_CHALL": {
+        "first_callable": {
+          "games": 46,
+          "MACRO": 15,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MICRO:FAIL": 15,
+            "MACRO:FAIL": 27,
+            "MACRO:UNKNOWN": 4
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 15,
+              "FAIL": 27,
+              "UNKNOWN": 4
+            },
+            "MICRO": {
+              "PASS": 6,
+              "FAIL": 36,
+              "UNKNOWN": 4
+            },
+            "MICRO-MICRO": {
+              "PASS": 1,
+              "FAIL": 43,
+              "UNKNOWN": 2
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 46,
+          "MACRO": 22,
+          "MICRO": 2,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MICRO:UNKNOWN": 18,
+            "MACRO:FAIL": 20,
+            "MICRO-MICRO:FAIL": 1,
+            "MACRO:UNKNOWN": 4,
+            "MICRO:FAIL": 2,
+            "ALL_THREE:PASS": 1
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 22,
+              "FAIL": 20,
+              "UNKNOWN": 4
+            },
+            "MICRO": {
+              "PASS": 2,
+              "FAIL": 4,
+              "UNKNOWN": 40
+            },
+            "MICRO-MICRO": {
+              "PASS": 1,
+              "FAIL": 43,
+              "UNKNOWN": 2
+            }
+          }
+        }
+      },
+      "ATP_MAIN": {
+        "first_callable": {
+          "games": 18,
+          "MACRO": 4,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MICRO:FAIL": 4,
+            "MACRO:FAIL": 14
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 4,
+              "FAIL": 14,
+              "UNKNOWN": 0
+            },
+            "MICRO": {
+              "PASS": 1,
+              "FAIL": 17,
+              "UNKNOWN": 0
+            },
+            "MICRO-MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 0
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 18,
+          "MACRO": 12,
+          "MICRO": 1,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MICRO:FAIL": 5,
+            "MACRO:FAIL": 6,
+            "MICRO:UNKNOWN": 6,
+            "ALL_THREE:PASS": 1
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 12,
+              "FAIL": 6,
+              "UNKNOWN": 0
+            },
+            "MICRO": {
+              "PASS": 1,
+              "FAIL": 7,
+              "UNKNOWN": 10
+            },
+            "MICRO-MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 0
+            }
+          }
+        }
+      },
+      "WTA_CHALL": {
+        "first_callable": {
+          "games": 17,
+          "MACRO": 0,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MACRO:FAIL": 15,
+            "MACRO:UNKNOWN": 2
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 0,
+              "FAIL": 15,
+              "UNKNOWN": 2
+            },
+            "MICRO": {
+              "PASS": 3,
+              "FAIL": 12,
+              "UNKNOWN": 2
+            },
+            "MICRO-MICRO": {
+              "PASS": 0,
+              "FAIL": 15,
+              "UNKNOWN": 2
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 17,
+          "MACRO": 4,
+          "MICRO": 0,
+          "MICRO-MICRO": 0,
+          "exits": {
+            "MACRO:FAIL": 11,
+            "MICRO:FAIL": 1,
+            "MICRO:UNKNOWN": 3,
+            "MACRO:UNKNOWN": 2
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 4,
+              "FAIL": 11,
+              "UNKNOWN": 2
+            },
+            "MICRO": {
+              "PASS": 0,
+              "FAIL": 1,
+              "UNKNOWN": 16
+            },
+            "MICRO-MICRO": {
+              "PASS": 0,
+              "FAIL": 15,
+              "UNKNOWN": 2
+            }
+          }
+        }
+      },
+      "WTA_MAIN": {
+        "first_callable": {
+          "games": 19,
+          "MACRO": 6,
+          "MICRO": 1,
+          "MICRO-MICRO": 1,
+          "exits": {
+            "MACRO:FAIL": 12,
+            "ALL_THREE:PASS": 1,
+            "MACRO:UNKNOWN": 1,
+            "MICRO:FAIL": 5
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 6,
+              "FAIL": 12,
+              "UNKNOWN": 1
+            },
+            "MICRO": {
+              "PASS": 2,
+              "FAIL": 16,
+              "UNKNOWN": 1
+            },
+            "MICRO-MICRO": {
+              "PASS": 3,
+              "FAIL": 15,
+              "UNKNOWN": 1
+            }
+          }
+        },
+        "last_before_outcomes": {
+          "games": 19,
+          "MACRO": 11,
+          "MICRO": 3,
+          "MICRO-MICRO": 3,
+          "exits": {
+            "MACRO:FAIL": 7,
+            "ALL_THREE:PASS": 3,
+            "MACRO:UNKNOWN": 1,
+            "MICRO:UNKNOWN": 6,
+            "MICRO:FAIL": 2
+          },
+          "independent": {
+            "MACRO": {
+              "PASS": 11,
+              "FAIL": 7,
+              "UNKNOWN": 1
+            },
+            "MICRO": {
+              "PASS": 3,
+              "FAIL": 4,
+              "UNKNOWN": 12
+            },
+            "MICRO-MICRO": {
+              "PASS": 3,
+              "FAIL": 15,
+              "UNKNOWN": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "games": [
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13GREVAN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL13GREVAN.json",
+      "sha256": "cff6d3f33e67b5bb5fb6b4c59b01266c0f00a6654ed88382e4a5c2c85464abca",
+      "bytes": 99196,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "GRE: later floor 66¢ outside 63–65¢; no later band print met the deadline. VAN: later floor 30¢ outside 31–34¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "GRE: No strictly later accepted positive print. VAN: later floor 30¢ outside 31–34¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "GRE: later floor 66¢ outside 63–65¢; no later band print met the deadline. VAN: later floor 30¢ outside 31–34¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "GRE: No strictly later accepted positive print. VAN: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ONCAJD",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20ONCAJD.json",
+      "sha256": "5b294653af8b4e59f359da1cb1f4187e28c0f887840a00c6acf324ca077b491e",
+      "bytes": 101284,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AJD was strengthening; its corrected full-window direction was below the filed directional threshold. ONC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AJD was strengthening; its corrected full-window direction was below the filed directional threshold. ONC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AJD was strengthening; its corrected full-window direction was below the filed directional threshold. ONC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AJD was not yet directionally called; its corrected full-window direction was below the filed directional threshold. ONC was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL18LAJYUN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL18LAJYUN.json",
+      "sha256": "316bee1ab9af2a4bab05b473f8fb47302ac9e69ad310f9bf59c19a3eb2f28b3e",
+      "bytes": 117216,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAJ was strengthening; its corrected full-window direction was weakening. YUN was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAJ was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAJ was strengthening; its corrected full-window direction was weakening. YUN was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "LAJ: bought at 36¢ against a 35¢ close, not strictly below it."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19WINSHE",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19WINSHE.json",
+      "sha256": "e5d722dd899c5181dd5e5c7e3e3cbefc4113adafb5e46b4e8b3cbdaf268545eb",
+      "bytes": 98352,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "SHE: later floor 30¢ outside 33–35¢; no later band print met the deadline. WIN: later floor 70¢ inside 68–71¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "SHE: No strictly later accepted positive print. WIN: later floor 70¢ inside 69–71¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "SHE: later floor 30¢ outside 33–35¢; no later band print met the deadline. WIN: later floor 70¢ inside 68–71¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "SHE: No strictly later accepted positive print. WIN: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19DEMBIT",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19DEMBIT.json",
+      "sha256": "48f5dc6b7addc2f00a23500071e59335ebcc7f7644ecc0fe55a97e5cdc9e3ecc",
+      "bytes": 98182,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIT: later floor 37¢ inside 35–37¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BIT: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIT: later floor 37¢ inside 35–37¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BIT: No strictly later accepted positive print. DEM: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BARREI",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12BARREI.json",
+      "sha256": "8411e941e4864461a9fe32aca46cd31fd061f01ca1a0d911ebaeb75682e2cc17",
+      "bytes": 63006,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAR was not yet directionally called; its corrected full-window direction was not known. REI was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAR was not yet directionally called; its corrected full-window direction was not known. REI was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAR was not yet directionally called; its corrected full-window direction was not known. REI was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAR was not yet directionally called; its corrected full-window direction was not known. REI was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19SALVRB",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19SALVRB.json",
+      "sha256": "facace7c1e9e2c8e785ad206874a2991952fb5be0d924191bb5beb6b0d6e27ab",
+      "bytes": 42217,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SAL was not yet directionally called; its corrected full-window direction was not known. VRB was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SAL was not yet directionally called; its corrected full-window direction was not known. VRB was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SAL was not yet directionally called; its corrected full-window direction was not known. VRB was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SAL was not yet directionally called; its corrected full-window direction was not known. VRB was not yet directionally called; its corrected full-window direction was not known."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19VISAHT",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19VISAHT.json",
+      "sha256": "765ba449d42997de2fa644c0d7943a5482ae5937a781bc7706444a7725c1f4fe",
+      "bytes": 111220,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AHT was weakening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AHT was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AHT was weakening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AHT was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESPAA",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12WESPAA.json",
+      "sha256": "f148805a171d86752ea7ba34df5b14688372909fcf0114c64a4be566bcc5683b",
+      "bytes": 98920,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "PAA: later floor 38¢ inside 37–38¢; no later band print met the deadline. WES: later floor 60¢ inside 58–60¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "PAA: later floor 38¢ inside 37–38¢; no later band print met the deadline. WES: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "PAA: later floor 38¢ inside 37–38¢; no later band print met the deadline. WES: later floor 60¢ inside 58–60¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "PAA: No strictly later accepted positive print. WES: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14GANZIN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14GANZIN.json",
+      "sha256": "f30130e303cc14ec442edf19caabe546d9e3dd6f5b2a429c3473c8035bcccec2",
+      "bytes": 97369,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAN was weakening; its corrected full-window direction was below the filed directional threshold. ZIN was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. ZIN was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAN was weakening; its corrected full-window direction was below the filed directional threshold. ZIN was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. ZIN was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14JOHBER",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14JOHBER.json",
+      "sha256": "182aba1c9bc9e5e14b5470123b1118067d20c6515d0a548b690547ce3fe618ac",
+      "bytes": 98508,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BER: later floor 48¢ inside 47–50¢; no later band print met the deadline. JOH: later floor 51¢ outside 45–49¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "JOH: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BER: later floor 48¢ inside 47–50¢; no later band print met the deadline. JOH: later floor 51¢ outside 45–49¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BER: No strictly later accepted positive print. JOH: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14LANYIB",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14LANYIB.json",
+      "sha256": "0dbe209c8fed3a15180d52ee71cb7ea478bec1a2a588078017603f9c3be0d435",
+      "bytes": 100790,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAN was weakening; its corrected full-window direction was below the filed directional threshold. YIB was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAN was weakening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAN was weakening; its corrected full-window direction was below the filed directional threshold. YIB was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. YIB was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19RODIVA",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19RODIVA.json",
+      "sha256": "743f079cbb5bc337cacc6e1a17292f0624798f71a431b068a1e208c09eeaf485",
+      "bytes": 101613,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IVA was strengthening; its corrected full-window direction was below the filed directional threshold. ROD was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IVA was strengthening; its corrected full-window direction was below the filed directional threshold. ROD was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IVA was strengthening; its corrected full-window direction was below the filed directional threshold. ROD was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IVA was not yet directionally called; its corrected full-window direction was below the filed directional threshold. ROD was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20OLIZIE",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20OLIZIE.json",
+      "sha256": "e876736c659988f67aa04077fc22bfac8d39883e636efb04174216821bfc9c52",
+      "bytes": 108616,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "OLI: later floor 77¢ outside 73–74¢; no later band print met the deadline. ZIE: later floor 16¢ outside 22–24¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "OLI: No strictly later accepted positive print. ZIE: later floor 16¢ outside 22–25¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "OLI: later floor 77¢ outside 73–74¢; no later band print met the deadline. ZIE: later floor 16¢ outside 22–24¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "ZIE: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20CALKUM",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20CALKUM.json",
+      "sha256": "7aa8e159e835aa251c503edb718cdb6924d621332dc9b15a80b226b3e3636239",
+      "bytes": 97576,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. KUM was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. KUM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. KUM was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. KUM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL15BONJUS",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL15BONJUS.json",
+      "sha256": "b05ad02846e7c6927584a69b7076c048c9269bad5f623912e6f9a1cea022c7b2",
+      "bytes": 101672,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was weakening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was weakening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16GRESAN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL16GRESAN.json",
+      "sha256": "756528bea742252243e070875fa435ae74fcbbddb3fb6f0821233485d78873fc",
+      "bytes": 98522,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GRE was not yet directionally called; its corrected full-window direction was strengthening. SAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GRE was not yet directionally called; its corrected full-window direction was strengthening. SAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SAN was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12PIETAB",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12PIETAB.json",
+      "sha256": "2d3906973644bca1cb9c8bc96aee1488b990d7cee4ed5cdd9d6e982c54fda16a",
+      "bytes": 95459,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "TAB: later floor 33¢ inside 30–33¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "PIE: No strictly later accepted positive print. TAB: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "TAB: later floor 33¢ inside 30–33¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "PIE: No strictly later accepted positive print. TAB: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19MENKUM",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19MENKUM.json",
+      "sha256": "7a5cd5b53f9968ca95c5c93296af3ecb9c9bf10715cb8e1e2d8ef8d41ec846b0",
+      "bytes": 102230,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "MEN: later floor 5¢ outside 2–4¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KUM: later floor 94¢ inside 94–96¢; no later band print met the deadline. MEN: later floor 5¢ outside 6–7¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "MEN: later floor 5¢ outside 2–4¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KUM: No strictly later accepted positive print. MEN: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20WINARS",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20WINARS.json",
+      "sha256": "b3a89a084a01fb4046f634dd9191906a939b30a48c3ffaaadc74fd2e1fb820b0",
+      "bytes": 98153,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "WIN was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "WIN was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "WIN was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "ARS: No strictly later accepted positive print. WIN: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16BICCAS",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL16BICCAS.json",
+      "sha256": "29ee4721da2e86190169e724892f7bf509936e6eadfade9590590a28cbddd635",
+      "bytes": 97343,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIC was not yet directionally called; its corrected full-window direction was below the filed directional threshold. CAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MAYMAG",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20MAYMAG.json",
+      "sha256": "6a60915b10f53bcd6590c72bdb6bcf797016ec63d84d93d2d526a6cc83344d52",
+      "bytes": 97431,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAY was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19HURBIG",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19HURBIG.json",
+      "sha256": "cba558065457be50354317f9e03649981bb694166b7ecbc4d300ab5f695b5c48",
+      "bytes": 108149,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIG was weakening; its corrected full-window direction was strengthening. HUR was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HUR was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BIG was weakening; its corrected full-window direction was strengthening. HUR was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HUR was strengthening; its corrected full-window direction was weakening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALLLA",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20GALLLA.json",
+      "sha256": "4478c5da07d475ccfb7dc4cf0d0873e7b158e9eaba0931246039118845921d19",
+      "bytes": 120871,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "LLA: later floor 43¢ outside 49–51¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "LLA: later floor 43¢ outside 44–47¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "LLA: later floor 43¢ outside 49–51¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "LLA: later floor 43¢ inside 42–44¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BINFUE",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL13BINFUE.json",
+      "sha256": "1e794750f3704198ba872a525b3165281c33b1d2da0f1a179c89a91327d989ce",
+      "bytes": 98549,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: later floor 38¢ inside 37–40¢; no later band print met the deadline. FUE: later floor 61¢ inside 60–62¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: No strictly later accepted positive print. FUE: later floor 61¢ outside 62–64¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: later floor 38¢ inside 37–40¢; no later band print met the deadline. FUE: later floor 61¢ inside 60–62¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BIN: No strictly later accepted positive print. FUE: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19BRUKRA",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19BRUKRA.json",
+      "sha256": "6c402819da9ead390e18bb2a76f7b5e647ea9e044671616bf1704b928a218487",
+      "bytes": 117025,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BRU was strengthening; its corrected full-window direction was weakening. KRA was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KRA: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BRU was strengthening; its corrected full-window direction was weakening. KRA was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12HERALM",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12HERALM.json",
+      "sha256": "dcf19e00406359c0e8774206abd102f09552f85533422cf82b80b54aa9ed976f",
+      "bytes": 117619,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ALM was not yet directionally called; its corrected full-window direction was weakening. HER was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ALM: later floor 51¢ outside 54–55¢; no later band print met the deadline. HER: later floor 37¢ outside 46–47¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ALM was not yet directionally called; its corrected full-window direction was weakening. HER was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ALM: later floor 51¢ outside 54–55¢; no later band print met the deadline. HER: later floor 37¢ outside 46–47¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14IMAMCC",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14IMAMCC.json",
+      "sha256": "f6720693a84981d083ae2143d61b04a41644ee387bb9b8e64b73149e9e5c7cd0",
+      "bytes": 97086,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MCC was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19ARNPOH",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19ARNPOH.json",
+      "sha256": "cb43c8dafb82de7721e9fe46248779a4acb686384fd231449fba039c8498b531",
+      "bytes": 107651,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ARN: later floor 94¢ inside 90–94¢; no later band print met the deadline. POH: later floor 3¢ outside 4–6¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ARN: No strictly later accepted positive print. POH: later floor 3¢ outside 4–6¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ARN: later floor 94¢ inside 90–94¢; no later band print met the deadline. POH: later floor 3¢ outside 4–6¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "ARN: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20VASSIN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20VASSIN.json",
+      "sha256": "55e7aa1b7b71bde7d7f9cef3cba07860e7b2c5e1744caa8dd4b16b9d7a2dad63",
+      "bytes": 105965,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SIN was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SIN was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SIN was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "VAS: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13BOUZHA",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL13BOUZHA.json",
+      "sha256": "93893b6d1a6779088a061d89355004140d824a0b5facd0028635e42f0a55a2d1",
+      "bytes": 98028,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOU was weakening; its corrected full-window direction was below the filed directional threshold. ZHA was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. ZHA was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOU was weakening; its corrected full-window direction was below the filed directional threshold. ZHA was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. ZHA was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20GALARN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20GALARN.json",
+      "sha256": "0b4d10215120753c318f8db151142bc27e8e0281cfa457b33a953cf0b5bf4c95",
+      "bytes": 101468,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARN was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAL was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL16FORCUI",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL16FORCUI.json",
+      "sha256": "038bd7ff5e1407777974d81f188a9742e517d9619b1aeb36e986f3af4bed1222",
+      "bytes": 107651,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CUI was not yet directionally called; its corrected full-window direction was below the filed directional threshold. FOR was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CUI was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CUI was not yet directionally called; its corrected full-window direction was below the filed directional threshold. FOR was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CUI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL13NAPBAL",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL13NAPBAL.json",
+      "sha256": "1b25d12f2681dedef8d923ed8ea327cf061b548318688c12c70e36d455fba4a5",
+      "bytes": 93551,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold. NAP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12FEAWAL",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12FEAWAL.json",
+      "sha256": "bd0e9ab2afd5ef7bf7f6682b4bcf4e7633dacdc837551444ed45228b0dde3a04",
+      "bytes": 63230,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "FEA was not yet directionally called; its corrected full-window direction was below the filed directional threshold. WAL was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "FEA was not yet directionally called; its corrected full-window direction was below the filed directional threshold. WAL was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "FEA was not yet directionally called; its corrected full-window direction was below the filed directional threshold. WAL was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "FEA was not yet directionally called; its corrected full-window direction was below the filed directional threshold. WAL was not yet directionally called; its corrected full-window direction was strengthening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14URSPAL",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14URSPAL.json",
+      "sha256": "83d8b0d14d016d5421cdc06439de18b8d5b886614e3c65f6940ec2e7bc5e84e5",
+      "bytes": 97386,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "URS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "URS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "URS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "URS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12WESSEL",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12WESSEL.json",
+      "sha256": "20a36f575d6629b10f092c33a9def6b8ab52e25258eee7ddf1e48ed9946473db",
+      "bytes": 42232,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SEL was not yet directionally called; its corrected full-window direction was not known. WES was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SEL was not yet directionally called; its corrected full-window direction was not known. WES was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SEL was not yet directionally called; its corrected full-window direction was not known. WES was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "SEL was not yet directionally called; its corrected full-window direction was not known. WES was not yet directionally called; its corrected full-window direction was not known."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20ARSRIC",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20ARSRIC.json",
+      "sha256": "cea9f6a6b77d6891345b9f0fb19a13cf53f0210caf02ec1c6de3d25a1eb57b12",
+      "bytes": 100568,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ARS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHUYUN",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14ZHUYUN.json",
+      "sha256": "435171975d001da433cb9664bfa6088fc697d611e65a2be20f050675bcbf008e",
+      "bytes": 95592,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ZHU: later floor 7¢ outside 9–13¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "YUN: No strictly later accepted positive print. ZHU: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "ZHU: later floor 7¢ outside 9–13¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "YUN: No strictly later accepted positive print. ZHU: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL19OLILAS",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL19OLILAS.json",
+      "sha256": "9000b6a83f1a215292a562ef197978a9ca320fc597464915b83cbb2ac9d3d8fd",
+      "bytes": 98075,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "LAS: later floor 4¢ inside 4–6¢; no later band print met the deadline. OLI: later floor 95¢ outside 87–94¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "OLI: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "LAS: later floor 4¢ inside 4–6¢; no later band print met the deadline. OLI: later floor 95¢ outside 87–94¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "LAS: No strictly later accepted positive print. OLI: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BALPET",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12BALPET.json",
+      "sha256": "d04b8a57bc4dad395769ec46b06cb9c406dcd14e2082b56a5e0672069dbaabaf",
+      "bytes": 98614,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BAL: later floor 14¢ inside 14–17¢; no later band print met the deadline. PET: later floor 85¢ inside 84–87¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BAL: No strictly later accepted positive print. PET: later floor 85¢ outside 86–88¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BAL: later floor 14¢ inside 14–17¢; no later band print met the deadline. PET: later floor 85¢ inside 84–87¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BAL: No strictly later accepted positive print. PET: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL20MARROS",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL20MARROS.json",
+      "sha256": "84d4edd9f62a5b03490aa16423de94a8f11574daaff91999f203eb708cc15353",
+      "bytes": 101983,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAR was not yet directionally called; its corrected full-window direction was strengthening. ROS was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAR was not yet directionally called; its corrected full-window direction was strengthening. ROS was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAR was not yet directionally called; its corrected full-window direction was strengthening. ROS was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "MAR: No strictly later accepted positive print. ROS: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12TROHOR",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12TROHOR.json",
+      "sha256": "647aa8304fc9f5f6051262743264ef70ff7549d694a63cc417a5d1a93058e361",
+      "bytes": 97590,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HOR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "HOR: later floor 3¢ outside 6–8¢; no later band print met the deadline. TRO: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HOR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "HOR: No strictly later accepted positive print. TRO: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL14ZHOKOZ",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL14ZHOKOZ.json",
+      "sha256": "e3e4d40939bf4ab5af2cc98066475e651d2ff1443d369af3e69418284e4616ff",
+      "bytes": 97558,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL17ALCRON",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL17ALCRON.json",
+      "sha256": "5a36e9d8e586ccca7a841776dc903d170db81aa2fa3b90c516c267ec038b631b",
+      "bytes": 97396,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ALC was not yet directionally called; its corrected full-window direction was strengthening. RON was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ALC was not yet directionally called; its corrected full-window direction was strengthening. RON was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RON was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPCHALLENGERMATCH-26JUL12BINGIL",
+      "category": "ATP_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPCHALLENGERMATCH-26JUL12BINGIL.json",
+      "sha256": "fc3b440796414c601ce39a9104e8a8b8b786c1cc797e4440ada48f05144698e9",
+      "bytes": 97998,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: later floor 85¢ inside 83–85¢; no later band print met the deadline. GIL: later floor 15¢ inside 14–16¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: No strictly later accepted positive print. GIL: later floor 15¢ inside 15–16¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BIN: later floor 85¢ inside 83–85¢; no later band print met the deadline. GIL: later floor 15¢ inside 14–16¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BIN: No strictly later accepted positive print. GIL: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12KOPPRI",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12KOPPRI.json",
+      "sha256": "744eaabea1436f78cf08cfa6e5a26c7357c52f743ed7441f39ff54f9a99b7ef5",
+      "bytes": 120660,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 29–33¢; a later band print met the deadline. PRI: later floor 68¢ outside 59–63¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 26–29¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 29–33¢; a later band print met the deadline. PRI: later floor 68¢ outside 59–63¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KOP: later floor 24¢ outside 26–29¢; a later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12DEJGAU",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12DEJGAU.json",
+      "sha256": "60c3afcaf56894db3644ce4b6df2a5f6fb2c25b11f74bb99af2cec7cb76d5cf5",
+      "bytes": 99977,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAU was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAU was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAU was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAU was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19TSICOL",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL19TSICOL.json",
+      "sha256": "c5353fcdbf16449135338b671a10348abde1a634143e9dda74e3ba74ca92b4f6",
+      "bytes": 108192,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "COL was strengthening; its corrected full-window direction was weakening. TSI was weakening; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "COL was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "COL was strengthening; its corrected full-window direction was weakening. TSI was weakening; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "COL was strengthening; its corrected full-window direction was weakening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12BUDPEL",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12BUDPEL.json",
+      "sha256": "3a41654434ddad220a40aba00cd32039fd58e6aaa9930896e82fb5a370f3bba1",
+      "bytes": 107600,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BUD was not yet directionally called; its corrected full-window direction was weakening. PEL was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BUD: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BUD was not yet directionally called; its corrected full-window direction was weakening. PEL was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "BUD: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19NEUHAN",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL19NEUHAN.json",
+      "sha256": "fc8ad6d9822e135ac5fcdd6939e156b6c95e38689e18de1eb102627acaeb385f",
+      "bytes": 108372,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "NEU was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "NEU was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "NEU was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "NEU: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL15PRADZU",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL15PRADZU.json",
+      "sha256": "d8d52ae6889f486ca55fdd006edd167235a93006c67c0eba88b4db330e20d61f",
+      "bytes": 115621,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening. PRA was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening. PRA was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DZU: later floor 62¢ inside 60–62¢; no later band print met the deadline. PRA: later floor 37¢ inside 37–38¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL15CARUGO",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL15CARUGO.json",
+      "sha256": "921a5b97f311660a020eee75d1d2362d83af90ebe02d2b0d1652f885f943cba2",
+      "bytes": 107669,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UGO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19STRSHE",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL19STRSHE.json",
+      "sha256": "a5aa913cad29f902240b75772d74ed22d3a453622a09bb4a06cd165284d94f3e",
+      "bytes": 97755,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SHE was not yet directionally called; its corrected full-window direction was strengthening. STR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "STR was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SHE was not yet directionally called; its corrected full-window direction was strengthening. STR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "SHE: No strictly later accepted positive print. STR: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL16FARRUU",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL16FARRUU.json",
+      "sha256": "cc7861bbabde4c237d1256dfa577b5448968c5d86eb9ae86521aebb2d0308b52",
+      "bytes": 96529,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RUU was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RUU was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RUU was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RUU was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19GASDZU",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL19GASDZU.json",
+      "sha256": "dd74ed74194ab5ac734eb4c587257c59cf044e721868a4a3017c4026a410bbe1",
+      "bytes": 115545,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was strengthening; its corrected full-window direction was weakening. GAS was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DZU was strengthening; its corrected full-window direction was weakening. GAS was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DZU: later floor 52¢ inside 52–53¢; no later band print met the deadline. GAS: later floor 46¢ inside 46–47¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL19DROUGO",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL19DROUGO.json",
+      "sha256": "879246f83849967604ddb1c46aa7c5614c37730694ce6fb98dc5bcbb08704d8f",
+      "bytes": 120724,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DRO: later floor 46¢ outside 40–42¢; no later band print met the deadline. UGO: later floor 51¢ outside 52–55¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DRO: later floor 46¢ outside 40–42¢; no later band print met the deadline. UGO: later floor 51¢ outside 52–55¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18DOMSKA",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL18DOMSKA.json",
+      "sha256": "491d8e01938f6a9ca637940655d7c2c6e34a0e347c075ff4c102986d63e3034b",
+      "bytes": 96402,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DOM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL15VANDRO",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL15VANDRO.json",
+      "sha256": "fc111a8083f45e338d421d54f9098da697468103efdb0dd7c7507d4080ec50fe",
+      "bytes": 107480,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DRO was not yet directionally called; its corrected full-window direction was strengthening. VAN was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "VAN was strengthening; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DRO was not yet directionally called; its corrected full-window direction was strengthening. VAN was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "VAN was strengthening; its corrected full-window direction was weakening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12OFNTIR",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12OFNTIR.json",
+      "sha256": "c4f621a8c740eedc3dd0112f17c3291a86885effdc5c2b1ccfac26ffa5d81fbd",
+      "bytes": 104057,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "OFN was not yet directionally called; its corrected full-window direction was weakening. TIR was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "OFN: No strictly later accepted positive print. TIR: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "OFN was not yet directionally called; its corrected full-window direction was weakening. TIR was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "OFN: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CORDAN",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12CORDAN.json",
+      "sha256": "963ed9649768d69bfd51cae2770d148d47c69d068164de0a53de0e56e2d2bd8c",
+      "bytes": 105180,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DAN was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "COR: No strictly later accepted positive print. DAN: later floor 66¢ outside 68–71¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "DAN was strengthening; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "COR: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12SLADAM",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12SLADAM.json",
+      "sha256": "bf8796a82f762a790de4bc7e35e28b29bf54bdb103f528b5ef76e8310341017b",
+      "bytes": 119032,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 81–83¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 82–84¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 81–83¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "DAM: later floor 83¢ inside 82–84¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12CECOLI",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12CECOLI.json",
+      "sha256": "ed2a31e3da11fbda4be441574c406aa47ef7ae930e84ea0e93b86d6a3d1483b4",
+      "bytes": 108156,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: later floor 75¢ outside 71–73¢; no later band print met the deadline. OLI: later floor 21¢ outside 22–25¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: No strictly later accepted positive print. OLI: later floor 21¢ outside 22–25¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: later floor 75¢ outside 71–73¢; no later band print met the deadline. OLI: later floor 21¢ outside 22–25¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "CEC: later floor 76¢ outside 77–79¢; a later band print met the deadline. OLI: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL18HIPGIU",
+      "category": "ATP_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXATPMATCH-26JUL18HIPGIU.json",
+      "sha256": "40f4eb16aa302039696d397070bc90b2f07c513ef7c944be563958ae4c3ed7a0",
+      "bytes": 97565,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GIU was weakening; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HIP was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GIU was weakening; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "GIU: No strictly later accepted positive print. HIP: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16KHOPRO",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL16KHOPRO.json",
+      "sha256": "20749e10bb7834612a32d8780c46f8a3b3005ff78469a05383834547c904461f",
+      "bytes": 95323,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KHO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KHO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KHO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KHO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12ERJBOS",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL12ERJBOS.json",
+      "sha256": "ab2f3aacd6209c07e8aa4051b70999e0279fd1b5ad71058b394b90d61273fbcc",
+      "bytes": 98480,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BOS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13AVDFEI",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL13AVDFEI.json",
+      "sha256": "020905ec6d1501e2731a39cb47892de688f322d2c08dda87cd41da8a6a231daa",
+      "bytes": 91848,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AVD was not yet directionally called; its corrected full-window direction was strengthening. FEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AVD was not yet directionally called; its corrected full-window direction was strengthening. FEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16ZVOHRU",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL16ZVOHRU.json",
+      "sha256": "6d7e6db0cd34ee7007915b31778b77a12b902e482a426c6f9d8924215b27d7d9",
+      "bytes": 100306,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HRU was strengthening; its corrected full-window direction was below the filed directional threshold. ZVO was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HRU was strengthening; its corrected full-window direction was below the filed directional threshold. ZVO was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HRU was strengthening; its corrected full-window direction was below the filed directional threshold. ZVO was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "HRU was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16GAOVAL",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL16GAOVAL.json",
+      "sha256": "5b2d974d3207a814957caed79ecab0235b5acb0ac082edfe3c9e42bebd19a7bb",
+      "bytes": 97401,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold. VAL was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold. VAL was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold. VAL was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold. VAL was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13SELYAN",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL13SELYAN.json",
+      "sha256": "010d40eeb3b5608b3de4c3ec103455ba33a5857f5ec34e26b4ddde06c4640922",
+      "bytes": 117411,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "YAN was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "YAN: later floor 39¢ outside 40–41¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "YAN was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "YAN: later floor 39¢ inside 39–39¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14KOSRUG",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL14KOSRUG.json",
+      "sha256": "34a7f06aacba2895174764c7f36d1c93224a0051aa7df3d19de26c14742cfd80",
+      "bytes": 96777,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOS was not yet directionally called; its corrected full-window direction was strengthening. RUG was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RUG was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KOS was not yet directionally called; its corrected full-window direction was strengthening. RUG was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KOS: No strictly later accepted positive print. RUG: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL14RABRUS",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL14RABRUS.json",
+      "sha256": "331a00defbc0d657dbef1b5ae7e1a996b5a3641c5ff77ec7b4240ed78bd22f97",
+      "bytes": 42240,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "RAB was not yet directionally called; its corrected full-window direction was not known. RUS was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "RAB was not yet directionally called; its corrected full-window direction was not known. RUS was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "RAB was not yet directionally called; its corrected full-window direction was not known. RUS was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "RAB was not yet directionally called; its corrected full-window direction was not known. RUS was not yet directionally called; its corrected full-window direction was not known."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15GRAPER",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL15GRAPER.json",
+      "sha256": "bd3bc93a6fd0c1da2430952e8448ac6bf1f9b0955621eccfe2a52b9ff6450551",
+      "bytes": 99791,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PER was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PER was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PER was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PER was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16BASRUS",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL16BASRUS.json",
+      "sha256": "ee42c68d2c84ac3773385eae8c25602bc548c94202b2c3b239fbd21ec452d268",
+      "bytes": 92984,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "BAS was not yet directionally called; its corrected full-window direction was strengthening. RUS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13RAMNOH",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL13RAMNOH.json",
+      "sha256": "2c6039b905658b70507ad8279f46c68c507668778d6beb9ff0d923a1fc0aef95",
+      "bytes": 91758,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "RAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL20MAZSPI",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL20MAZSPI.json",
+      "sha256": "5094090ea60810238af097fcf7096d377dfe1ca717d2ef000a516120436ea010",
+      "bytes": 96758,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SPI was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SPI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SPI was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "MAZ was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SPI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL16FEISAM",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL16FEISAM.json",
+      "sha256": "6da3595a3787b10c711971ef29fd8b24fdcabe0a42fcfd6e77a004d6604fd154",
+      "bytes": 92134,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was strengthening; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was strengthening; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SAM was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL15ANDRIS",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL15ANDRIS.json",
+      "sha256": "3e055b327da5cf7e1ee4d54f77bcabde94456a832512fb69935141d75773d5e3",
+      "bytes": 99766,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AND was not yet directionally called; its corrected full-window direction was below the filed directional threshold. RIS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL18CIRTOT",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL18CIRTOT.json",
+      "sha256": "733608b3aecbbce8009d527d1ff0b406462961f568a3f31a8df4fea04786911e",
+      "bytes": 96714,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CIR was not yet directionally called; its corrected full-window direction was strengthening. TOT was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOT was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "CIR was not yet directionally called; its corrected full-window direction was strengthening. TOT was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "CIR: No strictly later accepted positive print. TOT: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL13KNUKUR",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL13KNUKUR.json",
+      "sha256": "c4f99135780e4395e73073f81a04522355c6080e54653d58364797334321d500",
+      "bytes": 97504,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KNU was not yet directionally called; its corrected full-window direction was strengthening. KUR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KUR was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "KNU was not yet directionally called; its corrected full-window direction was strengthening. KUR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KNU: No strictly later accepted positive print. KUR: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTACHALLENGERMATCH-26JUL12BALHUA",
+      "category": "WTA_CHALL",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTACHALLENGERMATCH-26JUL12BALHUA.json",
+      "sha256": "b3c9fb307f2cc44498d4139a249dc7e7c949e514dea685e88757a1dba3d2925e",
+      "bytes": 42672,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "BAL was not yet directionally called; its corrected full-window direction was not known. HUA was not yet directionally called; its corrected full-window direction was not known."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13LEPIBR",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13LEPIBR.json",
+      "sha256": "6ce6f8569df1d52802e3035fba21f9e41d23d844e8084e0524488be94c1b1a42",
+      "bytes": 96957,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was strengthening; its corrected full-window direction was below the filed directional threshold. LEP was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was not yet directionally called; its corrected full-window direction was below the filed directional threshold. LEP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was strengthening; its corrected full-window direction was below the filed directional threshold. LEP was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "IBR was not yet directionally called; its corrected full-window direction was below the filed directional threshold. LEP was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13GRAPAR",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13GRAPAR.json",
+      "sha256": "ba295bdd0e35d99516848a9bf8a16f68a7a0744aebec42318ba12080c99a574f",
+      "bytes": 120389,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20KUDKOR",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL20KUDKOR.json",
+      "sha256": "ac25ba378183f42feb0f216deff4a3652dbff48cc405e1e3844d08b373fe76f9",
+      "bytes": 42172,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "KOR was not yet directionally called; its corrected full-window direction was not known. KUD was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "KOR was not yet directionally called; its corrected full-window direction was not known. KUD was not yet directionally called; its corrected full-window direction was not known."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "KOR was not yet directionally called; its corrected full-window direction was not known. KUD was not yet directionally called; its corrected full-window direction was not known."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "UNKNOWN",
+            "reason": "KOR was not yet directionally called; its corrected full-window direction was not known. KUD was not yet directionally called; its corrected full-window direction was not known."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KRETOM",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13KRETOM.json",
+      "sha256": "3dda2a31faf73fd8b91c17a521ec050403b8180b775bed11b5e3237c893767fd",
+      "bytes": 109203,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOM was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOM was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "TOM was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "TOM: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13QUERUS",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13QUERUS.json",
+      "sha256": "1a2d43f9dc805d29c9203c0d5e152320117f1f511421d746f88aea5edf52cb80",
+      "bytes": 111219,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "QUE: later floor 29¢ outside 31–34¢; a later band print met the deadline. RUS: later floor 68¢ outside 56–58¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "RUS: later floor 68¢ outside 69–71¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "QUE: later floor 29¢ outside 31–34¢; a later band print met the deadline. RUS: later floor 68¢ outside 56–58¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "QUE: No strictly later accepted positive print. RUS: later floor 68¢ outside 69–71¢; a later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13PRIGAR",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13PRIGAR.json",
+      "sha256": "50513dd8bd33879988da99143d8a2934e9b009697af4aef1bd98525475d47241",
+      "bytes": 101897,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "PRI: later floor 87¢ inside 85–87¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "PRI: later floor 87¢ inside 85–87¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "GAR: No strictly later accepted positive print. PRI: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16KORANN",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL16KORANN.json",
+      "sha256": "1de3b2e93a00d8bf9d8e3e2a5c6769f986f5db1513b984635a60a9db7e85d4fc",
+      "bytes": 119814,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ANN was not yet directionally called; its corrected full-window direction was strengthening. KOR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "KOR: bought at 48¢ against a 48¢ close, not strictly below it."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "ANN was not yet directionally called; its corrected full-window direction was strengthening. KOR was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MORAKS",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL18MORAKS.json",
+      "sha256": "fa8414a7d4ba7b8792f9b4a8a5afc1290b220c657cfe0b1e4e20d14b9a4564ac",
+      "bytes": 118712,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AKS was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "AKS: later floor 66¢ outside 67–70¢; a later band print met the deadline. MOR: later floor 30¢ inside 30–32¢; no later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "AKS was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "MOR: later floor 30¢ inside 28–30¢; no later band print met the deadline."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL12AVASEI",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL12AVASEI.json",
+      "sha256": "bc966f4378ddd7bf1bdbae85937a2bd49b427a59a3a1067b61a0c1577fb5ca2e",
+      "bytes": 97130,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was weakening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was weakening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SEI was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19GAOFRU",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL19GAOFRU.json",
+      "sha256": "156da5106789da255564b0d58b3eeea1e8a3329e5daba818052376efaa0e466d",
+      "bytes": 97174,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "FRU was not yet directionally called; its corrected full-window direction was below the filed directional threshold. GAO was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17PUTSHE",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL17PUTSHE.json",
+      "sha256": "04128343176e5a5f1e2853ec0f73aa0447ebb326ef624b8d9496670656d964df",
+      "bytes": 110325,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PUT was strengthening; its corrected full-window direction was below the filed directional threshold. SHE was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PUT was not yet directionally called; its corrected full-window direction was below the filed directional threshold. SHE was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PUT was strengthening; its corrected full-window direction was below the filed directional threshold. SHE was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "PUT was strengthening; its corrected full-window direction was below the filed directional threshold. SHE was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL19YASBAR",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL19YASBAR.json",
+      "sha256": "5f549bf7c8c92a2f8d16b24c7d827c912887a7ea401cf7d9d0801f3a06e08cf4",
+      "bytes": 108761,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "YAS was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "YAS was not yet directionally called; its corrected full-window direction was weakening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "YAS was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "YAS: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13KAWWAL",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13KAWWAL.json",
+      "sha256": "a9d174ead2cb7d06f2c8c77acd145a31604f926ecd0f43c491cefea2014779eb",
+      "bytes": 97781,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "WAL was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "KAW: later floor 31¢ outside 32–32¢; no later band print met the deadline. WAL: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "WAL was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "KAW: No strictly later accepted positive print. WAL: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL14PUTLIU",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL14PUTLIU.json",
+      "sha256": "c719681c737c3510b9a498a7be70e881f4694f7857e32dd4f30df7ad3f3614bb",
+      "bytes": 111599,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was not yet directionally called; its corrected full-window direction was weakening. PUT was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was not yet directionally called; its corrected full-window direction was weakening. PUT was weakening; its corrected full-window direction was strengthening."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was not yet directionally called; its corrected full-window direction was weakening. PUT was not yet directionally called; its corrected full-window direction was strengthening."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "LIU was strengthening; its corrected full-window direction was weakening."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL13MORBEJ",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL13MORBEJ.json",
+      "sha256": "f924ca7cb34e8bb9b2e8a782549f1ac4ebaec3e84a0d6ae1ae26e306735ce4ac",
+      "bytes": 116267,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BEJ: later floor 83¢ outside 81–82¢; no later band print met the deadline. MOR: later floor 11¢ outside 16–18¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BEJ: No strictly later accepted positive print. MOR: later floor 11¢ outside 15–17¢; a later band print met the deadline."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "BEJ: later floor 83¢ outside 81–82¢; no later band print met the deadline. MOR: later floor 11¢ outside 16–18¢; a later band print met the deadline."
+          },
+          "last": {
+            "layer": "ALL_THREE",
+            "status": "PASS",
+            "reason": "Both sides passed all three specified checks; this does not certify a predictive subsecond organ."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL20PODSTU",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL20PODSTU.json",
+      "sha256": "83a18567025793fd11da4696df6a6a7039dc02daa186fc764100ce36a3c5ad66",
+      "bytes": 111855,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "POD: later floor 77¢ outside 73–75¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "POD: bought at 78¢ against a 77¢ close, not strictly below it."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "POD: later floor 77¢ outside 73–75¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "STU: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL18MICFRU",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL18MICFRU.json",
+      "sha256": "bc85e5926b0fca42da0dea307e1c6b358ac139939dc0c93a14e65c815d412cda",
+      "bytes": 97942,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "FRU: later floor 75¢ outside 69–71¢; no later band print met the deadline. MIC: later floor 25¢ inside 24–27¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "MIC: No strictly later accepted positive print."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MICRO",
+            "status": "FAIL",
+            "reason": "FRU: later floor 75¢ outside 69–71¢; no later band print met the deadline. MIC: later floor 25¢ inside 24–27¢; no later band print met the deadline."
+          },
+          "last": {
+            "layer": "MICRO",
+            "status": "UNKNOWN",
+            "reason": "FRU: No strictly later accepted positive print. MIC: No strictly later accepted positive print."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL16VALSAS",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL16VALSAS.json",
+      "sha256": "e0422a5f42e6d31a30722497520612f42a38c100cd269614f33f8765a5d821f3",
+      "bytes": 107569,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SAS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SAS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SAS was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "SAS was not yet directionally called; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXWTAMATCH-26JUL17UDVBAD",
+      "category": "WTA_MAIN",
+      "named_only": false,
+      "url": "/data/layer-review/KXWTAMATCH-26JUL17UDVBAD.json",
+      "sha256": "428452b0d2c4431e355f8f589bde6b4326dc0fc4f74f0908b0148f732e182218",
+      "bytes": 108281,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          },
+          "last": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "UDV was strengthening; its corrected full-window direction was below the filed directional threshold."
+          }
+        }
+      }
+    },
+    {
+      "event": "KXATPMATCH-26JUL12ALTGAS",
+      "category": "ATP_MAIN",
+      "named_only": true,
+      "url": "/data/layer-review/KXATPMATCH-26JUL12ALTGAS.json",
+      "sha256": "878cf20854b56b039efff5bc0e9fc7a2d8d18ccb16d8af6a01bcc241b4f73f35",
+      "bytes": 121096,
+      "exits": {
+        "D": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAS was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "GAS: bought at 38¢ against a 38¢ close, not strictly below it."
+          }
+        },
+        "MIRROR_RESERVE": {
+          "first": {
+            "layer": "MACRO",
+            "status": "FAIL",
+            "reason": "GAS was not yet directionally called; its corrected full-window direction was weakening."
+          },
+          "last": {
+            "layer": "MICRO-MICRO",
+            "status": "FAIL",
+            "reason": "GAS: bought at 38¢ against a 38¢ close, not strictly below it."
+          }
+        }
+      }
+    }
+  ]
+}
